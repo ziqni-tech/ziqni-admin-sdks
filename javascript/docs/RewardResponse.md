@@ -1,0 +1,11 @@
+# @ZiqniTechAdminApiClient.RewardResponse
+
+## Properties
+
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**meta** | [**MetaExtended**](MetaExtended.md) |  | 
+**results** | [**[Reward]**](Reward.md) |  | [optional] 
+**errors** | [**[Error]**](Error.md) |  | [optional] 
+
+

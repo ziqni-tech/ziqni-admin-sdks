@@ -6,3 +6,6 @@
 /openapi/java/generated/
 /openapi/javascript/generated/
 /java/target/
+/javascript/node_modules/
+/javascript/package-lock.json
+/javascript/dist/
