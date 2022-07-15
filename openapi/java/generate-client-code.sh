@@ -1,7 +1,9 @@
 #!/bin/bash
 
+# Copyright (c) 2022. ZIQNI LTD registered in England and Wales, company registration number-09693684
+
 # Execute this script from inside the openapi folder
-openapi-generator-cli version 6.0
+#openapi-generator-cli version 6.0
 SPEC_FILE=../ziqni-admin-api.yml
 CONF_FILE=ziqni-admin-api.config.yml
 GEN_DIR=../../java/target/generated-sources/openapi/src/main/java/com/ziqni/sdk/admin

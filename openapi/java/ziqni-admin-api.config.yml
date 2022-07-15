@@ -3,7 +3,7 @@ configPackage: com.ziqni.sdk.admin.config
 apiPackage: com.ziqni.sdk.admin.api
 modelPackage: com.ziqni.sdk.admin.model
 groupId: com.ziqni
-artifactId: ziqni-admin-api-client
+artifactId: ziqni-admin-sdk
 dateLibrary: java8
 hideGenerationTimestamp: true
 files:
