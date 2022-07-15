@@ -211,7 +211,7 @@
                 <executions>
                     <execution>
                         <id>Run Script</id>
-                        <phase>compile</phase>
+                        <phase>generate-sources</phase>
                         <goals>
                             <goal>exec</goal>
                         </goals>
@@ -228,7 +228,6 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>build-helper-maven-plugin</artifactId>
-                <!--                <version>3.0.0</version>-->
                 <executions>
                     <execution>
                         <phase>generate-sources</phase>
@@ -237,7 +236,7 @@
                         </goals>
                         <configuration>
                             <sources>
-                                <source>src/generated/java</source>
+                                <source>${project.build.directory}/generated-sources/openapi/src/main/java/</source>
                             </sources>
                         </configuration>
                     </execution>
