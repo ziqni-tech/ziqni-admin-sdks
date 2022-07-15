@@ -1,0 +1,83 @@
+package {{invokerPackage}};
+
+import com.ziqni.sdk.admin.configuration.ApiRestClientFactory;
+import {{invokerPackage}}.configuration.AdminApiClientConfig;
+import {{invokerPackage}}.api.*;
+import {{invokerPackage}}.ws.WsAddress;
+import java.time.Duration;
+import com.ziqni.sdk.admin.notifications.SystemNotifications;
+import java.util.concurrent.atomic.AtomicReference;
+import com.ziqni.sdk.admin.notifications.model.SubscriptionResponse;
+import com.ziqni.sdk.admin.notifications.model.SubscriptionTypes;
+import java.util.function.Consumer;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+public abstract class ApiClientFactory {
+
+    private static final Logger logger = LoggerFactory.getLogger(ApiClientFactory.class);
+
+    private static Boolean initialised = false;
+    {{#apiInfo}}{{#apis}}private static {{classname}} {{#lambda.camelcase}}{{classname}}{{/lambda.camelcase}};
+    {{/apis}}{{/apiInfo}}
+
+    public static void initialise() throws Exception {
+        if(initialised) return;
+        ApiClientFactory.initialised = true;
+    }
+
+    private static void init() {
+        try {
+            initialise();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static Boolean getInitialised() {
+        return initialised;
+    }
+
+    private static final AtomicReference<SystemNotifications> systemNotificationsAtomicReference = new AtomicReference<>();
+    public static void initSystemNotificationsApi(Consumer<SubscriptionResponse> onSubscriptionResponse, Consumer<SubscriptionTypes> onSubscriptionTypes) throws Exception {
+        logger.info("Init sys notify, are websockets enabled [{}]", AdminApiClientConfig.isWebsocket());
+        assert AdminApiClientConfig.isWebsocket();
+        if(!ApiClientFactory.initialised)
+            init();
+        if(systemNotificationsAtomicReference.get() != null)
+            throw new Exception("System notification already initialised");
+        getStreamingClient().asyncWebSocketClient(ws -> {
+            var s = new SystemNotifications(ws,onSubscriptionResponse,onSubscriptionTypes);
+            systemNotificationsAtomicReference.set(s);
+            logger.info("sys notify initialised [{}] and systemNotificationsAtomicReference update with [{}]", s.getSubscriptions().size(), systemNotificationsAtomicReference.get().toString());
+        });
+
+//        logger.info("sys notify initialised systemNotificationsAtomicReference is [{}]", systemNotificationsAtomicReference.get().toString());
+    }
+
+    public static SystemNotifications getSystemNotificationsApi() throws Exception {
+        assert AdminApiClientConfig.isWebsocket();
+        if(systemNotificationsAtomicReference.get()==null)
+            initSystemNotificationsApi(subscriptionResponse -> {},subscriptionTypes -> {});
+        logger.info("get sys notify systemNotificationsAtomicReference [{}]", systemNotificationsAtomicReference.get().toString());
+        if(systemNotificationsAtomicReference.get() == null)
+            throw new RuntimeException("System notification not initialised");
+        return systemNotificationsAtomicReference.get();
+    }
+
+    public static boolean isSystemNotificationsApiInitialised() {
+        return systemNotificationsAtomicReference.get() != null;
+    }
+
+    {{#apiInfo}}{{#apis}} public static {{classname}} get{{classname}}() {
+        if(ApiClientFactory.{{#lambda.camelcase}}{{classname}}{{/lambda.camelcase}} == null) {
+            init();
+
+            ApiClientFactory.{{#lambda.camelcase}}{{classname}}{{/lambda.camelcase}} = new {{classname}}(ApiRestClientFactory.getApiClient());
+        }
+
+        return ApiClientFactory.{{#lambda.camelcase}}{{classname}}{{/lambda.camelcase}};
+    }
+
+    {{/apis}}{{/apiInfo}}
+}

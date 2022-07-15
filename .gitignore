@@ -1,0 +1,8 @@
+/.idea/
+/.idea/*
+/java/logs/
+*.iml
+/java/openapitools.json
+/openapi/java/generated/
+/openapi/javascript/generated/
+/java/target/

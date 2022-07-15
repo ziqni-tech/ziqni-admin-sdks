@@ -1,0 +1,22 @@
+projectVersion: 0.0.26
+licenseName: "Ziqni Commercial License"
+projectDescription: "Client library for Ziqni Admin API"
+projectName: "@ziqni-tech/admin-api-client"
+hideGenerationTimestamp: true
+files:
+#  AUTHORS.md: {}
+#  ws_api_delegate.mustache:
+#    templateType: API
+#    destinationFilename: WsDelegate.java
+#  api_security_roles.mustache:
+#    folder: src/main/java/com/ziqni/api/security
+#    destinationFilename: SecurityRoles.java
+#    templateType: SupportingFiles
+#  api.mustache-ignore:
+#    templateType: API
+#    destinationFilename: Impl.kt
+#  other/check.mustache:
+#    folder: scripts
+#    destinationFilename: check.sh
+#    templateType: SupportingFiles
+

@@ -1,0 +1,63 @@
+package {{invokerPackage}};
+
+import {{invokerPackage}}.api.*;
+import {{invokerPackage}}.streaming.WsAddress;
+import {{invokerPackage}}.streaming.StreamingClient;
+import java.time.Duration;
+import java.util.concurrent.atomic.AtomicReference;
+import java.util.function.Consumer;
+import java.util.function.Supplier;
+
+public abstract class ZiqniAdminApiFactory {
+
+    private static StreamingClient streamingClient;
+    private static Boolean initialised = false;
+    {{#apiInfo}}{{#apis}}private static {{classname}}Ws {{#lambda.camelcase}}{{classname}}{{/lambda.camelcase}}Ws;
+    {{/apis}}{{/apiInfo}}
+
+    public static <T> T initialise(Supplier<T> then) throws Exception {
+        initialise();
+        return then.get();
+    }
+
+    public static void initialise() throws Exception {
+        if(initialised) return;
+
+        ZiqniAdminApiFactory.initialised = true;
+
+        streamingClient = new StreamingClient(new WsAddress().getAddress());
+    }
+
+    private static void init() {
+        try {
+            initialise();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static Boolean getInitialised() {
+        return initialised;
+    }
+
+    public static StreamingClient getStreamingClient() {
+        assert getInitialised();
+        return streamingClient;
+    }
+    {{#apiInfo}}{{#apis}} public static {{classname}}Ws get{{classname}}() {
+        /**
+        ------{{#operations}}{{#operation}}{{#callbacks.0}},{{/callbacks.0}}{{/operation}}{{/operations}}
+        {{#operations}}{{#operation}}{{#callbacks}}{{#urls}}{{#requests}}{{#allParams}}{{{paramName}}}: {{^required}}Option<{{/required}}{{#isArray}}&{{/isArray}}{{{dataType}}}{{^required}}>{{/required}},
+        {{/allParams}}{{{name}}}{{{operationId}}}{{/requests}}
+        {{/urls}}{{/callbacks}}{{/operation}}{{/operations}}
+        */
+        if(ZiqniAdminApiFactory.{{#lambda.camelcase}}{{classname}}{{/lambda.camelcase}}Ws == null) {
+            init();
+            ZiqniAdminApiFactory.{{#lambda.camelcase}}{{classname}}{{/lambda.camelcase}}Ws = new {{classname}}Ws(streamingClient, Duration.ofSeconds(5));
+        }
+
+        return ZiqniAdminApiFactory.{{#lambda.camelcase}}{{classname}}{{/lambda.camelcase}}Ws;
+    }
+
+    {{/apis}}{{/apiInfo}}
+}
