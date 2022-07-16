@@ -31,9 +31,6 @@ public abstract class ConfigurationLoader {
     );
 
     private static String instanceId = null;
-//    private static String ec2InstanceId = null;
-//    private static String ec2PrivateAddress = null;
-//    private static List<String> macAddresses = null;
 
     private static final Logger logger = LoggerFactory.getLogger(ConfigurationLoader.class);
 
@@ -50,8 +47,6 @@ public abstract class ConfigurationLoader {
                     .withWithDecryption(true)
                     .withMaxResults(10);
             process(c.getParametersByPath(request), c, request);
-
-            logger.info("[{}] config parameters with keys [{}] loaded from AWS", cache.size(), String.join(",\n", cache.keySet()));
         } catch(Throwable t) {
             logger.error("Could not load configuration from AWS", t);
 
@@ -152,8 +147,6 @@ public abstract class ConfigurationLoader {
     }
 
     private static String getParameterFromEnvironment(String name) {
-//        var envVariables = System.getenv().entrySet().stream().map(e -> e.getKey() + e.getValue()).collect(Collectors.joining());
-//        logger.debug("Available environment variables are: [{}]", envVariables);
 
         var variableToCheck = ziqniEnvironmentVariablePrefix + name.toUpperCase().replace('.', '_');
         var envVariableValue = System.getenv(variableToCheck);
@@ -181,33 +174,9 @@ public abstract class ConfigurationLoader {
         if(instanceIdFromEnv != null) {
             instanceId = instanceIdFromEnv;
         } else {
-//            instanceDetailsFromEc2();
-//            instanceId = ec2InstanceId != null ? ec2InstanceId : Common.getNextId();
             instanceId = Common.getNextId();
         }
 
         logger.info("Instance id set to [{}]", instanceId);
     }
-
-//    protected static void instanceDetailsFromEc2(){
-//
-//        try {
-//            // Resolve the instanceId
-//            ec2InstanceId = EC2MetadataUtils.getInstanceId();
-//
-//            if(ec2InstanceId != null) {
-//
-//                // Resolve (first/primary) private IP
-//                ec2PrivateAddress = EC2MetadataUtils.getInstanceInfo().getPrivateIp();
-//            }
-//
-//            logger.info("Current machine's instance id is [{}] and it's private ip is [{}]", ec2InstanceId, ec2PrivateAddress);
-//        }
-//        catch (SdkClientException e){
-//            logger.error("Failed to load instance information from EC2: ", e);
-//        }
-//        catch (Throwable e){
-//            logger.error("Failed to load instance information from EC2", e);
-//        }
-//    }
 }

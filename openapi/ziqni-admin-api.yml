@@ -9183,70 +9183,13 @@ paths:
           OAuth2: []
       operationId: createMemberToken
       description: Get Jwt Token
-  /entity-changes-available:
+  /entity-changes:
     post:
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/SubscriptionRequest'
-        required: true
-      tags:
-        - entity-changes
-      responses:
-        '201':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/SubscriptionResponse'
-          description: Subscription successfully created
-      operationId: sysNotifyAvailable
-      description: subscribes a client to receive out-of-band data
-  /entity-changes-subscriptions:
-    post:
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/SubscriptionRequest'
-        required: true
-      tags:
-        - entity-changes
-      responses:
-        '201':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/SubscriptionResponse'
-          description: Subscription successfully created
-      operationId: sysNotifySubscriptions
-      description: subscribes a client to receive out-of-band data
-  /entity-changes-unsubscribe:
-    post:
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/SubscriptionRequest'
-        required: true
-      tags:
-        - entity-changes
-      responses:
-        '201':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/SubscriptionResponse'
-          description: Subscription successfully created
-      operationId: sysNotifyUnsubscribe
-      description: subscribes a client to receive out-of-band data
-  /entity-changes-subscribe:
-    post:
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/SubscriptionRequest'
+              $ref: '#/components/schemas/EntityChangeSubscriptionRequest'
         required: true
       callbacks:
         entityChanged:
@@ -9284,10 +9227,24 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/SubscriptionResponse'
+                $ref: '#/components/schemas/EntityChangeSubscriptionResponse'
           description: Subscription successfully created
-      operationId: sysNotifySubscribe
+      operationId: subscribeToEntityChanges
       description: subscribes a client to receive out-of-band data
+    delete:
+      parameters:
+        -
+          name: subscriptionId
+          description: ''
+          schema:
+            type: string
+          in: query
+      responses:
+        '200':
+          content:
+            application/json: {}
+          description: Onsuccess
+      operationId: unsubscribeFromEntityChanges
 components:
   schemas:
     ProductReduced:
@@ -18741,18 +18698,6 @@ components:
       x-vue-ops:
         - Create
         - Update
-    SubscriptionResponse:
-      description: ''
-      required:
-        - subscriptions
-      type: object
-      properties:
-        subscriptions:
-          description: this unique identifier allows management of the subscription
-          type: array
-          items:
-            $ref: '#/components/schemas/Subscription'
-      example: 2531329f-fb09-4ef7-887e-84e648214436
     EntityStateChanged:
       description: ''
       required:
@@ -18843,36 +18788,6 @@ components:
         metadata:
           type: object
           additionalProperties: true
-    SubscriptionRequest:
-      description: Subscribes a client to receive out-of-band data
-      required:
-        - entityTypes
-      type: object
-      properties:
-        entityTypes:
-          description: ''
-          type: array
-          items:
-            $ref: '#/components/schemas/SubscriptionRequestItem'
-    Subscription:
-      description: Subscribes a client to receive out-of-band data
-      required:
-        - entityTypes
-        - subscriptionId
-        - entityType
-      type: object
-      properties:
-        entityType:
-          description: ''
-          type: string
-        subscriptionId:
-          description: ''
-          type: string
-        constraints:
-          description: Constraints of this subscription like gauranteedDelivery
-          type: array
-          items:
-            type: string
     SubscriptionTypes:
       description: ''
       required: []
@@ -18880,20 +18795,6 @@ components:
       properties:
         entityType:
           description: ''
-          type: array
-          items:
-            type: string
-    SubscriptionRequestItem:
-      description: ''
-      required:
-        - entityType
-      type: object
-      properties:
-        entityType:
-          description: ''
-          type: string
-        constraints:
-          description: Constraints of this subscription like gauranteedDelivery
           type: array
           items:
             type: string
@@ -18921,11 +18822,80 @@ components:
         -
           $ref: '#/components/schemas/EntityStateChanged'
         -
-          $ref: '#/components/schemas/Subscription'
+          $ref: '#/components/schemas/EntityChangeSubscription'
         -
-          $ref: '#/components/schemas/SubscriptionResponse'
+          $ref: '#/components/schemas/EntityChangeSubscriptionResponse'
         -
           $ref: '#/components/schemas/SubscriptionTypes'
+    EntityChangeSubscription:
+      description: Subscribes a client to receive out-of-band data
+      required:
+        - entityTypes
+        - subscriptionId
+        - entityType
+      type: object
+      properties:
+        entityType:
+          description: ''
+          type: string
+        subscriptionId:
+          description: ''
+          type: string
+        constraints:
+          description: Constraints of this subscription like gauranteedDelivery
+          type: array
+          items:
+            type: string
+        topic:
+          description: /user/queue/callbacks
+          type: string
+    EntityChangeSubscriptionRequest:
+      description: ''
+      required:
+        - entityType
+        - callback
+        - action
+      type: object
+      properties:
+        entityType:
+          description: 'What you are subscribing to, like Competition, Contest, Member, Award etc.'
+          type: string
+        constraints:
+          description: Constraints of this subscription.
+          type: array
+          items:
+            type: string
+        callback:
+          description: >-
+            The callback operation you are subscribing too. Like entityChanged or
+            entityStateChanged
+          type: string
+        action:
+          description: Either subscribe or unsubscribe from the data feed
+          enum:
+            - Subscribe
+            - Unsubscribe
+          type: string
+    EntityChangeSubscriptionResponse:
+      description: ''
+      required:
+        - subscriptions
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/MetaBasic'
+          description: ''
+        data:
+          description: ''
+          type: array
+          items:
+            $ref: '#/components/schemas/EntityChangeSubscription'
+        errors:
+          description: ''
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
+      example: 2531329f-fb09-4ef7-887e-84e648214436
   responses:
     ApiResponseBody:
       content:
@@ -20019,7 +19989,7 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/SubscriptionResponse'
+            $ref: '#/components/schemas/EntityChangeSubscriptionResponse'
       description: ''
     NotificationResponseBody:
       content:
