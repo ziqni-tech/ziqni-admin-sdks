@@ -18330,7 +18330,7 @@ components:
             be valid for 30 minutes
           type: integer
         resource:
-          description: This will be ziqni-gapi or similar
+          description: This will be ziqni-aapi or similar
           type: string
       example:
         apiKey: some text

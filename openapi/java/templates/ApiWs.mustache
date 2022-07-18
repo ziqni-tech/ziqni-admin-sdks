@@ -151,7 +151,7 @@ import java.util.function.BiConsumer;
 
             {{#hasBodyParam}}{{#bodyParams}}request.put("body",{{paramName}});{{^-last}}, {{/-last}}{{/bodyParams}}{{/hasBodyParam}}
 
-            CompletableFuture<{{^returnType}}Void{{/returnType}}{{#returnType}}{{{returnType}}}{{/returnType}}> result = this.streamingClient.sendWithApiCallback("/gapi/{{{operationId}}}", request);
+            CompletableFuture<{{^returnType}}Void{{/returnType}}{{#returnType}}{{{returnType}}}{{/returnType}}> result = this.streamingClient.sendWithApiCallback("/aapi/{{{operationId}}}", request);
             return result;
     {{/asyncNative}}
         }
