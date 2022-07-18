@@ -1,7 +1,7 @@
 package tests.utils;//package tests.utils;
 //
-//import com.ziqni.sdk.admin.ApiException;
-//import com.ziqni.sdk.admin.model.Error;
+//import com.ziqni.admin.sdk.ApiException;
+//import com.ziqni.admin.sdk.model.Error;
 //
 //import java.util.List;
 //import java.util.Objects;
@@ -21,7 +21,7 @@ package tests.utils;//package tests.utils;
 //
 //                apiException.getResponseBody()
 //
-//                this.errorResponse = com.ziqni.sdk.admin.Configuration.getDefaultApiClient().getObjectMapper().readValue(apiException.getResponseBody(), Error.class);
+//                this.errorResponse = com.ziqni.admin.sdk.Configuration.getDefaultApiClient().getObjectMapper().readValue(apiException.getResponseBody(), Error.class);
 //            } catch (Exception e) {
 //                e.printStackTrace();
 //                throw apiException;

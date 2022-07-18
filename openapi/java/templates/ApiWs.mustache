@@ -3,19 +3,20 @@ package {{package}};
 import javax.ws.rs.core.GenericType;
 import {{invokerPackage}}.streaming.StreamingClient;
 import {{invokerPackage}}.streaming.EventHandler;
-import com.ziqni.sdk.admin.streaming.handlers.CallbackConsumer;
+import {{invokerPackage}}.streaming.handlers.CallbackConsumer;
 import {{invokerPackage}}.ApiException;
 import org.springframework.messaging.simp.stomp.StompHeaders;
+
 {{#imports}}
-    import {{import}};
+import {{import}};
 {{/imports}}
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.ziqni.sdk.admin.model.*;
+import {{invokerPackage}}.model.*;
 import java.time.Duration;
 {{^fullJavaUtil}}
-    import java.util.*;
+import java.util.*;
 {{/fullJavaUtil}}
 {{#asyncNative}}//asyncNative:{{asyncNative}}
 import java.util.concurrent.CompletableFuture;

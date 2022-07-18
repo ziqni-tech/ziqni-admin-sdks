@@ -1,6 +1,6 @@
 package tests.utils;
 
-import com.ziqni.sdk.admin.ApiException;
+import com.ziqni.admin.sdk.ApiException;
 
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionException;

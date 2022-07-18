@@ -6,7 +6,7 @@
 #openapi-generator-cli version 6.0
 SPEC_FILE=../ziqni-admin-api.yml
 CONF_FILE=ziqni-admin-api.config.yml
-GEN_DIR=../../java/target/generated-sources/openapi/src/main/java/com/ziqni/sdk/admin
+GEN_DIR=../../java/target/generated-sources/openapi/src/main/java/com/ziqni/admin/sdk
 FILE=generate-client-code.sh
 
 if [ -z "$1" ]; then
@@ -37,16 +37,16 @@ mkdir -p $GEN_DIR
 mkdir -p $GEN_DIR/api
 mkdir -p $GEN_DIR/model
 
-# Copy the new sources - openapi/java/generated/src/main/java/com/ziqni/sdk/admin/api
-cp -rf ./generated/src/main/java/com/ziqni/sdk/admin/api/*Ws.java $GEN_DIR/api/
+# Copy the new sources - openapi/java/generated/src/main/java/com/ziqni/admin/sdk/api
+cp -rf ./generated/src/main/java/com/ziqni/admin/sdk/api/*Ws.java $GEN_DIR/api/
 
-# Copy the new sources - openapi/java/generated/src/main/java/com/ziqni/sdk/admin/model
-cp -rf ./generated/src/main/java/com/ziqni/sdk/admin/model $GEN_DIR
+# Copy the new sources - openapi/java/generated/src/main/java/com/ziqni/admin/sdk/model
+cp -rf ./generated/src/main/java/com/ziqni/admin/sdk/model $GEN_DIR
 
-cp -rf ./generated/src/main/java/com/ziqni/sdk/admin/ZiqniAdminApiFactory.java $GEN_DIR
-cp -rf ./generated/src/main/java/com/ziqni/sdk/admin/ApiException.java $GEN_DIR
-cp -rf ./generated/src/main/java/com/ziqni/sdk/admin/JSON.java $GEN_DIR
-cp -rf ./generated/src/main/java/com/ziqni/sdk/admin/RFC3339DateFormat.java $GEN_DIR
+cp -rf ./generated/src/main/java/com/ziqni/admin/sdk/ZiqniAdminApiFactory.java $GEN_DIR
+cp -rf ./generated/src/main/java/com/ziqni/admin/sdk/ApiException.java $GEN_DIR
+cp -rf ./generated/src/main/java/com/ziqni/admin/sdk/JSON.java $GEN_DIR
+cp -rf ./generated/src/main/java/com/ziqni/admin/sdk/RFC3339DateFormat.java $GEN_DIR
 
 
 
