@@ -174,10 +174,12 @@ public class WsClient {
             setConnectionState(Connecting);
             logger.info("Connecting");
             createClient();
-            var connected = doConnect().join().isConnected();
-            setIsConnected();
-            setConnectionState(Connected);
-            startResult.complete(isConnected());
+            var connected = doConnect().thenApply(stompSession1 -> {
+                setIsConnected();
+                setConnectionState(Connected);
+                startResult.complete(isConnected());
+                return stompSession1.isConnected();
+            }).join();
         }
         catch (ConnectionLostException e){
             setConnectionState(SevereFailure);
