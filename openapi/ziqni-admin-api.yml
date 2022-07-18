@@ -9229,22 +9229,8 @@ paths:
               schema:
                 $ref: '#/components/schemas/EntityChangeSubscriptionResponse'
           description: Subscription successfully created
-      operationId: subscribeToEntityChanges
+      operationId: manageEntityChangeSubscription
       description: subscribes a client to receive out-of-band data
-    delete:
-      parameters:
-        -
-          name: subscriptionId
-          description: ''
-          schema:
-            type: string
-          in: query
-      responses:
-        '200':
-          content:
-            application/json: {}
-          description: Onsuccess
-      operationId: unsubscribeFromEntityChanges
 components:
   schemas:
     ProductReduced:
@@ -18853,22 +18839,11 @@ components:
       description: ''
       required:
         - entityType
-        - callback
         - action
       type: object
       properties:
         entityType:
           description: 'What you are subscribing to, like Competition, Contest, Member, Award etc.'
-          type: string
-        constraints:
-          description: Constraints of this subscription.
-          type: array
-          items:
-            type: string
-        callback:
-          description: >-
-            The callback operation you are subscribing too. Like entityChanged or
-            entityStateChanged
           type: string
         action:
           description: Either subscribe or unsubscribe from the data feed
