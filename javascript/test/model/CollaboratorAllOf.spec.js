@@ -1,5 +1,5 @@
 /**
- * Ziqni Admin Api
+ * ZIQNI Admin API
  * Ziqni Application Services are used to manage and configure spaces.
  *
  * The version of the OpenAPI document: 3.0.1
@@ -80,6 +80,18 @@
 
     it('should have the property availableRoles (base name: "availableRoles")', function() {
       // uncomment below and update the code to test the property availableRoles
+      //var instance = new @ZiqniTechAdminApiClient.CollaboratorAllOf();
+      //expect(instance).to.be();
+    });
+
+    it('should have the property id (base name: "id")', function() {
+      // uncomment below and update the code to test the property id
+      //var instance = new @ZiqniTechAdminApiClient.CollaboratorAllOf();
+      //expect(instance).to.be();
+    });
+
+    it('should have the property spaceName (base name: "spaceName")', function() {
+      // uncomment below and update the code to test the property spaceName
       //var instance = new @ZiqniTechAdminApiClient.CollaboratorAllOf();
       //expect(instance).to.be();
     });

@@ -1,5 +1,5 @@
 /**
- * Ziqni Admin Api
+ * ZIQNI Admin API
  * Ziqni Application Services are used to manage and configure spaces.
  *
  * The version of the OpenAPI document: 3.0.1
@@ -151,6 +151,11 @@ import CustomFieldReducedAllOf from './model/CustomFieldReducedAllOf';
 import CustomFieldResponse from './model/CustomFieldResponse';
 import Dependancy from './model/Dependancy';
 import DependantOn from './model/DependantOn';
+import EntityChangeSubscription from './model/EntityChangeSubscription';
+import EntityChangeSubscriptionRequest from './model/EntityChangeSubscriptionRequest';
+import EntityChangeSubscriptionResponse from './model/EntityChangeSubscriptionResponse';
+import EntityChanged from './model/EntityChanged';
+import EntityStateChanged from './model/EntityStateChanged';
 import EntityType from './model/EntityType';
 import Entrant from './model/Entrant';
 import EntrantAction from './model/EntrantAction';
@@ -196,6 +201,7 @@ import MemberMessage from './model/MemberMessage';
 import MemberMessageAllOf from './model/MemberMessageAllOf';
 import MemberMessageResponse from './model/MemberMessageResponse';
 import MemberResponse from './model/MemberResponse';
+import MemberTokenRequest from './model/MemberTokenRequest';
 import MemberType from './model/MemberType';
 import MessageStatus from './model/MessageStatus';
 import MessageType from './model/MessageType';
@@ -206,6 +212,7 @@ import MetaInfo from './model/MetaInfo';
 import ModelDefault from './model/ModelDefault';
 import Notification from './model/Notification';
 import NotificationAllOf from './model/NotificationAllOf';
+import NotificationMessage from './model/NotificationMessage';
 import NotificationResponse from './model/NotificationResponse';
 import NotificationStatus from './model/NotificationStatus';
 import OptParamModels from './model/OptParamModels';
@@ -266,9 +273,12 @@ import SqsConnectionResponse from './model/SqsConnectionResponse';
 import StartEndDate from './model/StartEndDate';
 import Strategy from './model/Strategy';
 import StrategyType from './model/StrategyType';
+import SubscriptionTypes from './model/SubscriptionTypes';
 import Tag from './model/Tag';
 import TagAllOf from './model/TagAllOf';
 import TagResponse from './model/TagResponse';
+import Token from './model/Token';
+import TokenResponse from './model/TokenResponse';
 import Transformer from './model/Transformer';
 import TransformerAllOf from './model/TransformerAllOf';
 import TransformerResponse from './model/TransformerResponse';
@@ -365,11 +375,13 @@ import ConsumersApi from './api/ConsumersApi';
 import ContestsApi from './api/ContestsApi';
 import CustomFieldsApi from './api/CustomFieldsApi';
 import DefaultApi from './api/DefaultApi';
+import EntityChangesApi from './api/EntityChangesApi';
 import EventsApi from './api/EventsApi';
 import FileObjectsApi from './api/FileObjectsApi';
 import FileRepositoriesApi from './api/FileRepositoriesApi';
 import LanguagesApi from './api/LanguagesApi';
 import MemberMessagesApi from './api/MemberMessagesApi';
+import MemberTokenApi from './api/MemberTokenApi';
 import MembersApi from './api/MembersApi';
 import NotificationsApi from './api/NotificationsApi';
 import ProductsApi from './api/ProductsApi';
@@ -1252,6 +1264,36 @@ export {
     DependantOn,
 
     /**
+     * The EntityChangeSubscription model constructor.
+     * @property {module:model/EntityChangeSubscription}
+     */
+    EntityChangeSubscription,
+
+    /**
+     * The EntityChangeSubscriptionRequest model constructor.
+     * @property {module:model/EntityChangeSubscriptionRequest}
+     */
+    EntityChangeSubscriptionRequest,
+
+    /**
+     * The EntityChangeSubscriptionResponse model constructor.
+     * @property {module:model/EntityChangeSubscriptionResponse}
+     */
+    EntityChangeSubscriptionResponse,
+
+    /**
+     * The EntityChanged model constructor.
+     * @property {module:model/EntityChanged}
+     */
+    EntityChanged,
+
+    /**
+     * The EntityStateChanged model constructor.
+     * @property {module:model/EntityStateChanged}
+     */
+    EntityStateChanged,
+
+    /**
      * The EntityType model constructor.
      * @property {module:model/EntityType}
      */
@@ -1522,6 +1564,12 @@ export {
     MemberResponse,
 
     /**
+     * The MemberTokenRequest model constructor.
+     * @property {module:model/MemberTokenRequest}
+     */
+    MemberTokenRequest,
+
+    /**
      * The MemberType model constructor.
      * @property {module:model/MemberType}
      */
@@ -1580,6 +1628,12 @@ export {
      * @property {module:model/NotificationAllOf}
      */
     NotificationAllOf,
+
+    /**
+     * The NotificationMessage model constructor.
+     * @property {module:model/NotificationMessage}
+     */
+    NotificationMessage,
 
     /**
      * The NotificationResponse model constructor.
@@ -1942,6 +1996,12 @@ export {
     StrategyType,
 
     /**
+     * The SubscriptionTypes model constructor.
+     * @property {module:model/SubscriptionTypes}
+     */
+    SubscriptionTypes,
+
+    /**
      * The Tag model constructor.
      * @property {module:model/Tag}
      */
@@ -1958,6 +2018,18 @@ export {
      * @property {module:model/TagResponse}
      */
     TagResponse,
+
+    /**
+     * The Token model constructor.
+     * @property {module:model/Token}
+     */
+    Token,
+
+    /**
+     * The TokenResponse model constructor.
+     * @property {module:model/TokenResponse}
+     */
+    TokenResponse,
 
     /**
      * The Transformer model constructor.
@@ -2536,6 +2608,12 @@ export {
     DefaultApi,
 
     /**
+    * The EntityChangesApi service constructor.
+    * @property {module:api/EntityChangesApi}
+    */
+    EntityChangesApi,
+
+    /**
     * The EventsApi service constructor.
     * @property {module:api/EventsApi}
     */
@@ -2564,6 +2642,12 @@ export {
     * @property {module:api/MemberMessagesApi}
     */
     MemberMessagesApi,
+
+    /**
+    * The MemberTokenApi service constructor.
+    * @property {module:api/MemberTokenApi}
+    */
+    MemberTokenApi,
 
     /**
     * The MembersApi service constructor.

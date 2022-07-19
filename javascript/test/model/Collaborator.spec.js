@@ -1,5 +1,5 @@
 /**
- * Ziqni Admin Api
+ * ZIQNI Admin API
  * Ziqni Application Services are used to manage and configure spaces.
  *
  * The version of the OpenAPI document: 3.0.1
@@ -54,24 +54,6 @@
       //expect(instance).to.be.a(@ZiqniTechAdminApiClient.Collaborator);
     });
 
-    it('should have the property id (base name: "id")', function() {
-      // uncomment below and update the code to test the property id
-      //var instance = new @ZiqniTechAdminApiClient.Collaborator();
-      //expect(instance).to.be();
-    });
-
-    it('should have the property spaceName (base name: "spaceName")', function() {
-      // uncomment below and update the code to test the property spaceName
-      //var instance = new @ZiqniTechAdminApiClient.Collaborator();
-      //expect(instance).to.be();
-    });
-
-    it('should have the property created (base name: "created")', function() {
-      // uncomment below and update the code to test the property created
-      //var instance = new @ZiqniTechAdminApiClient.Collaborator();
-      //expect(instance).to.be();
-    });
-
     it('should have the property email (base name: "email")', function() {
       // uncomment below and update the code to test the property email
       //var instance = new @ZiqniTechAdminApiClient.Collaborator();
@@ -98,6 +80,18 @@
 
     it('should have the property availableRoles (base name: "availableRoles")', function() {
       // uncomment below and update the code to test the property availableRoles
+      //var instance = new @ZiqniTechAdminApiClient.Collaborator();
+      //expect(instance).to.be();
+    });
+
+    it('should have the property id (base name: "id")', function() {
+      // uncomment below and update the code to test the property id
+      //var instance = new @ZiqniTechAdminApiClient.Collaborator();
+      //expect(instance).to.be();
+    });
+
+    it('should have the property spaceName (base name: "spaceName")', function() {
+      // uncomment below and update the code to test the property spaceName
       //var instance = new @ZiqniTechAdminApiClient.Collaborator();
       //expect(instance).to.be();
     });

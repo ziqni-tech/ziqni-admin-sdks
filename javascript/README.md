@@ -225,6 +225,7 @@ Class | Method | HTTP request | Description
 *@ZiqniTechAdminApiClient.CustomFieldsApi* | [**getCustomFieldsByQuery**](docs/CustomFieldsApi.md#getCustomFieldsByQuery) | **POST** /custom-fields/query | Get custom fields by query
 *@ZiqniTechAdminApiClient.CustomFieldsApi* | [**updateCustomFields**](docs/CustomFieldsApi.md#updateCustomFields) | **PUT** /custom-fields | Update custom fields
 *@ZiqniTechAdminApiClient.DefaultApi* | [**deleteSpace**](docs/DefaultApi.md#deleteSpace) | **DELETE** /spaces | NOT AVAILABLE IN CURRENT RELEASE
+*@ZiqniTechAdminApiClient.EntityChangesApi* | [**manageEntityChangeSubscription**](docs/EntityChangesApi.md#manageEntityChangeSubscription) | **POST** /entity-changes | 
 *@ZiqniTechAdminApiClient.EventsApi* | [**createEvents**](docs/EventsApi.md#createEvents) | **POST** /events | 
 *@ZiqniTechAdminApiClient.EventsApi* | [**getEvents**](docs/EventsApi.md#getEvents) | **GET** /events | 
 *@ZiqniTechAdminApiClient.EventsApi* | [**getEventsByQuery**](docs/EventsApi.md#getEventsByQuery) | **POST** /events/query | 
@@ -257,6 +258,7 @@ Class | Method | HTTP request | Description
 *@ZiqniTechAdminApiClient.MemberMessagesApi* | [**getMemberMessages**](docs/MemberMessagesApi.md#getMemberMessages) | **GET** /member-messages | 
 *@ZiqniTechAdminApiClient.MemberMessagesApi* | [**getMemberMessagesByQuery**](docs/MemberMessagesApi.md#getMemberMessagesByQuery) | **POST** /member-messages/query | 
 *@ZiqniTechAdminApiClient.MemberMessagesApi* | [**updateMemberMessagesStatus**](docs/MemberMessagesApi.md#updateMemberMessagesStatus) | **PUT** /member-messages/state | NOT AVAILABLE IN CURRENT RELEASE
+*@ZiqniTechAdminApiClient.MemberTokenApi* | [**createMemberToken**](docs/MemberTokenApi.md#createMemberToken) | **POST** /member-token | 
 *@ZiqniTechAdminApiClient.MembersApi* | [**createMembers**](docs/MembersApi.md#createMembers) | **POST** /members | Create members
 *@ZiqniTechAdminApiClient.MembersApi* | [**deleteMembers**](docs/MembersApi.md#deleteMembers) | **DELETE** /members | Delete members
 *@ZiqniTechAdminApiClient.MembersApi* | [**deleteMembersByQuery**](docs/MembersApi.md#deleteMembersByQuery) | **POST** /members/delete | Delete members by query
@@ -490,6 +492,11 @@ Class | Method | HTTP request | Description
  - [@ZiqniTechAdminApiClient.CustomFieldResponse](docs/CustomFieldResponse.md)
  - [@ZiqniTechAdminApiClient.Dependancy](docs/Dependancy.md)
  - [@ZiqniTechAdminApiClient.DependantOn](docs/DependantOn.md)
+ - [@ZiqniTechAdminApiClient.EntityChangeSubscription](docs/EntityChangeSubscription.md)
+ - [@ZiqniTechAdminApiClient.EntityChangeSubscriptionRequest](docs/EntityChangeSubscriptionRequest.md)
+ - [@ZiqniTechAdminApiClient.EntityChangeSubscriptionResponse](docs/EntityChangeSubscriptionResponse.md)
+ - [@ZiqniTechAdminApiClient.EntityChanged](docs/EntityChanged.md)
+ - [@ZiqniTechAdminApiClient.EntityStateChanged](docs/EntityStateChanged.md)
  - [@ZiqniTechAdminApiClient.EntityType](docs/EntityType.md)
  - [@ZiqniTechAdminApiClient.Entrant](docs/Entrant.md)
  - [@ZiqniTechAdminApiClient.EntrantAction](docs/EntrantAction.md)
@@ -535,6 +542,7 @@ Class | Method | HTTP request | Description
  - [@ZiqniTechAdminApiClient.MemberMessageAllOf](docs/MemberMessageAllOf.md)
  - [@ZiqniTechAdminApiClient.MemberMessageResponse](docs/MemberMessageResponse.md)
  - [@ZiqniTechAdminApiClient.MemberResponse](docs/MemberResponse.md)
+ - [@ZiqniTechAdminApiClient.MemberTokenRequest](docs/MemberTokenRequest.md)
  - [@ZiqniTechAdminApiClient.MemberType](docs/MemberType.md)
  - [@ZiqniTechAdminApiClient.MessageStatus](docs/MessageStatus.md)
  - [@ZiqniTechAdminApiClient.MessageType](docs/MessageType.md)
@@ -545,6 +553,7 @@ Class | Method | HTTP request | Description
  - [@ZiqniTechAdminApiClient.ModelDefault](docs/ModelDefault.md)
  - [@ZiqniTechAdminApiClient.Notification](docs/Notification.md)
  - [@ZiqniTechAdminApiClient.NotificationAllOf](docs/NotificationAllOf.md)
+ - [@ZiqniTechAdminApiClient.NotificationMessage](docs/NotificationMessage.md)
  - [@ZiqniTechAdminApiClient.NotificationResponse](docs/NotificationResponse.md)
  - [@ZiqniTechAdminApiClient.NotificationStatus](docs/NotificationStatus.md)
  - [@ZiqniTechAdminApiClient.OptParamModels](docs/OptParamModels.md)
@@ -605,9 +614,12 @@ Class | Method | HTTP request | Description
  - [@ZiqniTechAdminApiClient.StartEndDate](docs/StartEndDate.md)
  - [@ZiqniTechAdminApiClient.Strategy](docs/Strategy.md)
  - [@ZiqniTechAdminApiClient.StrategyType](docs/StrategyType.md)
+ - [@ZiqniTechAdminApiClient.SubscriptionTypes](docs/SubscriptionTypes.md)
  - [@ZiqniTechAdminApiClient.Tag](docs/Tag.md)
  - [@ZiqniTechAdminApiClient.TagAllOf](docs/TagAllOf.md)
  - [@ZiqniTechAdminApiClient.TagResponse](docs/TagResponse.md)
+ - [@ZiqniTechAdminApiClient.Token](docs/Token.md)
+ - [@ZiqniTechAdminApiClient.TokenResponse](docs/TokenResponse.md)
  - [@ZiqniTechAdminApiClient.Transformer](docs/Transformer.md)
  - [@ZiqniTechAdminApiClient.TransformerAllOf](docs/TransformerAllOf.md)
  - [@ZiqniTechAdminApiClient.TransformerResponse](docs/TransformerResponse.md)

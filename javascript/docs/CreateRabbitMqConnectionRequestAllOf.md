@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 **queueName** | **String** | Name of the queue | 
 **exchange** | **String** | Exchange to bind to | [optional] 
 **routingKey** | **String** | Routing key to use | [optional] 
-**addConstraints** | **[String]** | Additional constraints.  Supported values:  - ssl  - durable  - exclusive  - autoDelete | [optional] 
+**addConstraints** | **[String]** | Additional constraints.   Supported values:  - ssl  - durable  - exclusive  - autoDelete | [optional] 
 **transformerId** | **String** |  | 
 
 

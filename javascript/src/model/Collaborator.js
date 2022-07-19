@@ -1,5 +1,5 @@
 /**
- * Ziqni Admin Api
+ * ZIQNI Admin API
  * Ziqni Application Services are used to manage and configure spaces.
  *
  * The version of the OpenAPI document: 3.0.1
@@ -14,7 +14,6 @@
 import ApiClient from '../ApiClient';
 import CollaboratorAllOf from './CollaboratorAllOf';
 import CollaboratorRolesAvailable from './CollaboratorRolesAvailable';
-import ModelDefault from './ModelDefault';
 
 /**
  * The Collaborator model module.
@@ -25,16 +24,12 @@ class Collaborator {
     /**
      * Constructs a new <code>Collaborator</code>.
      * @alias module:model/Collaborator
-     * @implements module:model/ModelDefault
      * @implements module:model/CollaboratorAllOf
-     * @param id {String} A unique system generated identifier
-     * @param spaceName {String} This is the space name which is linked to the account
-     * @param created {Date} ISO8601 timestamp for when a Model was created. All records are stored in UTC time zone
      * @param email {String} The email of the user to log in
      */
-    constructor(id, spaceName, created, email) { 
-        ModelDefault.initialize(this, id, spaceName, created);CollaboratorAllOf.initialize(this, email);
-        Collaborator.initialize(this, id, spaceName, created, email);
+    constructor(email) { 
+        CollaboratorAllOf.initialize(this, email);
+        Collaborator.initialize(this, email);
     }
 
     /**
@@ -42,10 +37,7 @@ class Collaborator {
      * This method is used by the constructors of any subclasses, in order to implement multiple inheritance (mix-ins).
      * Only for internal use.
      */
-    static initialize(obj, id, spaceName, created, email) { 
-        obj['id'] = id;
-        obj['spaceName'] = spaceName;
-        obj['created'] = created;
+    static initialize(obj, email) { 
         obj['email'] = email;
     }
 
@@ -59,18 +51,8 @@ class Collaborator {
     static constructFromObject(data, obj) {
         if (data) {
             obj = obj || new Collaborator();
-            ModelDefault.constructFromObject(data, obj);
             CollaboratorAllOf.constructFromObject(data, obj);
 
-            if (data.hasOwnProperty('id')) {
-                obj['id'] = ApiClient.convertToType(data['id'], 'String');
-            }
-            if (data.hasOwnProperty('spaceName')) {
-                obj['spaceName'] = ApiClient.convertToType(data['spaceName'], 'String');
-            }
-            if (data.hasOwnProperty('created')) {
-                obj['created'] = ApiClient.convertToType(data['created'], 'Date');
-            }
             if (data.hasOwnProperty('email')) {
                 obj['email'] = ApiClient.convertToType(data['email'], 'String');
             }
@@ -86,30 +68,18 @@ class Collaborator {
             if (data.hasOwnProperty('availableRoles')) {
                 obj['availableRoles'] = CollaboratorRolesAvailable.constructFromObject(data['availableRoles']);
             }
+            if (data.hasOwnProperty('id')) {
+                obj['id'] = ApiClient.convertToType(data['id'], 'String');
+            }
+            if (data.hasOwnProperty('spaceName')) {
+                obj['spaceName'] = ApiClient.convertToType(data['spaceName'], 'String');
+            }
         }
         return obj;
     }
 
 
 }
-
-/**
- * A unique system generated identifier
- * @member {String} id
- */
-Collaborator.prototype['id'] = undefined;
-
-/**
- * This is the space name which is linked to the account
- * @member {String} spaceName
- */
-Collaborator.prototype['spaceName'] = undefined;
-
-/**
- * ISO8601 timestamp for when a Model was created. All records are stored in UTC time zone
- * @member {Date} created
- */
-Collaborator.prototype['created'] = undefined;
 
 /**
  * The email of the user to log in
@@ -140,23 +110,19 @@ Collaborator.prototype['firstName'] = undefined;
  */
 Collaborator.prototype['availableRoles'] = undefined;
 
-
-// Implement ModelDefault interface:
 /**
  * A unique system generated identifier
  * @member {String} id
  */
-ModelDefault.prototype['id'] = undefined;
+Collaborator.prototype['id'] = undefined;
+
 /**
  * This is the space name which is linked to the account
  * @member {String} spaceName
  */
-ModelDefault.prototype['spaceName'] = undefined;
-/**
- * ISO8601 timestamp for when a Model was created. All records are stored in UTC time zone
- * @member {Date} created
- */
-ModelDefault.prototype['created'] = undefined;
+Collaborator.prototype['spaceName'] = undefined;
+
+
 // Implement CollaboratorAllOf interface:
 /**
  * The email of the user to log in
@@ -182,6 +148,16 @@ CollaboratorAllOf.prototype['firstName'] = undefined;
  * @member {module:model/CollaboratorRolesAvailable} availableRoles
  */
 CollaboratorAllOf.prototype['availableRoles'] = undefined;
+/**
+ * A unique system generated identifier
+ * @member {String} id
+ */
+CollaboratorAllOf.prototype['id'] = undefined;
+/**
+ * This is the space name which is linked to the account
+ * @member {String} spaceName
+ */
+CollaboratorAllOf.prototype['spaceName'] = undefined;
 
 
 

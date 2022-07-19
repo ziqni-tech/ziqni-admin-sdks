@@ -1,5 +1,5 @@
 /**
- * Ziqni Admin Api
+ * ZIQNI Admin API
  * Ziqni Application Services are used to manage and configure spaces.
  *
  * The version of the OpenAPI document: 3.0.1
@@ -163,7 +163,7 @@ CreateRabbitMqConnectionRequestAllOf.prototype['exchange'] = undefined;
 CreateRabbitMqConnectionRequestAllOf.prototype['routingKey'] = undefined;
 
 /**
- * Additional constraints.  Supported values:  - ssl  - durable  - exclusive  - autoDelete
+ * Additional constraints.   Supported values:  - ssl  - durable  - exclusive  - autoDelete
  * @member {Array.<String>} addConstraints
  */
 CreateRabbitMqConnectionRequestAllOf.prototype['addConstraints'] = undefined;
