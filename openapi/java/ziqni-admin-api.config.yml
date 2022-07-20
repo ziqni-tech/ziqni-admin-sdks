@@ -8,7 +8,7 @@ dateLibrary: java8
 hideGenerationTimestamp: true
 files:
   ApiClientFactory.mustache:
-    folder: src/main/java/com/ziqni/sdk/admin
+    folder: src/main/java/com/ziqni/admin/sdk
     templateType: SupportingFiles
     destinationFilename: ApiClientFactory.java
 #  ws_api_delegate.mustache:
