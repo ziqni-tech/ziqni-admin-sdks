@@ -360,7 +360,7 @@ class ApiClient {
         // Rely on SuperAgent for parsing response body.
         // See http://visionmedia.github.io/superagent/#parsing-response-bodies
         var data = response.body;
-        if (data == null || (typeof data === 'object' && typeof data.length === 'undefined' && !Object.keys(data).length)) {
+        if (data == null || (typeof data === 'object' && typeof data.length === 'undefined' && !Object.keys(data).length && returnType !== File)) {
             // SuperAgent does not always produce a body; use the unparsed response as a fallback
             data = response.text;
         }
@@ -490,11 +490,7 @@ class ApiClient {
                 var data = null;
                 if (!error) {
                     try {
-                        if (returnType === File) {
-                            data = response.body;
-                        } else {
-                            data = this.deserialize(response, returnType);
-                        }
+                        data = this.deserialize(response, returnType);
                         if (this.enableCookies && typeof window === 'undefined'){
                             this.agent._saveCookies(response);
                         }
