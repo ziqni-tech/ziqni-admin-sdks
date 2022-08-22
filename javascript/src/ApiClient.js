@@ -388,7 +388,7 @@ class ApiClient {
     * @param {Array.<String>} authNames An array of authentication type names.
     * @param {Array.<String>} contentTypes An array of request MIME types.
     * @param {Array.<String>} accepts An array of acceptable response MIME types.
-    * @param {(String|Array|ObjectFunction)} returnType The required type to return; can be a string for simple types or the
+    * @param {(String|Array|ObjectFunction|Object)} returnType The required type to return; can be a string for simple types or the
     * constructor for a complex type.
     * @param {String} apiBasePath base path defined in the operation/path level to override the default one
     * @param {module:ApiClient~callApiCallback} callback The callback function.
@@ -469,7 +469,7 @@ class ApiClient {
             request.accept(accept);
         }
 
-        if (returnType === 'Blob') {
+        if (returnType === 'Blob' || returnType === File) {
           request.responseType('blob');
         } else if (returnType === 'String') {
           request.responseType('text');
@@ -490,7 +490,11 @@ class ApiClient {
                 var data = null;
                 if (!error) {
                     try {
-                        data = this.deserialize(response, returnType);
+                        if (returnType === File) {
+                            data = response.body;
+                        } else {
+                            data = this.deserialize(response, returnType);
+                        }
                         if (this.enableCookies && typeof window === 'undefined'){
                             this.agent._saveCookies(response);
                         }
