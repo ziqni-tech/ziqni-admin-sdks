@@ -1,10 +1,10 @@
 # AWS Systems Manager Parameter Store
 
-## **ENV Variable**
+## ENV Variable
 ZIQNI_ENV = /prod/zqclient 
 [This value is a prefix for the parameter store, if you change this also update your keys]
 
-## **Then in the parameter store**
+## Then in the parameter store
 
 | Key                                            | Tier     | Type         | Value                           |
 | ---------------------------------------------- | -------- | ------------ | ------------------------------- |
