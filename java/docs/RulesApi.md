@@ -4,8 +4,8 @@ All URIs are relative to *https://api.ziqni.io*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**deleteRulesByQuery**](RulesApi.md#deleteRulesByQuery) | **POST** /rules/delete | NOT AVAILABLE IN CURRENT RELEASE
-[**deleteRulesByQueryWithHttpInfo**](RulesApi.md#deleteRulesByQueryWithHttpInfo) | **POST** /rules/delete | NOT AVAILABLE IN CURRENT RELEASE
+[**deleteRulesByQuery**](RulesApi.md#deleteRulesByQuery) | **POST** /rules/delete | 
+[**deleteRulesByQueryWithHttpInfo**](RulesApi.md#deleteRulesByQueryWithHttpInfo) | **POST** /rules/delete | 
 [**getRuleSchemas**](RulesApi.md#getRuleSchemas) | **GET** /rules/schema | 
 [**getRuleSchemasWithHttpInfo**](RulesApi.md#getRuleSchemasWithHttpInfo) | **GET** /rules/schema | 
 [**getRules**](RulesApi.md#getRules) | **GET** /rules | 
@@ -25,7 +25,7 @@ Method | HTTP request | Description
 
 > CompletableFuture<ModelApiResponse> deleteRulesByQuery(body)
 
-NOT AVAILABLE IN CURRENT RELEASE
+
 
 Delete Rules from Ziqni database by unique Rules ID&#39;s or any other POST body parameters using the POST method
 
@@ -104,7 +104,7 @@ CompletableFuture<[**ModelApiResponse**](ModelApiResponse.md)>
 
 > CompletableFuture<ApiResponse<ModelApiResponse>> deleteRulesByQuery deleteRulesByQueryWithHttpInfo(body)
 
-NOT AVAILABLE IN CURRENT RELEASE
+
 
 Delete Rules from Ziqni database by unique Rules ID&#39;s or any other POST body parameters using the POST method
 

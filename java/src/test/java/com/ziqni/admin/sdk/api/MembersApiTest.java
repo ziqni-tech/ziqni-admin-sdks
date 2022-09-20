@@ -1210,32 +1210,32 @@ public class MembersApiTest implements tests.utils.CompleteableFutureTestWrapper
         assertEquals(0, deleteResponse.getErrors().size(), "Errors should be empty");
     }
 
-    @Test
-    @Disabled
-    public void getAchievementsForMembersTest() throws ApiException {
-        String id = null;
-        String X_API_KEY = null;
-        String achievementId = null;
-        Integer limit = null;
-        Integer skip = null;
-        AchievementReducedResponse response =
-                $(api.getAchievementsForMembers(id, achievementId, limit, skip));
-
-        // TODO: test validations
-    }
-
-    @Test
-    @Disabled
-    public void getAwardsForMembersTest() throws ApiException {
-        String id = null;
-        String X_API_KEY = null;
-        String awardId = null;
-        Integer limit = null;
-        Integer skip = null;
-        MemberAwardResponse response = $(api.getAwardsForMembers(id, awardId, limit, skip));
-
-        // TODO: test validations
-    }
+//    @Test
+//    @Disabled
+//    public void getAchievementsForMembersTest() throws ApiException {
+//        String id = null;
+//        String X_API_KEY = null;
+//        String achievementId = null;
+//        Integer limit = null;
+//        Integer skip = null;
+//        AchievementReducedResponse response =
+//                $(api.getAchievementsForMembers(id, achievementId, limit, skip));
+//
+//        // TODO: test validations
+//    }
+//
+//    @Test
+//    @Disabled
+//    public void getAwardsForMembersTest() throws ApiException {
+//        String id = null;
+//        String X_API_KEY = null;
+//        String awardId = null;
+//        Integer limit = null;
+//        Integer skip = null;
+//        MemberAwardResponse response = $(api.getAwardsForMembers(id, awardId, limit, skip));
+//
+//        // TODO: test validations
+//    }
 
     @Test
     @Disabled

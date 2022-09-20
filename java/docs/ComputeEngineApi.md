@@ -8,8 +8,8 @@ Method | HTTP request | Description
 [**createComputeEnginesWithHttpInfo**](ComputeEngineApi.md#createComputeEnginesWithHttpInfo) | **POST** /compute-engines | 
 [**deleteComputeEnginesById**](ComputeEngineApi.md#deleteComputeEnginesById) | **DELETE** /compute-engines/{id} | 
 [**deleteComputeEnginesByIdWithHttpInfo**](ComputeEngineApi.md#deleteComputeEnginesByIdWithHttpInfo) | **DELETE** /compute-engines/{id} | 
-[**deleteComputeEnginesByQuery**](ComputeEngineApi.md#deleteComputeEnginesByQuery) | **POST** /compute-engines/delete | NOT AVAILABLE IN CURRENT RELEASE
-[**deleteComputeEnginesByQueryWithHttpInfo**](ComputeEngineApi.md#deleteComputeEnginesByQueryWithHttpInfo) | **POST** /compute-engines/delete | NOT AVAILABLE IN CURRENT RELEASE
+[**deleteComputeEnginesByQuery**](ComputeEngineApi.md#deleteComputeEnginesByQuery) | **POST** /compute-engines/delete | 
+[**deleteComputeEnginesByQueryWithHttpInfo**](ComputeEngineApi.md#deleteComputeEnginesByQueryWithHttpInfo) | **POST** /compute-engines/delete | 
 [**getComputeEngines**](ComputeEngineApi.md#getComputeEngines) | **GET** /compute-engines | 
 [**getComputeEnginesWithHttpInfo**](ComputeEngineApi.md#getComputeEnginesWithHttpInfo) | **GET** /compute-engines | 
 [**getComputeEnginesById**](ComputeEngineApi.md#getComputeEnginesById) | **GET** /compute-engines/{id} | 
@@ -363,7 +363,7 @@ CompletableFuture<ApiResponse<[**ModelApiResponse**](ModelApiResponse.md)>>
 
 > CompletableFuture<ModelApiResponse> deleteComputeEnginesByQuery(body)
 
-NOT AVAILABLE IN CURRENT RELEASE
+
 
 Delete an Compute Engine or a list of Compute Engines from Ziqni by query
 
@@ -441,7 +441,7 @@ CompletableFuture<[**ModelApiResponse**](ModelApiResponse.md)>
 
 > CompletableFuture<ApiResponse<ModelApiResponse>> deleteComputeEnginesByQuery deleteComputeEnginesByQueryWithHttpInfo(body)
 
-NOT AVAILABLE IN CURRENT RELEASE
+
 
 Delete an Compute Engine or a list of Compute Engines from Ziqni by query
 

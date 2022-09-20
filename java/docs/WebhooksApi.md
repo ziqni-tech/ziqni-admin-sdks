@@ -8,8 +8,8 @@ Method | HTTP request | Description
 [**createWebhooksWithHttpInfo**](WebhooksApi.md#createWebhooksWithHttpInfo) | **POST** /webhooks | 
 [**deleteWebhooks**](WebhooksApi.md#deleteWebhooks) | **DELETE** /webhooks | 
 [**deleteWebhooksWithHttpInfo**](WebhooksApi.md#deleteWebhooksWithHttpInfo) | **DELETE** /webhooks | 
-[**deleteWebhooksByQuery**](WebhooksApi.md#deleteWebhooksByQuery) | **POST** /webhooks/delete | NOT AVAILABLE IN CURRENT RELEASE
-[**deleteWebhooksByQueryWithHttpInfo**](WebhooksApi.md#deleteWebhooksByQueryWithHttpInfo) | **POST** /webhooks/delete | NOT AVAILABLE IN CURRENT RELEASE
+[**deleteWebhooksByQuery**](WebhooksApi.md#deleteWebhooksByQuery) | **POST** /webhooks/delete | Delete webhooks by query
+[**deleteWebhooksByQueryWithHttpInfo**](WebhooksApi.md#deleteWebhooksByQueryWithHttpInfo) | **POST** /webhooks/delete | Delete webhooks by query
 [**getWebhooks**](WebhooksApi.md#getWebhooks) | **GET** /webhooks | 
 [**getWebhooksWithHttpInfo**](WebhooksApi.md#getWebhooksWithHttpInfo) | **GET** /webhooks | 
 [**getWebhooksByQuery**](WebhooksApi.md#getWebhooksByQuery) | **POST** /webhooks/query | 
@@ -18,8 +18,6 @@ Method | HTTP request | Description
 [**getWebhooksTriggersWithHttpInfo**](WebhooksApi.md#getWebhooksTriggersWithHttpInfo) | **GET** /webhooks/triggers | 
 [**updateWebhooks**](WebhooksApi.md#updateWebhooks) | **PUT** /webhooks | 
 [**updateWebhooksWithHttpInfo**](WebhooksApi.md#updateWebhooksWithHttpInfo) | **PUT** /webhooks | 
-[**updateWebhooksState**](WebhooksApi.md#updateWebhooksState) | **POST** /webhooks/state | NOT AVAILABLE IN CURRENT RELEASE
-[**updateWebhooksStateWithHttpInfo**](WebhooksApi.md#updateWebhooksStateWithHttpInfo) | **POST** /webhooks/state | NOT AVAILABLE IN CURRENT RELEASE
 
 
 
@@ -365,7 +363,7 @@ CompletableFuture<ApiResponse<[**ModelApiResponse**](ModelApiResponse.md)>>
 
 > CompletableFuture<ModelApiResponse> deleteWebhooksByQuery(body)
 
-NOT AVAILABLE IN CURRENT RELEASE
+Delete webhooks by query
 
 Delete a Webhook or a list of Webhooks from Ziqni by unique Webhook ID&#39;s or any other POST body parameters using the POST method
 
@@ -444,7 +442,7 @@ CompletableFuture<[**ModelApiResponse**](ModelApiResponse.md)>
 
 > CompletableFuture<ApiResponse<ModelApiResponse>> deleteWebhooksByQuery deleteWebhooksByQueryWithHttpInfo(body)
 
-NOT AVAILABLE IN CURRENT RELEASE
+Delete webhooks by query
 
 Delete a Webhook or a list of Webhooks from Ziqni by unique Webhook ID&#39;s or any other POST body parameters using the POST method
 
@@ -1198,175 +1196,6 @@ CompletableFuture<ApiResponse<[**ModelApiResponse**](ModelApiResponse.md)>>
 |-------------|-------------|------------------|
 | **200** | A list of outcomes and/or errors |  -  |
 | **202** | Accepted |  -  |
-| **400** | A list of outcomes and/or errors |  -  |
-| **401** | A list of outcomes and/or errors |  -  |
-| **403** | A list of outcomes and/or errors |  -  |
-| **404** | A list of outcomes and/or errors |  -  |
-| **413** | A list of outcomes and/or errors |  -  |
-| **500** | A list of outcomes and/or errors |  -  |
-| **501** | A list of outcomes and/or errors |  -  |
-| **503** | A list of outcomes and/or errors |  -  |
-
-
-## updateWebhooksState
-
-> CompletableFuture<ModelApiResponse> updateWebhooksState(body)
-
-NOT AVAILABLE IN CURRENT RELEASE
-
-Update the state of a Wbhook using the POST method
-
-### Example
-
-```java
-// Import classes:
-import com.ziqni.admin.sdk.ApiClient;
-import com.ziqni.admin.sdk.ApiException;
-import com.ziqni.admin.sdk.Configuration;
-import com.ziqni.admin.sdk.auth.*;
-import com.ziqni.admin.sdk.models.*;
-import com.ziqni.admin.sdk.api.WebhooksApi;
-import java.util.concurrent.CompletableFuture;
-
-public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://api.ziqni.io");
-        
-        // Configure OAuth2 access token for authorization: OAuth2
-        OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
-        OAuth2.setAccessToken("YOUR ACCESS TOKEN");
-
-        WebhooksApi apiInstance = new WebhooksApi(defaultClient);
-        UpdateStateRequest body = new UpdateStateRequest(); // UpdateStateRequest | Update the state of a Webhook using the POST method
-        try {
-            CompletableFuture<ModelApiResponse> result = apiInstance.updateWebhooksState(body);
-            System.out.println(result.get());
-        } catch (ApiException e) {
-            System.err.println("Exception when calling WebhooksApi#updateWebhooksState");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            e.printStackTrace();
-        }
-    }
-}
-```
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **body** | [**UpdateStateRequest**](UpdateStateRequest.md)| Update the state of a Webhook using the POST method | [optional]
-
-### Return type
-
-CompletableFuture<[**ModelApiResponse**](ModelApiResponse.md)>
-
-
-### Authorization
-
-[OAuth2](../README.md#OAuth2)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | A list of outcomes and/or errors |  -  |
-| **400** | A list of outcomes and/or errors |  -  |
-| **401** | A list of outcomes and/or errors |  -  |
-| **403** | A list of outcomes and/or errors |  -  |
-| **404** | A list of outcomes and/or errors |  -  |
-| **413** | A list of outcomes and/or errors |  -  |
-| **500** | A list of outcomes and/or errors |  -  |
-| **501** | A list of outcomes and/or errors |  -  |
-| **503** | A list of outcomes and/or errors |  -  |
-
-## updateWebhooksStateWithHttpInfo
-
-> CompletableFuture<ApiResponse<ModelApiResponse>> updateWebhooksState updateWebhooksStateWithHttpInfo(body)
-
-NOT AVAILABLE IN CURRENT RELEASE
-
-Update the state of a Wbhook using the POST method
-
-### Example
-
-```java
-// Import classes:
-import com.ziqni.admin.sdk.ApiClient;
-import com.ziqni.admin.sdk.ApiException;
-import com.ziqni.admin.sdk.ApiResponse;
-import com.ziqni.admin.sdk.Configuration;
-import com.ziqni.admin.sdk.auth.*;
-import com.ziqni.admin.sdk.models.*;
-import com.ziqni.admin.sdk.api.WebhooksApi;
-import java.util.concurrent.CompletableFuture;
-
-public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://api.ziqni.io");
-        
-        // Configure OAuth2 access token for authorization: OAuth2
-        OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
-        OAuth2.setAccessToken("YOUR ACCESS TOKEN");
-
-        WebhooksApi apiInstance = new WebhooksApi(defaultClient);
-        UpdateStateRequest body = new UpdateStateRequest(); // UpdateStateRequest | Update the state of a Webhook using the POST method
-        try {
-            CompletableFuture<ApiResponse<ModelApiResponse>> response = apiInstance.updateWebhooksStateWithHttpInfo(body);
-            System.out.println("Status code: " + response.get().getStatusCode());
-            System.out.println("Response headers: " + response.get().getHeaders());
-            System.out.println("Response body: " + response.get().getData());
-        } catch (InterruptedException | ExecutionException e) {
-            ApiException apiException = (ApiException)e.getCause();
-            System.err.println("Exception when calling WebhooksApi#updateWebhooksState");
-            System.err.println("Status code: " + apiException.getCode());
-            System.err.println("Response headers: " + apiException.getResponseHeaders());
-            System.err.println("Reason: " + apiException.getResponseBody());
-            e.printStackTrace();
-        } catch (ApiException e) {
-            System.err.println("Exception when calling WebhooksApi#updateWebhooksState");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            System.err.println("Reason: " + e.getResponseBody());
-            e.printStackTrace();
-        }
-    }
-}
-```
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **body** | [**UpdateStateRequest**](UpdateStateRequest.md)| Update the state of a Webhook using the POST method | [optional]
-
-### Return type
-
-CompletableFuture<ApiResponse<[**ModelApiResponse**](ModelApiResponse.md)>>
-
-
-### Authorization
-
-[OAuth2](../README.md#OAuth2)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | A list of outcomes and/or errors |  -  |
 | **400** | A list of outcomes and/or errors |  -  |
 | **401** | A list of outcomes and/or errors |  -  |
 | **403** | A list of outcomes and/or errors |  -  |

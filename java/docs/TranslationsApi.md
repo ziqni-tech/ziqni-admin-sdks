@@ -8,8 +8,8 @@ Method | HTTP request | Description
 [**createTranslationsWithHttpInfo**](TranslationsApi.md#createTranslationsWithHttpInfo) | **POST** /translations | creating a translation
 [**deleteTranslations**](TranslationsApi.md#deleteTranslations) | **DELETE** /translations | 
 [**deleteTranslationsWithHttpInfo**](TranslationsApi.md#deleteTranslationsWithHttpInfo) | **DELETE** /translations | 
-[**deleteTranslationsByQuery**](TranslationsApi.md#deleteTranslationsByQuery) | **POST** /translations/delete | NOT AVAILABLE IN CURRENT RELEASE
-[**deleteTranslationsByQueryWithHttpInfo**](TranslationsApi.md#deleteTranslationsByQueryWithHttpInfo) | **POST** /translations/delete | NOT AVAILABLE IN CURRENT RELEASE
+[**deleteTranslationsByQuery**](TranslationsApi.md#deleteTranslationsByQuery) | **POST** /translations/delete | Delete translations by query
+[**deleteTranslationsByQueryWithHttpInfo**](TranslationsApi.md#deleteTranslationsByQueryWithHttpInfo) | **POST** /translations/delete | Delete translations by query
 [**getTranslations**](TranslationsApi.md#getTranslations) | **GET** /translations | 
 [**getTranslationsWithHttpInfo**](TranslationsApi.md#getTranslationsWithHttpInfo) | **GET** /translations | 
 [**getTranslationsByEntityId**](TranslationsApi.md#getTranslationsByEntityId) | **GET** /translations/find-by-entity-id | 
@@ -363,7 +363,7 @@ CompletableFuture<ApiResponse<[**ModelApiResponse**](ModelApiResponse.md)>>
 
 > CompletableFuture<ModelApiResponse> deleteTranslationsByQuery(body)
 
-NOT AVAILABLE IN CURRENT RELEASE
+Delete translations by query
 
 Delete a Translation or a list of Translations from Ziqni by unique Translation ID&#39;s or any other POST body parameters using the POST method
 
@@ -442,7 +442,7 @@ CompletableFuture<[**ModelApiResponse**](ModelApiResponse.md)>
 
 > CompletableFuture<ApiResponse<ModelApiResponse>> deleteTranslationsByQuery deleteTranslationsByQueryWithHttpInfo(body)
 
-NOT AVAILABLE IN CURRENT RELEASE
+Delete translations by query
 
 Delete a Translation or a list of Translations from Ziqni by unique Translation ID&#39;s or any other POST body parameters using the POST method
 

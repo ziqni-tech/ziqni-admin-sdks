@@ -8,8 +8,8 @@ Method | HTTP request | Description
 [**createLanguagesWithHttpInfo**](LanguagesApi.md#createLanguagesWithHttpInfo) | **POST** /languages | 
 [**deleteLanguages**](LanguagesApi.md#deleteLanguages) | **DELETE** /languages | 
 [**deleteLanguagesWithHttpInfo**](LanguagesApi.md#deleteLanguagesWithHttpInfo) | **DELETE** /languages | 
-[**deleteLanguagesByQuery**](LanguagesApi.md#deleteLanguagesByQuery) | **POST** /languages/delete | NOT AVAILABLE IN CURRENT RELEASE
-[**deleteLanguagesByQueryWithHttpInfo**](LanguagesApi.md#deleteLanguagesByQueryWithHttpInfo) | **POST** /languages/delete | NOT AVAILABLE IN CURRENT RELEASE
+[**deleteLanguagesByQuery**](LanguagesApi.md#deleteLanguagesByQuery) | **POST** /languages/delete | 
+[**deleteLanguagesByQueryWithHttpInfo**](LanguagesApi.md#deleteLanguagesByQueryWithHttpInfo) | **POST** /languages/delete | 
 [**getLanguages**](LanguagesApi.md#getLanguages) | **GET** /languages | 
 [**getLanguagesWithHttpInfo**](LanguagesApi.md#getLanguagesWithHttpInfo) | **GET** /languages | 
 [**getLanguagesByQuery**](LanguagesApi.md#getLanguagesByQuery) | **POST** /languages/query | 
@@ -363,7 +363,7 @@ CompletableFuture<ApiResponse<[**ModelApiResponse**](ModelApiResponse.md)>>
 
 > CompletableFuture<ModelApiResponse> deleteLanguagesByQuery(body)
 
-NOT AVAILABLE IN CURRENT RELEASE
+
 
 Delete Languages from Ziqni database by unique Language ID&#39;s or any other POST body parameters using the POST method
 
@@ -442,7 +442,7 @@ CompletableFuture<[**ModelApiResponse**](ModelApiResponse.md)>
 
 > CompletableFuture<ApiResponse<ModelApiResponse>> deleteLanguagesByQuery deleteLanguagesByQueryWithHttpInfo(body)
 
-NOT AVAILABLE IN CURRENT RELEASE
+
 
 Delete Languages from Ziqni database by unique Language ID&#39;s or any other POST body parameters using the POST method
 

@@ -8,8 +8,8 @@ Method | HTTP request | Description
 [**createTransformersWithHttpInfo**](TransformersApi.md#createTransformersWithHttpInfo) | **POST** /transformers | 
 [**deleteTransformers**](TransformersApi.md#deleteTransformers) | **DELETE** /transformers | 
 [**deleteTransformersWithHttpInfo**](TransformersApi.md#deleteTransformersWithHttpInfo) | **DELETE** /transformers | 
-[**deleteTransformersByQuery**](TransformersApi.md#deleteTransformersByQuery) | **POST** /transformers/delete | NOT AVAILABLE IN CURRENT RELEASE
-[**deleteTransformersByQueryWithHttpInfo**](TransformersApi.md#deleteTransformersByQueryWithHttpInfo) | **POST** /transformers/delete | NOT AVAILABLE IN CURRENT RELEASE
+[**deleteTransformersByQuery**](TransformersApi.md#deleteTransformersByQuery) | **POST** /transformers/delete | 
+[**deleteTransformersByQueryWithHttpInfo**](TransformersApi.md#deleteTransformersByQueryWithHttpInfo) | **POST** /transformers/delete | 
 [**getTransformers**](TransformersApi.md#getTransformers) | **GET** /transformers | 
 [**getTransformersWithHttpInfo**](TransformersApi.md#getTransformersWithHttpInfo) | **GET** /transformers | 
 [**getTransformersByQuery**](TransformersApi.md#getTransformersByQuery) | **POST** /transformers/query | 
@@ -361,7 +361,7 @@ CompletableFuture<ApiResponse<[**ModelApiResponse**](ModelApiResponse.md)>>
 
 > CompletableFuture<ModelApiResponse> deleteTransformersByQuery(body)
 
-NOT AVAILABLE IN CURRENT RELEASE
+
 
 Delete a Transformer or a list of Transformers from Ziqni by unique Transformer ID&#39;s or any other POST body parameters using the POST method
 
@@ -440,7 +440,7 @@ CompletableFuture<[**ModelApiResponse**](ModelApiResponse.md)>
 
 > CompletableFuture<ApiResponse<ModelApiResponse>> deleteTransformersByQuery deleteTransformersByQueryWithHttpInfo(body)
 
-NOT AVAILABLE IN CURRENT RELEASE
+
 
 Delete a Transformer or a list of Transformers from Ziqni by unique Transformer ID&#39;s or any other POST body parameters using the POST method
 

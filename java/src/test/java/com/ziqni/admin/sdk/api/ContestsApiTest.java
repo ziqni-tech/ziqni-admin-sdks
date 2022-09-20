@@ -236,38 +236,38 @@ public class ContestsApiTest implements tests.utils.CompleteableFutureTestWrappe
         idsToDelete.add(id);
     }
 
-    @Test
-    @Disabled //Todo enable after implementation
-    public void getChildrenOfContestTest() throws ApiException, InterruptedException {
-        final var createRequest = loadData.getCreateRequest(competitionId);
-        final var createResponse = loadData.createTestData(createRequest);
-        final var id = createResponse.getResults().get(0).getId();
-
-        final var limit = 1;
-        final var skip = 0;
-
-        Thread.sleep(5000);
-
-        final var response = $(api.getChildrenOfContest(id, limit, skip));
-
-        assertNotNull(response);
-        assertNotNull(response.getResults());
-        assertNotNull(response.getErrors());
-        assertTrue(response.getErrors().isEmpty(), "Should have no errors");
-        assertEquals(limit, response.getResults().size(), "Should has single result");
-
-        final var item = response.getResults().get(0);
-
-        assertEquals(id, item.getId(), "Found id should be equal to requested");
-        assertEquals(createRequest.getName(), item.getName(), "Found name should be equal to created previously");
-        assertEquals(createRequest.getMaxNumberOfEntrants(), item.getMaxNumberOfEntrants(), "Found Competition Type should be equal to created previously");
-        assertEquals(createRequest.getDescription(), item.getDescription(), "Found Description should be equal to created previously");
-        assertNotNull(item.getSpaceName(), "Space name should exist");
-        assertTrue(item.getConstraints().containsAll(createRequest.getConstraints()), "Found constraints should contain all of" + createRequest.getConstraints());
-//        assertTrue(item.getRuleSets().containsAll(createRequest.getRuleSets()), "Found ruleset should contain all of" + createRequest.getRuleSets());
-
-        idsToDelete.add(id);
-    }
+//    @Test
+//    @Disabled //Todo enable after implementation
+//    public void getChildrenOfContestTest() throws ApiException, InterruptedException {
+//        final var createRequest = loadData.getCreateRequest(competitionId);
+//        final var createResponse = loadData.createTestData(createRequest);
+//        final var id = createResponse.getResults().get(0).getId();
+//
+//        final var limit = 1;
+//        final var skip = 0;
+//
+//        Thread.sleep(5000);
+//
+//        final var response = $(api.getChildrenOfContest(id, limit, skip));
+//
+//        assertNotNull(response);
+//        assertNotNull(response.getResults());
+//        assertNotNull(response.getErrors());
+//        assertTrue(response.getErrors().isEmpty(), "Should have no errors");
+//        assertEquals(limit, response.getResults().size(), "Should has single result");
+//
+//        final var item = response.getResults().get(0);
+//
+//        assertEquals(id, item.getId(), "Found id should be equal to requested");
+//        assertEquals(createRequest.getName(), item.getName(), "Found name should be equal to created previously");
+//        assertEquals(createRequest.getMaxNumberOfEntrants(), item.getMaxNumberOfEntrants(), "Found Competition Type should be equal to created previously");
+//        assertEquals(createRequest.getDescription(), item.getDescription(), "Found Description should be equal to created previously");
+//        assertNotNull(item.getSpaceName(), "Space name should exist");
+//        assertTrue(item.getConstraints().containsAll(createRequest.getConstraints()), "Found constraints should contain all of" + createRequest.getConstraints());
+////        assertTrue(item.getRuleSets().containsAll(createRequest.getRuleSets()), "Found ruleset should contain all of" + createRequest.getRuleSets());
+//
+//        idsToDelete.add(id);
+//    }
 
     @Test
     public void getSingleContestReturnsOkTest() throws ApiException, InterruptedException {
@@ -423,58 +423,58 @@ public class ContestsApiTest implements tests.utils.CompleteableFutureTestWrappe
         idsToDelete.add(id);
     }
 
-    @Test
-    @Disabled //Todo enable after implementation
-    public void getListOfEntrantsForContestTest() throws ApiException, InterruptedException {
-        final var createRequest = loadData.getCreateRequest(competitionId);
-        final var createResponse = loadData.createTestData(createRequest);
-        final var id = createResponse.getResults().get(0).getId();
+//    @Test
+//    @Disabled //Todo enable after implementation
+//    public void getListOfEntrantsForContestTest() throws ApiException, InterruptedException {
+//        final var createRequest = loadData.getCreateRequest(competitionId);
+//        final var createResponse = loadData.createTestData(createRequest);
+//        final var id = createResponse.getResults().get(0).getId();
+//
+//        final var limit = 1;
+//        final var skip = 0;
+//
+//        Thread.sleep(5000);
+//
+//        final var response = $(api.getListOfEntrantsForContest(id, limit, skip));
+//
+//        assertNotNull(response);
+//        assertNotNull(response.getResults());
+//        assertNotNull(response.getErrors());
+//        assertTrue(response.getErrors().isEmpty(), "Should have no errors");
+//        assertEquals(limit, response.getResults().size(), "Should has single result");
+//
+//        idsToDelete.add(id);
+//    }
 
-        final var limit = 1;
-        final var skip = 0;
-
-        Thread.sleep(5000);
-
-        final var response = $(api.getListOfEntrantsForContest(id, limit, skip));
-
-        assertNotNull(response);
-        assertNotNull(response.getResults());
-        assertNotNull(response.getErrors());
-        assertTrue(response.getErrors().isEmpty(), "Should have no errors");
-        assertEquals(limit, response.getResults().size(), "Should has single result");
-
-        idsToDelete.add(id);
-    }
-
-    @Test
-    @Disabled //Todo enable after implementation
-    public void getParentsOfContestTest() throws ApiException, InterruptedException {
-        final var createRequest = loadData.getCreateRequest(competitionId);
-        final var createResponse = loadData.createTestData(createRequest);
-        final var id = createResponse.getResults().get(0).getId();
-
-        final var limit = 1;
-        final var skip = 0;
-
-        Thread.sleep(5000);
-
-        final var response = $(api.getParentsOfContest(id, limit, skip));
-
-        assertNotNull(response);
-        assertNotNull(response.getResults());
-        assertNotNull(response.getErrors());
-        assertTrue(response.getErrors().isEmpty(), "Should have no errors");
-        assertEquals(limit, response.getResults().size(), "Should has single result");
-
-        final var item = response.getResults().get(0);
-
-        assertEquals(id, item.getId(), "Found id should be equal to requested");
-        assertEquals(createRequest.getConstraints(), item.getConstraints(), "Found Constraints should be equal to created previously");
-        assertNotNull(item.getSpaceName(), "Space name should exist");
-        assertTrue(item.getConstraints().containsAll(createRequest.getConstraints()), "Found constraints should contain all of" + createRequest.getConstraints());
-
-        idsToDelete.add(id);
-    }
+//    @Test
+//    @Disabled //Todo enable after implementation
+//    public void getParentsOfContestTest() throws ApiException, InterruptedException {
+//        final var createRequest = loadData.getCreateRequest(competitionId);
+//        final var createResponse = loadData.createTestData(createRequest);
+//        final var id = createResponse.getResults().get(0).getId();
+//
+//        final var limit = 1;
+//        final var skip = 0;
+//
+//        Thread.sleep(5000);
+//
+//        final var response = $(api.getParentsOfContest(id, limit, skip));
+//
+//        assertNotNull(response);
+//        assertNotNull(response.getResults());
+//        assertNotNull(response.getErrors());
+//        assertTrue(response.getErrors().isEmpty(), "Should have no errors");
+//        assertEquals(limit, response.getResults().size(), "Should has single result");
+//
+//        final var item = response.getResults().get(0);
+//
+//        assertEquals(id, item.getId(), "Found id should be equal to requested");
+//        assertEquals(createRequest.getConstraints(), item.getConstraints(), "Found Constraints should be equal to created previously");
+//        assertNotNull(item.getSpaceName(), "Space name should exist");
+//        assertTrue(item.getConstraints().containsAll(createRequest.getConstraints()), "Found constraints should contain all of" + createRequest.getConstraints());
+//
+//        idsToDelete.add(id);
+//    }
 
     @Test
     public void updateContestTest() throws ApiException, InterruptedException {
