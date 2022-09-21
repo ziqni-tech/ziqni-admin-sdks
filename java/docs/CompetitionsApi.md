@@ -10,24 +10,16 @@ Method | HTTP request | Description
 [**createSimpleCompetitionsWithHttpInfo**](CompetitionsApi.md#createSimpleCompetitionsWithHttpInfo) | **POST** /competitions/simple | 
 [**getCompetitions**](CompetitionsApi.md#getCompetitions) | **GET** /competitions | 
 [**getCompetitionsWithHttpInfo**](CompetitionsApi.md#getCompetitionsWithHttpInfo) | **GET** /competitions | 
-[**getCompetitionsBrackets**](CompetitionsApi.md#getCompetitionsBrackets) | **GET** /competitions/{id}/brackets | NOT AVAILABLE IN CURRENT RELEASE
-[**getCompetitionsBracketsWithHttpInfo**](CompetitionsApi.md#getCompetitionsBracketsWithHttpInfo) | **GET** /competitions/{id}/brackets | NOT AVAILABLE IN CURRENT RELEASE
 [**getCompetitionsByQuery**](CompetitionsApi.md#getCompetitionsByQuery) | **POST** /competitions/query | 
 [**getCompetitionsByQueryWithHttpInfo**](CompetitionsApi.md#getCompetitionsByQueryWithHttpInfo) | **POST** /competitions/query | 
-[**getCompetitionsToClone**](CompetitionsApi.md#getCompetitionsToClone) | **GET** /competitions/{id}/clone | NOT AVAILABLE IN CURRENT RELEASE
-[**getCompetitionsToCloneWithHttpInfo**](CompetitionsApi.md#getCompetitionsToCloneWithHttpInfo) | **GET** /competitions/{id}/clone | NOT AVAILABLE IN CURRENT RELEASE
-[**getContestsForCompetitions**](CompetitionsApi.md#getContestsForCompetitions) | **GET** /competitions/{id}/contests | NOT AVAILABLE IN CURRENT RELEASE
-[**getContestsForCompetitionsWithHttpInfo**](CompetitionsApi.md#getContestsForCompetitionsWithHttpInfo) | **GET** /competitions/{id}/contests | NOT AVAILABLE IN CURRENT RELEASE
-[**getLeaderboardByCompetitionId**](CompetitionsApi.md#getLeaderboardByCompetitionId) | **GET** /competitions/{id}/leaderboard | NOT AVAILABLE IN CURRENT RELEASE
-[**getLeaderboardByCompetitionIdWithHttpInfo**](CompetitionsApi.md#getLeaderboardByCompetitionIdWithHttpInfo) | **GET** /competitions/{id}/leaderboard | NOT AVAILABLE IN CURRENT RELEASE
-[**getListOfEntrants**](CompetitionsApi.md#getListOfEntrants) | **GET** /competitions/{id}/entries | NOT AVAILABLE IN CURRENT RELEASE
-[**getListOfEntrantsWithHttpInfo**](CompetitionsApi.md#getListOfEntrantsWithHttpInfo) | **GET** /competitions/{id}/entries | NOT AVAILABLE IN CURRENT RELEASE
+[**getCompetitionsToClone**](CompetitionsApi.md#getCompetitionsToClone) | **GET** /competitions/{id}/clone | Get Competition To Clone
+[**getCompetitionsToCloneWithHttpInfo**](CompetitionsApi.md#getCompetitionsToCloneWithHttpInfo) | **GET** /competitions/{id}/clone | Get Competition To Clone
+[**getLeaderboardByCompetitionId**](CompetitionsApi.md#getLeaderboardByCompetitionId) | **GET** /competitions/{id}/leaderboard/ | 
+[**getLeaderboardByCompetitionIdWithHttpInfo**](CompetitionsApi.md#getLeaderboardByCompetitionIdWithHttpInfo) | **GET** /competitions/{id}/leaderboard/ | 
 [**updateCompetitions**](CompetitionsApi.md#updateCompetitions) | **PUT** /competitions | 
 [**updateCompetitionsWithHttpInfo**](CompetitionsApi.md#updateCompetitionsWithHttpInfo) | **PUT** /competitions | 
-[**updateCompetitionsEntries**](CompetitionsApi.md#updateCompetitionsEntries) | **PUT** /competitions/entries | NOT AVAILABLE IN CURRENT RELEASE
-[**updateCompetitionsEntriesWithHttpInfo**](CompetitionsApi.md#updateCompetitionsEntriesWithHttpInfo) | **PUT** /competitions/entries | NOT AVAILABLE IN CURRENT RELEASE
-[**updateCompetitionsState**](CompetitionsApi.md#updateCompetitionsState) | **PUT** /competitions/state | NOT AVAILABLE IN CURRENT RELEASE
-[**updateCompetitionsStateWithHttpInfo**](CompetitionsApi.md#updateCompetitionsStateWithHttpInfo) | **PUT** /competitions/state | NOT AVAILABLE IN CURRENT RELEASE
+[**updateCompetitionsState**](CompetitionsApi.md#updateCompetitionsState) | **PUT** /competitions/state | 
+[**updateCompetitionsStateWithHttpInfo**](CompetitionsApi.md#updateCompetitionsStateWithHttpInfo) | **PUT** /competitions/state | 
 
 
 
@@ -546,183 +538,6 @@ CompletableFuture<ApiResponse<[**CompetitionResponse**](CompetitionResponse.md)>
 | **503** | A list of competitions and/or errors |  -  |
 
 
-## getCompetitionsBrackets
-
-> CompletableFuture<BracketResponse> getCompetitionsBrackets(id, limit, skip)
-
-NOT AVAILABLE IN CURRENT RELEASE
-
-Returns all Contests for the Competition id provided in Brackets
-
-### Example
-
-```java
-// Import classes:
-import com.ziqni.admin.sdk.ApiClient;
-import com.ziqni.admin.sdk.ApiException;
-import com.ziqni.admin.sdk.Configuration;
-import com.ziqni.admin.sdk.auth.*;
-import com.ziqni.admin.sdk.models.*;
-import com.ziqni.admin.sdk.api.CompetitionsApi;
-import java.util.concurrent.CompletableFuture;
-
-public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://api.ziqni.io");
-        
-        // Configure OAuth2 access token for authorization: OAuth2
-        OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
-        OAuth2.setAccessToken("YOUR ACCESS TOKEN");
-
-        CompetitionsApi apiInstance = new CompetitionsApi(defaultClient);
-        String id = "id_example"; // String | Unique identifier of the resource
-        Integer limit = 56; // Integer | Limit the returned total records found
-        Integer skip = 56; // Integer | Skip the returned records found and return the next batch of records
-        try {
-            CompletableFuture<BracketResponse> result = apiInstance.getCompetitionsBrackets(id, limit, skip);
-            System.out.println(result.get());
-        } catch (ApiException e) {
-            System.err.println("Exception when calling CompetitionsApi#getCompetitionsBrackets");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            e.printStackTrace();
-        }
-    }
-}
-```
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **String**| Unique identifier of the resource |
- **limit** | **Integer**| Limit the returned total records found | [optional]
- **skip** | **Integer**| Skip the returned records found and return the next batch of records | [optional]
-
-### Return type
-
-CompletableFuture<[**BracketResponse**](BracketResponse.md)>
-
-
-### Authorization
-
-[OAuth2](../README.md#OAuth2)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | A list Contests with rewards in Brackets for the competition id requested and/or errors |  -  |
-| **400** | A list Contests with rewards in Brackets for the competition id requested and/or errors |  -  |
-| **401** | A list Contests with rewards in Brackets for the competition id requested and/or errors |  -  |
-| **403** | A list Contests with rewards in Brackets for the competition id requested and/or errors |  -  |
-| **404** | A list Contests with rewards in Brackets for the competition id requested and/or errors |  -  |
-| **413** | A list Contests with rewards in Brackets for the competition id requested and/or errors |  -  |
-| **500** | A list Contests with rewards in Brackets for the competition id requested and/or errors |  -  |
-| **501** | A list Contests with rewards in Brackets for the competition id requested and/or errors |  -  |
-| **503** | A list Contests with rewards in Brackets for the competition id requested and/or errors |  -  |
-
-## getCompetitionsBracketsWithHttpInfo
-
-> CompletableFuture<ApiResponse<BracketResponse>> getCompetitionsBrackets getCompetitionsBracketsWithHttpInfo(id, limit, skip)
-
-NOT AVAILABLE IN CURRENT RELEASE
-
-Returns all Contests for the Competition id provided in Brackets
-
-### Example
-
-```java
-// Import classes:
-import com.ziqni.admin.sdk.ApiClient;
-import com.ziqni.admin.sdk.ApiException;
-import com.ziqni.admin.sdk.ApiResponse;
-import com.ziqni.admin.sdk.Configuration;
-import com.ziqni.admin.sdk.auth.*;
-import com.ziqni.admin.sdk.models.*;
-import com.ziqni.admin.sdk.api.CompetitionsApi;
-import java.util.concurrent.CompletableFuture;
-
-public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://api.ziqni.io");
-        
-        // Configure OAuth2 access token for authorization: OAuth2
-        OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
-        OAuth2.setAccessToken("YOUR ACCESS TOKEN");
-
-        CompetitionsApi apiInstance = new CompetitionsApi(defaultClient);
-        String id = "id_example"; // String | Unique identifier of the resource
-        Integer limit = 56; // Integer | Limit the returned total records found
-        Integer skip = 56; // Integer | Skip the returned records found and return the next batch of records
-        try {
-            CompletableFuture<ApiResponse<BracketResponse>> response = apiInstance.getCompetitionsBracketsWithHttpInfo(id, limit, skip);
-            System.out.println("Status code: " + response.get().getStatusCode());
-            System.out.println("Response headers: " + response.get().getHeaders());
-            System.out.println("Response body: " + response.get().getData());
-        } catch (InterruptedException | ExecutionException e) {
-            ApiException apiException = (ApiException)e.getCause();
-            System.err.println("Exception when calling CompetitionsApi#getCompetitionsBrackets");
-            System.err.println("Status code: " + apiException.getCode());
-            System.err.println("Response headers: " + apiException.getResponseHeaders());
-            System.err.println("Reason: " + apiException.getResponseBody());
-            e.printStackTrace();
-        } catch (ApiException e) {
-            System.err.println("Exception when calling CompetitionsApi#getCompetitionsBrackets");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            System.err.println("Reason: " + e.getResponseBody());
-            e.printStackTrace();
-        }
-    }
-}
-```
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **String**| Unique identifier of the resource |
- **limit** | **Integer**| Limit the returned total records found | [optional]
- **skip** | **Integer**| Skip the returned records found and return the next batch of records | [optional]
-
-### Return type
-
-CompletableFuture<ApiResponse<[**BracketResponse**](BracketResponse.md)>>
-
-
-### Authorization
-
-[OAuth2](../README.md#OAuth2)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | A list Contests with rewards in Brackets for the competition id requested and/or errors |  -  |
-| **400** | A list Contests with rewards in Brackets for the competition id requested and/or errors |  -  |
-| **401** | A list Contests with rewards in Brackets for the competition id requested and/or errors |  -  |
-| **403** | A list Contests with rewards in Brackets for the competition id requested and/or errors |  -  |
-| **404** | A list Contests with rewards in Brackets for the competition id requested and/or errors |  -  |
-| **413** | A list Contests with rewards in Brackets for the competition id requested and/or errors |  -  |
-| **500** | A list Contests with rewards in Brackets for the competition id requested and/or errors |  -  |
-| **501** | A list Contests with rewards in Brackets for the competition id requested and/or errors |  -  |
-| **503** | A list Contests with rewards in Brackets for the competition id requested and/or errors |  -  |
-
-
 ## getCompetitionsByQuery
 
 > CompletableFuture<CompetitionResponse> getCompetitionsByQuery(body)
@@ -896,7 +711,7 @@ CompletableFuture<ApiResponse<[**CompetitionResponse**](CompetitionResponse.md)>
 
 > CompletableFuture<CloneCompetitionResponse> getCompetitionsToClone(id)
 
-NOT AVAILABLE IN CURRENT RELEASE
+Get Competition To Clone
 
 Clones a Competition for the identifier provided
 
@@ -975,7 +790,7 @@ CompletableFuture<[**CloneCompetitionResponse**](CloneCompetitionResponse.md)>
 
 > CompletableFuture<ApiResponse<CloneCompetitionResponse>> getCompetitionsToClone getCompetitionsToCloneWithHttpInfo(id)
 
-NOT AVAILABLE IN CURRENT RELEASE
+Get Competition To Clone
 
 Clones a Competition for the identifier provided
 
@@ -1061,188 +876,11 @@ CompletableFuture<ApiResponse<[**CloneCompetitionResponse**](CloneCompetitionRes
 | **503** | A modeled response of a Contest that can be used for Contest creation * The competitionId has to be changed to the competition Id of the competition that the contest will be cloned to |  -  |
 
 
-## getContestsForCompetitions
-
-> CompletableFuture<ContestReducedResponse> getContestsForCompetitions(id, limit, skip)
-
-NOT AVAILABLE IN CURRENT RELEASE
-
-Returns all Contests for the Competition id provided
-
-### Example
-
-```java
-// Import classes:
-import com.ziqni.admin.sdk.ApiClient;
-import com.ziqni.admin.sdk.ApiException;
-import com.ziqni.admin.sdk.Configuration;
-import com.ziqni.admin.sdk.auth.*;
-import com.ziqni.admin.sdk.models.*;
-import com.ziqni.admin.sdk.api.CompetitionsApi;
-import java.util.concurrent.CompletableFuture;
-
-public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://api.ziqni.io");
-        
-        // Configure OAuth2 access token for authorization: OAuth2
-        OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
-        OAuth2.setAccessToken("YOUR ACCESS TOKEN");
-
-        CompetitionsApi apiInstance = new CompetitionsApi(defaultClient);
-        String id = "id_example"; // String | Unique identifier of the resource
-        Integer limit = 56; // Integer | Limit the returned total records found
-        Integer skip = 56; // Integer | Skip the returned records found and return the next batch of records
-        try {
-            CompletableFuture<ContestReducedResponse> result = apiInstance.getContestsForCompetitions(id, limit, skip);
-            System.out.println(result.get());
-        } catch (ApiException e) {
-            System.err.println("Exception when calling CompetitionsApi#getContestsForCompetitions");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            e.printStackTrace();
-        }
-    }
-}
-```
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **String**| Unique identifier of the resource |
- **limit** | **Integer**| Limit the returned total records found | [optional]
- **skip** | **Integer**| Skip the returned records found and return the next batch of records | [optional]
-
-### Return type
-
-CompletableFuture<[**ContestReducedResponse**](ContestReducedResponse.md)>
-
-
-### Authorization
-
-[OAuth2](../README.md#OAuth2)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | Simplified contest response |  -  |
-| **400** | Simplified contest response |  -  |
-| **401** | Simplified contest response |  -  |
-| **403** | Simplified contest response |  -  |
-| **404** | Simplified contest response |  -  |
-| **413** | Simplified contest response |  -  |
-| **500** | Simplified contest response |  -  |
-| **501** | Simplified contest response |  -  |
-| **503** | Simplified contest response |  -  |
-
-## getContestsForCompetitionsWithHttpInfo
-
-> CompletableFuture<ApiResponse<ContestReducedResponse>> getContestsForCompetitions getContestsForCompetitionsWithHttpInfo(id, limit, skip)
-
-NOT AVAILABLE IN CURRENT RELEASE
-
-Returns all Contests for the Competition id provided
-
-### Example
-
-```java
-// Import classes:
-import com.ziqni.admin.sdk.ApiClient;
-import com.ziqni.admin.sdk.ApiException;
-import com.ziqni.admin.sdk.ApiResponse;
-import com.ziqni.admin.sdk.Configuration;
-import com.ziqni.admin.sdk.auth.*;
-import com.ziqni.admin.sdk.models.*;
-import com.ziqni.admin.sdk.api.CompetitionsApi;
-import java.util.concurrent.CompletableFuture;
-
-public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://api.ziqni.io");
-        
-        // Configure OAuth2 access token for authorization: OAuth2
-        OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
-        OAuth2.setAccessToken("YOUR ACCESS TOKEN");
-
-        CompetitionsApi apiInstance = new CompetitionsApi(defaultClient);
-        String id = "id_example"; // String | Unique identifier of the resource
-        Integer limit = 56; // Integer | Limit the returned total records found
-        Integer skip = 56; // Integer | Skip the returned records found and return the next batch of records
-        try {
-            CompletableFuture<ApiResponse<ContestReducedResponse>> response = apiInstance.getContestsForCompetitionsWithHttpInfo(id, limit, skip);
-            System.out.println("Status code: " + response.get().getStatusCode());
-            System.out.println("Response headers: " + response.get().getHeaders());
-            System.out.println("Response body: " + response.get().getData());
-        } catch (InterruptedException | ExecutionException e) {
-            ApiException apiException = (ApiException)e.getCause();
-            System.err.println("Exception when calling CompetitionsApi#getContestsForCompetitions");
-            System.err.println("Status code: " + apiException.getCode());
-            System.err.println("Response headers: " + apiException.getResponseHeaders());
-            System.err.println("Reason: " + apiException.getResponseBody());
-            e.printStackTrace();
-        } catch (ApiException e) {
-            System.err.println("Exception when calling CompetitionsApi#getContestsForCompetitions");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            System.err.println("Reason: " + e.getResponseBody());
-            e.printStackTrace();
-        }
-    }
-}
-```
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **String**| Unique identifier of the resource |
- **limit** | **Integer**| Limit the returned total records found | [optional]
- **skip** | **Integer**| Skip the returned records found and return the next batch of records | [optional]
-
-### Return type
-
-CompletableFuture<ApiResponse<[**ContestReducedResponse**](ContestReducedResponse.md)>>
-
-
-### Authorization
-
-[OAuth2](../README.md#OAuth2)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | Simplified contest response |  -  |
-| **400** | Simplified contest response |  -  |
-| **401** | Simplified contest response |  -  |
-| **403** | Simplified contest response |  -  |
-| **404** | Simplified contest response |  -  |
-| **413** | Simplified contest response |  -  |
-| **500** | Simplified contest response |  -  |
-| **501** | Simplified contest response |  -  |
-| **503** | Simplified contest response |  -  |
-
-
 ## getLeaderboardByCompetitionId
 
 > CompletableFuture<CompetitionLeaderboardResponse> getLeaderboardByCompetitionId(id, limit, skip)
 
-NOT AVAILABLE IN CURRENT RELEASE
+
 
 Returns a list of Leaderborads for the Competition id provided
 
@@ -1325,7 +963,7 @@ CompletableFuture<[**CompetitionLeaderboardResponse**](CompetitionLeaderboardRes
 
 > CompletableFuture<ApiResponse<CompetitionLeaderboardResponse>> getLeaderboardByCompetitionId getLeaderboardByCompetitionIdWithHttpInfo(id, limit, skip)
 
-NOT AVAILABLE IN CURRENT RELEASE
+
 
 Returns a list of Leaderborads for the Competition id provided
 
@@ -1413,183 +1051,6 @@ CompletableFuture<ApiResponse<[**CompetitionLeaderboardResponse**](CompetitionLe
 | **500** | A list of Contests Leaderboards and/or errors |  -  |
 | **501** | A list of Contests Leaderboards and/or errors |  -  |
 | **503** | A list of Contests Leaderboards and/or errors |  -  |
-
-
-## getListOfEntrants
-
-> CompletableFuture<EntrantResponse> getListOfEntrants(id, limit, skip)
-
-NOT AVAILABLE IN CURRENT RELEASE
-
-Returns all Entries for the Competition id provided
-
-### Example
-
-```java
-// Import classes:
-import com.ziqni.admin.sdk.ApiClient;
-import com.ziqni.admin.sdk.ApiException;
-import com.ziqni.admin.sdk.Configuration;
-import com.ziqni.admin.sdk.auth.*;
-import com.ziqni.admin.sdk.models.*;
-import com.ziqni.admin.sdk.api.CompetitionsApi;
-import java.util.concurrent.CompletableFuture;
-
-public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://api.ziqni.io");
-        
-        // Configure OAuth2 access token for authorization: OAuth2
-        OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
-        OAuth2.setAccessToken("YOUR ACCESS TOKEN");
-
-        CompetitionsApi apiInstance = new CompetitionsApi(defaultClient);
-        String id = "id_example"; // String | Unique identifier of the resource
-        Integer limit = 56; // Integer | Limit the returned total records found
-        Integer skip = 56; // Integer | Skip the returned records found and return the next batch of records
-        try {
-            CompletableFuture<EntrantResponse> result = apiInstance.getListOfEntrants(id, limit, skip);
-            System.out.println(result.get());
-        } catch (ApiException e) {
-            System.err.println("Exception when calling CompetitionsApi#getListOfEntrants");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            e.printStackTrace();
-        }
-    }
-}
-```
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **String**| Unique identifier of the resource |
- **limit** | **Integer**| Limit the returned total records found | [optional]
- **skip** | **Integer**| Skip the returned records found and return the next batch of records | [optional]
-
-### Return type
-
-CompletableFuture<[**EntrantResponse**](EntrantResponse.md)>
-
-
-### Authorization
-
-[OAuth2](../README.md#OAuth2)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | A list of Entrants for the competition/contest and/or errors |  -  |
-| **400** | A list of Entrants for the competition/contest and/or errors |  -  |
-| **401** | A list of Entrants for the competition/contest and/or errors |  -  |
-| **403** | A list of Entrants for the competition/contest and/or errors |  -  |
-| **404** | A list of Entrants for the competition/contest and/or errors |  -  |
-| **413** | A list of Entrants for the competition/contest and/or errors |  -  |
-| **500** | A list of Entrants for the competition/contest and/or errors |  -  |
-| **501** | A list of Entrants for the competition/contest and/or errors |  -  |
-| **503** | A list of Entrants for the competition/contest and/or errors |  -  |
-
-## getListOfEntrantsWithHttpInfo
-
-> CompletableFuture<ApiResponse<EntrantResponse>> getListOfEntrants getListOfEntrantsWithHttpInfo(id, limit, skip)
-
-NOT AVAILABLE IN CURRENT RELEASE
-
-Returns all Entries for the Competition id provided
-
-### Example
-
-```java
-// Import classes:
-import com.ziqni.admin.sdk.ApiClient;
-import com.ziqni.admin.sdk.ApiException;
-import com.ziqni.admin.sdk.ApiResponse;
-import com.ziqni.admin.sdk.Configuration;
-import com.ziqni.admin.sdk.auth.*;
-import com.ziqni.admin.sdk.models.*;
-import com.ziqni.admin.sdk.api.CompetitionsApi;
-import java.util.concurrent.CompletableFuture;
-
-public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://api.ziqni.io");
-        
-        // Configure OAuth2 access token for authorization: OAuth2
-        OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
-        OAuth2.setAccessToken("YOUR ACCESS TOKEN");
-
-        CompetitionsApi apiInstance = new CompetitionsApi(defaultClient);
-        String id = "id_example"; // String | Unique identifier of the resource
-        Integer limit = 56; // Integer | Limit the returned total records found
-        Integer skip = 56; // Integer | Skip the returned records found and return the next batch of records
-        try {
-            CompletableFuture<ApiResponse<EntrantResponse>> response = apiInstance.getListOfEntrantsWithHttpInfo(id, limit, skip);
-            System.out.println("Status code: " + response.get().getStatusCode());
-            System.out.println("Response headers: " + response.get().getHeaders());
-            System.out.println("Response body: " + response.get().getData());
-        } catch (InterruptedException | ExecutionException e) {
-            ApiException apiException = (ApiException)e.getCause();
-            System.err.println("Exception when calling CompetitionsApi#getListOfEntrants");
-            System.err.println("Status code: " + apiException.getCode());
-            System.err.println("Response headers: " + apiException.getResponseHeaders());
-            System.err.println("Reason: " + apiException.getResponseBody());
-            e.printStackTrace();
-        } catch (ApiException e) {
-            System.err.println("Exception when calling CompetitionsApi#getListOfEntrants");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            System.err.println("Reason: " + e.getResponseBody());
-            e.printStackTrace();
-        }
-    }
-}
-```
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **String**| Unique identifier of the resource |
- **limit** | **Integer**| Limit the returned total records found | [optional]
- **skip** | **Integer**| Skip the returned records found and return the next batch of records | [optional]
-
-### Return type
-
-CompletableFuture<ApiResponse<[**EntrantResponse**](EntrantResponse.md)>>
-
-
-### Authorization
-
-[OAuth2](../README.md#OAuth2)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | A list of Entrants for the competition/contest and/or errors |  -  |
-| **400** | A list of Entrants for the competition/contest and/or errors |  -  |
-| **401** | A list of Entrants for the competition/contest and/or errors |  -  |
-| **403** | A list of Entrants for the competition/contest and/or errors |  -  |
-| **404** | A list of Entrants for the competition/contest and/or errors |  -  |
-| **413** | A list of Entrants for the competition/contest and/or errors |  -  |
-| **500** | A list of Entrants for the competition/contest and/or errors |  -  |
-| **501** | A list of Entrants for the competition/contest and/or errors |  -  |
-| **503** | A list of Entrants for the competition/contest and/or errors |  -  |
 
 
 ## updateCompetitions
@@ -1763,182 +1224,11 @@ CompletableFuture<ApiResponse<[**ModelApiResponse**](ModelApiResponse.md)>>
 | **503** | A list of outcomes and/or errors |  -  |
 
 
-## updateCompetitionsEntries
-
-> CompletableFuture<ModelApiResponse> updateCompetitionsEntries(body)
-
-NOT AVAILABLE IN CURRENT RELEASE
-
-Updates the status of the Entrants for a Competition id provided
-
-### Example
-
-```java
-// Import classes:
-import com.ziqni.admin.sdk.ApiClient;
-import com.ziqni.admin.sdk.ApiException;
-import com.ziqni.admin.sdk.Configuration;
-import com.ziqni.admin.sdk.auth.*;
-import com.ziqni.admin.sdk.models.*;
-import com.ziqni.admin.sdk.api.CompetitionsApi;
-import java.util.concurrent.CompletableFuture;
-
-public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://api.ziqni.io");
-        
-        // Configure OAuth2 access token for authorization: OAuth2
-        OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
-        OAuth2.setAccessToken("YOUR ACCESS TOKEN");
-
-        CompetitionsApi apiInstance = new CompetitionsApi(defaultClient);
-        List<EntrantRequest> body = Arrays.asList(); // List<EntrantRequest> | Updates the status of the Entrants
-        try {
-            CompletableFuture<ModelApiResponse> result = apiInstance.updateCompetitionsEntries(body);
-            System.out.println(result.get());
-        } catch (ApiException e) {
-            System.err.println("Exception when calling CompetitionsApi#updateCompetitionsEntries");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            e.printStackTrace();
-        }
-    }
-}
-```
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **body** | [**List&lt;EntrantRequest&gt;**](EntrantRequest.md)| Updates the status of the Entrants | [optional]
-
-### Return type
-
-CompletableFuture<[**ModelApiResponse**](ModelApiResponse.md)>
-
-
-### Authorization
-
-[OAuth2](../README.md#OAuth2)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **201** | A list of outcomes and/or errors |  -  |
-| **202** | Accepted |  -  |
-| **400** | A list of outcomes and/or errors |  -  |
-| **401** | A list of outcomes and/or errors |  -  |
-| **403** | A list of outcomes and/or errors |  -  |
-| **404** | A list of outcomes and/or errors |  -  |
-| **413** | A list of outcomes and/or errors |  -  |
-| **500** | A list of outcomes and/or errors |  -  |
-| **501** | A list of outcomes and/or errors |  -  |
-| **503** | A list of outcomes and/or errors |  -  |
-
-## updateCompetitionsEntriesWithHttpInfo
-
-> CompletableFuture<ApiResponse<ModelApiResponse>> updateCompetitionsEntries updateCompetitionsEntriesWithHttpInfo(body)
-
-NOT AVAILABLE IN CURRENT RELEASE
-
-Updates the status of the Entrants for a Competition id provided
-
-### Example
-
-```java
-// Import classes:
-import com.ziqni.admin.sdk.ApiClient;
-import com.ziqni.admin.sdk.ApiException;
-import com.ziqni.admin.sdk.ApiResponse;
-import com.ziqni.admin.sdk.Configuration;
-import com.ziqni.admin.sdk.auth.*;
-import com.ziqni.admin.sdk.models.*;
-import com.ziqni.admin.sdk.api.CompetitionsApi;
-import java.util.concurrent.CompletableFuture;
-
-public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://api.ziqni.io");
-        
-        // Configure OAuth2 access token for authorization: OAuth2
-        OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
-        OAuth2.setAccessToken("YOUR ACCESS TOKEN");
-
-        CompetitionsApi apiInstance = new CompetitionsApi(defaultClient);
-        List<EntrantRequest> body = Arrays.asList(); // List<EntrantRequest> | Updates the status of the Entrants
-        try {
-            CompletableFuture<ApiResponse<ModelApiResponse>> response = apiInstance.updateCompetitionsEntriesWithHttpInfo(body);
-            System.out.println("Status code: " + response.get().getStatusCode());
-            System.out.println("Response headers: " + response.get().getHeaders());
-            System.out.println("Response body: " + response.get().getData());
-        } catch (InterruptedException | ExecutionException e) {
-            ApiException apiException = (ApiException)e.getCause();
-            System.err.println("Exception when calling CompetitionsApi#updateCompetitionsEntries");
-            System.err.println("Status code: " + apiException.getCode());
-            System.err.println("Response headers: " + apiException.getResponseHeaders());
-            System.err.println("Reason: " + apiException.getResponseBody());
-            e.printStackTrace();
-        } catch (ApiException e) {
-            System.err.println("Exception when calling CompetitionsApi#updateCompetitionsEntries");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            System.err.println("Reason: " + e.getResponseBody());
-            e.printStackTrace();
-        }
-    }
-}
-```
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **body** | [**List&lt;EntrantRequest&gt;**](EntrantRequest.md)| Updates the status of the Entrants | [optional]
-
-### Return type
-
-CompletableFuture<ApiResponse<[**ModelApiResponse**](ModelApiResponse.md)>>
-
-
-### Authorization
-
-[OAuth2](../README.md#OAuth2)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **201** | A list of outcomes and/or errors |  -  |
-| **202** | Accepted |  -  |
-| **400** | A list of outcomes and/or errors |  -  |
-| **401** | A list of outcomes and/or errors |  -  |
-| **403** | A list of outcomes and/or errors |  -  |
-| **404** | A list of outcomes and/or errors |  -  |
-| **413** | A list of outcomes and/or errors |  -  |
-| **500** | A list of outcomes and/or errors |  -  |
-| **501** | A list of outcomes and/or errors |  -  |
-| **503** | A list of outcomes and/or errors |  -  |
-
-
 ## updateCompetitionsState
 
 > CompletableFuture<ModelApiResponse> updateCompetitionsState(body)
 
-NOT AVAILABLE IN CURRENT RELEASE
+
 
 Manages the Competitions state
 
@@ -2018,7 +1308,7 @@ CompletableFuture<[**ModelApiResponse**](ModelApiResponse.md)>
 
 > CompletableFuture<ApiResponse<ModelApiResponse>> updateCompetitionsState updateCompetitionsStateWithHttpInfo(body)
 
-NOT AVAILABLE IN CURRENT RELEASE
+
 
 Manages the Competitions state
 

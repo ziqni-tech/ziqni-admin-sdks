@@ -21,6 +21,7 @@ Name | Type | Description | Notes
 **body** | **String** | The context of the message | 
 **status** | **MessageStatus** |  | 
 **userId** | **String** |  | 
+**links** | [**List&lt;MessageLink&gt;**](MessageLink.md) |  | 
 
 
 

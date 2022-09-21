@@ -35,7 +35,7 @@ public class LoadActionTypesData implements CompleteableFutureTestWrapper {
         return new CreateActionTypeRequest()
                 .name(givenName)
                 .key(givenKey)
-                .unitOfMeasureType(UnitOfMeasureType.OTHER)
+                .unitOfMeasure("win")
                 .addConstraints(constraints)
                 .metadata(new LoadMetadata().getMetadataAsList())
                 ;

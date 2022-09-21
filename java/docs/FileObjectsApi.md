@@ -4,202 +4,25 @@ All URIs are relative to *https://api.ziqni.io*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**copyFileObjects**](FileObjectsApi.md#copyFileObjects) | **POST** /file-objects/copy | NOT AVAILABLE IN CURRENT RELEASE
-[**copyFileObjectsWithHttpInfo**](FileObjectsApi.md#copyFileObjectsWithHttpInfo) | **POST** /file-objects/copy | NOT AVAILABLE IN CURRENT RELEASE
 [**createFileObjects**](FileObjectsApi.md#createFileObjects) | **POST** /file-objects | 
 [**createFileObjectsWithHttpInfo**](FileObjectsApi.md#createFileObjectsWithHttpInfo) | **POST** /file-objects | 
 [**deleteFileObjects**](FileObjectsApi.md#deleteFileObjects) | **DELETE** /file-objects | 
 [**deleteFileObjectsWithHttpInfo**](FileObjectsApi.md#deleteFileObjectsWithHttpInfo) | **DELETE** /file-objects | 
-[**deleteFileObjectsByQuery**](FileObjectsApi.md#deleteFileObjectsByQuery) | **POST** /file-objects/delete | NOT AVAILABLE IN CURRENT RELEASE
-[**deleteFileObjectsByQueryWithHttpInfo**](FileObjectsApi.md#deleteFileObjectsByQueryWithHttpInfo) | **POST** /file-objects/delete | NOT AVAILABLE IN CURRENT RELEASE
-[**downloadFileObjects**](FileObjectsApi.md#downloadFileObjects) | **GET** /file-objects/download | NOT AVAILABLE IN CURRENT RELEASE
-[**downloadFileObjectsWithHttpInfo**](FileObjectsApi.md#downloadFileObjectsWithHttpInfo) | **GET** /file-objects/download | NOT AVAILABLE IN CURRENT RELEASE
+[**deleteFileObjectsByQuery**](FileObjectsApi.md#deleteFileObjectsByQuery) | **POST** /file-objects/delete | 
+[**deleteFileObjectsByQueryWithHttpInfo**](FileObjectsApi.md#deleteFileObjectsByQueryWithHttpInfo) | **POST** /file-objects/delete | 
+[**downloadFileObjects**](FileObjectsApi.md#downloadFileObjects) | **GET** /file-objects/download | 
+[**downloadFileObjectsWithHttpInfo**](FileObjectsApi.md#downloadFileObjectsWithHttpInfo) | **GET** /file-objects/download | 
 [**getFileObjects**](FileObjectsApi.md#getFileObjects) | **GET** /file-objects | 
 [**getFileObjectsWithHttpInfo**](FileObjectsApi.md#getFileObjectsWithHttpInfo) | **GET** /file-objects | 
 [**getFileObjectsByQuery**](FileObjectsApi.md#getFileObjectsByQuery) | **POST** /file-objects/query | 
 [**getFileObjectsByQueryWithHttpInfo**](FileObjectsApi.md#getFileObjectsByQueryWithHttpInfo) | **POST** /file-objects/query | 
-[**saveTemplates**](FileObjectsApi.md#saveTemplates) | **POST** /file-objects/save-template | NOT AVAILABLE IN CURRENT RELEASE
-[**saveTemplatesWithHttpInfo**](FileObjectsApi.md#saveTemplatesWithHttpInfo) | **POST** /file-objects/save-template | NOT AVAILABLE IN CURRENT RELEASE
+[**saveTemplates**](FileObjectsApi.md#saveTemplates) | **POST** /file-objects/save-template | 
+[**saveTemplatesWithHttpInfo**](FileObjectsApi.md#saveTemplatesWithHttpInfo) | **POST** /file-objects/save-template | 
 [**updateFileObjects**](FileObjectsApi.md#updateFileObjects) | **PUT** /file-objects | 
 [**updateFileObjectsWithHttpInfo**](FileObjectsApi.md#updateFileObjectsWithHttpInfo) | **PUT** /file-objects | 
-[**uploadFileObjects**](FileObjectsApi.md#uploadFileObjects) | **POST** /file-objects/upload | NOT AVAILABLE IN CURRENT RELEASE
-[**uploadFileObjectsWithHttpInfo**](FileObjectsApi.md#uploadFileObjectsWithHttpInfo) | **POST** /file-objects/upload | NOT AVAILABLE IN CURRENT RELEASE
+[**uploadFileObjects**](FileObjectsApi.md#uploadFileObjects) | **POST** /file-objects/upload | 
+[**uploadFileObjectsWithHttpInfo**](FileObjectsApi.md#uploadFileObjectsWithHttpInfo) | **POST** /file-objects/upload | 
 
-
-
-## copyFileObjects
-
-> CompletableFuture<ModelApiResponse> copyFileObjects(body, id)
-
-NOT AVAILABLE IN CURRENT RELEASE
-
-Copy an existing file object
-
-### Example
-
-```java
-// Import classes:
-import com.ziqni.admin.sdk.ApiClient;
-import com.ziqni.admin.sdk.ApiException;
-import com.ziqni.admin.sdk.Configuration;
-import com.ziqni.admin.sdk.auth.*;
-import com.ziqni.admin.sdk.models.*;
-import com.ziqni.admin.sdk.api.FileObjectsApi;
-import java.util.concurrent.CompletableFuture;
-
-public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://api.ziqni.io");
-        
-        // Configure OAuth2 access token for authorization: OAuth2
-        OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
-        OAuth2.setAccessToken("YOUR ACCESS TOKEN");
-
-        FileObjectsApi apiInstance = new FileObjectsApi(defaultClient);
-        UpdateFileObjectRequest body = new UpdateFileObjectRequest(); // UpdateFileObjectRequest | Copy file objects inside a repository and dumplicate in another folder or repository.
-        List<String> id = Arrays.asList(); // List<String> | The unique identifiers of the resources
-        try {
-            CompletableFuture<ModelApiResponse> result = apiInstance.copyFileObjects(body, id);
-            System.out.println(result.get());
-        } catch (ApiException e) {
-            System.err.println("Exception when calling FileObjectsApi#copyFileObjects");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            e.printStackTrace();
-        }
-    }
-}
-```
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **body** | [**UpdateFileObjectRequest**](UpdateFileObjectRequest.md)| Copy file objects inside a repository and dumplicate in another folder or repository. |
- **id** | [**List&lt;String&gt;**](String.md)| The unique identifiers of the resources | [optional]
-
-### Return type
-
-CompletableFuture<[**ModelApiResponse**](ModelApiResponse.md)>
-
-
-### Authorization
-
-[OAuth2](../README.md#OAuth2)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | A list of outcomes and/or errors |  -  |
-| **202** | Accepted |  -  |
-| **400** | A list of outcomes and/or errors |  -  |
-| **401** | A list of outcomes and/or errors |  -  |
-| **403** | A list of outcomes and/or errors |  -  |
-| **404** | A list of outcomes and/or errors |  -  |
-| **413** | A list of outcomes and/or errors |  -  |
-| **500** | A list of outcomes and/or errors |  -  |
-| **501** | A list of outcomes and/or errors |  -  |
-| **503** | A list of outcomes and/or errors |  -  |
-
-## copyFileObjectsWithHttpInfo
-
-> CompletableFuture<ApiResponse<ModelApiResponse>> copyFileObjects copyFileObjectsWithHttpInfo(body, id)
-
-NOT AVAILABLE IN CURRENT RELEASE
-
-Copy an existing file object
-
-### Example
-
-```java
-// Import classes:
-import com.ziqni.admin.sdk.ApiClient;
-import com.ziqni.admin.sdk.ApiException;
-import com.ziqni.admin.sdk.ApiResponse;
-import com.ziqni.admin.sdk.Configuration;
-import com.ziqni.admin.sdk.auth.*;
-import com.ziqni.admin.sdk.models.*;
-import com.ziqni.admin.sdk.api.FileObjectsApi;
-import java.util.concurrent.CompletableFuture;
-
-public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://api.ziqni.io");
-        
-        // Configure OAuth2 access token for authorization: OAuth2
-        OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
-        OAuth2.setAccessToken("YOUR ACCESS TOKEN");
-
-        FileObjectsApi apiInstance = new FileObjectsApi(defaultClient);
-        UpdateFileObjectRequest body = new UpdateFileObjectRequest(); // UpdateFileObjectRequest | Copy file objects inside a repository and dumplicate in another folder or repository.
-        List<String> id = Arrays.asList(); // List<String> | The unique identifiers of the resources
-        try {
-            CompletableFuture<ApiResponse<ModelApiResponse>> response = apiInstance.copyFileObjectsWithHttpInfo(body, id);
-            System.out.println("Status code: " + response.get().getStatusCode());
-            System.out.println("Response headers: " + response.get().getHeaders());
-            System.out.println("Response body: " + response.get().getData());
-        } catch (InterruptedException | ExecutionException e) {
-            ApiException apiException = (ApiException)e.getCause();
-            System.err.println("Exception when calling FileObjectsApi#copyFileObjects");
-            System.err.println("Status code: " + apiException.getCode());
-            System.err.println("Response headers: " + apiException.getResponseHeaders());
-            System.err.println("Reason: " + apiException.getResponseBody());
-            e.printStackTrace();
-        } catch (ApiException e) {
-            System.err.println("Exception when calling FileObjectsApi#copyFileObjects");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            System.err.println("Reason: " + e.getResponseBody());
-            e.printStackTrace();
-        }
-    }
-}
-```
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **body** | [**UpdateFileObjectRequest**](UpdateFileObjectRequest.md)| Copy file objects inside a repository and dumplicate in another folder or repository. |
- **id** | [**List&lt;String&gt;**](String.md)| The unique identifiers of the resources | [optional]
-
-### Return type
-
-CompletableFuture<ApiResponse<[**ModelApiResponse**](ModelApiResponse.md)>>
-
-
-### Authorization
-
-[OAuth2](../README.md#OAuth2)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | A list of outcomes and/or errors |  -  |
-| **202** | Accepted |  -  |
-| **400** | A list of outcomes and/or errors |  -  |
-| **401** | A list of outcomes and/or errors |  -  |
-| **403** | A list of outcomes and/or errors |  -  |
-| **404** | A list of outcomes and/or errors |  -  |
-| **413** | A list of outcomes and/or errors |  -  |
-| **500** | A list of outcomes and/or errors |  -  |
-| **501** | A list of outcomes and/or errors |  -  |
-| **503** | A list of outcomes and/or errors |  -  |
 
 
 ## createFileObjects
@@ -540,7 +363,7 @@ CompletableFuture<ApiResponse<[**ModelApiResponse**](ModelApiResponse.md)>>
 
 > CompletableFuture<ModelApiResponse> deleteFileObjectsByQuery(id, body)
 
-NOT AVAILABLE IN CURRENT RELEASE
+
 
 Delete file objects by query
 
@@ -621,7 +444,7 @@ CompletableFuture<[**ModelApiResponse**](ModelApiResponse.md)>
 
 > CompletableFuture<ApiResponse<ModelApiResponse>> deleteFileObjectsByQuery deleteFileObjectsByQueryWithHttpInfo(id, body)
 
-NOT AVAILABLE IN CURRENT RELEASE
+
 
 Delete file objects by query
 
@@ -713,7 +536,7 @@ CompletableFuture<ApiResponse<[**ModelApiResponse**](ModelApiResponse.md)>>
 
 > CompletableFuture<File> downloadFileObjects(path)
 
-NOT AVAILABLE IN CURRENT RELEASE
+
 
 Download file objects from your Ziqni space
 
@@ -792,7 +615,7 @@ CompletableFuture<[**File**](File.md)>
 
 > CompletableFuture<ApiResponse<File>> downloadFileObjects downloadFileObjectsWithHttpInfo(path)
 
-NOT AVAILABLE IN CURRENT RELEASE
+
 
 Download file objects from your Ziqni space
 
@@ -1236,7 +1059,7 @@ CompletableFuture<ApiResponse<[**FileObjectsResponse**](FileObjectsResponse.md)>
 
 > CompletableFuture<ModelApiResponse> saveTemplates(parentFolderPath, repositoryId, templateToSave, templateName, tags)
 
-NOT AVAILABLE IN CURRENT RELEASE
+
 
 Create or update file objects and binaries in your Ziqni space
 
@@ -1323,7 +1146,7 @@ CompletableFuture<[**ModelApiResponse**](ModelApiResponse.md)>
 
 > CompletableFuture<ApiResponse<ModelApiResponse>> saveTemplates saveTemplatesWithHttpInfo(parentFolderPath, repositoryId, templateToSave, templateName, tags)
 
-NOT AVAILABLE IN CURRENT RELEASE
+
 
 Create or update file objects and binaries in your Ziqni space
 
@@ -1588,7 +1411,7 @@ CompletableFuture<ApiResponse<[**ModelApiResponse**](ModelApiResponse.md)>>
 
 > CompletableFuture<ModelApiResponse> uploadFileObjects(parentFolderPath, files, repositoryId, tags)
 
-NOT AVAILABLE IN CURRENT RELEASE
+
 
 Create or update file objects and binaries in your Ziqni space
 
@@ -1673,7 +1496,7 @@ CompletableFuture<[**ModelApiResponse**](ModelApiResponse.md)>
 
 > CompletableFuture<ApiResponse<ModelApiResponse>> uploadFileObjects uploadFileObjectsWithHttpInfo(parentFolderPath, files, repositoryId, tags)
 
-NOT AVAILABLE IN CURRENT RELEASE
+
 
 Create or update file objects and binaries in your Ziqni space
 

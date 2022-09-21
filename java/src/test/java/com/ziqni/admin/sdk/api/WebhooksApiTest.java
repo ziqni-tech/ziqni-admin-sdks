@@ -712,52 +712,52 @@ public class WebhooksApiTest implements tests.utils.CompleteableFutureTestWrappe
     }
 
 
-    @Test
-    @Disabled
-    //Fixme enable after implementing state logic
-    public void updateWebhooksStateTest() throws ApiException {
-        ConnectionState givenState = ConnectionState.START;
-        
-        CreateWebhookRequest given = new CreateWebhookRequest();
-
-        ModelApiResponse createdResponse = $(api.createWebhooks(given));
-
-        assertNotNull(createdResponse);
-        assertNotNull(createdResponse.getResults());
-        assertNotNull(createdResponse.getErrors());
-        assertEquals(1, createdResponse.getResults().size(), "Should contain created entity");
-        String givenId = createdResponse.getResults().get(0).getId();
-        assertNotNull(givenId, "Created entity should has id");
-
-        UpdateStateRequest whenUpdate = new UpdateStateRequest()
-                .id(givenId)
-                .status(givenState);
-        ModelApiResponse response = $(api.updateWebhooksState( whenUpdate));
-
-        assertNotNull(response);
-        assertNotNull(response.getResults());
-        assertNotNull(response.getErrors());
-        assertEquals(1, response.getResults().size(), "Should contain updated entity");
-        assertNotNull(response.getResults().get(0).getId(), "Created entity should has id");
-
-        String updatedId = response.getResults().get(0).getId();
-        
-        List<String> ids = List.of(updatedId);
-        Integer limit = 1;
-        Integer skip = 0;
-        WebhookResponse thanResponse = $(api.getWebhooks( ids, limit, skip));
-
-        assertNotNull(thanResponse);
-        assertNotNull(thanResponse.getResults());
-        assertEquals(1, thanResponse.getResults().size(), "Should contain entity");
-
-        Webhook webhook = thanResponse.getResults().get(0);
-
-        assertEquals(givenId, webhook.getId(), "Found id should be equal to requested");
-        assertEquals(givenState, webhook.getStatus(), "Found state should be equal to requested");
-
-        idsToDelete.add(givenId);
-    }
+//    @Test
+//    @Disabled
+//    //Fixme enable after implementing state logic
+//    public void updateWebhooksStateTest() throws ApiException {
+//        ConnectionState givenState = ConnectionState.START;
+//
+//        CreateWebhookRequest given = new CreateWebhookRequest();
+//
+//        ModelApiResponse createdResponse = $(api.createWebhooks(given));
+//
+//        assertNotNull(createdResponse);
+//        assertNotNull(createdResponse.getResults());
+//        assertNotNull(createdResponse.getErrors());
+//        assertEquals(1, createdResponse.getResults().size(), "Should contain created entity");
+//        String givenId = createdResponse.getResults().get(0).getId();
+//        assertNotNull(givenId, "Created entity should has id");
+//
+//        UpdateStateRequest whenUpdate = new UpdateStateRequest()
+//                .id(givenId)
+//                .status(givenState);
+//        ModelApiResponse response = $(api.updateWebhooksState( whenUpdate));
+//
+//        assertNotNull(response);
+//        assertNotNull(response.getResults());
+//        assertNotNull(response.getErrors());
+//        assertEquals(1, response.getResults().size(), "Should contain updated entity");
+//        assertNotNull(response.getResults().get(0).getId(), "Created entity should has id");
+//
+//        String updatedId = response.getResults().get(0).getId();
+//
+//        List<String> ids = List.of(updatedId);
+//        Integer limit = 1;
+//        Integer skip = 0;
+//        WebhookResponse thanResponse = $(api.getWebhooks( ids, limit, skip));
+//
+//        assertNotNull(thanResponse);
+//        assertNotNull(thanResponse.getResults());
+//        assertEquals(1, thanResponse.getResults().size(), "Should contain entity");
+//
+//        Webhook webhook = thanResponse.getResults().get(0);
+//
+//        assertEquals(givenId, webhook.getId(), "Found id should be equal to requested");
+//        assertEquals(givenState, webhook.getStatus(), "Found state should be equal to requested");
+//
+//        idsToDelete.add(givenId);
+//    }
 
     @Test
     @Disabled

@@ -127,7 +127,7 @@ public class ActionTypesApiTest implements tests.utils.CompleteableFutureTestWra
         assertEquals(id, item.getId(), "Found id should be equal to requested");
         Assertions.assertEquals(request.getName(), item.getName(), "Found name should be equal to created previously");
         Assertions.assertEquals(request.getKey(), item.getKey(), "Found key should be equal to created previously");
-        Assertions.assertEquals(request.getUnitOfMeasureType(), item.getUnitOfMeasureType(), "Found unit of measure are different ");
+//        Assertions.assertEquals(request.getUnitOfMeasureType(), item.getUnitOfMeasureType(), "Found unit of measure are different ");
         Assertions.assertEquals(0, request.getAddConstraints().size(), "Found number of constraints should be equal " + request.getAddConstraints().size());
         Assertions.assertTrue(item.getConstraints().containsAll(request.getAddConstraints()), "Found constraints should contain all of" + request.getAddConstraints());
         Assertions.assertNull(item.getTags(), "Found tags should be null");
@@ -256,7 +256,7 @@ public class ActionTypesApiTest implements tests.utils.CompleteableFutureTestWra
         assertEquals(id, actionType.getId(), "Found id should be equal to requested");
         Assertions.assertEquals(request.getName(), actionType.getName(), "Found name should be equal to created previously");
         Assertions.assertEquals(request.getKey(), actionType.getKey(), "Found key should be equal to created previously");
-        Assertions.assertEquals(request.getUnitOfMeasureType(), actionType.getUnitOfMeasureType(), "Found unit of measure should be " + request.getUnitOfMeasureType());
+//        Assertions.assertEquals(request.getUnitOfMeasureType(), actionType.getUnitOfMeasureType(), "Found unit of measure should be " + request.getUnitOfMeasureType());
         Assertions.assertEquals(0, request.getAddConstraints().size(), "Found number of constraints should be equal " + request.getAddConstraints().size());
         Assertions.assertTrue(actionType.getConstraints().containsAll(request.getAddConstraints()), "Found constraints should collect all of" + request.getAddConstraints());
 
@@ -1208,7 +1208,7 @@ public class ActionTypesApiTest implements tests.utils.CompleteableFutureTestWra
         assertEquals(id, item.getId(), "Found id should be equal to requested");
         Assertions.assertEquals(createRequest.getName(), item.getName(), "Found name should be equal to created previously");
         Assertions.assertEquals(createRequest.getKey(), item.getKey(), "Found key should be equal to created previously");
-        Assertions.assertEquals(createRequest.getUnitOfMeasureType(), item.getUnitOfMeasureType(), "Found unit of measure should be equal to created previously");
+//        Assertions.assertEquals(createRequest.getUnitOfMeasureType(), item.getUnitOfMeasureType(), "Found unit of measure should be equal to created previously");
         assertEquals(givenDescription, item.getDescription(), "Found description should be equal to created previously");
 
         idsToDelete.add(id);
@@ -1286,7 +1286,7 @@ public class ActionTypesApiTest implements tests.utils.CompleteableFutureTestWra
         assertEquals(id, actionType.getId(), "Found id should be equal to requested");
         Assertions.assertEquals(request.getName(), actionType.getName(), "Found name should be equal to created previously");
         Assertions.assertEquals(request.getKey(), actionType.getKey(), "Found key should be equal to created previously");
-        Assertions.assertEquals(request.getUnitOfMeasureType(), actionType.getUnitOfMeasureType(), "Found unit of measure should be " + request.getUnitOfMeasureType());
+//        Assertions.assertEquals(request.getUnitOfMeasureType(), actionType.getUnitOfMeasureType(), "Found unit of measure should be " + request.getUnitOfMeasureType());
         Assertions.assertEquals(0, request.getAddConstraints().size(), "Found number of constraints should be equal " + request.getAddConstraints().size());
         Assertions.assertTrue(actionType.getConstraints().containsAll(request.getAddConstraints()), "Found constraints should collect all of" + request.getAddConstraints());
 

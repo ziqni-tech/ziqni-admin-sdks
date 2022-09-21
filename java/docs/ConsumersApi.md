@@ -4,50 +4,50 @@ All URIs are relative to *https://api.ziqni.io*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**createKafkaConnections**](ConsumersApi.md#createKafkaConnections) | **POST** /connections/kafka | NOT AVAILABLE IN CURRENT RELEASE
-[**createKafkaConnectionsWithHttpInfo**](ConsumersApi.md#createKafkaConnectionsWithHttpInfo) | **POST** /connections/kafka | NOT AVAILABLE IN CURRENT RELEASE
-[**createRabbitMQConnections**](ConsumersApi.md#createRabbitMQConnections) | **POST** /connections/rabbitmq | NOT AVAILABLE IN CURRENT RELEASE
-[**createRabbitMQConnectionsWithHttpInfo**](ConsumersApi.md#createRabbitMQConnectionsWithHttpInfo) | **POST** /connections/rabbitmq | NOT AVAILABLE IN CURRENT RELEASE
-[**createSqsConnections**](ConsumersApi.md#createSqsConnections) | **POST** /connections/sqs | NOT AVAILABLE IN CURRENT RELEASE
-[**createSqsConnectionsWithHttpInfo**](ConsumersApi.md#createSqsConnectionsWithHttpInfo) | **POST** /connections/sqs | NOT AVAILABLE IN CURRENT RELEASE
-[**deleteKafkaConnections**](ConsumersApi.md#deleteKafkaConnections) | **DELETE** /connections/kafka | NOT AVAILABLE IN CURRENT RELEASE
-[**deleteKafkaConnectionsWithHttpInfo**](ConsumersApi.md#deleteKafkaConnectionsWithHttpInfo) | **DELETE** /connections/kafka | NOT AVAILABLE IN CURRENT RELEASE
-[**deleteKafkaConnectionsByQuery**](ConsumersApi.md#deleteKafkaConnectionsByQuery) | **POST** /connections/kafka/delete | NOT AVAILABLE IN CURRENT RELEASE
-[**deleteKafkaConnectionsByQueryWithHttpInfo**](ConsumersApi.md#deleteKafkaConnectionsByQueryWithHttpInfo) | **POST** /connections/kafka/delete | NOT AVAILABLE IN CURRENT RELEASE
-[**deleteRabbitMQConnections**](ConsumersApi.md#deleteRabbitMQConnections) | **DELETE** /connections/rabbitmq | NOT AVAILABLE IN CURRENT RELEASE
-[**deleteRabbitMQConnectionsWithHttpInfo**](ConsumersApi.md#deleteRabbitMQConnectionsWithHttpInfo) | **DELETE** /connections/rabbitmq | NOT AVAILABLE IN CURRENT RELEASE
-[**deleteRabbitMQConnectionsByQuery**](ConsumersApi.md#deleteRabbitMQConnectionsByQuery) | **POST** /connections/rabbitmq/delete | NOT AVAILABLE IN CURRENT RELEASE
-[**deleteRabbitMQConnectionsByQueryWithHttpInfo**](ConsumersApi.md#deleteRabbitMQConnectionsByQueryWithHttpInfo) | **POST** /connections/rabbitmq/delete | NOT AVAILABLE IN CURRENT RELEASE
-[**deleteSqsConnections**](ConsumersApi.md#deleteSqsConnections) | **DELETE** /connections/sqs | NOT AVAILABLE IN CURRENT RELEASE
-[**deleteSqsConnectionsWithHttpInfo**](ConsumersApi.md#deleteSqsConnectionsWithHttpInfo) | **DELETE** /connections/sqs | NOT AVAILABLE IN CURRENT RELEASE
-[**deleteSqsConnectionsByQuery**](ConsumersApi.md#deleteSqsConnectionsByQuery) | **POST** /connections/sqs/delete | NOT AVAILABLE IN CURRENT RELEASE
-[**deleteSqsConnectionsByQueryWithHttpInfo**](ConsumersApi.md#deleteSqsConnectionsByQueryWithHttpInfo) | **POST** /connections/sqs/delete | NOT AVAILABLE IN CURRENT RELEASE
-[**getKafkaConnections**](ConsumersApi.md#getKafkaConnections) | **GET** /connections/kafka | NOT AVAILABLE IN CURRENT RELEASE
-[**getKafkaConnectionsWithHttpInfo**](ConsumersApi.md#getKafkaConnectionsWithHttpInfo) | **GET** /connections/kafka | NOT AVAILABLE IN CURRENT RELEASE
-[**getKafkaConnectionsByQuery**](ConsumersApi.md#getKafkaConnectionsByQuery) | **POST** /connections/kafka/query | NOT AVAILABLE IN CURRENT RELEASE
-[**getKafkaConnectionsByQueryWithHttpInfo**](ConsumersApi.md#getKafkaConnectionsByQueryWithHttpInfo) | **POST** /connections/kafka/query | NOT AVAILABLE IN CURRENT RELEASE
-[**getRabbitMQConnections**](ConsumersApi.md#getRabbitMQConnections) | **GET** /connections/rabbitmq | NOT AVAILABLE IN CURRENT RELEASE
-[**getRabbitMQConnectionsWithHttpInfo**](ConsumersApi.md#getRabbitMQConnectionsWithHttpInfo) | **GET** /connections/rabbitmq | NOT AVAILABLE IN CURRENT RELEASE
-[**getRabbitMQConnectionsByQuery**](ConsumersApi.md#getRabbitMQConnectionsByQuery) | **POST** /connections/rabbitmq/query | NOT AVAILABLE IN CURRENT RELEASE
-[**getRabbitMQConnectionsByQueryWithHttpInfo**](ConsumersApi.md#getRabbitMQConnectionsByQueryWithHttpInfo) | **POST** /connections/rabbitmq/query | NOT AVAILABLE IN CURRENT RELEASE
-[**getSqsConnections**](ConsumersApi.md#getSqsConnections) | **GET** /connections/sqs | NOT AVAILABLE IN CURRENT RELEASE
-[**getSqsConnectionsWithHttpInfo**](ConsumersApi.md#getSqsConnectionsWithHttpInfo) | **GET** /connections/sqs | NOT AVAILABLE IN CURRENT RELEASE
-[**getSqsConnectionsByQuery**](ConsumersApi.md#getSqsConnectionsByQuery) | **POST** /connections/sqs/query | NOT AVAILABLE IN CURRENT RELEASE
-[**getSqsConnectionsByQueryWithHttpInfo**](ConsumersApi.md#getSqsConnectionsByQueryWithHttpInfo) | **POST** /connections/sqs/query | NOT AVAILABLE IN CURRENT RELEASE
+[**createKafkaConnections**](ConsumersApi.md#createKafkaConnections) | **POST** /connections/kafka | 
+[**createKafkaConnectionsWithHttpInfo**](ConsumersApi.md#createKafkaConnectionsWithHttpInfo) | **POST** /connections/kafka | 
+[**createRabbitMQConnections**](ConsumersApi.md#createRabbitMQConnections) | **POST** /connections/rabbitmq | 
+[**createRabbitMQConnectionsWithHttpInfo**](ConsumersApi.md#createRabbitMQConnectionsWithHttpInfo) | **POST** /connections/rabbitmq | 
+[**createSqsConnections**](ConsumersApi.md#createSqsConnections) | **POST** /connections/sqs | 
+[**createSqsConnectionsWithHttpInfo**](ConsumersApi.md#createSqsConnectionsWithHttpInfo) | **POST** /connections/sqs | 
+[**deleteKafkaConnections**](ConsumersApi.md#deleteKafkaConnections) | **DELETE** /connections/kafka | 
+[**deleteKafkaConnectionsWithHttpInfo**](ConsumersApi.md#deleteKafkaConnectionsWithHttpInfo) | **DELETE** /connections/kafka | 
+[**deleteKafkaConnectionsByQuery**](ConsumersApi.md#deleteKafkaConnectionsByQuery) | **POST** /connections/kafka/delete | 
+[**deleteKafkaConnectionsByQueryWithHttpInfo**](ConsumersApi.md#deleteKafkaConnectionsByQueryWithHttpInfo) | **POST** /connections/kafka/delete | 
+[**deleteRabbitMQConnections**](ConsumersApi.md#deleteRabbitMQConnections) | **DELETE** /connections/rabbitmq | 
+[**deleteRabbitMQConnectionsWithHttpInfo**](ConsumersApi.md#deleteRabbitMQConnectionsWithHttpInfo) | **DELETE** /connections/rabbitmq | 
+[**deleteRabbitMQConnectionsByQuery**](ConsumersApi.md#deleteRabbitMQConnectionsByQuery) | **POST** /connections/rabbitmq/delete | 
+[**deleteRabbitMQConnectionsByQueryWithHttpInfo**](ConsumersApi.md#deleteRabbitMQConnectionsByQueryWithHttpInfo) | **POST** /connections/rabbitmq/delete | 
+[**deleteSqsConnections**](ConsumersApi.md#deleteSqsConnections) | **DELETE** /connections/sqs | 
+[**deleteSqsConnectionsWithHttpInfo**](ConsumersApi.md#deleteSqsConnectionsWithHttpInfo) | **DELETE** /connections/sqs | 
+[**deleteSqsConnectionsByQuery**](ConsumersApi.md#deleteSqsConnectionsByQuery) | **POST** /connections/sqs/delete | 
+[**deleteSqsConnectionsByQueryWithHttpInfo**](ConsumersApi.md#deleteSqsConnectionsByQueryWithHttpInfo) | **POST** /connections/sqs/delete | 
+[**getKafkaConnections**](ConsumersApi.md#getKafkaConnections) | **GET** /connections/kafka | 
+[**getKafkaConnectionsWithHttpInfo**](ConsumersApi.md#getKafkaConnectionsWithHttpInfo) | **GET** /connections/kafka | 
+[**getKafkaConnectionsByQuery**](ConsumersApi.md#getKafkaConnectionsByQuery) | **POST** /connections/kafka/query | 
+[**getKafkaConnectionsByQueryWithHttpInfo**](ConsumersApi.md#getKafkaConnectionsByQueryWithHttpInfo) | **POST** /connections/kafka/query | 
+[**getRabbitMQConnections**](ConsumersApi.md#getRabbitMQConnections) | **GET** /connections/rabbitmq | 
+[**getRabbitMQConnectionsWithHttpInfo**](ConsumersApi.md#getRabbitMQConnectionsWithHttpInfo) | **GET** /connections/rabbitmq | 
+[**getRabbitMQConnectionsByQuery**](ConsumersApi.md#getRabbitMQConnectionsByQuery) | **POST** /connections/rabbitmq/query | 
+[**getRabbitMQConnectionsByQueryWithHttpInfo**](ConsumersApi.md#getRabbitMQConnectionsByQueryWithHttpInfo) | **POST** /connections/rabbitmq/query | 
+[**getSqsConnections**](ConsumersApi.md#getSqsConnections) | **GET** /connections/sqs | 
+[**getSqsConnectionsWithHttpInfo**](ConsumersApi.md#getSqsConnectionsWithHttpInfo) | **GET** /connections/sqs | 
+[**getSqsConnectionsByQuery**](ConsumersApi.md#getSqsConnectionsByQuery) | **POST** /connections/sqs/query | 
+[**getSqsConnectionsByQueryWithHttpInfo**](ConsumersApi.md#getSqsConnectionsByQueryWithHttpInfo) | **POST** /connections/sqs/query | 
 [**updateConnectionsState**](ConsumersApi.md#updateConnectionsState) | **POST** /connections/state | Update connection status
 [**updateConnectionsStateWithHttpInfo**](ConsumersApi.md#updateConnectionsStateWithHttpInfo) | **POST** /connections/state | Update connection status
-[**updateKafkaConnections**](ConsumersApi.md#updateKafkaConnections) | **PUT** /connections/kafka | NOT AVAILABLE IN CURRENT RELEASE
-[**updateKafkaConnectionsWithHttpInfo**](ConsumersApi.md#updateKafkaConnectionsWithHttpInfo) | **PUT** /connections/kafka | NOT AVAILABLE IN CURRENT RELEASE
-[**updateKafkaConnectionsState**](ConsumersApi.md#updateKafkaConnectionsState) | **POST** /connections/kafka/state | NOT AVAILABLE IN CURRENT RELEASE
-[**updateKafkaConnectionsStateWithHttpInfo**](ConsumersApi.md#updateKafkaConnectionsStateWithHttpInfo) | **POST** /connections/kafka/state | NOT AVAILABLE IN CURRENT RELEASE
-[**updateRabbitMQConnections**](ConsumersApi.md#updateRabbitMQConnections) | **PUT** /connections/rabbitmq | NOT AVAILABLE IN CURRENT RELEASE
-[**updateRabbitMQConnectionsWithHttpInfo**](ConsumersApi.md#updateRabbitMQConnectionsWithHttpInfo) | **PUT** /connections/rabbitmq | NOT AVAILABLE IN CURRENT RELEASE
-[**updateRabbitMQConnectionsState**](ConsumersApi.md#updateRabbitMQConnectionsState) | **POST** /connections/rabbitmq/state | NOT AVAILABLE IN CURRENT RELEASE
-[**updateRabbitMQConnectionsStateWithHttpInfo**](ConsumersApi.md#updateRabbitMQConnectionsStateWithHttpInfo) | **POST** /connections/rabbitmq/state | NOT AVAILABLE IN CURRENT RELEASE
-[**updateSqsConnections**](ConsumersApi.md#updateSqsConnections) | **PUT** /connections/sqs | NOT AVAILABLE IN CURRENT RELEASE
-[**updateSqsConnectionsWithHttpInfo**](ConsumersApi.md#updateSqsConnectionsWithHttpInfo) | **PUT** /connections/sqs | NOT AVAILABLE IN CURRENT RELEASE
-[**updateSqsConnectionsState**](ConsumersApi.md#updateSqsConnectionsState) | **POST** /connections/sqs/state | NOT AVAILABLE IN CURRENT RELEASE
-[**updateSqsConnectionsStateWithHttpInfo**](ConsumersApi.md#updateSqsConnectionsStateWithHttpInfo) | **POST** /connections/sqs/state | NOT AVAILABLE IN CURRENT RELEASE
+[**updateKafkaConnections**](ConsumersApi.md#updateKafkaConnections) | **PUT** /connections/kafka | 
+[**updateKafkaConnectionsWithHttpInfo**](ConsumersApi.md#updateKafkaConnectionsWithHttpInfo) | **PUT** /connections/kafka | 
+[**updateKafkaConnectionsState**](ConsumersApi.md#updateKafkaConnectionsState) | **POST** /connections/kafka/state | 
+[**updateKafkaConnectionsStateWithHttpInfo**](ConsumersApi.md#updateKafkaConnectionsStateWithHttpInfo) | **POST** /connections/kafka/state | 
+[**updateRabbitMQConnections**](ConsumersApi.md#updateRabbitMQConnections) | **PUT** /connections/rabbitmq | 
+[**updateRabbitMQConnectionsWithHttpInfo**](ConsumersApi.md#updateRabbitMQConnectionsWithHttpInfo) | **PUT** /connections/rabbitmq | 
+[**updateRabbitMQConnectionsState**](ConsumersApi.md#updateRabbitMQConnectionsState) | **POST** /connections/rabbitmq/state | 
+[**updateRabbitMQConnectionsStateWithHttpInfo**](ConsumersApi.md#updateRabbitMQConnectionsStateWithHttpInfo) | **POST** /connections/rabbitmq/state | 
+[**updateSqsConnections**](ConsumersApi.md#updateSqsConnections) | **PUT** /connections/sqs | 
+[**updateSqsConnectionsWithHttpInfo**](ConsumersApi.md#updateSqsConnectionsWithHttpInfo) | **PUT** /connections/sqs | 
+[**updateSqsConnectionsState**](ConsumersApi.md#updateSqsConnectionsState) | **POST** /connections/sqs/state | 
+[**updateSqsConnectionsStateWithHttpInfo**](ConsumersApi.md#updateSqsConnectionsStateWithHttpInfo) | **POST** /connections/sqs/state | 
 
 
 
@@ -55,7 +55,7 @@ Method | HTTP request | Description
 
 > CompletableFuture<ModelApiResponse> createKafkaConnections(body)
 
-NOT AVAILABLE IN CURRENT RELEASE
+
 
 Create a new Kafka Consumer Connection in the Ziqni system
 
@@ -134,7 +134,7 @@ CompletableFuture<[**ModelApiResponse**](ModelApiResponse.md)>
 
 > CompletableFuture<ApiResponse<ModelApiResponse>> createKafkaConnections createKafkaConnectionsWithHttpInfo(body)
 
-NOT AVAILABLE IN CURRENT RELEASE
+
 
 Create a new Kafka Consumer Connection in the Ziqni system
 
@@ -224,7 +224,7 @@ CompletableFuture<ApiResponse<[**ModelApiResponse**](ModelApiResponse.md)>>
 
 > CompletableFuture<ModelApiResponse> createRabbitMQConnections(body)
 
-NOT AVAILABLE IN CURRENT RELEASE
+
 
 Create a new RabbitMq Consumer Connection in the Ziqni system
 
@@ -303,7 +303,7 @@ CompletableFuture<[**ModelApiResponse**](ModelApiResponse.md)>
 
 > CompletableFuture<ApiResponse<ModelApiResponse>> createRabbitMQConnections createRabbitMQConnectionsWithHttpInfo(body)
 
-NOT AVAILABLE IN CURRENT RELEASE
+
 
 Create a new RabbitMq Consumer Connection in the Ziqni system
 
@@ -393,7 +393,7 @@ CompletableFuture<ApiResponse<[**ModelApiResponse**](ModelApiResponse.md)>>
 
 > CompletableFuture<ModelApiResponse> createSqsConnections(body)
 
-NOT AVAILABLE IN CURRENT RELEASE
+
 
 Create a new SQS Consumer Connection in the Ziqni system
 
@@ -472,7 +472,7 @@ CompletableFuture<[**ModelApiResponse**](ModelApiResponse.md)>
 
 > CompletableFuture<ApiResponse<ModelApiResponse>> createSqsConnections createSqsConnectionsWithHttpInfo(body)
 
-NOT AVAILABLE IN CURRENT RELEASE
+
 
 Create a new SQS Consumer Connection in the Ziqni system
 
@@ -562,7 +562,7 @@ CompletableFuture<ApiResponse<[**ModelApiResponse**](ModelApiResponse.md)>>
 
 > CompletableFuture<ModelApiResponse> deleteKafkaConnections(id)
 
-NOT AVAILABLE IN CURRENT RELEASE
+
 
 Delete the Kafka Consumer Connection for a given identifier specified
 
@@ -641,7 +641,7 @@ CompletableFuture<[**ModelApiResponse**](ModelApiResponse.md)>
 
 > CompletableFuture<ApiResponse<ModelApiResponse>> deleteKafkaConnections deleteKafkaConnectionsWithHttpInfo(id)
 
-NOT AVAILABLE IN CURRENT RELEASE
+
 
 Delete the Kafka Consumer Connection for a given identifier specified
 
@@ -731,7 +731,7 @@ CompletableFuture<ApiResponse<[**ModelApiResponse**](ModelApiResponse.md)>>
 
 > CompletableFuture<ModelApiResponse> deleteKafkaConnectionsByQuery(body)
 
-NOT AVAILABLE IN CURRENT RELEASE
+
 
 Delete a Kafka Connection or a list of Kafka Connections from Ziqni by unique Connection ID&#39;s or any other POST body parameters using the POST method
 
@@ -810,7 +810,7 @@ CompletableFuture<[**ModelApiResponse**](ModelApiResponse.md)>
 
 > CompletableFuture<ApiResponse<ModelApiResponse>> deleteKafkaConnectionsByQuery deleteKafkaConnectionsByQueryWithHttpInfo(body)
 
-NOT AVAILABLE IN CURRENT RELEASE
+
 
 Delete a Kafka Connection or a list of Kafka Connections from Ziqni by unique Connection ID&#39;s or any other POST body parameters using the POST method
 
@@ -900,7 +900,7 @@ CompletableFuture<ApiResponse<[**ModelApiResponse**](ModelApiResponse.md)>>
 
 > CompletableFuture<ModelApiResponse> deleteRabbitMQConnections(id)
 
-NOT AVAILABLE IN CURRENT RELEASE
+
 
 Delete the RabbitMq Consumer Connection for a given identifier specified
 
@@ -979,7 +979,7 @@ CompletableFuture<[**ModelApiResponse**](ModelApiResponse.md)>
 
 > CompletableFuture<ApiResponse<ModelApiResponse>> deleteRabbitMQConnections deleteRabbitMQConnectionsWithHttpInfo(id)
 
-NOT AVAILABLE IN CURRENT RELEASE
+
 
 Delete the RabbitMq Consumer Connection for a given identifier specified
 
@@ -1069,7 +1069,7 @@ CompletableFuture<ApiResponse<[**ModelApiResponse**](ModelApiResponse.md)>>
 
 > CompletableFuture<ModelApiResponse> deleteRabbitMQConnectionsByQuery(body)
 
-NOT AVAILABLE IN CURRENT RELEASE
+
 
 Delete a RabbitMQ Connection or a list of RabbitMQ Connections from Ziqni by unique Connection ID&#39;s or any other POST body parameters using the POST method
 
@@ -1148,7 +1148,7 @@ CompletableFuture<[**ModelApiResponse**](ModelApiResponse.md)>
 
 > CompletableFuture<ApiResponse<ModelApiResponse>> deleteRabbitMQConnectionsByQuery deleteRabbitMQConnectionsByQueryWithHttpInfo(body)
 
-NOT AVAILABLE IN CURRENT RELEASE
+
 
 Delete a RabbitMQ Connection or a list of RabbitMQ Connections from Ziqni by unique Connection ID&#39;s or any other POST body parameters using the POST method
 
@@ -1238,7 +1238,7 @@ CompletableFuture<ApiResponse<[**ModelApiResponse**](ModelApiResponse.md)>>
 
 > CompletableFuture<ModelApiResponse> deleteSqsConnections(id)
 
-NOT AVAILABLE IN CURRENT RELEASE
+
 
 Delete the SQS Consumer Connection for a given identifier specified
 
@@ -1317,7 +1317,7 @@ CompletableFuture<[**ModelApiResponse**](ModelApiResponse.md)>
 
 > CompletableFuture<ApiResponse<ModelApiResponse>> deleteSqsConnections deleteSqsConnectionsWithHttpInfo(id)
 
-NOT AVAILABLE IN CURRENT RELEASE
+
 
 Delete the SQS Consumer Connection for a given identifier specified
 
@@ -1407,7 +1407,7 @@ CompletableFuture<ApiResponse<[**ModelApiResponse**](ModelApiResponse.md)>>
 
 > CompletableFuture<ModelApiResponse> deleteSqsConnectionsByQuery(body)
 
-NOT AVAILABLE IN CURRENT RELEASE
+
 
 Delete a SQS Connection or a list of SQS Connections from Ziqni by unique Connection ID&#39;s or any other POST body parameters using the POST method
 
@@ -1486,7 +1486,7 @@ CompletableFuture<[**ModelApiResponse**](ModelApiResponse.md)>
 
 > CompletableFuture<ApiResponse<ModelApiResponse>> deleteSqsConnectionsByQuery deleteSqsConnectionsByQueryWithHttpInfo(body)
 
-NOT AVAILABLE IN CURRENT RELEASE
+
 
 Delete a SQS Connection or a list of SQS Connections from Ziqni by unique Connection ID&#39;s or any other POST body parameters using the POST method
 
@@ -1576,7 +1576,7 @@ CompletableFuture<ApiResponse<[**ModelApiResponse**](ModelApiResponse.md)>>
 
 > CompletableFuture<KafkaConnectionResponse> getKafkaConnections(id, limit, skip)
 
-NOT AVAILABLE IN CURRENT RELEASE
+
 
 Return a list of Kafka Consumer Connections
 
@@ -1659,7 +1659,7 @@ CompletableFuture<[**KafkaConnectionResponse**](KafkaConnectionResponse.md)>
 
 > CompletableFuture<ApiResponse<KafkaConnectionResponse>> getKafkaConnections getKafkaConnectionsWithHttpInfo(id, limit, skip)
 
-NOT AVAILABLE IN CURRENT RELEASE
+
 
 Return a list of Kafka Consumer Connections
 
@@ -1753,7 +1753,7 @@ CompletableFuture<ApiResponse<[**KafkaConnectionResponse**](KafkaConnectionRespo
 
 > CompletableFuture<KafkaConnectionResponse> getKafkaConnectionsByQuery(body)
 
-NOT AVAILABLE IN CURRENT RELEASE
+
 
 Retrieve a Kafka Connection or a list of Kafka Connections from Ziqni by unique Connection ID&#39;s or any other Post body parameters using the POST method
 
@@ -1832,7 +1832,7 @@ CompletableFuture<[**KafkaConnectionResponse**](KafkaConnectionResponse.md)>
 
 > CompletableFuture<ApiResponse<KafkaConnectionResponse>> getKafkaConnectionsByQuery getKafkaConnectionsByQueryWithHttpInfo(body)
 
-NOT AVAILABLE IN CURRENT RELEASE
+
 
 Retrieve a Kafka Connection or a list of Kafka Connections from Ziqni by unique Connection ID&#39;s or any other Post body parameters using the POST method
 
@@ -1922,7 +1922,7 @@ CompletableFuture<ApiResponse<[**KafkaConnectionResponse**](KafkaConnectionRespo
 
 > CompletableFuture<RabbitMqConnectionResponse> getRabbitMQConnections(id, limit, skip)
 
-NOT AVAILABLE IN CURRENT RELEASE
+
 
 Return a list of RabbitMq Consumer Connections
 
@@ -2005,7 +2005,7 @@ CompletableFuture<[**RabbitMqConnectionResponse**](RabbitMqConnectionResponse.md
 
 > CompletableFuture<ApiResponse<RabbitMqConnectionResponse>> getRabbitMQConnections getRabbitMQConnectionsWithHttpInfo(id, limit, skip)
 
-NOT AVAILABLE IN CURRENT RELEASE
+
 
 Return a list of RabbitMq Consumer Connections
 
@@ -2099,7 +2099,7 @@ CompletableFuture<ApiResponse<[**RabbitMqConnectionResponse**](RabbitMqConnectio
 
 > CompletableFuture<RabbitMqConnectionResponse> getRabbitMQConnectionsByQuery(body)
 
-NOT AVAILABLE IN CURRENT RELEASE
+
 
 Retrieve a RabbitMQ Connection or a list of RabbitMQ Connections from Ziqni by unique Connection ID&#39;s or any other Post body parameters using the POST method
 
@@ -2178,7 +2178,7 @@ CompletableFuture<[**RabbitMqConnectionResponse**](RabbitMqConnectionResponse.md
 
 > CompletableFuture<ApiResponse<RabbitMqConnectionResponse>> getRabbitMQConnectionsByQuery getRabbitMQConnectionsByQueryWithHttpInfo(body)
 
-NOT AVAILABLE IN CURRENT RELEASE
+
 
 Retrieve a RabbitMQ Connection or a list of RabbitMQ Connections from Ziqni by unique Connection ID&#39;s or any other Post body parameters using the POST method
 
@@ -2268,7 +2268,7 @@ CompletableFuture<ApiResponse<[**RabbitMqConnectionResponse**](RabbitMqConnectio
 
 > CompletableFuture<SqsConnectionResponse> getSqsConnections(id, limit, skip)
 
-NOT AVAILABLE IN CURRENT RELEASE
+
 
 Return a list of SQS Consumer Connections
 
@@ -2351,7 +2351,7 @@ CompletableFuture<[**SqsConnectionResponse**](SqsConnectionResponse.md)>
 
 > CompletableFuture<ApiResponse<SqsConnectionResponse>> getSqsConnections getSqsConnectionsWithHttpInfo(id, limit, skip)
 
-NOT AVAILABLE IN CURRENT RELEASE
+
 
 Return a list of SQS Consumer Connections
 
@@ -2445,7 +2445,7 @@ CompletableFuture<ApiResponse<[**SqsConnectionResponse**](SqsConnectionResponse.
 
 > CompletableFuture<SqsConnectionResponse> getSqsConnectionsByQuery(body)
 
-NOT AVAILABLE IN CURRENT RELEASE
+
 
 Retrieve a SQS Connection or a list of SQS Connections from Ziqni by unique Connection ID&#39;s or any other Post body parameters using the POST method
 
@@ -2524,7 +2524,7 @@ CompletableFuture<[**SqsConnectionResponse**](SqsConnectionResponse.md)>
 
 > CompletableFuture<ApiResponse<SqsConnectionResponse>> getSqsConnectionsByQuery getSqsConnectionsByQueryWithHttpInfo(body)
 
-NOT AVAILABLE IN CURRENT RELEASE
+
 
 Retrieve a SQS Connection or a list of SQS Connections from Ziqni by unique Connection ID&#39;s or any other Post body parameters using the POST method
 
@@ -2783,7 +2783,7 @@ CompletableFuture<ApiResponse<[**ModelApiResponse**](ModelApiResponse.md)>>
 
 > CompletableFuture<ModelApiResponse> updateKafkaConnections(body)
 
-NOT AVAILABLE IN CURRENT RELEASE
+
 
 Update an existing Kafka Consumer Connection in the Ziqni system
 
@@ -2863,7 +2863,7 @@ CompletableFuture<[**ModelApiResponse**](ModelApiResponse.md)>
 
 > CompletableFuture<ApiResponse<ModelApiResponse>> updateKafkaConnections updateKafkaConnectionsWithHttpInfo(body)
 
-NOT AVAILABLE IN CURRENT RELEASE
+
 
 Update an existing Kafka Consumer Connection in the Ziqni system
 
@@ -2954,7 +2954,7 @@ CompletableFuture<ApiResponse<[**ModelApiResponse**](ModelApiResponse.md)>>
 
 > CompletableFuture<ModelApiResponse> updateKafkaConnectionsState(body)
 
-NOT AVAILABLE IN CURRENT RELEASE
+
 
 Update the state of a Kafka Connection using the POST method
 
@@ -3033,7 +3033,7 @@ CompletableFuture<[**ModelApiResponse**](ModelApiResponse.md)>
 
 > CompletableFuture<ApiResponse<ModelApiResponse>> updateKafkaConnectionsState updateKafkaConnectionsStateWithHttpInfo(body)
 
-NOT AVAILABLE IN CURRENT RELEASE
+
 
 Update the state of a Kafka Connection using the POST method
 
@@ -3123,7 +3123,7 @@ CompletableFuture<ApiResponse<[**ModelApiResponse**](ModelApiResponse.md)>>
 
 > CompletableFuture<ModelApiResponse> updateRabbitMQConnections(body)
 
-NOT AVAILABLE IN CURRENT RELEASE
+
 
 Update an existing RabbitMq Consumer Connection in the Ziqni system
 
@@ -3203,7 +3203,7 @@ CompletableFuture<[**ModelApiResponse**](ModelApiResponse.md)>
 
 > CompletableFuture<ApiResponse<ModelApiResponse>> updateRabbitMQConnections updateRabbitMQConnectionsWithHttpInfo(body)
 
-NOT AVAILABLE IN CURRENT RELEASE
+
 
 Update an existing RabbitMq Consumer Connection in the Ziqni system
 
@@ -3294,7 +3294,7 @@ CompletableFuture<ApiResponse<[**ModelApiResponse**](ModelApiResponse.md)>>
 
 > CompletableFuture<ModelApiResponse> updateRabbitMQConnectionsState(body)
 
-NOT AVAILABLE IN CURRENT RELEASE
+
 
 Update the state of a RabbitMQ Connection using the POST method
 
@@ -3373,7 +3373,7 @@ CompletableFuture<[**ModelApiResponse**](ModelApiResponse.md)>
 
 > CompletableFuture<ApiResponse<ModelApiResponse>> updateRabbitMQConnectionsState updateRabbitMQConnectionsStateWithHttpInfo(body)
 
-NOT AVAILABLE IN CURRENT RELEASE
+
 
 Update the state of a RabbitMQ Connection using the POST method
 
@@ -3463,7 +3463,7 @@ CompletableFuture<ApiResponse<[**ModelApiResponse**](ModelApiResponse.md)>>
 
 > CompletableFuture<ModelApiResponse> updateSqsConnections(body)
 
-NOT AVAILABLE IN CURRENT RELEASE
+
 
 Update an existing SQS Consumer Connection in the Ziqni system
 
@@ -3543,7 +3543,7 @@ CompletableFuture<[**ModelApiResponse**](ModelApiResponse.md)>
 
 > CompletableFuture<ApiResponse<ModelApiResponse>> updateSqsConnections updateSqsConnectionsWithHttpInfo(body)
 
-NOT AVAILABLE IN CURRENT RELEASE
+
 
 Update an existing SQS Consumer Connection in the Ziqni system
 
@@ -3634,7 +3634,7 @@ CompletableFuture<ApiResponse<[**ModelApiResponse**](ModelApiResponse.md)>>
 
 > CompletableFuture<ModelApiResponse> updateSqsConnectionsState(body)
 
-NOT AVAILABLE IN CURRENT RELEASE
+
 
 Update the state of an SQS Connection using the POST method
 
@@ -3713,7 +3713,7 @@ CompletableFuture<[**ModelApiResponse**](ModelApiResponse.md)>
 
 > CompletableFuture<ApiResponse<ModelApiResponse>> updateSqsConnectionsState updateSqsConnectionsStateWithHttpInfo(body)
 
-NOT AVAILABLE IN CURRENT RELEASE
+
 
 Update the state of an SQS Connection using the POST method
 

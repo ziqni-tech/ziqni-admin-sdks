@@ -68,43 +68,43 @@ public class UserApiTest implements tests.utils.CompleteableFutureTestWrapper{
 
 
     }
-
-    /**
-     * NOT AVAILABLE IN CURRENT RELEASE
-     *
-     * Returns a list of the Users messages
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    @Disabled
-    public void getUserMessagesTest() throws ApiException {
-        String X_API_KEY = null;
-        Integer limit = null;
-        Integer skip = null;
-        AccountMessageResponse response = $(api.getUserMessages( limit, skip));
-
-        // TODO: test validations
-    }
-
-    /**
-     * NOT AVAILABLE IN CURRENT RELEASE
-     *
-     * Returns a Users message for the identifier provided
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    @Disabled
-    public void getUserMessagesByIdTest() throws ApiException {
-        String id = null;
-        String X_API_KEY = null;
-        AccountMessageResponse response = $(api.getUserMessagesById(id));
-
-        // TODO: test validations
-    }
+//
+//    /**
+//     * NOT AVAILABLE IN CURRENT RELEASE
+//     *
+//     * Returns a list of the Users messages
+//     *
+//     * @throws ApiException
+//     *          if the Api call fails
+//     */
+//    @Test
+//    @Disabled
+//    public void getUserMessagesTest() throws ApiException {
+//        String X_API_KEY = null;
+//        Integer limit = null;
+//        Integer skip = null;
+//        AccountMessageResponse response = $(api.getUserMessages( limit, skip));
+//
+//        // TODO: test validations
+//    }
+//
+//    /**
+//     * NOT AVAILABLE IN CURRENT RELEASE
+//     *
+//     * Returns a Users message for the identifier provided
+//     *
+//     * @throws ApiException
+//     *          if the Api call fails
+//     */
+//    @Test
+//    @Disabled
+//    public void getUserMessagesByIdTest() throws ApiException {
+//        String id = null;
+//        String X_API_KEY = null;
+//        AccountMessageResponse response = $(api.getUserMessagesById(id));
+//
+//        // TODO: test validations
+//    }
 
     /**
      * NOT AVAILABLE IN CURRENT RELEASE

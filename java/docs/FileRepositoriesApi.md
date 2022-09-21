@@ -8,8 +8,8 @@ Method | HTTP request | Description
 [**createFileRepositoriesWithHttpInfo**](FileRepositoriesApi.md#createFileRepositoriesWithHttpInfo) | **POST** /file-repositories | 
 [**deleteFileRepositories**](FileRepositoriesApi.md#deleteFileRepositories) | **DELETE** /file-repositories | 
 [**deleteFileRepositoriesWithHttpInfo**](FileRepositoriesApi.md#deleteFileRepositoriesWithHttpInfo) | **DELETE** /file-repositories | 
-[**deleteFileRepositoriesByQuery**](FileRepositoriesApi.md#deleteFileRepositoriesByQuery) | **POST** /file-repositories/delete | NOT AVAILABLE IN CURRENT RELEASE
-[**deleteFileRepositoriesByQueryWithHttpInfo**](FileRepositoriesApi.md#deleteFileRepositoriesByQueryWithHttpInfo) | **POST** /file-repositories/delete | NOT AVAILABLE IN CURRENT RELEASE
+[**deleteFileRepositoriesByQuery**](FileRepositoriesApi.md#deleteFileRepositoriesByQuery) | **POST** /file-repositories/delete | 
+[**deleteFileRepositoriesByQueryWithHttpInfo**](FileRepositoriesApi.md#deleteFileRepositoriesByQueryWithHttpInfo) | **POST** /file-repositories/delete | 
 [**getFileRepositories**](FileRepositoriesApi.md#getFileRepositories) | **GET** /file-repositories | 
 [**getFileRepositoriesWithHttpInfo**](FileRepositoriesApi.md#getFileRepositoriesWithHttpInfo) | **GET** /file-repositories | 
 [**getFileRepositoriesByQuery**](FileRepositoriesApi.md#getFileRepositoriesByQuery) | **POST** /file-repositories/query | 
@@ -365,7 +365,7 @@ CompletableFuture<ApiResponse<[**ModelApiResponse**](ModelApiResponse.md)>>
 
 > CompletableFuture<ModelApiResponse> deleteFileRepositoriesByQuery(body)
 
-NOT AVAILABLE IN CURRENT RELEASE
+
 
 Delete repositories nby query. Delete repositories by query and/or unique repository ID&#39;s or any other body parameters
 
@@ -444,7 +444,7 @@ CompletableFuture<[**ModelApiResponse**](ModelApiResponse.md)>
 
 > CompletableFuture<ApiResponse<ModelApiResponse>> deleteFileRepositoriesByQuery deleteFileRepositoriesByQueryWithHttpInfo(body)
 
-NOT AVAILABLE IN CURRENT RELEASE
+
 
 Delete repositories nby query. Delete repositories by query and/or unique repository ID&#39;s or any other body parameters
 
