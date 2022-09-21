@@ -388,7 +388,7 @@ public class ActionTypesApiTest implements tests.utils.CompleteableFutureTestWra
 
         UpdateActionTypeRequest given = new UpdateActionTypeRequest()
                 .id(id)
-                .unitOfMeasureType(null);
+                .unitOfMeasure(null);
 
         Thread.sleep(5000);
 
