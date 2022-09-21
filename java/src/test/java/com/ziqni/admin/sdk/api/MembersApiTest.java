@@ -1236,44 +1236,44 @@ public class MembersApiTest implements tests.utils.CompleteableFutureTestWrapper
 //
 //        // TODO: test validations
 //    }
-
-    @Test
-    @Disabled
-    public void getCompetitionsForMembersTest() throws ApiException {
-        String id = null;
-        String X_API_KEY = null;
-        String competitionId = null;
-        Integer limit = null;
-        Integer skip = null;
-        CompetitionReducedResponse response = $(api.getCompetitionsForMembers(id, competitionId, limit, skip));
-
-        // TODO: test validations
-    }
-
-    @Test
-    @Disabled
-    public void getContestsForMembersTest() throws ApiException {
-        String id = null;
-        String X_API_KEY = null;
-        String contestId = null;
-        Integer limit = null;
-        Integer skip = null;
-        ContestReducedResponse response = $(api.getContestsForMembers(id, contestId, limit, skip));
-
-        // TODO: test validations
-    }
-
-    @Test
-    @Disabled
-    public void getMessagesForMembersTest() throws ApiException {
-        String id = null;
-        String X_API_KEY = null;
-        String messageId = null;
-        Integer limit = null;
-        Integer skip = null;
-        MemberMessageResponse response = $(api.getMessagesForMembers(id, messageId, limit, skip));
-
-        // TODO: test validations
-    }
+//
+//    @Test
+//    @Disabled
+//    public void getCompetitionsForMembersTest() throws ApiException {
+//        String id = null;
+//        String X_API_KEY = null;
+//        String competitionId = null;
+//        Integer limit = null;
+//        Integer skip = null;
+//        CompetitionReducedResponse response = $(api.getCompetitionsForMembers(id, competitionId, limit, skip));
+//
+//        // TODO: test validations
+//    }
+//
+//    @Test
+//    @Disabled
+//    public void getContestsForMembersTest() throws ApiException {
+//        String id = null;
+//        String X_API_KEY = null;
+//        String contestId = null;
+//        Integer limit = null;
+//        Integer skip = null;
+//        ContestReducedResponse response = $(api.getContestsForMembers(id, contestId, limit, skip));
+//
+//        // TODO: test validations
+//    }
+//
+//    @Test
+//    @Disabled
+//    public void getMessagesForMembersTest() throws ApiException {
+//        String id = null;
+//        String X_API_KEY = null;
+//        String messageId = null;
+//        Integer limit = null;
+//        Integer skip = null;
+//        MemberMessageResponse response = $(api.getMessagesForMembers(id, messageId, limit, skip));
+//
+//        // TODO: test validations
+//    }
 
 }

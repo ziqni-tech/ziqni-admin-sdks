@@ -328,42 +328,42 @@ public class CompetitionsApiTest implements tests.utils.CompleteableFutureTestWr
 
         idsToDelete.add(id);
     }
-
-    /**
-     * NOT AVAILABLE IN CURRENT RELEASE
-     *
-     * Returns all Contests for the Competition id provided in Brackets
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    @Disabled //Fixme after Implementation
-    public void getCompetitionsBracketsTest() throws ApiException, InterruptedException {
-        final var createRequest = loadData.getCreateRequest(productIdsToDelete);
-        final var createResponse = loadData.createTestData(createRequest);
-        final var id = createResponse.getResults().get(0).getId();
-
-        final var limit = 1;
-        final var skip = 0;
-
-        Thread.sleep(5000);
-
-        final var response = $(api.getCompetitionsBrackets(id, limit, skip));
-
-        assertNotNull(response);
-        assertNotNull(response.getResults());
-        assertNotNull(response.getErrors());
-        assertTrue(response.getErrors().isEmpty(), "Should have no errors");
-        assertEquals(limit, response.getResults().size(), "Should has single result");
-
-        final var item = response.getResults().get(0);
-
-        assertEquals(createRequest.getContests(), item.getContests(), "Found Contests should be equal to created previously");
-        assertEquals(createRequest.getNumberOfRounds(), item.getRounds(), "Found Competition Type should be equal to created previously");
-
-        idsToDelete.add(id);
-    }
+//
+//    /**
+//     * NOT AVAILABLE IN CURRENT RELEASE
+//     *
+//     * Returns all Contests for the Competition id provided in Brackets
+//     *
+//     * @throws ApiException
+//     *          if the Api call fails
+//     */
+//    @Test
+//    @Disabled //Fixme after Implementation
+//    public void getCompetitionsBracketsTest() throws ApiException, InterruptedException {
+//        final var createRequest = loadData.getCreateRequest(productIdsToDelete);
+//        final var createResponse = loadData.createTestData(createRequest);
+//        final var id = createResponse.getResults().get(0).getId();
+//
+//        final var limit = 1;
+//        final var skip = 0;
+//
+//        Thread.sleep(5000);
+//
+//        final var response = $(api.getCompetitionsBrackets(id, limit, skip));
+//
+//        assertNotNull(response);
+//        assertNotNull(response.getResults());
+//        assertNotNull(response.getErrors());
+//        assertTrue(response.getErrors().isEmpty(), "Should have no errors");
+//        assertEquals(limit, response.getResults().size(), "Should has single result");
+//
+//        final var item = response.getResults().get(0);
+//
+//        assertEquals(createRequest.getContests(), item.getContests(), "Found Contests should be equal to created previously");
+//        assertEquals(createRequest.getNumberOfRounds(), item.getRounds(), "Found Competition Type should be equal to created previously");
+//
+//        idsToDelete.add(id);
+//    }
 
     /**
      * NOT AVAILABLE IN CURRENT RELEASE
@@ -468,44 +468,44 @@ public class CompetitionsApiTest implements tests.utils.CompleteableFutureTestWr
 
         idsToDelete.add(id);
     }
-
-    /**
-     * NOT AVAILABLE IN CURRENT RELEASE
-     *
-     * Returns all Contests for the Competition id provided
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    @Disabled //Fixme after Implementation
-    public void getContestsForCompetitionsTest() throws ApiException, InterruptedException {
-        final var createRequest = loadData.getCreateRequest(productIdsToDelete);
-        final var createResponse = loadData.createTestData(createRequest);
-        final var id = createResponse.getResults().get(0).getId();
-
-        final var limit = 1;
-        final var skip = 0;
-
-        Thread.sleep(5000);
-
-        final var response = $(api.getContestsForCompetitions(id, limit, skip));
-
-        assertNotNull(response);
-        assertNotNull(response.getResults());
-        assertNotNull(response.getErrors());
-        assertTrue(response.getErrors().isEmpty(), "Should have no errors");
-        assertEquals(limit, response.getResults().size(), "Should has single result");
-
-        final var item = response.getResults().get(0);
-
-        assertEquals(id, item.getId(), "Found id should be equal to requested");
-        assertEquals(createRequest.getName(), item.getName(), "Found name should be equal to created previously");
-        assertEquals(createRequest.getScheduledStartDate(), item.getActualStartDate(), "Found Competition Type should be equal to created previously");
-        assertNotNull(item.getSpaceName(), "Space name should exist");
-
-        idsToDelete.add(id);
-    }
+//
+//    /**
+//     * NOT AVAILABLE IN CURRENT RELEASE
+//     *
+//     * Returns all Contests for the Competition id provided
+//     *
+//     * @throws ApiException
+//     *          if the Api call fails
+//     */
+//    @Test
+//    @Disabled //Fixme after Implementation
+//    public void getContestsForCompetitionsTest() throws ApiException, InterruptedException {
+//        final var createRequest = loadData.getCreateRequest(productIdsToDelete);
+//        final var createResponse = loadData.createTestData(createRequest);
+//        final var id = createResponse.getResults().get(0).getId();
+//
+//        final var limit = 1;
+//        final var skip = 0;
+//
+//        Thread.sleep(5000);
+//
+//        final var response = $(api.getContestsForCompetitions(id, limit, skip));
+//
+//        assertNotNull(response);
+//        assertNotNull(response.getResults());
+//        assertNotNull(response.getErrors());
+//        assertTrue(response.getErrors().isEmpty(), "Should have no errors");
+//        assertEquals(limit, response.getResults().size(), "Should has single result");
+//
+//        final var item = response.getResults().get(0);
+//
+//        assertEquals(id, item.getId(), "Found id should be equal to requested");
+//        assertEquals(createRequest.getName(), item.getName(), "Found name should be equal to created previously");
+//        assertEquals(createRequest.getScheduledStartDate(), item.getActualStartDate(), "Found Competition Type should be equal to created previously");
+//        assertNotNull(item.getSpaceName(), "Space name should exist");
+//
+//        idsToDelete.add(id);
+//    }
 
     /**
      *
@@ -541,40 +541,40 @@ public class CompetitionsApiTest implements tests.utils.CompleteableFutureTestWr
 
         idsToDelete.add(id);
     }
-
-    /**
-     *
-     * Returns all Entries for the Competition id provided
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    @Disabled //Fixme after Implementation
-    public void getListOfEntrantsTest() throws ApiException, InterruptedException {
-        final var createRequest = loadData.getCreateRequest(productIdsToDelete);
-        final var createResponse = loadData.createTestData(createRequest);
-        final var id = createResponse.getResults().get(0).getId();
-
-        final var limit = 1;
-        final var skip = 0;
-
-        Thread.sleep(5000);
-
-        final var response = $(api.getListOfEntrants(id, limit, skip));
-
-        assertNotNull(response);
-        assertNotNull(response.getResults());
-        assertNotNull(response.getErrors());
-        assertTrue(response.getErrors().isEmpty(), "Should have no errors");
-        assertEquals(limit, response.getResults().size(), "Should has single result");
-
-        final var item = response.getResults().get(0);
-
-        assertEquals(id, item.getEntityId(), "Found id should be equal to requested");
-
-        idsToDelete.add(id);
-    }
+//
+//    /**
+//     *
+//     * Returns all Entries for the Competition id provided
+//     *
+//     * @throws ApiException
+//     *          if the Api call fails
+//     */
+//    @Test
+//    @Disabled //Fixme after Implementation
+//    public void getListOfEntrantsTest() throws ApiException, InterruptedException {
+//        final var createRequest = loadData.getCreateRequest(productIdsToDelete);
+//        final var createResponse = loadData.createTestData(createRequest);
+//        final var id = createResponse.getResults().get(0).getId();
+//
+//        final var limit = 1;
+//        final var skip = 0;
+//
+//        Thread.sleep(5000);
+//
+//        final var response = $(api.getListOfEntrants(id, limit, skip));
+//
+//        assertNotNull(response);
+//        assertNotNull(response.getResults());
+//        assertNotNull(response.getErrors());
+//        assertTrue(response.getErrors().isEmpty(), "Should have no errors");
+//        assertEquals(limit, response.getResults().size(), "Should has single result");
+//
+//        final var item = response.getResults().get(0);
+//
+//        assertEquals(id, item.getEntityId(), "Found id should be equal to requested");
+//
+//        idsToDelete.add(id);
+//    }
 
     @Test
     public void updateCompetitionReturnOkTest() throws ApiException, InterruptedException {
@@ -672,47 +672,47 @@ public class CompetitionsApiTest implements tests.utils.CompleteableFutureTestWr
         idsToDelete.add(id);
     }
 
-    @Test
-    @Disabled //Fixme after Implementation
-    public void updateCompetitionsEntriesTest() throws ApiException {
-        final var createRequest = loadData.getCreateRequest(productIdsToDelete);
-        final var createResponse = loadData.createTestData(createRequest);
-        final var id = createResponse.getResults().get(0).getId();
-
-        final var given = new EntrantRequest()
-                .entityId(id)
-                .entrantStatus(EntrantStatus.ENTERED);
-
-        final var updated = $(api.updateCompetitionsEntries(List.of(given)));
-
-        assertNotNull(updated);
-        assertNotNull(updated.getResults());
-        assertNotNull(updated.getErrors());
-        assertEquals(1, updated.getResults().size(), "Should contain created entity");
-        assertNotNull(updated.getResults().get(0).getId(), "Created entity should has id");
-
-        final var updatedId = updated.getResults().get(0).getId();
-
-
-        final var ids = List.of(updatedId);
-        Integer limit = 1;
-        Integer skip = 0;
-
-        final var response = $(api.getCompetitions(ids, limit, skip));
-
-        assertNotNull(response);
-        assertNotNull(response.getResults());
-        assertNotNull(response.getErrors());
-        assertTrue(response.getErrors().isEmpty(), "Should have no errors");
-        assertEquals(limit, response.getResults().size(), "Should has single result");
-
-        final var item = response.getResults().get(0);
-
-        assertEquals(id, item.getId(), "Found id should be equal to requested");
-//        assertEquals(givenStatus, item.getStatus(), "Found live status should be equal to provided");
-
-        idsToDelete.add(id);
-    }
+//    @Test
+//    @Disabled //Fixme after Implementation
+//    public void updateCompetitionsEntriesTest() throws ApiException {
+//        final var createRequest = loadData.getCreateRequest(productIdsToDelete);
+//        final var createResponse = loadData.createTestData(createRequest);
+//        final var id = createResponse.getResults().get(0).getId();
+//
+//        final var given = new EntrantRequest()
+//                .entityId(id)
+//                .entrantStatus(EntrantStatus.ENTERED);
+//
+//        final var updated = $(api.updateCompetitionsEntries(List.of(given)));
+//
+//        assertNotNull(updated);
+//        assertNotNull(updated.getResults());
+//        assertNotNull(updated.getErrors());
+//        assertEquals(1, updated.getResults().size(), "Should contain created entity");
+//        assertNotNull(updated.getResults().get(0).getId(), "Created entity should has id");
+//
+//        final var updatedId = updated.getResults().get(0).getId();
+//
+//
+//        final var ids = List.of(updatedId);
+//        Integer limit = 1;
+//        Integer skip = 0;
+//
+//        final var response = $(api.getCompetitions(ids, limit, skip));
+//
+//        assertNotNull(response);
+//        assertNotNull(response.getResults());
+//        assertNotNull(response.getErrors());
+//        assertTrue(response.getErrors().isEmpty(), "Should have no errors");
+//        assertEquals(limit, response.getResults().size(), "Should has single result");
+//
+//        final var item = response.getResults().get(0);
+//
+//        assertEquals(id, item.getId(), "Found id should be equal to requested");
+////        assertEquals(givenStatus, item.getStatus(), "Found live status should be equal to provided");
+//
+//        idsToDelete.add(id);
+//    }
 
     /**
      *

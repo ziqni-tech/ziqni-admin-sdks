@@ -820,30 +820,30 @@ givenMetadata.put(UUID.randomUUID().toString(),"a".repeat(101));
         idsToDelete.add(id);
     }
 
-    @Test
-    @Order(30)
-    @Disabled // fixme - enable after copy/upload/download are implemented
-    public void copyFileByExistedIdReturnOkTest() throws ApiException {
-        final var createRequest = loadData.getCreateRequest(repositoryId);
-        final var createRequestAsList = loadData.getCreateRequestAsList(createRequest);
-        final ModelApiResponse createResponse = loadData.createTestData(createRequestAsList);
-        final String id = createResponse.getResults().get(0).getId();
-
-        var given = new UpdateFileObjectRequest()
-                .id(id)
-                .mimeType("MimeType")
-                .name("Copy of " + createRequest.getName());
-
-        ModelApiResponse response = $(api.copyFileObjects(given, List.of(id)));
-
-        assertNotNull(response);
-        assertNotNull(response.getResults());
-        assertNotNull(response.getErrors());
-        assertFalse(response.getResults().isEmpty(), "Should have result");
-        assertTrue(response.getErrors().isEmpty(), "Should not return error");
-
-        idsToDelete.add(id);
-    }
+//    @Test
+//    @Order(30)
+//    @Disabled // fixme - enable after copy/upload/download are implemented
+//    public void copyFileByExistedIdReturnOkTest() throws ApiException {
+//        final var createRequest = loadData.getCreateRequest(repositoryId);
+//        final var createRequestAsList = loadData.getCreateRequestAsList(createRequest);
+//        final ModelApiResponse createResponse = loadData.createTestData(createRequestAsList);
+//        final String id = createResponse.getResults().get(0).getId();
+//
+//        var given = new UpdateFileObjectRequest()
+//                .id(id)
+//                .mimeType("MimeType")
+//                .name("Copy of " + createRequest.getName());
+//
+//        ModelApiResponse response = $(api.copyFileObjects(given, List.of(id)));
+//
+//        assertNotNull(response);
+//        assertNotNull(response.getResults());
+//        assertNotNull(response.getErrors());
+//        assertFalse(response.getResults().isEmpty(), "Should have result");
+//        assertTrue(response.getErrors().isEmpty(), "Should not return error");
+//
+//        idsToDelete.add(id);
+//    }
 
     @Test
     @Order(31)
