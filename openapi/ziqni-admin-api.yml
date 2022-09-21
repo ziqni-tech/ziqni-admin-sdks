@@ -13561,8 +13561,6 @@ components:
                             type: string
                             example: The action called Big Win
                             x-vue-form-type: TEXTAREA
-                        unitOfMeasureType:
-                            $ref: '#/components/schemas/UnitOfMeasureType'
                         addConstraints:
                             description: 'Additional constraints, if the value is present it means the'
                             type: array
@@ -13587,6 +13585,9 @@ components:
                                 - Normal
                                 - Notify
                                 - Severe
+                        unitOfMeasure:
+                            description: unit of measure id
+                            type: string
             example: {}
             x-vue-update: actionType
             x-vue-updater: actionTypes
