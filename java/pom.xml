@@ -7,7 +7,7 @@
     <groupId>com.ziqni</groupId>
     <artifactId>ziqni-admin-sdk</artifactId>
     <name>ZIQNI Admin SDK Java Client</name>
-    <version>1.0.1</version>
+    <version>1.0.2</version>
     <packaging>jar</packaging>
     <url>https://github.com/ziqni-tech/ziqni-admin-sdks</url>
     <description>ZIQNI Admin SDK Java Client</description>
@@ -220,17 +220,6 @@
 
     <build>
         <plugins>
-<!--            <plugin>-->
-<!--                <groupId>org.sonatype.plugins</groupId>-->
-<!--                <artifactId>nexus-staging-maven-plugin</artifactId>-->
-<!--                <version>1.6.7</version>-->
-<!--                <extensions>true</extensions>-->
-<!--                <configuration>-->
-<!--                    <serverId>ossrh</serverId>-->
-<!--                    <nexusUrl>https://s01.oss.sonatype.org/</nexusUrl>-->
-<!--                    <autoReleaseAfterClose>true</autoReleaseAfterClose>-->
-<!--                </configuration>-->
-<!--            </plugin>-->
             <plugin>
                 <groupId>org.sonatype.plugins</groupId>
                 <artifactId>nexus-staging-maven-plugin</artifactId>

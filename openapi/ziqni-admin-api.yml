@@ -8016,7 +8016,7 @@ paths:
                 '200':
                     $ref: '#/components/responses/LeaderboardResponseBody'
             operationId: manageLeaderboardSubscription
-    '/competitions/{id}/leaderboard/':
+    '/competitions/{id}/leaderboard':
         get:
             tags:
                 - competitions

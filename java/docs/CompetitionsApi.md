@@ -14,8 +14,8 @@ Method | HTTP request | Description
 [**getCompetitionsByQueryWithHttpInfo**](CompetitionsApi.md#getCompetitionsByQueryWithHttpInfo) | **POST** /competitions/query | 
 [**getCompetitionsToClone**](CompetitionsApi.md#getCompetitionsToClone) | **GET** /competitions/{id}/clone | Get Competition To Clone
 [**getCompetitionsToCloneWithHttpInfo**](CompetitionsApi.md#getCompetitionsToCloneWithHttpInfo) | **GET** /competitions/{id}/clone | Get Competition To Clone
-[**getLeaderboardByCompetitionId**](CompetitionsApi.md#getLeaderboardByCompetitionId) | **GET** /competitions/{id}/leaderboard/ | 
-[**getLeaderboardByCompetitionIdWithHttpInfo**](CompetitionsApi.md#getLeaderboardByCompetitionIdWithHttpInfo) | **GET** /competitions/{id}/leaderboard/ | 
+[**getLeaderboardByCompetitionId**](CompetitionsApi.md#getLeaderboardByCompetitionId) | **GET** /competitions/{id}/leaderboard | 
+[**getLeaderboardByCompetitionIdWithHttpInfo**](CompetitionsApi.md#getLeaderboardByCompetitionIdWithHttpInfo) | **GET** /competitions/{id}/leaderboard | 
 [**updateCompetitions**](CompetitionsApi.md#updateCompetitions) | **PUT** /competitions | 
 [**updateCompetitionsWithHttpInfo**](CompetitionsApi.md#updateCompetitionsWithHttpInfo) | **PUT** /competitions | 
 [**updateCompetitionsState**](CompetitionsApi.md#updateCompetitionsState) | **PUT** /competitions/state | 
