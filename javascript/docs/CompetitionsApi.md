@@ -7,15 +7,11 @@ Method | HTTP request | Description
 [**createCompetitions**](CompetitionsApi.md#createCompetitions) | **POST** /competitions | 
 [**createSimpleCompetitions**](CompetitionsApi.md#createSimpleCompetitions) | **POST** /competitions/simple | 
 [**getCompetitions**](CompetitionsApi.md#getCompetitions) | **GET** /competitions | 
-[**getCompetitionsBrackets**](CompetitionsApi.md#getCompetitionsBrackets) | **GET** /competitions/{id}/brackets | NOT AVAILABLE IN CURRENT RELEASE
 [**getCompetitionsByQuery**](CompetitionsApi.md#getCompetitionsByQuery) | **POST** /competitions/query | 
-[**getCompetitionsToClone**](CompetitionsApi.md#getCompetitionsToClone) | **GET** /competitions/{id}/clone | NOT AVAILABLE IN CURRENT RELEASE
-[**getContestsForCompetitions**](CompetitionsApi.md#getContestsForCompetitions) | **GET** /competitions/{id}/contests | NOT AVAILABLE IN CURRENT RELEASE
-[**getLeaderboardByCompetitionId**](CompetitionsApi.md#getLeaderboardByCompetitionId) | **GET** /competitions/{id}/leaderboard | NOT AVAILABLE IN CURRENT RELEASE
-[**getListOfEntrants**](CompetitionsApi.md#getListOfEntrants) | **GET** /competitions/{id}/entries | NOT AVAILABLE IN CURRENT RELEASE
+[**getCompetitionsToClone**](CompetitionsApi.md#getCompetitionsToClone) | **GET** /competitions/{id}/clone | Get Competition To Clone
+[**getLeaderboardByCompetitionId**](CompetitionsApi.md#getLeaderboardByCompetitionId) | **GET** /competitions/{id}/leaderboard | 
 [**updateCompetitions**](CompetitionsApi.md#updateCompetitions) | **PUT** /competitions | 
-[**updateCompetitionsEntries**](CompetitionsApi.md#updateCompetitionsEntries) | **PUT** /competitions/entries | NOT AVAILABLE IN CURRENT RELEASE
-[**updateCompetitionsState**](CompetitionsApi.md#updateCompetitionsState) | **PUT** /competitions/state | NOT AVAILABLE IN CURRENT RELEASE
+[**updateCompetitionsState**](CompetitionsApi.md#updateCompetitionsState) | **PUT** /competitions/state | 
 
 
 
@@ -172,61 +168,6 @@ Name | Type | Description  | Notes
 - **Accept**: application/json
 
 
-## getCompetitionsBrackets
-
-> BracketResponse getCompetitionsBrackets(id, opts)
-
-NOT AVAILABLE IN CURRENT RELEASE
-
-Returns all Contests for the Competition id provided in Brackets
-
-### Example
-
-```javascript
-import @ZiqniTechAdminApiClient from '@ziqni-tech/admin-api-client';
-let defaultClient = @ZiqniTechAdminApiClient.ApiClient.instance;
-// Configure OAuth2 access token for authorization: OAuth2
-let OAuth2 = defaultClient.authentications['OAuth2'];
-OAuth2.accessToken = 'YOUR ACCESS TOKEN';
-
-let apiInstance = new @ZiqniTechAdminApiClient.CompetitionsApi();
-let id = "id_example"; // String | Unique identifier of the resource
-let opts = {
-  'limit': 56, // Number | Limit the returned total records found
-  'skip': 56 // Number | Skip the returned records found and return the next batch of records
-};
-apiInstance.getCompetitionsBrackets(id, opts, (error, data, response) => {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
-});
-```
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **String**| Unique identifier of the resource | 
- **limit** | **Number**| Limit the returned total records found | [optional] 
- **skip** | **Number**| Skip the returned records found and return the next batch of records | [optional] 
-
-### Return type
-
-[**BracketResponse**](BracketResponse.md)
-
-### Authorization
-
-[OAuth2](../README.md#OAuth2)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-
 ## getCompetitionsByQuery
 
 > CompetitionResponse getCompetitionsByQuery(opts)
@@ -282,7 +223,7 @@ Name | Type | Description  | Notes
 
 > CloneCompetitionResponse getCompetitionsToClone(id)
 
-NOT AVAILABLE IN CURRENT RELEASE
+Get Competition To Clone
 
 Clones a Competition for the identifier provided
 
@@ -327,66 +268,11 @@ Name | Type | Description  | Notes
 - **Accept**: application/json
 
 
-## getContestsForCompetitions
-
-> ContestReducedResponse getContestsForCompetitions(id, opts)
-
-NOT AVAILABLE IN CURRENT RELEASE
-
-Returns all Contests for the Competition id provided
-
-### Example
-
-```javascript
-import @ZiqniTechAdminApiClient from '@ziqni-tech/admin-api-client';
-let defaultClient = @ZiqniTechAdminApiClient.ApiClient.instance;
-// Configure OAuth2 access token for authorization: OAuth2
-let OAuth2 = defaultClient.authentications['OAuth2'];
-OAuth2.accessToken = 'YOUR ACCESS TOKEN';
-
-let apiInstance = new @ZiqniTechAdminApiClient.CompetitionsApi();
-let id = "id_example"; // String | Unique identifier of the resource
-let opts = {
-  'limit': 56, // Number | Limit the returned total records found
-  'skip': 56 // Number | Skip the returned records found and return the next batch of records
-};
-apiInstance.getContestsForCompetitions(id, opts, (error, data, response) => {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
-});
-```
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **String**| Unique identifier of the resource | 
- **limit** | **Number**| Limit the returned total records found | [optional] 
- **skip** | **Number**| Skip the returned records found and return the next batch of records | [optional] 
-
-### Return type
-
-[**ContestReducedResponse**](ContestReducedResponse.md)
-
-### Authorization
-
-[OAuth2](../README.md#OAuth2)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-
 ## getLeaderboardByCompetitionId
 
 > CompetitionLeaderboardResponse getLeaderboardByCompetitionId(id, opts)
 
-NOT AVAILABLE IN CURRENT RELEASE
+
 
 Returns a list of Leaderborads for the Competition id provided
 
@@ -426,61 +312,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**CompetitionLeaderboardResponse**](CompetitionLeaderboardResponse.md)
-
-### Authorization
-
-[OAuth2](../README.md#OAuth2)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-
-## getListOfEntrants
-
-> EntrantResponse getListOfEntrants(id, opts)
-
-NOT AVAILABLE IN CURRENT RELEASE
-
-Returns all Entries for the Competition id provided
-
-### Example
-
-```javascript
-import @ZiqniTechAdminApiClient from '@ziqni-tech/admin-api-client';
-let defaultClient = @ZiqniTechAdminApiClient.ApiClient.instance;
-// Configure OAuth2 access token for authorization: OAuth2
-let OAuth2 = defaultClient.authentications['OAuth2'];
-OAuth2.accessToken = 'YOUR ACCESS TOKEN';
-
-let apiInstance = new @ZiqniTechAdminApiClient.CompetitionsApi();
-let id = "id_example"; // String | Unique identifier of the resource
-let opts = {
-  'limit': 56, // Number | Limit the returned total records found
-  'skip': 56 // Number | Skip the returned records found and return the next batch of records
-};
-apiInstance.getListOfEntrants(id, opts, (error, data, response) => {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
-});
-```
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **String**| Unique identifier of the resource | 
- **limit** | **Number**| Limit the returned total records found | [optional] 
- **skip** | **Number**| Skip the returned records found and return the next batch of records | [optional] 
-
-### Return type
-
-[**EntrantResponse**](EntrantResponse.md)
 
 ### Authorization
 
@@ -541,62 +372,11 @@ Name | Type | Description  | Notes
 - **Accept**: application/json
 
 
-## updateCompetitionsEntries
-
-> ApiResponse updateCompetitionsEntries(opts)
-
-NOT AVAILABLE IN CURRENT RELEASE
-
-Updates the status of the Entrants for a Competition id provided
-
-### Example
-
-```javascript
-import @ZiqniTechAdminApiClient from '@ziqni-tech/admin-api-client';
-let defaultClient = @ZiqniTechAdminApiClient.ApiClient.instance;
-// Configure OAuth2 access token for authorization: OAuth2
-let OAuth2 = defaultClient.authentications['OAuth2'];
-OAuth2.accessToken = 'YOUR ACCESS TOKEN';
-
-let apiInstance = new @ZiqniTechAdminApiClient.CompetitionsApi();
-let opts = {
-  'body': [new @ZiqniTechAdminApiClient.EntrantRequest()] // [EntrantRequest] | Updates the status of the Entrants
-};
-apiInstance.updateCompetitionsEntries(opts, (error, data, response) => {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
-});
-```
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **body** | [**[EntrantRequest]**](EntrantRequest.md)| Updates the status of the Entrants | [optional] 
-
-### Return type
-
-[**ApiResponse**](ApiResponse.md)
-
-### Authorization
-
-[OAuth2](../README.md#OAuth2)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-
 ## updateCompetitionsState
 
 > ApiResponse updateCompetitionsState(opts)
 
-NOT AVAILABLE IN CURRENT RELEASE
+
 
 Manages the Competitions state
 

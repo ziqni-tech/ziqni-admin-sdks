@@ -78,36 +78,6 @@
         done();
       });
     });
-    describe('getAchievementsForProducts', function() {
-      it('should call getAchievementsForProducts successfully', function(done) {
-        //uncomment below and update the code to test getAchievementsForProducts
-        //instance.getAchievementsForProducts(function(error) {
-        //  if (error) throw error;
-        //expect().to.be();
-        //});
-        done();
-      });
-    });
-    describe('getCompetitionsForProducts', function() {
-      it('should call getCompetitionsForProducts successfully', function(done) {
-        //uncomment below and update the code to test getCompetitionsForProducts
-        //instance.getCompetitionsForProducts(function(error) {
-        //  if (error) throw error;
-        //expect().to.be();
-        //});
-        done();
-      });
-    });
-    describe('getContestsForProducts', function() {
-      it('should call getContestsForProducts successfully', function(done) {
-        //uncomment below and update the code to test getContestsForProducts
-        //instance.getContestsForProducts(function(error) {
-        //  if (error) throw error;
-        //expect().to.be();
-        //});
-        done();
-      });
-    });
     describe('getProducts', function() {
       it('should call getProducts successfully', function(done) {
         //uncomment below and update the code to test getProducts

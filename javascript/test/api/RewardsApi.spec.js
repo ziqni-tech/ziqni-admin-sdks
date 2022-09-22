@@ -88,26 +88,6 @@
         done();
       });
     });
-    describe('getRewardsByAchievementId', function() {
-      it('should call getRewardsByAchievementId successfully', function(done) {
-        //uncomment below and update the code to test getRewardsByAchievementId
-        //instance.getRewardsByAchievementId(function(error) {
-        //  if (error) throw error;
-        //expect().to.be();
-        //});
-        done();
-      });
-    });
-    describe('getRewardsByContestId', function() {
-      it('should call getRewardsByContestId successfully', function(done) {
-        //uncomment below and update the code to test getRewardsByContestId
-        //instance.getRewardsByContestId(function(error) {
-        //  if (error) throw error;
-        //expect().to.be();
-        //});
-        done();
-      });
-    });
     describe('getRewardsByQuery', function() {
       it('should call getRewardsByQuery successfully', function(done) {
         //uncomment below and update the code to test getRewardsByQuery

@@ -30,13 +30,12 @@ class CreateNotificationRequestAllOf {
      * @param subject {String} The title of the message
      * @param body {String} The context of the message
      * @param status {module:model/MessageStatus} 
-     * @param memberId {Array.<String>} The reference ID of the event object
      * @param scheduling {module:model/Scheduling} 
      * @param constraints {Array.<String>} Additional constraints
      */
-    constructor(messageType, subject, body, status, memberId, scheduling, constraints) { 
+    constructor(messageType, subject, body, status, scheduling, constraints) { 
         
-        CreateNotificationRequestAllOf.initialize(this, messageType, subject, body, status, memberId, scheduling, constraints);
+        CreateNotificationRequestAllOf.initialize(this, messageType, subject, body, status, scheduling, constraints);
     }
 
     /**
@@ -44,12 +43,11 @@ class CreateNotificationRequestAllOf {
      * This method is used by the constructors of any subclasses, in order to implement multiple inheritance (mix-ins).
      * Only for internal use.
      */
-    static initialize(obj, messageType, subject, body, status, memberId, scheduling, constraints) { 
+    static initialize(obj, messageType, subject, body, status, scheduling, constraints) { 
         obj['messageType'] = messageType;
         obj['subject'] = subject;
         obj['body'] = body;
         obj['status'] = status;
-        obj['memberId'] = memberId;
         obj['scheduling'] = scheduling;
         obj['constraints'] = constraints;
     }
@@ -80,17 +78,17 @@ class CreateNotificationRequestAllOf {
             if (data.hasOwnProperty('translations')) {
                 obj['translations'] = ApiClient.convertToType(data['translations'], [Translation]);
             }
-            if (data.hasOwnProperty('memberGroup')) {
-                obj['memberGroup'] = ApiClient.convertToType(data['memberGroup'], ['String']);
-            }
-            if (data.hasOwnProperty('memberId')) {
-                obj['memberId'] = ApiClient.convertToType(data['memberId'], ['String']);
-            }
             if (data.hasOwnProperty('scheduling')) {
                 obj['scheduling'] = Scheduling.constructFromObject(data['scheduling']);
             }
             if (data.hasOwnProperty('constraints')) {
                 obj['constraints'] = ApiClient.convertToType(data['constraints'], ['String']);
+            }
+            if (data.hasOwnProperty('memberTags')) {
+                obj['memberTags'] = ApiClient.convertToType(data['memberTags'], ['String']);
+            }
+            if (data.hasOwnProperty('memberIds')) {
+                obj['memberIds'] = ApiClient.convertToType(data['memberIds'], ['String']);
             }
         }
         return obj;
@@ -127,18 +125,6 @@ CreateNotificationRequestAllOf.prototype['status'] = undefined;
 CreateNotificationRequestAllOf.prototype['translations'] = undefined;
 
 /**
- * The reference ID of the event object
- * @member {Array.<String>} memberGroup
- */
-CreateNotificationRequestAllOf.prototype['memberGroup'] = undefined;
-
-/**
- * The reference ID of the event object
- * @member {Array.<String>} memberId
- */
-CreateNotificationRequestAllOf.prototype['memberId'] = undefined;
-
-/**
  * @member {module:model/Scheduling} scheduling
  */
 CreateNotificationRequestAllOf.prototype['scheduling'] = undefined;
@@ -148,6 +134,18 @@ CreateNotificationRequestAllOf.prototype['scheduling'] = undefined;
  * @member {Array.<String>} constraints
  */
 CreateNotificationRequestAllOf.prototype['constraints'] = undefined;
+
+/**
+ * 
+ * @member {Array.<String>} memberTags
+ */
+CreateNotificationRequestAllOf.prototype['memberTags'] = undefined;
+
+/**
+ * 
+ * @member {Array.<String>} memberIds
+ */
+CreateNotificationRequestAllOf.prototype['memberIds'] = undefined;
 
 
 

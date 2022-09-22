@@ -14,6 +14,7 @@
 import ApiClient from '../ApiClient';
 import AccountMessageAllOf from './AccountMessageAllOf';
 import EventRefType from './EventRefType';
+import MessageLink from './MessageLink';
 import MessageStatus from './MessageStatus';
 import MessageType from './MessageType';
 import ModelDefault from './ModelDefault';
@@ -41,10 +42,11 @@ class AccountMessage {
      * @param body {String} The context of the message
      * @param status {module:model/MessageStatus} 
      * @param userId {String} 
+     * @param links {Array.<module:model/MessageLink>} 
      */
-    constructor(id, spaceName, created, eventRefType, eventRefId, messageType, subject, body, status, userId) { 
-        ModelDefault.initialize(this, id, spaceName, created);OptParamModels.initialize(this);AccountMessageAllOf.initialize(this, eventRefType, eventRefId, messageType, subject, body, status, userId);
-        AccountMessage.initialize(this, id, spaceName, created, eventRefType, eventRefId, messageType, subject, body, status, userId);
+    constructor(id, spaceName, created, eventRefType, eventRefId, messageType, subject, body, status, userId, links) { 
+        ModelDefault.initialize(this, id, spaceName, created);OptParamModels.initialize(this);AccountMessageAllOf.initialize(this, eventRefType, eventRefId, messageType, subject, body, status, userId, links);
+        AccountMessage.initialize(this, id, spaceName, created, eventRefType, eventRefId, messageType, subject, body, status, userId, links);
     }
 
     /**
@@ -52,7 +54,7 @@ class AccountMessage {
      * This method is used by the constructors of any subclasses, in order to implement multiple inheritance (mix-ins).
      * Only for internal use.
      */
-    static initialize(obj, id, spaceName, created, eventRefType, eventRefId, messageType, subject, body, status, userId) { 
+    static initialize(obj, id, spaceName, created, eventRefType, eventRefId, messageType, subject, body, status, userId, links) { 
         obj['id'] = id;
         obj['spaceName'] = spaceName;
         obj['created'] = created;
@@ -63,6 +65,7 @@ class AccountMessage {
         obj['body'] = body;
         obj['status'] = status;
         obj['userId'] = userId;
+        obj['links'] = links;
     }
 
     /**
@@ -120,6 +123,9 @@ class AccountMessage {
             }
             if (data.hasOwnProperty('userId')) {
                 obj['userId'] = ApiClient.convertToType(data['userId'], 'String');
+            }
+            if (data.hasOwnProperty('links')) {
+                obj['links'] = ApiClient.convertToType(data['links'], [MessageLink]);
             }
         }
         return obj;
@@ -206,6 +212,12 @@ AccountMessage.prototype['status'] = undefined;
  */
 AccountMessage.prototype['userId'] = undefined;
 
+/**
+ * 
+ * @member {Array.<module:model/MessageLink>} links
+ */
+AccountMessage.prototype['links'] = undefined;
+
 
 // Implement ModelDefault interface:
 /**
@@ -274,6 +286,11 @@ AccountMessageAllOf.prototype['status'] = undefined;
  * @member {String} userId
  */
 AccountMessageAllOf.prototype['userId'] = undefined;
+/**
+ * 
+ * @member {Array.<module:model/MessageLink>} links
+ */
+AccountMessageAllOf.prototype['links'] = undefined;
 
 
 

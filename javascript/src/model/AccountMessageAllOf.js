@@ -13,6 +13,7 @@
 
 import ApiClient from '../ApiClient';
 import EventRefType from './EventRefType';
+import MessageLink from './MessageLink';
 import MessageStatus from './MessageStatus';
 import MessageType from './MessageType';
 
@@ -32,10 +33,11 @@ class AccountMessageAllOf {
      * @param body {String} The context of the message
      * @param status {module:model/MessageStatus} 
      * @param userId {String} 
+     * @param links {Array.<module:model/MessageLink>} 
      */
-    constructor(eventRefType, eventRefId, messageType, subject, body, status, userId) { 
+    constructor(eventRefType, eventRefId, messageType, subject, body, status, userId, links) { 
         
-        AccountMessageAllOf.initialize(this, eventRefType, eventRefId, messageType, subject, body, status, userId);
+        AccountMessageAllOf.initialize(this, eventRefType, eventRefId, messageType, subject, body, status, userId, links);
     }
 
     /**
@@ -43,7 +45,7 @@ class AccountMessageAllOf {
      * This method is used by the constructors of any subclasses, in order to implement multiple inheritance (mix-ins).
      * Only for internal use.
      */
-    static initialize(obj, eventRefType, eventRefId, messageType, subject, body, status, userId) { 
+    static initialize(obj, eventRefType, eventRefId, messageType, subject, body, status, userId, links) { 
         obj['eventRefType'] = eventRefType;
         obj['eventRefId'] = eventRefId;
         obj['messageType'] = messageType;
@@ -51,6 +53,7 @@ class AccountMessageAllOf {
         obj['body'] = body;
         obj['status'] = status;
         obj['userId'] = userId;
+        obj['links'] = links;
     }
 
     /**
@@ -87,6 +90,9 @@ class AccountMessageAllOf {
             }
             if (data.hasOwnProperty('userId')) {
                 obj['userId'] = ApiClient.convertToType(data['userId'], 'String');
+            }
+            if (data.hasOwnProperty('links')) {
+                obj['links'] = ApiClient.convertToType(data['links'], [MessageLink]);
             }
         }
         return obj;
@@ -138,6 +144,12 @@ AccountMessageAllOf.prototype['status'] = undefined;
  * @member {String} userId
  */
 AccountMessageAllOf.prototype['userId'] = undefined;
+
+/**
+ * 
+ * @member {Array.<module:model/MessageLink>} links
+ */
+AccountMessageAllOf.prototype['links'] = undefined;
 
 
 

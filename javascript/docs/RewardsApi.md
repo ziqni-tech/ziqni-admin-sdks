@@ -6,10 +6,8 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**createRewards**](RewardsApi.md#createRewards) | **POST** /rewards | 
 [**deleteRewards**](RewardsApi.md#deleteRewards) | **DELETE** /rewards | 
-[**deleteRewardsByQuery**](RewardsApi.md#deleteRewardsByQuery) | **POST** /rewards/delete | NOT AVAILABLE IN CURRENT RELEASE
+[**deleteRewardsByQuery**](RewardsApi.md#deleteRewardsByQuery) | **POST** /rewards/delete | 
 [**getRewards**](RewardsApi.md#getRewards) | **GET** /rewards | 
-[**getRewardsByAchievementId**](RewardsApi.md#getRewardsByAchievementId) | **GET** /rewards/achievements/{id} | NOT AVAILABLE IN CURRENT RELEASE
-[**getRewardsByContestId**](RewardsApi.md#getRewardsByContestId) | **GET** /rewards/contests/{id} | NOT AVAILABLE IN CURRENT RELEASE
 [**getRewardsByQuery**](RewardsApi.md#getRewardsByQuery) | **POST** /rewards/query | 
 [**updateRewards**](RewardsApi.md#updateRewards) | **PUT** /rewards | 
 
@@ -119,7 +117,7 @@ Name | Type | Description  | Notes
 
 > ApiResponse deleteRewardsByQuery(opts)
 
-NOT AVAILABLE IN CURRENT RELEASE
+
 
 Delete Rewards from Ziqni database by unique Rewards ID&#39;s or any other POST body parameters using the POST method
 
@@ -204,116 +202,6 @@ apiInstance.getRewards(opts, (error, data, response) => {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | [**[String]**](String.md)| The unique identifiers of the resources | [optional] 
- **limit** | **Number**| Limit the returned total records found | [optional] 
- **skip** | **Number**| Skip the returned records found and return the next batch of records | [optional] 
-
-### Return type
-
-[**RewardResponse**](RewardResponse.md)
-
-### Authorization
-
-[OAuth2](../README.md#OAuth2)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-
-## getRewardsByAchievementId
-
-> RewardResponse getRewardsByAchievementId(id, opts)
-
-NOT AVAILABLE IN CURRENT RELEASE
-
-Returns a list of Rewards for an Achievement identifier provided. This assumes that rewards have first been uploaded via a POST request or web console
-
-### Example
-
-```javascript
-import @ZiqniTechAdminApiClient from '@ziqni-tech/admin-api-client';
-let defaultClient = @ZiqniTechAdminApiClient.ApiClient.instance;
-// Configure OAuth2 access token for authorization: OAuth2
-let OAuth2 = defaultClient.authentications['OAuth2'];
-OAuth2.accessToken = 'YOUR ACCESS TOKEN';
-
-let apiInstance = new @ZiqniTechAdminApiClient.RewardsApi();
-let id = "id_example"; // String | Unique identifier of the resource
-let opts = {
-  'limit': 56, // Number | Limit the returned total records found
-  'skip': 56 // Number | Skip the returned records found and return the next batch of records
-};
-apiInstance.getRewardsByAchievementId(id, opts, (error, data, response) => {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
-});
-```
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **String**| Unique identifier of the resource | 
- **limit** | **Number**| Limit the returned total records found | [optional] 
- **skip** | **Number**| Skip the returned records found and return the next batch of records | [optional] 
-
-### Return type
-
-[**RewardResponse**](RewardResponse.md)
-
-### Authorization
-
-[OAuth2](../README.md#OAuth2)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-
-## getRewardsByContestId
-
-> RewardResponse getRewardsByContestId(id, opts)
-
-NOT AVAILABLE IN CURRENT RELEASE
-
-Returns a list of rewards for a contest identifier provided. This assumes that rewards have first been uploaded via a POST request or web console
-
-### Example
-
-```javascript
-import @ZiqniTechAdminApiClient from '@ziqni-tech/admin-api-client';
-let defaultClient = @ZiqniTechAdminApiClient.ApiClient.instance;
-// Configure OAuth2 access token for authorization: OAuth2
-let OAuth2 = defaultClient.authentications['OAuth2'];
-OAuth2.accessToken = 'YOUR ACCESS TOKEN';
-
-let apiInstance = new @ZiqniTechAdminApiClient.RewardsApi();
-let id = "id_example"; // String | Unique identifier of the resource
-let opts = {
-  'limit': 56, // Number | Limit the returned total records found
-  'skip': 56 // Number | Skip the returned records found and return the next batch of records
-};
-apiInstance.getRewardsByContestId(id, opts, (error, data, response) => {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
-});
-```
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **String**| Unique identifier of the resource | 
  **limit** | **Number**| Limit the returned total records found | [optional] 
  **skip** | **Number**| Skip the returned records found and return the next batch of records | [optional] 
 

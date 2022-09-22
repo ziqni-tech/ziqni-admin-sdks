@@ -4,70 +4,16 @@ All URIs are relative to *https://api.ziqni.io*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**copyFileObjects**](FileObjectsApi.md#copyFileObjects) | **POST** /file-objects/copy | NOT AVAILABLE IN CURRENT RELEASE
 [**createFileObjects**](FileObjectsApi.md#createFileObjects) | **POST** /file-objects | 
 [**deleteFileObjects**](FileObjectsApi.md#deleteFileObjects) | **DELETE** /file-objects | 
-[**deleteFileObjectsByQuery**](FileObjectsApi.md#deleteFileObjectsByQuery) | **POST** /file-objects/delete | NOT AVAILABLE IN CURRENT RELEASE
-[**downloadFileObjects**](FileObjectsApi.md#downloadFileObjects) | **GET** /file-objects/download | NOT AVAILABLE IN CURRENT RELEASE
+[**deleteFileObjectsByQuery**](FileObjectsApi.md#deleteFileObjectsByQuery) | **POST** /file-objects/delete | 
+[**downloadFileObjects**](FileObjectsApi.md#downloadFileObjects) | **GET** /file-objects/download | 
 [**getFileObjects**](FileObjectsApi.md#getFileObjects) | **GET** /file-objects | 
 [**getFileObjectsByQuery**](FileObjectsApi.md#getFileObjectsByQuery) | **POST** /file-objects/query | 
-[**saveTemplates**](FileObjectsApi.md#saveTemplates) | **POST** /file-objects/save-template | NOT AVAILABLE IN CURRENT RELEASE
+[**saveTemplates**](FileObjectsApi.md#saveTemplates) | **POST** /file-objects/save-template | 
 [**updateFileObjects**](FileObjectsApi.md#updateFileObjects) | **PUT** /file-objects | 
-[**uploadFileObjects**](FileObjectsApi.md#uploadFileObjects) | **POST** /file-objects/upload | NOT AVAILABLE IN CURRENT RELEASE
+[**uploadFileObjects**](FileObjectsApi.md#uploadFileObjects) | **POST** /file-objects/upload | 
 
-
-
-## copyFileObjects
-
-> ApiResponse copyFileObjects(body, opts)
-
-NOT AVAILABLE IN CURRENT RELEASE
-
-Copy an existing file object
-
-### Example
-
-```javascript
-import @ZiqniTechAdminApiClient from '@ziqni-tech/admin-api-client';
-let defaultClient = @ZiqniTechAdminApiClient.ApiClient.instance;
-// Configure OAuth2 access token for authorization: OAuth2
-let OAuth2 = defaultClient.authentications['OAuth2'];
-OAuth2.accessToken = 'YOUR ACCESS TOKEN';
-
-let apiInstance = new @ZiqniTechAdminApiClient.FileObjectsApi();
-let body = new @ZiqniTechAdminApiClient.UpdateFileObjectRequest(); // UpdateFileObjectRequest | Copy file objects inside a repository and dumplicate in another folder or repository.
-let opts = {
-  'id': ["null"] // [String] | The unique identifiers of the resources
-};
-apiInstance.copyFileObjects(body, opts, (error, data, response) => {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
-});
-```
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **body** | [**UpdateFileObjectRequest**](UpdateFileObjectRequest.md)| Copy file objects inside a repository and dumplicate in another folder or repository. | 
- **id** | [**[String]**](String.md)| The unique identifiers of the resources | [optional] 
-
-### Return type
-
-[**ApiResponse**](ApiResponse.md)
-
-### Authorization
-
-[OAuth2](../README.md#OAuth2)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
 
 
 ## createFileObjects
@@ -172,7 +118,7 @@ Name | Type | Description  | Notes
 
 > ApiResponse deleteFileObjectsByQuery(opts)
 
-NOT AVAILABLE IN CURRENT RELEASE
+
 
 Delete file objects by query
 
@@ -225,7 +171,7 @@ Name | Type | Description  | Notes
 
 > File downloadFileObjects(opts)
 
-NOT AVAILABLE IN CURRENT RELEASE
+
 
 Download file objects from your Ziqni space
 
@@ -386,7 +332,7 @@ Name | Type | Description  | Notes
 
 > ApiResponse saveTemplates(opts)
 
-NOT AVAILABLE IN CURRENT RELEASE
+
 
 Create or update file objects and binaries in your Ziqni space
 
@@ -492,7 +438,7 @@ Name | Type | Description  | Notes
 
 > ApiResponse uploadFileObjects(opts)
 
-NOT AVAILABLE IN CURRENT RELEASE
+
 
 Create or update file objects and binaries in your Ziqni space
 

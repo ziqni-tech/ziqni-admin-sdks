@@ -48,16 +48,6 @@
   }
 
   describe('FileObjectsApi', function() {
-    describe('copyFileObjects', function() {
-      it('should call copyFileObjects successfully', function(done) {
-        //uncomment below and update the code to test copyFileObjects
-        //instance.copyFileObjects(function(error) {
-        //  if (error) throw error;
-        //expect().to.be();
-        //});
-        done();
-      });
-    });
     describe('createFileObjects', function() {
       it('should call createFileObjects successfully', function(done) {
         //uncomment below and update the code to test createFileObjects

@@ -12,7 +12,6 @@
  */
 
 import ApiClient from '../ApiClient';
-import UnitOfMeasureType from './UnitOfMeasureType';
 
 /**
  * The ActionTypeAllOf model module.
@@ -25,12 +24,12 @@ class ActionTypeAllOf {
      * @alias module:model/ActionTypeAllOf
      * @param name {String} The name of the Action Helper
      * @param key {String} A unique key that represents an action helper
-     * @param unitOfMeasureType {module:model/UnitOfMeasureType} 
      * @param constraints {Array.<String>} Additional constraints
+     * @param unitOfMeasure {String} unit of measure id
      */
-    constructor(name, key, unitOfMeasureType, constraints) { 
+    constructor(name, key, constraints, unitOfMeasure) { 
         
-        ActionTypeAllOf.initialize(this, name, key, unitOfMeasureType, constraints);
+        ActionTypeAllOf.initialize(this, name, key, constraints, unitOfMeasure);
     }
 
     /**
@@ -38,11 +37,11 @@ class ActionTypeAllOf {
      * This method is used by the constructors of any subclasses, in order to implement multiple inheritance (mix-ins).
      * Only for internal use.
      */
-    static initialize(obj, name, key, unitOfMeasureType, constraints) { 
+    static initialize(obj, name, key, constraints, unitOfMeasure) { 
         obj['name'] = name;
         obj['key'] = key;
-        obj['unitOfMeasureType'] = unitOfMeasureType;
         obj['constraints'] = constraints;
+        obj['unitOfMeasure'] = unitOfMeasure;
     }
 
     /**
@@ -65,11 +64,11 @@ class ActionTypeAllOf {
             if (data.hasOwnProperty('description')) {
                 obj['description'] = ApiClient.convertToType(data['description'], 'String');
             }
-            if (data.hasOwnProperty('unitOfMeasureType')) {
-                obj['unitOfMeasureType'] = UnitOfMeasureType.constructFromObject(data['unitOfMeasureType']);
-            }
             if (data.hasOwnProperty('constraints')) {
                 obj['constraints'] = ApiClient.convertToType(data['constraints'], ['String']);
+            }
+            if (data.hasOwnProperty('unitOfMeasure')) {
+                obj['unitOfMeasure'] = ApiClient.convertToType(data['unitOfMeasure'], 'String');
             }
         }
         return obj;
@@ -97,15 +96,16 @@ ActionTypeAllOf.prototype['key'] = undefined;
 ActionTypeAllOf.prototype['description'] = undefined;
 
 /**
- * @member {module:model/UnitOfMeasureType} unitOfMeasureType
- */
-ActionTypeAllOf.prototype['unitOfMeasureType'] = undefined;
-
-/**
  * Additional constraints
  * @member {Array.<String>} constraints
  */
 ActionTypeAllOf.prototype['constraints'] = undefined;
+
+/**
+ * unit of measure id
+ * @member {String} unitOfMeasure
+ */
+ActionTypeAllOf.prototype['unitOfMeasure'] = undefined;
 
 
 

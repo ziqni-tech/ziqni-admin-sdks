@@ -60,6 +60,18 @@
       //expect(instance).to.be();
     });
 
+    it('should have the property constraints (base name: "constraints")', function() {
+      // uncomment below and update the code to test the property constraints
+      //var instance = new @ZiqniTechAdminApiClient.EntityChangeSubscriptionRequest();
+      //expect(instance).to.be();
+    });
+
+    it('should have the property callback (base name: "callback")', function() {
+      // uncomment below and update the code to test the property callback
+      //var instance = new @ZiqniTechAdminApiClient.EntityChangeSubscriptionRequest();
+      //expect(instance).to.be();
+    });
+
     it('should have the property action (base name: "action")', function() {
       // uncomment below and update the code to test the property action
       //var instance = new @ZiqniTechAdminApiClient.EntityChangeSubscriptionRequest();

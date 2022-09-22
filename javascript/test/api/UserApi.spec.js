@@ -58,26 +58,6 @@
         done();
       });
     });
-    describe('getUserMessages', function() {
-      it('should call getUserMessages successfully', function(done) {
-        //uncomment below and update the code to test getUserMessages
-        //instance.getUserMessages(function(error) {
-        //  if (error) throw error;
-        //expect().to.be();
-        //});
-        done();
-      });
-    });
-    describe('getUserMessagesById', function() {
-      it('should call getUserMessagesById successfully', function(done) {
-        //uncomment below and update the code to test getUserMessagesById
-        //instance.getUserMessagesById(function(error) {
-        //  if (error) throw error;
-        //expect().to.be();
-        //});
-        done();
-      });
-    });
   });
 
 }));

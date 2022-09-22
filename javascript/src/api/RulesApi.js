@@ -49,7 +49,6 @@ export default class RulesApi {
      */
 
     /**
-     * NOT AVAILABLE IN CURRENT RELEASE
      * Delete Rules from Ziqni database by unique Rules ID's or any other POST body parameters using the POST method
      * @param {Object} opts Optional parameters
      * @param {module:model/QueryRequest} opts.body Delete Rules from Ziqni database by unique Rules ID's or any other POST body parameters using the POST method

@@ -8,7 +8,6 @@ Method | HTTP request | Description
 [**deleteCollaborators**](CollaboratorsApi.md#deleteCollaborators) | **DELETE** /collaborators | 
 [**getAvailableRolesForCollaborators**](CollaboratorsApi.md#getAvailableRolesForCollaborators) | **GET** /collaborators/available-roles | 
 [**getCollaborators**](CollaboratorsApi.md#getCollaborators) | **GET** /collaborators | 
-[**getCollaboratorsByQuery**](CollaboratorsApi.md#getCollaboratorsByQuery) | **POST** /collaborators/query | NOT AVAILABLE IN CURRENT RELEASE
 [**updateCollaborators**](CollaboratorsApi.md#updateCollaborators) | **PUT** /collaborators | 
 
 
@@ -210,57 +209,6 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
-
-
-## getCollaboratorsByQuery
-
-> CollaboratorResponse getCollaboratorsByQuery(opts)
-
-NOT AVAILABLE IN CURRENT RELEASE
-
-Retrieve collaborators for the account
-
-### Example
-
-```javascript
-import @ZiqniTechAdminApiClient from '@ziqni-tech/admin-api-client';
-let defaultClient = @ZiqniTechAdminApiClient.ApiClient.instance;
-// Configure OAuth2 access token for authorization: OAuth2
-let OAuth2 = defaultClient.authentications['OAuth2'];
-OAuth2.accessToken = 'YOUR ACCESS TOKEN';
-
-let apiInstance = new @ZiqniTechAdminApiClient.CollaboratorsApi();
-let opts = {
-  'body': new @ZiqniTechAdminApiClient.QueryRequest() // QueryRequest | Retrieve collaborators for the account
-};
-apiInstance.getCollaboratorsByQuery(opts, (error, data, response) => {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
-});
-```
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **body** | [**QueryRequest**](QueryRequest.md)| Retrieve collaborators for the account | [optional] 
-
-### Return type
-
-[**CollaboratorResponse**](CollaboratorResponse.md)
-
-### Authorization
-
-[OAuth2](../README.md#OAuth2)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
 - **Accept**: application/json
 
 

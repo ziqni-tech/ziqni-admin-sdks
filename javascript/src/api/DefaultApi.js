@@ -13,6 +13,7 @@
 
 
 import ApiClient from "../ApiClient";
+import LeaderboardSubscriptionRequest from '../model/LeaderboardSubscriptionRequest';
 
 /**
 * Default service.
@@ -69,6 +70,81 @@ export default class DefaultApi {
       let returnType = null;
       return this.apiClient.callApi(
         '/spaces', 'DELETE',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, null, callback
+      );
+    }
+
+    /**
+     * Callback function to receive the result of the manageLeaderboardSubscription operation.
+     * @callback module:api/DefaultApi~manageLeaderboardSubscriptionCallback
+     * @param {String} error Error message, if any.
+     * @param data This operation does not return a value.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * @param {Object} opts Optional parameters
+     * @param {module:model/LeaderboardSubscriptionRequest} opts.leaderboardSubscriptionRequest 
+     * @param {module:api/DefaultApi~manageLeaderboardSubscriptionCallback} callback The callback function, accepting three arguments: error, data, response
+     */
+    manageLeaderboardSubscription(opts, callback) {
+      opts = opts || {};
+      let postBody = opts['leaderboardSubscriptionRequest'];
+
+      let pathParams = {
+      };
+      let queryParams = {
+      };
+      let headerParams = {
+      };
+      let formParams = {
+      };
+
+      let authNames = ['OAuth2'];
+      let contentTypes = ['application/json'];
+      let accepts = ['application/json'];
+      let returnType = null;
+      return this.apiClient.callApi(
+        '/leaderboard', 'POST',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, null, callback
+      );
+    }
+
+    /**
+     * Callback function to receive the result of the unsubscribeFromEntityChanges operation.
+     * @callback module:api/DefaultApi~unsubscribeFromEntityChangesCallback
+     * @param {String} error Error message, if any.
+     * @param data This operation does not return a value.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * @param {Object} opts Optional parameters
+     * @param {String} opts.subscriptionId 
+     * @param {module:api/DefaultApi~unsubscribeFromEntityChangesCallback} callback The callback function, accepting three arguments: error, data, response
+     */
+    unsubscribeFromEntityChanges(opts, callback) {
+      opts = opts || {};
+      let postBody = null;
+
+      let pathParams = {
+      };
+      let queryParams = {
+        'subscriptionId': opts['subscriptionId']
+      };
+      let headerParams = {
+      };
+      let formParams = {
+      };
+
+      let authNames = ['OAuth2'];
+      let contentTypes = [];
+      let accepts = ['application/json'];
+      let returnType = null;
+      return this.apiClient.callApi(
+        '/entity-changes', 'DELETE',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, null, callback
       );

@@ -78,46 +78,6 @@
         done();
       });
     });
-    describe('getAchievementsForMembers', function() {
-      it('should call getAchievementsForMembers successfully', function(done) {
-        //uncomment below and update the code to test getAchievementsForMembers
-        //instance.getAchievementsForMembers(function(error) {
-        //  if (error) throw error;
-        //expect().to.be();
-        //});
-        done();
-      });
-    });
-    describe('getAwardsForMembers', function() {
-      it('should call getAwardsForMembers successfully', function(done) {
-        //uncomment below and update the code to test getAwardsForMembers
-        //instance.getAwardsForMembers(function(error) {
-        //  if (error) throw error;
-        //expect().to.be();
-        //});
-        done();
-      });
-    });
-    describe('getCompetitionsForMembers', function() {
-      it('should call getCompetitionsForMembers successfully', function(done) {
-        //uncomment below and update the code to test getCompetitionsForMembers
-        //instance.getCompetitionsForMembers(function(error) {
-        //  if (error) throw error;
-        //expect().to.be();
-        //});
-        done();
-      });
-    });
-    describe('getContestsForMembers', function() {
-      it('should call getContestsForMembers successfully', function(done) {
-        //uncomment below and update the code to test getContestsForMembers
-        //instance.getContestsForMembers(function(error) {
-        //  if (error) throw error;
-        //expect().to.be();
-        //});
-        done();
-      });
-    });
     describe('getMembers', function() {
       it('should call getMembers successfully', function(done) {
         //uncomment below and update the code to test getMembers
@@ -142,16 +102,6 @@
       it('should call getMembersByRefId successfully', function(done) {
         //uncomment below and update the code to test getMembersByRefId
         //instance.getMembersByRefId(function(error) {
-        //  if (error) throw error;
-        //expect().to.be();
-        //});
-        done();
-      });
-    });
-    describe('getMessagesForMembers', function() {
-      it('should call getMessagesForMembers successfully', function(done) {
-        //uncomment below and update the code to test getMessagesForMembers
-        //instance.getMessagesForMembers(function(error) {
         //  if (error) throw error;
         //expect().to.be();
         //});

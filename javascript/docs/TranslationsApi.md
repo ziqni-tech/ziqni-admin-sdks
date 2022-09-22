@@ -6,7 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**createTranslations**](TranslationsApi.md#createTranslations) | **POST** /translations | creating a translation
 [**deleteTranslations**](TranslationsApi.md#deleteTranslations) | **DELETE** /translations | 
-[**deleteTranslationsByQuery**](TranslationsApi.md#deleteTranslationsByQuery) | **POST** /translations/delete | NOT AVAILABLE IN CURRENT RELEASE
+[**deleteTranslationsByQuery**](TranslationsApi.md#deleteTranslationsByQuery) | **POST** /translations/delete | Delete translations by query
 [**getTranslations**](TranslationsApi.md#getTranslations) | **GET** /translations | 
 [**getTranslationsByEntityId**](TranslationsApi.md#getTranslationsByEntityId) | **GET** /translations/find-by-entity-id | 
 [**getTranslationsByQuery**](TranslationsApi.md#getTranslationsByQuery) | **POST** /translations/query | 
@@ -118,7 +118,7 @@ Name | Type | Description  | Notes
 
 > ApiResponse deleteTranslationsByQuery(opts)
 
-NOT AVAILABLE IN CURRENT RELEASE
+Delete translations by query
 
 Delete a Translation or a list of Translations from Ziqni by unique Translation ID&#39;s or any other POST body parameters using the POST method
 

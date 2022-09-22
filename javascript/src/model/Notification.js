@@ -12,10 +12,10 @@
  */
 
 import ApiClient from '../ApiClient';
-import MessageStatus from './MessageStatus';
 import MessageType from './MessageType';
 import ModelDefault from './ModelDefault';
 import NotificationAllOf from './NotificationAllOf';
+import NotificationStatus from './NotificationStatus';
 import OptParamModels from './OptParamModels';
 import Scheduling from './Scheduling';
 import Translation from './Translation';
@@ -38,14 +38,13 @@ class Notification {
      * @param messageType {module:model/MessageType} 
      * @param subject {String} The title of the message
      * @param body {String} The context of the message
-     * @param status {module:model/MessageStatus} 
-     * @param memberId {Array.<String>} The reference ID of the event object
+     * @param status {module:model/NotificationStatus} 
      * @param scheduling {module:model/Scheduling} 
      * @param constraints {Array.<String>} Additional constraints
      */
-    constructor(id, spaceName, created, messageType, subject, body, status, memberId, scheduling, constraints) { 
-        ModelDefault.initialize(this, id, spaceName, created);OptParamModels.initialize(this);NotificationAllOf.initialize(this, messageType, subject, body, status, memberId, scheduling, constraints);
-        Notification.initialize(this, id, spaceName, created, messageType, subject, body, status, memberId, scheduling, constraints);
+    constructor(id, spaceName, created, messageType, subject, body, status, scheduling, constraints) { 
+        ModelDefault.initialize(this, id, spaceName, created);OptParamModels.initialize(this);NotificationAllOf.initialize(this, messageType, subject, body, status, scheduling, constraints);
+        Notification.initialize(this, id, spaceName, created, messageType, subject, body, status, scheduling, constraints);
     }
 
     /**
@@ -53,7 +52,7 @@ class Notification {
      * This method is used by the constructors of any subclasses, in order to implement multiple inheritance (mix-ins).
      * Only for internal use.
      */
-    static initialize(obj, id, spaceName, created, messageType, subject, body, status, memberId, scheduling, constraints) { 
+    static initialize(obj, id, spaceName, created, messageType, subject, body, status, scheduling, constraints) { 
         obj['id'] = id;
         obj['spaceName'] = spaceName;
         obj['created'] = created;
@@ -61,7 +60,6 @@ class Notification {
         obj['subject'] = subject;
         obj['body'] = body;
         obj['status'] = status;
-        obj['memberId'] = memberId;
         obj['scheduling'] = scheduling;
         obj['constraints'] = constraints;
     }
@@ -108,25 +106,22 @@ class Notification {
                 obj['body'] = ApiClient.convertToType(data['body'], 'String');
             }
             if (data.hasOwnProperty('status')) {
-                obj['status'] = MessageStatus.constructFromObject(data['status']);
-            }
-            if (data.hasOwnProperty('memberGroup')) {
-                obj['memberGroup'] = ApiClient.convertToType(data['memberGroup'], ['String']);
+                obj['status'] = NotificationStatus.constructFromObject(data['status']);
             }
             if (data.hasOwnProperty('translations')) {
                 obj['translations'] = ApiClient.convertToType(data['translations'], [Translation]);
-            }
-            if (data.hasOwnProperty('translatableFields')) {
-                obj['translatableFields'] = ApiClient.convertToType(data['translatableFields'], ['String']);
-            }
-            if (data.hasOwnProperty('memberId')) {
-                obj['memberId'] = ApiClient.convertToType(data['memberId'], ['String']);
             }
             if (data.hasOwnProperty('scheduling')) {
                 obj['scheduling'] = Scheduling.constructFromObject(data['scheduling']);
             }
             if (data.hasOwnProperty('constraints')) {
                 obj['constraints'] = ApiClient.convertToType(data['constraints'], ['String']);
+            }
+            if (data.hasOwnProperty('memberTags')) {
+                obj['memberTags'] = ApiClient.convertToType(data['memberTags'], ['String']);
+            }
+            if (data.hasOwnProperty('memberIds')) {
+                obj['memberIds'] = ApiClient.convertToType(data['memberIds'], ['String']);
             }
         }
         return obj;
@@ -187,32 +182,14 @@ Notification.prototype['subject'] = undefined;
 Notification.prototype['body'] = undefined;
 
 /**
- * @member {module:model/MessageStatus} status
+ * @member {module:model/NotificationStatus} status
  */
 Notification.prototype['status'] = undefined;
-
-/**
- * The reference ID of the event object
- * @member {Array.<String>} memberGroup
- */
-Notification.prototype['memberGroup'] = undefined;
 
 /**
  * @member {Array.<module:model/Translation>} translations
  */
 Notification.prototype['translations'] = undefined;
-
-/**
- * Message translatable fields
- * @member {Array.<String>} translatableFields
- */
-Notification.prototype['translatableFields'] = undefined;
-
-/**
- * The reference ID of the event object
- * @member {Array.<String>} memberId
- */
-Notification.prototype['memberId'] = undefined;
 
 /**
  * @member {module:model/Scheduling} scheduling
@@ -224,6 +201,18 @@ Notification.prototype['scheduling'] = undefined;
  * @member {Array.<String>} constraints
  */
 Notification.prototype['constraints'] = undefined;
+
+/**
+ * 
+ * @member {Array.<String>} memberTags
+ */
+Notification.prototype['memberTags'] = undefined;
+
+/**
+ * 
+ * @member {Array.<String>} memberIds
+ */
+Notification.prototype['memberIds'] = undefined;
 
 
 // Implement ModelDefault interface:
@@ -272,28 +261,13 @@ NotificationAllOf.prototype['subject'] = undefined;
  */
 NotificationAllOf.prototype['body'] = undefined;
 /**
- * @member {module:model/MessageStatus} status
+ * @member {module:model/NotificationStatus} status
  */
 NotificationAllOf.prototype['status'] = undefined;
-/**
- * The reference ID of the event object
- * @member {Array.<String>} memberGroup
- */
-NotificationAllOf.prototype['memberGroup'] = undefined;
 /**
  * @member {Array.<module:model/Translation>} translations
  */
 NotificationAllOf.prototype['translations'] = undefined;
-/**
- * Message translatable fields
- * @member {Array.<String>} translatableFields
- */
-NotificationAllOf.prototype['translatableFields'] = undefined;
-/**
- * The reference ID of the event object
- * @member {Array.<String>} memberId
- */
-NotificationAllOf.prototype['memberId'] = undefined;
 /**
  * @member {module:model/Scheduling} scheduling
  */
@@ -303,6 +277,16 @@ NotificationAllOf.prototype['scheduling'] = undefined;
  * @member {Array.<String>} constraints
  */
 NotificationAllOf.prototype['constraints'] = undefined;
+/**
+ * 
+ * @member {Array.<String>} memberTags
+ */
+NotificationAllOf.prototype['memberTags'] = undefined;
+/**
+ * 
+ * @member {Array.<String>} memberIds
+ */
+NotificationAllOf.prototype['memberIds'] = undefined;
 
 
 

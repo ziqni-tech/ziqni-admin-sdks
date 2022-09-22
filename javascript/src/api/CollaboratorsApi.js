@@ -17,7 +17,6 @@ import ApiResponse from '../model/ApiResponse';
 import CollaboratorResponse from '../model/CollaboratorResponse';
 import CollaboratorRolesResponse from '../model/CollaboratorRolesResponse';
 import CreateCollaboratorRequest from '../model/CreateCollaboratorRequest';
-import QueryRequest from '../model/QueryRequest';
 import UpdateCollaboratorRequest from '../model/UpdateCollaboratorRequest';
 
 /**
@@ -195,46 +194,6 @@ export default class CollaboratorsApi {
       let returnType = CollaboratorResponse;
       return this.apiClient.callApi(
         '/collaborators', 'GET',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, null, callback
-      );
-    }
-
-    /**
-     * Callback function to receive the result of the getCollaboratorsByQuery operation.
-     * @callback module:api/CollaboratorsApi~getCollaboratorsByQueryCallback
-     * @param {String} error Error message, if any.
-     * @param {module:model/CollaboratorResponse} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
-     */
-
-    /**
-     * NOT AVAILABLE IN CURRENT RELEASE
-     * Retrieve collaborators for the account
-     * @param {Object} opts Optional parameters
-     * @param {module:model/QueryRequest} opts.body Retrieve collaborators for the account
-     * @param {module:api/CollaboratorsApi~getCollaboratorsByQueryCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link module:model/CollaboratorResponse}
-     */
-    getCollaboratorsByQuery(opts, callback) {
-      opts = opts || {};
-      let postBody = opts['body'];
-
-      let pathParams = {
-      };
-      let queryParams = {
-      };
-      let headerParams = {
-      };
-      let formParams = {
-      };
-
-      let authNames = ['OAuth2'];
-      let contentTypes = ['application/json'];
-      let accepts = ['application/json'];
-      let returnType = CollaboratorResponse;
-      return this.apiClient.callApi(
-        '/collaborators/query', 'POST',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, null, callback
       );

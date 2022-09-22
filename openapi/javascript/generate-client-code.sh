@@ -34,7 +34,7 @@ if [[ -d "$GEN_DIR" ]]; then
   npm install
   npm link
   npm run build
-  npm install @ziqni-tech/admin-api-client
+  npm install @ziqni-tech/admin-api-sdk
 
 else
   echo "Directory '<project-root>/openapi/javascript/$GEN_DIR' not found"

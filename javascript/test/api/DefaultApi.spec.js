@@ -58,6 +58,26 @@
         done();
       });
     });
+    describe('manageLeaderboardSubscription', function() {
+      it('should call manageLeaderboardSubscription successfully', function(done) {
+        //uncomment below and update the code to test manageLeaderboardSubscription
+        //instance.manageLeaderboardSubscription(function(error) {
+        //  if (error) throw error;
+        //expect().to.be();
+        //});
+        done();
+      });
+    });
+    describe('unsubscribeFromEntityChanges', function() {
+      it('should call unsubscribeFromEntityChanges successfully', function(done) {
+        //uncomment below and update the code to test unsubscribeFromEntityChanges
+        //instance.unsubscribeFromEntityChanges(function(error) {
+        //  if (error) throw error;
+        //expect().to.be();
+        //});
+        done();
+      });
+    });
   });
 
 }));

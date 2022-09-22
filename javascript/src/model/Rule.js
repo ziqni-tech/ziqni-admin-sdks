@@ -28,7 +28,7 @@ class Rule {
      * @param context {String} The context of this rule like achievement, competition, or contest 
      * @param rules {module:model/RuleExpression} 
      * @param id {String} Unique system identifier of a Main Rule
-     * @param entityType {String} 
+     * @param entityType {String} Achievement, Competition, or Contest 
      */
     constructor(entityId, action, context, rules, id, entityType) { 
         
@@ -115,7 +115,7 @@ Rule.prototype['rules'] = undefined;
 Rule.prototype['id'] = undefined;
 
 /**
- * 
+ * Achievement, Competition, or Contest 
  * @member {String} entityType
  */
 Rule.prototype['entityType'] = undefined;

@@ -9,7 +9,6 @@ Method | HTTP request | Description
 [**deleteMemberMessagesByQuery**](MemberMessagesApi.md#deleteMemberMessagesByQuery) | **POST** /member-messages/delete | 
 [**getMemberMessages**](MemberMessagesApi.md#getMemberMessages) | **GET** /member-messages | 
 [**getMemberMessagesByQuery**](MemberMessagesApi.md#getMemberMessagesByQuery) | **POST** /member-messages/query | 
-[**updateMemberMessagesStatus**](MemberMessagesApi.md#updateMemberMessagesStatus) | **PUT** /member-messages/state | NOT AVAILABLE IN CURRENT RELEASE
 
 
 
@@ -259,55 +258,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**MemberMessageResponse**](MemberMessageResponse.md)
-
-### Authorization
-
-[OAuth2](../README.md#OAuth2)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-
-## updateMemberMessagesStatus
-
-> ApiResponse updateMemberMessagesStatus(body)
-
-NOT AVAILABLE IN CURRENT RELEASE
-
-Update the Member Message status
-
-### Example
-
-```javascript
-import @ZiqniTechAdminApiClient from '@ziqni-tech/admin-api-client';
-let defaultClient = @ZiqniTechAdminApiClient.ApiClient.instance;
-// Configure OAuth2 access token for authorization: OAuth2
-let OAuth2 = defaultClient.authentications['OAuth2'];
-OAuth2.accessToken = 'YOUR ACCESS TOKEN';
-
-let apiInstance = new @ZiqniTechAdminApiClient.MemberMessagesApi();
-let body = [new @ZiqniTechAdminApiClient.UpdateMessageStatusRequest()]; // [UpdateMessageStatusRequest] | Update the Member Message status
-apiInstance.updateMemberMessagesStatus(body, (error, data, response) => {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
-});
-```
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **body** | [**[UpdateMessageStatusRequest]**](UpdateMessageStatusRequest.md)| Update the Member Message status | 
-
-### Return type
-
-[**ApiResponse**](ApiResponse.md)
 
 ### Authorization
 

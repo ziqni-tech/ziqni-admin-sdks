@@ -10,5 +10,6 @@ Name | Type | Description | Notes
 **skip** | **Number** | How many response objects will be skipped for preview. Deafault is zero [0] | [optional] 
 **limit** | **Number** | How many response objects will be returned. Deafult is zero [0] and the maximum is fifty [50] | [optional] 
 **constraints** | **[String]** | Additional constraints | [optional] 
+**operand** | **String** | The operand like \&quot;product.tags\&quot; or \&quot;member.tags\&quot; or \&quot;event.product\&quot; | 
 
 

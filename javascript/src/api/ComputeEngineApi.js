@@ -130,7 +130,6 @@ export default class ComputeEngineApi {
      */
 
     /**
-     * NOT AVAILABLE IN CURRENT RELEASE
      * Delete an Compute Engine or a list of Compute Engines from Ziqni by query
      * @param {Object} opts Optional parameters
      * @param {module:model/QueryRequest} opts.body Delete an  Compute Engine or a list of Compute Engines from Ziqni by unique Compute Engine ID's or any other POST body parameters using the POST method

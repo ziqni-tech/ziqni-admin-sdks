@@ -14,7 +14,6 @@
 import ApiClient from '../ApiClient';
 import CreateActionTypeRequestAllOf from './CreateActionTypeRequestAllOf';
 import CreateOptParamModels from './CreateOptParamModels';
-import UnitOfMeasureType from './UnitOfMeasureType';
 
 /**
  * The CreateActionTypeRequest model module.
@@ -29,11 +28,11 @@ class CreateActionTypeRequest {
      * @implements module:model/CreateActionTypeRequestAllOf
      * @param name {String} The name of the Action Helper
      * @param key {String} A unique key that represents an action helper
-     * @param unitOfMeasureType {module:model/UnitOfMeasureType} 
+     * @param unitOfMeasure {String} The unit of measure id
      */
-    constructor(name, key, unitOfMeasureType) { 
-        CreateOptParamModels.initialize(this);CreateActionTypeRequestAllOf.initialize(this, name, key, unitOfMeasureType);
-        CreateActionTypeRequest.initialize(this, name, key, unitOfMeasureType);
+    constructor(name, key, unitOfMeasure) { 
+        CreateOptParamModels.initialize(this);CreateActionTypeRequestAllOf.initialize(this, name, key, unitOfMeasure);
+        CreateActionTypeRequest.initialize(this, name, key, unitOfMeasure);
     }
 
     /**
@@ -41,10 +40,10 @@ class CreateActionTypeRequest {
      * This method is used by the constructors of any subclasses, in order to implement multiple inheritance (mix-ins).
      * Only for internal use.
      */
-    static initialize(obj, name, key, unitOfMeasureType) { 
+    static initialize(obj, name, key, unitOfMeasure) { 
         obj['name'] = name;
         obj['key'] = key;
-        obj['unitOfMeasureType'] = unitOfMeasureType;
+        obj['unitOfMeasure'] = unitOfMeasure;
     }
 
     /**
@@ -78,11 +77,11 @@ class CreateActionTypeRequest {
             if (data.hasOwnProperty('description')) {
                 obj['description'] = ApiClient.convertToType(data['description'], 'String');
             }
-            if (data.hasOwnProperty('unitOfMeasureType')) {
-                obj['unitOfMeasureType'] = UnitOfMeasureType.constructFromObject(data['unitOfMeasureType']);
-            }
             if (data.hasOwnProperty('addConstraints')) {
                 obj['addConstraints'] = ApiClient.convertToType(data['addConstraints'], ['String']);
+            }
+            if (data.hasOwnProperty('unitOfMeasure')) {
+                obj['unitOfMeasure'] = ApiClient.convertToType(data['unitOfMeasure'], 'String');
             }
         }
         return obj;
@@ -127,15 +126,16 @@ CreateActionTypeRequest.prototype['key'] = undefined;
 CreateActionTypeRequest.prototype['description'] = undefined;
 
 /**
- * @member {module:model/UnitOfMeasureType} unitOfMeasureType
- */
-CreateActionTypeRequest.prototype['unitOfMeasureType'] = undefined;
-
-/**
  * Additional constraints
  * @member {Array.<String>} addConstraints
  */
 CreateActionTypeRequest.prototype['addConstraints'] = undefined;
+
+/**
+ * The unit of measure id
+ * @member {String} unitOfMeasure
+ */
+CreateActionTypeRequest.prototype['unitOfMeasure'] = undefined;
 
 
 // Implement CreateOptParamModels interface:
@@ -170,14 +170,15 @@ CreateActionTypeRequestAllOf.prototype['key'] = undefined;
  */
 CreateActionTypeRequestAllOf.prototype['description'] = undefined;
 /**
- * @member {module:model/UnitOfMeasureType} unitOfMeasureType
- */
-CreateActionTypeRequestAllOf.prototype['unitOfMeasureType'] = undefined;
-/**
  * Additional constraints
  * @member {Array.<String>} addConstraints
  */
 CreateActionTypeRequestAllOf.prototype['addConstraints'] = undefined;
+/**
+ * The unit of measure id
+ * @member {String} unitOfMeasure
+ */
+CreateActionTypeRequestAllOf.prototype['unitOfMeasure'] = undefined;
 
 
 

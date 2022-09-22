@@ -6,7 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**createComputeEngines**](ComputeEngineApi.md#createComputeEngines) | **POST** /compute-engines | 
 [**deleteComputeEnginesById**](ComputeEngineApi.md#deleteComputeEnginesById) | **DELETE** /compute-engines/{id} | 
-[**deleteComputeEnginesByQuery**](ComputeEngineApi.md#deleteComputeEnginesByQuery) | **POST** /compute-engines/delete | NOT AVAILABLE IN CURRENT RELEASE
+[**deleteComputeEnginesByQuery**](ComputeEngineApi.md#deleteComputeEnginesByQuery) | **POST** /compute-engines/delete | 
 [**getComputeEngines**](ComputeEngineApi.md#getComputeEngines) | **GET** /compute-engines | 
 [**getComputeEnginesById**](ComputeEngineApi.md#getComputeEnginesById) | **GET** /compute-engines/{id} | 
 [**getComputeEnginesByQuery**](ComputeEngineApi.md#getComputeEnginesByQuery) | **POST** /compute-engines/query | 
@@ -116,7 +116,7 @@ Name | Type | Description  | Notes
 
 > ApiResponse deleteComputeEnginesByQuery(opts)
 
-NOT AVAILABLE IN CURRENT RELEASE
+
 
 Delete an Compute Engine or a list of Compute Engines from Ziqni by query
 

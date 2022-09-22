@@ -16,7 +16,6 @@ import ApiClient from "../ApiClient";
 import AccountMessageResponse from '../model/AccountMessageResponse';
 import ApiResponse from '../model/ApiResponse';
 import QueryRequest from '../model/QueryRequest';
-import UpdateMessageStatusRequest from '../model/UpdateMessageStatusRequest';
 
 /**
 * AccountMessages service.
@@ -194,48 +193,6 @@ export default class AccountMessagesApi {
       let returnType = AccountMessageResponse;
       return this.apiClient.callApi(
         '/account-messages/query', 'POST',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, null, callback
-      );
-    }
-
-    /**
-     * Callback function to receive the result of the updateAccountMessagesStatus operation.
-     * @callback module:api/AccountMessagesApi~updateAccountMessagesStatusCallback
-     * @param {String} error Error message, if any.
-     * @param {module:model/ApiResponse} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
-     */
-
-    /**
-     * NOT AVAILABLE IN CURRENT RELEASE
-     * Update the Account Message status
-     * @param {Array.<module:model/UpdateMessageStatusRequest>} body Update the Account Message status
-     * @param {module:api/AccountMessagesApi~updateAccountMessagesStatusCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link module:model/ApiResponse}
-     */
-    updateAccountMessagesStatus(body, callback) {
-      let postBody = body;
-      // verify the required parameter 'body' is set
-      if (body === undefined || body === null) {
-        throw new Error("Missing the required parameter 'body' when calling updateAccountMessagesStatus");
-      }
-
-      let pathParams = {
-      };
-      let queryParams = {
-      };
-      let headerParams = {
-      };
-      let formParams = {
-      };
-
-      let authNames = ['OAuth2'];
-      let contentTypes = ['application/json'];
-      let accepts = ['application/json'];
-      let returnType = ApiResponse;
-      return this.apiClient.callApi(
-        '/account-messages/state', 'PUT',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, null, callback
       );

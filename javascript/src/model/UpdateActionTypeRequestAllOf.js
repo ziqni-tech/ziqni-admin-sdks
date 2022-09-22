@@ -12,7 +12,6 @@
  */
 
 import ApiClient from '../ApiClient';
-import UnitOfMeasureType from './UnitOfMeasureType';
 
 /**
  * The UpdateActionTypeRequestAllOf model module.
@@ -54,14 +53,14 @@ class UpdateActionTypeRequestAllOf {
             if (data.hasOwnProperty('description')) {
                 obj['description'] = ApiClient.convertToType(data['description'], 'String');
             }
-            if (data.hasOwnProperty('unitOfMeasureType')) {
-                obj['unitOfMeasureType'] = UnitOfMeasureType.constructFromObject(data['unitOfMeasureType']);
-            }
             if (data.hasOwnProperty('addConstraints')) {
                 obj['addConstraints'] = ApiClient.convertToType(data['addConstraints'], ['String']);
             }
             if (data.hasOwnProperty('removeConstraints')) {
                 obj['removeConstraints'] = ApiClient.convertToType(data['removeConstraints'], ['String']);
+            }
+            if (data.hasOwnProperty('unitOfMeasure')) {
+                obj['unitOfMeasure'] = ApiClient.convertToType(data['unitOfMeasure'], 'String');
             }
         }
         return obj;
@@ -83,11 +82,6 @@ UpdateActionTypeRequestAllOf.prototype['name'] = undefined;
 UpdateActionTypeRequestAllOf.prototype['description'] = undefined;
 
 /**
- * @member {module:model/UnitOfMeasureType} unitOfMeasureType
- */
-UpdateActionTypeRequestAllOf.prototype['unitOfMeasureType'] = undefined;
-
-/**
  * Additional constraints, if the value is present it means the
  * @member {Array.<String>} addConstraints
  */
@@ -98,6 +92,12 @@ UpdateActionTypeRequestAllOf.prototype['addConstraints'] = undefined;
  * @member {Array.<String>} removeConstraints
  */
 UpdateActionTypeRequestAllOf.prototype['removeConstraints'] = undefined;
+
+/**
+ * unit of measure id
+ * @member {String} unitOfMeasure
+ */
+UpdateActionTypeRequestAllOf.prototype['unitOfMeasure'] = undefined;
 
 
 

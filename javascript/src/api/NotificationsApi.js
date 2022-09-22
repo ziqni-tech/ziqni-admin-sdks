@@ -17,7 +17,6 @@ import ApiResponse from '../model/ApiResponse';
 import CreateNotificationRequest from '../model/CreateNotificationRequest';
 import NotificationResponse from '../model/NotificationResponse';
 import QueryRequest from '../model/QueryRequest';
-import UpdateNotificationStatusRequest from '../model/UpdateNotificationStatusRequest';
 
 /**
 * Notifications service.
@@ -236,48 +235,6 @@ export default class NotificationsApi {
       let returnType = NotificationResponse;
       return this.apiClient.callApi(
         '/notifications/query', 'POST',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, null, callback
-      );
-    }
-
-    /**
-     * Callback function to receive the result of the updateNotificationsStatus operation.
-     * @callback module:api/NotificationsApi~updateNotificationsStatusCallback
-     * @param {String} error Error message, if any.
-     * @param {module:model/ApiResponse} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
-     */
-
-    /**
-     * NOT AVAILABLE IN CURRENT RELEASE
-     * Update the Notification Message status
-     * @param {Array.<module:model/UpdateNotificationStatusRequest>} body Update the Notification Message status
-     * @param {module:api/NotificationsApi~updateNotificationsStatusCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link module:model/ApiResponse}
-     */
-    updateNotificationsStatus(body, callback) {
-      let postBody = body;
-      // verify the required parameter 'body' is set
-      if (body === undefined || body === null) {
-        throw new Error("Missing the required parameter 'body' when calling updateNotificationsStatus");
-      }
-
-      let pathParams = {
-      };
-      let queryParams = {
-      };
-      let headerParams = {
-      };
-      let formParams = {
-      };
-
-      let authNames = ['OAuth2'];
-      let contentTypes = ['application/json'];
-      let accepts = ['application/json'];
-      let returnType = ApiResponse;
-      return this.apiClient.callApi(
-        '/notifications/state', 'PUT',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, null, callback
       );

@@ -130,7 +130,6 @@ export default class FileRepositoriesApi {
      */
 
     /**
-     * NOT AVAILABLE IN CURRENT RELEASE
      * Delete repositories nby query. Delete repositories by query and/or unique repository ID's or any other body parameters
      * @param {Object} opts Optional parameters
      * @param {module:model/QueryRequest} opts.body Delete repositories from a Ziqni space by unique repository ID's or any other POST body parameters using the POST method

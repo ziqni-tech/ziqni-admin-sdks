@@ -5,9 +5,8 @@ All URIs are relative to *https://api.ziqni.io*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**createUnitsOfMeasure**](UnitsOfMeasureApi.md#createUnitsOfMeasure) | **POST** /units-of-measure | 
-[**deleteCollaboratorsByQuery**](UnitsOfMeasureApi.md#deleteCollaboratorsByQuery) | **POST** /collaborators/delete | NOT AVAILABLE IN CURRENT RELEASE
 [**deleteUnitsOfMeasure**](UnitsOfMeasureApi.md#deleteUnitsOfMeasure) | **DELETE** /units-of-measure | 
-[**deleteUnitsOfMeasureByQuery**](UnitsOfMeasureApi.md#deleteUnitsOfMeasureByQuery) | **POST** /units-of-measure/delete | NOT AVAILABLE IN CURRENT RELEASE
+[**deleteUnitsOfMeasureByQuery**](UnitsOfMeasureApi.md#deleteUnitsOfMeasureByQuery) | **POST** /units-of-measure/delete | Delete units of measure by query
 [**getUnitsOfMeasure**](UnitsOfMeasureApi.md#getUnitsOfMeasure) | **GET** /units-of-measure | 
 [**getUnitsOfMeasureByQuery**](UnitsOfMeasureApi.md#getUnitsOfMeasureByQuery) | **POST** /units-of-measure/query | 
 [**updateUnitsOfMeasure**](UnitsOfMeasureApi.md#updateUnitsOfMeasure) | **PUT** /units-of-measure | 
@@ -48,57 +47,6 @@ apiInstance.createUnitsOfMeasure(body, (error, data, response) => {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **body** | [**[CreateUnitOfMeasureRequest]**](CreateUnitOfMeasureRequest.md)| Create a Unit of measure in the Ziqni database | 
-
-### Return type
-
-[**ApiResponse**](ApiResponse.md)
-
-### Authorization
-
-[OAuth2](../README.md#OAuth2)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-
-## deleteCollaboratorsByQuery
-
-> ApiResponse deleteCollaboratorsByQuery(opts)
-
-NOT AVAILABLE IN CURRENT RELEASE
-
-Remove collaborators from account
-
-### Example
-
-```javascript
-import @ZiqniTechAdminApiClient from '@ziqni-tech/admin-api-client';
-let defaultClient = @ZiqniTechAdminApiClient.ApiClient.instance;
-// Configure OAuth2 access token for authorization: OAuth2
-let OAuth2 = defaultClient.authentications['OAuth2'];
-OAuth2.accessToken = 'YOUR ACCESS TOKEN';
-
-let apiInstance = new @ZiqniTechAdminApiClient.UnitsOfMeasureApi();
-let opts = {
-  'body': new @ZiqniTechAdminApiClient.QueryRequest() // QueryRequest | Remove collaborators from account
-};
-apiInstance.deleteCollaboratorsByQuery(opts, (error, data, response) => {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
-});
-```
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **body** | [**QueryRequest**](QueryRequest.md)| Remove collaborators from account | [optional] 
 
 ### Return type
 
@@ -169,7 +117,7 @@ Name | Type | Description  | Notes
 
 > ApiResponse deleteUnitsOfMeasureByQuery(opts)
 
-NOT AVAILABLE IN CURRENT RELEASE
+Delete units of measure by query
 
 Delete Units of measure from Ziqni database by unique Unit of measure ID&#39;s or any other POST body parameters using the POST method
 

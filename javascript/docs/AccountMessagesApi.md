@@ -8,7 +8,6 @@ Method | HTTP request | Description
 [**deleteAccountMessagesByQuery**](AccountMessagesApi.md#deleteAccountMessagesByQuery) | **POST** /account-messages/delete | 
 [**getAccountMessages**](AccountMessagesApi.md#getAccountMessages) | **GET** /account-messages | 
 [**getAccountMessagesByQuery**](AccountMessagesApi.md#getAccountMessagesByQuery) | **POST** /account-messages/query | 
-[**updateAccountMessagesStatus**](AccountMessagesApi.md#updateAccountMessagesStatus) | **PUT** /account-messages/state | NOT AVAILABLE IN CURRENT RELEASE
 
 
 
@@ -209,55 +208,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**AccountMessageResponse**](AccountMessageResponse.md)
-
-### Authorization
-
-[OAuth2](../README.md#OAuth2)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-
-## updateAccountMessagesStatus
-
-> ApiResponse updateAccountMessagesStatus(body)
-
-NOT AVAILABLE IN CURRENT RELEASE
-
-Update the Account Message status
-
-### Example
-
-```javascript
-import @ZiqniTechAdminApiClient from '@ziqni-tech/admin-api-client';
-let defaultClient = @ZiqniTechAdminApiClient.ApiClient.instance;
-// Configure OAuth2 access token for authorization: OAuth2
-let OAuth2 = defaultClient.authentications['OAuth2'];
-OAuth2.accessToken = 'YOUR ACCESS TOKEN';
-
-let apiInstance = new @ZiqniTechAdminApiClient.AccountMessagesApi();
-let body = [new @ZiqniTechAdminApiClient.UpdateMessageStatusRequest()]; // [UpdateMessageStatusRequest] | Update the Account Message status
-apiInstance.updateAccountMessagesStatus(body, (error, data, response) => {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
-});
-```
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **body** | [**[UpdateMessageStatusRequest]**](UpdateMessageStatusRequest.md)| Update the Account Message status | 
-
-### Return type
-
-[**ApiResponse**](ApiResponse.md)
 
 ### Authorization
 

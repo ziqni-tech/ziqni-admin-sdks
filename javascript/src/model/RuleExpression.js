@@ -113,7 +113,7 @@ RuleExpression.prototype['mustEvaluateTo'] = undefined;
 RuleExpression.prototype['scope'] = undefined;
 
 /**
- * The order the rules have to be executed in.
+ * The operand for the rule.
  * @member {String} operand
  */
 RuleExpression.prototype['operand'] = undefined;
@@ -137,13 +137,13 @@ RuleExpression.prototype['value'] = undefined;
 RuleExpression.prototype['rules'] = undefined;
 
 /**
- * 
+ * The routine to run when all the conditions have evaluted to the required level
  * @member {Array.<module:model/RuleRoutine>} then
  */
 RuleExpression.prototype['then'] = undefined;
 
 /**
- * 
+ * The order the rules have to be executed in.
  * @member {Number} lineNumber
  */
 RuleExpression.prototype['lineNumber'] = undefined;

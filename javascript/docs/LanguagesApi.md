@@ -6,7 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**createLanguages**](LanguagesApi.md#createLanguages) | **POST** /languages | 
 [**deleteLanguages**](LanguagesApi.md#deleteLanguages) | **DELETE** /languages | 
-[**deleteLanguagesByQuery**](LanguagesApi.md#deleteLanguagesByQuery) | **POST** /languages/delete | NOT AVAILABLE IN CURRENT RELEASE
+[**deleteLanguagesByQuery**](LanguagesApi.md#deleteLanguagesByQuery) | **POST** /languages/delete | 
 [**getLanguages**](LanguagesApi.md#getLanguages) | **GET** /languages | 
 [**getLanguagesByQuery**](LanguagesApi.md#getLanguagesByQuery) | **POST** /languages/query | 
 [**getListOfAllLanguages**](LanguagesApi.md#getListOfAllLanguages) | **GET** /languages/available | 
@@ -118,7 +118,7 @@ Name | Type | Description  | Notes
 
 > ApiResponse deleteLanguagesByQuery(opts)
 
-NOT AVAILABLE IN CURRENT RELEASE
+
 
 Delete Languages from Ziqni database by unique Language ID&#39;s or any other POST body parameters using the POST method
 

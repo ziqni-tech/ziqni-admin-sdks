@@ -9,6 +9,6 @@ Name | Type | Description | Notes
 **context** | **String** | The context of this rule like achievement, competition, or contest  | 
 **rules** | [**RuleExpression**](RuleExpression.md) |  | 
 **id** | **String** | Unique system identifier of a Main Rule | [readonly] 
-**entityType** | **String** |  | 
+**entityType** | **String** | Achievement, Competition, or Contest  | 
 
 

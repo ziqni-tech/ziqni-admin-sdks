@@ -78,26 +78,8 @@
       //expect(instance).to.be();
     });
 
-    it('should have the property memberGroup (base name: "memberGroup")', function() {
-      // uncomment below and update the code to test the property memberGroup
-      //var instance = new @ZiqniTechAdminApiClient.NotificationAllOf();
-      //expect(instance).to.be();
-    });
-
     it('should have the property translations (base name: "translations")', function() {
       // uncomment below and update the code to test the property translations
-      //var instance = new @ZiqniTechAdminApiClient.NotificationAllOf();
-      //expect(instance).to.be();
-    });
-
-    it('should have the property translatableFields (base name: "translatableFields")', function() {
-      // uncomment below and update the code to test the property translatableFields
-      //var instance = new @ZiqniTechAdminApiClient.NotificationAllOf();
-      //expect(instance).to.be();
-    });
-
-    it('should have the property memberId (base name: "memberId")', function() {
-      // uncomment below and update the code to test the property memberId
       //var instance = new @ZiqniTechAdminApiClient.NotificationAllOf();
       //expect(instance).to.be();
     });
@@ -110,6 +92,18 @@
 
     it('should have the property constraints (base name: "constraints")', function() {
       // uncomment below and update the code to test the property constraints
+      //var instance = new @ZiqniTechAdminApiClient.NotificationAllOf();
+      //expect(instance).to.be();
+    });
+
+    it('should have the property memberTags (base name: "memberTags")', function() {
+      // uncomment below and update the code to test the property memberTags
+      //var instance = new @ZiqniTechAdminApiClient.NotificationAllOf();
+      //expect(instance).to.be();
+    });
+
+    it('should have the property memberIds (base name: "memberIds")', function() {
+      // uncomment below and update the code to test the property memberIds
       //var instance = new @ZiqniTechAdminApiClient.NotificationAllOf();
       //expect(instance).to.be();
     });

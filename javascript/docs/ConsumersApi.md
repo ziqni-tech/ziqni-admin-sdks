@@ -4,28 +4,28 @@ All URIs are relative to *https://api.ziqni.io*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**createKafkaConnections**](ConsumersApi.md#createKafkaConnections) | **POST** /connections/kafka | NOT AVAILABLE IN CURRENT RELEASE
-[**createRabbitMQConnections**](ConsumersApi.md#createRabbitMQConnections) | **POST** /connections/rabbitmq | NOT AVAILABLE IN CURRENT RELEASE
-[**createSqsConnections**](ConsumersApi.md#createSqsConnections) | **POST** /connections/sqs | NOT AVAILABLE IN CURRENT RELEASE
-[**deleteKafkaConnections**](ConsumersApi.md#deleteKafkaConnections) | **DELETE** /connections/kafka | NOT AVAILABLE IN CURRENT RELEASE
-[**deleteKafkaConnectionsByQuery**](ConsumersApi.md#deleteKafkaConnectionsByQuery) | **POST** /connections/kafka/delete | NOT AVAILABLE IN CURRENT RELEASE
-[**deleteRabbitMQConnections**](ConsumersApi.md#deleteRabbitMQConnections) | **DELETE** /connections/rabbitmq | NOT AVAILABLE IN CURRENT RELEASE
-[**deleteRabbitMQConnectionsByQuery**](ConsumersApi.md#deleteRabbitMQConnectionsByQuery) | **POST** /connections/rabbitmq/delete | NOT AVAILABLE IN CURRENT RELEASE
-[**deleteSqsConnections**](ConsumersApi.md#deleteSqsConnections) | **DELETE** /connections/sqs | NOT AVAILABLE IN CURRENT RELEASE
-[**deleteSqsConnectionsByQuery**](ConsumersApi.md#deleteSqsConnectionsByQuery) | **POST** /connections/sqs/delete | NOT AVAILABLE IN CURRENT RELEASE
-[**getKafkaConnections**](ConsumersApi.md#getKafkaConnections) | **GET** /connections/kafka | NOT AVAILABLE IN CURRENT RELEASE
-[**getKafkaConnectionsByQuery**](ConsumersApi.md#getKafkaConnectionsByQuery) | **POST** /connections/kafka/query | NOT AVAILABLE IN CURRENT RELEASE
-[**getRabbitMQConnections**](ConsumersApi.md#getRabbitMQConnections) | **GET** /connections/rabbitmq | NOT AVAILABLE IN CURRENT RELEASE
-[**getRabbitMQConnectionsByQuery**](ConsumersApi.md#getRabbitMQConnectionsByQuery) | **POST** /connections/rabbitmq/query | NOT AVAILABLE IN CURRENT RELEASE
-[**getSqsConnections**](ConsumersApi.md#getSqsConnections) | **GET** /connections/sqs | NOT AVAILABLE IN CURRENT RELEASE
-[**getSqsConnectionsByQuery**](ConsumersApi.md#getSqsConnectionsByQuery) | **POST** /connections/sqs/query | NOT AVAILABLE IN CURRENT RELEASE
+[**createKafkaConnections**](ConsumersApi.md#createKafkaConnections) | **POST** /connections/kafka | 
+[**createRabbitMQConnections**](ConsumersApi.md#createRabbitMQConnections) | **POST** /connections/rabbitmq | 
+[**createSqsConnections**](ConsumersApi.md#createSqsConnections) | **POST** /connections/sqs | 
+[**deleteKafkaConnections**](ConsumersApi.md#deleteKafkaConnections) | **DELETE** /connections/kafka | 
+[**deleteKafkaConnectionsByQuery**](ConsumersApi.md#deleteKafkaConnectionsByQuery) | **POST** /connections/kafka/delete | 
+[**deleteRabbitMQConnections**](ConsumersApi.md#deleteRabbitMQConnections) | **DELETE** /connections/rabbitmq | 
+[**deleteRabbitMQConnectionsByQuery**](ConsumersApi.md#deleteRabbitMQConnectionsByQuery) | **POST** /connections/rabbitmq/delete | 
+[**deleteSqsConnections**](ConsumersApi.md#deleteSqsConnections) | **DELETE** /connections/sqs | 
+[**deleteSqsConnectionsByQuery**](ConsumersApi.md#deleteSqsConnectionsByQuery) | **POST** /connections/sqs/delete | 
+[**getKafkaConnections**](ConsumersApi.md#getKafkaConnections) | **GET** /connections/kafka | 
+[**getKafkaConnectionsByQuery**](ConsumersApi.md#getKafkaConnectionsByQuery) | **POST** /connections/kafka/query | 
+[**getRabbitMQConnections**](ConsumersApi.md#getRabbitMQConnections) | **GET** /connections/rabbitmq | 
+[**getRabbitMQConnectionsByQuery**](ConsumersApi.md#getRabbitMQConnectionsByQuery) | **POST** /connections/rabbitmq/query | 
+[**getSqsConnections**](ConsumersApi.md#getSqsConnections) | **GET** /connections/sqs | 
+[**getSqsConnectionsByQuery**](ConsumersApi.md#getSqsConnectionsByQuery) | **POST** /connections/sqs/query | 
 [**updateConnectionsState**](ConsumersApi.md#updateConnectionsState) | **POST** /connections/state | Update connection status
-[**updateKafkaConnections**](ConsumersApi.md#updateKafkaConnections) | **PUT** /connections/kafka | NOT AVAILABLE IN CURRENT RELEASE
-[**updateKafkaConnectionsState**](ConsumersApi.md#updateKafkaConnectionsState) | **POST** /connections/kafka/state | NOT AVAILABLE IN CURRENT RELEASE
-[**updateRabbitMQConnections**](ConsumersApi.md#updateRabbitMQConnections) | **PUT** /connections/rabbitmq | NOT AVAILABLE IN CURRENT RELEASE
-[**updateRabbitMQConnectionsState**](ConsumersApi.md#updateRabbitMQConnectionsState) | **POST** /connections/rabbitmq/state | NOT AVAILABLE IN CURRENT RELEASE
-[**updateSqsConnections**](ConsumersApi.md#updateSqsConnections) | **PUT** /connections/sqs | NOT AVAILABLE IN CURRENT RELEASE
-[**updateSqsConnectionsState**](ConsumersApi.md#updateSqsConnectionsState) | **POST** /connections/sqs/state | NOT AVAILABLE IN CURRENT RELEASE
+[**updateKafkaConnections**](ConsumersApi.md#updateKafkaConnections) | **PUT** /connections/kafka | 
+[**updateKafkaConnectionsState**](ConsumersApi.md#updateKafkaConnectionsState) | **POST** /connections/kafka/state | 
+[**updateRabbitMQConnections**](ConsumersApi.md#updateRabbitMQConnections) | **PUT** /connections/rabbitmq | 
+[**updateRabbitMQConnectionsState**](ConsumersApi.md#updateRabbitMQConnectionsState) | **POST** /connections/rabbitmq/state | 
+[**updateSqsConnections**](ConsumersApi.md#updateSqsConnections) | **PUT** /connections/sqs | 
+[**updateSqsConnectionsState**](ConsumersApi.md#updateSqsConnectionsState) | **POST** /connections/sqs/state | 
 
 
 
@@ -33,7 +33,7 @@ Method | HTTP request | Description
 
 > ApiResponse createKafkaConnections(body)
 
-NOT AVAILABLE IN CURRENT RELEASE
+
 
 Create a new Kafka Consumer Connection in the Ziqni system
 
@@ -82,7 +82,7 @@ Name | Type | Description  | Notes
 
 > ApiResponse createRabbitMQConnections(body)
 
-NOT AVAILABLE IN CURRENT RELEASE
+
 
 Create a new RabbitMq Consumer Connection in the Ziqni system
 
@@ -131,7 +131,7 @@ Name | Type | Description  | Notes
 
 > ApiResponse createSqsConnections(body)
 
-NOT AVAILABLE IN CURRENT RELEASE
+
 
 Create a new SQS Consumer Connection in the Ziqni system
 
@@ -180,7 +180,7 @@ Name | Type | Description  | Notes
 
 > ApiResponse deleteKafkaConnections(opts)
 
-NOT AVAILABLE IN CURRENT RELEASE
+
 
 Delete the Kafka Consumer Connection for a given identifier specified
 
@@ -231,7 +231,7 @@ Name | Type | Description  | Notes
 
 > ApiResponse deleteKafkaConnectionsByQuery(opts)
 
-NOT AVAILABLE IN CURRENT RELEASE
+
 
 Delete a Kafka Connection or a list of Kafka Connections from Ziqni by unique Connection ID&#39;s or any other POST body parameters using the POST method
 
@@ -282,7 +282,7 @@ Name | Type | Description  | Notes
 
 > ApiResponse deleteRabbitMQConnections(opts)
 
-NOT AVAILABLE IN CURRENT RELEASE
+
 
 Delete the RabbitMq Consumer Connection for a given identifier specified
 
@@ -333,7 +333,7 @@ Name | Type | Description  | Notes
 
 > ApiResponse deleteRabbitMQConnectionsByQuery(opts)
 
-NOT AVAILABLE IN CURRENT RELEASE
+
 
 Delete a RabbitMQ Connection or a list of RabbitMQ Connections from Ziqni by unique Connection ID&#39;s or any other POST body parameters using the POST method
 
@@ -384,7 +384,7 @@ Name | Type | Description  | Notes
 
 > ApiResponse deleteSqsConnections(opts)
 
-NOT AVAILABLE IN CURRENT RELEASE
+
 
 Delete the SQS Consumer Connection for a given identifier specified
 
@@ -435,7 +435,7 @@ Name | Type | Description  | Notes
 
 > ApiResponse deleteSqsConnectionsByQuery(opts)
 
-NOT AVAILABLE IN CURRENT RELEASE
+
 
 Delete a SQS Connection or a list of SQS Connections from Ziqni by unique Connection ID&#39;s or any other POST body parameters using the POST method
 
@@ -486,7 +486,7 @@ Name | Type | Description  | Notes
 
 > KafkaConnectionResponse getKafkaConnections(opts)
 
-NOT AVAILABLE IN CURRENT RELEASE
+
 
 Return a list of Kafka Consumer Connections
 
@@ -541,7 +541,7 @@ Name | Type | Description  | Notes
 
 > KafkaConnectionResponse getKafkaConnectionsByQuery(opts)
 
-NOT AVAILABLE IN CURRENT RELEASE
+
 
 Retrieve a Kafka Connection or a list of Kafka Connections from Ziqni by unique Connection ID&#39;s or any other Post body parameters using the POST method
 
@@ -592,7 +592,7 @@ Name | Type | Description  | Notes
 
 > RabbitMqConnectionResponse getRabbitMQConnections(opts)
 
-NOT AVAILABLE IN CURRENT RELEASE
+
 
 Return a list of RabbitMq Consumer Connections
 
@@ -647,7 +647,7 @@ Name | Type | Description  | Notes
 
 > RabbitMqConnectionResponse getRabbitMQConnectionsByQuery(opts)
 
-NOT AVAILABLE IN CURRENT RELEASE
+
 
 Retrieve a RabbitMQ Connection or a list of RabbitMQ Connections from Ziqni by unique Connection ID&#39;s or any other Post body parameters using the POST method
 
@@ -698,7 +698,7 @@ Name | Type | Description  | Notes
 
 > SqsConnectionResponse getSqsConnections(opts)
 
-NOT AVAILABLE IN CURRENT RELEASE
+
 
 Return a list of SQS Consumer Connections
 
@@ -753,7 +753,7 @@ Name | Type | Description  | Notes
 
 > SqsConnectionResponse getSqsConnectionsByQuery(opts)
 
-NOT AVAILABLE IN CURRENT RELEASE
+
 
 Retrieve a SQS Connection or a list of SQS Connections from Ziqni by unique Connection ID&#39;s or any other Post body parameters using the POST method
 
@@ -855,7 +855,7 @@ Name | Type | Description  | Notes
 
 > ApiResponse updateKafkaConnections(body)
 
-NOT AVAILABLE IN CURRENT RELEASE
+
 
 Update an existing Kafka Consumer Connection in the Ziqni system
 
@@ -904,7 +904,7 @@ Name | Type | Description  | Notes
 
 > ApiResponse updateKafkaConnectionsState(opts)
 
-NOT AVAILABLE IN CURRENT RELEASE
+
 
 Update the state of a Kafka Connection using the POST method
 
@@ -955,7 +955,7 @@ Name | Type | Description  | Notes
 
 > ApiResponse updateRabbitMQConnections(body)
 
-NOT AVAILABLE IN CURRENT RELEASE
+
 
 Update an existing RabbitMq Consumer Connection in the Ziqni system
 
@@ -1004,7 +1004,7 @@ Name | Type | Description  | Notes
 
 > ApiResponse updateRabbitMQConnectionsState(opts)
 
-NOT AVAILABLE IN CURRENT RELEASE
+
 
 Update the state of a RabbitMQ Connection using the POST method
 
@@ -1055,7 +1055,7 @@ Name | Type | Description  | Notes
 
 > ApiResponse updateSqsConnections(body)
 
-NOT AVAILABLE IN CURRENT RELEASE
+
 
 Update an existing SQS Consumer Connection in the Ziqni system
 
@@ -1104,7 +1104,7 @@ Name | Type | Description  | Notes
 
 > ApiResponse updateSqsConnectionsState(opts)
 
-NOT AVAILABLE IN CURRENT RELEASE
+
 
 Update the state of an SQS Connection using the POST method
 

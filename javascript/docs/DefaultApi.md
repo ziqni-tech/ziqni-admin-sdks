@@ -5,6 +5,8 @@ All URIs are relative to *https://api.ziqni.io*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**deleteSpace**](DefaultApi.md#deleteSpace) | **DELETE** /spaces | NOT AVAILABLE IN CURRENT RELEASE
+[**manageLeaderboardSubscription**](DefaultApi.md#manageLeaderboardSubscription) | **POST** /leaderboard | 
+[**unsubscribeFromEntityChanges**](DefaultApi.md#unsubscribeFromEntityChanges) | **DELETE** /entity-changes | 
 
 
 
@@ -40,6 +42,104 @@ apiInstance.deleteSpace(name, (error, data, response) => {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **String**|  | 
+
+### Return type
+
+null (empty response body)
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+## manageLeaderboardSubscription
+
+> manageLeaderboardSubscription(opts)
+
+
+
+### Example
+
+```javascript
+import @ZiqniTechAdminApiClient from '@ziqni-tech/admin-api-client';
+let defaultClient = @ZiqniTechAdminApiClient.ApiClient.instance;
+// Configure OAuth2 access token for authorization: OAuth2
+let OAuth2 = defaultClient.authentications['OAuth2'];
+OAuth2.accessToken = 'YOUR ACCESS TOKEN';
+
+let apiInstance = new @ZiqniTechAdminApiClient.DefaultApi();
+let opts = {
+  'leaderboardSubscriptionRequest': new @ZiqniTechAdminApiClient.LeaderboardSubscriptionRequest() // LeaderboardSubscriptionRequest | 
+};
+apiInstance.manageLeaderboardSubscription(opts, (error, data, response) => {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully.');
+  }
+});
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **leaderboardSubscriptionRequest** | [**LeaderboardSubscriptionRequest**](LeaderboardSubscriptionRequest.md)|  | [optional] 
+
+### Return type
+
+null (empty response body)
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+
+## unsubscribeFromEntityChanges
+
+> unsubscribeFromEntityChanges(opts)
+
+
+
+### Example
+
+```javascript
+import @ZiqniTechAdminApiClient from '@ziqni-tech/admin-api-client';
+let defaultClient = @ZiqniTechAdminApiClient.ApiClient.instance;
+// Configure OAuth2 access token for authorization: OAuth2
+let OAuth2 = defaultClient.authentications['OAuth2'];
+OAuth2.accessToken = 'YOUR ACCESS TOKEN';
+
+let apiInstance = new @ZiqniTechAdminApiClient.DefaultApi();
+let opts = {
+  'subscriptionId': "subscriptionId_example" // String | 
+};
+apiInstance.unsubscribeFromEntityChanges(opts, (error, data, response) => {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully.');
+  }
+});
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **subscriptionId** | **String**|  | [optional] 
 
 ### Return type
 

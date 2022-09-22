@@ -128,7 +128,6 @@ export default class LanguagesApi {
      */
 
     /**
-     * NOT AVAILABLE IN CURRENT RELEASE
      * Delete Languages from Ziqni database by unique Language ID's or any other POST body parameters using the POST method
      * @param {Object} opts Optional parameters
      * @param {module:model/QueryRequest} opts.body Delete Languages from Ziqni database by unique Language ID's or any other POST body parameters using the POST method

@@ -149,6 +149,10 @@ import CustomFieldEntryStringArrayAllOf from './model/CustomFieldEntryStringArra
 import CustomFieldReduced from './model/CustomFieldReduced';
 import CustomFieldReducedAllOf from './model/CustomFieldReducedAllOf';
 import CustomFieldResponse from './model/CustomFieldResponse';
+import Dashboard from './model/Dashboard';
+import DashboardResponse from './model/DashboardResponse';
+import DataSetsReference from './model/DataSetsReference';
+import DataSetsValue from './model/DataSetsValue';
 import Dependancy from './model/Dependancy';
 import DependantOn from './model/DependantOn';
 import EntityChangeSubscription from './model/EntityChangeSubscription';
@@ -183,8 +187,10 @@ import Languages from './model/Languages';
 import Leaderboard from './model/Leaderboard';
 import LeaderboardAllOf from './model/LeaderboardAllOf';
 import LeaderboardEntry from './model/LeaderboardEntry';
+import LeaderboardFilter from './model/LeaderboardFilter';
 import LeaderboardMember from './model/LeaderboardMember';
 import LeaderboardResponseByContest from './model/LeaderboardResponseByContest';
+import LeaderboardSubscriptionRequest from './model/LeaderboardSubscriptionRequest';
 import Location from './model/Location';
 import Macro from './model/Macro';
 import MatchCondition from './model/MatchCondition';
@@ -203,6 +209,7 @@ import MemberMessageResponse from './model/MemberMessageResponse';
 import MemberResponse from './model/MemberResponse';
 import MemberTokenRequest from './model/MemberTokenRequest';
 import MemberType from './model/MemberType';
+import MessageLink from './model/MessageLink';
 import MessageStatus from './model/MessageStatus';
 import MessageType from './model/MessageType';
 import MetaBasic from './model/MetaBasic';
@@ -210,6 +217,7 @@ import MetaExtended from './model/MetaExtended';
 import MetaExtendedAllOf from './model/MetaExtendedAllOf';
 import MetaInfo from './model/MetaInfo';
 import ModelDefault from './model/ModelDefault';
+import Modules from './model/Modules';
 import Notification from './model/Notification';
 import NotificationAllOf from './model/NotificationAllOf';
 import NotificationMessage from './model/NotificationMessage';
@@ -1252,6 +1260,30 @@ export {
     CustomFieldResponse,
 
     /**
+     * The Dashboard model constructor.
+     * @property {module:model/Dashboard}
+     */
+    Dashboard,
+
+    /**
+     * The DashboardResponse model constructor.
+     * @property {module:model/DashboardResponse}
+     */
+    DashboardResponse,
+
+    /**
+     * The DataSetsReference model constructor.
+     * @property {module:model/DataSetsReference}
+     */
+    DataSetsReference,
+
+    /**
+     * The DataSetsValue model constructor.
+     * @property {module:model/DataSetsValue}
+     */
+    DataSetsValue,
+
+    /**
      * The Dependancy model constructor.
      * @property {module:model/Dependancy}
      */
@@ -1456,6 +1488,12 @@ export {
     LeaderboardEntry,
 
     /**
+     * The LeaderboardFilter model constructor.
+     * @property {module:model/LeaderboardFilter}
+     */
+    LeaderboardFilter,
+
+    /**
      * The LeaderboardMember model constructor.
      * @property {module:model/LeaderboardMember}
      */
@@ -1466,6 +1504,12 @@ export {
      * @property {module:model/LeaderboardResponseByContest}
      */
     LeaderboardResponseByContest,
+
+    /**
+     * The LeaderboardSubscriptionRequest model constructor.
+     * @property {module:model/LeaderboardSubscriptionRequest}
+     */
+    LeaderboardSubscriptionRequest,
 
     /**
      * The Location model constructor.
@@ -1576,6 +1620,12 @@ export {
     MemberType,
 
     /**
+     * The MessageLink model constructor.
+     * @property {module:model/MessageLink}
+     */
+    MessageLink,
+
+    /**
      * The MessageStatus model constructor.
      * @property {module:model/MessageStatus}
      */
@@ -1616,6 +1666,12 @@ export {
      * @property {module:model/ModelDefault}
      */
     ModelDefault,
+
+    /**
+     * The Modules model constructor.
+     * @property {module:model/Modules}
+     */
+    Modules,
 
     /**
      * The Notification model constructor.

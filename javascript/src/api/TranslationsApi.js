@@ -129,7 +129,7 @@ export default class TranslationsApi {
      */
 
     /**
-     * NOT AVAILABLE IN CURRENT RELEASE
+     * Delete translations by query
      * Delete a Translation or a list of Translations from Ziqni by unique Translation ID's or any other POST body parameters using the POST method
      * @param {Object} opts Optional parameters
      * @param {module:model/QueryRequest} opts.body Delete a Translation or a list of Translations from Ziqni by unique Translation ID's or any other POST body parameters using the POST method

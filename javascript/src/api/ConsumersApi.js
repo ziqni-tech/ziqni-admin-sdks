@@ -54,7 +54,6 @@ export default class ConsumersApi {
      */
 
     /**
-     * NOT AVAILABLE IN CURRENT RELEASE
      * Create a new Kafka Consumer Connection in the Ziqni system
      * @param {module:model/CreateKafkaConnectionRequest} body Create a Kafka Consumer Connection in the Ziqni system
      * @param {module:api/ConsumersApi~createKafkaConnectionsCallback} callback The callback function, accepting three arguments: error, data, response
@@ -96,7 +95,6 @@ export default class ConsumersApi {
      */
 
     /**
-     * NOT AVAILABLE IN CURRENT RELEASE
      * Create a new RabbitMq Consumer Connection in the Ziqni system
      * @param {module:model/CreateRabbitMqConnectionRequest} body Create a RabbitMq Consumer Connection in the Ziqni system
      * @param {module:api/ConsumersApi~createRabbitMQConnectionsCallback} callback The callback function, accepting three arguments: error, data, response
@@ -138,7 +136,6 @@ export default class ConsumersApi {
      */
 
     /**
-     * NOT AVAILABLE IN CURRENT RELEASE
      * Create a new SQS Consumer Connection in the Ziqni system
      * @param {module:model/CreateSqsConnectionRequest} body Create a SQS Consumer Connection in the Ziqni system
      * @param {module:api/ConsumersApi~createSqsConnectionsCallback} callback The callback function, accepting three arguments: error, data, response
@@ -180,7 +177,6 @@ export default class ConsumersApi {
      */
 
     /**
-     * NOT AVAILABLE IN CURRENT RELEASE
      * Delete the Kafka Consumer Connection for a given identifier specified
      * @param {Object} opts Optional parameters
      * @param {Array.<String>} opts.id The unique identifiers of the resources
@@ -221,7 +217,6 @@ export default class ConsumersApi {
      */
 
     /**
-     * NOT AVAILABLE IN CURRENT RELEASE
      * Delete a Kafka Connection or a list of Kafka Connections from Ziqni by unique Connection ID's or any other POST body parameters using the POST method
      * @param {Object} opts Optional parameters
      * @param {module:model/QueryRequest} opts.body Delete a Kafka Connection or a list of Kafka Connections from Ziqni by unique Connection ID's or any other POST body parameters using the POST method
@@ -261,7 +256,6 @@ export default class ConsumersApi {
      */
 
     /**
-     * NOT AVAILABLE IN CURRENT RELEASE
      * Delete the RabbitMq Consumer Connection for a given identifier specified
      * @param {Object} opts Optional parameters
      * @param {Array.<String>} opts.id The unique identifiers of the resources
@@ -302,7 +296,6 @@ export default class ConsumersApi {
      */
 
     /**
-     * NOT AVAILABLE IN CURRENT RELEASE
      * Delete a RabbitMQ Connection or a list of RabbitMQ Connections from Ziqni by unique Connection ID's or any other POST body parameters using the POST method
      * @param {Object} opts Optional parameters
      * @param {module:model/QueryRequest} opts.body Delete a RabbitMQ Connection or a list of RabbitMQ Connections from Ziqni by unique Connection ID's or any other POST body parameters using the POST method
@@ -342,7 +335,6 @@ export default class ConsumersApi {
      */
 
     /**
-     * NOT AVAILABLE IN CURRENT RELEASE
      * Delete the SQS Consumer Connection for a given identifier specified
      * @param {Object} opts Optional parameters
      * @param {Array.<String>} opts.id The unique identifiers of the resources
@@ -383,7 +375,6 @@ export default class ConsumersApi {
      */
 
     /**
-     * NOT AVAILABLE IN CURRENT RELEASE
      * Delete a SQS Connection or a list of SQS Connections from Ziqni by unique Connection ID's or any other POST body parameters using the POST method
      * @param {Object} opts Optional parameters
      * @param {module:model/QueryRequest} opts.body Delete a SQS Connection or a list of SQS Connections from Ziqni by unique Connection ID's or any other POST body parameters using the POST method
@@ -423,7 +414,6 @@ export default class ConsumersApi {
      */
 
     /**
-     * NOT AVAILABLE IN CURRENT RELEASE
      * Return a list of Kafka Consumer Connections
      * @param {Object} opts Optional parameters
      * @param {Array.<String>} opts.id The unique identifiers of the resources
@@ -468,7 +458,6 @@ export default class ConsumersApi {
      */
 
     /**
-     * NOT AVAILABLE IN CURRENT RELEASE
      * Retrieve a Kafka Connection or a list of Kafka Connections from Ziqni by unique Connection ID's or any other Post body parameters using the POST method
      * @param {Object} opts Optional parameters
      * @param {module:model/QueryRequest} opts.body Retrieve a Kafka Connection or a list of Kafka Connections from Ziqni by unique Connection ID's or any other Post body parameters using the POST method
@@ -508,7 +497,6 @@ export default class ConsumersApi {
      */
 
     /**
-     * NOT AVAILABLE IN CURRENT RELEASE
      * Return a list of RabbitMq Consumer Connections
      * @param {Object} opts Optional parameters
      * @param {Array.<String>} opts.id The unique identifiers of the resources
@@ -553,7 +541,6 @@ export default class ConsumersApi {
      */
 
     /**
-     * NOT AVAILABLE IN CURRENT RELEASE
      * Retrieve a RabbitMQ Connection or a list of RabbitMQ Connections from Ziqni by unique Connection ID's or any other Post body parameters using the POST method
      * @param {Object} opts Optional parameters
      * @param {module:model/QueryRequest} opts.body Retrieve a RabbitMQ Connection or a list of RabbitMQ Connections from Ziqni by unique Connection ID's or any other Post body parameters using the POST method
@@ -593,7 +580,6 @@ export default class ConsumersApi {
      */
 
     /**
-     * NOT AVAILABLE IN CURRENT RELEASE
      * Return a list of SQS Consumer Connections
      * @param {Object} opts Optional parameters
      * @param {Array.<String>} opts.id The unique identifiers of the resources
@@ -638,7 +624,6 @@ export default class ConsumersApi {
      */
 
     /**
-     * NOT AVAILABLE IN CURRENT RELEASE
      * Retrieve a SQS Connection or a list of SQS Connections from Ziqni by unique Connection ID's or any other Post body parameters using the POST method
      * @param {Object} opts Optional parameters
      * @param {module:model/QueryRequest} opts.body Retrieve a SQS Connection or a list of SQS Connections from Ziqni by unique Connection ID's or any other Post body parameters using the POST method
@@ -718,7 +703,6 @@ export default class ConsumersApi {
      */
 
     /**
-     * NOT AVAILABLE IN CURRENT RELEASE
      * Update an existing Kafka Consumer Connection in the Ziqni system
      * @param {module:model/UpdateKafkaConnectionRequest} body Update the Kafka Consumer Connection details in the Ziqni system
      * @param {module:api/ConsumersApi~updateKafkaConnectionsCallback} callback The callback function, accepting three arguments: error, data, response
@@ -760,7 +744,6 @@ export default class ConsumersApi {
      */
 
     /**
-     * NOT AVAILABLE IN CURRENT RELEASE
      * Update the state of a Kafka Connection using the POST method
      * @param {Object} opts Optional parameters
      * @param {Array.<module:model/UpdateConnectionStateRequest>} opts.body Update the state of a Kafka Connection using the POST method
@@ -800,7 +783,6 @@ export default class ConsumersApi {
      */
 
     /**
-     * NOT AVAILABLE IN CURRENT RELEASE
      * Update an existing RabbitMq Consumer Connection in the Ziqni system
      * @param {module:model/UpdateRabbitMqConnectionRequest} body Update the RabbitMq Consumer Connection details in the Ziqni system
      * @param {module:api/ConsumersApi~updateRabbitMQConnectionsCallback} callback The callback function, accepting three arguments: error, data, response
@@ -842,7 +824,6 @@ export default class ConsumersApi {
      */
 
     /**
-     * NOT AVAILABLE IN CURRENT RELEASE
      * Update the state of a RabbitMQ Connection using the POST method
      * @param {Object} opts Optional parameters
      * @param {Array.<module:model/UpdateConnectionStateRequest>} opts.body Update the state of a RabbitMQ Connection using the POST method
@@ -882,7 +863,6 @@ export default class ConsumersApi {
      */
 
     /**
-     * NOT AVAILABLE IN CURRENT RELEASE
      * Update an existing SQS Consumer Connection in the Ziqni system
      * @param {module:model/UpdateSqsConnectionRequest} body Update the SQS Consumer Connection details in the Ziqni system
      * @param {module:api/ConsumersApi~updateSqsConnectionsCallback} callback The callback function, accepting three arguments: error, data, response
@@ -924,7 +904,6 @@ export default class ConsumersApi {
      */
 
     /**
-     * NOT AVAILABLE IN CURRENT RELEASE
      * Update the state of an SQS Connection using the POST method
      * @param {Object} opts Optional parameters
      * @param {Array.<module:model/UpdateConnectionStateRequest>} opts.body Update the state of an SQS Connection using the POST method

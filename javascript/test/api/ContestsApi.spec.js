@@ -58,16 +58,6 @@
         done();
       });
     });
-    describe('getChildrenOfContest', function() {
-      it('should call getChildrenOfContest successfully', function(done) {
-        //uncomment below and update the code to test getChildrenOfContest
-        //instance.getChildrenOfContest(function(error) {
-        //  if (error) throw error;
-        //expect().to.be();
-        //});
-        done();
-      });
-    });
     describe('getContests', function() {
       it('should call getContests successfully', function(done) {
         //uncomment below and update the code to test getContests
@@ -102,26 +92,6 @@
       it('should call getContestsToClone successfully', function(done) {
         //uncomment below and update the code to test getContestsToClone
         //instance.getContestsToClone(function(error) {
-        //  if (error) throw error;
-        //expect().to.be();
-        //});
-        done();
-      });
-    });
-    describe('getListOfEntrantsForContest', function() {
-      it('should call getListOfEntrantsForContest successfully', function(done) {
-        //uncomment below and update the code to test getListOfEntrantsForContest
-        //instance.getListOfEntrantsForContest(function(error) {
-        //  if (error) throw error;
-        //expect().to.be();
-        //});
-        done();
-      });
-    });
-    describe('getParentsOfContest', function() {
-      it('should call getParentsOfContest successfully', function(done) {
-        //uncomment below and update the code to test getParentsOfContest
-        //instance.getParentsOfContest(function(error) {
         //  if (error) throw error;
         //expect().to.be();
         //});

@@ -12,7 +12,6 @@
  */
 
 import ApiClient from '../ApiClient';
-import UnitOfMeasureType from './UnitOfMeasureType';
 import UpdateActionTypeRequestAllOf from './UpdateActionTypeRequestAllOf';
 import UpdateModelDefault from './UpdateModelDefault';
 import UpdateOptParamModels from './UpdateOptParamModels';
@@ -77,14 +76,14 @@ class UpdateActionTypeRequest {
             if (data.hasOwnProperty('description')) {
                 obj['description'] = ApiClient.convertToType(data['description'], 'String');
             }
-            if (data.hasOwnProperty('unitOfMeasureType')) {
-                obj['unitOfMeasureType'] = UnitOfMeasureType.constructFromObject(data['unitOfMeasureType']);
-            }
             if (data.hasOwnProperty('addConstraints')) {
                 obj['addConstraints'] = ApiClient.convertToType(data['addConstraints'], ['String']);
             }
             if (data.hasOwnProperty('removeConstraints')) {
                 obj['removeConstraints'] = ApiClient.convertToType(data['removeConstraints'], ['String']);
+            }
+            if (data.hasOwnProperty('unitOfMeasure')) {
+                obj['unitOfMeasure'] = ApiClient.convertToType(data['unitOfMeasure'], 'String');
             }
         }
         return obj;
@@ -129,11 +128,6 @@ UpdateActionTypeRequest.prototype['name'] = undefined;
 UpdateActionTypeRequest.prototype['description'] = undefined;
 
 /**
- * @member {module:model/UnitOfMeasureType} unitOfMeasureType
- */
-UpdateActionTypeRequest.prototype['unitOfMeasureType'] = undefined;
-
-/**
  * Additional constraints, if the value is present it means the
  * @member {Array.<String>} addConstraints
  */
@@ -144,6 +138,12 @@ UpdateActionTypeRequest.prototype['addConstraints'] = undefined;
  * @member {Array.<String>} removeConstraints
  */
 UpdateActionTypeRequest.prototype['removeConstraints'] = undefined;
+
+/**
+ * unit of measure id
+ * @member {String} unitOfMeasure
+ */
+UpdateActionTypeRequest.prototype['unitOfMeasure'] = undefined;
 
 
 // Implement UpdateModelDefault interface:
@@ -179,10 +179,6 @@ UpdateActionTypeRequestAllOf.prototype['name'] = undefined;
  */
 UpdateActionTypeRequestAllOf.prototype['description'] = undefined;
 /**
- * @member {module:model/UnitOfMeasureType} unitOfMeasureType
- */
-UpdateActionTypeRequestAllOf.prototype['unitOfMeasureType'] = undefined;
-/**
  * Additional constraints, if the value is present it means the
  * @member {Array.<String>} addConstraints
  */
@@ -192,6 +188,11 @@ UpdateActionTypeRequestAllOf.prototype['addConstraints'] = undefined;
  * @member {Array.<String>} removeConstraints
  */
 UpdateActionTypeRequestAllOf.prototype['removeConstraints'] = undefined;
+/**
+ * unit of measure id
+ * @member {String} unitOfMeasure
+ */
+UpdateActionTypeRequestAllOf.prototype['unitOfMeasure'] = undefined;
 
 
 

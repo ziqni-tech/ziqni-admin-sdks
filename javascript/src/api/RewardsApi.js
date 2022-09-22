@@ -128,7 +128,6 @@ export default class RewardsApi {
      */
 
     /**
-     * NOT AVAILABLE IN CURRENT RELEASE
      * Delete Rewards from Ziqni database by unique Rewards ID's or any other POST body parameters using the POST method
      * @param {Object} opts Optional parameters
      * @param {module:model/QueryRequest} opts.body Delete Rewards from Ziqni database by unique Rewards ID's or any other POST body parameters using the POST method
@@ -198,104 +197,6 @@ export default class RewardsApi {
       let returnType = RewardResponse;
       return this.apiClient.callApi(
         '/rewards', 'GET',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, null, callback
-      );
-    }
-
-    /**
-     * Callback function to receive the result of the getRewardsByAchievementId operation.
-     * @callback module:api/RewardsApi~getRewardsByAchievementIdCallback
-     * @param {String} error Error message, if any.
-     * @param {module:model/RewardResponse} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
-     */
-
-    /**
-     * NOT AVAILABLE IN CURRENT RELEASE
-     * Returns a list of Rewards for an Achievement identifier provided. This assumes that rewards have first been uploaded via a POST request or web console
-     * @param {String} id Unique identifier of the resource
-     * @param {Object} opts Optional parameters
-     * @param {Number} opts.limit Limit the returned total records found
-     * @param {Number} opts.skip Skip the returned records found and return the next batch of records
-     * @param {module:api/RewardsApi~getRewardsByAchievementIdCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link module:model/RewardResponse}
-     */
-    getRewardsByAchievementId(id, opts, callback) {
-      opts = opts || {};
-      let postBody = null;
-      // verify the required parameter 'id' is set
-      if (id === undefined || id === null) {
-        throw new Error("Missing the required parameter 'id' when calling getRewardsByAchievementId");
-      }
-
-      let pathParams = {
-        'id': id
-      };
-      let queryParams = {
-        '_limit': opts['limit'],
-        '_skip': opts['skip']
-      };
-      let headerParams = {
-      };
-      let formParams = {
-      };
-
-      let authNames = ['OAuth2'];
-      let contentTypes = [];
-      let accepts = ['application/json'];
-      let returnType = RewardResponse;
-      return this.apiClient.callApi(
-        '/rewards/achievements/{id}', 'GET',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, null, callback
-      );
-    }
-
-    /**
-     * Callback function to receive the result of the getRewardsByContestId operation.
-     * @callback module:api/RewardsApi~getRewardsByContestIdCallback
-     * @param {String} error Error message, if any.
-     * @param {module:model/RewardResponse} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
-     */
-
-    /**
-     * NOT AVAILABLE IN CURRENT RELEASE
-     * Returns a list of rewards for a contest identifier provided. This assumes that rewards have first been uploaded via a POST request or web console
-     * @param {String} id Unique identifier of the resource
-     * @param {Object} opts Optional parameters
-     * @param {Number} opts.limit Limit the returned total records found
-     * @param {Number} opts.skip Skip the returned records found and return the next batch of records
-     * @param {module:api/RewardsApi~getRewardsByContestIdCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link module:model/RewardResponse}
-     */
-    getRewardsByContestId(id, opts, callback) {
-      opts = opts || {};
-      let postBody = null;
-      // verify the required parameter 'id' is set
-      if (id === undefined || id === null) {
-        throw new Error("Missing the required parameter 'id' when calling getRewardsByContestId");
-      }
-
-      let pathParams = {
-        'id': id
-      };
-      let queryParams = {
-        '_limit': opts['limit'],
-        '_skip': opts['skip']
-      };
-      let headerParams = {
-      };
-      let formParams = {
-      };
-
-      let authNames = ['OAuth2'];
-      let contentTypes = [];
-      let accepts = ['application/json'];
-      let returnType = RewardResponse;
-      return this.apiClient.callApi(
-        '/rewards/contests/{id}', 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, null, callback
       );

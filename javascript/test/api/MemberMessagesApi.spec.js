@@ -98,16 +98,6 @@
         done();
       });
     });
-    describe('updateMemberMessagesStatus', function() {
-      it('should call updateMemberMessagesStatus successfully', function(done) {
-        //uncomment below and update the code to test updateMemberMessagesStatus
-        //instance.updateMemberMessagesStatus(function(error) {
-        //  if (error) throw error;
-        //expect().to.be();
-        //});
-        done();
-      });
-    });
   });
 
 }));

@@ -9,7 +9,6 @@ Method | HTTP request | Description
 [**deleteNotificationsByQuery**](NotificationsApi.md#deleteNotificationsByQuery) | **POST** /notifications/delete | 
 [**getNotifications**](NotificationsApi.md#getNotifications) | **GET** /notifications | 
 [**getNotificationsByQuery**](NotificationsApi.md#getNotificationsByQuery) | **POST** /notifications/query | 
-[**updateNotificationsStatus**](NotificationsApi.md#updateNotificationsStatus) | **PUT** /notifications/state | NOT AVAILABLE IN CURRENT RELEASE
 
 
 
@@ -259,55 +258,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**NotificationResponse**](NotificationResponse.md)
-
-### Authorization
-
-[OAuth2](../README.md#OAuth2)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-
-## updateNotificationsStatus
-
-> ApiResponse updateNotificationsStatus(body)
-
-NOT AVAILABLE IN CURRENT RELEASE
-
-Update the Notification Message status
-
-### Example
-
-```javascript
-import @ZiqniTechAdminApiClient from '@ziqni-tech/admin-api-client';
-let defaultClient = @ZiqniTechAdminApiClient.ApiClient.instance;
-// Configure OAuth2 access token for authorization: OAuth2
-let OAuth2 = defaultClient.authentications['OAuth2'];
-OAuth2.accessToken = 'YOUR ACCESS TOKEN';
-
-let apiInstance = new @ZiqniTechAdminApiClient.NotificationsApi();
-let body = [new @ZiqniTechAdminApiClient.UpdateNotificationStatusRequest()]; // [UpdateNotificationStatusRequest] | Update the Notification Message status
-apiInstance.updateNotificationsStatus(body, (error, data, response) => {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
-});
-```
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **body** | [**[UpdateNotificationStatusRequest]**](UpdateNotificationStatusRequest.md)| Update the Notification Message status | 
-
-### Return type
-
-[**ApiResponse**](ApiResponse.md)
 
 ### Authorization
 

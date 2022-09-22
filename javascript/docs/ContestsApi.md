@@ -5,15 +5,12 @@ All URIs are relative to *https://api.ziqni.io*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**createContests**](ContestsApi.md#createContests) | **POST** /contests | 
-[**getChildrenOfContest**](ContestsApi.md#getChildrenOfContest) | **GET** /contests/{id}/children | NOT AVAILABLE IN CURRENT RELEASE
 [**getContests**](ContestsApi.md#getContests) | **GET** /contests | 
 [**getContestsByQuery**](ContestsApi.md#getContestsByQuery) | **POST** /contests/query | 
-[**getContestsLeaderboardById**](ContestsApi.md#getContestsLeaderboardById) | **GET** /contests/{id}/leaderboard | NOT AVAILABLE IN CURRENT RELEASE
-[**getContestsToClone**](ContestsApi.md#getContestsToClone) | **GET** /contests/{id}/clone | NOT AVAILABLE IN CURRENT RELEASE
-[**getListOfEntrantsForContest**](ContestsApi.md#getListOfEntrantsForContest) | **GET** /contests/{id}/entries | NOT AVAILABLE IN CURRENT RELEASE
-[**getParentsOfContest**](ContestsApi.md#getParentsOfContest) | **GET** /contests/{id}/parents | NOT AVAILABLE IN CURRENT RELEASE
+[**getContestsLeaderboardById**](ContestsApi.md#getContestsLeaderboardById) | **GET** /contests/{id}/leaderboard | 
+[**getContestsToClone**](ContestsApi.md#getContestsToClone) | **GET** /contests/{id}/clone | 
 [**updateContest**](ContestsApi.md#updateContest) | **PUT** /contests | 
-[**updateContestsState**](ContestsApi.md#updateContestsState) | **PUT** /contests/state | NOT AVAILABLE IN CURRENT RELEASE
+[**updateContestsState**](ContestsApi.md#updateContestsState) | **PUT** /contests/state | 
 
 
 
@@ -63,61 +60,6 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json
-- **Accept**: application/json
-
-
-## getChildrenOfContest
-
-> ContestResponse getChildrenOfContest(id, opts)
-
-NOT AVAILABLE IN CURRENT RELEASE
-
-Returns all children Contests for the Contest id provided
-
-### Example
-
-```javascript
-import @ZiqniTechAdminApiClient from '@ziqni-tech/admin-api-client';
-let defaultClient = @ZiqniTechAdminApiClient.ApiClient.instance;
-// Configure OAuth2 access token for authorization: OAuth2
-let OAuth2 = defaultClient.authentications['OAuth2'];
-OAuth2.accessToken = 'YOUR ACCESS TOKEN';
-
-let apiInstance = new @ZiqniTechAdminApiClient.ContestsApi();
-let id = "id_example"; // String | Unique identifier of the resource
-let opts = {
-  'limit': 56, // Number | Limit the returned total records found
-  'skip': 56 // Number | Skip the returned records found and return the next batch of records
-};
-apiInstance.getChildrenOfContest(id, opts, (error, data, response) => {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
-});
-```
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **String**| Unique identifier of the resource | 
- **limit** | **Number**| Limit the returned total records found | [optional] 
- **skip** | **Number**| Skip the returned records found and return the next batch of records | [optional] 
-
-### Return type
-
-[**ContestResponse**](ContestResponse.md)
-
-### Authorization
-
-[OAuth2](../README.md#OAuth2)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
 - **Accept**: application/json
 
 
@@ -231,7 +173,7 @@ Name | Type | Description  | Notes
 
 > ContestLeaderboardResponse getContestsLeaderboardById(id, opts)
 
-NOT AVAILABLE IN CURRENT RELEASE
+
 
 Returns a leaderborad for the Contests id provided
 
@@ -286,7 +228,7 @@ Name | Type | Description  | Notes
 
 > CloneContestResponse getContestsToClone(id)
 
-NOT AVAILABLE IN CURRENT RELEASE
+
 
 Clones a Contest for the identifier provided
 
@@ -320,116 +262,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**CloneContestResponse**](CloneContestResponse.md)
-
-### Authorization
-
-[OAuth2](../README.md#OAuth2)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-
-## getListOfEntrantsForContest
-
-> EntrantResponse getListOfEntrantsForContest(id, opts)
-
-NOT AVAILABLE IN CURRENT RELEASE
-
-Returns all Entries for the Contest id provided
-
-### Example
-
-```javascript
-import @ZiqniTechAdminApiClient from '@ziqni-tech/admin-api-client';
-let defaultClient = @ZiqniTechAdminApiClient.ApiClient.instance;
-// Configure OAuth2 access token for authorization: OAuth2
-let OAuth2 = defaultClient.authentications['OAuth2'];
-OAuth2.accessToken = 'YOUR ACCESS TOKEN';
-
-let apiInstance = new @ZiqniTechAdminApiClient.ContestsApi();
-let id = "id_example"; // String | Unique identifier of the resource
-let opts = {
-  'limit': 56, // Number | Limit the returned total records found
-  'skip': 56 // Number | Skip the returned records found and return the next batch of records
-};
-apiInstance.getListOfEntrantsForContest(id, opts, (error, data, response) => {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
-});
-```
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **String**| Unique identifier of the resource | 
- **limit** | **Number**| Limit the returned total records found | [optional] 
- **skip** | **Number**| Skip the returned records found and return the next batch of records | [optional] 
-
-### Return type
-
-[**EntrantResponse**](EntrantResponse.md)
-
-### Authorization
-
-[OAuth2](../README.md#OAuth2)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-
-## getParentsOfContest
-
-> ContestResponse getParentsOfContest(id, opts)
-
-NOT AVAILABLE IN CURRENT RELEASE
-
-Returns all parent Contests for the Contest id provided
-
-### Example
-
-```javascript
-import @ZiqniTechAdminApiClient from '@ziqni-tech/admin-api-client';
-let defaultClient = @ZiqniTechAdminApiClient.ApiClient.instance;
-// Configure OAuth2 access token for authorization: OAuth2
-let OAuth2 = defaultClient.authentications['OAuth2'];
-OAuth2.accessToken = 'YOUR ACCESS TOKEN';
-
-let apiInstance = new @ZiqniTechAdminApiClient.ContestsApi();
-let id = "id_example"; // String | Unique identifier of the resource
-let opts = {
-  'limit': 56, // Number | Limit the returned total records found
-  'skip': 56 // Number | Skip the returned records found and return the next batch of records
-};
-apiInstance.getParentsOfContest(id, opts, (error, data, response) => {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
-});
-```
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **String**| Unique identifier of the resource | 
- **limit** | **Number**| Limit the returned total records found | [optional] 
- **skip** | **Number**| Skip the returned records found and return the next batch of records | [optional] 
-
-### Return type
-
-[**ContestResponse**](ContestResponse.md)
 
 ### Authorization
 
@@ -494,7 +326,7 @@ Name | Type | Description  | Notes
 
 > ApiResponse updateContestsState(opts)
 
-NOT AVAILABLE IN CURRENT RELEASE
+
 
 Manages the Contests state
 

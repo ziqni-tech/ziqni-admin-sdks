@@ -6,7 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**createFileRepositories**](FileRepositoriesApi.md#createFileRepositories) | **POST** /file-repositories | 
 [**deleteFileRepositories**](FileRepositoriesApi.md#deleteFileRepositories) | **DELETE** /file-repositories | 
-[**deleteFileRepositoriesByQuery**](FileRepositoriesApi.md#deleteFileRepositoriesByQuery) | **POST** /file-repositories/delete | NOT AVAILABLE IN CURRENT RELEASE
+[**deleteFileRepositoriesByQuery**](FileRepositoriesApi.md#deleteFileRepositoriesByQuery) | **POST** /file-repositories/delete | 
 [**getFileRepositories**](FileRepositoriesApi.md#getFileRepositories) | **GET** /file-repositories | 
 [**getFileRepositoriesByQuery**](FileRepositoriesApi.md#getFileRepositoriesByQuery) | **POST** /file-repositories/query | 
 [**updateFileRepositories**](FileRepositoriesApi.md#updateFileRepositories) | **PUT** /file-repositories | 
@@ -119,7 +119,7 @@ Name | Type | Description  | Notes
 
 > ApiResponse deleteFileRepositoriesByQuery(opts)
 
-NOT AVAILABLE IN CURRENT RELEASE
+
 
 Delete repositories nby query. Delete repositories by query and/or unique repository ID&#39;s or any other body parameters
 

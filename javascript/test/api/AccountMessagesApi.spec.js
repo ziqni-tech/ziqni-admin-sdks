@@ -88,16 +88,6 @@
         done();
       });
     });
-    describe('updateAccountMessagesStatus', function() {
-      it('should call updateAccountMessagesStatus successfully', function(done) {
-        //uncomment below and update the code to test updateAccountMessagesStatus
-        //instance.updateAccountMessagesStatus(function(error) {
-        //  if (error) throw error;
-        //expect().to.be();
-        //});
-        done();
-      });
-    });
   });
 
 }));

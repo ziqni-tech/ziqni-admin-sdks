@@ -1,6 +1,6 @@
 {
   "name": "@ziqni-tech/admin-api-client",
-  "version": "0.0.28",
+  "version": "0.0.26",
   "description": "Client library for Ziqni Admin API",
   "license": "Ziqni Commercial License",
   "main": "dist/index.js",
@@ -14,7 +14,6 @@
   },
   "dependencies": {
     "@babel/cli": "^7.0.0",
-    "@ziqni-tech/admin-api-client": "^0.0.26",
     "superagent": "^5.3.0"
   },
   "devDependencies": {

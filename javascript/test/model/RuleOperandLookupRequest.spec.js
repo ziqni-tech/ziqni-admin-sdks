@@ -90,6 +90,12 @@
       //expect(instance).to.be();
     });
 
+    it('should have the property operand (base name: "operand")', function() {
+      // uncomment below and update the code to test the property operand
+      //var instance = new @ZiqniTechAdminApiClient.RuleOperandLookupRequest();
+      //expect(instance).to.be();
+    });
+
   });
 
 }));

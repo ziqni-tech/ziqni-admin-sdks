@@ -128,7 +128,6 @@ export default class TransformersApi {
      */
 
     /**
-     * NOT AVAILABLE IN CURRENT RELEASE
      * Delete a Transformer or a list of Transformers from Ziqni by unique Transformer ID's or any other POST body parameters using the POST method
      * @param {Object} opts Optional parameters
      * @param {module:model/QueryRequest} opts.body Delete a Transformer or a list of Transformers from Ziqni by unique Transformer ID's or any other POST body parameters using the POST method

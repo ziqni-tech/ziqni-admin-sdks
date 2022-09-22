@@ -4,7 +4,7 @@ All URIs are relative to *https://api.ziqni.io*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**deleteRulesByQuery**](RulesApi.md#deleteRulesByQuery) | **POST** /rules/delete | NOT AVAILABLE IN CURRENT RELEASE
+[**deleteRulesByQuery**](RulesApi.md#deleteRulesByQuery) | **POST** /rules/delete | 
 [**getRuleSchemas**](RulesApi.md#getRuleSchemas) | **GET** /rules/schema | 
 [**getRules**](RulesApi.md#getRules) | **GET** /rules | 
 [**getRulesByQuery**](RulesApi.md#getRulesByQuery) | **POST** /rules/query | 
@@ -18,7 +18,7 @@ Method | HTTP request | Description
 
 > ApiResponse deleteRulesByQuery(opts)
 
-NOT AVAILABLE IN CURRENT RELEASE
+
 
 Delete Rules from Ziqni database by unique Rules ID&#39;s or any other POST body parameters using the POST method
 

@@ -138,6 +138,12 @@
       //expect(instance).to.be();
     });
 
+    it('should have the property links (base name: "links")', function() {
+      // uncomment below and update the code to test the property links
+      //var instance = new @ZiqniTechAdminApiClient.AccountMessage();
+      //expect(instance).to.be();
+    });
+
   });
 
 }));

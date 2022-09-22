@@ -15,7 +15,6 @@ import ApiClient from '../ApiClient';
 import ActionTypeAllOf from './ActionTypeAllOf';
 import ModelDefault from './ModelDefault';
 import OptParamModels from './OptParamModels';
-import UnitOfMeasureType from './UnitOfMeasureType';
 
 /**
  * The ActionType model module.
@@ -34,12 +33,12 @@ class ActionType {
      * @param created {Date} ISO8601 timestamp for when a Model was created. All records are stored in UTC time zone
      * @param name {String} The name of the Action Helper
      * @param key {String} A unique key that represents an action helper
-     * @param unitOfMeasureType {module:model/UnitOfMeasureType} 
      * @param constraints {Array.<String>} Additional constraints
+     * @param unitOfMeasure {String} unit of measure id
      */
-    constructor(id, spaceName, created, name, key, unitOfMeasureType, constraints) { 
-        ModelDefault.initialize(this, id, spaceName, created);OptParamModels.initialize(this);ActionTypeAllOf.initialize(this, name, key, unitOfMeasureType, constraints);
-        ActionType.initialize(this, id, spaceName, created, name, key, unitOfMeasureType, constraints);
+    constructor(id, spaceName, created, name, key, constraints, unitOfMeasure) { 
+        ModelDefault.initialize(this, id, spaceName, created);OptParamModels.initialize(this);ActionTypeAllOf.initialize(this, name, key, constraints, unitOfMeasure);
+        ActionType.initialize(this, id, spaceName, created, name, key, constraints, unitOfMeasure);
     }
 
     /**
@@ -47,14 +46,14 @@ class ActionType {
      * This method is used by the constructors of any subclasses, in order to implement multiple inheritance (mix-ins).
      * Only for internal use.
      */
-    static initialize(obj, id, spaceName, created, name, key, unitOfMeasureType, constraints) { 
+    static initialize(obj, id, spaceName, created, name, key, constraints, unitOfMeasure) { 
         obj['id'] = id;
         obj['spaceName'] = spaceName;
         obj['created'] = created;
         obj['name'] = name;
         obj['key'] = key;
-        obj['unitOfMeasureType'] = unitOfMeasureType;
         obj['constraints'] = constraints;
+        obj['unitOfMeasure'] = unitOfMeasure;
     }
 
     /**
@@ -98,11 +97,11 @@ class ActionType {
             if (data.hasOwnProperty('description')) {
                 obj['description'] = ApiClient.convertToType(data['description'], 'String');
             }
-            if (data.hasOwnProperty('unitOfMeasureType')) {
-                obj['unitOfMeasureType'] = UnitOfMeasureType.constructFromObject(data['unitOfMeasureType']);
-            }
             if (data.hasOwnProperty('constraints')) {
                 obj['constraints'] = ApiClient.convertToType(data['constraints'], ['String']);
+            }
+            if (data.hasOwnProperty('unitOfMeasure')) {
+                obj['unitOfMeasure'] = ApiClient.convertToType(data['unitOfMeasure'], 'String');
             }
         }
         return obj;
@@ -164,15 +163,16 @@ ActionType.prototype['key'] = undefined;
 ActionType.prototype['description'] = undefined;
 
 /**
- * @member {module:model/UnitOfMeasureType} unitOfMeasureType
- */
-ActionType.prototype['unitOfMeasureType'] = undefined;
-
-/**
  * Additional constraints
  * @member {Array.<String>} constraints
  */
 ActionType.prototype['constraints'] = undefined;
+
+/**
+ * unit of measure id
+ * @member {String} unitOfMeasure
+ */
+ActionType.prototype['unitOfMeasure'] = undefined;
 
 
 // Implement ModelDefault interface:
@@ -222,14 +222,15 @@ ActionTypeAllOf.prototype['key'] = undefined;
  */
 ActionTypeAllOf.prototype['description'] = undefined;
 /**
- * @member {module:model/UnitOfMeasureType} unitOfMeasureType
- */
-ActionTypeAllOf.prototype['unitOfMeasureType'] = undefined;
-/**
  * Additional constraints
  * @member {Array.<String>} constraints
  */
 ActionTypeAllOf.prototype['constraints'] = undefined;
+/**
+ * unit of measure id
+ * @member {String} unitOfMeasure
+ */
+ActionTypeAllOf.prototype['unitOfMeasure'] = undefined;
 
 
 

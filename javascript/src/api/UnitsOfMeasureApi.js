@@ -80,46 +80,6 @@ export default class UnitsOfMeasureApi {
     }
 
     /**
-     * Callback function to receive the result of the deleteCollaboratorsByQuery operation.
-     * @callback module:api/UnitsOfMeasureApi~deleteCollaboratorsByQueryCallback
-     * @param {String} error Error message, if any.
-     * @param {module:model/ApiResponse} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
-     */
-
-    /**
-     * NOT AVAILABLE IN CURRENT RELEASE
-     * Remove collaborators from account
-     * @param {Object} opts Optional parameters
-     * @param {module:model/QueryRequest} opts.body Remove collaborators from account
-     * @param {module:api/UnitsOfMeasureApi~deleteCollaboratorsByQueryCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link module:model/ApiResponse}
-     */
-    deleteCollaboratorsByQuery(opts, callback) {
-      opts = opts || {};
-      let postBody = opts['body'];
-
-      let pathParams = {
-      };
-      let queryParams = {
-      };
-      let headerParams = {
-      };
-      let formParams = {
-      };
-
-      let authNames = ['OAuth2'];
-      let contentTypes = ['application/json'];
-      let accepts = ['application/json'];
-      let returnType = ApiResponse;
-      return this.apiClient.callApi(
-        '/collaborators/delete', 'POST',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, null, callback
-      );
-    }
-
-    /**
      * Callback function to receive the result of the deleteUnitsOfMeasure operation.
      * @callback module:api/UnitsOfMeasureApi~deleteUnitsOfMeasureCallback
      * @param {String} error Error message, if any.
@@ -168,7 +128,7 @@ export default class UnitsOfMeasureApi {
      */
 
     /**
-     * NOT AVAILABLE IN CURRENT RELEASE
+     * Delete units of measure by query
      * Delete Units of measure from Ziqni database by unique Unit of measure ID's or any other POST body parameters using the POST method
      * @param {Object} opts Optional parameters
      * @param {module:model/QueryRequest} opts.body Delete Units of measure from Ziqni database by unique Unit of measure ID's or any other POST body parameters using the POST method

@@ -16,7 +16,6 @@ import ApiClient from "../ApiClient";
 import ApiResponse from '../model/ApiResponse';
 import CreateWebhookRequest from '../model/CreateWebhookRequest';
 import QueryRequest from '../model/QueryRequest';
-import UpdateStateRequest from '../model/UpdateStateRequest';
 import UpdateWebhookRequest from '../model/UpdateWebhookRequest';
 import WebhookResponse from '../model/WebhookResponse';
 import WebhookTriggersResponse from '../model/WebhookTriggersResponse';
@@ -130,7 +129,7 @@ export default class WebhooksApi {
      */
 
     /**
-     * NOT AVAILABLE IN CURRENT RELEASE
+     * Delete webhooks by query
      * Delete a Webhook or a list of Webhooks from Ziqni by unique Webhook ID's or any other POST body parameters using the POST method
      * @param {Object} opts Optional parameters
      * @param {module:model/QueryRequest} opts.body Delete a Webhook or a list of Webhooks from Ziqni by unique Webhook ID's or any other POST body parameters using the POST method
@@ -316,46 +315,6 @@ export default class WebhooksApi {
       let returnType = ApiResponse;
       return this.apiClient.callApi(
         '/webhooks', 'PUT',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, null, callback
-      );
-    }
-
-    /**
-     * Callback function to receive the result of the updateWebhooksState operation.
-     * @callback module:api/WebhooksApi~updateWebhooksStateCallback
-     * @param {String} error Error message, if any.
-     * @param {module:model/ApiResponse} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
-     */
-
-    /**
-     * NOT AVAILABLE IN CURRENT RELEASE
-     * Update the state of a Wbhook using the POST method
-     * @param {Object} opts Optional parameters
-     * @param {module:model/UpdateStateRequest} opts.body Update the state of a Webhook using the POST method
-     * @param {module:api/WebhooksApi~updateWebhooksStateCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link module:model/ApiResponse}
-     */
-    updateWebhooksState(opts, callback) {
-      opts = opts || {};
-      let postBody = opts['body'];
-
-      let pathParams = {
-      };
-      let queryParams = {
-      };
-      let headerParams = {
-      };
-      let formParams = {
-      };
-
-      let authNames = ['OAuth2'];
-      let contentTypes = ['application/json'];
-      let accepts = ['application/json'];
-      let returnType = ApiResponse;
-      return this.apiClient.callApi(
-        '/webhooks/state', 'POST',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, null, callback
       );

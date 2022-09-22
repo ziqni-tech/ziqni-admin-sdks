@@ -131,17 +131,13 @@ Class | Method | HTTP request | Description
 *@ZiqniTechAdminApiClient.AccountMessagesApi* | [**deleteAccountMessagesByQuery**](docs/AccountMessagesApi.md#deleteAccountMessagesByQuery) | **POST** /account-messages/delete | 
 *@ZiqniTechAdminApiClient.AccountMessagesApi* | [**getAccountMessages**](docs/AccountMessagesApi.md#getAccountMessages) | **GET** /account-messages | 
 *@ZiqniTechAdminApiClient.AccountMessagesApi* | [**getAccountMessagesByQuery**](docs/AccountMessagesApi.md#getAccountMessagesByQuery) | **POST** /account-messages/query | 
-*@ZiqniTechAdminApiClient.AccountMessagesApi* | [**updateAccountMessagesStatus**](docs/AccountMessagesApi.md#updateAccountMessagesStatus) | **PUT** /account-messages/state | NOT AVAILABLE IN CURRENT RELEASE
 *@ZiqniTechAdminApiClient.AchievementsApi* | [**createAchievements**](docs/AchievementsApi.md#createAchievements) | **POST** /achievements | Create Achievements
 *@ZiqniTechAdminApiClient.AchievementsApi* | [**deleteAchievements**](docs/AchievementsApi.md#deleteAchievements) | **DELETE** /achievements | Delete Achievements
 *@ZiqniTechAdminApiClient.AchievementsApi* | [**deleteAchievementsByQuery**](docs/AchievementsApi.md#deleteAchievementsByQuery) | **POST** /achievements/delete | 
-*@ZiqniTechAdminApiClient.AchievementsApi* | [**getAchievementToClone**](docs/AchievementsApi.md#getAchievementToClone) | **GET** /achievements/{id}/clone | NOT AVAILABLE IN CURRENT RELEASE
+*@ZiqniTechAdminApiClient.AchievementsApi* | [**getAchievementToClone**](docs/AchievementsApi.md#getAchievementToClone) | **GET** /achievements/{id}/clone | 
 *@ZiqniTechAdminApiClient.AchievementsApi* | [**getAchievements**](docs/AchievementsApi.md#getAchievements) | **GET** /achievements | Get Achievements
 *@ZiqniTechAdminApiClient.AchievementsApi* | [**getAchievementsByQuery**](docs/AchievementsApi.md#getAchievementsByQuery) | **POST** /achievements/query | 
 *@ZiqniTechAdminApiClient.AchievementsApi* | [**getAntecendentsForAchievement**](docs/AchievementsApi.md#getAntecendentsForAchievement) | **GET** /achievements/{id}/antecedents | NOT AVAILABLE IN CURRENT RELEASE
-*@ZiqniTechAdminApiClient.AchievementsApi* | [**getDesendentsForAchievement**](docs/AchievementsApi.md#getDesendentsForAchievement) | **GET** /achievements/{id}/descendents | NOT AVAILABLE IN CURRENT RELEASE
-*@ZiqniTechAdminApiClient.AchievementsApi* | [**getIssuedAchievementsCountById**](docs/AchievementsApi.md#getIssuedAchievementsCountById) | **GET** /achievements/{id}/issued | NOT AVAILABLE IN CURRENT RELEASE
-*@ZiqniTechAdminApiClient.AchievementsApi* | [**getMembersAchievementsDetails**](docs/AchievementsApi.md#getMembersAchievementsDetails) | **GET** /achievements/{id}/members | NOT AVAILABLE IN CURRENT RELEASE
 *@ZiqniTechAdminApiClient.AchievementsApi* | [**updateAchievements**](docs/AchievementsApi.md#updateAchievements) | **PUT** /achievements | Update Achievements
 *@ZiqniTechAdminApiClient.AchievementsApi* | [**updateAchievementsLiveStatus**](docs/AchievementsApi.md#updateAchievementsLiveStatus) | **PUT** /achievements/state | 
 *@ZiqniTechAdminApiClient.ActionTypesApi* | [**createActionTypes**](docs/ActionTypesApi.md#createActionTypes) | **POST** /action-types | Create action types
@@ -165,59 +161,51 @@ Class | Method | HTTP request | Description
 *@ZiqniTechAdminApiClient.CollaboratorsApi* | [**deleteCollaborators**](docs/CollaboratorsApi.md#deleteCollaborators) | **DELETE** /collaborators | 
 *@ZiqniTechAdminApiClient.CollaboratorsApi* | [**getAvailableRolesForCollaborators**](docs/CollaboratorsApi.md#getAvailableRolesForCollaborators) | **GET** /collaborators/available-roles | 
 *@ZiqniTechAdminApiClient.CollaboratorsApi* | [**getCollaborators**](docs/CollaboratorsApi.md#getCollaborators) | **GET** /collaborators | 
-*@ZiqniTechAdminApiClient.CollaboratorsApi* | [**getCollaboratorsByQuery**](docs/CollaboratorsApi.md#getCollaboratorsByQuery) | **POST** /collaborators/query | NOT AVAILABLE IN CURRENT RELEASE
 *@ZiqniTechAdminApiClient.CollaboratorsApi* | [**updateCollaborators**](docs/CollaboratorsApi.md#updateCollaborators) | **PUT** /collaborators | 
 *@ZiqniTechAdminApiClient.CompetitionsApi* | [**createCompetitions**](docs/CompetitionsApi.md#createCompetitions) | **POST** /competitions | 
 *@ZiqniTechAdminApiClient.CompetitionsApi* | [**createSimpleCompetitions**](docs/CompetitionsApi.md#createSimpleCompetitions) | **POST** /competitions/simple | 
 *@ZiqniTechAdminApiClient.CompetitionsApi* | [**getCompetitions**](docs/CompetitionsApi.md#getCompetitions) | **GET** /competitions | 
-*@ZiqniTechAdminApiClient.CompetitionsApi* | [**getCompetitionsBrackets**](docs/CompetitionsApi.md#getCompetitionsBrackets) | **GET** /competitions/{id}/brackets | NOT AVAILABLE IN CURRENT RELEASE
 *@ZiqniTechAdminApiClient.CompetitionsApi* | [**getCompetitionsByQuery**](docs/CompetitionsApi.md#getCompetitionsByQuery) | **POST** /competitions/query | 
-*@ZiqniTechAdminApiClient.CompetitionsApi* | [**getCompetitionsToClone**](docs/CompetitionsApi.md#getCompetitionsToClone) | **GET** /competitions/{id}/clone | NOT AVAILABLE IN CURRENT RELEASE
-*@ZiqniTechAdminApiClient.CompetitionsApi* | [**getContestsForCompetitions**](docs/CompetitionsApi.md#getContestsForCompetitions) | **GET** /competitions/{id}/contests | NOT AVAILABLE IN CURRENT RELEASE
-*@ZiqniTechAdminApiClient.CompetitionsApi* | [**getLeaderboardByCompetitionId**](docs/CompetitionsApi.md#getLeaderboardByCompetitionId) | **GET** /competitions/{id}/leaderboard | NOT AVAILABLE IN CURRENT RELEASE
-*@ZiqniTechAdminApiClient.CompetitionsApi* | [**getListOfEntrants**](docs/CompetitionsApi.md#getListOfEntrants) | **GET** /competitions/{id}/entries | NOT AVAILABLE IN CURRENT RELEASE
+*@ZiqniTechAdminApiClient.CompetitionsApi* | [**getCompetitionsToClone**](docs/CompetitionsApi.md#getCompetitionsToClone) | **GET** /competitions/{id}/clone | Get Competition To Clone
+*@ZiqniTechAdminApiClient.CompetitionsApi* | [**getLeaderboardByCompetitionId**](docs/CompetitionsApi.md#getLeaderboardByCompetitionId) | **GET** /competitions/{id}/leaderboard | 
 *@ZiqniTechAdminApiClient.CompetitionsApi* | [**updateCompetitions**](docs/CompetitionsApi.md#updateCompetitions) | **PUT** /competitions | 
-*@ZiqniTechAdminApiClient.CompetitionsApi* | [**updateCompetitionsEntries**](docs/CompetitionsApi.md#updateCompetitionsEntries) | **PUT** /competitions/entries | NOT AVAILABLE IN CURRENT RELEASE
-*@ZiqniTechAdminApiClient.CompetitionsApi* | [**updateCompetitionsState**](docs/CompetitionsApi.md#updateCompetitionsState) | **PUT** /competitions/state | NOT AVAILABLE IN CURRENT RELEASE
+*@ZiqniTechAdminApiClient.CompetitionsApi* | [**updateCompetitionsState**](docs/CompetitionsApi.md#updateCompetitionsState) | **PUT** /competitions/state | 
 *@ZiqniTechAdminApiClient.ComputeEngineApi* | [**createComputeEngines**](docs/ComputeEngineApi.md#createComputeEngines) | **POST** /compute-engines | 
 *@ZiqniTechAdminApiClient.ComputeEngineApi* | [**deleteComputeEnginesById**](docs/ComputeEngineApi.md#deleteComputeEnginesById) | **DELETE** /compute-engines/{id} | 
-*@ZiqniTechAdminApiClient.ComputeEngineApi* | [**deleteComputeEnginesByQuery**](docs/ComputeEngineApi.md#deleteComputeEnginesByQuery) | **POST** /compute-engines/delete | NOT AVAILABLE IN CURRENT RELEASE
+*@ZiqniTechAdminApiClient.ComputeEngineApi* | [**deleteComputeEnginesByQuery**](docs/ComputeEngineApi.md#deleteComputeEnginesByQuery) | **POST** /compute-engines/delete | 
 *@ZiqniTechAdminApiClient.ComputeEngineApi* | [**getComputeEngines**](docs/ComputeEngineApi.md#getComputeEngines) | **GET** /compute-engines | 
 *@ZiqniTechAdminApiClient.ComputeEngineApi* | [**getComputeEnginesById**](docs/ComputeEngineApi.md#getComputeEnginesById) | **GET** /compute-engines/{id} | 
 *@ZiqniTechAdminApiClient.ComputeEngineApi* | [**getComputeEnginesByQuery**](docs/ComputeEngineApi.md#getComputeEnginesByQuery) | **POST** /compute-engines/query | 
 *@ZiqniTechAdminApiClient.ComputeEngineApi* | [**updateComputeEngines**](docs/ComputeEngineApi.md#updateComputeEngines) | **PUT** /compute-engines | 
-*@ZiqniTechAdminApiClient.ConsumersApi* | [**createKafkaConnections**](docs/ConsumersApi.md#createKafkaConnections) | **POST** /connections/kafka | NOT AVAILABLE IN CURRENT RELEASE
-*@ZiqniTechAdminApiClient.ConsumersApi* | [**createRabbitMQConnections**](docs/ConsumersApi.md#createRabbitMQConnections) | **POST** /connections/rabbitmq | NOT AVAILABLE IN CURRENT RELEASE
-*@ZiqniTechAdminApiClient.ConsumersApi* | [**createSqsConnections**](docs/ConsumersApi.md#createSqsConnections) | **POST** /connections/sqs | NOT AVAILABLE IN CURRENT RELEASE
-*@ZiqniTechAdminApiClient.ConsumersApi* | [**deleteKafkaConnections**](docs/ConsumersApi.md#deleteKafkaConnections) | **DELETE** /connections/kafka | NOT AVAILABLE IN CURRENT RELEASE
-*@ZiqniTechAdminApiClient.ConsumersApi* | [**deleteKafkaConnectionsByQuery**](docs/ConsumersApi.md#deleteKafkaConnectionsByQuery) | **POST** /connections/kafka/delete | NOT AVAILABLE IN CURRENT RELEASE
-*@ZiqniTechAdminApiClient.ConsumersApi* | [**deleteRabbitMQConnections**](docs/ConsumersApi.md#deleteRabbitMQConnections) | **DELETE** /connections/rabbitmq | NOT AVAILABLE IN CURRENT RELEASE
-*@ZiqniTechAdminApiClient.ConsumersApi* | [**deleteRabbitMQConnectionsByQuery**](docs/ConsumersApi.md#deleteRabbitMQConnectionsByQuery) | **POST** /connections/rabbitmq/delete | NOT AVAILABLE IN CURRENT RELEASE
-*@ZiqniTechAdminApiClient.ConsumersApi* | [**deleteSqsConnections**](docs/ConsumersApi.md#deleteSqsConnections) | **DELETE** /connections/sqs | NOT AVAILABLE IN CURRENT RELEASE
-*@ZiqniTechAdminApiClient.ConsumersApi* | [**deleteSqsConnectionsByQuery**](docs/ConsumersApi.md#deleteSqsConnectionsByQuery) | **POST** /connections/sqs/delete | NOT AVAILABLE IN CURRENT RELEASE
-*@ZiqniTechAdminApiClient.ConsumersApi* | [**getKafkaConnections**](docs/ConsumersApi.md#getKafkaConnections) | **GET** /connections/kafka | NOT AVAILABLE IN CURRENT RELEASE
-*@ZiqniTechAdminApiClient.ConsumersApi* | [**getKafkaConnectionsByQuery**](docs/ConsumersApi.md#getKafkaConnectionsByQuery) | **POST** /connections/kafka/query | NOT AVAILABLE IN CURRENT RELEASE
-*@ZiqniTechAdminApiClient.ConsumersApi* | [**getRabbitMQConnections**](docs/ConsumersApi.md#getRabbitMQConnections) | **GET** /connections/rabbitmq | NOT AVAILABLE IN CURRENT RELEASE
-*@ZiqniTechAdminApiClient.ConsumersApi* | [**getRabbitMQConnectionsByQuery**](docs/ConsumersApi.md#getRabbitMQConnectionsByQuery) | **POST** /connections/rabbitmq/query | NOT AVAILABLE IN CURRENT RELEASE
-*@ZiqniTechAdminApiClient.ConsumersApi* | [**getSqsConnections**](docs/ConsumersApi.md#getSqsConnections) | **GET** /connections/sqs | NOT AVAILABLE IN CURRENT RELEASE
-*@ZiqniTechAdminApiClient.ConsumersApi* | [**getSqsConnectionsByQuery**](docs/ConsumersApi.md#getSqsConnectionsByQuery) | **POST** /connections/sqs/query | NOT AVAILABLE IN CURRENT RELEASE
+*@ZiqniTechAdminApiClient.ConsumersApi* | [**createKafkaConnections**](docs/ConsumersApi.md#createKafkaConnections) | **POST** /connections/kafka | 
+*@ZiqniTechAdminApiClient.ConsumersApi* | [**createRabbitMQConnections**](docs/ConsumersApi.md#createRabbitMQConnections) | **POST** /connections/rabbitmq | 
+*@ZiqniTechAdminApiClient.ConsumersApi* | [**createSqsConnections**](docs/ConsumersApi.md#createSqsConnections) | **POST** /connections/sqs | 
+*@ZiqniTechAdminApiClient.ConsumersApi* | [**deleteKafkaConnections**](docs/ConsumersApi.md#deleteKafkaConnections) | **DELETE** /connections/kafka | 
+*@ZiqniTechAdminApiClient.ConsumersApi* | [**deleteKafkaConnectionsByQuery**](docs/ConsumersApi.md#deleteKafkaConnectionsByQuery) | **POST** /connections/kafka/delete | 
+*@ZiqniTechAdminApiClient.ConsumersApi* | [**deleteRabbitMQConnections**](docs/ConsumersApi.md#deleteRabbitMQConnections) | **DELETE** /connections/rabbitmq | 
+*@ZiqniTechAdminApiClient.ConsumersApi* | [**deleteRabbitMQConnectionsByQuery**](docs/ConsumersApi.md#deleteRabbitMQConnectionsByQuery) | **POST** /connections/rabbitmq/delete | 
+*@ZiqniTechAdminApiClient.ConsumersApi* | [**deleteSqsConnections**](docs/ConsumersApi.md#deleteSqsConnections) | **DELETE** /connections/sqs | 
+*@ZiqniTechAdminApiClient.ConsumersApi* | [**deleteSqsConnectionsByQuery**](docs/ConsumersApi.md#deleteSqsConnectionsByQuery) | **POST** /connections/sqs/delete | 
+*@ZiqniTechAdminApiClient.ConsumersApi* | [**getKafkaConnections**](docs/ConsumersApi.md#getKafkaConnections) | **GET** /connections/kafka | 
+*@ZiqniTechAdminApiClient.ConsumersApi* | [**getKafkaConnectionsByQuery**](docs/ConsumersApi.md#getKafkaConnectionsByQuery) | **POST** /connections/kafka/query | 
+*@ZiqniTechAdminApiClient.ConsumersApi* | [**getRabbitMQConnections**](docs/ConsumersApi.md#getRabbitMQConnections) | **GET** /connections/rabbitmq | 
+*@ZiqniTechAdminApiClient.ConsumersApi* | [**getRabbitMQConnectionsByQuery**](docs/ConsumersApi.md#getRabbitMQConnectionsByQuery) | **POST** /connections/rabbitmq/query | 
+*@ZiqniTechAdminApiClient.ConsumersApi* | [**getSqsConnections**](docs/ConsumersApi.md#getSqsConnections) | **GET** /connections/sqs | 
+*@ZiqniTechAdminApiClient.ConsumersApi* | [**getSqsConnectionsByQuery**](docs/ConsumersApi.md#getSqsConnectionsByQuery) | **POST** /connections/sqs/query | 
 *@ZiqniTechAdminApiClient.ConsumersApi* | [**updateConnectionsState**](docs/ConsumersApi.md#updateConnectionsState) | **POST** /connections/state | Update connection status
-*@ZiqniTechAdminApiClient.ConsumersApi* | [**updateKafkaConnections**](docs/ConsumersApi.md#updateKafkaConnections) | **PUT** /connections/kafka | NOT AVAILABLE IN CURRENT RELEASE
-*@ZiqniTechAdminApiClient.ConsumersApi* | [**updateKafkaConnectionsState**](docs/ConsumersApi.md#updateKafkaConnectionsState) | **POST** /connections/kafka/state | NOT AVAILABLE IN CURRENT RELEASE
-*@ZiqniTechAdminApiClient.ConsumersApi* | [**updateRabbitMQConnections**](docs/ConsumersApi.md#updateRabbitMQConnections) | **PUT** /connections/rabbitmq | NOT AVAILABLE IN CURRENT RELEASE
-*@ZiqniTechAdminApiClient.ConsumersApi* | [**updateRabbitMQConnectionsState**](docs/ConsumersApi.md#updateRabbitMQConnectionsState) | **POST** /connections/rabbitmq/state | NOT AVAILABLE IN CURRENT RELEASE
-*@ZiqniTechAdminApiClient.ConsumersApi* | [**updateSqsConnections**](docs/ConsumersApi.md#updateSqsConnections) | **PUT** /connections/sqs | NOT AVAILABLE IN CURRENT RELEASE
-*@ZiqniTechAdminApiClient.ConsumersApi* | [**updateSqsConnectionsState**](docs/ConsumersApi.md#updateSqsConnectionsState) | **POST** /connections/sqs/state | NOT AVAILABLE IN CURRENT RELEASE
+*@ZiqniTechAdminApiClient.ConsumersApi* | [**updateKafkaConnections**](docs/ConsumersApi.md#updateKafkaConnections) | **PUT** /connections/kafka | 
+*@ZiqniTechAdminApiClient.ConsumersApi* | [**updateKafkaConnectionsState**](docs/ConsumersApi.md#updateKafkaConnectionsState) | **POST** /connections/kafka/state | 
+*@ZiqniTechAdminApiClient.ConsumersApi* | [**updateRabbitMQConnections**](docs/ConsumersApi.md#updateRabbitMQConnections) | **PUT** /connections/rabbitmq | 
+*@ZiqniTechAdminApiClient.ConsumersApi* | [**updateRabbitMQConnectionsState**](docs/ConsumersApi.md#updateRabbitMQConnectionsState) | **POST** /connections/rabbitmq/state | 
+*@ZiqniTechAdminApiClient.ConsumersApi* | [**updateSqsConnections**](docs/ConsumersApi.md#updateSqsConnections) | **PUT** /connections/sqs | 
+*@ZiqniTechAdminApiClient.ConsumersApi* | [**updateSqsConnectionsState**](docs/ConsumersApi.md#updateSqsConnectionsState) | **POST** /connections/sqs/state | 
 *@ZiqniTechAdminApiClient.ContestsApi* | [**createContests**](docs/ContestsApi.md#createContests) | **POST** /contests | 
-*@ZiqniTechAdminApiClient.ContestsApi* | [**getChildrenOfContest**](docs/ContestsApi.md#getChildrenOfContest) | **GET** /contests/{id}/children | NOT AVAILABLE IN CURRENT RELEASE
 *@ZiqniTechAdminApiClient.ContestsApi* | [**getContests**](docs/ContestsApi.md#getContests) | **GET** /contests | 
 *@ZiqniTechAdminApiClient.ContestsApi* | [**getContestsByQuery**](docs/ContestsApi.md#getContestsByQuery) | **POST** /contests/query | 
-*@ZiqniTechAdminApiClient.ContestsApi* | [**getContestsLeaderboardById**](docs/ContestsApi.md#getContestsLeaderboardById) | **GET** /contests/{id}/leaderboard | NOT AVAILABLE IN CURRENT RELEASE
-*@ZiqniTechAdminApiClient.ContestsApi* | [**getContestsToClone**](docs/ContestsApi.md#getContestsToClone) | **GET** /contests/{id}/clone | NOT AVAILABLE IN CURRENT RELEASE
-*@ZiqniTechAdminApiClient.ContestsApi* | [**getListOfEntrantsForContest**](docs/ContestsApi.md#getListOfEntrantsForContest) | **GET** /contests/{id}/entries | NOT AVAILABLE IN CURRENT RELEASE
-*@ZiqniTechAdminApiClient.ContestsApi* | [**getParentsOfContest**](docs/ContestsApi.md#getParentsOfContest) | **GET** /contests/{id}/parents | NOT AVAILABLE IN CURRENT RELEASE
+*@ZiqniTechAdminApiClient.ContestsApi* | [**getContestsLeaderboardById**](docs/ContestsApi.md#getContestsLeaderboardById) | **GET** /contests/{id}/leaderboard | 
+*@ZiqniTechAdminApiClient.ContestsApi* | [**getContestsToClone**](docs/ContestsApi.md#getContestsToClone) | **GET** /contests/{id}/clone | 
 *@ZiqniTechAdminApiClient.ContestsApi* | [**updateContest**](docs/ContestsApi.md#updateContest) | **PUT** /contests | 
-*@ZiqniTechAdminApiClient.ContestsApi* | [**updateContestsState**](docs/ContestsApi.md#updateContestsState) | **PUT** /contests/state | NOT AVAILABLE IN CURRENT RELEASE
+*@ZiqniTechAdminApiClient.ContestsApi* | [**updateContestsState**](docs/ContestsApi.md#updateContestsState) | **PUT** /contests/state | 
 *@ZiqniTechAdminApiClient.CustomFieldsApi* | [**createCustomFields**](docs/CustomFieldsApi.md#createCustomFields) | **POST** /custom-fields | Create custom fields
 *@ZiqniTechAdminApiClient.CustomFieldsApi* | [**deleteCustomFields**](docs/CustomFieldsApi.md#deleteCustomFields) | **DELETE** /custom-fields | Delete custom fields
 *@ZiqniTechAdminApiClient.CustomFieldsApi* | [**deleteCustomFieldsByQuery**](docs/CustomFieldsApi.md#deleteCustomFieldsByQuery) | **POST** /custom-fields/delete | Delete custom fields by query
@@ -225,29 +213,30 @@ Class | Method | HTTP request | Description
 *@ZiqniTechAdminApiClient.CustomFieldsApi* | [**getCustomFieldsByQuery**](docs/CustomFieldsApi.md#getCustomFieldsByQuery) | **POST** /custom-fields/query | Get custom fields by query
 *@ZiqniTechAdminApiClient.CustomFieldsApi* | [**updateCustomFields**](docs/CustomFieldsApi.md#updateCustomFields) | **PUT** /custom-fields | Update custom fields
 *@ZiqniTechAdminApiClient.DefaultApi* | [**deleteSpace**](docs/DefaultApi.md#deleteSpace) | **DELETE** /spaces | NOT AVAILABLE IN CURRENT RELEASE
+*@ZiqniTechAdminApiClient.DefaultApi* | [**manageLeaderboardSubscription**](docs/DefaultApi.md#manageLeaderboardSubscription) | **POST** /leaderboard | 
+*@ZiqniTechAdminApiClient.DefaultApi* | [**unsubscribeFromEntityChanges**](docs/DefaultApi.md#unsubscribeFromEntityChanges) | **DELETE** /entity-changes | 
 *@ZiqniTechAdminApiClient.EntityChangesApi* | [**manageEntityChangeSubscription**](docs/EntityChangesApi.md#manageEntityChangeSubscription) | **POST** /entity-changes | 
 *@ZiqniTechAdminApiClient.EventsApi* | [**createEvents**](docs/EventsApi.md#createEvents) | **POST** /events | 
 *@ZiqniTechAdminApiClient.EventsApi* | [**getEvents**](docs/EventsApi.md#getEvents) | **GET** /events | 
 *@ZiqniTechAdminApiClient.EventsApi* | [**getEventsByQuery**](docs/EventsApi.md#getEventsByQuery) | **POST** /events/query | 
-*@ZiqniTechAdminApiClient.FileObjectsApi* | [**copyFileObjects**](docs/FileObjectsApi.md#copyFileObjects) | **POST** /file-objects/copy | NOT AVAILABLE IN CURRENT RELEASE
 *@ZiqniTechAdminApiClient.FileObjectsApi* | [**createFileObjects**](docs/FileObjectsApi.md#createFileObjects) | **POST** /file-objects | 
 *@ZiqniTechAdminApiClient.FileObjectsApi* | [**deleteFileObjects**](docs/FileObjectsApi.md#deleteFileObjects) | **DELETE** /file-objects | 
-*@ZiqniTechAdminApiClient.FileObjectsApi* | [**deleteFileObjectsByQuery**](docs/FileObjectsApi.md#deleteFileObjectsByQuery) | **POST** /file-objects/delete | NOT AVAILABLE IN CURRENT RELEASE
-*@ZiqniTechAdminApiClient.FileObjectsApi* | [**downloadFileObjects**](docs/FileObjectsApi.md#downloadFileObjects) | **GET** /file-objects/download | NOT AVAILABLE IN CURRENT RELEASE
+*@ZiqniTechAdminApiClient.FileObjectsApi* | [**deleteFileObjectsByQuery**](docs/FileObjectsApi.md#deleteFileObjectsByQuery) | **POST** /file-objects/delete | 
+*@ZiqniTechAdminApiClient.FileObjectsApi* | [**downloadFileObjects**](docs/FileObjectsApi.md#downloadFileObjects) | **GET** /file-objects/download | 
 *@ZiqniTechAdminApiClient.FileObjectsApi* | [**getFileObjects**](docs/FileObjectsApi.md#getFileObjects) | **GET** /file-objects | 
 *@ZiqniTechAdminApiClient.FileObjectsApi* | [**getFileObjectsByQuery**](docs/FileObjectsApi.md#getFileObjectsByQuery) | **POST** /file-objects/query | 
-*@ZiqniTechAdminApiClient.FileObjectsApi* | [**saveTemplates**](docs/FileObjectsApi.md#saveTemplates) | **POST** /file-objects/save-template | NOT AVAILABLE IN CURRENT RELEASE
+*@ZiqniTechAdminApiClient.FileObjectsApi* | [**saveTemplates**](docs/FileObjectsApi.md#saveTemplates) | **POST** /file-objects/save-template | 
 *@ZiqniTechAdminApiClient.FileObjectsApi* | [**updateFileObjects**](docs/FileObjectsApi.md#updateFileObjects) | **PUT** /file-objects | 
-*@ZiqniTechAdminApiClient.FileObjectsApi* | [**uploadFileObjects**](docs/FileObjectsApi.md#uploadFileObjects) | **POST** /file-objects/upload | NOT AVAILABLE IN CURRENT RELEASE
+*@ZiqniTechAdminApiClient.FileObjectsApi* | [**uploadFileObjects**](docs/FileObjectsApi.md#uploadFileObjects) | **POST** /file-objects/upload | 
 *@ZiqniTechAdminApiClient.FileRepositoriesApi* | [**createFileRepositories**](docs/FileRepositoriesApi.md#createFileRepositories) | **POST** /file-repositories | 
 *@ZiqniTechAdminApiClient.FileRepositoriesApi* | [**deleteFileRepositories**](docs/FileRepositoriesApi.md#deleteFileRepositories) | **DELETE** /file-repositories | 
-*@ZiqniTechAdminApiClient.FileRepositoriesApi* | [**deleteFileRepositoriesByQuery**](docs/FileRepositoriesApi.md#deleteFileRepositoriesByQuery) | **POST** /file-repositories/delete | NOT AVAILABLE IN CURRENT RELEASE
+*@ZiqniTechAdminApiClient.FileRepositoriesApi* | [**deleteFileRepositoriesByQuery**](docs/FileRepositoriesApi.md#deleteFileRepositoriesByQuery) | **POST** /file-repositories/delete | 
 *@ZiqniTechAdminApiClient.FileRepositoriesApi* | [**getFileRepositories**](docs/FileRepositoriesApi.md#getFileRepositories) | **GET** /file-repositories | 
 *@ZiqniTechAdminApiClient.FileRepositoriesApi* | [**getFileRepositoriesByQuery**](docs/FileRepositoriesApi.md#getFileRepositoriesByQuery) | **POST** /file-repositories/query | 
 *@ZiqniTechAdminApiClient.FileRepositoriesApi* | [**updateFileRepositories**](docs/FileRepositoriesApi.md#updateFileRepositories) | **PUT** /file-repositories | 
 *@ZiqniTechAdminApiClient.LanguagesApi* | [**createLanguages**](docs/LanguagesApi.md#createLanguages) | **POST** /languages | 
 *@ZiqniTechAdminApiClient.LanguagesApi* | [**deleteLanguages**](docs/LanguagesApi.md#deleteLanguages) | **DELETE** /languages | 
-*@ZiqniTechAdminApiClient.LanguagesApi* | [**deleteLanguagesByQuery**](docs/LanguagesApi.md#deleteLanguagesByQuery) | **POST** /languages/delete | NOT AVAILABLE IN CURRENT RELEASE
+*@ZiqniTechAdminApiClient.LanguagesApi* | [**deleteLanguagesByQuery**](docs/LanguagesApi.md#deleteLanguagesByQuery) | **POST** /languages/delete | 
 *@ZiqniTechAdminApiClient.LanguagesApi* | [**getLanguages**](docs/LanguagesApi.md#getLanguages) | **GET** /languages | 
 *@ZiqniTechAdminApiClient.LanguagesApi* | [**getLanguagesByQuery**](docs/LanguagesApi.md#getLanguagesByQuery) | **POST** /languages/query | 
 *@ZiqniTechAdminApiClient.LanguagesApi* | [**getListOfAllLanguages**](docs/LanguagesApi.md#getListOfAllLanguages) | **GET** /languages/available | 
@@ -257,32 +246,22 @@ Class | Method | HTTP request | Description
 *@ZiqniTechAdminApiClient.MemberMessagesApi* | [**deleteMemberMessagesByQuery**](docs/MemberMessagesApi.md#deleteMemberMessagesByQuery) | **POST** /member-messages/delete | 
 *@ZiqniTechAdminApiClient.MemberMessagesApi* | [**getMemberMessages**](docs/MemberMessagesApi.md#getMemberMessages) | **GET** /member-messages | 
 *@ZiqniTechAdminApiClient.MemberMessagesApi* | [**getMemberMessagesByQuery**](docs/MemberMessagesApi.md#getMemberMessagesByQuery) | **POST** /member-messages/query | 
-*@ZiqniTechAdminApiClient.MemberMessagesApi* | [**updateMemberMessagesStatus**](docs/MemberMessagesApi.md#updateMemberMessagesStatus) | **PUT** /member-messages/state | NOT AVAILABLE IN CURRENT RELEASE
 *@ZiqniTechAdminApiClient.MemberTokenApi* | [**createMemberToken**](docs/MemberTokenApi.md#createMemberToken) | **POST** /member-token | 
 *@ZiqniTechAdminApiClient.MembersApi* | [**createMembers**](docs/MembersApi.md#createMembers) | **POST** /members | Create members
 *@ZiqniTechAdminApiClient.MembersApi* | [**deleteMembers**](docs/MembersApi.md#deleteMembers) | **DELETE** /members | Delete members
 *@ZiqniTechAdminApiClient.MembersApi* | [**deleteMembersByQuery**](docs/MembersApi.md#deleteMembersByQuery) | **POST** /members/delete | Delete members by query
-*@ZiqniTechAdminApiClient.MembersApi* | [**getAchievementsForMembers**](docs/MembersApi.md#getAchievementsForMembers) | **GET** /members/{id}/achievements | NOT AVAILABLE IN CURRENT RELEASE
-*@ZiqniTechAdminApiClient.MembersApi* | [**getAwardsForMembers**](docs/MembersApi.md#getAwardsForMembers) | **GET** /members/{id}/awards | NOT AVAILABLE IN CURRENT RELEASE
-*@ZiqniTechAdminApiClient.MembersApi* | [**getCompetitionsForMembers**](docs/MembersApi.md#getCompetitionsForMembers) | **GET** /members/{id}/competitions | NOT AVAILABLE IN CURRENT RELEASE
-*@ZiqniTechAdminApiClient.MembersApi* | [**getContestsForMembers**](docs/MembersApi.md#getContestsForMembers) | **GET** /members/{id}/contests | NOT AVAILABLE IN CURRENT RELEASE
 *@ZiqniTechAdminApiClient.MembersApi* | [**getMembers**](docs/MembersApi.md#getMembers) | **GET** /members | Get members
 *@ZiqniTechAdminApiClient.MembersApi* | [**getMembersByQuery**](docs/MembersApi.md#getMembersByQuery) | **POST** /members/query | Get members by query
 *@ZiqniTechAdminApiClient.MembersApi* | [**getMembersByRefId**](docs/MembersApi.md#getMembersByRefId) | **GET** /members/find-by-ref-identifiers | Get members by reference ids
-*@ZiqniTechAdminApiClient.MembersApi* | [**getMessagesForMembers**](docs/MembersApi.md#getMessagesForMembers) | **GET** /members/{id}/inbox | NOT AVAILABLE IN CURRENT RELEASE
 *@ZiqniTechAdminApiClient.MembersApi* | [**updateMembers**](docs/MembersApi.md#updateMembers) | **PUT** /members | Update members
 *@ZiqniTechAdminApiClient.NotificationsApi* | [**createNotifications**](docs/NotificationsApi.md#createNotifications) | **POST** /notifications | 
 *@ZiqniTechAdminApiClient.NotificationsApi* | [**deleteNotifications**](docs/NotificationsApi.md#deleteNotifications) | **DELETE** /notifications | 
 *@ZiqniTechAdminApiClient.NotificationsApi* | [**deleteNotificationsByQuery**](docs/NotificationsApi.md#deleteNotificationsByQuery) | **POST** /notifications/delete | 
 *@ZiqniTechAdminApiClient.NotificationsApi* | [**getNotifications**](docs/NotificationsApi.md#getNotifications) | **GET** /notifications | 
 *@ZiqniTechAdminApiClient.NotificationsApi* | [**getNotificationsByQuery**](docs/NotificationsApi.md#getNotificationsByQuery) | **POST** /notifications/query | 
-*@ZiqniTechAdminApiClient.NotificationsApi* | [**updateNotificationsStatus**](docs/NotificationsApi.md#updateNotificationsStatus) | **PUT** /notifications/state | NOT AVAILABLE IN CURRENT RELEASE
 *@ZiqniTechAdminApiClient.ProductsApi* | [**createProducts**](docs/ProductsApi.md#createProducts) | **POST** /products | Create products
 *@ZiqniTechAdminApiClient.ProductsApi* | [**deleteProducts**](docs/ProductsApi.md#deleteProducts) | **DELETE** /products | Delete products
 *@ZiqniTechAdminApiClient.ProductsApi* | [**deleteProductsByQuery**](docs/ProductsApi.md#deleteProductsByQuery) | **POST** /products/delete | Delete products by query
-*@ZiqniTechAdminApiClient.ProductsApi* | [**getAchievementsForProducts**](docs/ProductsApi.md#getAchievementsForProducts) | **GET** /products/{id}/achievements | NOT AVAILABLE IN CURRENT RELEASE
-*@ZiqniTechAdminApiClient.ProductsApi* | [**getCompetitionsForProducts**](docs/ProductsApi.md#getCompetitionsForProducts) | **GET** /products/{id}/competitions | NOT AVAILABLE IN CURRENT RELEASE
-*@ZiqniTechAdminApiClient.ProductsApi* | [**getContestsForProducts**](docs/ProductsApi.md#getContestsForProducts) | **GET** /products/{id}/contests | NOT AVAILABLE IN CURRENT RELEASE
 *@ZiqniTechAdminApiClient.ProductsApi* | [**getProducts**](docs/ProductsApi.md#getProducts) | **GET** /products | Get products
 *@ZiqniTechAdminApiClient.ProductsApi* | [**getProductsByQuery**](docs/ProductsApi.md#getProductsByQuery) | **POST** /products/query | Get products by query
 *@ZiqniTechAdminApiClient.ProductsApi* | [**getProductsByRefId**](docs/ProductsApi.md#getProductsByRefId) | **GET** /products/find-by-ref-identifiers/ | Get products by reference ids
@@ -295,13 +274,11 @@ Class | Method | HTTP request | Description
 *@ZiqniTechAdminApiClient.RewardTypesApi* | [**updateRewardTypes**](docs/RewardTypesApi.md#updateRewardTypes) | **PUT** /reward-types | Update Reward Types
 *@ZiqniTechAdminApiClient.RewardsApi* | [**createRewards**](docs/RewardsApi.md#createRewards) | **POST** /rewards | 
 *@ZiqniTechAdminApiClient.RewardsApi* | [**deleteRewards**](docs/RewardsApi.md#deleteRewards) | **DELETE** /rewards | 
-*@ZiqniTechAdminApiClient.RewardsApi* | [**deleteRewardsByQuery**](docs/RewardsApi.md#deleteRewardsByQuery) | **POST** /rewards/delete | NOT AVAILABLE IN CURRENT RELEASE
+*@ZiqniTechAdminApiClient.RewardsApi* | [**deleteRewardsByQuery**](docs/RewardsApi.md#deleteRewardsByQuery) | **POST** /rewards/delete | 
 *@ZiqniTechAdminApiClient.RewardsApi* | [**getRewards**](docs/RewardsApi.md#getRewards) | **GET** /rewards | 
-*@ZiqniTechAdminApiClient.RewardsApi* | [**getRewardsByAchievementId**](docs/RewardsApi.md#getRewardsByAchievementId) | **GET** /rewards/achievements/{id} | NOT AVAILABLE IN CURRENT RELEASE
-*@ZiqniTechAdminApiClient.RewardsApi* | [**getRewardsByContestId**](docs/RewardsApi.md#getRewardsByContestId) | **GET** /rewards/contests/{id} | NOT AVAILABLE IN CURRENT RELEASE
 *@ZiqniTechAdminApiClient.RewardsApi* | [**getRewardsByQuery**](docs/RewardsApi.md#getRewardsByQuery) | **POST** /rewards/query | 
 *@ZiqniTechAdminApiClient.RewardsApi* | [**updateRewards**](docs/RewardsApi.md#updateRewards) | **PUT** /rewards | 
-*@ZiqniTechAdminApiClient.RulesApi* | [**deleteRulesByQuery**](docs/RulesApi.md#deleteRulesByQuery) | **POST** /rules/delete | NOT AVAILABLE IN CURRENT RELEASE
+*@ZiqniTechAdminApiClient.RulesApi* | [**deleteRulesByQuery**](docs/RulesApi.md#deleteRulesByQuery) | **POST** /rules/delete | 
 *@ZiqniTechAdminApiClient.RulesApi* | [**getRuleSchemas**](docs/RulesApi.md#getRuleSchemas) | **GET** /rules/schema | 
 *@ZiqniTechAdminApiClient.RulesApi* | [**getRules**](docs/RulesApi.md#getRules) | **GET** /rules | 
 *@ZiqniTechAdminApiClient.RulesApi* | [**getRulesByQuery**](docs/RulesApi.md#getRulesByQuery) | **POST** /rules/query | 
@@ -321,35 +298,31 @@ Class | Method | HTTP request | Description
 *@ZiqniTechAdminApiClient.TagsApi* | [**updateTags**](docs/TagsApi.md#updateTags) | **PUT** /tags | Update tags
 *@ZiqniTechAdminApiClient.TransformersApi* | [**createTransformers**](docs/TransformersApi.md#createTransformers) | **POST** /transformers | 
 *@ZiqniTechAdminApiClient.TransformersApi* | [**deleteTransformers**](docs/TransformersApi.md#deleteTransformers) | **DELETE** /transformers | 
-*@ZiqniTechAdminApiClient.TransformersApi* | [**deleteTransformersByQuery**](docs/TransformersApi.md#deleteTransformersByQuery) | **POST** /transformers/delete | NOT AVAILABLE IN CURRENT RELEASE
+*@ZiqniTechAdminApiClient.TransformersApi* | [**deleteTransformersByQuery**](docs/TransformersApi.md#deleteTransformersByQuery) | **POST** /transformers/delete | 
 *@ZiqniTechAdminApiClient.TransformersApi* | [**getTransformers**](docs/TransformersApi.md#getTransformers) | **GET** /transformers | 
 *@ZiqniTechAdminApiClient.TransformersApi* | [**getTransformersByQuery**](docs/TransformersApi.md#getTransformersByQuery) | **POST** /transformers/query | 
 *@ZiqniTechAdminApiClient.TransformersApi* | [**updateTransformers**](docs/TransformersApi.md#updateTransformers) | **PUT** /transformers | 
 *@ZiqniTechAdminApiClient.TranslationsApi* | [**createTranslations**](docs/TranslationsApi.md#createTranslations) | **POST** /translations | creating a translation
 *@ZiqniTechAdminApiClient.TranslationsApi* | [**deleteTranslations**](docs/TranslationsApi.md#deleteTranslations) | **DELETE** /translations | 
-*@ZiqniTechAdminApiClient.TranslationsApi* | [**deleteTranslationsByQuery**](docs/TranslationsApi.md#deleteTranslationsByQuery) | **POST** /translations/delete | NOT AVAILABLE IN CURRENT RELEASE
+*@ZiqniTechAdminApiClient.TranslationsApi* | [**deleteTranslationsByQuery**](docs/TranslationsApi.md#deleteTranslationsByQuery) | **POST** /translations/delete | Delete translations by query
 *@ZiqniTechAdminApiClient.TranslationsApi* | [**getTranslations**](docs/TranslationsApi.md#getTranslations) | **GET** /translations | 
 *@ZiqniTechAdminApiClient.TranslationsApi* | [**getTranslationsByEntityId**](docs/TranslationsApi.md#getTranslationsByEntityId) | **GET** /translations/find-by-entity-id | 
 *@ZiqniTechAdminApiClient.TranslationsApi* | [**getTranslationsByQuery**](docs/TranslationsApi.md#getTranslationsByQuery) | **POST** /translations/query | 
 *@ZiqniTechAdminApiClient.TranslationsApi* | [**updateTranslations**](docs/TranslationsApi.md#updateTranslations) | **PUT** /translations | 
 *@ZiqniTechAdminApiClient.UnitsOfMeasureApi* | [**createUnitsOfMeasure**](docs/UnitsOfMeasureApi.md#createUnitsOfMeasure) | **POST** /units-of-measure | 
-*@ZiqniTechAdminApiClient.UnitsOfMeasureApi* | [**deleteCollaboratorsByQuery**](docs/UnitsOfMeasureApi.md#deleteCollaboratorsByQuery) | **POST** /collaborators/delete | NOT AVAILABLE IN CURRENT RELEASE
 *@ZiqniTechAdminApiClient.UnitsOfMeasureApi* | [**deleteUnitsOfMeasure**](docs/UnitsOfMeasureApi.md#deleteUnitsOfMeasure) | **DELETE** /units-of-measure | 
-*@ZiqniTechAdminApiClient.UnitsOfMeasureApi* | [**deleteUnitsOfMeasureByQuery**](docs/UnitsOfMeasureApi.md#deleteUnitsOfMeasureByQuery) | **POST** /units-of-measure/delete | NOT AVAILABLE IN CURRENT RELEASE
+*@ZiqniTechAdminApiClient.UnitsOfMeasureApi* | [**deleteUnitsOfMeasureByQuery**](docs/UnitsOfMeasureApi.md#deleteUnitsOfMeasureByQuery) | **POST** /units-of-measure/delete | Delete units of measure by query
 *@ZiqniTechAdminApiClient.UnitsOfMeasureApi* | [**getUnitsOfMeasure**](docs/UnitsOfMeasureApi.md#getUnitsOfMeasure) | **GET** /units-of-measure | 
 *@ZiqniTechAdminApiClient.UnitsOfMeasureApi* | [**getUnitsOfMeasureByQuery**](docs/UnitsOfMeasureApi.md#getUnitsOfMeasureByQuery) | **POST** /units-of-measure/query | 
 *@ZiqniTechAdminApiClient.UnitsOfMeasureApi* | [**updateUnitsOfMeasure**](docs/UnitsOfMeasureApi.md#updateUnitsOfMeasure) | **PUT** /units-of-measure | 
 *@ZiqniTechAdminApiClient.UserApi* | [**getUser**](docs/UserApi.md#getUser) | **GET** /user | 
-*@ZiqniTechAdminApiClient.UserApi* | [**getUserMessages**](docs/UserApi.md#getUserMessages) | **GET** /user/inbox | NOT AVAILABLE IN CURRENT RELEASE
-*@ZiqniTechAdminApiClient.UserApi* | [**getUserMessagesById**](docs/UserApi.md#getUserMessagesById) | **GET** /user/inbox/{id} | NOT AVAILABLE IN CURRENT RELEASE
 *@ZiqniTechAdminApiClient.WebhooksApi* | [**createWebhooks**](docs/WebhooksApi.md#createWebhooks) | **POST** /webhooks | 
 *@ZiqniTechAdminApiClient.WebhooksApi* | [**deleteWebhooks**](docs/WebhooksApi.md#deleteWebhooks) | **DELETE** /webhooks | 
-*@ZiqniTechAdminApiClient.WebhooksApi* | [**deleteWebhooksByQuery**](docs/WebhooksApi.md#deleteWebhooksByQuery) | **POST** /webhooks/delete | NOT AVAILABLE IN CURRENT RELEASE
+*@ZiqniTechAdminApiClient.WebhooksApi* | [**deleteWebhooksByQuery**](docs/WebhooksApi.md#deleteWebhooksByQuery) | **POST** /webhooks/delete | Delete webhooks by query
 *@ZiqniTechAdminApiClient.WebhooksApi* | [**getWebhooks**](docs/WebhooksApi.md#getWebhooks) | **GET** /webhooks | 
 *@ZiqniTechAdminApiClient.WebhooksApi* | [**getWebhooksByQuery**](docs/WebhooksApi.md#getWebhooksByQuery) | **POST** /webhooks/query | 
 *@ZiqniTechAdminApiClient.WebhooksApi* | [**getWebhooksTriggers**](docs/WebhooksApi.md#getWebhooksTriggers) | **GET** /webhooks/triggers | 
 *@ZiqniTechAdminApiClient.WebhooksApi* | [**updateWebhooks**](docs/WebhooksApi.md#updateWebhooks) | **PUT** /webhooks | 
-*@ZiqniTechAdminApiClient.WebhooksApi* | [**updateWebhooksState**](docs/WebhooksApi.md#updateWebhooksState) | **POST** /webhooks/state | NOT AVAILABLE IN CURRENT RELEASE
 
 
 ## Documentation for Models
@@ -490,6 +463,10 @@ Class | Method | HTTP request | Description
  - [@ZiqniTechAdminApiClient.CustomFieldReduced](docs/CustomFieldReduced.md)
  - [@ZiqniTechAdminApiClient.CustomFieldReducedAllOf](docs/CustomFieldReducedAllOf.md)
  - [@ZiqniTechAdminApiClient.CustomFieldResponse](docs/CustomFieldResponse.md)
+ - [@ZiqniTechAdminApiClient.Dashboard](docs/Dashboard.md)
+ - [@ZiqniTechAdminApiClient.DashboardResponse](docs/DashboardResponse.md)
+ - [@ZiqniTechAdminApiClient.DataSetsReference](docs/DataSetsReference.md)
+ - [@ZiqniTechAdminApiClient.DataSetsValue](docs/DataSetsValue.md)
  - [@ZiqniTechAdminApiClient.Dependancy](docs/Dependancy.md)
  - [@ZiqniTechAdminApiClient.DependantOn](docs/DependantOn.md)
  - [@ZiqniTechAdminApiClient.EntityChangeSubscription](docs/EntityChangeSubscription.md)
@@ -524,8 +501,10 @@ Class | Method | HTTP request | Description
  - [@ZiqniTechAdminApiClient.Leaderboard](docs/Leaderboard.md)
  - [@ZiqniTechAdminApiClient.LeaderboardAllOf](docs/LeaderboardAllOf.md)
  - [@ZiqniTechAdminApiClient.LeaderboardEntry](docs/LeaderboardEntry.md)
+ - [@ZiqniTechAdminApiClient.LeaderboardFilter](docs/LeaderboardFilter.md)
  - [@ZiqniTechAdminApiClient.LeaderboardMember](docs/LeaderboardMember.md)
  - [@ZiqniTechAdminApiClient.LeaderboardResponseByContest](docs/LeaderboardResponseByContest.md)
+ - [@ZiqniTechAdminApiClient.LeaderboardSubscriptionRequest](docs/LeaderboardSubscriptionRequest.md)
  - [@ZiqniTechAdminApiClient.Location](docs/Location.md)
  - [@ZiqniTechAdminApiClient.Macro](docs/Macro.md)
  - [@ZiqniTechAdminApiClient.MatchCondition](docs/MatchCondition.md)
@@ -544,6 +523,7 @@ Class | Method | HTTP request | Description
  - [@ZiqniTechAdminApiClient.MemberResponse](docs/MemberResponse.md)
  - [@ZiqniTechAdminApiClient.MemberTokenRequest](docs/MemberTokenRequest.md)
  - [@ZiqniTechAdminApiClient.MemberType](docs/MemberType.md)
+ - [@ZiqniTechAdminApiClient.MessageLink](docs/MessageLink.md)
  - [@ZiqniTechAdminApiClient.MessageStatus](docs/MessageStatus.md)
  - [@ZiqniTechAdminApiClient.MessageType](docs/MessageType.md)
  - [@ZiqniTechAdminApiClient.MetaBasic](docs/MetaBasic.md)
@@ -551,6 +531,7 @@ Class | Method | HTTP request | Description
  - [@ZiqniTechAdminApiClient.MetaExtendedAllOf](docs/MetaExtendedAllOf.md)
  - [@ZiqniTechAdminApiClient.MetaInfo](docs/MetaInfo.md)
  - [@ZiqniTechAdminApiClient.ModelDefault](docs/ModelDefault.md)
+ - [@ZiqniTechAdminApiClient.Modules](docs/Modules.md)
  - [@ZiqniTechAdminApiClient.Notification](docs/Notification.md)
  - [@ZiqniTechAdminApiClient.NotificationAllOf](docs/NotificationAllOf.md)
  - [@ZiqniTechAdminApiClient.NotificationMessage](docs/NotificationMessage.md)

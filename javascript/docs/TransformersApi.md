@@ -6,7 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**createTransformers**](TransformersApi.md#createTransformers) | **POST** /transformers | 
 [**deleteTransformers**](TransformersApi.md#deleteTransformers) | **DELETE** /transformers | 
-[**deleteTransformersByQuery**](TransformersApi.md#deleteTransformersByQuery) | **POST** /transformers/delete | NOT AVAILABLE IN CURRENT RELEASE
+[**deleteTransformersByQuery**](TransformersApi.md#deleteTransformersByQuery) | **POST** /transformers/delete | 
 [**getTransformers**](TransformersApi.md#getTransformers) | **GET** /transformers | 
 [**getTransformersByQuery**](TransformersApi.md#getTransformersByQuery) | **POST** /transformers/query | 
 [**updateTransformers**](TransformersApi.md#updateTransformers) | **PUT** /transformers | 
@@ -117,7 +117,7 @@ Name | Type | Description  | Notes
 
 > ApiResponse deleteTransformersByQuery(opts)
 
-NOT AVAILABLE IN CURRENT RELEASE
+
 
 Delete a Transformer or a list of Transformers from Ziqni by unique Transformer ID&#39;s or any other POST body parameters using the POST method
 

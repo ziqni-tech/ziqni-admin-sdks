@@ -88,16 +88,6 @@
         done();
       });
     });
-    describe('getCollaboratorsByQuery', function() {
-      it('should call getCollaboratorsByQuery successfully', function(done) {
-        //uncomment below and update the code to test getCollaboratorsByQuery
-        //instance.getCollaboratorsByQuery(function(error) {
-        //  if (error) throw error;
-        //expect().to.be();
-        //});
-        done();
-      });
-    });
     describe('updateCollaborators', function() {
       it('should call updateCollaborators successfully', function(done) {
         //uncomment below and update the code to test updateCollaborators

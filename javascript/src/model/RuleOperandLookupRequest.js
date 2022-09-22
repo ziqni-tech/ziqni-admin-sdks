@@ -23,10 +23,11 @@ class RuleOperandLookupRequest {
      * Constructs a new <code>RuleOperandLookupRequest</code>.
      * @alias module:model/RuleOperandLookupRequest
      * @param context {String} The object context to search within
+     * @param operand {String} The operand like \"product.tags\" or \"member.tags\" or \"event.product\"
      */
-    constructor(context) { 
+    constructor(context, operand) { 
         
-        RuleOperandLookupRequest.initialize(this, context);
+        RuleOperandLookupRequest.initialize(this, context, operand);
     }
 
     /**
@@ -34,8 +35,9 @@ class RuleOperandLookupRequest {
      * This method is used by the constructors of any subclasses, in order to implement multiple inheritance (mix-ins).
      * Only for internal use.
      */
-    static initialize(obj, context) { 
+    static initialize(obj, context, operand) { 
         obj['context'] = context;
+        obj['operand'] = operand;
     }
 
     /**
@@ -66,6 +68,9 @@ class RuleOperandLookupRequest {
             }
             if (data.hasOwnProperty('constraints')) {
                 obj['constraints'] = ApiClient.convertToType(data['constraints'], ['String']);
+            }
+            if (data.hasOwnProperty('operand')) {
+                obj['operand'] = ApiClient.convertToType(data['operand'], 'String');
             }
         }
         return obj;
@@ -109,6 +114,12 @@ RuleOperandLookupRequest.prototype['limit'] = undefined;
  * @member {Array.<String>} constraints
  */
 RuleOperandLookupRequest.prototype['constraints'] = undefined;
+
+/**
+ * The operand like \"product.tags\" or \"member.tags\" or \"event.product\"
+ * @member {String} operand
+ */
+RuleOperandLookupRequest.prototype['operand'] = undefined;
 
 
 

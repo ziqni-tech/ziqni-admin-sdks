@@ -24,11 +24,12 @@ class EntityChangeSubscriptionRequest {
      * 
      * @alias module:model/EntityChangeSubscriptionRequest
      * @param entityType {String} What you are subscribing to, like Competition, Contest, Member, Award etc.
+     * @param callback {String} The callback operation you are subscribing too. Like entityChanged or entityStateChanged
      * @param action {module:model/EntityChangeSubscriptionRequest.ActionEnum} Either subscribe or unsubscribe from the data feed
      */
-    constructor(entityType, action) { 
+    constructor(entityType, callback, action) { 
         
-        EntityChangeSubscriptionRequest.initialize(this, entityType, action);
+        EntityChangeSubscriptionRequest.initialize(this, entityType, callback, action);
     }
 
     /**
@@ -36,8 +37,9 @@ class EntityChangeSubscriptionRequest {
      * This method is used by the constructors of any subclasses, in order to implement multiple inheritance (mix-ins).
      * Only for internal use.
      */
-    static initialize(obj, entityType, action) { 
+    static initialize(obj, entityType, callback, action) { 
         obj['entityType'] = entityType;
+        obj['callback'] = callback;
         obj['action'] = action;
     }
 
@@ -55,6 +57,12 @@ class EntityChangeSubscriptionRequest {
             if (data.hasOwnProperty('entityType')) {
                 obj['entityType'] = ApiClient.convertToType(data['entityType'], 'String');
             }
+            if (data.hasOwnProperty('constraints')) {
+                obj['constraints'] = ApiClient.convertToType(data['constraints'], ['String']);
+            }
+            if (data.hasOwnProperty('callback')) {
+                obj['callback'] = ApiClient.convertToType(data['callback'], 'String');
+            }
             if (data.hasOwnProperty('action')) {
                 obj['action'] = ApiClient.convertToType(data['action'], 'String');
             }
@@ -70,6 +78,18 @@ class EntityChangeSubscriptionRequest {
  * @member {String} entityType
  */
 EntityChangeSubscriptionRequest.prototype['entityType'] = undefined;
+
+/**
+ * Constraints of this subscription.
+ * @member {Array.<String>} constraints
+ */
+EntityChangeSubscriptionRequest.prototype['constraints'] = undefined;
+
+/**
+ * The callback operation you are subscribing too. Like entityChanged or entityStateChanged
+ * @member {String} callback
+ */
+EntityChangeSubscriptionRequest.prototype['callback'] = undefined;
 
 /**
  * Either subscribe or unsubscribe from the data feed

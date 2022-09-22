@@ -25,7 +25,7 @@ class MemberTokenRequest {
      * @alias module:model/MemberTokenRequest
      * @param apiKey {String} The API key to use to generate this token.
      * @param member {String} The identifier used to find the member information. if this value is set to \"__PUBLIC__\" and isReferenceId is set to \"FALSE\" then a genral use, non-member specific token will be issued
-     * @param resource {String} This will be ziqni-aapi or similar
+     * @param resource {String} This will be ziqni-gapi or similar
      */
     constructor(apiKey, member, resource) { 
         
@@ -110,7 +110,7 @@ MemberTokenRequest.prototype['member'] = undefined;
 MemberTokenRequest.prototype['expires'] = undefined;
 
 /**
- * This will be ziqni-aapi or similar
+ * This will be ziqni-gapi or similar
  * @member {String} resource
  */
 MemberTokenRequest.prototype['resource'] = undefined;

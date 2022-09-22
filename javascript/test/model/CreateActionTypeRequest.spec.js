@@ -90,14 +90,14 @@
       //expect(instance).to.be();
     });
 
-    it('should have the property unitOfMeasureType (base name: "unitOfMeasureType")', function() {
-      // uncomment below and update the code to test the property unitOfMeasureType
+    it('should have the property addConstraints (base name: "addConstraints")', function() {
+      // uncomment below and update the code to test the property addConstraints
       //var instance = new @ZiqniTechAdminApiClient.CreateActionTypeRequest();
       //expect(instance).to.be();
     });
 
-    it('should have the property addConstraints (base name: "addConstraints")', function() {
-      // uncomment below and update the code to test the property addConstraints
+    it('should have the property unitOfMeasure (base name: "unitOfMeasure")', function() {
+      // uncomment below and update the code to test the property unitOfMeasure
       //var instance = new @ZiqniTechAdminApiClient.CreateActionTypeRequest();
       //expect(instance).to.be();
     });

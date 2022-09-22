@@ -12,11 +12,11 @@ Name | Type | Description | Notes
 **messageType** | [**MessageType**](MessageType.md) |  | 
 **subject** | **String** | The title of the message | 
 **body** | **String** | The context of the message | 
-**prize** | **String** | Unique system identifier of an Award | [readonly] 
 **status** | [**MessageStatus**](MessageStatus.md) |  | 
-**expiry** | **Date** | The time that the message will disappear after. ISO8601 timestamp | 
-**memberId** | **[String]** | The reference ID of the event object | 
+**expireAfterDate** | **Date** | Specify the expiry as a date after creation of the record. If expireAfterDays is specified then expireAfterDate should not be specified. | [optional] 
+**expireAfterDays** | **Number** | Specify the expiry in number of days after creation of the record. If expireAfterDate is specified then expireAfterDays should not be specified. | [optional] 
+**links** | [**[MessageLink]**](MessageLink.md) |  | 
+**memberIds** | **[String]** |  | [optional] 
 **translations** | [**[Translation]**](Translation.md) |  | [optional] 
-**translatableFields** | **[String]** | Message translatable fields | [optional] [readonly] 
 
 

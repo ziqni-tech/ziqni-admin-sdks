@@ -7,13 +7,10 @@ Method | HTTP request | Description
 [**createAchievements**](AchievementsApi.md#createAchievements) | **POST** /achievements | Create Achievements
 [**deleteAchievements**](AchievementsApi.md#deleteAchievements) | **DELETE** /achievements | Delete Achievements
 [**deleteAchievementsByQuery**](AchievementsApi.md#deleteAchievementsByQuery) | **POST** /achievements/delete | 
-[**getAchievementToClone**](AchievementsApi.md#getAchievementToClone) | **GET** /achievements/{id}/clone | NOT AVAILABLE IN CURRENT RELEASE
+[**getAchievementToClone**](AchievementsApi.md#getAchievementToClone) | **GET** /achievements/{id}/clone | 
 [**getAchievements**](AchievementsApi.md#getAchievements) | **GET** /achievements | Get Achievements
 [**getAchievementsByQuery**](AchievementsApi.md#getAchievementsByQuery) | **POST** /achievements/query | 
 [**getAntecendentsForAchievement**](AchievementsApi.md#getAntecendentsForAchievement) | **GET** /achievements/{id}/antecedents | NOT AVAILABLE IN CURRENT RELEASE
-[**getDesendentsForAchievement**](AchievementsApi.md#getDesendentsForAchievement) | **GET** /achievements/{id}/descendents | NOT AVAILABLE IN CURRENT RELEASE
-[**getIssuedAchievementsCountById**](AchievementsApi.md#getIssuedAchievementsCountById) | **GET** /achievements/{id}/issued | NOT AVAILABLE IN CURRENT RELEASE
-[**getMembersAchievementsDetails**](AchievementsApi.md#getMembersAchievementsDetails) | **GET** /achievements/{id}/members | NOT AVAILABLE IN CURRENT RELEASE
 [**updateAchievements**](AchievementsApi.md#updateAchievements) | **PUT** /achievements | Update Achievements
 [**updateAchievementsLiveStatus**](AchievementsApi.md#updateAchievementsLiveStatus) | **PUT** /achievements/state | 
 
@@ -174,7 +171,7 @@ Name | Type | Description  | Notes
 
 > CloneAchievementResponse getAchievementToClone(id)
 
-NOT AVAILABLE IN CURRENT RELEASE
+
 
 Clones an Achievement for the identifier provided
 
@@ -369,167 +366,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**AchievementResponse**](AchievementResponse.md)
-
-### Authorization
-
-[OAuth2](../README.md#OAuth2)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-
-## getDesendentsForAchievement
-
-> AchievementResponse getDesendentsForAchievement(id, opts)
-
-NOT AVAILABLE IN CURRENT RELEASE
-
-Receive a list of Descendent Achievements for the Achievement identified provided
-
-### Example
-
-```javascript
-import @ZiqniTechAdminApiClient from '@ziqni-tech/admin-api-client';
-let defaultClient = @ZiqniTechAdminApiClient.ApiClient.instance;
-// Configure OAuth2 access token for authorization: OAuth2
-let OAuth2 = defaultClient.authentications['OAuth2'];
-OAuth2.accessToken = 'YOUR ACCESS TOKEN';
-
-let apiInstance = new @ZiqniTechAdminApiClient.AchievementsApi();
-let id = "id_example"; // String | Unique identifier of the resource
-let opts = {
-  'limit': 56, // Number | Limit the returned total records found
-  'skip': 56 // Number | Skip the returned records found and return the next batch of records
-};
-apiInstance.getDesendentsForAchievement(id, opts, (error, data, response) => {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
-});
-```
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **String**| Unique identifier of the resource | 
- **limit** | **Number**| Limit the returned total records found | [optional] 
- **skip** | **Number**| Skip the returned records found and return the next batch of records | [optional] 
-
-### Return type
-
-[**AchievementResponse**](AchievementResponse.md)
-
-### Authorization
-
-[OAuth2](../README.md#OAuth2)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-
-## getIssuedAchievementsCountById
-
-> AchievementIssuedResponse getIssuedAchievementsCountById(id)
-
-NOT AVAILABLE IN CURRENT RELEASE
-
-Receive a count of Issued Achievements by identifier provided
-
-### Example
-
-```javascript
-import @ZiqniTechAdminApiClient from '@ziqni-tech/admin-api-client';
-let defaultClient = @ZiqniTechAdminApiClient.ApiClient.instance;
-// Configure OAuth2 access token for authorization: OAuth2
-let OAuth2 = defaultClient.authentications['OAuth2'];
-OAuth2.accessToken = 'YOUR ACCESS TOKEN';
-
-let apiInstance = new @ZiqniTechAdminApiClient.AchievementsApi();
-let id = "id_example"; // String | Unique identifier of the resource
-apiInstance.getIssuedAchievementsCountById(id, (error, data, response) => {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
-});
-```
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **String**| Unique identifier of the resource | 
-
-### Return type
-
-[**AchievementIssuedResponse**](AchievementIssuedResponse.md)
-
-### Authorization
-
-[OAuth2](../README.md#OAuth2)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-
-## getMembersAchievementsDetails
-
-> MemberAchievementIssuedResponse getMembersAchievementsDetails(id, opts)
-
-NOT AVAILABLE IN CURRENT RELEASE
-
-Receive a list of members that had an Achievement issued for the Achievement identified provided
-
-### Example
-
-```javascript
-import @ZiqniTechAdminApiClient from '@ziqni-tech/admin-api-client';
-let defaultClient = @ZiqniTechAdminApiClient.ApiClient.instance;
-// Configure OAuth2 access token for authorization: OAuth2
-let OAuth2 = defaultClient.authentications['OAuth2'];
-OAuth2.accessToken = 'YOUR ACCESS TOKEN';
-
-let apiInstance = new @ZiqniTechAdminApiClient.AchievementsApi();
-let id = "id_example"; // String | Unique identifier of the resource
-let opts = {
-  'memberId': "memberId_example", // String | Id of a member
-  'limit': 56, // Number | Limit the returned total records found
-  'skip': 56 // Number | Skip the returned records found and return the next batch of records
-};
-apiInstance.getMembersAchievementsDetails(id, opts, (error, data, response) => {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
-});
-```
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **String**| Unique identifier of the resource | 
- **memberId** | **String**| Id of a member | [optional] 
- **limit** | **Number**| Limit the returned total records found | [optional] 
- **skip** | **Number**| Skip the returned records found and return the next batch of records | [optional] 
-
-### Return type
-
-[**MemberAchievementIssuedResponse**](MemberAchievementIssuedResponse.md)
 
 ### Authorization
 

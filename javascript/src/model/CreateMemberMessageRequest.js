@@ -15,6 +15,7 @@ import ApiClient from '../ApiClient';
 import CreateMemberMessageRequestAllOf from './CreateMemberMessageRequestAllOf';
 import CreateOptParamModels from './CreateOptParamModels';
 import EventRefType from './EventRefType';
+import MessageLink from './MessageLink';
 import MessageStatus from './MessageStatus';
 import MessageType from './MessageType';
 import Translation from './Translation';
@@ -34,14 +35,12 @@ class CreateMemberMessageRequest {
      * @param messageType {module:model/MessageType} 
      * @param subject {String} The title of the message
      * @param body {String} The context of the message
-     * @param prize {String} Unique system identifier of an Award
      * @param status {module:model/MessageStatus} 
-     * @param expiry {Date} The time that the message will disappear after. ISO8601 timestamp
-     * @param memberId {Array.<String>} The reference ID of the event object
+     * @param links {Array.<module:model/MessageLink>} 
      */
-    constructor(eventRefType, messageType, subject, body, prize, status, expiry, memberId) { 
-        CreateOptParamModels.initialize(this);CreateMemberMessageRequestAllOf.initialize(this, eventRefType, messageType, subject, body, prize, status, expiry, memberId);
-        CreateMemberMessageRequest.initialize(this, eventRefType, messageType, subject, body, prize, status, expiry, memberId);
+    constructor(eventRefType, messageType, subject, body, status, links) { 
+        CreateOptParamModels.initialize(this);CreateMemberMessageRequestAllOf.initialize(this, eventRefType, messageType, subject, body, status, links);
+        CreateMemberMessageRequest.initialize(this, eventRefType, messageType, subject, body, status, links);
     }
 
     /**
@@ -49,15 +48,13 @@ class CreateMemberMessageRequest {
      * This method is used by the constructors of any subclasses, in order to implement multiple inheritance (mix-ins).
      * Only for internal use.
      */
-    static initialize(obj, eventRefType, messageType, subject, body, prize, status, expiry, memberId) { 
+    static initialize(obj, eventRefType, messageType, subject, body, status, links) { 
         obj['eventRefType'] = eventRefType;
         obj['messageType'] = messageType;
         obj['subject'] = subject;
         obj['body'] = body;
-        obj['prize'] = prize;
         obj['status'] = status;
-        obj['expiry'] = expiry;
-        obj['memberId'] = memberId;
+        obj['links'] = links;
     }
 
     /**
@@ -97,23 +94,23 @@ class CreateMemberMessageRequest {
             if (data.hasOwnProperty('body')) {
                 obj['body'] = ApiClient.convertToType(data['body'], 'String');
             }
-            if (data.hasOwnProperty('prize')) {
-                obj['prize'] = ApiClient.convertToType(data['prize'], 'String');
-            }
             if (data.hasOwnProperty('status')) {
                 obj['status'] = MessageStatus.constructFromObject(data['status']);
             }
-            if (data.hasOwnProperty('expiry')) {
-                obj['expiry'] = ApiClient.convertToType(data['expiry'], 'Date');
+            if (data.hasOwnProperty('expireAfterDate')) {
+                obj['expireAfterDate'] = ApiClient.convertToType(data['expireAfterDate'], 'Date');
             }
-            if (data.hasOwnProperty('memberId')) {
-                obj['memberId'] = ApiClient.convertToType(data['memberId'], ['String']);
+            if (data.hasOwnProperty('expireAfterDays')) {
+                obj['expireAfterDays'] = ApiClient.convertToType(data['expireAfterDays'], 'Number');
+            }
+            if (data.hasOwnProperty('links')) {
+                obj['links'] = ApiClient.convertToType(data['links'], [MessageLink]);
+            }
+            if (data.hasOwnProperty('memberIds')) {
+                obj['memberIds'] = ApiClient.convertToType(data['memberIds'], ['String']);
             }
             if (data.hasOwnProperty('translations')) {
                 obj['translations'] = ApiClient.convertToType(data['translations'], [Translation]);
-            }
-            if (data.hasOwnProperty('translatableFields')) {
-                obj['translatableFields'] = ApiClient.convertToType(data['translatableFields'], ['String']);
             }
         }
         return obj;
@@ -168,38 +165,39 @@ CreateMemberMessageRequest.prototype['subject'] = undefined;
 CreateMemberMessageRequest.prototype['body'] = undefined;
 
 /**
- * Unique system identifier of an Award
- * @member {String} prize
- */
-CreateMemberMessageRequest.prototype['prize'] = undefined;
-
-/**
  * @member {module:model/MessageStatus} status
  */
 CreateMemberMessageRequest.prototype['status'] = undefined;
 
 /**
- * The time that the message will disappear after. ISO8601 timestamp
- * @member {Date} expiry
+ * Specify the expiry as a date after creation of the record. If expireAfterDays is specified then expireAfterDate should not be specified.
+ * @member {Date} expireAfterDate
  */
-CreateMemberMessageRequest.prototype['expiry'] = undefined;
+CreateMemberMessageRequest.prototype['expireAfterDate'] = undefined;
 
 /**
- * The reference ID of the event object
- * @member {Array.<String>} memberId
+ * Specify the expiry in number of days after creation of the record. If expireAfterDate is specified then expireAfterDays should not be specified.
+ * @member {Number} expireAfterDays
  */
-CreateMemberMessageRequest.prototype['memberId'] = undefined;
+CreateMemberMessageRequest.prototype['expireAfterDays'] = undefined;
 
 /**
+ * 
+ * @member {Array.<module:model/MessageLink>} links
+ */
+CreateMemberMessageRequest.prototype['links'] = undefined;
+
+/**
+ * 
+ * @member {Array.<String>} memberIds
+ */
+CreateMemberMessageRequest.prototype['memberIds'] = undefined;
+
+/**
+ * 
  * @member {Array.<module:model/Translation>} translations
  */
 CreateMemberMessageRequest.prototype['translations'] = undefined;
-
-/**
- * Message translatable fields
- * @member {Array.<String>} translatableFields
- */
-CreateMemberMessageRequest.prototype['translatableFields'] = undefined;
 
 
 // Implement CreateOptParamModels interface:
@@ -242,33 +240,34 @@ CreateMemberMessageRequestAllOf.prototype['subject'] = undefined;
  */
 CreateMemberMessageRequestAllOf.prototype['body'] = undefined;
 /**
- * Unique system identifier of an Award
- * @member {String} prize
- */
-CreateMemberMessageRequestAllOf.prototype['prize'] = undefined;
-/**
  * @member {module:model/MessageStatus} status
  */
 CreateMemberMessageRequestAllOf.prototype['status'] = undefined;
 /**
- * The time that the message will disappear after. ISO8601 timestamp
- * @member {Date} expiry
+ * Specify the expiry as a date after creation of the record. If expireAfterDays is specified then expireAfterDate should not be specified.
+ * @member {Date} expireAfterDate
  */
-CreateMemberMessageRequestAllOf.prototype['expiry'] = undefined;
+CreateMemberMessageRequestAllOf.prototype['expireAfterDate'] = undefined;
 /**
- * The reference ID of the event object
- * @member {Array.<String>} memberId
+ * Specify the expiry in number of days after creation of the record. If expireAfterDate is specified then expireAfterDays should not be specified.
+ * @member {Number} expireAfterDays
  */
-CreateMemberMessageRequestAllOf.prototype['memberId'] = undefined;
+CreateMemberMessageRequestAllOf.prototype['expireAfterDays'] = undefined;
 /**
+ * 
+ * @member {Array.<module:model/MessageLink>} links
+ */
+CreateMemberMessageRequestAllOf.prototype['links'] = undefined;
+/**
+ * 
+ * @member {Array.<String>} memberIds
+ */
+CreateMemberMessageRequestAllOf.prototype['memberIds'] = undefined;
+/**
+ * 
  * @member {Array.<module:model/Translation>} translations
  */
 CreateMemberMessageRequestAllOf.prototype['translations'] = undefined;
-/**
- * Message translatable fields
- * @member {Array.<String>} translatableFields
- */
-CreateMemberMessageRequestAllOf.prototype['translatableFields'] = undefined;
 
 
 

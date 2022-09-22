@@ -17,7 +17,6 @@ import ApiResponse from '../model/ApiResponse';
 import CreateMemberMessageRequest from '../model/CreateMemberMessageRequest';
 import MemberMessageResponse from '../model/MemberMessageResponse';
 import QueryRequest from '../model/QueryRequest';
-import UpdateMessageStatusRequest from '../model/UpdateMessageStatusRequest';
 
 /**
 * MemberMessages service.
@@ -236,48 +235,6 @@ export default class MemberMessagesApi {
       let returnType = MemberMessageResponse;
       return this.apiClient.callApi(
         '/member-messages/query', 'POST',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, null, callback
-      );
-    }
-
-    /**
-     * Callback function to receive the result of the updateMemberMessagesStatus operation.
-     * @callback module:api/MemberMessagesApi~updateMemberMessagesStatusCallback
-     * @param {String} error Error message, if any.
-     * @param {module:model/ApiResponse} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
-     */
-
-    /**
-     * NOT AVAILABLE IN CURRENT RELEASE
-     * Update the Member Message status
-     * @param {Array.<module:model/UpdateMessageStatusRequest>} body Update the Member Message status
-     * @param {module:api/MemberMessagesApi~updateMemberMessagesStatusCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link module:model/ApiResponse}
-     */
-    updateMemberMessagesStatus(body, callback) {
-      let postBody = body;
-      // verify the required parameter 'body' is set
-      if (body === undefined || body === null) {
-        throw new Error("Missing the required parameter 'body' when calling updateMemberMessagesStatus");
-      }
-
-      let pathParams = {
-      };
-      let queryParams = {
-      };
-      let headerParams = {
-      };
-      let formParams = {
-      };
-
-      let authNames = ['OAuth2'];
-      let contentTypes = ['application/json'];
-      let accepts = ['application/json'];
-      let returnType = ApiResponse;
-      return this.apiClient.callApi(
-        '/member-messages/state', 'PUT',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, null, callback
       );

@@ -84,38 +84,38 @@
       //expect(instance).to.be();
     });
 
-    it('should have the property prize (base name: "prize")', function() {
-      // uncomment below and update the code to test the property prize
-      //var instance = new @ZiqniTechAdminApiClient.CreateMemberMessageRequestAllOf();
-      //expect(instance).to.be();
-    });
-
     it('should have the property status (base name: "status")', function() {
       // uncomment below and update the code to test the property status
       //var instance = new @ZiqniTechAdminApiClient.CreateMemberMessageRequestAllOf();
       //expect(instance).to.be();
     });
 
-    it('should have the property expiry (base name: "expiry")', function() {
-      // uncomment below and update the code to test the property expiry
+    it('should have the property expireAfterDate (base name: "expireAfterDate")', function() {
+      // uncomment below and update the code to test the property expireAfterDate
       //var instance = new @ZiqniTechAdminApiClient.CreateMemberMessageRequestAllOf();
       //expect(instance).to.be();
     });
 
-    it('should have the property memberId (base name: "memberId")', function() {
-      // uncomment below and update the code to test the property memberId
+    it('should have the property expireAfterDays (base name: "expireAfterDays")', function() {
+      // uncomment below and update the code to test the property expireAfterDays
+      //var instance = new @ZiqniTechAdminApiClient.CreateMemberMessageRequestAllOf();
+      //expect(instance).to.be();
+    });
+
+    it('should have the property links (base name: "links")', function() {
+      // uncomment below and update the code to test the property links
+      //var instance = new @ZiqniTechAdminApiClient.CreateMemberMessageRequestAllOf();
+      //expect(instance).to.be();
+    });
+
+    it('should have the property memberIds (base name: "memberIds")', function() {
+      // uncomment below and update the code to test the property memberIds
       //var instance = new @ZiqniTechAdminApiClient.CreateMemberMessageRequestAllOf();
       //expect(instance).to.be();
     });
 
     it('should have the property translations (base name: "translations")', function() {
       // uncomment below and update the code to test the property translations
-      //var instance = new @ZiqniTechAdminApiClient.CreateMemberMessageRequestAllOf();
-      //expect(instance).to.be();
-    });
-
-    it('should have the property translatableFields (base name: "translatableFields")', function() {
-      // uncomment below and update the code to test the property translatableFields
       //var instance = new @ZiqniTechAdminApiClient.CreateMemberMessageRequestAllOf();
       //expect(instance).to.be();
     });

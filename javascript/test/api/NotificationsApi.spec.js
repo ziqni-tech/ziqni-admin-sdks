@@ -98,16 +98,6 @@
         done();
       });
     });
-    describe('updateNotificationsStatus', function() {
-      it('should call updateNotificationsStatus successfully', function(done) {
-        //uncomment below and update the code to test updateNotificationsStatus
-        //instance.updateNotificationsStatus(function(error) {
-        //  if (error) throw error;
-        //expect().to.be();
-        //});
-        done();
-      });
-    });
   });
 
 }));

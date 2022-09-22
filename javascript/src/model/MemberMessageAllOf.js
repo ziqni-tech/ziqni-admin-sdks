@@ -13,9 +13,9 @@
 
 import ApiClient from '../ApiClient';
 import EventRefType from './EventRefType';
+import MessageLink from './MessageLink';
 import MessageStatus from './MessageStatus';
 import MessageType from './MessageType';
-import Translation from './Translation';
 
 /**
  * The MemberMessageAllOf model module.
@@ -30,14 +30,13 @@ class MemberMessageAllOf {
      * @param messageType {module:model/MessageType} 
      * @param subject {String} The title of the message
      * @param body {String} The context of the message
-     * @param prize {String} Unique system identifier of an Award
      * @param status {module:model/MessageStatus} 
      * @param expiry {Date} The time that the message will disappear after. ISO8601 timestamp
-     * @param memberId {Array.<String>} The reference ID of the event object
+     * @param links {module:model/MessageLink} 
      */
-    constructor(eventRefType, messageType, subject, body, prize, status, expiry, memberId) { 
+    constructor(eventRefType, messageType, subject, body, status, expiry, links) { 
         
-        MemberMessageAllOf.initialize(this, eventRefType, messageType, subject, body, prize, status, expiry, memberId);
+        MemberMessageAllOf.initialize(this, eventRefType, messageType, subject, body, status, expiry, links);
     }
 
     /**
@@ -45,15 +44,14 @@ class MemberMessageAllOf {
      * This method is used by the constructors of any subclasses, in order to implement multiple inheritance (mix-ins).
      * Only for internal use.
      */
-    static initialize(obj, eventRefType, messageType, subject, body, prize, status, expiry, memberId) { 
+    static initialize(obj, eventRefType, messageType, subject, body, status, expiry, links) { 
         obj['eventRefType'] = eventRefType;
         obj['messageType'] = messageType;
         obj['subject'] = subject;
         obj['body'] = body;
-        obj['prize'] = prize;
         obj['status'] = status;
         obj['expiry'] = expiry;
-        obj['memberId'] = memberId;
+        obj['links'] = links;
     }
 
     /**
@@ -82,23 +80,17 @@ class MemberMessageAllOf {
             if (data.hasOwnProperty('body')) {
                 obj['body'] = ApiClient.convertToType(data['body'], 'String');
             }
-            if (data.hasOwnProperty('prize')) {
-                obj['prize'] = ApiClient.convertToType(data['prize'], 'String');
-            }
             if (data.hasOwnProperty('status')) {
                 obj['status'] = MessageStatus.constructFromObject(data['status']);
             }
             if (data.hasOwnProperty('expiry')) {
                 obj['expiry'] = ApiClient.convertToType(data['expiry'], 'Date');
             }
-            if (data.hasOwnProperty('memberId')) {
-                obj['memberId'] = ApiClient.convertToType(data['memberId'], ['String']);
+            if (data.hasOwnProperty('links')) {
+                obj['links'] = MessageLink.constructFromObject(data['links']);
             }
-            if (data.hasOwnProperty('translations')) {
-                obj['translations'] = ApiClient.convertToType(data['translations'], [Translation]);
-            }
-            if (data.hasOwnProperty('translatableFields')) {
-                obj['translatableFields'] = ApiClient.convertToType(data['translatableFields'], ['String']);
+            if (data.hasOwnProperty('memberIds')) {
+                obj['memberIds'] = ApiClient.convertToType(data['memberIds'], ['String']);
             }
         }
         return obj;
@@ -136,12 +128,6 @@ MemberMessageAllOf.prototype['subject'] = undefined;
 MemberMessageAllOf.prototype['body'] = undefined;
 
 /**
- * Unique system identifier of an Award
- * @member {String} prize
- */
-MemberMessageAllOf.prototype['prize'] = undefined;
-
-/**
  * @member {module:model/MessageStatus} status
  */
 MemberMessageAllOf.prototype['status'] = undefined;
@@ -153,21 +139,15 @@ MemberMessageAllOf.prototype['status'] = undefined;
 MemberMessageAllOf.prototype['expiry'] = undefined;
 
 /**
- * The reference ID of the event object
- * @member {Array.<String>} memberId
+ * @member {module:model/MessageLink} links
  */
-MemberMessageAllOf.prototype['memberId'] = undefined;
+MemberMessageAllOf.prototype['links'] = undefined;
 
 /**
- * @member {Array.<module:model/Translation>} translations
+ * 
+ * @member {Array.<String>} memberIds
  */
-MemberMessageAllOf.prototype['translations'] = undefined;
-
-/**
- * Message translatable fields
- * @member {Array.<String>} translatableFields
- */
-MemberMessageAllOf.prototype['translatableFields'] = undefined;
+MemberMessageAllOf.prototype['memberIds'] = undefined;
 
 
 

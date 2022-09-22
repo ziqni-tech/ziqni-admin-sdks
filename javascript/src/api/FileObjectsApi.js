@@ -39,52 +39,6 @@ export default class FileObjectsApi {
 
 
     /**
-     * Callback function to receive the result of the copyFileObjects operation.
-     * @callback module:api/FileObjectsApi~copyFileObjectsCallback
-     * @param {String} error Error message, if any.
-     * @param {module:model/ApiResponse} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
-     */
-
-    /**
-     * NOT AVAILABLE IN CURRENT RELEASE
-     * Copy an existing file object
-     * @param {module:model/UpdateFileObjectRequest} body Copy file objects inside a repository and dumplicate in another folder or repository.
-     * @param {Object} opts Optional parameters
-     * @param {Array.<String>} opts.id The unique identifiers of the resources
-     * @param {module:api/FileObjectsApi~copyFileObjectsCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link module:model/ApiResponse}
-     */
-    copyFileObjects(body, opts, callback) {
-      opts = opts || {};
-      let postBody = body;
-      // verify the required parameter 'body' is set
-      if (body === undefined || body === null) {
-        throw new Error("Missing the required parameter 'body' when calling copyFileObjects");
-      }
-
-      let pathParams = {
-      };
-      let queryParams = {
-        'id': this.apiClient.buildCollectionParam(opts['id'], 'multi')
-      };
-      let headerParams = {
-      };
-      let formParams = {
-      };
-
-      let authNames = ['OAuth2'];
-      let contentTypes = ['application/json'];
-      let accepts = ['application/json'];
-      let returnType = ApiResponse;
-      return this.apiClient.callApi(
-        '/file-objects/copy', 'POST',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, null, callback
-      );
-    }
-
-    /**
      * Callback function to receive the result of the createFileObjects operation.
      * @callback module:api/FileObjectsApi~createFileObjectsCallback
      * @param {String} error Error message, if any.
@@ -174,7 +128,6 @@ export default class FileObjectsApi {
      */
 
     /**
-     * NOT AVAILABLE IN CURRENT RELEASE
      * Delete file objects by query
      * @param {Object} opts Optional parameters
      * @param {Array.<String>} opts.id The unique identifiers of the resources
@@ -216,7 +169,6 @@ export default class FileObjectsApi {
      */
 
     /**
-     * NOT AVAILABLE IN CURRENT RELEASE
      * Download file objects from your Ziqni space
      * @param {Object} opts Optional parameters
      * @param {String} opts.path The canonical path of the file to download
@@ -344,7 +296,6 @@ export default class FileObjectsApi {
      */
 
     /**
-     * NOT AVAILABLE IN CURRENT RELEASE
      * Create or update file objects and binaries in your Ziqni space
      * @param {Object} opts Optional parameters
      * @param {String} opts.parentFolderPath The folder to save these file in.
@@ -433,7 +384,6 @@ export default class FileObjectsApi {
      */
 
     /**
-     * NOT AVAILABLE IN CURRENT RELEASE
      * Create or update file objects and binaries in your Ziqni space
      * @param {Object} opts Optional parameters
      * @param {String} opts.parentFolderPath The folder to save these file in.
