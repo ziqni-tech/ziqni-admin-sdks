@@ -13,10 +13,7 @@ import org.springframework.messaging.simp.stomp.StompHeaders;
 
 import java.lang.reflect.Type;
 import java.util.Optional;
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
+import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.function.BiConsumer;
 
@@ -27,7 +24,7 @@ public class RpcResultsEventHandler extends EventHandler<String> {
     private static final Logger logger = LoggerFactory.getLogger(RpcResultsEventHandler.class);
     private static final AtomicLong sequenceNumber = new AtomicLong(0);
     private static final ConcurrentHashMap<String, RpcResultsResponse<?,?>> awaitingResponse = new ConcurrentHashMap<>();
-    private static final ExecutorService executorService = Executors.newCachedThreadPool();
+    private static final ExecutorService executorService = new ForkJoinPool(Runtime.getRuntime().availableProcessors()*4);
 
     private final String topic;
     private final ClassScanner classScanner;

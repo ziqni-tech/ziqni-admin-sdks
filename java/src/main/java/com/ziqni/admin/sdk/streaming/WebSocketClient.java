@@ -39,7 +39,7 @@ public class WebSocketClient {
     private static final long DEFAULT_RECONNECT_DELAY = 1000;
     private static final int DEFAULT_RECONNECT_ATTEMPTS = 5;
 
-    private final static ExecutorService websocketSendExecutor = Executors.newSingleThreadExecutor();
+    private final static ExecutorService websocketSendExecutor = Executors.newFixedThreadPool(16);
 
     private final static ScheduledExecutorService scheduledExecutor = Executors.newSingleThreadScheduledExecutor();
 
