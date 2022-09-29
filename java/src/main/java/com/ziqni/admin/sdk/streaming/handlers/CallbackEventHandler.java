@@ -2,25 +2,23 @@ package com.ziqni.admin.sdk.streaming.handlers;
 
 import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.github.benmanes.caffeine.cache.AsyncCache;
-import com.github.benmanes.caffeine.cache.Caffeine;
-import com.github.benmanes.caffeine.cache.RemovalCause;
-import com.github.benmanes.caffeine.cache.RemovalListener;
 import com.ziqni.admin.sdk.ApiException;
 import com.ziqni.admin.sdk.JSON;
 import com.ziqni.admin.sdk.streaming.EventHandler;
 import com.ziqni.admin.sdk.util.ClassScanner;
-import org.checkerframework.checker.nullness.qual.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.messaging.simp.stomp.StompHeaders;
 
 import java.lang.reflect.Type;
 import java.nio.charset.StandardCharsets;
+import java.util.Map;
 import java.util.Optional;
-import java.util.concurrent.*;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
-public class CallbackEventHandler extends EventHandler<String> implements RemovalListener<String,CallbackConsumer<?>> {
+public class CallbackEventHandler extends EventHandler<String> {
     private static final Logger logger = LoggerFactory.getLogger(CallbackEventHandler.class);
 
     public final static String DEFAULT_TOPIC = "/user/queue/callbacks";
@@ -33,19 +31,14 @@ public class CallbackEventHandler extends EventHandler<String> implements Remova
     protected static final ObjectMapper objectMapper = new ObjectMapper();
 
     public final static JavaType OBJECT_JAVA_TYPE = objectMapper.constructType(Object.class);
-
-    public final AsyncCache<String,CallbackConsumer<?>> callbackConsumerCache;
+    public final Map<String,CallbackConsumer<?>> callbackConsumerMap = new ConcurrentHashMap<>();
 
     public CallbackEventHandler() {
         this.classScanner = new ClassScanner(CLASS_TO_SCAN_FOR_PAYLOAD_TYPE);
-        this.callbackConsumerCache = Caffeine.newBuilder().maximumSize(1000).expireAfterWrite(5, TimeUnit.MINUTES).buildAsync();
     }
 
     public <T> boolean registerCallbackHandler(CallbackConsumer<T> callbackConsumer){
-        final var in = new CompletableFuture<CallbackConsumer<?>>();
-        in.complete(callbackConsumer);
-        this.callbackConsumerCache.put(callbackConsumer.getCallback(), in);
-        return true;
+        return this.callbackConsumerMap.putIfAbsent(callbackConsumer.getCallback(), callbackConsumer) == null;
     }
 
     @Override
@@ -82,8 +75,7 @@ public class CallbackEventHandler extends EventHandler<String> implements Remova
 
     public void onCallBack(String callback, StompHeaders headers, Object response) {
         try {
-
-            Optional<CompletableFuture<CallbackConsumer<?>>> consumer = Optional.ofNullable(this.callbackConsumerCache.getIfPresent(callback));
+            Optional<? extends CallbackConsumer<?>> consumer = Optional.ofNullable(this.callbackConsumerMap.get(callback));
 
             var failed = headers.get("callback")
                     .stream()
@@ -98,10 +90,7 @@ public class CallbackEventHandler extends EventHandler<String> implements Remova
                 onApiExceptionCallBack(headers,response, consumer);
             else
                 consumer.ifPresent(callbackConsumer ->
-                        callbackConsumer.thenAccept(callbackConsumer1 -> {
-                            callbackConsumer1.isCompleted(true);
-                            callbackConsumer1.consumeCallback(headers, response);
-                        })
+                        callbackConsumer.consumeCallback(headers,response)
                 );
         }
         catch (Throwable throwable){
@@ -109,25 +98,15 @@ public class CallbackEventHandler extends EventHandler<String> implements Remova
         }
     }
 
-    private void onApiExceptionCallBack(StompHeaders headers, Object response, Optional<CompletableFuture<CallbackConsumer<?>>> consumer) {
+    private void onApiExceptionCallBack(StompHeaders headers, Object response, Optional<? extends CallbackConsumer<?>> consumer) {
         final var json = new String((byte[])response, StandardCharsets.UTF_8);
         final var error = JSON.getDefault().getMapper().convertValue(json,ApiException.class);
         consumer.ifPresent(callbackConsumer ->
-                        callbackConsumer.thenAccept(callbackConsumer1 -> {
-                            callbackConsumer1.isCompleted(true);
-                            callbackConsumer1.consumeApiExceptionCallBack(headers, error);
-                        })
-                );
+                callbackConsumer.consumeApiExceptionCallBack(headers,error)
+        );
     }
 
     public static CallbackEventHandler create(){
         return new CallbackEventHandler();
-    }
-
-    @Override
-    public void onRemoval(@Nullable String key, @Nullable CallbackConsumer<?> value, RemovalCause cause) {
-        if(value != null && !value.isCompleted()){
-            logger.warn("Evicting a message that hasn't completed " + value.getCallback());
-        }
     }
 }
