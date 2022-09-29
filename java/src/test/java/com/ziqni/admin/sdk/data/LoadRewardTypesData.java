@@ -32,7 +32,7 @@ public class LoadRewardTypesData implements CompleteableFutureTestWrapper {
         return new CreateRewardTypeRequest()
                 .name(givenName)
                 .key(givenKey)
-                .unitOfMeasure(unitOfMeasure)
+                .unitOfMeasure(unitOfMeasureType.getValue())
                 .addConstraints(constraints)
                 .metadata(new LoadMetadata().getMetadataAsList());
     }

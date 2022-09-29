@@ -477,7 +477,7 @@ public class RewardTypesApiTest implements tests.utils.CompleteableFutureTestWra
 
         final var given = new UpdateRewardTypeRequest()
                 .id(id)
-                .unitOfMeasureType(null);
+                .unitOfMeasure(null);
 
         final var response = $(api.updateRewardTypes(List.of(given)));
 
