@@ -12,7 +12,6 @@
  */
 
 import ApiClient from '../ApiClient';
-import UnitOfMeasureType from './UnitOfMeasureType';
 
 /**
  * The RewardTypeAllOf model module.
@@ -25,12 +24,12 @@ class RewardTypeAllOf {
      * @alias module:model/RewardTypeAllOf
      * @param name {String} The name of the Reward type
      * @param key {String} A unique key that represents the reward type
-     * @param unitOfMeasureType {module:model/UnitOfMeasureType} 
      * @param constraints {Array.<String>} Additional constraints, if the value is present it means the
+     * @param unitOfMeasure {String} 
      */
-    constructor(name, key, unitOfMeasureType, constraints) { 
+    constructor(name, key, constraints, unitOfMeasure) { 
         
-        RewardTypeAllOf.initialize(this, name, key, unitOfMeasureType, constraints);
+        RewardTypeAllOf.initialize(this, name, key, constraints, unitOfMeasure);
     }
 
     /**
@@ -38,11 +37,11 @@ class RewardTypeAllOf {
      * This method is used by the constructors of any subclasses, in order to implement multiple inheritance (mix-ins).
      * Only for internal use.
      */
-    static initialize(obj, name, key, unitOfMeasureType, constraints) { 
+    static initialize(obj, name, key, constraints, unitOfMeasure) { 
         obj['name'] = name;
         obj['key'] = key;
-        obj['unitOfMeasureType'] = unitOfMeasureType;
         obj['constraints'] = constraints;
+        obj['unitOfMeasure'] = unitOfMeasure;
     }
 
     /**
@@ -65,11 +64,11 @@ class RewardTypeAllOf {
             if (data.hasOwnProperty('key')) {
                 obj['key'] = ApiClient.convertToType(data['key'], 'String');
             }
-            if (data.hasOwnProperty('unitOfMeasureType')) {
-                obj['unitOfMeasureType'] = UnitOfMeasureType.constructFromObject(data['unitOfMeasureType']);
-            }
             if (data.hasOwnProperty('constraints')) {
                 obj['constraints'] = ApiClient.convertToType(data['constraints'], ['String']);
+            }
+            if (data.hasOwnProperty('unitOfMeasure')) {
+                obj['unitOfMeasure'] = ApiClient.convertToType(data['unitOfMeasure'], 'String');
             }
         }
         return obj;
@@ -97,15 +96,15 @@ RewardTypeAllOf.prototype['description'] = undefined;
 RewardTypeAllOf.prototype['key'] = undefined;
 
 /**
- * @member {module:model/UnitOfMeasureType} unitOfMeasureType
- */
-RewardTypeAllOf.prototype['unitOfMeasureType'] = undefined;
-
-/**
  * Additional constraints, if the value is present it means the
  * @member {Array.<String>} constraints
  */
 RewardTypeAllOf.prototype['constraints'] = undefined;
+
+/**
+ * @member {String} unitOfMeasure
+ */
+RewardTypeAllOf.prototype['unitOfMeasure'] = undefined;
 
 
 
