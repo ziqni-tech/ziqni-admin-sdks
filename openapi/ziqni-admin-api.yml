@@ -9164,7 +9164,7 @@ components:
                         tags:
                             - tagId1
                             - tagId2
-                        unitOfMeasureType: Other
+                        unitOfMeasure: ziqniModelId
                         name: someText
                         description: someText
                         key: someText
@@ -9235,7 +9235,7 @@ components:
                         description: ''
                         key: ''
                         name: ''
-                        unitOfMeasureType: ''
+                        unitOfMeasure: ''
                         customFields: {}
                         tags:
                             - ziqniTag
@@ -9249,7 +9249,7 @@ components:
                         description: ''
                         key: ''
                         name: ''
-                        unitOfMeasureType: ''
+                        unitOfMeasure: ''
                         customFields: {}
                         tags:
                             - ziqniTag
@@ -12814,7 +12814,7 @@ components:
                     required:
                         - name
                         - key
-                        - unitOfMeasureType
+                        - unitOfMeasure
                         - constraints
                     type: object
                     properties:
@@ -12842,8 +12842,6 @@ components:
                             x-vue-search-all: true
                             x-vue-search-field: true
                             x-vue-disaply-order: 1000
-                        unitOfMeasureType:
-                            $ref: '#/components/schemas/UnitOfMeasureType'
                         constraints:
                             description: 'Additional constraints, if the value is present it means the'
                             type: array
@@ -12852,6 +12850,8 @@ components:
                             example: '- system'
                             x-vue-search-field: true
                             x-vue-disaply-order: 1003
+                        unitOfMeasure:
+                            type: string
             example:
                 id: someText
                 spaceName: someText
@@ -12865,7 +12865,7 @@ components:
                 tags:
                     - tagId1
                     - tagId2
-                unitOfMeasureType: Other
+                unitOfMeasure: ziqniModelId
                 name: someText
                 description: someText
                 key: someText
@@ -14487,7 +14487,7 @@ components:
                 description: Test Description
                 key: test_ziqni_key
                 name: Test name
-                unitOfMeasureType: ziqniModelId
+                unitOfMeasure: ziqniModelId
                 customFields: {}
                 tags:
                     - ziqniTag
@@ -14547,7 +14547,7 @@ components:
                 description: Test Description
                 key: test_key
                 name: Test Name
-                unitOfMeasureType: ziqniModelId
+                unitOfMeasure: ziqniModelId
                 addConstraints: []
                 customFields: {}
                 tags:
@@ -14680,7 +14680,7 @@ components:
                     required:
                         - name
                         - key
-                        - unitOfMeasureType
+                        - unitOfMeasure
                     type: object
                     properties:
                         name:
@@ -14697,8 +14697,6 @@ components:
                             type: string
                             example: free-spin-reward
                             x-vue-form-type: 'NAMEKEY, showKey: true'
-                        unitOfMeasureType:
-                            $ref: '#/components/schemas/UnitOfMeasureType'
                         translations:
                             type: array
                             items:
@@ -14709,6 +14707,8 @@ components:
                             items:
                                 type: string
                             example: '- system'
+                        unitOfMeasure:
+                            type: string
             example:
                 customFields:
                     test_cf_termd65bcccf-d37f-441a-a96d-d0da55a77719:
@@ -14720,7 +14720,7 @@ components:
                     fea089d7-f751-432e-8646-838c7769ab1e: f2dfff99-b766-414f-8e33-4d77aebbdb5e
                 name: Test_name-b6f072c2-df68-4905-a4f6-c19246ff5dc8
                 key: Test_key-2148168c-3a6c-48ba-b005-68a67a10aebc
-                unitOfMeasureType: Other
+                unitOfMeasure: ziqniModelId
                 translations:
                     -
                         languageKey: csb
@@ -14955,8 +14955,6 @@ components:
                             x-vue-search-all: true
                             x-vue-search-field: true
                             x-vue-disaply-order: 1002
-                        unitOfMeasureType:
-                            $ref: '#/components/schemas/UnitOfMeasureType'
                         addConstraints:
                             description: Additional constraints
                             type: array
@@ -14969,6 +14967,8 @@ components:
                             items:
                                 type: string
                             example: '- system'
+                        unitOfMeasure:
+                            type: string
             x-vue-update: rewardType
             x-vue-updater: rewardTypes
         CreateMemberMessageRequest:
