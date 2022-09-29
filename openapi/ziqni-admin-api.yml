@@ -18717,154 +18717,6 @@ components:
                         Example:
                             $ref: '#/components/examples/GetErrorResponse'
             description: A list of awards and/or errors
-        RewardTypeResponseBody:
-            content:
-                application/json:
-                    schema:
-                        $ref: '#/components/schemas/RewardTypeResponse'
-                    examples:
-                        Example:
-                            $ref: '#/components/examples/GetErrorResponse'
-                            value:
-                                meta:
-                                    objectType: some text
-                                    totalRecords: 26
-                                    resultCount: 1
-                                    errorCount: 0
-                                    limit: 2
-                                    skip: 0
-                                results:
-                                    -
-                                        id: someText
-                                        spaceName: someText
-                                        created: '2018-02-10T09:30Z'
-                                        customFields:
-                                            customField1: customFieldValue1
-                                            customField2: customFieldValue2
-                                        metadata:
-                                            key1: value1
-                                            key2: value
-                                        tags:
-                                            - tagId1
-                                            - tagId2
-                                        unitOfMeasureType: Other
-                                        name: someText
-                                        description: someText
-                                        key: someText
-                                        constraints:
-                                            - system
-                                errors:
-                                    -
-                                        modelId: some text
-                                        errorCode: 78
-                                        message: some text
-                                        errorAt: 90
-                                        detail:
-                                            -
-                                                modelId: some text
-                                                errorCode: 90
-                                                message: some text
-                                                errorAt: 24
-                                            -
-                                                modelId: some text
-                                                errorCode: 52
-                                                message: some text
-                                                errorAt: 45
-                                    -
-                                        modelId: some text
-                                        errorCode: 55
-                                        message: some text
-                                        errorAt: 64
-                                        detail:
-                                            -
-                                                modelId: some text
-                                                errorCode: 72
-                                                message: some text
-                                                errorAt: 56
-                                            -
-                                                modelId: some text
-                                                errorCode: 56
-                                                message: some text
-                                                errorAt: 90
-            description: A list of reward types and/or errors
-        ActionTypeResponseBody:
-            content:
-                application/json:
-                    schema:
-                        $ref: '#/components/schemas/ActionTypeResponse'
-                    examples:
-                        Example Response:
-                            value:
-                                meta:
-                                    objectType: some text
-                                    totalRecords: 26
-                                    resultCount: 2
-                                    errorCount: 0
-                                    limit: 2
-                                    skip: 0
-                                results:
-                                    -
-                                        id: ziqniModelId
-                                        spaceName: ziqniSpaceName
-                                        created: '2018-02-10T09:30Z'
-                                        constraints: []
-                                        description: ''
-                                        key: ''
-                                        name: ''
-                                        unitOfMeasureType: ''
-                                        customFields: {}
-                                        tags:
-                                            - ziqniTag
-                                            - ziqniTag1
-                                        metadata: {}
-                                    -
-                                        id: ziqniModelId
-                                        spaceName: ziqniSpaceName
-                                        created: '2018-02-10T09:30Z'
-                                        constraints: []
-                                        description: ''
-                                        key: ''
-                                        name: ''
-                                        unitOfMeasureType: ''
-                                        customFields: {}
-                                        tags:
-                                            - ziqniTag
-                                            - ziqniTag1
-                                        metadata: {}
-                                errors:
-                                    -
-                                        modelId: some text
-                                        errorCode: 97
-                                        message: some text
-                                        errorAt: 79
-                                        detail:
-                                            -
-                                                modelId: some text
-                                                errorCode: 68
-                                                message: some text
-                                                errorAt: 46
-                                            -
-                                                modelId: some text
-                                                errorCode: 32
-                                                message: some text
-                                                errorAt: 87
-                                    -
-                                        modelId: some text
-                                        errorCode: 76
-                                        message: some text
-                                        errorAt: 21
-                                        detail:
-                                            -
-                                                modelId: some text
-                                                errorCode: 91
-                                                message: some text
-                                                errorAt: 86
-                                            -
-                                                modelId: some text
-                                                errorCode: 93
-                                                message: some text
-                                                errorAt: 48
-            description: A list of action types and/or errors
         LanguageResponseBody:
             content:
                 application/json:
@@ -19280,6 +19132,154 @@ components:
             content:
                 application/json: {}
             description: ''
+        RewardTypeResponseBody:
+            content:
+                application/json:
+                    schema:
+                        $ref: '#/components/schemas/RewardTypeResponse'
+                    examples:
+                        Example:
+                            $ref: '#/components/examples/GetErrorResponse'
+                            value:
+                                meta:
+                                    objectType: some text
+                                    totalRecords: 26
+                                    resultCount: 1
+                                    errorCount: 0
+                                    limit: 2
+                                    skip: 0
+                                results:
+                                    -
+                                        id: someText
+                                        spaceName: someText
+                                        created: '2018-02-10T09:30Z'
+                                        customFields:
+                                            customField1: customFieldValue1
+                                            customField2: customFieldValue2
+                                        metadata:
+                                            key1: value1
+                                            key2: value
+                                        tags:
+                                            - tagId1
+                                            - tagId2
+                                        unitOfMeasure: ''
+                                        name: someText
+                                        description: someText
+                                        key: someText
+                                        constraints:
+                                            - system
+                                errors:
+                                    -
+                                        modelId: some text
+                                        errorCode: 78
+                                        message: some text
+                                        errorAt: 90
+                                        detail:
+                                            -
+                                                modelId: some text
+                                                errorCode: 90
+                                                message: some text
+                                                errorAt: 24
+                                            -
+                                                modelId: some text
+                                                errorCode: 52
+                                                message: some text
+                                                errorAt: 45
+                                    -
+                                        modelId: some text
+                                        errorCode: 55
+                                        message: some text
+                                        errorAt: 64
+                                        detail:
+                                            -
+                                                modelId: some text
+                                                errorCode: 72
+                                                message: some text
+                                                errorAt: 56
+                                            -
+                                                modelId: some text
+                                                errorCode: 56
+                                                message: some text
+                                                errorAt: 90
+            description: A list of reward types and/or errors
+        ActionTypeResponseBody:
+            content:
+                application/json:
+                    schema:
+                        $ref: '#/components/schemas/ActionTypeResponse'
+                    examples:
+                        Example Response:
+                            value:
+                                meta:
+                                    objectType: some text
+                                    totalRecords: 26
+                                    resultCount: 2
+                                    errorCount: 0
+                                    limit: 2
+                                    skip: 0
+                                results:
+                                    -
+                                        id: ziqniModelId
+                                        spaceName: ziqniSpaceName
+                                        created: '2018-02-10T09:30Z'
+                                        constraints: []
+                                        description: ''
+                                        key: ''
+                                        name: ''
+                                        unitOfMeasure: ''
+                                        customFields: {}
+                                        tags:
+                                            - ziqniTag
+                                            - ziqniTag1
+                                        metadata: {}
+                                    -
+                                        id: ziqniModelId
+                                        spaceName: ziqniSpaceName
+                                        created: '2018-02-10T09:30Z'
+                                        constraints: []
+                                        description: ''
+                                        key: ''
+                                        name: ''
+                                        unitOfMeasure: ''
+                                        customFields: {}
+                                        tags:
+                                            - ziqniTag
+                                            - ziqniTag1
+                                        metadata: {}
+                                errors:
+                                    -
+                                        modelId: some text
+                                        errorCode: 97
+                                        message: some text
+                                        errorAt: 79
+                                        detail:
+                                            -
+                                                modelId: some text
+                                                errorCode: 68
+                                                message: some text
+                                                errorAt: 46
+                                            -
+                                                modelId: some text
+                                                errorCode: 32
+                                                message: some text
+                                                errorAt: 87
+                                    -
+                                        modelId: some text
+                                        errorCode: 76
+                                        message: some text
+                                        errorAt: 21
+                                        detail:
+                                            -
+                                                modelId: some text
+                                                errorCode: 91
+                                                message: some text
+                                                errorAt: 86
+                                            -
+                                                modelId: some text
+                                                errorCode: 93
+                                                message: some text
+                                                errorAt: 48
+            description: A list of action types and/or errors
     parameters:
         spaceName:
             name: spaceName
