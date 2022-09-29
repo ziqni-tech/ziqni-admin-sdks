@@ -126,6 +126,8 @@ public class CallbackEventHandler extends EventHandler<String> implements Remova
 
     @Override
     public void onRemoval(@Nullable String key, @Nullable CallbackConsumer<?> value, RemovalCause cause) {
-
+        if(value != null && !value.isCompleted()){
+            logger.warn("Evicting a message that hasn't completed " + value.getCallback());
+        }
     }
 }
