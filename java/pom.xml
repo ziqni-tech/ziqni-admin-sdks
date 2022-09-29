@@ -68,9 +68,15 @@
         <commons-configuration2.version>2.7</commons-configuration2.version>
         <spring-version>5.3.11</spring-version>
         <jupiter.version>5.7.0</jupiter.version>
+        <caffeine.version>3.1.1</caffeine.version>
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>com.github.ben-manes.caffeine</groupId>
+            <artifactId>caffeine</artifactId>
+            <version>${caffeine.version}</version>
+        </dependency>
 
         <dependency>
             <groupId>com.fasterxml.jackson.datatype</groupId>

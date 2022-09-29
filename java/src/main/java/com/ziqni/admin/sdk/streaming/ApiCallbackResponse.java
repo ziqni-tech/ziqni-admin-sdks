@@ -16,6 +16,8 @@ public class ApiCallbackResponse<TIN, TOUT> {
     private final TIN payload;
     private final CompletableFuture<TOUT> completableFuture;
 
+    private boolean evictable = false;
+
     public ApiCallbackResponse(long sequenceNumber, TIN payload, CompletableFuture<TOUT> completableFuture) {
         this.sequenceNumber = sequenceNumber;
         this.payload = payload;
@@ -37,7 +39,11 @@ public class ApiCallbackResponse<TIN, TOUT> {
         return completableFuture;
     }
 
+    public boolean isEvictable() { return this.evictable; }
+
     public Runnable onCallBack(StompHeaders headers, Object response) {
+        assert !isEvictable();
+        this.evictable = true;
         logger.debug("handle callback response for sequence [{}] receipt id [{}] headers [{}] and response []", getSequenceNumberAsString(), headers.getReceiptId(), headers.toSingleValueMap());
         return () ->
                 getCompletableFuture().complete((TOUT)response);

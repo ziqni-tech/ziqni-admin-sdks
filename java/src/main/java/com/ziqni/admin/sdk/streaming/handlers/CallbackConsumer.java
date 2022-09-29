@@ -2,11 +2,16 @@ package com.ziqni.admin.sdk.streaming.handlers;
 
 import com.fasterxml.jackson.databind.JavaType;
 import com.ziqni.admin.sdk.ApiException;
+import com.ziqni.admin.sdk.streaming.ApiCallbackResponse;
+import org.checkerframework.checker.nullness.qual.NonNull;
 import org.springframework.messaging.simp.stomp.StompHeaders;
 
+import java.util.concurrent.CompletableFuture;
 import java.util.function.BiConsumer;
 
 public class CallbackConsumer<T> {
+
+    private boolean completed = false;
 
     public final JavaType javaType;
 
@@ -43,5 +48,14 @@ public class CallbackConsumer<T> {
 
     public void consumeApiExceptionCallBack(StompHeaders headers, ApiException response) {
         onApiException.accept(headers, response);
+    }
+
+    public boolean isCompleted() {
+        return completed;
+    }
+
+    public boolean isCompleted(boolean in) {
+        completed = in;
+        return completed;
     }
 }
