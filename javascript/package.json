@@ -1,6 +1,6 @@
 {
   "name": "@ziqni-tech/admin-api-client",
-  "version": "0.0.26",
+  "version": "0.0.31",
   "description": "Client library for Ziqni Admin API",
   "license": "Ziqni Commercial License",
   "main": "dist/index.js",

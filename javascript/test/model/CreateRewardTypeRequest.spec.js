@@ -90,12 +90,6 @@
       //expect(instance).to.be();
     });
 
-    it('should have the property unitOfMeasureType (base name: "unitOfMeasureType")', function() {
-      // uncomment below and update the code to test the property unitOfMeasureType
-      //var instance = new @ZiqniTechAdminApiClient.CreateRewardTypeRequest();
-      //expect(instance).to.be();
-    });
-
     it('should have the property translations (base name: "translations")', function() {
       // uncomment below and update the code to test the property translations
       //var instance = new @ZiqniTechAdminApiClient.CreateRewardTypeRequest();
@@ -104,6 +98,12 @@
 
     it('should have the property addConstraints (base name: "addConstraints")', function() {
       // uncomment below and update the code to test the property addConstraints
+      //var instance = new @ZiqniTechAdminApiClient.CreateRewardTypeRequest();
+      //expect(instance).to.be();
+    });
+
+    it('should have the property unitOfMeasure (base name: "unitOfMeasure")', function() {
+      // uncomment below and update the code to test the property unitOfMeasure
       //var instance = new @ZiqniTechAdminApiClient.CreateRewardTypeRequest();
       //expect(instance).to.be();
     });

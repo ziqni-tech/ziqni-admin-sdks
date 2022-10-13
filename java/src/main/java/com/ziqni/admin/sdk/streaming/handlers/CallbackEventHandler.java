@@ -102,8 +102,8 @@ public class CallbackEventHandler extends EventHandler<String> {
         final var json = new String((byte[])response, StandardCharsets.UTF_8);
         final var error = JSON.getDefault().getMapper().convertValue(json,ApiException.class);
         consumer.ifPresent(callbackConsumer ->
-                        callbackConsumer.consumeApiExceptionCallBack(headers,error)
-                );
+                callbackConsumer.consumeApiExceptionCallBack(headers,error)
+        );
     }
 
     public static CallbackEventHandler create(){

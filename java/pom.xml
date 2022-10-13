@@ -7,7 +7,7 @@
     <groupId>com.ziqni</groupId>
     <artifactId>ziqni-admin-sdk</artifactId>
     <name>ZIQNI Admin SDK Java Client</name>
-    <version>1.0.3</version>
+    <version>1.0.5</version>
     <packaging>jar</packaging>
     <url>https://github.com/ziqni-tech/ziqni-admin-sdks</url>
     <description>ZIQNI Admin SDK Java Client</description>
@@ -57,7 +57,7 @@
         <junit-version>5.4.0</junit-version>
         <spring-version>5.3.11</spring-version>
         <javax-version>1.1</javax-version>
-        <jetty-version>9.4.40.v20210413</jetty-version>
+        <jetty-version>9.4.49.v20220914</jetty-version>
         <junit-version>5.4.0</junit-version>
         <logback.version>1.2.11</logback.version>
         <keycloak.version>18.0.0</keycloak.version>
@@ -68,9 +68,15 @@
         <commons-configuration2.version>2.7</commons-configuration2.version>
         <spring-version>5.3.11</spring-version>
         <jupiter.version>5.7.0</jupiter.version>
+        <caffeine.version>3.1.1</caffeine.version>
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>com.github.ben-manes.caffeine</groupId>
+            <artifactId>caffeine</artifactId>
+            <version>${caffeine.version}</version>
+        </dependency>
 
         <dependency>
             <groupId>com.fasterxml.jackson.datatype</groupId>

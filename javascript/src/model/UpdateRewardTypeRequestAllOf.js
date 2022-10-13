@@ -12,7 +12,6 @@
  */
 
 import ApiClient from '../ApiClient';
-import UnitOfMeasureType from './UnitOfMeasureType';
 
 /**
  * The UpdateRewardTypeRequestAllOf model module.
@@ -54,14 +53,14 @@ class UpdateRewardTypeRequestAllOf {
             if (data.hasOwnProperty('description')) {
                 obj['description'] = ApiClient.convertToType(data['description'], 'String');
             }
-            if (data.hasOwnProperty('unitOfMeasureType')) {
-                obj['unitOfMeasureType'] = UnitOfMeasureType.constructFromObject(data['unitOfMeasureType']);
-            }
             if (data.hasOwnProperty('addConstraints')) {
                 obj['addConstraints'] = ApiClient.convertToType(data['addConstraints'], ['String']);
             }
             if (data.hasOwnProperty('removeConstraints')) {
                 obj['removeConstraints'] = ApiClient.convertToType(data['removeConstraints'], ['String']);
+            }
+            if (data.hasOwnProperty('unitOfMeasure')) {
+                obj['unitOfMeasure'] = ApiClient.convertToType(data['unitOfMeasure'], 'String');
             }
         }
         return obj;
@@ -83,11 +82,6 @@ UpdateRewardTypeRequestAllOf.prototype['name'] = undefined;
 UpdateRewardTypeRequestAllOf.prototype['description'] = undefined;
 
 /**
- * @member {module:model/UnitOfMeasureType} unitOfMeasureType
- */
-UpdateRewardTypeRequestAllOf.prototype['unitOfMeasureType'] = undefined;
-
-/**
  * Additional constraints
  * @member {Array.<String>} addConstraints
  */
@@ -98,6 +92,11 @@ UpdateRewardTypeRequestAllOf.prototype['addConstraints'] = undefined;
  * @member {Array.<String>} removeConstraints
  */
 UpdateRewardTypeRequestAllOf.prototype['removeConstraints'] = undefined;
+
+/**
+ * @member {String} unitOfMeasure
+ */
+UpdateRewardTypeRequestAllOf.prototype['unitOfMeasure'] = undefined;
 
 
 

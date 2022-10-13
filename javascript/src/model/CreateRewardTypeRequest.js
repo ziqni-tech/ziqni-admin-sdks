@@ -15,7 +15,6 @@ import ApiClient from '../ApiClient';
 import CreateOptParamModels from './CreateOptParamModels';
 import CreateRewardTypeRequestAllOf from './CreateRewardTypeRequestAllOf';
 import Translation from './Translation';
-import UnitOfMeasureType from './UnitOfMeasureType';
 
 /**
  * The CreateRewardTypeRequest model module.
@@ -31,11 +30,11 @@ class CreateRewardTypeRequest {
      * @implements module:model/CreateRewardTypeRequestAllOf
      * @param name {String} The name of the Reward type
      * @param key {String} A unique key that represents the reward type
-     * @param unitOfMeasureType {module:model/UnitOfMeasureType} 
+     * @param unitOfMeasure {String} 
      */
-    constructor(name, key, unitOfMeasureType) { 
-        CreateOptParamModels.initialize(this);CreateRewardTypeRequestAllOf.initialize(this, name, key, unitOfMeasureType);
-        CreateRewardTypeRequest.initialize(this, name, key, unitOfMeasureType);
+    constructor(name, key, unitOfMeasure) { 
+        CreateOptParamModels.initialize(this);CreateRewardTypeRequestAllOf.initialize(this, name, key, unitOfMeasure);
+        CreateRewardTypeRequest.initialize(this, name, key, unitOfMeasure);
     }
 
     /**
@@ -43,10 +42,10 @@ class CreateRewardTypeRequest {
      * This method is used by the constructors of any subclasses, in order to implement multiple inheritance (mix-ins).
      * Only for internal use.
      */
-    static initialize(obj, name, key, unitOfMeasureType) { 
+    static initialize(obj, name, key, unitOfMeasure) { 
         obj['name'] = name;
         obj['key'] = key;
-        obj['unitOfMeasureType'] = unitOfMeasureType;
+        obj['unitOfMeasure'] = unitOfMeasure;
     }
 
     /**
@@ -80,14 +79,14 @@ class CreateRewardTypeRequest {
             if (data.hasOwnProperty('key')) {
                 obj['key'] = ApiClient.convertToType(data['key'], 'String');
             }
-            if (data.hasOwnProperty('unitOfMeasureType')) {
-                obj['unitOfMeasureType'] = UnitOfMeasureType.constructFromObject(data['unitOfMeasureType']);
-            }
             if (data.hasOwnProperty('translations')) {
                 obj['translations'] = ApiClient.convertToType(data['translations'], [Translation]);
             }
             if (data.hasOwnProperty('addConstraints')) {
                 obj['addConstraints'] = ApiClient.convertToType(data['addConstraints'], ['String']);
+            }
+            if (data.hasOwnProperty('unitOfMeasure')) {
+                obj['unitOfMeasure'] = ApiClient.convertToType(data['unitOfMeasure'], 'String');
             }
         }
         return obj;
@@ -132,11 +131,6 @@ CreateRewardTypeRequest.prototype['description'] = undefined;
 CreateRewardTypeRequest.prototype['key'] = undefined;
 
 /**
- * @member {module:model/UnitOfMeasureType} unitOfMeasureType
- */
-CreateRewardTypeRequest.prototype['unitOfMeasureType'] = undefined;
-
-/**
  * @member {Array.<module:model/Translation>} translations
  */
 CreateRewardTypeRequest.prototype['translations'] = undefined;
@@ -146,6 +140,11 @@ CreateRewardTypeRequest.prototype['translations'] = undefined;
  * @member {Array.<String>} addConstraints
  */
 CreateRewardTypeRequest.prototype['addConstraints'] = undefined;
+
+/**
+ * @member {String} unitOfMeasure
+ */
+CreateRewardTypeRequest.prototype['unitOfMeasure'] = undefined;
 
 
 // Implement CreateOptParamModels interface:
@@ -180,10 +179,6 @@ CreateRewardTypeRequestAllOf.prototype['description'] = undefined;
  */
 CreateRewardTypeRequestAllOf.prototype['key'] = undefined;
 /**
- * @member {module:model/UnitOfMeasureType} unitOfMeasureType
- */
-CreateRewardTypeRequestAllOf.prototype['unitOfMeasureType'] = undefined;
-/**
  * @member {Array.<module:model/Translation>} translations
  */
 CreateRewardTypeRequestAllOf.prototype['translations'] = undefined;
@@ -192,6 +187,10 @@ CreateRewardTypeRequestAllOf.prototype['translations'] = undefined;
  * @member {Array.<String>} addConstraints
  */
 CreateRewardTypeRequestAllOf.prototype['addConstraints'] = undefined;
+/**
+ * @member {String} unitOfMeasure
+ */
+CreateRewardTypeRequestAllOf.prototype['unitOfMeasure'] = undefined;
 
 
 

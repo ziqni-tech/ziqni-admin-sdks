@@ -15,7 +15,6 @@ import ApiClient from '../ApiClient';
 import ModelDefault from './ModelDefault';
 import OptParamModels from './OptParamModels';
 import RewardTypeAllOf from './RewardTypeAllOf';
-import UnitOfMeasureType from './UnitOfMeasureType';
 
 /**
  * The RewardType model module.
@@ -35,12 +34,12 @@ class RewardType {
      * @param created {Date} ISO8601 timestamp for when a Model was created. All records are stored in UTC time zone
      * @param name {String} The name of the Reward type
      * @param key {String} A unique key that represents the reward type
-     * @param unitOfMeasureType {module:model/UnitOfMeasureType} 
      * @param constraints {Array.<String>} Additional constraints, if the value is present it means the
+     * @param unitOfMeasure {String} 
      */
-    constructor(id, spaceName, created, name, key, unitOfMeasureType, constraints) { 
-        ModelDefault.initialize(this, id, spaceName, created);OptParamModels.initialize(this);RewardTypeAllOf.initialize(this, name, key, unitOfMeasureType, constraints);
-        RewardType.initialize(this, id, spaceName, created, name, key, unitOfMeasureType, constraints);
+    constructor(id, spaceName, created, name, key, constraints, unitOfMeasure) { 
+        ModelDefault.initialize(this, id, spaceName, created);OptParamModels.initialize(this);RewardTypeAllOf.initialize(this, name, key, constraints, unitOfMeasure);
+        RewardType.initialize(this, id, spaceName, created, name, key, constraints, unitOfMeasure);
     }
 
     /**
@@ -48,14 +47,14 @@ class RewardType {
      * This method is used by the constructors of any subclasses, in order to implement multiple inheritance (mix-ins).
      * Only for internal use.
      */
-    static initialize(obj, id, spaceName, created, name, key, unitOfMeasureType, constraints) { 
+    static initialize(obj, id, spaceName, created, name, key, constraints, unitOfMeasure) { 
         obj['id'] = id;
         obj['spaceName'] = spaceName;
         obj['created'] = created;
         obj['name'] = name;
         obj['key'] = key;
-        obj['unitOfMeasureType'] = unitOfMeasureType;
         obj['constraints'] = constraints;
+        obj['unitOfMeasure'] = unitOfMeasure;
     }
 
     /**
@@ -99,11 +98,11 @@ class RewardType {
             if (data.hasOwnProperty('key')) {
                 obj['key'] = ApiClient.convertToType(data['key'], 'String');
             }
-            if (data.hasOwnProperty('unitOfMeasureType')) {
-                obj['unitOfMeasureType'] = UnitOfMeasureType.constructFromObject(data['unitOfMeasureType']);
-            }
             if (data.hasOwnProperty('constraints')) {
                 obj['constraints'] = ApiClient.convertToType(data['constraints'], ['String']);
+            }
+            if (data.hasOwnProperty('unitOfMeasure')) {
+                obj['unitOfMeasure'] = ApiClient.convertToType(data['unitOfMeasure'], 'String');
             }
         }
         return obj;
@@ -165,15 +164,15 @@ RewardType.prototype['description'] = undefined;
 RewardType.prototype['key'] = undefined;
 
 /**
- * @member {module:model/UnitOfMeasureType} unitOfMeasureType
- */
-RewardType.prototype['unitOfMeasureType'] = undefined;
-
-/**
  * Additional constraints, if the value is present it means the
  * @member {Array.<String>} constraints
  */
 RewardType.prototype['constraints'] = undefined;
+
+/**
+ * @member {String} unitOfMeasure
+ */
+RewardType.prototype['unitOfMeasure'] = undefined;
 
 
 // Implement ModelDefault interface:
@@ -223,14 +222,14 @@ RewardTypeAllOf.prototype['description'] = undefined;
  */
 RewardTypeAllOf.prototype['key'] = undefined;
 /**
- * @member {module:model/UnitOfMeasureType} unitOfMeasureType
- */
-RewardTypeAllOf.prototype['unitOfMeasureType'] = undefined;
-/**
  * Additional constraints, if the value is present it means the
  * @member {Array.<String>} constraints
  */
 RewardTypeAllOf.prototype['constraints'] = undefined;
+/**
+ * @member {String} unitOfMeasure
+ */
+RewardTypeAllOf.prototype['unitOfMeasure'] = undefined;
 
 
 
