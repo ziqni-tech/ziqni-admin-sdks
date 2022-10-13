@@ -108,6 +108,18 @@
       //expect(instance).to.be();
     });
 
+    it('should have the property expireAfterDate (base name: "expireAfterDate")', function() {
+      // uncomment below and update the code to test the property expireAfterDate
+      //var instance = new @ZiqniTechAdminApiClient.CreateNotificationRequestAllOf();
+      //expect(instance).to.be();
+    });
+
+    it('should have the property expireAfterDays (base name: "expireAfterDays")', function() {
+      // uncomment below and update the code to test the property expireAfterDays
+      //var instance = new @ZiqniTechAdminApiClient.CreateNotificationRequestAllOf();
+      //expect(instance).to.be();
+    });
+
   });
 
 }));

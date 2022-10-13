@@ -26,12 +26,11 @@ class Entrant {
      * Constructs a new <code>Entrant</code>.
      * @alias module:model/Entrant
      * @param memberId {String} Unique member identifier. A member has to exist in the Ziqni database
-     * @param memberRefId {String} Unique member reference identifier. A member has to exist in the Ziqni database
      * @param entrantStatus {module:model/EntrantStatus} 
      */
-    constructor(memberId, memberRefId, entrantStatus) { 
+    constructor(memberId, entrantStatus) { 
         
-        Entrant.initialize(this, memberId, memberRefId, entrantStatus);
+        Entrant.initialize(this, memberId, entrantStatus);
     }
 
     /**
@@ -39,9 +38,8 @@ class Entrant {
      * This method is used by the constructors of any subclasses, in order to implement multiple inheritance (mix-ins).
      * Only for internal use.
      */
-    static initialize(obj, memberId, memberRefId, entrantStatus) { 
+    static initialize(obj, memberId, entrantStatus) { 
         obj['memberId'] = memberId;
-        obj['memberRefId'] = memberRefId;
         obj['entrantStatus'] = entrantStatus;
     }
 
@@ -61,9 +59,6 @@ class Entrant {
             }
             if (data.hasOwnProperty('memberId')) {
                 obj['memberId'] = ApiClient.convertToType(data['memberId'], 'String');
-            }
-            if (data.hasOwnProperty('memberRefId')) {
-                obj['memberRefId'] = ApiClient.convertToType(data['memberRefId'], 'String');
             }
             if (data.hasOwnProperty('entrantStatus')) {
                 obj['entrantStatus'] = EntrantStatus.constructFromObject(data['entrantStatus']);
@@ -91,12 +86,6 @@ Entrant.prototype['entrantAction'] = undefined;
  * @member {String} memberId
  */
 Entrant.prototype['memberId'] = undefined;
-
-/**
- * Unique member reference identifier. A member has to exist in the Ziqni database
- * @member {String} memberRefId
- */
-Entrant.prototype['memberRefId'] = undefined;
 
 /**
  * @member {module:model/EntrantStatus} entrantStatus

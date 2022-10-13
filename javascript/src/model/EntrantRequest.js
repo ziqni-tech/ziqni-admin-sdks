@@ -24,14 +24,13 @@ class EntrantRequest {
     /**
      * Constructs a new <code>EntrantRequest</code>.
      * @alias module:model/EntrantRequest
-     * @param memberRefId {String} Unique member reference identifier. A member has to exist in the Ziqni database
      * @param entityId {String} Unique competition identifier
      * @param entrantStatus {module:model/EntrantStatus} 
      * @param entrantAction {module:model/EntrantAction} 
      */
-    constructor(memberRefId, entityId, entrantStatus, entrantAction) { 
+    constructor(entityId, entrantStatus, entrantAction) { 
         
-        EntrantRequest.initialize(this, memberRefId, entityId, entrantStatus, entrantAction);
+        EntrantRequest.initialize(this, entityId, entrantStatus, entrantAction);
     }
 
     /**
@@ -39,8 +38,7 @@ class EntrantRequest {
      * This method is used by the constructors of any subclasses, in order to implement multiple inheritance (mix-ins).
      * Only for internal use.
      */
-    static initialize(obj, memberRefId, entityId, entrantStatus, entrantAction) { 
-        obj['memberRefId'] = memberRefId;
+    static initialize(obj, entityId, entrantStatus, entrantAction) { 
         obj['entityId'] = entityId;
         obj['entrantStatus'] = entrantStatus;
         obj['entrantAction'] = entrantAction;
@@ -59,9 +57,6 @@ class EntrantRequest {
 
             if (data.hasOwnProperty('memberId')) {
                 obj['memberId'] = ApiClient.convertToType(data['memberId'], 'String');
-            }
-            if (data.hasOwnProperty('memberRefId')) {
-                obj['memberRefId'] = ApiClient.convertToType(data['memberRefId'], 'String');
             }
             if (data.hasOwnProperty('entityId')) {
                 obj['entityId'] = ApiClient.convertToType(data['entityId'], 'String');
@@ -84,12 +79,6 @@ class EntrantRequest {
  * @member {String} memberId
  */
 EntrantRequest.prototype['memberId'] = undefined;
-
-/**
- * Unique member reference identifier. A member has to exist in the Ziqni database
- * @member {String} memberRefId
- */
-EntrantRequest.prototype['memberRefId'] = undefined;
 
 /**
  * Unique competition identifier

@@ -66,12 +66,6 @@
       //expect(instance).to.be();
     });
 
-    it('should have the property memberRefId (base name: "memberRefId")', function() {
-      // uncomment below and update the code to test the property memberRefId
-      //var instance = new @ZiqniTechAdminApiClient.Entrant();
-      //expect(instance).to.be();
-    });
-
     it('should have the property entrantStatus (base name: "entrantStatus")', function() {
       // uncomment below and update the code to test the property entrantStatus
       //var instance = new @ZiqniTechAdminApiClient.Entrant();

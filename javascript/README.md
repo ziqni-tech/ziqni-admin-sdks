@@ -138,6 +138,8 @@ Class | Method | HTTP request | Description
 *@ZiqniTechAdminApiClient.AchievementsApi* | [**getAchievements**](docs/AchievementsApi.md#getAchievements) | **GET** /achievements | Get Achievements
 *@ZiqniTechAdminApiClient.AchievementsApi* | [**getAchievementsByQuery**](docs/AchievementsApi.md#getAchievementsByQuery) | **POST** /achievements/query | 
 *@ZiqniTechAdminApiClient.AchievementsApi* | [**getAntecendentsForAchievement**](docs/AchievementsApi.md#getAntecendentsForAchievement) | **GET** /achievements/{id}/antecedents | NOT AVAILABLE IN CURRENT RELEASE
+*@ZiqniTechAdminApiClient.AchievementsApi* | [**getIssuedAchievementsCountById**](docs/AchievementsApi.md#getIssuedAchievementsCountById) | **GET** /achievements/{id}/issued | 
+*@ZiqniTechAdminApiClient.AchievementsApi* | [**getMembersAchievementsDetails**](docs/AchievementsApi.md#getMembersAchievementsDetails) | **GET** /achievements/{id}/members | 
 *@ZiqniTechAdminApiClient.AchievementsApi* | [**updateAchievements**](docs/AchievementsApi.md#updateAchievements) | **PUT** /achievements | Update Achievements
 *@ZiqniTechAdminApiClient.AchievementsApi* | [**updateAchievementsLiveStatus**](docs/AchievementsApi.md#updateAchievementsLiveStatus) | **PUT** /achievements/state | 
 *@ZiqniTechAdminApiClient.ActionTypesApi* | [**createActionTypes**](docs/ActionTypesApi.md#createActionTypes) | **POST** /action-types | Create action types
@@ -168,7 +170,9 @@ Class | Method | HTTP request | Description
 *@ZiqniTechAdminApiClient.CompetitionsApi* | [**getCompetitionsByQuery**](docs/CompetitionsApi.md#getCompetitionsByQuery) | **POST** /competitions/query | 
 *@ZiqniTechAdminApiClient.CompetitionsApi* | [**getCompetitionsToClone**](docs/CompetitionsApi.md#getCompetitionsToClone) | **GET** /competitions/{id}/clone | Get Competition To Clone
 *@ZiqniTechAdminApiClient.CompetitionsApi* | [**getLeaderboardByCompetitionId**](docs/CompetitionsApi.md#getLeaderboardByCompetitionId) | **GET** /competitions/{id}/leaderboard | 
+*@ZiqniTechAdminApiClient.CompetitionsApi* | [**getListOfEntrants**](docs/CompetitionsApi.md#getListOfEntrants) | **GET** /competitions/{id}/entries | 
 *@ZiqniTechAdminApiClient.CompetitionsApi* | [**updateCompetitions**](docs/CompetitionsApi.md#updateCompetitions) | **PUT** /competitions | 
+*@ZiqniTechAdminApiClient.CompetitionsApi* | [**updateCompetitionsEntries**](docs/CompetitionsApi.md#updateCompetitionsEntries) | **PUT** /competitions/entries | 
 *@ZiqniTechAdminApiClient.CompetitionsApi* | [**updateCompetitionsState**](docs/CompetitionsApi.md#updateCompetitionsState) | **PUT** /competitions/state | 
 *@ZiqniTechAdminApiClient.ComputeEngineApi* | [**createComputeEngines**](docs/ComputeEngineApi.md#createComputeEngines) | **POST** /compute-engines | 
 *@ZiqniTechAdminApiClient.ComputeEngineApi* | [**deleteComputeEnginesById**](docs/ComputeEngineApi.md#deleteComputeEnginesById) | **DELETE** /compute-engines/{id} | 
@@ -204,6 +208,7 @@ Class | Method | HTTP request | Description
 *@ZiqniTechAdminApiClient.ContestsApi* | [**getContestsByQuery**](docs/ContestsApi.md#getContestsByQuery) | **POST** /contests/query | 
 *@ZiqniTechAdminApiClient.ContestsApi* | [**getContestsLeaderboardById**](docs/ContestsApi.md#getContestsLeaderboardById) | **GET** /contests/{id}/leaderboard | 
 *@ZiqniTechAdminApiClient.ContestsApi* | [**getContestsToClone**](docs/ContestsApi.md#getContestsToClone) | **GET** /contests/{id}/clone | 
+*@ZiqniTechAdminApiClient.ContestsApi* | [**getListOfEntrantsForContest**](docs/ContestsApi.md#getListOfEntrantsForContest) | **GET** /contests/{id}/entries | 
 *@ZiqniTechAdminApiClient.ContestsApi* | [**updateContest**](docs/ContestsApi.md#updateContest) | **PUT** /contests | 
 *@ZiqniTechAdminApiClient.ContestsApi* | [**updateContestsState**](docs/ContestsApi.md#updateContestsState) | **PUT** /contests/state | 
 *@ZiqniTechAdminApiClient.CustomFieldsApi* | [**createCustomFields**](docs/CustomFieldsApi.md#createCustomFields) | **POST** /custom-fields | Create custom fields
