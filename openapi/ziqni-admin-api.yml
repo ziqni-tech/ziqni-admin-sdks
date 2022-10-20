@@ -16,11 +16,8 @@ info:
         altText: Ziqni
 servers:
     -
-        url: 'https://api.ziqni.io'
+        url: 'https://api.ziqni.com'
         description: Production environment
-    -
-        url: 'https://api-demo.ziqni.io'
-        description: Demo environment
 paths:
     /products/query:
         summary: Get products by query
@@ -706,6 +703,120 @@ paths:
             operationId: updateCompetitionsState
             description: Manages the Competitions state
             x-codegen-request-body-name: body
+    '/competitions/{id}/entries':
+        get:
+            tags:
+                - competitions
+            parameters:
+                -
+                    $ref: '#/components/parameters/idPath'
+                -
+                    $ref: '#/components/parameters/limitResults'
+                -
+                    $ref: '#/components/parameters/skipResults'
+            responses:
+                '200':
+                    $ref: '#/components/responses/EntrantResponseBody'
+                '400':
+                    $ref: '#/components/responses/EntrantResponseBody'
+                '401':
+                    $ref: '#/components/responses/EntrantResponseBody'
+                '403':
+                    $ref: '#/components/responses/EntrantResponseBody'
+                '404':
+                    $ref: '#/components/responses/EntrantResponseBody'
+                '413':
+                    $ref: '#/components/responses/EntrantResponseBody'
+                '500':
+                    $ref: '#/components/responses/EntrantResponseBody'
+                '501':
+                    $ref: '#/components/responses/EntrantResponseBody'
+                '503':
+                    $ref: '#/components/responses/EntrantResponseBody'
+            security:
+                -
+                    OAuth2:
+                        - ViewCompetitions
+            operationId: getListOfEntrants
+            description: Returns all Entries for the Competition id provided
+            x-codegen-request-body-name: body
+    /competitions/entries:
+        put:
+            requestBody:
+                description: Updates the status of the Entrants
+                content:
+                    application/json:
+                        schema:
+                            type: array
+                            items:
+                                $ref: '#/components/schemas/EntrantRequest'
+            tags:
+                - competitions
+            responses:
+                '201':
+                    $ref: '#/components/responses/ApiResponseBody'
+                '202':
+                    description: Accepted
+                '400':
+                    $ref: '#/components/responses/ApiResponseBody'
+                '401':
+                    $ref: '#/components/responses/ApiResponseBody'
+                '403':
+                    $ref: '#/components/responses/ApiResponseBody'
+                '404':
+                    $ref: '#/components/responses/ApiResponseBody'
+                '413':
+                    $ref: '#/components/responses/ApiResponseBody'
+                '500':
+                    $ref: '#/components/responses/ApiResponseBody'
+                '501':
+                    $ref: '#/components/responses/ApiResponseBody'
+                '503':
+                    $ref: '#/components/responses/ApiResponseBody'
+            security:
+                -
+                    OAuth2:
+                        - ManageCompetition
+            operationId: updateCompetitionsEntries
+            description: Updates the status of the Entrants for a Competition id provided
+            x-codegen-request-body-name: body
+    '/contests/{id}/entries':
+        get:
+            tags:
+                - contests
+            parameters:
+                -
+                    $ref: '#/components/parameters/idPath'
+                -
+                    $ref: '#/components/parameters/limitResults'
+                -
+                    $ref: '#/components/parameters/skipResults'
+            responses:
+                '200':
+                    $ref: '#/components/responses/EntrantResponseBody'
+                '400':
+                    $ref: '#/components/responses/EntrantResponseBody'
+                '401':
+                    $ref: '#/components/responses/EntrantResponseBody'
+                '403':
+                    $ref: '#/components/responses/EntrantResponseBody'
+                '404':
+                    $ref: '#/components/responses/EntrantResponseBody'
+                '413':
+                    $ref: '#/components/responses/EntrantResponseBody'
+                '500':
+                    $ref: '#/components/responses/EntrantResponseBody'
+                '501':
+                    $ref: '#/components/responses/EntrantResponseBody'
+                '503':
+                    $ref: '#/components/responses/EntrantResponseBody'
+            security:
+                -
+                    OAuth2:
+                        - ViewContest
+            operationId: getListOfEntrantsForContest
+            description: Returns all Entries for the Contest id provided
+            x-codegen-request-body-name: body
     /contests/query:
         post:
             requestBody:
@@ -898,6 +1009,86 @@ paths:
             description: >-
                 Delete Achievements from Ziqni database by unique Achievements ID's or any other POST body
                 parameters using the POST method
+            x-codegen-request-body-name: body
+    '/achievements/{id}/issued':
+        get:
+            tags:
+                - achievements
+            parameters:
+                -
+                    $ref: '#/components/parameters/idPath'
+            responses:
+                '200':
+                    $ref: '#/components/responses/AchievementIssuedResponseBody'
+                '400':
+                    $ref: '#/components/responses/AchievementIssuedResponseBody'
+                '401':
+                    $ref: '#/components/responses/AchievementIssuedResponseBody'
+                '403':
+                    $ref: '#/components/responses/AchievementIssuedResponseBody'
+                '404':
+                    $ref: '#/components/responses/AchievementIssuedResponseBody'
+                '413':
+                    $ref: '#/components/responses/AchievementIssuedResponseBody'
+                '500':
+                    $ref: '#/components/responses/AchievementIssuedResponseBody'
+                '501':
+                    $ref: '#/components/responses/AchievementIssuedResponseBody'
+                '503':
+                    $ref: '#/components/responses/AchievementIssuedResponseBody'
+            security:
+                -
+                    OAuth2:
+                        - ViewAchievement
+            operationId: getIssuedAchievementsCountById
+            description: Receive a count of Issued Achievements by identifier provided
+            x-codegen-request-body-name: body
+    '/achievements/{id}/members':
+        get:
+            tags:
+                - achievements
+            parameters:
+                -
+                    $ref: '#/components/parameters/idPath'
+                -
+                    style: form
+                    explode: false
+                    name: memberId
+                    description: Id of a member
+                    schema:
+                        type: string
+                    in: query
+                -
+                    $ref: '#/components/parameters/limitResults'
+                -
+                    $ref: '#/components/parameters/skipResults'
+            responses:
+                '200':
+                    $ref: '#/components/responses/MemberAchievementIssuedResponseBody'
+                '400':
+                    $ref: '#/components/responses/MemberAchievementIssuedResponseBody'
+                '401':
+                    $ref: '#/components/responses/MemberAchievementIssuedResponseBody'
+                '403':
+                    $ref: '#/components/responses/MemberAchievementIssuedResponseBody'
+                '404':
+                    $ref: '#/components/responses/MemberAchievementIssuedResponseBody'
+                '413':
+                    $ref: '#/components/responses/MemberAchievementIssuedResponseBody'
+                '500':
+                    $ref: '#/components/responses/MemberAchievementIssuedResponseBody'
+                '501':
+                    $ref: '#/components/responses/MemberAchievementIssuedResponseBody'
+                '503':
+                    $ref: '#/components/responses/MemberAchievementIssuedResponseBody'
+            security:
+                -
+                    OAuth2:
+                        - ViewAchievement
+            operationId: getMembersAchievementsDetails
+            description: >-
+                Receive a list of members that had an Achievement issued for the Achievement identified
+                provided
             x-codegen-request-body-name: body
     '/achievements/{id}/antecedents':
         get:
@@ -8154,7 +8345,6 @@ components:
                 value: Sammple Text
         EntrantRequest:
             required:
-                - memberRefId
                 - entrantStatus
                 - entityId
                 - entrantAction
@@ -8164,10 +8354,6 @@ components:
                     description: Unique member identifier. A member has to exist in the Ziqni database
                     type: string
                     example: Dc4swmQBVd51K6gPQqFx
-                memberRefId:
-                    description: Unique member reference identifier. A member has to exist in the Ziqni database
-                    type: string
-                    example: Player-1
                 entityId:
                     description: Unique competition identifier
                     type: string
@@ -8205,7 +8391,6 @@ components:
         Entrant:
             required:
                 - memberId
-                - memberRefId
                 - entrantStatus
                 - entrantaAtion
             type: object
@@ -8216,10 +8401,6 @@ components:
                     description: Unique member identifier. A member has to exist in the Ziqni database
                     type: string
                     example: Dc4swmQBVd51K6gPQqFx
-                memberRefId:
-                    description: Unique member reference identifier. A member has to exist in the Ziqni database
-                    type: string
-                    example: Player-1
                 entrantStatus:
                     $ref: '#/components/schemas/EntrantStatus'
                 entityId:
@@ -16721,54 +16902,6 @@ components:
                             x-vue-formTypeOptionsParams: 'multiple: true'
             x-vue-create: apiKey
             x-vue-creator: apiKeys
-        CreateNotificationRequest:
-            allOf:
-                -
-                    $ref: '#/components/schemas/CreateOptParamModels'
-                -
-                    required:
-                        - messageType
-                        - subject
-                        - body
-                        - status
-                        - scheduling
-                        - constraints
-                    type: object
-                    properties:
-                        messageType:
-                            $ref: '#/components/schemas/MessageType'
-                        subject:
-                            description: The title of the message
-                            type: string
-                            example: Hello and welcome
-                        body:
-                            description: The context of the message
-                            type: string
-                            example: Here is a message to welcome you on board!
-                        status:
-                            $ref: '#/components/schemas/MessageStatus'
-                        translations:
-                            type: array
-                            items:
-                                $ref: '#/components/schemas/Translation'
-                        scheduling:
-                            $ref: '#/components/schemas/Scheduling'
-                        constraints:
-                            description: Additional constraints
-                            type: array
-                            items:
-                                type: string
-                            example: '- deprecated'
-                        memberTags:
-                            description: ''
-                            type: array
-                            items:
-                                type: string
-                        memberIds:
-                            description: ''
-                            type: array
-                            items:
-                                type: string
         SaveTemplateRequest:
             description: 'Either the file [id] or the [parentFolderPath] + [filename] are mandatory fields.'
             allOf:
@@ -18172,6 +18305,74 @@ components:
             x-vue-ops:
                 - Create
                 - Update
+        CreateNotificationRequest:
+            allOf:
+                -
+                    $ref: '#/components/schemas/CreateOptParamModels'
+                -
+                    required:
+                        - messageType
+                        - subject
+                        - body
+                        - status
+                        - scheduling
+                        - constraints
+                    type: object
+                    properties:
+                        messageType:
+                            $ref: '#/components/schemas/MessageType'
+                        subject:
+                            description: The title of the message
+                            type: string
+                            example: Hello and welcome
+                        body:
+                            description: The context of the message
+                            type: string
+                            example: Here is a message to welcome you on board!
+                        status:
+                            $ref: '#/components/schemas/MessageStatus'
+                            example: |-
+                                New,
+                                Read,
+                                Actioned,
+                                Claimed,
+                                Expired,
+                                Cancelled,
+                                Deprecated
+                        translations:
+                            type: array
+                            items:
+                                $ref: '#/components/schemas/Translation'
+                        scheduling:
+                            $ref: '#/components/schemas/Scheduling'
+                        constraints:
+                            description: Additional constraints
+                            type: array
+                            items:
+                                type: string
+                            example: '- deprecated'
+                        memberTags:
+                            description: ''
+                            type: array
+                            items:
+                                type: string
+                        memberIds:
+                            description: ''
+                            type: array
+                            items:
+                                type: string
+                        expireAfterDate:
+                            format: date-time
+                            description: >-
+                                Specify the expiry as a date after creation of the record. If expireAfterDays
+                                is specified then expireAfterDate should not be specified.
+                            type: string
+                        expireAfterDays:
+                            format: int32
+                            description: >-
+                                Specify the expiry in number of days after creation of the record. If
+                                expireAfterDate is specified then expireAfterDays should not be specified.
+                            type: integer
     responses:
         ApiResponseBody:
             content:
