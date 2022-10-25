@@ -1,6 +1,6 @@
 # AchievementsApi
 
-All URIs are relative to *https://api.ziqni.io*
+All URIs are relative to *https://api.ziqni.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -18,6 +18,10 @@ Method | HTTP request | Description
 [**getAchievementsByQueryWithHttpInfo**](AchievementsApi.md#getAchievementsByQueryWithHttpInfo) | **POST** /achievements/query | 
 [**getAntecendentsForAchievement**](AchievementsApi.md#getAntecendentsForAchievement) | **GET** /achievements/{id}/antecedents | NOT AVAILABLE IN CURRENT RELEASE
 [**getAntecendentsForAchievementWithHttpInfo**](AchievementsApi.md#getAntecendentsForAchievementWithHttpInfo) | **GET** /achievements/{id}/antecedents | NOT AVAILABLE IN CURRENT RELEASE
+[**getIssuedAchievementsCountById**](AchievementsApi.md#getIssuedAchievementsCountById) | **GET** /achievements/{id}/issued | 
+[**getIssuedAchievementsCountByIdWithHttpInfo**](AchievementsApi.md#getIssuedAchievementsCountByIdWithHttpInfo) | **GET** /achievements/{id}/issued | 
+[**getMembersAchievementsDetails**](AchievementsApi.md#getMembersAchievementsDetails) | **GET** /achievements/{id}/members | 
+[**getMembersAchievementsDetailsWithHttpInfo**](AchievementsApi.md#getMembersAchievementsDetailsWithHttpInfo) | **GET** /achievements/{id}/members | 
 [**updateAchievements**](AchievementsApi.md#updateAchievements) | **PUT** /achievements | Update Achievements
 [**updateAchievementsWithHttpInfo**](AchievementsApi.md#updateAchievementsWithHttpInfo) | **PUT** /achievements | Update Achievements
 [**updateAchievementsLiveStatus**](AchievementsApi.md#updateAchievementsLiveStatus) | **PUT** /achievements/state | 
@@ -48,7 +52,7 @@ import java.util.concurrent.CompletableFuture;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://api.ziqni.io");
+        defaultClient.setBasePath("https://api.ziqni.com");
         
         // Configure OAuth2 access token for authorization: OAuth2
         OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
@@ -128,7 +132,7 @@ import java.util.concurrent.CompletableFuture;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://api.ziqni.io");
+        defaultClient.setBasePath("https://api.ziqni.com");
         
         // Configure OAuth2 access token for authorization: OAuth2
         OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
@@ -217,7 +221,7 @@ import java.util.concurrent.CompletableFuture;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://api.ziqni.io");
+        defaultClient.setBasePath("https://api.ziqni.com");
         
         // Configure OAuth2 access token for authorization: OAuth2
         OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
@@ -297,7 +301,7 @@ import java.util.concurrent.CompletableFuture;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://api.ziqni.io");
+        defaultClient.setBasePath("https://api.ziqni.com");
         
         // Configure OAuth2 access token for authorization: OAuth2
         OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
@@ -386,7 +390,7 @@ import java.util.concurrent.CompletableFuture;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://api.ziqni.io");
+        defaultClient.setBasePath("https://api.ziqni.com");
         
         // Configure OAuth2 access token for authorization: OAuth2
         OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
@@ -466,7 +470,7 @@ import java.util.concurrent.CompletableFuture;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://api.ziqni.io");
+        defaultClient.setBasePath("https://api.ziqni.com");
         
         // Configure OAuth2 access token for authorization: OAuth2
         OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
@@ -555,7 +559,7 @@ import java.util.concurrent.CompletableFuture;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://api.ziqni.io");
+        defaultClient.setBasePath("https://api.ziqni.com");
         
         // Configure OAuth2 access token for authorization: OAuth2
         OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
@@ -635,7 +639,7 @@ import java.util.concurrent.CompletableFuture;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://api.ziqni.io");
+        defaultClient.setBasePath("https://api.ziqni.com");
         
         // Configure OAuth2 access token for authorization: OAuth2
         OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
@@ -724,7 +728,7 @@ import java.util.concurrent.CompletableFuture;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://api.ziqni.io");
+        defaultClient.setBasePath("https://api.ziqni.com");
         
         // Configure OAuth2 access token for authorization: OAuth2
         OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
@@ -808,7 +812,7 @@ import java.util.concurrent.CompletableFuture;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://api.ziqni.io");
+        defaultClient.setBasePath("https://api.ziqni.com");
         
         // Configure OAuth2 access token for authorization: OAuth2
         OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
@@ -901,7 +905,7 @@ import java.util.concurrent.CompletableFuture;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://api.ziqni.io");
+        defaultClient.setBasePath("https://api.ziqni.com");
         
         // Configure OAuth2 access token for authorization: OAuth2
         OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
@@ -981,7 +985,7 @@ import java.util.concurrent.CompletableFuture;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://api.ziqni.io");
+        defaultClient.setBasePath("https://api.ziqni.com");
         
         // Configure OAuth2 access token for authorization: OAuth2
         OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
@@ -1070,7 +1074,7 @@ import java.util.concurrent.CompletableFuture;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://api.ziqni.io");
+        defaultClient.setBasePath("https://api.ziqni.com");
         
         // Configure OAuth2 access token for authorization: OAuth2
         OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
@@ -1154,7 +1158,7 @@ import java.util.concurrent.CompletableFuture;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://api.ziqni.io");
+        defaultClient.setBasePath("https://api.ziqni.com");
         
         // Configure OAuth2 access token for authorization: OAuth2
         OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
@@ -1224,6 +1228,356 @@ CompletableFuture<ApiResponse<[**AchievementResponse**](AchievementResponse.md)>
 | **503** | A list of achievements and/or errors |  -  |
 
 
+## getIssuedAchievementsCountById
+
+> CompletableFuture<AchievementIssuedResponse> getIssuedAchievementsCountById(id)
+
+
+
+Receive a count of Issued Achievements by identifier provided
+
+### Example
+
+```java
+// Import classes:
+import com.ziqni.admin.sdk.ApiClient;
+import com.ziqni.admin.sdk.ApiException;
+import com.ziqni.admin.sdk.Configuration;
+import com.ziqni.admin.sdk.auth.*;
+import com.ziqni.admin.sdk.models.*;
+import com.ziqni.admin.sdk.api.AchievementsApi;
+import java.util.concurrent.CompletableFuture;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://api.ziqni.com");
+        
+        // Configure OAuth2 access token for authorization: OAuth2
+        OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
+        OAuth2.setAccessToken("YOUR ACCESS TOKEN");
+
+        AchievementsApi apiInstance = new AchievementsApi(defaultClient);
+        String id = "id_example"; // String | Unique identifier of the resource
+        try {
+            CompletableFuture<AchievementIssuedResponse> result = apiInstance.getIssuedAchievementsCountById(id);
+            System.out.println(result.get());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AchievementsApi#getIssuedAchievementsCountById");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**| Unique identifier of the resource |
+
+### Return type
+
+CompletableFuture<[**AchievementIssuedResponse**](AchievementIssuedResponse.md)>
+
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | A count of Issued Achievements for the id requested |  -  |
+| **400** | A count of Issued Achievements for the id requested |  -  |
+| **401** | A count of Issued Achievements for the id requested |  -  |
+| **403** | A count of Issued Achievements for the id requested |  -  |
+| **404** | A count of Issued Achievements for the id requested |  -  |
+| **413** | A count of Issued Achievements for the id requested |  -  |
+| **500** | A count of Issued Achievements for the id requested |  -  |
+| **501** | A count of Issued Achievements for the id requested |  -  |
+| **503** | A count of Issued Achievements for the id requested |  -  |
+
+## getIssuedAchievementsCountByIdWithHttpInfo
+
+> CompletableFuture<ApiResponse<AchievementIssuedResponse>> getIssuedAchievementsCountById getIssuedAchievementsCountByIdWithHttpInfo(id)
+
+
+
+Receive a count of Issued Achievements by identifier provided
+
+### Example
+
+```java
+// Import classes:
+import com.ziqni.admin.sdk.ApiClient;
+import com.ziqni.admin.sdk.ApiException;
+import com.ziqni.admin.sdk.ApiResponse;
+import com.ziqni.admin.sdk.Configuration;
+import com.ziqni.admin.sdk.auth.*;
+import com.ziqni.admin.sdk.models.*;
+import com.ziqni.admin.sdk.api.AchievementsApi;
+import java.util.concurrent.CompletableFuture;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://api.ziqni.com");
+        
+        // Configure OAuth2 access token for authorization: OAuth2
+        OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
+        OAuth2.setAccessToken("YOUR ACCESS TOKEN");
+
+        AchievementsApi apiInstance = new AchievementsApi(defaultClient);
+        String id = "id_example"; // String | Unique identifier of the resource
+        try {
+            CompletableFuture<ApiResponse<AchievementIssuedResponse>> response = apiInstance.getIssuedAchievementsCountByIdWithHttpInfo(id);
+            System.out.println("Status code: " + response.get().getStatusCode());
+            System.out.println("Response headers: " + response.get().getHeaders());
+            System.out.println("Response body: " + response.get().getData());
+        } catch (InterruptedException | ExecutionException e) {
+            ApiException apiException = (ApiException)e.getCause();
+            System.err.println("Exception when calling AchievementsApi#getIssuedAchievementsCountById");
+            System.err.println("Status code: " + apiException.getCode());
+            System.err.println("Response headers: " + apiException.getResponseHeaders());
+            System.err.println("Reason: " + apiException.getResponseBody());
+            e.printStackTrace();
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AchievementsApi#getIssuedAchievementsCountById");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**| Unique identifier of the resource |
+
+### Return type
+
+CompletableFuture<ApiResponse<[**AchievementIssuedResponse**](AchievementIssuedResponse.md)>>
+
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | A count of Issued Achievements for the id requested |  -  |
+| **400** | A count of Issued Achievements for the id requested |  -  |
+| **401** | A count of Issued Achievements for the id requested |  -  |
+| **403** | A count of Issued Achievements for the id requested |  -  |
+| **404** | A count of Issued Achievements for the id requested |  -  |
+| **413** | A count of Issued Achievements for the id requested |  -  |
+| **500** | A count of Issued Achievements for the id requested |  -  |
+| **501** | A count of Issued Achievements for the id requested |  -  |
+| **503** | A count of Issued Achievements for the id requested |  -  |
+
+
+## getMembersAchievementsDetails
+
+> CompletableFuture<MemberAchievementIssuedResponse> getMembersAchievementsDetails(id, memberId, limit, skip)
+
+
+
+Receive a list of members that had an Achievement issued for the Achievement identified provided
+
+### Example
+
+```java
+// Import classes:
+import com.ziqni.admin.sdk.ApiClient;
+import com.ziqni.admin.sdk.ApiException;
+import com.ziqni.admin.sdk.Configuration;
+import com.ziqni.admin.sdk.auth.*;
+import com.ziqni.admin.sdk.models.*;
+import com.ziqni.admin.sdk.api.AchievementsApi;
+import java.util.concurrent.CompletableFuture;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://api.ziqni.com");
+        
+        // Configure OAuth2 access token for authorization: OAuth2
+        OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
+        OAuth2.setAccessToken("YOUR ACCESS TOKEN");
+
+        AchievementsApi apiInstance = new AchievementsApi(defaultClient);
+        String id = "id_example"; // String | Unique identifier of the resource
+        String memberId = "memberId_example"; // String | Id of a member
+        Integer limit = 56; // Integer | Limit the returned total records found
+        Integer skip = 56; // Integer | Skip the returned records found and return the next batch of records
+        try {
+            CompletableFuture<MemberAchievementIssuedResponse> result = apiInstance.getMembersAchievementsDetails(id, memberId, limit, skip);
+            System.out.println(result.get());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AchievementsApi#getMembersAchievementsDetails");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**| Unique identifier of the resource |
+ **memberId** | **String**| Id of a member | [optional]
+ **limit** | **Integer**| Limit the returned total records found | [optional]
+ **skip** | **Integer**| Skip the returned records found and return the next batch of records | [optional]
+
+### Return type
+
+CompletableFuture<[**MemberAchievementIssuedResponse**](MemberAchievementIssuedResponse.md)>
+
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | A count of Achievement issued for for each member |  -  |
+| **400** | A count of Achievement issued for for each member |  -  |
+| **401** | A count of Achievement issued for for each member |  -  |
+| **403** | A count of Achievement issued for for each member |  -  |
+| **404** | A count of Achievement issued for for each member |  -  |
+| **413** | A count of Achievement issued for for each member |  -  |
+| **500** | A count of Achievement issued for for each member |  -  |
+| **501** | A count of Achievement issued for for each member |  -  |
+| **503** | A count of Achievement issued for for each member |  -  |
+
+## getMembersAchievementsDetailsWithHttpInfo
+
+> CompletableFuture<ApiResponse<MemberAchievementIssuedResponse>> getMembersAchievementsDetails getMembersAchievementsDetailsWithHttpInfo(id, memberId, limit, skip)
+
+
+
+Receive a list of members that had an Achievement issued for the Achievement identified provided
+
+### Example
+
+```java
+// Import classes:
+import com.ziqni.admin.sdk.ApiClient;
+import com.ziqni.admin.sdk.ApiException;
+import com.ziqni.admin.sdk.ApiResponse;
+import com.ziqni.admin.sdk.Configuration;
+import com.ziqni.admin.sdk.auth.*;
+import com.ziqni.admin.sdk.models.*;
+import com.ziqni.admin.sdk.api.AchievementsApi;
+import java.util.concurrent.CompletableFuture;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://api.ziqni.com");
+        
+        // Configure OAuth2 access token for authorization: OAuth2
+        OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
+        OAuth2.setAccessToken("YOUR ACCESS TOKEN");
+
+        AchievementsApi apiInstance = new AchievementsApi(defaultClient);
+        String id = "id_example"; // String | Unique identifier of the resource
+        String memberId = "memberId_example"; // String | Id of a member
+        Integer limit = 56; // Integer | Limit the returned total records found
+        Integer skip = 56; // Integer | Skip the returned records found and return the next batch of records
+        try {
+            CompletableFuture<ApiResponse<MemberAchievementIssuedResponse>> response = apiInstance.getMembersAchievementsDetailsWithHttpInfo(id, memberId, limit, skip);
+            System.out.println("Status code: " + response.get().getStatusCode());
+            System.out.println("Response headers: " + response.get().getHeaders());
+            System.out.println("Response body: " + response.get().getData());
+        } catch (InterruptedException | ExecutionException e) {
+            ApiException apiException = (ApiException)e.getCause();
+            System.err.println("Exception when calling AchievementsApi#getMembersAchievementsDetails");
+            System.err.println("Status code: " + apiException.getCode());
+            System.err.println("Response headers: " + apiException.getResponseHeaders());
+            System.err.println("Reason: " + apiException.getResponseBody());
+            e.printStackTrace();
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AchievementsApi#getMembersAchievementsDetails");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**| Unique identifier of the resource |
+ **memberId** | **String**| Id of a member | [optional]
+ **limit** | **Integer**| Limit the returned total records found | [optional]
+ **skip** | **Integer**| Skip the returned records found and return the next batch of records | [optional]
+
+### Return type
+
+CompletableFuture<ApiResponse<[**MemberAchievementIssuedResponse**](MemberAchievementIssuedResponse.md)>>
+
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | A count of Achievement issued for for each member |  -  |
+| **400** | A count of Achievement issued for for each member |  -  |
+| **401** | A count of Achievement issued for for each member |  -  |
+| **403** | A count of Achievement issued for for each member |  -  |
+| **404** | A count of Achievement issued for for each member |  -  |
+| **413** | A count of Achievement issued for for each member |  -  |
+| **500** | A count of Achievement issued for for each member |  -  |
+| **501** | A count of Achievement issued for for each member |  -  |
+| **503** | A count of Achievement issued for for each member |  -  |
+
+
 ## updateAchievements
 
 > CompletableFuture<ModelApiResponse> updateAchievements(body)
@@ -1247,7 +1601,7 @@ import java.util.concurrent.CompletableFuture;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://api.ziqni.io");
+        defaultClient.setBasePath("https://api.ziqni.com");
         
         // Configure OAuth2 access token for authorization: OAuth2
         OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
@@ -1328,7 +1682,7 @@ import java.util.concurrent.CompletableFuture;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://api.ziqni.io");
+        defaultClient.setBasePath("https://api.ziqni.com");
         
         // Configure OAuth2 access token for authorization: OAuth2
         OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
@@ -1418,7 +1772,7 @@ import java.util.concurrent.CompletableFuture;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://api.ziqni.io");
+        defaultClient.setBasePath("https://api.ziqni.com");
         
         // Configure OAuth2 access token for authorization: OAuth2
         OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
@@ -1499,7 +1853,7 @@ import java.util.concurrent.CompletableFuture;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://api.ziqni.io");
+        defaultClient.setBasePath("https://api.ziqni.com");
         
         // Configure OAuth2 access token for authorization: OAuth2
         OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
