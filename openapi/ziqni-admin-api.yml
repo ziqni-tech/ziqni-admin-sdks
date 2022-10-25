@@ -17391,7 +17391,7 @@ components:
                 origins:
                     description: >
                         Allowed origins for the generated token. Leave empty to permit all origins,
-                        Alternative provide up to 3 allowed origin URIs like https://my-space.api.ziqni.io
+                        Alternative provide up to 3 allowed origin URIs like https://my-space.api.ziqni.app
                     type: array
                     items:
                         type: string
@@ -20018,8 +20018,8 @@ components:
         OAuth2:
             flows:
                 authorizationCode:
-                    authorizationUrl: 'https://iam.ziqni.io/oauth/authorize'
-                    tokenUrl: 'https://iam.ziqni.io/oauth/token'
+                    authorizationUrl: 'https://identity.ziqni.com/realms/ziqni/protocol/openid-connect/auth'
+                    tokenUrl: 'https://identity.ziqni.com/realms/ziqni/protocol/openid-connect/token'
                     scopes:
                         AdminAchievements: Grants full read and write access
                         ManageAchievements: Grants read and restricted write access
