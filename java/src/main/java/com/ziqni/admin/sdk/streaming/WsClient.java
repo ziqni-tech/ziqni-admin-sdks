@@ -71,7 +71,7 @@ public class WsClient {
     private final Consumer<Integer> onStateChange;
 
 
-    public WsClient(final String wsUri, final Consumer<Integer> onStateChange) {
+    public WsClient(final String wsUri, final Consumer<Integer> onStateChange) throws Exception {
         this(wsUri, makeAuthHeader(), onStateChange);
     }
 
@@ -91,13 +91,13 @@ public class WsClient {
         stompSessionHandler.subscribe(stompSession,handler);
     }
 
-    private static StompHeaders makeAuthHeader() {
+    private static StompHeaders makeAuthHeader() throws Exception{
         StompHeaders stompHeaders = new StompHeaders();
         updateOauthToken(stompHeaders);
         return stompHeaders;
     }
 
-    private static void updateOauthToken(StompHeaders stompHeaders) {
+    private static void updateOauthToken(StompHeaders stompHeaders) throws Exception{
         String oauthToken = AdminApiClientConfig.getAccessTokenString();
         stompHeaders.setLogin("Bearer");
         stompHeaders.setPasscode(oauthToken);

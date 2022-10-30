@@ -3,6 +3,7 @@
  */
 package com.ziqni.admin.sdk.configuration;
 
+import com.ziqni.admin.sdk.ApiException;
 import com.ziqni.admin.sdk.util.ConfigurationLoader;
 import org.keycloak.admin.client.Keycloak;
 import org.slf4j.Logger;
@@ -97,13 +98,8 @@ public abstract class AdminApiClientConfig {
         return identityClient;
     }
 
-    public static String getAccessTokenString() {
-        try {
-            return IdentityAuthorization.getAccessTokenString();
-        } catch (Exception e) {
-            logger.error("Access token error.", e);
-            return null;
-        }
+    public static String getAccessTokenString() throws Exception {
+        return IdentityAuthorization.getAccessTokenString();
     }
 
     public static Optional<String> getByName(String parameterName) {

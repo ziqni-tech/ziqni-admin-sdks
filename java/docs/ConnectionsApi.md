@@ -701,7 +701,7 @@ CompletableFuture<ApiResponse<[**ObjectParametersResponse**](ObjectParametersRes
 
 ## getConnections
 
-> CompletableFuture<ConnectionResponse> getConnections(id)
+> CompletableFuture<ConnectionResponse> getConnections(id, limit, skip)
 
 
 
@@ -730,8 +730,10 @@ public class Example {
 
         ConnectionsApi apiInstance = new ConnectionsApi(defaultClient);
         List<String> id = Arrays.asList(); // List<String> | The unique identifiers of the resources
+        Integer limit = 56; // Integer | Limit the returned total records found
+        Integer skip = 56; // Integer | Skip the returned records found and return the next batch of records
         try {
-            CompletableFuture<ConnectionResponse> result = apiInstance.getConnections(id);
+            CompletableFuture<ConnectionResponse> result = apiInstance.getConnections(id, limit, skip);
             System.out.println(result.get());
         } catch (ApiException e) {
             System.err.println("Exception when calling ConnectionsApi#getConnections");
@@ -750,6 +752,8 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | [**List&lt;String&gt;**](String.md)| The unique identifiers of the resources | [optional]
+ **limit** | **Integer**| Limit the returned total records found | [optional]
+ **skip** | **Integer**| Skip the returned records found and return the next batch of records | [optional]
 
 ### Return type
 
@@ -780,7 +784,7 @@ CompletableFuture<[**ConnectionResponse**](ConnectionResponse.md)>
 
 ## getConnectionsWithHttpInfo
 
-> CompletableFuture<ApiResponse<ConnectionResponse>> getConnections getConnectionsWithHttpInfo(id)
+> CompletableFuture<ApiResponse<ConnectionResponse>> getConnections getConnectionsWithHttpInfo(id, limit, skip)
 
 
 
@@ -810,8 +814,10 @@ public class Example {
 
         ConnectionsApi apiInstance = new ConnectionsApi(defaultClient);
         List<String> id = Arrays.asList(); // List<String> | The unique identifiers of the resources
+        Integer limit = 56; // Integer | Limit the returned total records found
+        Integer skip = 56; // Integer | Skip the returned records found and return the next batch of records
         try {
-            CompletableFuture<ApiResponse<ConnectionResponse>> response = apiInstance.getConnectionsWithHttpInfo(id);
+            CompletableFuture<ApiResponse<ConnectionResponse>> response = apiInstance.getConnectionsWithHttpInfo(id, limit, skip);
             System.out.println("Status code: " + response.get().getStatusCode());
             System.out.println("Response headers: " + response.get().getHeaders());
             System.out.println("Response body: " + response.get().getData());
@@ -839,6 +845,8 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | [**List&lt;String&gt;**](String.md)| The unique identifiers of the resources | [optional]
+ **limit** | **Integer**| Limit the returned total records found | [optional]
+ **skip** | **Integer**| Skip the returned records found and return the next batch of records | [optional]
 
 ### Return type
 

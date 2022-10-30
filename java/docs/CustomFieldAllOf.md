@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **description** | **String** | The description of a Custom field |  [optional]
 **fieldType** | **FieldType** |  | 
 **appliesTo** | **AppliesTo** |  | 
+**constraints** | **List&lt;String&gt;** | For example \&quot;required\&quot; to indicate the field is required. |  [optional]
 
 
 

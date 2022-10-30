@@ -76,7 +76,7 @@ public class WebSocketClient {
     private final Consumer<Integer> onStateChange;
 
 
-    public WebSocketClient(String wsUri, Consumer<Integer> onStateChange) {
+    public WebSocketClient(String wsUri, Consumer<Integer> onStateChange) throws Exception {
         this(wsUri, DEFAULT_RECONNECT_DELAY, DEFAULT_RECONNECT_ATTEMPTS, makeAuthHeader(), onStateChange);
     }
 
@@ -97,13 +97,13 @@ public class WebSocketClient {
         this.onStateChange = onStateChange;
     }
 
-    private static StompHeaders makeAuthHeader(){
+    private static StompHeaders makeAuthHeader() throws Exception {
         StompHeaders stompHeaders = new StompHeaders();
         updateOauthToken(stompHeaders);
         return stompHeaders;
     }
 
-    private static void updateOauthToken(StompHeaders stompHeaders){
+    private static void updateOauthToken(StompHeaders stompHeaders) throws Exception {
         String oauthToken = AdminApiClientConfig.getAccessTokenString();
         if (stompHeaders.containsKey("Authorization"))
             stompHeaders.remove("Authorization");
@@ -214,7 +214,13 @@ public class WebSocketClient {
             setConnectionState(Disconnecting);
             disconnect(jobId);
             try {
-                doScheduleManagement(() -> reconnectFunc(retryCount, maxRetryCount, jobId),jobId , reconnectDelay, TimeUnit.MILLISECONDS)
+                doScheduleManagement(() -> {
+                    try {
+                        return reconnectFunc(retryCount, maxRetryCount, jobId);
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
+                },jobId , reconnectDelay, TimeUnit.MILLISECONDS)
                         .getCompletableFuture()
                         .thenApply((stompSession) -> {
                                     resultCompletableFuture.complete(stompSession.isConnected());
@@ -238,7 +244,7 @@ public class WebSocketClient {
         }
     }
 
-    public StompSession reconnectFunc(final int retryCount, final int maxAttempts, final String jobId) {
+    public StompSession reconnectFunc(final int retryCount, final int maxAttempts, final String jobId) throws Exception {
         if(isConnected()) {
             cleanUpScheduledTasks(jobId);
             return stompSession;
@@ -289,7 +295,11 @@ public class WebSocketClient {
             setConnectionState(Connecting);
             logger.info("Connecting");
             createClient();
-            return doConnect().join().isConnected();
+            try {
+                return doConnect().join().isConnected();
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
         }, jobId).getCompletableFuture().
                 thenApply((connected) -> {
                     setIsConnected();
@@ -380,7 +390,7 @@ public class WebSocketClient {
         stompClient.start();
     }
 
-    private CompletableFuture<StompSession> doConnect() {
+    private CompletableFuture<StompSession> doConnect() throws Exception {
 
         updateOauthToken(stompHeaders);
 

@@ -25,7 +25,7 @@ public class StreamingClient {
     private final RpcResultsEventHandler rpcResultsEventHandler;
     private final CallbackEventHandler callbackEventHandler;
 
-    public StreamingClient(String URL) throws ExecutionException, InterruptedException {
+    public StreamingClient(String URL) throws Exception {
 
         this.webSocketClientTasks = new LinkedBlockingDeque<>();
         this.websocketSendExecutor = new ThreadPoolExecutor(1, 1, 0L, TimeUnit.MILLISECONDS, webSocketClientTasks);
