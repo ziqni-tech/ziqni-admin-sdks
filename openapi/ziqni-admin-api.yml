@@ -16,11 +16,8 @@ info:
         altText: Ziqni
 servers:
     -
-        url: 'https://api.ziqni.io'
+        url: 'https://api.ziqni.com'
         description: Production environment
-    -
-        url: 'https://api-demo.ziqni.io'
-        description: Demo environment
 paths:
     /products/query:
         summary: Get products by query
@@ -2296,7 +2293,7 @@ paths:
                             items:
                                 $ref: '#/components/schemas/UpdateConnectionStateRequest'
             tags:
-                - consumers
+                - connections
             responses:
                 '200':
                     $ref: '#/components/responses/ApiResponseBody'
@@ -2528,6 +2525,7 @@ paths:
                     $ref: '#/components/responses/ApiResponseBody'
                 '503':
                     $ref: '#/components/responses/ApiResponseBody'
+            deprecated: true
             security:
                 -
                     OAuth2:
@@ -2566,6 +2564,7 @@ paths:
                     $ref: '#/components/responses/ApiResponseBody'
                 '503':
                     $ref: '#/components/responses/ApiResponseBody'
+            deprecated: true
             security:
                 -
                     OAuth2:
@@ -2604,6 +2603,7 @@ paths:
                     $ref: '#/components/responses/ApiResponseBody'
                 '503':
                     $ref: '#/components/responses/ApiResponseBody'
+            deprecated: true
             security:
                 -
                     OAuth2:
@@ -2642,6 +2642,7 @@ paths:
                     $ref: '#/components/responses/ApiResponseBody'
                 '503':
                     $ref: '#/components/responses/ApiResponseBody'
+            deprecated: true
             security:
                 -
                     OAuth2:
@@ -2682,6 +2683,7 @@ paths:
                     $ref: '#/components/responses/ApiResponseBody'
                 '503':
                     $ref: '#/components/responses/ApiResponseBody'
+            deprecated: true
             security:
                 -
                     OAuth2:
@@ -2722,6 +2724,7 @@ paths:
                     $ref: '#/components/responses/ApiResponseBody'
                 '503':
                     $ref: '#/components/responses/ApiResponseBody'
+            deprecated: true
             security:
                 -
                     OAuth2:
@@ -2762,6 +2765,7 @@ paths:
                     $ref: '#/components/responses/SqsConnectionResponseBody'
                 '503':
                     $ref: '#/components/responses/SqsConnectionResponseBody'
+            deprecated: true
             security:
                 -
                     OAuth2:
@@ -2802,6 +2806,7 @@ paths:
                     $ref: '#/components/responses/RabbitMqConnectionResponseBody'
                 '503':
                     $ref: '#/components/responses/RabbitMqConnectionResponseBody'
+            deprecated: true
             security:
                 -
                     OAuth2:
@@ -2842,6 +2847,7 @@ paths:
                     $ref: '#/components/responses/KafkaConnectionResponseBody'
                 '503':
                     $ref: '#/components/responses/KafkaConnectionResponseBody'
+            deprecated: true
             security:
                 -
                     OAuth2:
@@ -2881,6 +2887,7 @@ paths:
                     $ref: '#/components/responses/KafkaConnectionResponseBody'
                 '503':
                     $ref: '#/components/responses/KafkaConnectionResponseBody'
+            deprecated: true
             security:
                 -
                     OAuth2:
@@ -2919,6 +2926,7 @@ paths:
                     $ref: '#/components/responses/ApiResponseBody'
                 '503':
                     $ref: '#/components/responses/ApiResponseBody'
+            deprecated: true
             security:
                 -
                     OAuth2:
@@ -2955,6 +2963,7 @@ paths:
                     $ref: '#/components/responses/ApiResponseBody'
                 '503':
                     $ref: '#/components/responses/ApiResponseBody'
+            deprecated: true
             security:
                 -
                     OAuth2:
@@ -2987,6 +2996,7 @@ paths:
                     $ref: '#/components/responses/ApiResponseBody'
                 '503':
                     $ref: '#/components/responses/ApiResponseBody'
+            deprecated: true
             security:
                 -
                     OAuth2:
@@ -3024,6 +3034,7 @@ paths:
                     $ref: '#/components/responses/RabbitMqConnectionResponseBody'
                 '503':
                     $ref: '#/components/responses/RabbitMqConnectionResponseBody'
+            deprecated: true
             security:
                 -
                     OAuth2:
@@ -3062,6 +3073,7 @@ paths:
                     $ref: '#/components/responses/ApiResponseBody'
                 '503':
                     $ref: '#/components/responses/ApiResponseBody'
+            deprecated: true
             security:
                 -
                     OAuth2:
@@ -3098,6 +3110,7 @@ paths:
                     $ref: '#/components/responses/ApiResponseBody'
                 '503':
                     $ref: '#/components/responses/ApiResponseBody'
+            deprecated: true
             security:
                 -
                     OAuth2:
@@ -3130,6 +3143,7 @@ paths:
                     $ref: '#/components/responses/ApiResponseBody'
                 '503':
                     $ref: '#/components/responses/ApiResponseBody'
+            deprecated: true
             security:
                 -
                     OAuth2:
@@ -3167,6 +3181,7 @@ paths:
                     $ref: '#/components/responses/SqsConnectionResponseBody'
                 '503':
                     $ref: '#/components/responses/SqsConnectionResponseBody'
+            deprecated: true
             security:
                 -
                     OAuth2:
@@ -3205,6 +3220,7 @@ paths:
                     $ref: '#/components/responses/ApiResponseBody'
                 '503':
                     $ref: '#/components/responses/ApiResponseBody'
+            deprecated: true
             security:
                 -
                     OAuth2:
@@ -3241,6 +3257,7 @@ paths:
                     $ref: '#/components/responses/ApiResponseBody'
                 '503':
                     $ref: '#/components/responses/ApiResponseBody'
+            deprecated: true
             security:
                 -
                     OAuth2:
@@ -3273,6 +3290,7 @@ paths:
                     $ref: '#/components/responses/ApiResponseBody'
                 '503':
                     $ref: '#/components/responses/ApiResponseBody'
+            deprecated: true
             security:
                 -
                     OAuth2:
@@ -5176,158 +5194,6 @@ paths:
                         - ManageMessages
             operationId: deleteMemberMessages
             description: Delete Member Messages for a given identifier specified
-            x-codegen-request-body-name: body
-    /members:
-        summary: Manage members
-        description: These operations allow you to manage members in your project.
-        get:
-            tags:
-                - members
-            parameters:
-                -
-                    $ref: '#/components/parameters/idQuery'
-                -
-                    $ref: '#/components/parameters/limitResults'
-                -
-                    $ref: '#/components/parameters/skipResults'
-            responses:
-                '200':
-                    $ref: '#/components/responses/MemberResponseBody'
-                '400':
-                    $ref: '#/components/responses/MemberResponseBody'
-                '401':
-                    $ref: '#/components/responses/MemberResponseBody'
-                '403':
-                    $ref: '#/components/responses/MemberResponseBody'
-                '404':
-                    $ref: '#/components/responses/MemberResponseBody'
-                '500':
-                    $ref: '#/components/responses/MemberResponseBody'
-                '501':
-                    $ref: '#/components/responses/MemberResponseBody'
-            security:
-                -
-                    OAuth2:
-                        - ViewMembers
-            operationId: getMembers
-            summary: Get members
-            description: >-
-                Returns a list of Members. This assumes that members have first been uploaded via a POST
-                request or web console
-            x-codegen-request-body-name: body
-            x-vue-item: Member
-            x-vue-list: Members
-        put:
-            requestBody:
-                description: >-
-                    Update member details in the Ziqni database for a given Member identifier. * Member Ref Id
-                    can not be changed after creation * A member Id must exist in the Ziqni database to update
-                    the member
-                content:
-                    application/json:
-                        schema:
-                            type: array
-                            items:
-                                $ref: '#/components/schemas/UpdateMemberRequest'
-                    file/csv:
-                        schema:
-                            format: binary
-                            type: string
-                required: true
-            tags:
-                - members
-            responses:
-                '200':
-                    $ref: '#/components/responses/ApiResponseBody'
-                '400':
-                    $ref: '#/components/responses/ApiResponseBody'
-                '401':
-                    $ref: '#/components/responses/ApiResponseBody'
-                '403':
-                    $ref: '#/components/responses/ApiResponseBody'
-                '404':
-                    $ref: '#/components/responses/ApiResponseBody'
-                '500':
-                    $ref: '#/components/responses/ApiResponseBody'
-                '501':
-                    $ref: '#/components/responses/ApiResponseBody'
-            security:
-                -
-                    OAuth2:
-                        - ManageMembers
-            operationId: updateMembers
-            summary: Update members
-            description: Update existing Members in the Ziqni database
-            x-codegen-request-body-name: body
-        post:
-            requestBody:
-                description: >-
-                    Create Members in the Ziqni database. An array can contain a maximum of 10,000 members in
-                    one request
-                content:
-                    application/json:
-                        schema:
-                            type: array
-                            items:
-                                $ref: '#/components/schemas/CreateMemberRequest'
-                    file/csv:
-                        schema:
-                            format: binary
-                            type: string
-                required: true
-            tags:
-                - members
-            responses:
-                '200':
-                    $ref: '#/components/responses/ApiResponseBody'
-                '400':
-                    $ref: '#/components/responses/ApiResponseBody'
-                '401':
-                    $ref: '#/components/responses/ApiResponseBody'
-                '403':
-                    $ref: '#/components/responses/ApiResponseBody'
-                '404':
-                    $ref: '#/components/responses/ApiResponseBody'
-                '500':
-                    $ref: '#/components/responses/ApiResponseBody'
-                '501':
-                    $ref: '#/components/responses/ApiResponseBody'
-            security:
-                -
-                    OAuth2:
-                        - ManageMembers
-            operationId: createMembers
-            summary: Create members
-            description: Create new Members in the Ziqni database
-            x-codegen-request-body-name: body
-        delete:
-            tags:
-                - members
-            parameters:
-                -
-                    $ref: '#/components/parameters/idQuery'
-            responses:
-                '200':
-                    $ref: '#/components/responses/ApiResponseBody'
-                '400':
-                    $ref: '#/components/responses/ApiResponseBody'
-                '401':
-                    $ref: '#/components/responses/ApiResponseBody'
-                '403':
-                    $ref: '#/components/responses/ApiResponseBody'
-                '404':
-                    $ref: '#/components/responses/ApiResponseBody'
-                '500':
-                    $ref: '#/components/responses/ApiResponseBody'
-                '501':
-                    $ref: '#/components/responses/ApiResponseBody'
-            security:
-                -
-                    OAuth2:
-                        - AdminMembers
-            operationId: deleteMembers
-            summary: Delete members
-            description: Delete Members for a given identifier specified
             x-codegen-request-body-name: body
     /notifications:
         get:
@@ -8247,6 +8113,423 @@ paths:
             operationId: getLeaderboardByCompetitionId
             description: Returns a list of Leaderborads for the Competition id provided
             x-codegen-request-body-name: body
+    /connections/delete:
+        post:
+            requestBody:
+                description: >-
+                    Delete a RabbitMQ Connection or a list of RabbitMQ Connections from Ziqni by unique
+                    Connection ID's or any other POST body parameters using the POST method
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/QueryRequest'
+            tags:
+                - connections
+            responses:
+                '200':
+                    $ref: '#/components/responses/ApiResponseBody'
+                '400':
+                    $ref: '#/components/responses/ApiResponseBody'
+                '401':
+                    $ref: '#/components/responses/ApiResponseBody'
+                '403':
+                    $ref: '#/components/responses/ApiResponseBody'
+                '404':
+                    $ref: '#/components/responses/ApiResponseBody'
+                '413':
+                    $ref: '#/components/responses/ApiResponseBody'
+                '500':
+                    $ref: '#/components/responses/ApiResponseBody'
+                '501':
+                    $ref: '#/components/responses/ApiResponseBody'
+                '503':
+                    $ref: '#/components/responses/ApiResponseBody'
+            security:
+                -
+                    OAuth2:
+                        - AdminConsumer
+            operationId: deleteConnectionsByQuery
+            description: >-
+                Delete a RabbitMQ Connection or a list of RabbitMQ Connections from Ziqni by unique Connection
+                ID's or any other POST body parameters using the POST method
+            x-codegen-request-body-name: body
+    /connections/query:
+        post:
+            requestBody:
+                description: >-
+                    Retrieve a RabbitMQ Connection or a list of RabbitMQ Connections from Ziqni by unique
+                    Connection ID's or any other Post body parameters using the POST method
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/QueryRequest'
+            tags:
+                - connections
+            responses:
+                '200':
+                    $ref: '#/components/responses/ConnectionResponseBody'
+                '400':
+                    $ref: '#/components/responses/ConnectionResponseBody'
+                '401':
+                    $ref: '#/components/responses/ConnectionResponseBody'
+                '403':
+                    $ref: '#/components/responses/ConnectionResponseBody'
+                '404':
+                    $ref: '#/components/responses/ConnectionResponseBody'
+                '413':
+                    $ref: '#/components/responses/ConnectionResponseBody'
+                '500':
+                    $ref: '#/components/responses/ConnectionResponseBody'
+                '501':
+                    $ref: '#/components/responses/ConnectionResponseBody'
+                '503':
+                    $ref: '#/components/responses/ConnectionResponseBody'
+            security:
+                -
+                    OAuth2:
+                        - AdminConsumer
+            operationId: getConnectionsByQuery
+            description: >-
+                Retrieve a RabbitMQ Connection or a list of RabbitMQ Connections from Ziqni by unique
+                Connection ID's or any other Post body parameters using the POST method
+            x-codegen-request-body-name: body
+    /members:
+        summary: Manage members
+        description: These operations allow you to manage members in your project.
+        get:
+            tags:
+                - members
+            parameters:
+                -
+                    $ref: '#/components/parameters/idQuery'
+                -
+                    $ref: '#/components/parameters/limitResults'
+                -
+                    $ref: '#/components/parameters/skipResults'
+            responses:
+                '200':
+                    $ref: '#/components/responses/MemberResponseBody'
+                '400':
+                    $ref: '#/components/responses/MemberResponseBody'
+                '401':
+                    $ref: '#/components/responses/MemberResponseBody'
+                '403':
+                    $ref: '#/components/responses/MemberResponseBody'
+                '404':
+                    $ref: '#/components/responses/MemberResponseBody'
+                '500':
+                    $ref: '#/components/responses/MemberResponseBody'
+                '501':
+                    $ref: '#/components/responses/MemberResponseBody'
+            security:
+                -
+                    OAuth2:
+                        - ViewMembers
+            operationId: getMembers
+            summary: Get members
+            description: >-
+                Returns a list of Members. This assumes that members have first been uploaded via a POST
+                request or web console
+            x-codegen-request-body-name: body
+            x-vue-item: Member
+            x-vue-list: Members
+        put:
+            requestBody:
+                description: >-
+                    Update member details in the Ziqni database for a given Member identifier. * Member Ref Id
+                    can not be changed after creation * A member Id must exist in the Ziqni database to update
+                    the member
+                content:
+                    application/json:
+                        schema:
+                            type: array
+                            items:
+                                $ref: '#/components/schemas/UpdateMemberRequest'
+                    file/csv:
+                        schema:
+                            format: binary
+                            type: string
+                required: true
+            tags:
+                - members
+            responses:
+                '200':
+                    $ref: '#/components/responses/ApiResponseBody'
+                '400':
+                    $ref: '#/components/responses/ApiResponseBody'
+                '401':
+                    $ref: '#/components/responses/ApiResponseBody'
+                '403':
+                    $ref: '#/components/responses/ApiResponseBody'
+                '404':
+                    $ref: '#/components/responses/ApiResponseBody'
+                '500':
+                    $ref: '#/components/responses/ApiResponseBody'
+                '501':
+                    $ref: '#/components/responses/ApiResponseBody'
+            security:
+                -
+                    OAuth2:
+                        - ManageMembers
+            operationId: updateMembers
+            summary: Update members
+            description: Update existing Members in the Ziqni database
+            x-codegen-request-body-name: body
+        post:
+            requestBody:
+                description: >-
+                    Create Members in the Ziqni database. An array can contain a maximum of 10,000 members in
+                    one request
+                content:
+                    application/json:
+                        schema:
+                            type: array
+                            items:
+                                $ref: '#/components/schemas/CreateMemberRequest'
+                    file/csv:
+                        schema:
+                            format: binary
+                            type: string
+                required: true
+            tags:
+                - members
+            responses:
+                '200':
+                    $ref: '#/components/responses/ApiResponseBody'
+                '400':
+                    $ref: '#/components/responses/ApiResponseBody'
+                '401':
+                    $ref: '#/components/responses/ApiResponseBody'
+                '403':
+                    $ref: '#/components/responses/ApiResponseBody'
+                '404':
+                    $ref: '#/components/responses/ApiResponseBody'
+                '500':
+                    $ref: '#/components/responses/ApiResponseBody'
+                '501':
+                    $ref: '#/components/responses/ApiResponseBody'
+            security:
+                -
+                    OAuth2:
+                        - ManageMembers
+            operationId: createMembers
+            summary: Create members
+            description: Create new Members in the Ziqni database
+            x-codegen-request-body-name: body
+        delete:
+            tags:
+                - members
+            parameters:
+                -
+                    $ref: '#/components/parameters/idQuery'
+            responses:
+                '200':
+                    $ref: '#/components/responses/ApiResponseBody'
+                '400':
+                    $ref: '#/components/responses/ApiResponseBody'
+                '401':
+                    $ref: '#/components/responses/ApiResponseBody'
+                '403':
+                    $ref: '#/components/responses/ApiResponseBody'
+                '404':
+                    $ref: '#/components/responses/ApiResponseBody'
+                '500':
+                    $ref: '#/components/responses/ApiResponseBody'
+                '501':
+                    $ref: '#/components/responses/ApiResponseBody'
+            security:
+                -
+                    OAuth2:
+                        - AdminMembers
+            operationId: deleteMembers
+            summary: Delete members
+            description: Delete Members for a given identifier specified
+            x-codegen-request-body-name: body
+    /connections/_describe:
+        get:
+            tags:
+                - connections
+            parameters:
+                -
+                    name: connectionType
+                    description: 'The connection type, RabbitMQ, Kafka, or SQS'
+                    schema:
+                        $ref: '#/components/schemas/ConnectionType'
+                    in: query
+                    required: true
+            responses:
+                '200':
+                    $ref: '#/components/responses/ObjectParametersResponseBody'
+                '400':
+                    $ref: '#/components/responses/ObjectParametersResponseBody'
+                '401':
+                    $ref: '#/components/responses/ObjectParametersResponseBody'
+                '403':
+                    $ref: '#/components/responses/ObjectParametersResponseBody'
+                '404':
+                    $ref: '#/components/responses/ObjectParametersResponseBody'
+                '413':
+                    $ref: '#/components/responses/ObjectParametersResponseBody'
+                '500':
+                    $ref: '#/components/responses/ObjectParametersResponseBody'
+                '501':
+                    $ref: '#/components/responses/ObjectParametersResponseBody'
+                '503':
+                    $ref: '#/components/responses/ObjectParametersResponseBody'
+            security:
+                -
+                    OAuth2:
+                        - AdminConsumer
+            operationId: describeConnectionObject
+            description: Get all the parameter for the connection based on the connection type
+            x-codegen-request-body-name: body
+    /connections:
+        get:
+            tags:
+                - connections
+            parameters:
+                -
+                    $ref: '#/components/parameters/idQuery'
+                -
+                    $ref: '#/components/parameters/limitResults'
+                -
+                    $ref: '#/components/parameters/skipResults'
+            responses:
+                '200':
+                    $ref: '#/components/responses/ConnectionResponseBody'
+                '400':
+                    $ref: '#/components/responses/ConnectionResponseBody'
+                '401':
+                    $ref: '#/components/responses/ConnectionResponseBody'
+                '403':
+                    $ref: '#/components/responses/ConnectionResponseBody'
+                '404':
+                    $ref: '#/components/responses/ConnectionResponseBody'
+                '413':
+                    $ref: '#/components/responses/ConnectionResponseBody'
+                '500':
+                    $ref: '#/components/responses/ConnectionResponseBody'
+                '501':
+                    $ref: '#/components/responses/ConnectionResponseBody'
+                '503':
+                    $ref: '#/components/responses/ConnectionResponseBody'
+            security:
+                -
+                    OAuth2:
+                        - AdminConsumer
+            operationId: getConnections
+            description: Return a list of Consumer Connections
+            x-codegen-request-body-name: body
+        put:
+            requestBody:
+                description: Update the RabbitMq Consumer Connection details in the Ziqni system
+                content:
+                    application/json:
+                        schema:
+                            type: array
+                            items:
+                                $ref: '#/components/schemas/UpdateConnectionRequest'
+                required: true
+            tags:
+                - connections
+            responses:
+                '200':
+                    $ref: '#/components/responses/ApiResponseBody'
+                '202':
+                    description: Accepted
+                '400':
+                    $ref: '#/components/responses/ApiResponseBody'
+                '401':
+                    $ref: '#/components/responses/ApiResponseBody'
+                '403':
+                    $ref: '#/components/responses/ApiResponseBody'
+                '404':
+                    $ref: '#/components/responses/ApiResponseBody'
+                '413':
+                    $ref: '#/components/responses/ApiResponseBody'
+                '500':
+                    $ref: '#/components/responses/ApiResponseBody'
+                '501':
+                    $ref: '#/components/responses/ApiResponseBody'
+                '503':
+                    $ref: '#/components/responses/ApiResponseBody'
+            security:
+                -
+                    OAuth2:
+                        - AdminConsumer
+            operationId: updateConnections
+            description: Update an existing Consumer Connection in the Ziqni system
+            x-codegen-request-body-name: body
+        post:
+            requestBody:
+                description: Create a RabbitMq Consumer Connection in the Ziqni system
+                content:
+                    application/json:
+                        schema:
+                            type: array
+                            items:
+                                $ref: '#/components/schemas/CreateConnectionRequest'
+                required: true
+            tags:
+                - connections
+            responses:
+                '200':
+                    $ref: '#/components/responses/ApiResponseBody'
+                '400':
+                    $ref: '#/components/responses/ApiResponseBody'
+                '401':
+                    $ref: '#/components/responses/ApiResponseBody'
+                '403':
+                    $ref: '#/components/responses/ApiResponseBody'
+                '404':
+                    $ref: '#/components/responses/ApiResponseBody'
+                '413':
+                    $ref: '#/components/responses/ApiResponseBody'
+                '500':
+                    $ref: '#/components/responses/ApiResponseBody'
+                '501':
+                    $ref: '#/components/responses/ApiResponseBody'
+                '503':
+                    $ref: '#/components/responses/ApiResponseBody'
+            security:
+                -
+                    OAuth2:
+                        - AdminConsumer
+            operationId: createConnections
+            description: Create a new Consumer Connection in the Ziqni system
+            x-codegen-request-body-name: body
+        delete:
+            tags:
+                - connections
+            parameters:
+                -
+                    $ref: '#/components/parameters/idQuery'
+            responses:
+                '200':
+                    $ref: '#/components/responses/ApiResponseBody'
+                '400':
+                    $ref: '#/components/responses/ApiResponseBody'
+                '401':
+                    $ref: '#/components/responses/ApiResponseBody'
+                '403':
+                    $ref: '#/components/responses/ApiResponseBody'
+                '404':
+                    $ref: '#/components/responses/ApiResponseBody'
+                '413':
+                    $ref: '#/components/responses/ApiResponseBody'
+                '500':
+                    $ref: '#/components/responses/ApiResponseBody'
+                '501':
+                    $ref: '#/components/responses/ApiResponseBody'
+                '503':
+                    $ref: '#/components/responses/ApiResponseBody'
+            security:
+                -
+                    OAuth2:
+                        - AdminConsumer
+            operationId: deleteConnections
+            description: Delete the Consumer Connection for a given identifier specified
+            x-codegen-request-body-name: body
 components:
     schemas:
         ProductReduced:
@@ -9884,6 +10167,7 @@ components:
                 - Attachment
                 - Rule
                 - APIKey
+                - Connection
             type: string
         EntrantAction:
             description: Entrant action
@@ -10379,8 +10663,9 @@ components:
                 -
                     $ref: '#/components/schemas/UpdateModelDefault'
             example:
-                id: ziqniModelId
-                status: Start
+                -
+                    id: ziqniModelId
+                    status: Start
         AvailableLanguageResponse:
             required:
                 - meta
@@ -10662,42 +10947,6 @@ components:
                             description: Topic name
                             type: string
                             example: some_test_topic
-                        transformerId:
-                            description: 'The transformer to use, if empty the default system transformer will be used'
-                            type: string
-        CreateSqsConnectionRequest:
-            allOf:
-                -
-                    $ref: '#/components/schemas/CreateOptParamModels'
-                -
-                    required:
-                        - name
-                        - uri
-                        - acessKey
-                        - secretKey
-                        - transformerId
-                    type: object
-                    properties:
-                        name:
-                            description: The name of the consumer
-                            type: string
-                            example: SQS Test
-                        uri:
-                            description: The SQS endpoint.
-                            type: string
-                            example: 'https://sqs.us-west-1.amazonaws.com/123456789123/test_queue_233'
-                        acessKey:
-                            description: The access key of the IAM user
-                            type: string
-                            example: AKIAQFGYH45678TYH
-                        secretKey:
-                            description: The secret key of IAM user
-                            type: string
-                            example: swVAJR8makGqWG8+OIKlJEykP5Es2Mgcbo3G09Qk
-                        description:
-                            description: The description of the consumer
-                            type: string
-                            example: SQS Test
                         transformerId:
                             description: 'The transformer to use, if empty the default system transformer will be used'
                             type: string
@@ -11331,34 +11580,6 @@ components:
                         type: string
                     x-vue-metadata: true
                     x-vue-form-type: META
-        Connection:
-            oneOf:
-                -
-                    $ref: '#/components/schemas/KafkaConnection'
-                -
-                    $ref: '#/components/schemas/RabbitMqConnection'
-                -
-                    $ref: '#/components/schemas/SqsConnection'
-            type: object
-            properties:
-                id:
-                    description: A unique system generated identifier
-                    type: string
-                spaceName:
-                    description: This is the space name which is linked to the account
-                    type: string
-                created:
-                    format: date-time
-                    description: >+
-                        ISO8601 timestamp for when a Model was created. All records are stored in UTC time
-                        zone
-
-                    type: string
-                transformerId:
-                    description: ''
-                    type: string
-            x-vue-route:
-                - settings
         MemberType:
             description: Determines a member type
             enum:
@@ -13814,6 +14035,11 @@ components:
                             $ref: '#/components/schemas/FieldType'
                         appliesTo:
                             $ref: '#/components/schemas/AppliesTo'
+                        constraints:
+                            description: For example "required" to indicate the field is required.
+                            type: array
+                            items:
+                                type: string
             example:
                 id: ziqniModelId
                 name: some text
@@ -17174,7 +17400,7 @@ components:
                 origins:
                     description: >
                         Allowed origins for the generated token. Leave empty to permit all origins,
-                        Alternative provide up to 3 allowed origin URIs like https://my-space.api.ziqni.io
+                        Alternative provide up to 3 allowed origin URIs like https://my-space.api.ziqni.app
                     type: array
                     items:
                         type: string
@@ -18376,6 +18602,235 @@ components:
                                 Specify the expiry in number of days after creation of the record. If
                                 expireAfterDate is specified then expireAfterDays should not be specified.
                             type: integer
+        Connection:
+            allOf:
+                -
+                    $ref: '#/components/schemas/ModelDefault'
+                -
+                    $ref: '#/components/schemas/OptParamModels'
+                -
+                    required:
+                        - user
+                        - name
+                        - constraints
+                        - secret
+                        - lastKnownStatus
+                        - lastKnownStatusCode
+                        - transformerId
+                    type: object
+                    properties:
+                        name:
+                            description: The name of the consumer
+                            type: string
+                            example: RabbitMq Test
+                        description:
+                            description: The description of the consumer
+                            type: string
+                            example: RabbitMq Test
+                        lastKnownStatus:
+                            description: Last known status of the connection
+                            type: string
+                            example: Stopped
+                        lastKnownStatusCode:
+                            description: Status code correspoding to the last known status
+                            type: integer
+                            example: '0'
+                        constraints:
+                            description: Additional constraints
+                            type: array
+                            items:
+                                type: string
+                            example: '- useSsl'
+                        transformerId:
+                            description: 'The transformer to use, if empty the default system transformer will be used'
+                            type: string
+                        connectionType:
+                            $ref: '#/components/schemas/ConnectionType'
+                            description: The type of connection
+                        secret:
+                            description: Consumer secret used for authentication
+                            type: string
+                            example: SomePassword
+                        user:
+                            description: Consumer username for authentication
+                            type: string
+                            example: testUser
+            x-vue-route:
+                - settings
+        ConnectionType:
+            description: Connection Types
+            enum:
+                - RabbitMq
+                - Kafka
+                - SQS
+            type: string
+        ObjectParametersResponse:
+            required:
+                - meta
+            type: object
+            properties:
+                meta:
+                    $ref: '#/components/schemas/MetaExtended'
+                results:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/ObjectParameters'
+                errors:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/Error'
+        ObjectConstraint:
+            description: ''
+            required:
+                - name
+                - key
+            type: object
+            properties:
+                name:
+                    description: ''
+                    type: string
+                key:
+                    description: ''
+                    type: string
+        ObjectParameters:
+            description: ''
+            required:
+                - userConstraints
+                - customFields
+                - objectType
+                - systemConstraints
+            type: object
+            properties:
+                customFields:
+                    description: Custom fields for this object
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/CustomField'
+                objectType:
+                    $ref: '#/components/schemas/AppliesTo'
+                    description: The type of the object
+                objectSubType:
+                    description: The sub type of the object
+                    type: string
+                userConstraints:
+                    description: Valid contraints for this object type that the user can set and unset
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/ObjectConstraint'
+                systemConstraints:
+                    description: System contraints that the user connot modify
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/ObjectConstraint'
+        UpdateConnectionRequest:
+            allOf:
+                -
+                    $ref: '#/components/schemas/UpdateOptParamModels'
+                -
+                    $ref: '#/components/schemas/UpdateModelDefault'
+                -
+                    type: object
+                    properties:
+                        name:
+                            description: The name of the consumer
+                            type: string
+                            example: RabbitMq Test
+                        description:
+                            description: The description of the consumer
+                            type: string
+                            example: RabbitMq Test
+                        constraints:
+                            description: Additional constraints
+                            type: array
+                            items:
+                                type: string
+                        transformerId:
+                            description: 'The transformer to use, if empty the default system transformer will be used'
+                            type: string
+                        connectionType:
+                            $ref: '#/components/schemas/ConnectionType'
+                            description: The type of connection
+                        secret:
+                            description: Consumer secret used for authentication
+                            type: string
+                            example: SomePassword
+                        user:
+                            description: Consumer username for authentication
+                            type: string
+                            example: testUser
+        CreateConnectionRequest:
+            allOf:
+                -
+                    $ref: '#/components/schemas/CreateOptParamModels'
+                -
+                    required:
+                        - name
+                        - connectionType
+                    type: object
+                    properties:
+                        name:
+                            description: The name of the consumer
+                            type: string
+                            example: RabbitMq Test
+                        description:
+                            description: The description of the consumer
+                            type: string
+                            example: RabbitMq Test
+                        constraints:
+                            description: Additional constraints
+                            type: array
+                            items:
+                                type: string
+                        transformerId:
+                            description: 'The transformer to use, if empty the default system transformer will be used'
+                            type: string
+                        connectionType:
+                            $ref: '#/components/schemas/ConnectionType'
+                            description: The type of connection
+                        secret:
+                            description: Consumer secret used for authentication
+                            type: string
+                            example: SomePassword
+                        user:
+                            description: Consumer username for authentication
+                            type: string
+                            example: testUser
+        CreateSqsConnectionRequest:
+            allOf:
+                -
+                    $ref: '#/components/schemas/CreateOptParamModels'
+                -
+                    required:
+                        - name
+                        - uri
+                        - acessKey
+                        - secretKey
+                        - transformerId
+                    type: object
+                    properties:
+                        name:
+                            description: The name of the consumer
+                            type: string
+                            example: SQS Test
+                        uri:
+                            description: The SQS endpoint.
+                            type: string
+                            example: 'https://sqs.us-west-1.amazonaws.com/123456789123/test_queue_233'
+                        acessKey:
+                            description: The access key of the IAM user
+                            type: string
+                            example: AKIAQFGYH45678TYH
+                        secretKey:
+                            description: The secret key of IAM user
+                            type: string
+                            example: swVAJR8makGqWG8+OIKlJEykP5Es2Mgcbo3G09Qk
+                        description:
+                            description: The description of the consumer
+                            type: string
+                            example: SQS Test
+                        transformerId:
+                            description: 'The transformer to use, if empty the default system transformer will be used'
+                            type: string
     responses:
         ApiResponseBody:
             content:
@@ -19484,6 +19939,12 @@ components:
                                                 message: some text
                                                 errorAt: 48
             description: A list of action types and/or errors
+        ObjectParametersResponseBody:
+            content:
+                application/json:
+                    schema:
+                        $ref: '#/components/schemas/ObjectParametersResponse'
+            description: ''
     parameters:
         spaceName:
             name: spaceName
@@ -19566,8 +20027,8 @@ components:
         OAuth2:
             flows:
                 authorizationCode:
-                    authorizationUrl: 'https://iam.ziqni.io/oauth/authorize'
-                    tokenUrl: 'https://iam.ziqni.io/oauth/token'
+                    authorizationUrl: 'https://identity.ziqni.com/realms/ziqni/protocol/openid-connect/auth'
+                    tokenUrl: 'https://identity.ziqni.com/realms/ziqni/protocol/openid-connect/token'
                     scopes:
                         AdminAchievements: Grants full read and write access
                         ManageAchievements: Grants read and restricted write access

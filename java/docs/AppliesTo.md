@@ -53,5 +53,7 @@
 
 * `APIKEY` (value: `"APIKey"`)
 
+* `CONNECTION` (value: `"Connection"`)
+
 
 

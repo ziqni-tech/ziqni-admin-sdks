@@ -1,35 +1,35 @@
-# FileObjectsApi
+# ConnectionsApi
 
 All URIs are relative to *https://api.ziqni.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**createFileObjects**](FileObjectsApi.md#createFileObjects) | **POST** /file-objects | 
-[**createFileObjectsWithHttpInfo**](FileObjectsApi.md#createFileObjectsWithHttpInfo) | **POST** /file-objects | 
-[**deleteFileObjects**](FileObjectsApi.md#deleteFileObjects) | **DELETE** /file-objects | 
-[**deleteFileObjectsWithHttpInfo**](FileObjectsApi.md#deleteFileObjectsWithHttpInfo) | **DELETE** /file-objects | 
-[**deleteFileObjectsByQuery**](FileObjectsApi.md#deleteFileObjectsByQuery) | **POST** /file-objects/delete | 
-[**deleteFileObjectsByQueryWithHttpInfo**](FileObjectsApi.md#deleteFileObjectsByQueryWithHttpInfo) | **POST** /file-objects/delete | 
-[**downloadFileObjects**](FileObjectsApi.md#downloadFileObjects) | **GET** /file-objects/download | 
-[**downloadFileObjectsWithHttpInfo**](FileObjectsApi.md#downloadFileObjectsWithHttpInfo) | **GET** /file-objects/download | 
-[**getFileObjects**](FileObjectsApi.md#getFileObjects) | **GET** /file-objects | 
-[**getFileObjectsWithHttpInfo**](FileObjectsApi.md#getFileObjectsWithHttpInfo) | **GET** /file-objects | 
-[**getFileObjectsByQuery**](FileObjectsApi.md#getFileObjectsByQuery) | **POST** /file-objects/query | 
-[**getFileObjectsByQueryWithHttpInfo**](FileObjectsApi.md#getFileObjectsByQueryWithHttpInfo) | **POST** /file-objects/query | 
-[**saveTemplates**](FileObjectsApi.md#saveTemplates) | **POST** /file-objects/save-template | 
-[**saveTemplatesWithHttpInfo**](FileObjectsApi.md#saveTemplatesWithHttpInfo) | **POST** /file-objects/save-template | 
-[**updateFileObjects**](FileObjectsApi.md#updateFileObjects) | **PUT** /file-objects | 
-[**updateFileObjectsWithHttpInfo**](FileObjectsApi.md#updateFileObjectsWithHttpInfo) | **PUT** /file-objects | 
-[**uploadFileObjects**](FileObjectsApi.md#uploadFileObjects) | **POST** /file-objects/upload | 
-[**uploadFileObjectsWithHttpInfo**](FileObjectsApi.md#uploadFileObjectsWithHttpInfo) | **POST** /file-objects/upload | 
+[**createConnections**](ConnectionsApi.md#createConnections) | **POST** /connections | 
+[**createConnectionsWithHttpInfo**](ConnectionsApi.md#createConnectionsWithHttpInfo) | **POST** /connections | 
+[**deleteConnections**](ConnectionsApi.md#deleteConnections) | **DELETE** /connections | 
+[**deleteConnectionsWithHttpInfo**](ConnectionsApi.md#deleteConnectionsWithHttpInfo) | **DELETE** /connections | 
+[**deleteConnectionsByQuery**](ConnectionsApi.md#deleteConnectionsByQuery) | **POST** /connections/delete | 
+[**deleteConnectionsByQueryWithHttpInfo**](ConnectionsApi.md#deleteConnectionsByQueryWithHttpInfo) | **POST** /connections/delete | 
+[**describeConnectionObject**](ConnectionsApi.md#describeConnectionObject) | **GET** /connections/_describe | 
+[**describeConnectionObjectWithHttpInfo**](ConnectionsApi.md#describeConnectionObjectWithHttpInfo) | **GET** /connections/_describe | 
+[**getConnections**](ConnectionsApi.md#getConnections) | **GET** /connections | 
+[**getConnectionsWithHttpInfo**](ConnectionsApi.md#getConnectionsWithHttpInfo) | **GET** /connections | 
+[**getConnectionsByQuery**](ConnectionsApi.md#getConnectionsByQuery) | **POST** /connections/query | 
+[**getConnectionsByQueryWithHttpInfo**](ConnectionsApi.md#getConnectionsByQueryWithHttpInfo) | **POST** /connections/query | 
+[**updateConnections**](ConnectionsApi.md#updateConnections) | **PUT** /connections | 
+[**updateConnectionsWithHttpInfo**](ConnectionsApi.md#updateConnectionsWithHttpInfo) | **PUT** /connections | 
+[**updateConnectionsState**](ConnectionsApi.md#updateConnectionsState) | **POST** /connections/state | Update connection status
+[**updateConnectionsStateWithHttpInfo**](ConnectionsApi.md#updateConnectionsStateWithHttpInfo) | **POST** /connections/state | Update connection status
 
 
 
-## createFileObjects
+## createConnections
 
-> CompletableFuture<ModelApiResponse> createFileObjects(body)
+> CompletableFuture<ModelApiResponse> createConnections(body)
 
 
+
+Create a new Consumer Connection in the Ziqni system
 
 ### Example
 
@@ -40,7 +40,7 @@ import com.ziqni.admin.sdk.ApiException;
 import com.ziqni.admin.sdk.Configuration;
 import com.ziqni.admin.sdk.auth.*;
 import com.ziqni.admin.sdk.models.*;
-import com.ziqni.admin.sdk.api.FileObjectsApi;
+import com.ziqni.admin.sdk.api.ConnectionsApi;
 import java.util.concurrent.CompletableFuture;
 
 public class Example {
@@ -52,13 +52,13 @@ public class Example {
         OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
         OAuth2.setAccessToken("YOUR ACCESS TOKEN");
 
-        FileObjectsApi apiInstance = new FileObjectsApi(defaultClient);
-        CreateFileObjectRequest body = new CreateFileObjectRequest(); // CreateFileObjectRequest | Create a new file object repository in your Ziqni space
+        ConnectionsApi apiInstance = new ConnectionsApi(defaultClient);
+        List<CreateConnectionRequest> body = Arrays.asList(); // List<CreateConnectionRequest> | Create a RabbitMq Consumer Connection in the Ziqni system
         try {
-            CompletableFuture<ModelApiResponse> result = apiInstance.createFileObjects(body);
+            CompletableFuture<ModelApiResponse> result = apiInstance.createConnections(body);
             System.out.println(result.get());
         } catch (ApiException e) {
-            System.err.println("Exception when calling FileObjectsApi#createFileObjects");
+            System.err.println("Exception when calling ConnectionsApi#createConnections");
             System.err.println("Status code: " + e.getCode());
             System.err.println("Reason: " + e.getResponseBody());
             System.err.println("Response headers: " + e.getResponseHeaders());
@@ -73,7 +73,7 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**CreateFileObjectRequest**](CreateFileObjectRequest.md)| Create a new file object repository in your Ziqni space |
+ **body** | [**List&lt;CreateConnectionRequest&gt;**](CreateConnectionRequest.md)| Create a RabbitMq Consumer Connection in the Ziqni system |
 
 ### Return type
 
@@ -102,11 +102,13 @@ CompletableFuture<[**ModelApiResponse**](ModelApiResponse.md)>
 | **501** | A list of outcomes and/or errors |  -  |
 | **503** | A list of outcomes and/or errors |  -  |
 
-## createFileObjectsWithHttpInfo
+## createConnectionsWithHttpInfo
 
-> CompletableFuture<ApiResponse<ModelApiResponse>> createFileObjects createFileObjectsWithHttpInfo(body)
+> CompletableFuture<ApiResponse<ModelApiResponse>> createConnections createConnectionsWithHttpInfo(body)
 
 
+
+Create a new Consumer Connection in the Ziqni system
 
 ### Example
 
@@ -118,7 +120,7 @@ import com.ziqni.admin.sdk.ApiResponse;
 import com.ziqni.admin.sdk.Configuration;
 import com.ziqni.admin.sdk.auth.*;
 import com.ziqni.admin.sdk.models.*;
-import com.ziqni.admin.sdk.api.FileObjectsApi;
+import com.ziqni.admin.sdk.api.ConnectionsApi;
 import java.util.concurrent.CompletableFuture;
 
 public class Example {
@@ -130,22 +132,22 @@ public class Example {
         OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
         OAuth2.setAccessToken("YOUR ACCESS TOKEN");
 
-        FileObjectsApi apiInstance = new FileObjectsApi(defaultClient);
-        CreateFileObjectRequest body = new CreateFileObjectRequest(); // CreateFileObjectRequest | Create a new file object repository in your Ziqni space
+        ConnectionsApi apiInstance = new ConnectionsApi(defaultClient);
+        List<CreateConnectionRequest> body = Arrays.asList(); // List<CreateConnectionRequest> | Create a RabbitMq Consumer Connection in the Ziqni system
         try {
-            CompletableFuture<ApiResponse<ModelApiResponse>> response = apiInstance.createFileObjectsWithHttpInfo(body);
+            CompletableFuture<ApiResponse<ModelApiResponse>> response = apiInstance.createConnectionsWithHttpInfo(body);
             System.out.println("Status code: " + response.get().getStatusCode());
             System.out.println("Response headers: " + response.get().getHeaders());
             System.out.println("Response body: " + response.get().getData());
         } catch (InterruptedException | ExecutionException e) {
             ApiException apiException = (ApiException)e.getCause();
-            System.err.println("Exception when calling FileObjectsApi#createFileObjects");
+            System.err.println("Exception when calling ConnectionsApi#createConnections");
             System.err.println("Status code: " + apiException.getCode());
             System.err.println("Response headers: " + apiException.getResponseHeaders());
             System.err.println("Reason: " + apiException.getResponseBody());
             e.printStackTrace();
         } catch (ApiException e) {
-            System.err.println("Exception when calling FileObjectsApi#createFileObjects");
+            System.err.println("Exception when calling ConnectionsApi#createConnections");
             System.err.println("Status code: " + e.getCode());
             System.err.println("Response headers: " + e.getResponseHeaders());
             System.err.println("Reason: " + e.getResponseBody());
@@ -160,7 +162,7 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**CreateFileObjectRequest**](CreateFileObjectRequest.md)| Create a new file object repository in your Ziqni space |
+ **body** | [**List&lt;CreateConnectionRequest&gt;**](CreateConnectionRequest.md)| Create a RabbitMq Consumer Connection in the Ziqni system |
 
 ### Return type
 
@@ -190,11 +192,13 @@ CompletableFuture<ApiResponse<[**ModelApiResponse**](ModelApiResponse.md)>>
 | **503** | A list of outcomes and/or errors |  -  |
 
 
-## deleteFileObjects
+## deleteConnections
 
-> CompletableFuture<ModelApiResponse> deleteFileObjects(id, permanent)
+> CompletableFuture<ModelApiResponse> deleteConnections(id)
 
 
+
+Delete the Consumer Connection for a given identifier specified
 
 ### Example
 
@@ -205,7 +209,7 @@ import com.ziqni.admin.sdk.ApiException;
 import com.ziqni.admin.sdk.Configuration;
 import com.ziqni.admin.sdk.auth.*;
 import com.ziqni.admin.sdk.models.*;
-import com.ziqni.admin.sdk.api.FileObjectsApi;
+import com.ziqni.admin.sdk.api.ConnectionsApi;
 import java.util.concurrent.CompletableFuture;
 
 public class Example {
@@ -217,14 +221,13 @@ public class Example {
         OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
         OAuth2.setAccessToken("YOUR ACCESS TOKEN");
 
-        FileObjectsApi apiInstance = new FileObjectsApi(defaultClient);
+        ConnectionsApi apiInstance = new ConnectionsApi(defaultClient);
         List<String> id = Arrays.asList(); // List<String> | The unique identifiers of the resources
-        Boolean permanent = true; // Boolean | Permanently delete the file object. Default is false
         try {
-            CompletableFuture<ModelApiResponse> result = apiInstance.deleteFileObjects(id, permanent);
+            CompletableFuture<ModelApiResponse> result = apiInstance.deleteConnections(id);
             System.out.println(result.get());
         } catch (ApiException e) {
-            System.err.println("Exception when calling FileObjectsApi#deleteFileObjects");
+            System.err.println("Exception when calling ConnectionsApi#deleteConnections");
             System.err.println("Status code: " + e.getCode());
             System.err.println("Reason: " + e.getResponseBody());
             System.err.println("Response headers: " + e.getResponseHeaders());
@@ -240,7 +243,6 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | [**List&lt;String&gt;**](String.md)| The unique identifiers of the resources | [optional]
- **permanent** | **Boolean**| Permanently delete the file object. Default is false | [optional]
 
 ### Return type
 
@@ -269,11 +271,13 @@ CompletableFuture<[**ModelApiResponse**](ModelApiResponse.md)>
 | **501** | A list of outcomes and/or errors |  -  |
 | **503** | A list of outcomes and/or errors |  -  |
 
-## deleteFileObjectsWithHttpInfo
+## deleteConnectionsWithHttpInfo
 
-> CompletableFuture<ApiResponse<ModelApiResponse>> deleteFileObjects deleteFileObjectsWithHttpInfo(id, permanent)
+> CompletableFuture<ApiResponse<ModelApiResponse>> deleteConnections deleteConnectionsWithHttpInfo(id)
 
 
+
+Delete the Consumer Connection for a given identifier specified
 
 ### Example
 
@@ -285,7 +289,7 @@ import com.ziqni.admin.sdk.ApiResponse;
 import com.ziqni.admin.sdk.Configuration;
 import com.ziqni.admin.sdk.auth.*;
 import com.ziqni.admin.sdk.models.*;
-import com.ziqni.admin.sdk.api.FileObjectsApi;
+import com.ziqni.admin.sdk.api.ConnectionsApi;
 import java.util.concurrent.CompletableFuture;
 
 public class Example {
@@ -297,23 +301,22 @@ public class Example {
         OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
         OAuth2.setAccessToken("YOUR ACCESS TOKEN");
 
-        FileObjectsApi apiInstance = new FileObjectsApi(defaultClient);
+        ConnectionsApi apiInstance = new ConnectionsApi(defaultClient);
         List<String> id = Arrays.asList(); // List<String> | The unique identifiers of the resources
-        Boolean permanent = true; // Boolean | Permanently delete the file object. Default is false
         try {
-            CompletableFuture<ApiResponse<ModelApiResponse>> response = apiInstance.deleteFileObjectsWithHttpInfo(id, permanent);
+            CompletableFuture<ApiResponse<ModelApiResponse>> response = apiInstance.deleteConnectionsWithHttpInfo(id);
             System.out.println("Status code: " + response.get().getStatusCode());
             System.out.println("Response headers: " + response.get().getHeaders());
             System.out.println("Response body: " + response.get().getData());
         } catch (InterruptedException | ExecutionException e) {
             ApiException apiException = (ApiException)e.getCause();
-            System.err.println("Exception when calling FileObjectsApi#deleteFileObjects");
+            System.err.println("Exception when calling ConnectionsApi#deleteConnections");
             System.err.println("Status code: " + apiException.getCode());
             System.err.println("Response headers: " + apiException.getResponseHeaders());
             System.err.println("Reason: " + apiException.getResponseBody());
             e.printStackTrace();
         } catch (ApiException e) {
-            System.err.println("Exception when calling FileObjectsApi#deleteFileObjects");
+            System.err.println("Exception when calling ConnectionsApi#deleteConnections");
             System.err.println("Status code: " + e.getCode());
             System.err.println("Response headers: " + e.getResponseHeaders());
             System.err.println("Reason: " + e.getResponseBody());
@@ -329,7 +332,6 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | [**List&lt;String&gt;**](String.md)| The unique identifiers of the resources | [optional]
- **permanent** | **Boolean**| Permanently delete the file object. Default is false | [optional]
 
 ### Return type
 
@@ -359,13 +361,13 @@ CompletableFuture<ApiResponse<[**ModelApiResponse**](ModelApiResponse.md)>>
 | **503** | A list of outcomes and/or errors |  -  |
 
 
-## deleteFileObjectsByQuery
+## deleteConnectionsByQuery
 
-> CompletableFuture<ModelApiResponse> deleteFileObjectsByQuery(id, body)
+> CompletableFuture<ModelApiResponse> deleteConnectionsByQuery(body)
 
 
 
-Delete file objects by query
+Delete a RabbitMQ Connection or a list of RabbitMQ Connections from Ziqni by unique Connection ID&#39;s or any other POST body parameters using the POST method
 
 ### Example
 
@@ -376,7 +378,7 @@ import com.ziqni.admin.sdk.ApiException;
 import com.ziqni.admin.sdk.Configuration;
 import com.ziqni.admin.sdk.auth.*;
 import com.ziqni.admin.sdk.models.*;
-import com.ziqni.admin.sdk.api.FileObjectsApi;
+import com.ziqni.admin.sdk.api.ConnectionsApi;
 import java.util.concurrent.CompletableFuture;
 
 public class Example {
@@ -388,14 +390,13 @@ public class Example {
         OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
         OAuth2.setAccessToken("YOUR ACCESS TOKEN");
 
-        FileObjectsApi apiInstance = new FileObjectsApi(defaultClient);
-        List<String> id = Arrays.asList(); // List<String> | The unique identifiers of the resources
-        QueryRequest body = new QueryRequest(); // QueryRequest | Delete file objects inside a repository from Ziqni by unique file by unique object ID's or any other POST body parameters using the POST method
+        ConnectionsApi apiInstance = new ConnectionsApi(defaultClient);
+        QueryRequest body = new QueryRequest(); // QueryRequest | Delete a RabbitMQ Connection or a list of RabbitMQ Connections from Ziqni by unique Connection ID's or any other POST body parameters using the POST method
         try {
-            CompletableFuture<ModelApiResponse> result = apiInstance.deleteFileObjectsByQuery(id, body);
+            CompletableFuture<ModelApiResponse> result = apiInstance.deleteConnectionsByQuery(body);
             System.out.println(result.get());
         } catch (ApiException e) {
-            System.err.println("Exception when calling FileObjectsApi#deleteFileObjectsByQuery");
+            System.err.println("Exception when calling ConnectionsApi#deleteConnectionsByQuery");
             System.err.println("Status code: " + e.getCode());
             System.err.println("Reason: " + e.getResponseBody());
             System.err.println("Response headers: " + e.getResponseHeaders());
@@ -410,8 +411,7 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | [**List&lt;String&gt;**](String.md)| The unique identifiers of the resources | [optional]
- **body** | [**QueryRequest**](QueryRequest.md)| Delete file objects inside a repository from Ziqni by unique file by unique object ID&#39;s or any other POST body parameters using the POST method | [optional]
+ **body** | [**QueryRequest**](QueryRequest.md)| Delete a RabbitMQ Connection or a list of RabbitMQ Connections from Ziqni by unique Connection ID&#39;s or any other POST body parameters using the POST method | [optional]
 
 ### Return type
 
@@ -440,13 +440,13 @@ CompletableFuture<[**ModelApiResponse**](ModelApiResponse.md)>
 | **501** | A list of outcomes and/or errors |  -  |
 | **503** | A list of outcomes and/or errors |  -  |
 
-## deleteFileObjectsByQueryWithHttpInfo
+## deleteConnectionsByQueryWithHttpInfo
 
-> CompletableFuture<ApiResponse<ModelApiResponse>> deleteFileObjectsByQuery deleteFileObjectsByQueryWithHttpInfo(id, body)
+> CompletableFuture<ApiResponse<ModelApiResponse>> deleteConnectionsByQuery deleteConnectionsByQueryWithHttpInfo(body)
 
 
 
-Delete file objects by query
+Delete a RabbitMQ Connection or a list of RabbitMQ Connections from Ziqni by unique Connection ID&#39;s or any other POST body parameters using the POST method
 
 ### Example
 
@@ -458,7 +458,7 @@ import com.ziqni.admin.sdk.ApiResponse;
 import com.ziqni.admin.sdk.Configuration;
 import com.ziqni.admin.sdk.auth.*;
 import com.ziqni.admin.sdk.models.*;
-import com.ziqni.admin.sdk.api.FileObjectsApi;
+import com.ziqni.admin.sdk.api.ConnectionsApi;
 import java.util.concurrent.CompletableFuture;
 
 public class Example {
@@ -470,23 +470,22 @@ public class Example {
         OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
         OAuth2.setAccessToken("YOUR ACCESS TOKEN");
 
-        FileObjectsApi apiInstance = new FileObjectsApi(defaultClient);
-        List<String> id = Arrays.asList(); // List<String> | The unique identifiers of the resources
-        QueryRequest body = new QueryRequest(); // QueryRequest | Delete file objects inside a repository from Ziqni by unique file by unique object ID's or any other POST body parameters using the POST method
+        ConnectionsApi apiInstance = new ConnectionsApi(defaultClient);
+        QueryRequest body = new QueryRequest(); // QueryRequest | Delete a RabbitMQ Connection or a list of RabbitMQ Connections from Ziqni by unique Connection ID's or any other POST body parameters using the POST method
         try {
-            CompletableFuture<ApiResponse<ModelApiResponse>> response = apiInstance.deleteFileObjectsByQueryWithHttpInfo(id, body);
+            CompletableFuture<ApiResponse<ModelApiResponse>> response = apiInstance.deleteConnectionsByQueryWithHttpInfo(body);
             System.out.println("Status code: " + response.get().getStatusCode());
             System.out.println("Response headers: " + response.get().getHeaders());
             System.out.println("Response body: " + response.get().getData());
         } catch (InterruptedException | ExecutionException e) {
             ApiException apiException = (ApiException)e.getCause();
-            System.err.println("Exception when calling FileObjectsApi#deleteFileObjectsByQuery");
+            System.err.println("Exception when calling ConnectionsApi#deleteConnectionsByQuery");
             System.err.println("Status code: " + apiException.getCode());
             System.err.println("Response headers: " + apiException.getResponseHeaders());
             System.err.println("Reason: " + apiException.getResponseBody());
             e.printStackTrace();
         } catch (ApiException e) {
-            System.err.println("Exception when calling FileObjectsApi#deleteFileObjectsByQuery");
+            System.err.println("Exception when calling ConnectionsApi#deleteConnectionsByQuery");
             System.err.println("Status code: " + e.getCode());
             System.err.println("Response headers: " + e.getResponseHeaders());
             System.err.println("Reason: " + e.getResponseBody());
@@ -501,8 +500,7 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | [**List&lt;String&gt;**](String.md)| The unique identifiers of the resources | [optional]
- **body** | [**QueryRequest**](QueryRequest.md)| Delete file objects inside a repository from Ziqni by unique file by unique object ID&#39;s or any other POST body parameters using the POST method | [optional]
+ **body** | [**QueryRequest**](QueryRequest.md)| Delete a RabbitMQ Connection or a list of RabbitMQ Connections from Ziqni by unique Connection ID&#39;s or any other POST body parameters using the POST method | [optional]
 
 ### Return type
 
@@ -532,13 +530,13 @@ CompletableFuture<ApiResponse<[**ModelApiResponse**](ModelApiResponse.md)>>
 | **503** | A list of outcomes and/or errors |  -  |
 
 
-## downloadFileObjects
+## describeConnectionObject
 
-> CompletableFuture<File> downloadFileObjects(path)
+> CompletableFuture<ObjectParametersResponse> describeConnectionObject(connectionType)
 
 
 
-Download file objects from your Ziqni space
+Get all the parameter for the connection based on the connection type
 
 ### Example
 
@@ -549,7 +547,7 @@ import com.ziqni.admin.sdk.ApiException;
 import com.ziqni.admin.sdk.Configuration;
 import com.ziqni.admin.sdk.auth.*;
 import com.ziqni.admin.sdk.models.*;
-import com.ziqni.admin.sdk.api.FileObjectsApi;
+import com.ziqni.admin.sdk.api.ConnectionsApi;
 import java.util.concurrent.CompletableFuture;
 
 public class Example {
@@ -561,13 +559,13 @@ public class Example {
         OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
         OAuth2.setAccessToken("YOUR ACCESS TOKEN");
 
-        FileObjectsApi apiInstance = new FileObjectsApi(defaultClient);
-        String path = "path_example"; // String | The canonical path of the file to download
+        ConnectionsApi apiInstance = new ConnectionsApi(defaultClient);
+        ConnectionType connectionType = ConnectionType.fromValue("RabbitMq"); // ConnectionType | The connection type, RabbitMQ, Kafka, or SQS
         try {
-            CompletableFuture<File> result = apiInstance.downloadFileObjects(path);
+            CompletableFuture<ObjectParametersResponse> result = apiInstance.describeConnectionObject(connectionType);
             System.out.println(result.get());
         } catch (ApiException e) {
-            System.err.println("Exception when calling FileObjectsApi#downloadFileObjects");
+            System.err.println("Exception when calling ConnectionsApi#describeConnectionObject");
             System.err.println("Status code: " + e.getCode());
             System.err.println("Reason: " + e.getResponseBody());
             System.err.println("Response headers: " + e.getResponseHeaders());
@@ -582,11 +580,11 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **path** | **String**| The canonical path of the file to download | [optional]
+ **connectionType** | [**ConnectionType**](.md)| The connection type, RabbitMQ, Kafka, or SQS | [enum: RabbitMq, Kafka, SQS]
 
 ### Return type
 
-CompletableFuture<[**File**](File.md)>
+CompletableFuture<[**ObjectParametersResponse**](ObjectParametersResponse.md)>
 
 
 ### Authorization
@@ -596,28 +594,28 @@ CompletableFuture<[**File**](File.md)>
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: text/xml, application/json
+- **Accept**: application/json
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
-| **400** | A list of outcomes and/or errors |  -  |
-| **401** | A list of outcomes and/or errors |  -  |
-| **403** | A list of outcomes and/or errors |  -  |
-| **404** | A list of outcomes and/or errors |  -  |
-| **413** | A list of outcomes and/or errors |  -  |
-| **500** | A list of outcomes and/or errors |  -  |
-| **501** | A list of outcomes and/or errors |  -  |
-| **503** | A list of outcomes and/or errors |  -  |
+| **200** |  |  -  |
+| **400** |  |  -  |
+| **401** |  |  -  |
+| **403** |  |  -  |
+| **404** |  |  -  |
+| **413** |  |  -  |
+| **500** |  |  -  |
+| **501** |  |  -  |
+| **503** |  |  -  |
 
-## downloadFileObjectsWithHttpInfo
+## describeConnectionObjectWithHttpInfo
 
-> CompletableFuture<ApiResponse<File>> downloadFileObjects downloadFileObjectsWithHttpInfo(path)
+> CompletableFuture<ApiResponse<ObjectParametersResponse>> describeConnectionObject describeConnectionObjectWithHttpInfo(connectionType)
 
 
 
-Download file objects from your Ziqni space
+Get all the parameter for the connection based on the connection type
 
 ### Example
 
@@ -629,7 +627,7 @@ import com.ziqni.admin.sdk.ApiResponse;
 import com.ziqni.admin.sdk.Configuration;
 import com.ziqni.admin.sdk.auth.*;
 import com.ziqni.admin.sdk.models.*;
-import com.ziqni.admin.sdk.api.FileObjectsApi;
+import com.ziqni.admin.sdk.api.ConnectionsApi;
 import java.util.concurrent.CompletableFuture;
 
 public class Example {
@@ -641,22 +639,22 @@ public class Example {
         OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
         OAuth2.setAccessToken("YOUR ACCESS TOKEN");
 
-        FileObjectsApi apiInstance = new FileObjectsApi(defaultClient);
-        String path = "path_example"; // String | The canonical path of the file to download
+        ConnectionsApi apiInstance = new ConnectionsApi(defaultClient);
+        ConnectionType connectionType = ConnectionType.fromValue("RabbitMq"); // ConnectionType | The connection type, RabbitMQ, Kafka, or SQS
         try {
-            CompletableFuture<ApiResponse<File>> response = apiInstance.downloadFileObjectsWithHttpInfo(path);
+            CompletableFuture<ApiResponse<ObjectParametersResponse>> response = apiInstance.describeConnectionObjectWithHttpInfo(connectionType);
             System.out.println("Status code: " + response.get().getStatusCode());
             System.out.println("Response headers: " + response.get().getHeaders());
             System.out.println("Response body: " + response.get().getData());
         } catch (InterruptedException | ExecutionException e) {
             ApiException apiException = (ApiException)e.getCause();
-            System.err.println("Exception when calling FileObjectsApi#downloadFileObjects");
+            System.err.println("Exception when calling ConnectionsApi#describeConnectionObject");
             System.err.println("Status code: " + apiException.getCode());
             System.err.println("Response headers: " + apiException.getResponseHeaders());
             System.err.println("Reason: " + apiException.getResponseBody());
             e.printStackTrace();
         } catch (ApiException e) {
-            System.err.println("Exception when calling FileObjectsApi#downloadFileObjects");
+            System.err.println("Exception when calling ConnectionsApi#describeConnectionObject");
             System.err.println("Status code: " + e.getCode());
             System.err.println("Response headers: " + e.getResponseHeaders());
             System.err.println("Reason: " + e.getResponseBody());
@@ -671,11 +669,11 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **path** | **String**| The canonical path of the file to download | [optional]
+ **connectionType** | [**ConnectionType**](.md)| The connection type, RabbitMQ, Kafka, or SQS | [enum: RabbitMq, Kafka, SQS]
 
 ### Return type
 
-CompletableFuture<ApiResponse<[**File**](File.md)>>
+CompletableFuture<ApiResponse<[**ObjectParametersResponse**](ObjectParametersResponse.md)>>
 
 
 ### Authorization
@@ -685,29 +683,29 @@ CompletableFuture<ApiResponse<[**File**](File.md)>>
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: text/xml, application/json
+- **Accept**: application/json
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
-| **400** | A list of outcomes and/or errors |  -  |
-| **401** | A list of outcomes and/or errors |  -  |
-| **403** | A list of outcomes and/or errors |  -  |
-| **404** | A list of outcomes and/or errors |  -  |
-| **413** | A list of outcomes and/or errors |  -  |
-| **500** | A list of outcomes and/or errors |  -  |
-| **501** | A list of outcomes and/or errors |  -  |
-| **503** | A list of outcomes and/or errors |  -  |
+| **200** |  |  -  |
+| **400** |  |  -  |
+| **401** |  |  -  |
+| **403** |  |  -  |
+| **404** |  |  -  |
+| **413** |  |  -  |
+| **500** |  |  -  |
+| **501** |  |  -  |
+| **503** |  |  -  |
 
 
-## getFileObjects
+## getConnections
 
-> CompletableFuture<FileObjectsResponse> getFileObjects(limit, skip, id, download)
+> CompletableFuture<ConnectionResponse> getConnections(id, limit, skip)
 
 
 
-Returns a list of file objects
+Return a list of Consumer Connections
 
 ### Example
 
@@ -718,7 +716,7 @@ import com.ziqni.admin.sdk.ApiException;
 import com.ziqni.admin.sdk.Configuration;
 import com.ziqni.admin.sdk.auth.*;
 import com.ziqni.admin.sdk.models.*;
-import com.ziqni.admin.sdk.api.FileObjectsApi;
+import com.ziqni.admin.sdk.api.ConnectionsApi;
 import java.util.concurrent.CompletableFuture;
 
 public class Example {
@@ -730,16 +728,15 @@ public class Example {
         OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
         OAuth2.setAccessToken("YOUR ACCESS TOKEN");
 
-        FileObjectsApi apiInstance = new FileObjectsApi(defaultClient);
+        ConnectionsApi apiInstance = new ConnectionsApi(defaultClient);
+        List<String> id = Arrays.asList(); // List<String> | The unique identifiers of the resources
         Integer limit = 56; // Integer | Limit the returned total records found
         Integer skip = 56; // Integer | Skip the returned records found and return the next batch of records
-        List<String> id = Arrays.asList(); // List<String> | The unique identifiers of the resources
-        String download = "download_example"; // String | 
         try {
-            CompletableFuture<FileObjectsResponse> result = apiInstance.getFileObjects(limit, skip, id, download);
+            CompletableFuture<ConnectionResponse> result = apiInstance.getConnections(id, limit, skip);
             System.out.println(result.get());
         } catch (ApiException e) {
-            System.err.println("Exception when calling FileObjectsApi#getFileObjects");
+            System.err.println("Exception when calling ConnectionsApi#getConnections");
             System.err.println("Status code: " + e.getCode());
             System.err.println("Reason: " + e.getResponseBody());
             System.err.println("Response headers: " + e.getResponseHeaders());
@@ -754,14 +751,13 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **id** | [**List&lt;String&gt;**](String.md)| The unique identifiers of the resources | [optional]
  **limit** | **Integer**| Limit the returned total records found | [optional]
  **skip** | **Integer**| Skip the returned records found and return the next batch of records | [optional]
- **id** | [**List&lt;String&gt;**](String.md)| The unique identifiers of the resources | [optional]
- **download** | **String**|  | [optional]
 
 ### Return type
 
-CompletableFuture<[**FileObjectsResponse**](FileObjectsResponse.md)>
+CompletableFuture<[**ConnectionResponse**](ConnectionResponse.md)>
 
 
 ### Authorization
@@ -776,23 +772,23 @@ CompletableFuture<[**FileObjectsResponse**](FileObjectsResponse.md)>
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | A list of files and/or errors |  -  |
-| **400** | A list of files and/or errors |  -  |
-| **401** | A list of files and/or errors |  -  |
-| **403** | A list of files and/or errors |  -  |
-| **404** | A list of files and/or errors |  -  |
-| **413** | A list of files and/or errors |  -  |
-| **500** | A list of files and/or errors |  -  |
-| **501** | A list of files and/or errors |  -  |
-| **503** | A list of files and/or errors |  -  |
+| **200** | A list of consumer connections and/or errors |  -  |
+| **400** | A list of consumer connections and/or errors |  -  |
+| **401** | A list of consumer connections and/or errors |  -  |
+| **403** | A list of consumer connections and/or errors |  -  |
+| **404** | A list of consumer connections and/or errors |  -  |
+| **413** | A list of consumer connections and/or errors |  -  |
+| **500** | A list of consumer connections and/or errors |  -  |
+| **501** | A list of consumer connections and/or errors |  -  |
+| **503** | A list of consumer connections and/or errors |  -  |
 
-## getFileObjectsWithHttpInfo
+## getConnectionsWithHttpInfo
 
-> CompletableFuture<ApiResponse<FileObjectsResponse>> getFileObjects getFileObjectsWithHttpInfo(limit, skip, id, download)
+> CompletableFuture<ApiResponse<ConnectionResponse>> getConnections getConnectionsWithHttpInfo(id, limit, skip)
 
 
 
-Returns a list of file objects
+Return a list of Consumer Connections
 
 ### Example
 
@@ -804,7 +800,7 @@ import com.ziqni.admin.sdk.ApiResponse;
 import com.ziqni.admin.sdk.Configuration;
 import com.ziqni.admin.sdk.auth.*;
 import com.ziqni.admin.sdk.models.*;
-import com.ziqni.admin.sdk.api.FileObjectsApi;
+import com.ziqni.admin.sdk.api.ConnectionsApi;
 import java.util.concurrent.CompletableFuture;
 
 public class Example {
@@ -816,25 +812,24 @@ public class Example {
         OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
         OAuth2.setAccessToken("YOUR ACCESS TOKEN");
 
-        FileObjectsApi apiInstance = new FileObjectsApi(defaultClient);
+        ConnectionsApi apiInstance = new ConnectionsApi(defaultClient);
+        List<String> id = Arrays.asList(); // List<String> | The unique identifiers of the resources
         Integer limit = 56; // Integer | Limit the returned total records found
         Integer skip = 56; // Integer | Skip the returned records found and return the next batch of records
-        List<String> id = Arrays.asList(); // List<String> | The unique identifiers of the resources
-        String download = "download_example"; // String | 
         try {
-            CompletableFuture<ApiResponse<FileObjectsResponse>> response = apiInstance.getFileObjectsWithHttpInfo(limit, skip, id, download);
+            CompletableFuture<ApiResponse<ConnectionResponse>> response = apiInstance.getConnectionsWithHttpInfo(id, limit, skip);
             System.out.println("Status code: " + response.get().getStatusCode());
             System.out.println("Response headers: " + response.get().getHeaders());
             System.out.println("Response body: " + response.get().getData());
         } catch (InterruptedException | ExecutionException e) {
             ApiException apiException = (ApiException)e.getCause();
-            System.err.println("Exception when calling FileObjectsApi#getFileObjects");
+            System.err.println("Exception when calling ConnectionsApi#getConnections");
             System.err.println("Status code: " + apiException.getCode());
             System.err.println("Response headers: " + apiException.getResponseHeaders());
             System.err.println("Reason: " + apiException.getResponseBody());
             e.printStackTrace();
         } catch (ApiException e) {
-            System.err.println("Exception when calling FileObjectsApi#getFileObjects");
+            System.err.println("Exception when calling ConnectionsApi#getConnections");
             System.err.println("Status code: " + e.getCode());
             System.err.println("Response headers: " + e.getResponseHeaders());
             System.err.println("Reason: " + e.getResponseBody());
@@ -849,14 +844,13 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **id** | [**List&lt;String&gt;**](String.md)| The unique identifiers of the resources | [optional]
  **limit** | **Integer**| Limit the returned total records found | [optional]
  **skip** | **Integer**| Skip the returned records found and return the next batch of records | [optional]
- **id** | [**List&lt;String&gt;**](String.md)| The unique identifiers of the resources | [optional]
- **download** | **String**|  | [optional]
 
 ### Return type
 
-CompletableFuture<ApiResponse<[**FileObjectsResponse**](FileObjectsResponse.md)>>
+CompletableFuture<ApiResponse<[**ConnectionResponse**](ConnectionResponse.md)>>
 
 
 ### Authorization
@@ -871,24 +865,24 @@ CompletableFuture<ApiResponse<[**FileObjectsResponse**](FileObjectsResponse.md)>
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | A list of files and/or errors |  -  |
-| **400** | A list of files and/or errors |  -  |
-| **401** | A list of files and/or errors |  -  |
-| **403** | A list of files and/or errors |  -  |
-| **404** | A list of files and/or errors |  -  |
-| **413** | A list of files and/or errors |  -  |
-| **500** | A list of files and/or errors |  -  |
-| **501** | A list of files and/or errors |  -  |
-| **503** | A list of files and/or errors |  -  |
+| **200** | A list of consumer connections and/or errors |  -  |
+| **400** | A list of consumer connections and/or errors |  -  |
+| **401** | A list of consumer connections and/or errors |  -  |
+| **403** | A list of consumer connections and/or errors |  -  |
+| **404** | A list of consumer connections and/or errors |  -  |
+| **413** | A list of consumer connections and/or errors |  -  |
+| **500** | A list of consumer connections and/or errors |  -  |
+| **501** | A list of consumer connections and/or errors |  -  |
+| **503** | A list of consumer connections and/or errors |  -  |
 
 
-## getFileObjectsByQuery
+## getConnectionsByQuery
 
-> CompletableFuture<FileObjectsResponse> getFileObjectsByQuery(id, body)
+> CompletableFuture<ConnectionResponse> getConnectionsByQuery(body)
 
 
 
-Retrieve file objects by query
+Retrieve a RabbitMQ Connection or a list of RabbitMQ Connections from Ziqni by unique Connection ID&#39;s or any other Post body parameters using the POST method
 
 ### Example
 
@@ -899,7 +893,7 @@ import com.ziqni.admin.sdk.ApiException;
 import com.ziqni.admin.sdk.Configuration;
 import com.ziqni.admin.sdk.auth.*;
 import com.ziqni.admin.sdk.models.*;
-import com.ziqni.admin.sdk.api.FileObjectsApi;
+import com.ziqni.admin.sdk.api.ConnectionsApi;
 import java.util.concurrent.CompletableFuture;
 
 public class Example {
@@ -911,14 +905,13 @@ public class Example {
         OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
         OAuth2.setAccessToken("YOUR ACCESS TOKEN");
 
-        FileObjectsApi apiInstance = new FileObjectsApi(defaultClient);
-        List<String> id = Arrays.asList(); // List<String> | The unique identifiers of the resources
-        QueryRequest body = new QueryRequest(); // QueryRequest | Retrieve file objects inside a repository from Ziqni by unique file object ID's or any other POST body parameters using the POST method
+        ConnectionsApi apiInstance = new ConnectionsApi(defaultClient);
+        QueryRequest body = new QueryRequest(); // QueryRequest | Retrieve a RabbitMQ Connection or a list of RabbitMQ Connections from Ziqni by unique Connection ID's or any other Post body parameters using the POST method
         try {
-            CompletableFuture<FileObjectsResponse> result = apiInstance.getFileObjectsByQuery(id, body);
+            CompletableFuture<ConnectionResponse> result = apiInstance.getConnectionsByQuery(body);
             System.out.println(result.get());
         } catch (ApiException e) {
-            System.err.println("Exception when calling FileObjectsApi#getFileObjectsByQuery");
+            System.err.println("Exception when calling ConnectionsApi#getConnectionsByQuery");
             System.err.println("Status code: " + e.getCode());
             System.err.println("Reason: " + e.getResponseBody());
             System.err.println("Response headers: " + e.getResponseHeaders());
@@ -933,12 +926,11 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | [**List&lt;String&gt;**](String.md)| The unique identifiers of the resources | [optional]
- **body** | [**QueryRequest**](QueryRequest.md)| Retrieve file objects inside a repository from Ziqni by unique file object ID&#39;s or any other POST body parameters using the POST method | [optional]
+ **body** | [**QueryRequest**](QueryRequest.md)| Retrieve a RabbitMQ Connection or a list of RabbitMQ Connections from Ziqni by unique Connection ID&#39;s or any other Post body parameters using the POST method | [optional]
 
 ### Return type
 
-CompletableFuture<[**FileObjectsResponse**](FileObjectsResponse.md)>
+CompletableFuture<[**ConnectionResponse**](ConnectionResponse.md)>
 
 
 ### Authorization
@@ -953,23 +945,23 @@ CompletableFuture<[**FileObjectsResponse**](FileObjectsResponse.md)>
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | A list of files and/or errors |  -  |
-| **400** | A list of files and/or errors |  -  |
-| **401** | A list of files and/or errors |  -  |
-| **403** | A list of files and/or errors |  -  |
-| **404** | A list of files and/or errors |  -  |
-| **413** | A list of files and/or errors |  -  |
-| **500** | A list of files and/or errors |  -  |
-| **501** | A list of files and/or errors |  -  |
-| **503** | A list of files and/or errors |  -  |
+| **200** | A list of consumer connections and/or errors |  -  |
+| **400** | A list of consumer connections and/or errors |  -  |
+| **401** | A list of consumer connections and/or errors |  -  |
+| **403** | A list of consumer connections and/or errors |  -  |
+| **404** | A list of consumer connections and/or errors |  -  |
+| **413** | A list of consumer connections and/or errors |  -  |
+| **500** | A list of consumer connections and/or errors |  -  |
+| **501** | A list of consumer connections and/or errors |  -  |
+| **503** | A list of consumer connections and/or errors |  -  |
 
-## getFileObjectsByQueryWithHttpInfo
+## getConnectionsByQueryWithHttpInfo
 
-> CompletableFuture<ApiResponse<FileObjectsResponse>> getFileObjectsByQuery getFileObjectsByQueryWithHttpInfo(id, body)
+> CompletableFuture<ApiResponse<ConnectionResponse>> getConnectionsByQuery getConnectionsByQueryWithHttpInfo(body)
 
 
 
-Retrieve file objects by query
+Retrieve a RabbitMQ Connection or a list of RabbitMQ Connections from Ziqni by unique Connection ID&#39;s or any other Post body parameters using the POST method
 
 ### Example
 
@@ -981,7 +973,7 @@ import com.ziqni.admin.sdk.ApiResponse;
 import com.ziqni.admin.sdk.Configuration;
 import com.ziqni.admin.sdk.auth.*;
 import com.ziqni.admin.sdk.models.*;
-import com.ziqni.admin.sdk.api.FileObjectsApi;
+import com.ziqni.admin.sdk.api.ConnectionsApi;
 import java.util.concurrent.CompletableFuture;
 
 public class Example {
@@ -993,23 +985,22 @@ public class Example {
         OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
         OAuth2.setAccessToken("YOUR ACCESS TOKEN");
 
-        FileObjectsApi apiInstance = new FileObjectsApi(defaultClient);
-        List<String> id = Arrays.asList(); // List<String> | The unique identifiers of the resources
-        QueryRequest body = new QueryRequest(); // QueryRequest | Retrieve file objects inside a repository from Ziqni by unique file object ID's or any other POST body parameters using the POST method
+        ConnectionsApi apiInstance = new ConnectionsApi(defaultClient);
+        QueryRequest body = new QueryRequest(); // QueryRequest | Retrieve a RabbitMQ Connection or a list of RabbitMQ Connections from Ziqni by unique Connection ID's or any other Post body parameters using the POST method
         try {
-            CompletableFuture<ApiResponse<FileObjectsResponse>> response = apiInstance.getFileObjectsByQueryWithHttpInfo(id, body);
+            CompletableFuture<ApiResponse<ConnectionResponse>> response = apiInstance.getConnectionsByQueryWithHttpInfo(body);
             System.out.println("Status code: " + response.get().getStatusCode());
             System.out.println("Response headers: " + response.get().getHeaders());
             System.out.println("Response body: " + response.get().getData());
         } catch (InterruptedException | ExecutionException e) {
             ApiException apiException = (ApiException)e.getCause();
-            System.err.println("Exception when calling FileObjectsApi#getFileObjectsByQuery");
+            System.err.println("Exception when calling ConnectionsApi#getConnectionsByQuery");
             System.err.println("Status code: " + apiException.getCode());
             System.err.println("Response headers: " + apiException.getResponseHeaders());
             System.err.println("Reason: " + apiException.getResponseBody());
             e.printStackTrace();
         } catch (ApiException e) {
-            System.err.println("Exception when calling FileObjectsApi#getFileObjectsByQuery");
+            System.err.println("Exception when calling ConnectionsApi#getConnectionsByQuery");
             System.err.println("Status code: " + e.getCode());
             System.err.println("Response headers: " + e.getResponseHeaders());
             System.err.println("Reason: " + e.getResponseBody());
@@ -1024,12 +1015,11 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | [**List&lt;String&gt;**](String.md)| The unique identifiers of the resources | [optional]
- **body** | [**QueryRequest**](QueryRequest.md)| Retrieve file objects inside a repository from Ziqni by unique file object ID&#39;s or any other POST body parameters using the POST method | [optional]
+ **body** | [**QueryRequest**](QueryRequest.md)| Retrieve a RabbitMQ Connection or a list of RabbitMQ Connections from Ziqni by unique Connection ID&#39;s or any other Post body parameters using the POST method | [optional]
 
 ### Return type
 
-CompletableFuture<ApiResponse<[**FileObjectsResponse**](FileObjectsResponse.md)>>
+CompletableFuture<ApiResponse<[**ConnectionResponse**](ConnectionResponse.md)>>
 
 
 ### Authorization
@@ -1044,24 +1034,24 @@ CompletableFuture<ApiResponse<[**FileObjectsResponse**](FileObjectsResponse.md)>
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | A list of files and/or errors |  -  |
-| **400** | A list of files and/or errors |  -  |
-| **401** | A list of files and/or errors |  -  |
-| **403** | A list of files and/or errors |  -  |
-| **404** | A list of files and/or errors |  -  |
-| **413** | A list of files and/or errors |  -  |
-| **500** | A list of files and/or errors |  -  |
-| **501** | A list of files and/or errors |  -  |
-| **503** | A list of files and/or errors |  -  |
+| **200** | A list of consumer connections and/or errors |  -  |
+| **400** | A list of consumer connections and/or errors |  -  |
+| **401** | A list of consumer connections and/or errors |  -  |
+| **403** | A list of consumer connections and/or errors |  -  |
+| **404** | A list of consumer connections and/or errors |  -  |
+| **413** | A list of consumer connections and/or errors |  -  |
+| **500** | A list of consumer connections and/or errors |  -  |
+| **501** | A list of consumer connections and/or errors |  -  |
+| **503** | A list of consumer connections and/or errors |  -  |
 
 
-## saveTemplates
+## updateConnections
 
-> CompletableFuture<ModelApiResponse> saveTemplates(parentFolderPath, repositoryId, templateToSave, templateName, tags)
+> CompletableFuture<ModelApiResponse> updateConnections(body)
 
 
 
-Create or update file objects and binaries in your Ziqni space
+Update an existing Consumer Connection in the Ziqni system
 
 ### Example
 
@@ -1072,7 +1062,7 @@ import com.ziqni.admin.sdk.ApiException;
 import com.ziqni.admin.sdk.Configuration;
 import com.ziqni.admin.sdk.auth.*;
 import com.ziqni.admin.sdk.models.*;
-import com.ziqni.admin.sdk.api.FileObjectsApi;
+import com.ziqni.admin.sdk.api.ConnectionsApi;
 import java.util.concurrent.CompletableFuture;
 
 public class Example {
@@ -1084,17 +1074,13 @@ public class Example {
         OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
         OAuth2.setAccessToken("YOUR ACCESS TOKEN");
 
-        FileObjectsApi apiInstance = new FileObjectsApi(defaultClient);
-        String parentFolderPath = "parentFolderPath_example"; // String | The folder to save these file in.
-        String repositoryId = "repositoryId_example"; // String | 
-        String templateToSave = "templateToSave_example"; // String | 
-        String templateName = "templateName_example"; // String | 
-        String tags = "tags_example"; // String | 
+        ConnectionsApi apiInstance = new ConnectionsApi(defaultClient);
+        List<UpdateConnectionRequest> body = Arrays.asList(); // List<UpdateConnectionRequest> | Update the RabbitMq Consumer Connection details in the Ziqni system
         try {
-            CompletableFuture<ModelApiResponse> result = apiInstance.saveTemplates(parentFolderPath, repositoryId, templateToSave, templateName, tags);
+            CompletableFuture<ModelApiResponse> result = apiInstance.updateConnections(body);
             System.out.println(result.get());
         } catch (ApiException e) {
-            System.err.println("Exception when calling FileObjectsApi#saveTemplates");
+            System.err.println("Exception when calling ConnectionsApi#updateConnections");
             System.err.println("Status code: " + e.getCode());
             System.err.println("Reason: " + e.getResponseBody());
             System.err.println("Response headers: " + e.getResponseHeaders());
@@ -1109,186 +1095,7 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **parentFolderPath** | **String**| The folder to save these file in. | [optional]
- **repositoryId** | **String**|  | [optional]
- **templateToSave** | **String**|  | [optional]
- **templateName** | **String**|  | [optional]
- **tags** | **String**|  | [optional]
-
-### Return type
-
-CompletableFuture<[**ModelApiResponse**](ModelApiResponse.md)>
-
-
-### Authorization
-
-[OAuth2](../README.md#OAuth2)
-
-### HTTP request headers
-
-- **Content-Type**: multipart/form-data
-- **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | A list of outcomes and/or errors |  -  |
-| **400** | A list of outcomes and/or errors |  -  |
-| **401** | A list of outcomes and/or errors |  -  |
-| **403** | A list of outcomes and/or errors |  -  |
-| **404** | A list of outcomes and/or errors |  -  |
-| **413** | A list of outcomes and/or errors |  -  |
-| **500** | A list of outcomes and/or errors |  -  |
-| **501** | A list of outcomes and/or errors |  -  |
-| **503** | A list of outcomes and/or errors |  -  |
-
-## saveTemplatesWithHttpInfo
-
-> CompletableFuture<ApiResponse<ModelApiResponse>> saveTemplates saveTemplatesWithHttpInfo(parentFolderPath, repositoryId, templateToSave, templateName, tags)
-
-
-
-Create or update file objects and binaries in your Ziqni space
-
-### Example
-
-```java
-// Import classes:
-import com.ziqni.admin.sdk.ApiClient;
-import com.ziqni.admin.sdk.ApiException;
-import com.ziqni.admin.sdk.ApiResponse;
-import com.ziqni.admin.sdk.Configuration;
-import com.ziqni.admin.sdk.auth.*;
-import com.ziqni.admin.sdk.models.*;
-import com.ziqni.admin.sdk.api.FileObjectsApi;
-import java.util.concurrent.CompletableFuture;
-
-public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://api.ziqni.com");
-        
-        // Configure OAuth2 access token for authorization: OAuth2
-        OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
-        OAuth2.setAccessToken("YOUR ACCESS TOKEN");
-
-        FileObjectsApi apiInstance = new FileObjectsApi(defaultClient);
-        String parentFolderPath = "parentFolderPath_example"; // String | The folder to save these file in.
-        String repositoryId = "repositoryId_example"; // String | 
-        String templateToSave = "templateToSave_example"; // String | 
-        String templateName = "templateName_example"; // String | 
-        String tags = "tags_example"; // String | 
-        try {
-            CompletableFuture<ApiResponse<ModelApiResponse>> response = apiInstance.saveTemplatesWithHttpInfo(parentFolderPath, repositoryId, templateToSave, templateName, tags);
-            System.out.println("Status code: " + response.get().getStatusCode());
-            System.out.println("Response headers: " + response.get().getHeaders());
-            System.out.println("Response body: " + response.get().getData());
-        } catch (InterruptedException | ExecutionException e) {
-            ApiException apiException = (ApiException)e.getCause();
-            System.err.println("Exception when calling FileObjectsApi#saveTemplates");
-            System.err.println("Status code: " + apiException.getCode());
-            System.err.println("Response headers: " + apiException.getResponseHeaders());
-            System.err.println("Reason: " + apiException.getResponseBody());
-            e.printStackTrace();
-        } catch (ApiException e) {
-            System.err.println("Exception when calling FileObjectsApi#saveTemplates");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            System.err.println("Reason: " + e.getResponseBody());
-            e.printStackTrace();
-        }
-    }
-}
-```
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **parentFolderPath** | **String**| The folder to save these file in. | [optional]
- **repositoryId** | **String**|  | [optional]
- **templateToSave** | **String**|  | [optional]
- **templateName** | **String**|  | [optional]
- **tags** | **String**|  | [optional]
-
-### Return type
-
-CompletableFuture<ApiResponse<[**ModelApiResponse**](ModelApiResponse.md)>>
-
-
-### Authorization
-
-[OAuth2](../README.md#OAuth2)
-
-### HTTP request headers
-
-- **Content-Type**: multipart/form-data
-- **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | A list of outcomes and/or errors |  -  |
-| **400** | A list of outcomes and/or errors |  -  |
-| **401** | A list of outcomes and/or errors |  -  |
-| **403** | A list of outcomes and/or errors |  -  |
-| **404** | A list of outcomes and/or errors |  -  |
-| **413** | A list of outcomes and/or errors |  -  |
-| **500** | A list of outcomes and/or errors |  -  |
-| **501** | A list of outcomes and/or errors |  -  |
-| **503** | A list of outcomes and/or errors |  -  |
-
-
-## updateFileObjects
-
-> CompletableFuture<ModelApiResponse> updateFileObjects(body)
-
-
-
-### Example
-
-```java
-// Import classes:
-import com.ziqni.admin.sdk.ApiClient;
-import com.ziqni.admin.sdk.ApiException;
-import com.ziqni.admin.sdk.Configuration;
-import com.ziqni.admin.sdk.auth.*;
-import com.ziqni.admin.sdk.models.*;
-import com.ziqni.admin.sdk.api.FileObjectsApi;
-import java.util.concurrent.CompletableFuture;
-
-public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://api.ziqni.com");
-        
-        // Configure OAuth2 access token for authorization: OAuth2
-        OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
-        OAuth2.setAccessToken("YOUR ACCESS TOKEN");
-
-        FileObjectsApi apiInstance = new FileObjectsApi(defaultClient);
-        List<UpdateFileObjectRequest> body = Arrays.asList(); // List<UpdateFileObjectRequest> | Update a file object in your Ziqni space.
-        try {
-            CompletableFuture<ModelApiResponse> result = apiInstance.updateFileObjects(body);
-            System.out.println(result.get());
-        } catch (ApiException e) {
-            System.err.println("Exception when calling FileObjectsApi#updateFileObjects");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            e.printStackTrace();
-        }
-    }
-}
-```
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **body** | [**List&lt;UpdateFileObjectRequest&gt;**](UpdateFileObjectRequest.md)| Update a file object in your Ziqni space. |
+ **body** | [**List&lt;UpdateConnectionRequest&gt;**](UpdateConnectionRequest.md)| Update the RabbitMq Consumer Connection details in the Ziqni system |
 
 ### Return type
 
@@ -1318,11 +1125,13 @@ CompletableFuture<[**ModelApiResponse**](ModelApiResponse.md)>
 | **501** | A list of outcomes and/or errors |  -  |
 | **503** | A list of outcomes and/or errors |  -  |
 
-## updateFileObjectsWithHttpInfo
+## updateConnectionsWithHttpInfo
 
-> CompletableFuture<ApiResponse<ModelApiResponse>> updateFileObjects updateFileObjectsWithHttpInfo(body)
+> CompletableFuture<ApiResponse<ModelApiResponse>> updateConnections updateConnectionsWithHttpInfo(body)
 
 
+
+Update an existing Consumer Connection in the Ziqni system
 
 ### Example
 
@@ -1334,7 +1143,7 @@ import com.ziqni.admin.sdk.ApiResponse;
 import com.ziqni.admin.sdk.Configuration;
 import com.ziqni.admin.sdk.auth.*;
 import com.ziqni.admin.sdk.models.*;
-import com.ziqni.admin.sdk.api.FileObjectsApi;
+import com.ziqni.admin.sdk.api.ConnectionsApi;
 import java.util.concurrent.CompletableFuture;
 
 public class Example {
@@ -1346,22 +1155,22 @@ public class Example {
         OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
         OAuth2.setAccessToken("YOUR ACCESS TOKEN");
 
-        FileObjectsApi apiInstance = new FileObjectsApi(defaultClient);
-        List<UpdateFileObjectRequest> body = Arrays.asList(); // List<UpdateFileObjectRequest> | Update a file object in your Ziqni space.
+        ConnectionsApi apiInstance = new ConnectionsApi(defaultClient);
+        List<UpdateConnectionRequest> body = Arrays.asList(); // List<UpdateConnectionRequest> | Update the RabbitMq Consumer Connection details in the Ziqni system
         try {
-            CompletableFuture<ApiResponse<ModelApiResponse>> response = apiInstance.updateFileObjectsWithHttpInfo(body);
+            CompletableFuture<ApiResponse<ModelApiResponse>> response = apiInstance.updateConnectionsWithHttpInfo(body);
             System.out.println("Status code: " + response.get().getStatusCode());
             System.out.println("Response headers: " + response.get().getHeaders());
             System.out.println("Response body: " + response.get().getData());
         } catch (InterruptedException | ExecutionException e) {
             ApiException apiException = (ApiException)e.getCause();
-            System.err.println("Exception when calling FileObjectsApi#updateFileObjects");
+            System.err.println("Exception when calling ConnectionsApi#updateConnections");
             System.err.println("Status code: " + apiException.getCode());
             System.err.println("Response headers: " + apiException.getResponseHeaders());
             System.err.println("Reason: " + apiException.getResponseBody());
             e.printStackTrace();
         } catch (ApiException e) {
-            System.err.println("Exception when calling FileObjectsApi#updateFileObjects");
+            System.err.println("Exception when calling ConnectionsApi#updateConnections");
             System.err.println("Status code: " + e.getCode());
             System.err.println("Response headers: " + e.getResponseHeaders());
             System.err.println("Reason: " + e.getResponseBody());
@@ -1376,7 +1185,7 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**List&lt;UpdateFileObjectRequest&gt;**](UpdateFileObjectRequest.md)| Update a file object in your Ziqni space. |
+ **body** | [**List&lt;UpdateConnectionRequest&gt;**](UpdateConnectionRequest.md)| Update the RabbitMq Consumer Connection details in the Ziqni system |
 
 ### Return type
 
@@ -1407,13 +1216,13 @@ CompletableFuture<ApiResponse<[**ModelApiResponse**](ModelApiResponse.md)>>
 | **503** | A list of outcomes and/or errors |  -  |
 
 
-## uploadFileObjects
+## updateConnectionsState
 
-> CompletableFuture<ModelApiResponse> uploadFileObjects(parentFolderPath, files, repositoryId, tags)
+> CompletableFuture<ModelApiResponse> updateConnectionsState(body)
 
+Update connection status
 
-
-Create or update file objects and binaries in your Ziqni space
+Update the state of a Consumer using the POST method
 
 ### Example
 
@@ -1424,7 +1233,7 @@ import com.ziqni.admin.sdk.ApiException;
 import com.ziqni.admin.sdk.Configuration;
 import com.ziqni.admin.sdk.auth.*;
 import com.ziqni.admin.sdk.models.*;
-import com.ziqni.admin.sdk.api.FileObjectsApi;
+import com.ziqni.admin.sdk.api.ConnectionsApi;
 import java.util.concurrent.CompletableFuture;
 
 public class Example {
@@ -1436,16 +1245,13 @@ public class Example {
         OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
         OAuth2.setAccessToken("YOUR ACCESS TOKEN");
 
-        FileObjectsApi apiInstance = new FileObjectsApi(defaultClient);
-        String parentFolderPath = "parentFolderPath_example"; // String | The folder to save these file in.
-        List<File> files = new File("/path/to/file"); // List<File> | The files to upload
-        String repositoryId = "repositoryId_example"; // String | 
-        String tags = "tags_example"; // String | 
+        ConnectionsApi apiInstance = new ConnectionsApi(defaultClient);
+        List<UpdateConnectionStateRequest> body = Arrays.asList(); // List<UpdateConnectionStateRequest> | Update the state of a Consumer using the POST method
         try {
-            CompletableFuture<ModelApiResponse> result = apiInstance.uploadFileObjects(parentFolderPath, files, repositoryId, tags);
+            CompletableFuture<ModelApiResponse> result = apiInstance.updateConnectionsState(body);
             System.out.println(result.get());
         } catch (ApiException e) {
-            System.err.println("Exception when calling FileObjectsApi#uploadFileObjects");
+            System.err.println("Exception when calling ConnectionsApi#updateConnectionsState");
             System.err.println("Status code: " + e.getCode());
             System.err.println("Reason: " + e.getResponseBody());
             System.err.println("Response headers: " + e.getResponseHeaders());
@@ -1460,10 +1266,7 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **parentFolderPath** | **String**| The folder to save these file in. | [optional]
- **files** | **List&lt;File&gt;**| The files to upload | [optional]
- **repositoryId** | **String**|  | [optional]
- **tags** | **String**|  | [optional]
+ **body** | [**List&lt;UpdateConnectionStateRequest&gt;**](UpdateConnectionStateRequest.md)| Update the state of a Consumer using the POST method | [optional]
 
 ### Return type
 
@@ -1476,7 +1279,7 @@ CompletableFuture<[**ModelApiResponse**](ModelApiResponse.md)>
 
 ### HTTP request headers
 
-- **Content-Type**: multipart/form-data
+- **Content-Type**: application/json
 - **Accept**: application/json
 
 ### HTTP response details
@@ -1492,13 +1295,13 @@ CompletableFuture<[**ModelApiResponse**](ModelApiResponse.md)>
 | **501** | A list of outcomes and/or errors |  -  |
 | **503** | A list of outcomes and/or errors |  -  |
 
-## uploadFileObjectsWithHttpInfo
+## updateConnectionsStateWithHttpInfo
 
-> CompletableFuture<ApiResponse<ModelApiResponse>> uploadFileObjects uploadFileObjectsWithHttpInfo(parentFolderPath, files, repositoryId, tags)
+> CompletableFuture<ApiResponse<ModelApiResponse>> updateConnectionsState updateConnectionsStateWithHttpInfo(body)
 
+Update connection status
 
-
-Create or update file objects and binaries in your Ziqni space
+Update the state of a Consumer using the POST method
 
 ### Example
 
@@ -1510,7 +1313,7 @@ import com.ziqni.admin.sdk.ApiResponse;
 import com.ziqni.admin.sdk.Configuration;
 import com.ziqni.admin.sdk.auth.*;
 import com.ziqni.admin.sdk.models.*;
-import com.ziqni.admin.sdk.api.FileObjectsApi;
+import com.ziqni.admin.sdk.api.ConnectionsApi;
 import java.util.concurrent.CompletableFuture;
 
 public class Example {
@@ -1522,25 +1325,22 @@ public class Example {
         OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
         OAuth2.setAccessToken("YOUR ACCESS TOKEN");
 
-        FileObjectsApi apiInstance = new FileObjectsApi(defaultClient);
-        String parentFolderPath = "parentFolderPath_example"; // String | The folder to save these file in.
-        List<File> files = new File("/path/to/file"); // List<File> | The files to upload
-        String repositoryId = "repositoryId_example"; // String | 
-        String tags = "tags_example"; // String | 
+        ConnectionsApi apiInstance = new ConnectionsApi(defaultClient);
+        List<UpdateConnectionStateRequest> body = Arrays.asList(); // List<UpdateConnectionStateRequest> | Update the state of a Consumer using the POST method
         try {
-            CompletableFuture<ApiResponse<ModelApiResponse>> response = apiInstance.uploadFileObjectsWithHttpInfo(parentFolderPath, files, repositoryId, tags);
+            CompletableFuture<ApiResponse<ModelApiResponse>> response = apiInstance.updateConnectionsStateWithHttpInfo(body);
             System.out.println("Status code: " + response.get().getStatusCode());
             System.out.println("Response headers: " + response.get().getHeaders());
             System.out.println("Response body: " + response.get().getData());
         } catch (InterruptedException | ExecutionException e) {
             ApiException apiException = (ApiException)e.getCause();
-            System.err.println("Exception when calling FileObjectsApi#uploadFileObjects");
+            System.err.println("Exception when calling ConnectionsApi#updateConnectionsState");
             System.err.println("Status code: " + apiException.getCode());
             System.err.println("Response headers: " + apiException.getResponseHeaders());
             System.err.println("Reason: " + apiException.getResponseBody());
             e.printStackTrace();
         } catch (ApiException e) {
-            System.err.println("Exception when calling FileObjectsApi#uploadFileObjects");
+            System.err.println("Exception when calling ConnectionsApi#updateConnectionsState");
             System.err.println("Status code: " + e.getCode());
             System.err.println("Response headers: " + e.getResponseHeaders());
             System.err.println("Reason: " + e.getResponseBody());
@@ -1555,10 +1355,7 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **parentFolderPath** | **String**| The folder to save these file in. | [optional]
- **files** | **List&lt;File&gt;**| The files to upload | [optional]
- **repositoryId** | **String**|  | [optional]
- **tags** | **String**|  | [optional]
+ **body** | [**List&lt;UpdateConnectionStateRequest&gt;**](UpdateConnectionStateRequest.md)| Update the state of a Consumer using the POST method | [optional]
 
 ### Return type
 
@@ -1571,7 +1368,7 @@ CompletableFuture<ApiResponse<[**ModelApiResponse**](ModelApiResponse.md)>>
 
 ### HTTP request headers
 
-- **Content-Type**: multipart/form-data
+- **Content-Type**: application/json
 - **Accept**: application/json
 
 ### HTTP response details

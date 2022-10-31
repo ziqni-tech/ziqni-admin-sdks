@@ -1,6 +1,6 @@
 # ContestsApi
 
-All URIs are relative to *https://api.ziqni.io*
+All URIs are relative to *https://api.ziqni.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -14,6 +14,8 @@ Method | HTTP request | Description
 [**getContestsLeaderboardByIdWithHttpInfo**](ContestsApi.md#getContestsLeaderboardByIdWithHttpInfo) | **GET** /contests/{id}/leaderboard | 
 [**getContestsToClone**](ContestsApi.md#getContestsToClone) | **GET** /contests/{id}/clone | 
 [**getContestsToCloneWithHttpInfo**](ContestsApi.md#getContestsToCloneWithHttpInfo) | **GET** /contests/{id}/clone | 
+[**getListOfEntrantsForContest**](ContestsApi.md#getListOfEntrantsForContest) | **GET** /contests/{id}/entries | 
+[**getListOfEntrantsForContestWithHttpInfo**](ContestsApi.md#getListOfEntrantsForContestWithHttpInfo) | **GET** /contests/{id}/entries | 
 [**updateContest**](ContestsApi.md#updateContest) | **PUT** /contests | 
 [**updateContestWithHttpInfo**](ContestsApi.md#updateContestWithHttpInfo) | **PUT** /contests | 
 [**updateContestsState**](ContestsApi.md#updateContestsState) | **PUT** /contests/state | 
@@ -44,7 +46,7 @@ import java.util.concurrent.CompletableFuture;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://api.ziqni.io");
+        defaultClient.setBasePath("https://api.ziqni.com");
         
         // Configure OAuth2 access token for authorization: OAuth2
         OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
@@ -124,7 +126,7 @@ import java.util.concurrent.CompletableFuture;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://api.ziqni.io");
+        defaultClient.setBasePath("https://api.ziqni.com");
         
         // Configure OAuth2 access token for authorization: OAuth2
         OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
@@ -213,7 +215,7 @@ import java.util.concurrent.CompletableFuture;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://api.ziqni.io");
+        defaultClient.setBasePath("https://api.ziqni.com");
         
         // Configure OAuth2 access token for authorization: OAuth2
         OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
@@ -297,7 +299,7 @@ import java.util.concurrent.CompletableFuture;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://api.ziqni.io");
+        defaultClient.setBasePath("https://api.ziqni.com");
         
         // Configure OAuth2 access token for authorization: OAuth2
         OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
@@ -390,7 +392,7 @@ import java.util.concurrent.CompletableFuture;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://api.ziqni.io");
+        defaultClient.setBasePath("https://api.ziqni.com");
         
         // Configure OAuth2 access token for authorization: OAuth2
         OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
@@ -470,7 +472,7 @@ import java.util.concurrent.CompletableFuture;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://api.ziqni.io");
+        defaultClient.setBasePath("https://api.ziqni.com");
         
         // Configure OAuth2 access token for authorization: OAuth2
         OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
@@ -559,7 +561,7 @@ import java.util.concurrent.CompletableFuture;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://api.ziqni.io");
+        defaultClient.setBasePath("https://api.ziqni.com");
         
         // Configure OAuth2 access token for authorization: OAuth2
         OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
@@ -643,7 +645,7 @@ import java.util.concurrent.CompletableFuture;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://api.ziqni.io");
+        defaultClient.setBasePath("https://api.ziqni.com");
         
         // Configure OAuth2 access token for authorization: OAuth2
         OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
@@ -736,7 +738,7 @@ import java.util.concurrent.CompletableFuture;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://api.ziqni.io");
+        defaultClient.setBasePath("https://api.ziqni.com");
         
         // Configure OAuth2 access token for authorization: OAuth2
         OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
@@ -816,7 +818,7 @@ import java.util.concurrent.CompletableFuture;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://api.ziqni.io");
+        defaultClient.setBasePath("https://api.ziqni.com");
         
         // Configure OAuth2 access token for authorization: OAuth2
         OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
@@ -882,6 +884,183 @@ CompletableFuture<ApiResponse<[**CloneContestResponse**](CloneContestResponse.md
 | **503** | A modeled response of a Contest that can be used for Contest creation * The competitionId has to be changed to the competition Id of the competition that the contest will be cloned to |  -  |
 
 
+## getListOfEntrantsForContest
+
+> CompletableFuture<EntrantResponse> getListOfEntrantsForContest(id, limit, skip)
+
+
+
+Returns all Entries for the Contest id provided
+
+### Example
+
+```java
+// Import classes:
+import com.ziqni.admin.sdk.ApiClient;
+import com.ziqni.admin.sdk.ApiException;
+import com.ziqni.admin.sdk.Configuration;
+import com.ziqni.admin.sdk.auth.*;
+import com.ziqni.admin.sdk.models.*;
+import com.ziqni.admin.sdk.api.ContestsApi;
+import java.util.concurrent.CompletableFuture;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://api.ziqni.com");
+        
+        // Configure OAuth2 access token for authorization: OAuth2
+        OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
+        OAuth2.setAccessToken("YOUR ACCESS TOKEN");
+
+        ContestsApi apiInstance = new ContestsApi(defaultClient);
+        String id = "id_example"; // String | Unique identifier of the resource
+        Integer limit = 56; // Integer | Limit the returned total records found
+        Integer skip = 56; // Integer | Skip the returned records found and return the next batch of records
+        try {
+            CompletableFuture<EntrantResponse> result = apiInstance.getListOfEntrantsForContest(id, limit, skip);
+            System.out.println(result.get());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ContestsApi#getListOfEntrantsForContest");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**| Unique identifier of the resource |
+ **limit** | **Integer**| Limit the returned total records found | [optional]
+ **skip** | **Integer**| Skip the returned records found and return the next batch of records | [optional]
+
+### Return type
+
+CompletableFuture<[**EntrantResponse**](EntrantResponse.md)>
+
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | A list of Entrants for the competition/contest and/or errors |  -  |
+| **400** | A list of Entrants for the competition/contest and/or errors |  -  |
+| **401** | A list of Entrants for the competition/contest and/or errors |  -  |
+| **403** | A list of Entrants for the competition/contest and/or errors |  -  |
+| **404** | A list of Entrants for the competition/contest and/or errors |  -  |
+| **413** | A list of Entrants for the competition/contest and/or errors |  -  |
+| **500** | A list of Entrants for the competition/contest and/or errors |  -  |
+| **501** | A list of Entrants for the competition/contest and/or errors |  -  |
+| **503** | A list of Entrants for the competition/contest and/or errors |  -  |
+
+## getListOfEntrantsForContestWithHttpInfo
+
+> CompletableFuture<ApiResponse<EntrantResponse>> getListOfEntrantsForContest getListOfEntrantsForContestWithHttpInfo(id, limit, skip)
+
+
+
+Returns all Entries for the Contest id provided
+
+### Example
+
+```java
+// Import classes:
+import com.ziqni.admin.sdk.ApiClient;
+import com.ziqni.admin.sdk.ApiException;
+import com.ziqni.admin.sdk.ApiResponse;
+import com.ziqni.admin.sdk.Configuration;
+import com.ziqni.admin.sdk.auth.*;
+import com.ziqni.admin.sdk.models.*;
+import com.ziqni.admin.sdk.api.ContestsApi;
+import java.util.concurrent.CompletableFuture;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://api.ziqni.com");
+        
+        // Configure OAuth2 access token for authorization: OAuth2
+        OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
+        OAuth2.setAccessToken("YOUR ACCESS TOKEN");
+
+        ContestsApi apiInstance = new ContestsApi(defaultClient);
+        String id = "id_example"; // String | Unique identifier of the resource
+        Integer limit = 56; // Integer | Limit the returned total records found
+        Integer skip = 56; // Integer | Skip the returned records found and return the next batch of records
+        try {
+            CompletableFuture<ApiResponse<EntrantResponse>> response = apiInstance.getListOfEntrantsForContestWithHttpInfo(id, limit, skip);
+            System.out.println("Status code: " + response.get().getStatusCode());
+            System.out.println("Response headers: " + response.get().getHeaders());
+            System.out.println("Response body: " + response.get().getData());
+        } catch (InterruptedException | ExecutionException e) {
+            ApiException apiException = (ApiException)e.getCause();
+            System.err.println("Exception when calling ContestsApi#getListOfEntrantsForContest");
+            System.err.println("Status code: " + apiException.getCode());
+            System.err.println("Response headers: " + apiException.getResponseHeaders());
+            System.err.println("Reason: " + apiException.getResponseBody());
+            e.printStackTrace();
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ContestsApi#getListOfEntrantsForContest");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**| Unique identifier of the resource |
+ **limit** | **Integer**| Limit the returned total records found | [optional]
+ **skip** | **Integer**| Skip the returned records found and return the next batch of records | [optional]
+
+### Return type
+
+CompletableFuture<ApiResponse<[**EntrantResponse**](EntrantResponse.md)>>
+
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | A list of Entrants for the competition/contest and/or errors |  -  |
+| **400** | A list of Entrants for the competition/contest and/or errors |  -  |
+| **401** | A list of Entrants for the competition/contest and/or errors |  -  |
+| **403** | A list of Entrants for the competition/contest and/or errors |  -  |
+| **404** | A list of Entrants for the competition/contest and/or errors |  -  |
+| **413** | A list of Entrants for the competition/contest and/or errors |  -  |
+| **500** | A list of Entrants for the competition/contest and/or errors |  -  |
+| **501** | A list of Entrants for the competition/contest and/or errors |  -  |
+| **503** | A list of Entrants for the competition/contest and/or errors |  -  |
+
+
 ## updateContest
 
 > CompletableFuture<ModelApiResponse> updateContest(body)
@@ -905,7 +1084,7 @@ import java.util.concurrent.CompletableFuture;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://api.ziqni.io");
+        defaultClient.setBasePath("https://api.ziqni.com");
         
         // Configure OAuth2 access token for authorization: OAuth2
         OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
@@ -986,7 +1165,7 @@ import java.util.concurrent.CompletableFuture;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://api.ziqni.io");
+        defaultClient.setBasePath("https://api.ziqni.com");
         
         // Configure OAuth2 access token for authorization: OAuth2
         OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
@@ -1076,7 +1255,7 @@ import java.util.concurrent.CompletableFuture;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://api.ziqni.io");
+        defaultClient.setBasePath("https://api.ziqni.com");
         
         // Configure OAuth2 access token for authorization: OAuth2
         OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
@@ -1157,7 +1336,7 @@ import java.util.concurrent.CompletableFuture;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://api.ziqni.io");
+        defaultClient.setBasePath("https://api.ziqni.com");
         
         // Configure OAuth2 access token for authorization: OAuth2
         OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
