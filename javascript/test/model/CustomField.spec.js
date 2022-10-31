@@ -102,6 +102,12 @@
       //expect(instance).to.be();
     });
 
+    it('should have the property constraints (base name: "constraints")', function() {
+      // uncomment below and update the code to test the property constraints
+      //var instance = new @ZiqniTechAdminApiClient.CustomField();
+      //expect(instance).to.be();
+    });
+
   });
 
 }));

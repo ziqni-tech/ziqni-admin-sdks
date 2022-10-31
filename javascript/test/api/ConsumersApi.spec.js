@@ -198,16 +198,6 @@
         done();
       });
     });
-    describe('updateConnectionsState', function() {
-      it('should call updateConnectionsState successfully', function(done) {
-        //uncomment below and update the code to test updateConnectionsState
-        //instance.updateConnectionsState(function(error) {
-        //  if (error) throw error;
-        //expect().to.be();
-        //});
-        done();
-      });
-    });
     describe('updateKafkaConnections', function() {
       it('should call updateKafkaConnections successfully', function(done) {
         //uncomment below and update the code to test updateKafkaConnections

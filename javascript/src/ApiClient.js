@@ -33,11 +33,11 @@ class ApiClient {
      * Overrides the default value set in spec file if present
      * @param {String} basePath
      */
-    constructor(basePath = 'https://api.ziqni.io') {
+    constructor(basePath = 'https://api.ziqni.com') {
         /**
          * The base URL against which to resolve every API call's (relative) path.
          * @type {String}
-         * @default https://api.ziqni.io
+         * @default https://api.ziqni.com
          */
         this.basePath = basePath.replace(/\/+$/, '');
 
@@ -593,12 +593,8 @@ class ApiClient {
     hostSettings() {
         return [
             {
-              'url': "https://api.ziqni.io",
+              'url': "https://api.ziqni.com",
               'description': "Production environment",
-            },
-            {
-              'url': "https://api-demo.ziqni.io",
-              'description': "Demo environment",
             }
       ];
     }

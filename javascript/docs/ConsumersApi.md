@@ -1,6 +1,6 @@
 # @ZiqniTechAdminApiClient.ConsumersApi
 
-All URIs are relative to *https://api.ziqni.io*
+All URIs are relative to *https://api.ziqni.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -19,7 +19,6 @@ Method | HTTP request | Description
 [**getRabbitMQConnectionsByQuery**](ConsumersApi.md#getRabbitMQConnectionsByQuery) | **POST** /connections/rabbitmq/query | 
 [**getSqsConnections**](ConsumersApi.md#getSqsConnections) | **GET** /connections/sqs | 
 [**getSqsConnectionsByQuery**](ConsumersApi.md#getSqsConnectionsByQuery) | **POST** /connections/sqs/query | 
-[**updateConnectionsState**](ConsumersApi.md#updateConnectionsState) | **POST** /connections/state | Update connection status
 [**updateKafkaConnections**](ConsumersApi.md#updateKafkaConnections) | **PUT** /connections/kafka | 
 [**updateKafkaConnectionsState**](ConsumersApi.md#updateKafkaConnectionsState) | **POST** /connections/kafka/state | 
 [**updateRabbitMQConnections**](ConsumersApi.md#updateRabbitMQConnections) | **PUT** /connections/rabbitmq | 
@@ -789,57 +788,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**SqsConnectionResponse**](SqsConnectionResponse.md)
-
-### Authorization
-
-[OAuth2](../README.md#OAuth2)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-
-## updateConnectionsState
-
-> ApiResponse updateConnectionsState(opts)
-
-Update connection status
-
-Update the state of a Consumer using the POST method
-
-### Example
-
-```javascript
-import @ZiqniTechAdminApiClient from '@ziqni-tech/admin-api-client';
-let defaultClient = @ZiqniTechAdminApiClient.ApiClient.instance;
-// Configure OAuth2 access token for authorization: OAuth2
-let OAuth2 = defaultClient.authentications['OAuth2'];
-OAuth2.accessToken = 'YOUR ACCESS TOKEN';
-
-let apiInstance = new @ZiqniTechAdminApiClient.ConsumersApi();
-let opts = {
-  'body': [new @ZiqniTechAdminApiClient.UpdateConnectionStateRequest()] // [UpdateConnectionStateRequest] | Update the state of a Consumer using the POST method
-};
-apiInstance.updateConnectionsState(opts, (error, data, response) => {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
-});
-```
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **body** | [**[UpdateConnectionStateRequest]**](UpdateConnectionStateRequest.md)| Update the state of a Consumer using the POST method | [optional] 
-
-### Return type
-
-[**ApiResponse**](ApiResponse.md)
 
 ### Authorization
 

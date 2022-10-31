@@ -12,5 +12,6 @@ Name | Type | Description | Notes
 **description** | **String** | The description of a Custom field | [optional] 
 **fieldType** | [**FieldType**](FieldType.md) |  | 
 **appliesTo** | [**AppliesTo**](AppliesTo.md) |  | 
+**constraints** | **[String]** | For example \&quot;required\&quot; to indicate the field is required. | [optional] 
 
 

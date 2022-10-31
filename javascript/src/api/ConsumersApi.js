@@ -655,46 +655,6 @@ export default class ConsumersApi {
     }
 
     /**
-     * Callback function to receive the result of the updateConnectionsState operation.
-     * @callback module:api/ConsumersApi~updateConnectionsStateCallback
-     * @param {String} error Error message, if any.
-     * @param {module:model/ApiResponse} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
-     */
-
-    /**
-     * Update connection status
-     * Update the state of a Consumer using the POST method
-     * @param {Object} opts Optional parameters
-     * @param {Array.<module:model/UpdateConnectionStateRequest>} opts.body Update the state of a Consumer using the POST method
-     * @param {module:api/ConsumersApi~updateConnectionsStateCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link module:model/ApiResponse}
-     */
-    updateConnectionsState(opts, callback) {
-      opts = opts || {};
-      let postBody = opts['body'];
-
-      let pathParams = {
-      };
-      let queryParams = {
-      };
-      let headerParams = {
-      };
-      let formParams = {
-      };
-
-      let authNames = ['OAuth2'];
-      let contentTypes = ['application/json'];
-      let accepts = ['application/json'];
-      let returnType = ApiResponse;
-      return this.apiClient.callApi(
-        '/connections/state', 'POST',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, null, callback
-      );
-    }
-
-    /**
      * Callback function to receive the result of the updateKafkaConnections operation.
      * @callback module:api/ConsumersApi~updateKafkaConnectionsCallback
      * @param {String} error Error message, if any.

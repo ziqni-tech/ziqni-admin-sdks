@@ -69,8 +69,10 @@ import ComputeEngineAllOf from './model/ComputeEngineAllOf';
 import ComputeEngineResponse from './model/ComputeEngineResponse';
 import Condition from './model/Condition';
 import Connection from './model/Connection';
+import ConnectionAllOf from './model/ConnectionAllOf';
 import ConnectionResponse from './model/ConnectionResponse';
 import ConnectionState from './model/ConnectionState';
+import ConnectionType from './model/ConnectionType';
 import Contest from './model/Contest';
 import ContestAllOf from './model/ContestAllOf';
 import ContestLeaderboardResponse from './model/ContestLeaderboardResponse';
@@ -92,6 +94,8 @@ import CreateCompetitionRequest from './model/CreateCompetitionRequest';
 import CreateCompetitionRequestAllOf from './model/CreateCompetitionRequestAllOf';
 import CreateComputeEngineRequest from './model/CreateComputeEngineRequest';
 import CreateComputeEngineRequestAllOf from './model/CreateComputeEngineRequestAllOf';
+import CreateConnectionRequest from './model/CreateConnectionRequest';
+import CreateConnectionRequestAllOf from './model/CreateConnectionRequestAllOf';
 import CreateContestForCompetitionRequest from './model/CreateContestForCompetitionRequest';
 import CreateContestForCompetitionRequestAllOf from './model/CreateContestForCompetitionRequestAllOf';
 import CreateContestRequest from './model/CreateContestRequest';
@@ -223,6 +227,9 @@ import NotificationAllOf from './model/NotificationAllOf';
 import NotificationMessage from './model/NotificationMessage';
 import NotificationResponse from './model/NotificationResponse';
 import NotificationStatus from './model/NotificationStatus';
+import ObjectConstraint from './model/ObjectConstraint';
+import ObjectParameters from './model/ObjectParameters';
+import ObjectParametersResponse from './model/ObjectParametersResponse';
 import OptParamModels from './model/OptParamModels';
 import Product from './model/Product';
 import ProductAllOf from './model/ProductAllOf';
@@ -314,6 +321,8 @@ import UpdateCompetitionStatusRequest from './model/UpdateCompetitionStatusReque
 import UpdateCompetitionStatusRequestAllOf from './model/UpdateCompetitionStatusRequestAllOf';
 import UpdateComputeEngineRequest from './model/UpdateComputeEngineRequest';
 import UpdateComputeEngineRequestAllOf from './model/UpdateComputeEngineRequestAllOf';
+import UpdateConnectionRequest from './model/UpdateConnectionRequest';
+import UpdateConnectionRequestAllOf from './model/UpdateConnectionRequestAllOf';
 import UpdateConnectionStateRequest from './model/UpdateConnectionStateRequest';
 import UpdateContestRequest from './model/UpdateContestRequest';
 import UpdateContestRequestAllOf from './model/UpdateContestRequestAllOf';
@@ -379,6 +388,7 @@ import AwardsApi from './api/AwardsApi';
 import CollaboratorsApi from './api/CollaboratorsApi';
 import CompetitionsApi from './api/CompetitionsApi';
 import ComputeEngineApi from './api/ComputeEngineApi';
+import ConnectionsApi from './api/ConnectionsApi';
 import ConsumersApi from './api/ConsumersApi';
 import ContestsApi from './api/ContestsApi';
 import CustomFieldsApi from './api/CustomFieldsApi';
@@ -780,6 +790,12 @@ export {
     Connection,
 
     /**
+     * The ConnectionAllOf model constructor.
+     * @property {module:model/ConnectionAllOf}
+     */
+    ConnectionAllOf,
+
+    /**
      * The ConnectionResponse model constructor.
      * @property {module:model/ConnectionResponse}
      */
@@ -790,6 +806,12 @@ export {
      * @property {module:model/ConnectionState}
      */
     ConnectionState,
+
+    /**
+     * The ConnectionType model constructor.
+     * @property {module:model/ConnectionType}
+     */
+    ConnectionType,
 
     /**
      * The Contest model constructor.
@@ -916,6 +938,18 @@ export {
      * @property {module:model/CreateComputeEngineRequestAllOf}
      */
     CreateComputeEngineRequestAllOf,
+
+    /**
+     * The CreateConnectionRequest model constructor.
+     * @property {module:model/CreateConnectionRequest}
+     */
+    CreateConnectionRequest,
+
+    /**
+     * The CreateConnectionRequestAllOf model constructor.
+     * @property {module:model/CreateConnectionRequestAllOf}
+     */
+    CreateConnectionRequestAllOf,
 
     /**
      * The CreateContestForCompetitionRequest model constructor.
@@ -1704,6 +1738,24 @@ export {
     NotificationStatus,
 
     /**
+     * The ObjectConstraint model constructor.
+     * @property {module:model/ObjectConstraint}
+     */
+    ObjectConstraint,
+
+    /**
+     * The ObjectParameters model constructor.
+     * @property {module:model/ObjectParameters}
+     */
+    ObjectParameters,
+
+    /**
+     * The ObjectParametersResponse model constructor.
+     * @property {module:model/ObjectParametersResponse}
+     */
+    ObjectParametersResponse,
+
+    /**
      * The OptParamModels model constructor.
      * @property {module:model/OptParamModels}
      */
@@ -2250,6 +2302,18 @@ export {
     UpdateComputeEngineRequestAllOf,
 
     /**
+     * The UpdateConnectionRequest model constructor.
+     * @property {module:model/UpdateConnectionRequest}
+     */
+    UpdateConnectionRequest,
+
+    /**
+     * The UpdateConnectionRequestAllOf model constructor.
+     * @property {module:model/UpdateConnectionRequestAllOf}
+     */
+    UpdateConnectionRequestAllOf,
+
+    /**
      * The UpdateConnectionStateRequest model constructor.
      * @property {module:model/UpdateConnectionStateRequest}
      */
@@ -2638,6 +2702,12 @@ export {
     * @property {module:api/ComputeEngineApi}
     */
     ComputeEngineApi,
+
+    /**
+    * The ConnectionsApi service constructor.
+    * @property {module:api/ConnectionsApi}
+    */
+    ConnectionsApi,
 
     /**
     * The ConsumersApi service constructor.

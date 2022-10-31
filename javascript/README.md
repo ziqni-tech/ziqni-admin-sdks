@@ -123,7 +123,7 @@ api.deleteAccountMessages(opts, callback);
 
 ## Documentation for API Endpoints
 
-All URIs are relative to *https://api.ziqni.io*
+All URIs are relative to *https://api.ziqni.com*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
@@ -181,6 +181,14 @@ Class | Method | HTTP request | Description
 *@ZiqniTechAdminApiClient.ComputeEngineApi* | [**getComputeEnginesById**](docs/ComputeEngineApi.md#getComputeEnginesById) | **GET** /compute-engines/{id} | 
 *@ZiqniTechAdminApiClient.ComputeEngineApi* | [**getComputeEnginesByQuery**](docs/ComputeEngineApi.md#getComputeEnginesByQuery) | **POST** /compute-engines/query | 
 *@ZiqniTechAdminApiClient.ComputeEngineApi* | [**updateComputeEngines**](docs/ComputeEngineApi.md#updateComputeEngines) | **PUT** /compute-engines | 
+*@ZiqniTechAdminApiClient.ConnectionsApi* | [**createConnections**](docs/ConnectionsApi.md#createConnections) | **POST** /connections | 
+*@ZiqniTechAdminApiClient.ConnectionsApi* | [**deleteConnections**](docs/ConnectionsApi.md#deleteConnections) | **DELETE** /connections | 
+*@ZiqniTechAdminApiClient.ConnectionsApi* | [**deleteConnectionsByQuery**](docs/ConnectionsApi.md#deleteConnectionsByQuery) | **POST** /connections/delete | 
+*@ZiqniTechAdminApiClient.ConnectionsApi* | [**describeConnectionObject**](docs/ConnectionsApi.md#describeConnectionObject) | **GET** /connections/_describe | 
+*@ZiqniTechAdminApiClient.ConnectionsApi* | [**getConnections**](docs/ConnectionsApi.md#getConnections) | **GET** /connections | 
+*@ZiqniTechAdminApiClient.ConnectionsApi* | [**getConnectionsByQuery**](docs/ConnectionsApi.md#getConnectionsByQuery) | **POST** /connections/query | 
+*@ZiqniTechAdminApiClient.ConnectionsApi* | [**updateConnections**](docs/ConnectionsApi.md#updateConnections) | **PUT** /connections | 
+*@ZiqniTechAdminApiClient.ConnectionsApi* | [**updateConnectionsState**](docs/ConnectionsApi.md#updateConnectionsState) | **POST** /connections/state | Update connection status
 *@ZiqniTechAdminApiClient.ConsumersApi* | [**createKafkaConnections**](docs/ConsumersApi.md#createKafkaConnections) | **POST** /connections/kafka | 
 *@ZiqniTechAdminApiClient.ConsumersApi* | [**createRabbitMQConnections**](docs/ConsumersApi.md#createRabbitMQConnections) | **POST** /connections/rabbitmq | 
 *@ZiqniTechAdminApiClient.ConsumersApi* | [**createSqsConnections**](docs/ConsumersApi.md#createSqsConnections) | **POST** /connections/sqs | 
@@ -196,7 +204,6 @@ Class | Method | HTTP request | Description
 *@ZiqniTechAdminApiClient.ConsumersApi* | [**getRabbitMQConnectionsByQuery**](docs/ConsumersApi.md#getRabbitMQConnectionsByQuery) | **POST** /connections/rabbitmq/query | 
 *@ZiqniTechAdminApiClient.ConsumersApi* | [**getSqsConnections**](docs/ConsumersApi.md#getSqsConnections) | **GET** /connections/sqs | 
 *@ZiqniTechAdminApiClient.ConsumersApi* | [**getSqsConnectionsByQuery**](docs/ConsumersApi.md#getSqsConnectionsByQuery) | **POST** /connections/sqs/query | 
-*@ZiqniTechAdminApiClient.ConsumersApi* | [**updateConnectionsState**](docs/ConsumersApi.md#updateConnectionsState) | **POST** /connections/state | Update connection status
 *@ZiqniTechAdminApiClient.ConsumersApi* | [**updateKafkaConnections**](docs/ConsumersApi.md#updateKafkaConnections) | **PUT** /connections/kafka | 
 *@ZiqniTechAdminApiClient.ConsumersApi* | [**updateKafkaConnectionsState**](docs/ConsumersApi.md#updateKafkaConnectionsState) | **POST** /connections/kafka/state | 
 *@ZiqniTechAdminApiClient.ConsumersApi* | [**updateRabbitMQConnections**](docs/ConsumersApi.md#updateRabbitMQConnections) | **PUT** /connections/rabbitmq | 
@@ -388,8 +395,10 @@ Class | Method | HTTP request | Description
  - [@ZiqniTechAdminApiClient.ComputeEngineResponse](docs/ComputeEngineResponse.md)
  - [@ZiqniTechAdminApiClient.Condition](docs/Condition.md)
  - [@ZiqniTechAdminApiClient.Connection](docs/Connection.md)
+ - [@ZiqniTechAdminApiClient.ConnectionAllOf](docs/ConnectionAllOf.md)
  - [@ZiqniTechAdminApiClient.ConnectionResponse](docs/ConnectionResponse.md)
  - [@ZiqniTechAdminApiClient.ConnectionState](docs/ConnectionState.md)
+ - [@ZiqniTechAdminApiClient.ConnectionType](docs/ConnectionType.md)
  - [@ZiqniTechAdminApiClient.Contest](docs/Contest.md)
  - [@ZiqniTechAdminApiClient.ContestAllOf](docs/ContestAllOf.md)
  - [@ZiqniTechAdminApiClient.ContestLeaderboardResponse](docs/ContestLeaderboardResponse.md)
@@ -411,6 +420,8 @@ Class | Method | HTTP request | Description
  - [@ZiqniTechAdminApiClient.CreateCompetitionRequestAllOf](docs/CreateCompetitionRequestAllOf.md)
  - [@ZiqniTechAdminApiClient.CreateComputeEngineRequest](docs/CreateComputeEngineRequest.md)
  - [@ZiqniTechAdminApiClient.CreateComputeEngineRequestAllOf](docs/CreateComputeEngineRequestAllOf.md)
+ - [@ZiqniTechAdminApiClient.CreateConnectionRequest](docs/CreateConnectionRequest.md)
+ - [@ZiqniTechAdminApiClient.CreateConnectionRequestAllOf](docs/CreateConnectionRequestAllOf.md)
  - [@ZiqniTechAdminApiClient.CreateContestForCompetitionRequest](docs/CreateContestForCompetitionRequest.md)
  - [@ZiqniTechAdminApiClient.CreateContestForCompetitionRequestAllOf](docs/CreateContestForCompetitionRequestAllOf.md)
  - [@ZiqniTechAdminApiClient.CreateContestRequest](docs/CreateContestRequest.md)
@@ -542,6 +553,9 @@ Class | Method | HTTP request | Description
  - [@ZiqniTechAdminApiClient.NotificationMessage](docs/NotificationMessage.md)
  - [@ZiqniTechAdminApiClient.NotificationResponse](docs/NotificationResponse.md)
  - [@ZiqniTechAdminApiClient.NotificationStatus](docs/NotificationStatus.md)
+ - [@ZiqniTechAdminApiClient.ObjectConstraint](docs/ObjectConstraint.md)
+ - [@ZiqniTechAdminApiClient.ObjectParameters](docs/ObjectParameters.md)
+ - [@ZiqniTechAdminApiClient.ObjectParametersResponse](docs/ObjectParametersResponse.md)
  - [@ZiqniTechAdminApiClient.OptParamModels](docs/OptParamModels.md)
  - [@ZiqniTechAdminApiClient.Product](docs/Product.md)
  - [@ZiqniTechAdminApiClient.ProductAllOf](docs/ProductAllOf.md)
@@ -633,6 +647,8 @@ Class | Method | HTTP request | Description
  - [@ZiqniTechAdminApiClient.UpdateCompetitionStatusRequestAllOf](docs/UpdateCompetitionStatusRequestAllOf.md)
  - [@ZiqniTechAdminApiClient.UpdateComputeEngineRequest](docs/UpdateComputeEngineRequest.md)
  - [@ZiqniTechAdminApiClient.UpdateComputeEngineRequestAllOf](docs/UpdateComputeEngineRequestAllOf.md)
+ - [@ZiqniTechAdminApiClient.UpdateConnectionRequest](docs/UpdateConnectionRequest.md)
+ - [@ZiqniTechAdminApiClient.UpdateConnectionRequestAllOf](docs/UpdateConnectionRequestAllOf.md)
  - [@ZiqniTechAdminApiClient.UpdateConnectionStateRequest](docs/UpdateConnectionStateRequest.md)
  - [@ZiqniTechAdminApiClient.UpdateContestRequest](docs/UpdateContestRequest.md)
  - [@ZiqniTechAdminApiClient.UpdateContestRequestAllOf](docs/UpdateContestRequestAllOf.md)
@@ -701,7 +717,7 @@ Class | Method | HTTP request | Description
 
 - **Type**: OAuth
 - **Flow**: accessCode
-- **Authorization URL**: https://iam.ziqni.io/oauth/authorize
+- **Authorization URL**: https://identity.ziqni.com/realms/ziqni/protocol/openid-connect/auth
 - **Scopes**: 
   - AdminAchievements: Grants full read and write access
   - ManageAchievements: Grants read and restricted write access
