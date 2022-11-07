@@ -23,12 +23,14 @@ public class LoadCompetitionsData implements CompleteableFutureTestWrapper {
     private LoadRewardTypesData loadRewardTypesData;
     private LoadRulesData loadRulesData;
     private LoadTagsData loadTagsData;
+    private LoadUnitsOfMeasureData loadUnitsOfMeasureData;
 
     public LoadCompetitionsData() {
         this.loadRewardTypesData=new LoadRewardTypesData();
         this.api = ZiqniAdminApiFactory.getCompetitionsApi();
         this.loadRulesData = new LoadRulesData();
         this.loadTagsData = new LoadTagsData();
+        this.loadUnitsOfMeasureData = new LoadUnitsOfMeasureData();
     }
 
     public CreateCompetitionRequest getCreateRequest(List<String> productIds) {
@@ -69,7 +71,8 @@ public class LoadCompetitionsData implements CompleteableFutureTestWrapper {
              request.setMetadata(new LoadMetadata().getMetadataAsList());
              final var givenConstraints = new ArrayList<String>();
 
-             final var rewardType = loadRewardTypesData.createTestData(loadRewardTypesData.getCreateRequestAsList(1));
+             final var unitOfMeasure = loadUnitsOfMeasureData.createTestData(loadUnitsOfMeasureData.getCreateRequestAsList(1)).getResults().get(0).getId();
+             final var rewardType = loadRewardTypesData.createTestData(List.of(loadRewardTypesData.getCreateRequest().unitOfMeasure(unitOfMeasure)));
              final var rewardName = "Pfunguro";
              final var givenRewardRank = "1,2,3";
              final var givenRewardValue = new Random().nextDouble();

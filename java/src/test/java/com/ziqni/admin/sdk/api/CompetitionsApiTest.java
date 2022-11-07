@@ -29,6 +29,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.*;
+import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -46,6 +47,8 @@ public class CompetitionsApiTest implements tests.utils.CompleteableFutureTestWr
     private String customFieldKey;
 
     private final CompetitionsApiWs api;
+
+    private final RewardsApiWs rewardsApiWs;
     private final LoadCompetitionsData loadData;
     private final LoadProductsData loadProductsData;
     private final LoadTagsData loadTagsData;
@@ -63,6 +66,7 @@ public class CompetitionsApiTest implements tests.utils.CompleteableFutureTestWr
         this.loadProductsData = new LoadProductsData();
         this.loadCustomFieldsData = new LoadCustomFieldsData();
         this.loadTagsData = new LoadTagsData();
+        this.rewardsApiWs = ZiqniAdminApiFactory.getRewardsApi();
     }
 
 
@@ -119,6 +123,37 @@ public class CompetitionsApiTest implements tests.utils.CompleteableFutureTestWr
 
         final var id = response.getResults().get(0).getId();
         logger.info(id);
+
+        idsToDelete.add(id);
+    }
+
+    @Test
+    public void createCompetitionsWithRewardsReturnOkTest() throws ApiException {
+        final var createRequest = loadData.getCreateRequest(productIdsToDelete);
+
+        ModelApiResponse response = api.createCompetitions(createRequest).join();
+
+        assertNotNull(response);
+        assertNotNull(response.getResults());
+        assertNotNull(response.getErrors());
+        assertEquals(1, response.getResults().size(), "Should contain created entity");
+        assertNotNull(response.getResults().get(0).getId(), "Created entity should has id");
+
+        final var id = response.getResults().get(0).getId();
+
+        final var query = new QueryRequest()
+                .addShouldItem(new QueryMultiple().queryField("entityId").addQueryValuesItem(id))
+                .shouldMatch(1);
+        final var rewardsResponse = $(rewardsApiWs.getRewardsByQuery(query));
+
+        assertNotNull(rewardsResponse);
+        assertNotNull(rewardsResponse.getResults());
+        assertNotNull(rewardsResponse.getErrors());
+        assertEquals(1, rewardsResponse.getResults().size(), "Should contain created entity");
+        final var createdReward = rewardsResponse.getResults().get(0);
+        assertNotNull(createdReward.getId(), "Created entity should has id");
+        assertEquals(createdReward.getId(), response.getResults().get(0).getRelations().stream().filter(x -> x.getRelationType().equals("Reward")).collect(Collectors.toList()).get(0).getId());
+
 
         idsToDelete.add(id);
     }
