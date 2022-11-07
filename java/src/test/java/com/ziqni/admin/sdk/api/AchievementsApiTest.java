@@ -30,6 +30,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.*;
+import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -91,6 +92,42 @@ public class AchievementsApiTest implements tests.utils.CompleteableFutureTestWr
         } catch (ApiException | InterruptedException e) {
             logger.error("error", e.getCause());
         }
+    }
+
+    @Test
+    @Order(1)
+    public void createAchievementsWithOptInRequiredForEntrantsConstraintReturnOkTest() throws ApiException {
+        final var createRequest = loadData.getCreateRequest(rewardTypeId);
+        createRequest.getAddConstraints().add("optinRequiredForEntrants");
+        final var createRequestAsList = loadData.getCreateRequestAsList(createRequest);
+
+        ModelApiResponse response = api.createAchievements(createRequestAsList).join();
+
+        assertNotNull(response);
+        assertNotNull(response.getResults());
+        assertNotNull(response.getErrors());
+        assertEquals(1, response.getResults().size(), "Should contain created entity");
+        assertNotNull(response.getResults().get(0).getId(), "Created entity should has id");
+
+        final var ids = response.getResults().stream().map(Result::getId).collect(Collectors.toList());
+        int limit = 20;
+        int skip = 0;
+        final var achievementsResponse = $(api.getAchievements(ids, limit, skip));
+        final var id = response.getResults().get(0).getId();
+
+        assertNotNull(achievementsResponse);
+        assertNotNull(achievementsResponse.getResults());
+        assertNotNull(achievementsResponse.getErrors());
+        assertTrue(achievementsResponse.getErrors().isEmpty(), "Should have no errors");
+        assertEquals(limit, achievementsResponse.getResults().size(), "Should has single result");
+
+        final var item = achievementsResponse.getResults().get(0);
+
+        assertEquals(createRequest.getName(), item.getName(), "Found Name should be equal to created previously");
+        assertEquals(createRequest.getDescription(),item.getDescription());
+        assertEquals(createRequest.getAddConstraints(), item.getConstraints());
+
+        idsToDelete.add(id);
     }
 
     @Test

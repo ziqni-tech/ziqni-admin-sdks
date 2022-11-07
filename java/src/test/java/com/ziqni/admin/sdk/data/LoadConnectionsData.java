@@ -2,11 +2,9 @@ package com.ziqni.admin.sdk.data;
 
 import com.ziqni.admin.sdk.ZiqniAdminApiFactory;
 import com.ziqni.admin.sdk.ApiException;
+import com.ziqni.admin.sdk.api.ConnectionsApiWs;
 import com.ziqni.admin.sdk.api.ConsumersApiWs;
-import com.ziqni.admin.sdk.model.CreateKafkaConnectionRequest;
-import com.ziqni.admin.sdk.model.CreateRabbitMqConnectionRequest;
-import com.ziqni.admin.sdk.model.CreateSqsConnectionRequest;
-import com.ziqni.admin.sdk.model.ModelApiResponse;
+import com.ziqni.admin.sdk.model.*;
 import tests.utils.CompleteableFutureTestWrapper;
 
 import java.util.*;
@@ -17,10 +15,10 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class LoadConnectionsData implements CompleteableFutureTestWrapper {
 
-    private ConsumersApiWs api;
+    private ConnectionsApiWs api;
 
     public LoadConnectionsData() {
-        this.api = ZiqniAdminApiFactory.getConsumersApi();
+        this.api = ZiqniAdminApiFactory.getConnectionsApi();
     }
 
     public CreateRabbitMqConnectionRequest getCreateRabbitMQRequest(String transformerId) {
@@ -97,8 +95,8 @@ public class LoadConnectionsData implements CompleteableFutureTestWrapper {
         return List.of(request);
     }
 
-    public ModelApiResponse createRabbitMqTestData(CreateRabbitMqConnectionRequest request) throws ApiException {
-        var response = $(api.createRabbitMQConnections(request));
+    public ModelApiResponse createRabbitMqTestData(List<CreateConnectionRequest> request) throws ApiException {
+        var response = $(api.createConnections(request));
 
         assertNotNull(response);
         assertNotNull(response.getResults());
@@ -109,8 +107,8 @@ public class LoadConnectionsData implements CompleteableFutureTestWrapper {
         return response;
     }
 
-    public ModelApiResponse createKafkaTestData(CreateKafkaConnectionRequest request) throws ApiException {
-        var response = $(api.createKafkaConnections(request));
+    public ModelApiResponse createKafkaTestData(List<CreateConnectionRequest> request) throws ApiException {
+        var response = $(api.createConnections(request));
 
         assertNotNull(response);
         assertNotNull(response.getResults());
@@ -121,8 +119,8 @@ public class LoadConnectionsData implements CompleteableFutureTestWrapper {
         return response;
     }
 
-    public ModelApiResponse createSqsTestData(CreateSqsConnectionRequest request) throws ApiException {
-        var response = $(api.createSqsConnections(request));
+    public ModelApiResponse createSqsTestData(List<CreateConnectionRequest> request) throws ApiException {
+        var response = $(api.createConnections(request));
 
         assertNotNull(response);
         assertNotNull(response.getResults());
@@ -134,7 +132,7 @@ public class LoadConnectionsData implements CompleteableFutureTestWrapper {
     }
 
     public void deleteRabbitMqTestData(List<String> idsToDelete) throws ApiException {
-        var response = $(api.deleteRabbitMQConnections(idsToDelete));
+        var response = $(api.deleteConnections(idsToDelete));
 
         assertTrue(Objects.nonNull(response));
         assertEquals(idsToDelete.size(), response.getMeta().getResultCount(), "Failed to delete some rabbitMq custom fields");
@@ -142,7 +140,7 @@ public class LoadConnectionsData implements CompleteableFutureTestWrapper {
     }
 
     public void deleteKafkaTestData(List<String> idsToDelete) throws ApiException {
-        var response = $(api.deleteKafkaConnections(idsToDelete));
+        var response = $(api.deleteConnections(idsToDelete));
 
         assertTrue(Objects.nonNull(response));
         assertEquals(idsToDelete.size(), response.getMeta().getResultCount(), "Failed to delete some kafka custom fields");
@@ -150,7 +148,7 @@ public class LoadConnectionsData implements CompleteableFutureTestWrapper {
     }
 
     public void deleteSqsTestData(List<String> idsToDelete) throws ApiException {
-        var response = $(api.deleteSqsConnections(idsToDelete));
+        var response = $(api.deleteConnections(idsToDelete));
 
         assertTrue(Objects.nonNull(response));
         assertEquals(idsToDelete.size(), response.getMeta().getResultCount(), "Failed to delete some sqs custom fields");
