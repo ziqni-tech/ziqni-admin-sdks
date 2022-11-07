@@ -70,7 +70,7 @@ public class LoadAchievementsData implements CompleteableFutureTestWrapper {
 
 
         return new CreateAchievementRequest()
-                .constraints(archConstraints)
+                .addConstraints(archConstraints)
                 .description("test description")
 
 //                .icon(givenIcon)
