@@ -73,12 +73,13 @@ public class ConnectionsApiTest implements tests.utils.CompleteableFutureTestWra
 
     @BeforeAll
     public void setUp() throws ApiException, InterruptedException {
-        this.transformerId = loadTransformerData.createTestData(loadTransformerData.getCreateRequestAsList(loadTransformerData.getCreateRequest())).getResults().get(0).getId();
+//        this.transformerId = loadTransformerData.createTestData(loadTransformerData.getCreateRequestAsList(1)).getResults().get(0).getId();
 
+        this.transformerId = "8LuGlYEBZEygT-xG_9Dg";
         Thread.sleep(5000);
         transformerIdsToDelete.add(transformerId);
         tagKey = loadTagsData.getModel();
-        customFieldKey = loadCustomFieldsData.getModel(customFieldIdsToDelete, AppliesTo.KAFKACONNECTION);
+        customFieldKey = loadCustomFieldsData.getModel(customFieldIdsToDelete, AppliesTo.CONNECTION);
 
         tagIdsToDelete.add(tagKey);
 
@@ -108,7 +109,7 @@ public class ConnectionsApiTest implements tests.utils.CompleteableFutureTestWra
         assertNotNull(response.getErrors());
         assertEquals(1, response.getResults().size(), "Should contain created entity");
         assertNotNull(response.getResults().get(0).getId(), "Created entity should has id");
-        final var id = loadData.createRabbitMqTestData(createRequest).getResults().get(0).getId();
+        final var id = response.getResults().get(0).getId();
 
         Thread.sleep(5000);
 
@@ -136,7 +137,7 @@ public class ConnectionsApiTest implements tests.utils.CompleteableFutureTestWra
                 .description("Updated rabbitqm description")
                 .name("UPDATED_NAME")
                 .constraints(Collections.emptyList())
-                .customFields(Map.of(customFieldKey, "updated_name"));
+                .customFields(updateCustomFields);
 
         ModelApiResponse updresponse = $(api.updateConnections(List.of(given)));
         assertNotNull(updresponse);
