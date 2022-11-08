@@ -159,7 +159,8 @@ public class LoadCompetitionsData implements CompleteableFutureTestWrapper {
             request.setMetadata(new LoadMetadata().getMetadataAsList());
             final var givenConstraints = new ArrayList<String>();
 
-            final var rewardType = loadRewardTypesData.createTestData(loadRewardTypesData.getCreateRequestAsList(1));
+            final var unitOfMeasure = loadUnitsOfMeasureData.createTestData(loadUnitsOfMeasureData.getCreateRequestAsList(1)).getResults().get(0).getId();
+            final var rewardType = loadRewardTypesData.createTestData(List.of(loadRewardTypesData.getCreateRequest().unitOfMeasure(unitOfMeasure)));
             final var rewardName = "Pfunguro";
             final var givenRewardRank = "1,2,3";
             final var givenRewardValue = new Random().nextDouble();

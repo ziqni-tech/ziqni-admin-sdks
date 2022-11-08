@@ -15,28 +15,46 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class LoadConnectionsData implements CompleteableFutureTestWrapper {
 
+    public static String QUEUE_NAME = "queueName";
+    public static String PORT = "port";
+    public static String EXCHANGE = "exchange";
+    public static String EXCHANGE_TYPE = "exchangeType";
+    public static String ROUTING_KEYS = "routingKeys";
+    public static String VIURTUAL_HOST = "virtualHost";
+    public static String URI = "uri";
+    public static String X_EXPIRES = "x-expires";
     private ConnectionsApiWs api;
 
     public LoadConnectionsData() {
         this.api = ZiqniAdminApiFactory.getConnectionsApi();
     }
 
-    public CreateRabbitMqConnectionRequest getCreateRabbitMQRequest(String transformerId) {
-        List<String> constraints = new ArrayList<>();
+    public CreateConnectionRequest getCreateRabbitMQRequest(String transformerId, String tagKey) {
+        final var customFields = new HashMap<String, Object>();
+        customFields.put(QUEUE_NAME,"my-rabbit-connection");
+        customFields.put(PORT, 8080);
+        customFields.put(EXCHANGE,"test_exchange");
+        customFields.put(EXCHANGE_TYPE, "Test_Exchange");
+        customFields.put(ROUTING_KEYS, List.of("1234543", "key_2"));
+        customFields.put(VIURTUAL_HOST, "test_host");
+        customFields.put(URI, List.of("http://rabbit.com", "http://uri.2"));
+        customFields.put(X_EXPIRES, null);
 
-        return new CreateRabbitMqConnectionRequest()
+        return new CreateConnectionRequest()
                 .name("my-rabbit-connection")
-                .uri("broker-service.competitionlabs.com")
                 .description("Test Description")
-                .port(30007)
-                .virtualHost("/")
-                .addConstraints(List.of("ssl", "durable", "exclusive", "autoDelete"))
-                .exchange("sabai99_prd_events")
-                .queueName("sabai99_events-test-events-stream")
-                .routingKey("BET_LOG_KA")
-                .userName("complabs_stg_client")
-                .password("bKv=73j>TW86")
-                .transformerId(transformerId);
+                .connectionType(ConnectionType.RABBITMQ)
+                .secret("my_secret_password")
+                .user("test_user")
+                .transformerId(transformerId)
+                .tags(List.of(tagKey))
+                .constraints(List.of(
+                        "ssl",
+                        "durable",
+                        "exclusive",
+                        "autoDelete"))
+                .customFields(customFields);
+
     }
 
     public CreateKafkaConnectionRequest getCreateKafkaRequest(String transformerId) {
@@ -65,9 +83,9 @@ public class LoadConnectionsData implements CompleteableFutureTestWrapper {
 
     }
 
-    public List<CreateRabbitMqConnectionRequest> getCreateRabbitMqRequestAsList(int numberOfItems, String transformerId) {
+    public List<CreateConnectionRequest> getCreateRabbitMqRequestAsList(int numberOfItems, String transformerId, String tagKey) {
         return IntStream.range(0, numberOfItems)
-                .mapToObj(i -> getCreateRabbitMQRequest(transformerId))
+                .mapToObj(i -> getCreateRabbitMQRequest(transformerId, tagKey))
                 .collect(Collectors.toList());
     }
 

@@ -27,12 +27,10 @@ import org.junit.jupiter.api.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
+import static com.ziqni.admin.sdk.data.LoadConnectionsData.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 
@@ -45,13 +43,14 @@ import static org.junit.jupiter.api.Assertions.*;
 public class ConnectionsApiTest implements tests.utils.CompleteableFutureTestWrapper{
 
     private static final Logger logger = LoggerFactory.getLogger(ConnectionsApiTest.class);
+
     private ConnectionsApiWs api;
     private LoadConnectionsData loadData;
     private LoadTransformerData loadTransformerData;
     private final LoadTagsData loadTagsData;
     private final LoadCustomFieldsData loadCustomFieldsData;
 
-    private String tagId;
+    private String tagKey;
     private String customFieldKey;
 
     private List<String> rabbitMqIdsToDelete = new ArrayList<>();
@@ -78,10 +77,10 @@ public class ConnectionsApiTest implements tests.utils.CompleteableFutureTestWra
 
         Thread.sleep(5000);
         transformerIdsToDelete.add(transformerId);
-        tagId = loadTagsData.getModel();
+        tagKey = loadTagsData.getModel();
         customFieldKey = loadCustomFieldsData.getModel(customFieldIdsToDelete, AppliesTo.KAFKACONNECTION);
 
-        tagIdsToDelete.add(tagId);
+        tagIdsToDelete.add(tagKey);
 
     }
 
@@ -95,6 +94,86 @@ public class ConnectionsApiTest implements tests.utils.CompleteableFutureTestWra
         } catch (ApiException e) {
             logger.error("error", e.getCause());
         }
+
+    }
+
+    @Test
+    @Order(1)
+    public void createAndUpdateRabbitMQConnectionsReturnOkTest() throws ApiException, InterruptedException {
+        final var createRequest = loadData.getCreateRabbitMqRequestAsList(1, transformerId, tagKey);
+        ModelApiResponse response = $(api.createConnections(createRequest));
+
+        assertNotNull(response);
+        assertNotNull(response.getResults());
+        assertNotNull(response.getErrors());
+        assertEquals(1, response.getResults().size(), "Should contain created entity");
+        assertNotNull(response.getResults().get(0).getId(), "Created entity should has id");
+        final var id = loadData.createRabbitMqTestData(createRequest).getResults().get(0).getId();
+
+        Thread.sleep(5000);
+
+        final var updateCustomFields = new HashMap<String, Object>();
+        final var updatedQueueName = "updated my-rabbit-connection";
+        final var updatedPort = 8090;
+        final var updatedExchangeType = "updated_Test_Exchange_Type";
+        final var updatedExchange = "updated_test_exchange";
+        final var updatedRoutingKeys = List.of("0", "key_3", "5");
+        final var updatedVirtualHost = "updated_test_host";
+        final var updatedUri = List.of("http://rabbit.com.updated", "http://uri.2.updated");
+        final var updatedXexpires = 1800000;
+
+        updateCustomFields.put(QUEUE_NAME, updatedQueueName);
+        updateCustomFields.put(PORT, updatedPort);
+        updateCustomFields.put(EXCHANGE, updatedExchange);
+        updateCustomFields.put(EXCHANGE_TYPE, updatedExchangeType);
+        updateCustomFields.put(ROUTING_KEYS, updatedRoutingKeys);
+        updateCustomFields.put(VIURTUAL_HOST, updatedVirtualHost);
+        updateCustomFields.put(URI, updatedUri);
+        updateCustomFields.put(X_EXPIRES, updatedXexpires);
+
+        UpdateConnectionRequest given = new UpdateConnectionRequest()
+                .id(id)
+                .description("Updated rabbitqm description")
+                .name("UPDATED_NAME")
+                .constraints(Collections.emptyList())
+                .customFields(Map.of(customFieldKey, "updated_name"));
+
+        ModelApiResponse updresponse = $(api.updateConnections(List.of(given)));
+        assertNotNull(updresponse);
+        assertNotNull(updresponse.getResults());
+        assertNotNull(updresponse.getErrors());
+        assertEquals(1, updresponse.getResults().size(), "Should contain created entity");
+        assertNotNull(updresponse.getResults().get(0).getId(), "Created entity should has id");
+
+        Thread.sleep(5000);
+
+        final var givenQuery = new QueryRequest()
+                .addMustItem(new QueryMultiple()
+                        .queryField("id")
+                        .queryValues(List.of(updresponse
+                                .getResults()
+                                .get(0)
+                                .getId())));
+
+        var byQueryResponse = $(api.getConnectionsByQuery(givenQuery));
+
+        assertNotNull(byQueryResponse);
+        assertNotNull(byQueryResponse.getResults());
+        assertNotNull(byQueryResponse.getErrors());
+        assertEquals(1, byQueryResponse.getResults().size(), "Results should be empty");
+        assertEquals(0, byQueryResponse.getErrors().size(), "Errors should contain entry");
+
+        final var updatedConnectionCustomFields = byQueryResponse.getResults().get(0).getCustomFields();
+        assertEquals(updatedConnectionCustomFields.get(QUEUE_NAME), updatedQueueName);
+        assertEquals(updatedConnectionCustomFields.get(PORT), updatedPort);
+        assertEquals(updatedConnectionCustomFields.get(EXCHANGE), updatedExchange);
+        assertEquals(updatedConnectionCustomFields.get(EXCHANGE_TYPE), updatedExchangeType);
+        assertEquals(updatedConnectionCustomFields.get(ROUTING_KEYS), updatedRoutingKeys);
+        assertEquals(updatedConnectionCustomFields.get(VIURTUAL_HOST), updatedVirtualHost);
+        assertEquals(updatedConnectionCustomFields.get(URI), updatedUri);
+        assertEquals(updatedConnectionCustomFields.get(X_EXPIRES), updatedXexpires);
+
+        rabbitMqIdsToDelete.add(id);
 
     }
 
