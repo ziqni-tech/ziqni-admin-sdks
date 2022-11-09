@@ -26,6 +26,7 @@ public abstract class ZiqniAdminApiFactory {
 
         ZiqniAdminApiFactory.initialised = true;
 
+        ziqniAdminEventBus = new ZiqniAdminEventBus();
         streamingClient = new StreamingClient(new WsAddress().getAddress(), getZiqniAdminEventBus());
     }
 
