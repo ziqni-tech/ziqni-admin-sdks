@@ -178,6 +178,62 @@ public class CompetitionsApiTest implements tests.utils.CompleteableFutureTestWr
         idsToDelete.add(competitionId);
     }
 
+    @Test
+    public void BUG_FIX_createSimpleCompetitionsAndGetRewardsAndRulesReturnOkTest() throws ApiException {
+        final var createRequest = loadData.getCreateSimpleCompRequest(productIdsToDelete);
+
+        ModelApiResponse response = api.createSimpleCompetitions(createRequest).join();
+
+        assertNotNull(response);
+        assertNotNull(response.getResults());
+        assertNotNull(response.getErrors());
+        assertEquals(1, response.getResults().size(), "Should contain created entity");
+        assertNotNull(response.getResults().get(0).getId(), "Created entity should has id");
+
+        final var relations = response.getResults().get(0).getRelations().stream().collect(Collectors.toList());
+
+        Optional<Relation> ruleRelation = relations.stream().filter(x -> x.getRelationType().equals("Rule")).findFirst();
+        Optional<Relation> contestRelation = relations.stream().filter(x -> x.getRelationType().equals("Contest")).findFirst();
+
+        assertTrue(ruleRelation.isPresent());
+        assertTrue(contestRelation.isPresent());
+
+        final var ruleId = ruleRelation.get().getId();
+        final var contestId = contestRelation.get().getId();
+
+        final var competitionId = response.getResults().get(0).getId();
+
+        final var queryRequest = new QueryRequest()
+                .addMustItem(new QueryMultiple()
+                        .queryField("entityId")
+                        .queryValues(List.of(competitionId)));
+
+        final var ruleResponse = $(rulesApiWs.getRulesByQuery(queryRequest));
+        assertNotNull(ruleResponse);
+        assertNotNull(ruleResponse.getResults());
+        final var createdRule = ruleResponse.getResults().get(0);
+        assertNotNull(createdRule);
+
+        final var contestQueryRequest = new QueryRequest()
+                .addMustItem(new QueryMultiple()
+                        .queryField("competitionId")
+                        .queryValues(List.of(competitionId)))
+                .skip(0)
+                .limit(20);
+        final var contestResponse = $(contestsApiWs.getContestsByQuery(contestQueryRequest));
+        assertNotNull(contestResponse);
+        assertNotNull(contestResponse.getResults());
+        final var createdContest = contestResponse.getResults().get(0);
+        assertNotNull(contestResponse);
+
+
+        assertEquals(ruleId, createdRule.getId());
+        assertEquals(contestId, createdContest.getId());
+
+
+        idsToDelete.add(competitionId);
+    }
+
     public void createCompetitionsReturnOkTest() throws ApiException {
         final var createRequest = loadData.getCreateRequest(productIdsToDelete);
 
