@@ -129,7 +129,7 @@ public class WsClient {
     public void addDisconnectListener(FailureCallback listener) {
         disconnectListeners.add(listener);
     }
-    
+
     private void setConnectionState(Integer state){
         this.connectionStateAtomic.set(state);
 
@@ -157,7 +157,7 @@ public class WsClient {
         } catch (Throwable t) {
             logger.error("Error while publishing to the event bus", t);
         }
-        
+
         try {
             onStateChange.accept(state);
         } catch (Throwable t) {
@@ -196,7 +196,7 @@ public class WsClient {
         });
     }
 
-    public CompletableFuture<Boolean> startClient(CompletableFuture<Boolean> startResult) {
+    public CompletableFuture<Boolean> startClient(final CompletableFuture<Boolean> startResult) {
         if(isConnected()) {
             startResult.complete(isConnected());
             return startResult;
@@ -206,12 +206,17 @@ public class WsClient {
             setConnectionState(Connecting);
             logger.info("Connecting");
             createClient();
-            var connected = doConnect().thenApply(stompSession1 -> {
-                setIsConnected();
-                setConnectionState(Connected);
-                startResult.complete(isConnected());
-                return stompSession1.isConnected();
-            }).join();
+            doConnect().thenAccept(stompSession1 -> {
+                        setIsConnected();
+                        setConnectionState(Connected);
+                        startResult.complete(isConnected());
+                    })
+                    .exceptionally(throwable -> {
+                        startResult.completeExceptionally(throwable);
+                        logger.error("Failed to start the connection", throwable);
+                        setConnectionState(SevereFailure);
+                        return null;
+                    });
         }
         catch (ConnectionLostException e){
             setConnectionState(SevereFailure);
