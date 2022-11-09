@@ -9,8 +9,8 @@ import com.ziqni.admin.sdk.streaming.handlers.CallbackEventHandler;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.concurrent.*;
-import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Consumer;
 
 public class StreamingClient {
@@ -20,17 +20,19 @@ public class StreamingClient {
     public final LinkedBlockingDeque<Runnable> webSocketClientTasks;
     private final Map<String, Consumer<StreamingClient>> onStartHandlers = new HashMap<>();
     private final Map<String, Consumer<StreamingClient>> onStopHandlers = new HashMap<>();
-    private final AtomicInteger connectionState = new AtomicInteger(WsClient.NotConnected);
-
-    private final WsClient wsClient;
     private final RpcResultsEventHandler rpcResultsEventHandler;
     private final CallbackEventHandler callbackEventHandler;
+    private final ZiqniAdminEventBus eventBus;
+    private final String URL;
+
+    private WsClient wsClient;
 
     public StreamingClient(String URL, ZiqniAdminEventBus eventBus) throws Exception {
 
+        this.URL = URL;
+        this.eventBus = eventBus;
         this.webSocketClientTasks = new LinkedBlockingDeque<>();
         this.websocketSendExecutor = new ThreadPoolExecutor(1, 1, 0L, TimeUnit.MILLISECONDS, webSocketClientTasks);
-        this.wsClient = new WsClient(URL, connectionState::set, eventBus);
         this.rpcResultsEventHandler = RpcResultsEventHandler.create();
         this.callbackEventHandler = CallbackEventHandler.create();
     }
@@ -70,11 +72,19 @@ public class StreamingClient {
     }
 
     public void stop() {
-        this.websocketSendExecutor.submit(this.wsClient::shutdown);
+        if(this.wsClient!=null)
+            this.websocketSendExecutor.submit(() -> {
+                this.wsClient.shutdown();
+                this.wsClient=null;
+            });
+
         this.websocketSendExecutor.shutdown();
     }
 
-    public CompletableFuture<Boolean> start() {
+    public CompletableFuture<Boolean> start() throws Exception {
+        if(this.wsClient==null)
+            this.wsClient = new WsClient(URL, (integer)->{}, eventBus);
+
         final var result = new CompletableFuture<Boolean>();
         this.websocketSendExecutor.submit( () -> {
             this.wsClient.startClient(result).thenApply(isConnected -> {
@@ -120,24 +130,22 @@ public class StreamingClient {
     /** Helper methods **/
 
     public boolean isConnected() {
-        return connectionState.get() == WsClient.Connected &&
-                !websocketSendExecutor.isShutdown() &&
-                !websocketSendExecutor.isTerminated() ;
+        return Objects.nonNull(wsClient) && wsClient.isConnected();
     }
 
     public boolean isNotConnected() {
-        return connectionState.get() == WsClient.NotConnected;
+        return Objects.isNull(wsClient) || wsClient.isNotConnected();
     }
 
     public boolean isConnecting() {
-        return connectionState.get() == WsClient.Connecting;
+        return Objects.nonNull(wsClient) && wsClient.isConnecting();
     }
 
     public boolean isDisconnecting() {
-        return connectionState.get() == WsClient.Disconnecting;
+        return Objects.nonNull(wsClient) && wsClient.isDisconnecting();
     }
 
     public boolean isFailure() {
-        return connectionState.get() == WsClient.SevereFailure;
+        return Objects.nonNull(wsClient) && wsClient.isFailure();
     }
 }
