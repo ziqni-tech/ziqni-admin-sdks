@@ -3,7 +3,12 @@
  */
 package com.ziqni.admin.sdk.streaming;
 
+import com.ziqni.admin.sdk.ZiqniAdminEventBus;
 import com.ziqni.admin.sdk.configuration.AdminApiClientConfig;
+import com.ziqni.admin.sdk.context.WSClientConnected;
+import com.ziqni.admin.sdk.context.WSClientConnecting;
+import com.ziqni.admin.sdk.context.WSClientDisconnected;
+import com.ziqni.admin.sdk.context.WSClientSevereFailure;
 import com.ziqni.admin.sdk.streaming.runnables.MessageToSend;
 import com.ziqni.admin.sdk.util.Common;
 import com.ziqni.admin.sdk.util.ZiqniClientObjectMapper;
@@ -53,6 +58,7 @@ public class WsClient {
     private WebSocketStompClient stompClient;
 
     private StompSession stompSession;
+    private ZiqniAdminEventBus eventBus;
 
     private final List<SuccessCallback<StompSession>> connectListeners;
 
@@ -71,11 +77,11 @@ public class WsClient {
     private final Consumer<Integer> onStateChange;
 
 
-    public WsClient(final String wsUri, final Consumer<Integer> onStateChange) throws Exception {
-        this(wsUri, makeAuthHeader(), onStateChange);
+    public WsClient(final String wsUri, final Consumer<Integer> onStateChange, ZiqniAdminEventBus eventBus) throws Exception {
+        this(wsUri, makeAuthHeader(), onStateChange, eventBus);
     }
 
-    protected WsClient(final String wsUri, final StompHeaders stompHeaders, final Consumer<Integer> onStateChange) {
+    protected WsClient(final String wsUri, final StompHeaders stompHeaders, final Consumer<Integer> onStateChange, ZiqniAdminEventBus eventBus) {
 
         this.wsUri = wsUri;
         this.taskScheduler = new ThreadPoolTaskScheduler();
@@ -85,6 +91,7 @@ public class WsClient {
         this.disconnectListeners = new ArrayList<>();
         this.stompHeaders = stompHeaders;
         this.onStateChange = onStateChange;
+        this.eventBus = eventBus;
     }
 
     public void subscribe(EventHandler<?> handler) {
@@ -125,6 +132,31 @@ public class WsClient {
     
     private void setConnectionState(Integer state){
         this.connectionStateAtomic.set(state);
+
+        try {
+            switch (state){
+                case SevereFailure:
+                    eventBus.managementEventBus.post(new WSClientSevereFailure());
+                    break;
+
+                case NotConnected:
+                    eventBus.managementEventBus.post(new WSClientDisconnected());
+                    break;
+
+                case Connecting:
+                    eventBus.managementEventBus.post(new WSClientConnecting());
+                    break;
+
+                case Connected:
+                    eventBus.managementEventBus.post(new WSClientConnected());
+                    break;
+
+                default:
+                    break;
+            }
+        } catch (Throwable t) {
+            logger.error("Error while publishing to the event bus", t);
+        }
         
         try {
             onStateChange.accept(state);

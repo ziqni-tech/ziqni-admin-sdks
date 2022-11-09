@@ -3,6 +3,7 @@
  */
 package com.ziqni.admin.sdk.streaming;
 
+import com.ziqni.admin.sdk.ZiqniAdminEventBus;
 import com.ziqni.admin.sdk.streaming.handlers.RpcResultsEventHandler;
 import com.ziqni.admin.sdk.streaming.handlers.CallbackEventHandler;
 
@@ -25,11 +26,11 @@ public class StreamingClient {
     private final RpcResultsEventHandler rpcResultsEventHandler;
     private final CallbackEventHandler callbackEventHandler;
 
-    public StreamingClient(String URL) throws Exception {
+    public StreamingClient(String URL, ZiqniAdminEventBus eventBus) throws Exception {
 
         this.webSocketClientTasks = new LinkedBlockingDeque<>();
         this.websocketSendExecutor = new ThreadPoolExecutor(1, 1, 0L, TimeUnit.MILLISECONDS, webSocketClientTasks);
-        this.wsClient = new WsClient(URL, connectionState::set);
+        this.wsClient = new WsClient(URL, connectionState::set, eventBus);
         this.rpcResultsEventHandler = RpcResultsEventHandler.create();
         this.callbackEventHandler = CallbackEventHandler.create();
     }
