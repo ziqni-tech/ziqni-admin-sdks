@@ -49,6 +49,8 @@ public class CompetitionsApiTest implements tests.utils.CompleteableFutureTestWr
     private final CompetitionsApiWs api;
 
     private final RewardsApiWs rewardsApiWs;
+    private final RulesApiWs rulesApiWs;
+    private final ContestsApiWs contestsApiWs;
     private final LoadCompetitionsData loadData;
     private final LoadProductsData loadProductsData;
     private final LoadTagsData loadTagsData;
@@ -67,6 +69,8 @@ public class CompetitionsApiTest implements tests.utils.CompleteableFutureTestWr
         this.loadCustomFieldsData = new LoadCustomFieldsData();
         this.loadTagsData = new LoadTagsData();
         this.rewardsApiWs = ZiqniAdminApiFactory.getRewardsApi();
+        this.rulesApiWs = ZiqniAdminApiFactory.getRulesApi();
+        this.contestsApiWs = ZiqniAdminApiFactory.getContestsApi();
     }
 
 
@@ -123,13 +127,55 @@ public class CompetitionsApiTest implements tests.utils.CompleteableFutureTestWr
 
         final var relations = response.getResults().get(0).getRelations().stream().collect(Collectors.toList());
 
-        assertTrue(relations.stream().anyMatch(x -> x.getRelationType().equals("Rule")));
-        assertTrue(relations.stream().anyMatch(x -> x.getRelationType().equals("Reward")));
+        Optional<Relation> ruleRelation = relations.stream().filter(x -> x.getRelationType().equals("Rule")).findFirst();
+        Optional<Relation> rewardRelation = relations.stream().filter(x -> x.getRelationType().equals("Reward")).findFirst();
+        Optional<Relation> contestRelation = relations.stream().filter(x -> x.getRelationType().equals("Contest")).findFirst();
 
-        final var id = response.getResults().get(0).getId();
+        assertTrue(ruleRelation.isPresent());
+        assertTrue(rewardRelation.isPresent());
+        assertTrue(contestRelation.isPresent());
+
+        final var rewardId = rewardRelation.get().getId();
+        final var ruleId = ruleRelation.get().getId();
+        final var contestId = contestRelation.get().getId();
+
+        final var competitionId = response.getResults().get(0).getId();
+
+        final var queryRequest = new QueryRequest()
+                .addMustItem(new QueryMultiple()
+                        .queryField("entityId")
+                        .queryValues(List.of(competitionId)));
+
+        final var rewardResponse = $(rewardsApiWs.getRewardsByQuery(queryRequest));
+        assertNotNull(rewardResponse);
+        assertNotNull(rewardResponse.getResults());
+        final var createdReward = rewardResponse.getResults().get(0);
+        assertNotNull(createdReward);
+        final var ruleResponse = $(rulesApiWs.getRulesByQuery(queryRequest));
+        assertNotNull(ruleResponse);
+        assertNotNull(ruleResponse.getResults());
+        final var createdRule = ruleResponse.getResults().get(0);
+        assertNotNull(createdRule);
+
+        final var contestQueryRequest = new QueryRequest()
+                .addMustItem(new QueryMultiple()
+                        .queryField("competitionId")
+                        .queryValues(List.of(competitionId)))
+                .skip(0)
+                .limit(20);
+        final var contestResponse = $(contestsApiWs.getContestsByQuery(contestQueryRequest));
+        assertNotNull(contestResponse);
+        assertNotNull(contestResponse.getResults());
+        final var createdContest = contestResponse.getResults().get(0);
+        assertNotNull(contestResponse);
 
 
-        idsToDelete.add(id);
+        assertEquals(rewardId, createdReward.getId());
+        assertEquals(ruleId, createdRule.getId());
+        assertEquals(contestId, createdContest.getId());
+
+
+        idsToDelete.add(competitionId);
     }
 
     public void createCompetitionsReturnOkTest() throws ApiException {
