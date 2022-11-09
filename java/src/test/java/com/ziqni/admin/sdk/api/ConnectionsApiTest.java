@@ -100,7 +100,7 @@ public class ConnectionsApiTest implements tests.utils.CompleteableFutureTestWra
 
     @Test
     @Order(1)
-    public void createAndUpdateRabbitMQConnectionsReturnOkTest() throws ApiException, InterruptedException {
+    public void BUG_FIX_createAndUpdateRabbitMQConnectionsReturnOkTest() throws ApiException, InterruptedException {
         final var createRequest = loadData.getCreateRabbitMqRequestAsList(1, transformerId, tagKey);
         ModelApiResponse response = $(api.createConnections(createRequest));
 

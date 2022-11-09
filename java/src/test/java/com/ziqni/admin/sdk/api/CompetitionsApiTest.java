@@ -110,6 +110,23 @@ public class CompetitionsApiTest implements tests.utils.CompleteableFutureTestWr
      *          if the Api call fails
      */
     @Test
+    public void BUG_FIX_createCompetitionsReturnOkTest() throws ApiException {
+        final var createRequest = loadData.getCreateRequest(productIdsToDelete);
+
+        ModelApiResponse response = api.createCompetitions(createRequest).join();
+
+        assertNotNull(response);
+        assertNotNull(response.getResults());
+        assertNotNull(response.getErrors());
+        assertEquals(1, response.getResults().size(), "Should contain created entity");
+        assertNotNull(response.getResults().get(0).getId(), "Created entity should has id");
+
+        final var id = response.getResults().get(0).getId();
+        logger.info(id);
+
+        idsToDelete.add(id);
+    }
+
     public void createCompetitionsReturnOkTest() throws ApiException {
         final var createRequest = loadData.getCreateRequest(productIdsToDelete);
 
