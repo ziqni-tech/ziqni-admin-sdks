@@ -21,7 +21,8 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 public class LoadContestsData implements CompleteableFutureTestWrapper {
 
     private ContestsApiWs api;
-     private LoadRewardTypesData loadRewardTypesData;
+    private LoadRewardTypesData loadRewardTypesData;
+    private LoadUnitsOfMeasureData loadUnitsOfMeasureData;
     private LoadRulesData loadRulesData;
 
     public String subRuleConstant = "Constant";
@@ -32,6 +33,7 @@ public class LoadContestsData implements CompleteableFutureTestWrapper {
         this.loadRewardTypesData=new LoadRewardTypesData();
         this.api = ZiqniAdminApiFactory.getContestsApi();
         this.loadRulesData = new LoadRulesData();
+        this.loadUnitsOfMeasureData = new LoadUnitsOfMeasureData();
 
     }
 
@@ -97,8 +99,8 @@ public class LoadContestsData implements CompleteableFutureTestWrapper {
 //            request.setRuleSets(ruleSets);
 
             final var givenConstraints = new ArrayList<String>();
-
-            final var rewardType = loadRewardTypesData.createTestData(loadRewardTypesData.getCreateRequestAsList(1));
+            final var unitOfMeasure = loadUnitsOfMeasureData.createTestData(loadUnitsOfMeasureData.getCreateRequestAsList(1));
+            final var rewardType = loadRewardTypesData.createTestData(List.of(loadRewardTypesData.getCreateRequest().unitOfMeasure(unitOfMeasure.getResults().get(0).getId())));
             final var rewardName = "Given Pfunguro";
             final var givenRewardRank = "1,2,3,4-10";
             final var givenRewardValue = new Random().nextDouble();

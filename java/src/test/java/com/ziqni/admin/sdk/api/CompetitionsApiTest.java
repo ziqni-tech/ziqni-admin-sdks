@@ -114,7 +114,7 @@ public class CompetitionsApiTest implements tests.utils.CompleteableFutureTestWr
      *          if the Api call fails
      */
     @Test
-    public void BUG_FIX_createCompetitionsAndGetRewardsAndRulesReturnOkTest() throws ApiException {
+    public void BUG_FIX_createCompetitionsAndGetRewardsAndRulesReturnOkTest() throws ApiException, InterruptedException {
         final var createRequest = loadData.getCreateRequest(productIdsToDelete);
 
         ModelApiResponse response = api.createCompetitions(createRequest).join();
@@ -144,7 +144,7 @@ public class CompetitionsApiTest implements tests.utils.CompleteableFutureTestWr
         final var queryRequest = new QueryRequest()
                 .addMustItem(new QueryMultiple()
                         .queryField("entityId")
-                        .queryValues(List.of(competitionId)));
+                        .addQueryValuesItem(competitionId));
 
         final var rewardResponse = $(rewardsApiWs.getRewardsByQuery(queryRequest));
         assertNotNull(rewardResponse);
@@ -157,10 +157,12 @@ public class CompetitionsApiTest implements tests.utils.CompleteableFutureTestWr
         final var createdRule = ruleResponse.getResults().get(0);
         assertNotNull(createdRule);
 
+        Thread.sleep(20000);
+
         final var contestQueryRequest = new QueryRequest()
                 .addMustItem(new QueryMultiple()
                         .queryField("competitionId")
-                        .queryValues(List.of(competitionId)))
+                        .addQueryValuesItem(competitionId))
                 .skip(0)
                 .limit(20);
         final var contestResponse = $(contestsApiWs.getContestsByQuery(contestQueryRequest));
@@ -234,6 +236,7 @@ public class CompetitionsApiTest implements tests.utils.CompleteableFutureTestWr
         idsToDelete.add(competitionId);
     }
 
+    @Test
     public void createCompetitionsReturnOkTest() throws ApiException {
         final var createRequest = loadData.getCreateRequest(productIdsToDelete);
 
