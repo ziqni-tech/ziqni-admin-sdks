@@ -110,7 +110,7 @@ public class CompetitionsApiTest implements tests.utils.CompleteableFutureTestWr
      *          if the Api call fails
      */
     @Test
-    public void BUG_FIX_createCompetitionsReturnOkTest() throws ApiException {
+    public void BUG_FIX_createCompetitionsAndGetRewardsAndRulesReturnOkTest() throws ApiException {
         final var createRequest = loadData.getCreateRequest(productIdsToDelete);
 
         ModelApiResponse response = api.createCompetitions(createRequest).join();
@@ -121,8 +121,13 @@ public class CompetitionsApiTest implements tests.utils.CompleteableFutureTestWr
         assertEquals(1, response.getResults().size(), "Should contain created entity");
         assertNotNull(response.getResults().get(0).getId(), "Created entity should has id");
 
+        final var relations = response.getResults().get(0).getRelations().stream().collect(Collectors.toList());
+
+        assertTrue(relations.stream().anyMatch(x -> x.getRelationType().equals("Rule")));
+        assertTrue(relations.stream().anyMatch(x -> x.getRelationType().equals("Reward")));
+
         final var id = response.getResults().get(0).getId();
-        logger.info(id);
+
 
         idsToDelete.add(id);
     }
