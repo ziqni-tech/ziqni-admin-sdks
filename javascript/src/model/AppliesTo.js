@@ -187,6 +187,13 @@ export default class AppliesTo {
         "APIKey" = "APIKey";
 
     
+        /**
+         * value: "Connection"
+         * @const
+         */
+        "Connection" = "Connection";
+
+    
 
     /**
     * Returns a <code>AppliesTo</code> enum value from a Javascript object name.

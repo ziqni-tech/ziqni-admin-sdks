@@ -118,6 +118,26 @@
         done();
       });
     });
+    describe('getIssuedAchievementsCountById', function() {
+      it('should call getIssuedAchievementsCountById successfully', function(done) {
+        //uncomment below and update the code to test getIssuedAchievementsCountById
+        //instance.getIssuedAchievementsCountById(function(error) {
+        //  if (error) throw error;
+        //expect().to.be();
+        //});
+        done();
+      });
+    });
+    describe('getMembersAchievementsDetails', function() {
+      it('should call getMembersAchievementsDetails successfully', function(done) {
+        //uncomment below and update the code to test getMembersAchievementsDetails
+        //instance.getMembersAchievementsDetails(function(error) {
+        //  if (error) throw error;
+        //expect().to.be();
+        //});
+        done();
+      });
+    });
     describe('updateAchievements', function() {
       it('should call updateAchievements successfully', function(done) {
         //uncomment below and update the code to test updateAchievements

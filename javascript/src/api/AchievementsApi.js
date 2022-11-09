@@ -13,11 +13,13 @@
 
 
 import ApiClient from "../ApiClient";
+import AchievementIssuedResponse from '../model/AchievementIssuedResponse';
 import AchievementLiveStatusRequest from '../model/AchievementLiveStatusRequest';
 import AchievementResponse from '../model/AchievementResponse';
 import ApiResponse from '../model/ApiResponse';
 import CloneAchievementResponse from '../model/CloneAchievementResponse';
 import CreateAchievementRequest from '../model/CreateAchievementRequest';
+import MemberAchievementIssuedResponse from '../model/MemberAchievementIssuedResponse';
 import QueryRequest from '../model/QueryRequest';
 import UpdateAchievementRequest from '../model/UpdateAchievementRequest';
 
@@ -332,6 +334,98 @@ export default class AchievementsApi {
       let returnType = AchievementResponse;
       return this.apiClient.callApi(
         '/achievements/{id}/antecedents', 'GET',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, null, callback
+      );
+    }
+
+    /**
+     * Callback function to receive the result of the getIssuedAchievementsCountById operation.
+     * @callback module:api/AchievementsApi~getIssuedAchievementsCountByIdCallback
+     * @param {String} error Error message, if any.
+     * @param {module:model/AchievementIssuedResponse} data The data returned by the service call.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * Receive a count of Issued Achievements by identifier provided
+     * @param {String} id Unique identifier of the resource
+     * @param {module:api/AchievementsApi~getIssuedAchievementsCountByIdCallback} callback The callback function, accepting three arguments: error, data, response
+     * data is of type: {@link module:model/AchievementIssuedResponse}
+     */
+    getIssuedAchievementsCountById(id, callback) {
+      let postBody = null;
+      // verify the required parameter 'id' is set
+      if (id === undefined || id === null) {
+        throw new Error("Missing the required parameter 'id' when calling getIssuedAchievementsCountById");
+      }
+
+      let pathParams = {
+        'id': id
+      };
+      let queryParams = {
+      };
+      let headerParams = {
+      };
+      let formParams = {
+      };
+
+      let authNames = ['OAuth2'];
+      let contentTypes = [];
+      let accepts = ['application/json'];
+      let returnType = AchievementIssuedResponse;
+      return this.apiClient.callApi(
+        '/achievements/{id}/issued', 'GET',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, null, callback
+      );
+    }
+
+    /**
+     * Callback function to receive the result of the getMembersAchievementsDetails operation.
+     * @callback module:api/AchievementsApi~getMembersAchievementsDetailsCallback
+     * @param {String} error Error message, if any.
+     * @param {module:model/MemberAchievementIssuedResponse} data The data returned by the service call.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * Receive a list of members that had an Achievement issued for the Achievement identified provided
+     * @param {String} id Unique identifier of the resource
+     * @param {Object} opts Optional parameters
+     * @param {String} opts.memberId Id of a member
+     * @param {Number} opts.limit Limit the returned total records found
+     * @param {Number} opts.skip Skip the returned records found and return the next batch of records
+     * @param {module:api/AchievementsApi~getMembersAchievementsDetailsCallback} callback The callback function, accepting three arguments: error, data, response
+     * data is of type: {@link module:model/MemberAchievementIssuedResponse}
+     */
+    getMembersAchievementsDetails(id, opts, callback) {
+      opts = opts || {};
+      let postBody = null;
+      // verify the required parameter 'id' is set
+      if (id === undefined || id === null) {
+        throw new Error("Missing the required parameter 'id' when calling getMembersAchievementsDetails");
+      }
+
+      let pathParams = {
+        'id': id
+      };
+      let queryParams = {
+        'memberId': opts['memberId'],
+        '_limit': opts['limit'],
+        '_skip': opts['skip']
+      };
+      let headerParams = {
+      };
+      let formParams = {
+      };
+
+      let authNames = ['OAuth2'];
+      let contentTypes = [];
+      let accepts = ['application/json'];
+      let returnType = MemberAchievementIssuedResponse;
+      return this.apiClient.callApi(
+        '/achievements/{id}/members', 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, null, callback
       );

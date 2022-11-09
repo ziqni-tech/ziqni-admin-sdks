@@ -1,6 +1,6 @@
 # @ZiqniTechAdminApiClient.CompetitionsApi
 
-All URIs are relative to *https://api.ziqni.io*
+All URIs are relative to *https://api.ziqni.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -10,7 +10,9 @@ Method | HTTP request | Description
 [**getCompetitionsByQuery**](CompetitionsApi.md#getCompetitionsByQuery) | **POST** /competitions/query | 
 [**getCompetitionsToClone**](CompetitionsApi.md#getCompetitionsToClone) | **GET** /competitions/{id}/clone | Get Competition To Clone
 [**getLeaderboardByCompetitionId**](CompetitionsApi.md#getLeaderboardByCompetitionId) | **GET** /competitions/{id}/leaderboard | 
+[**getListOfEntrants**](CompetitionsApi.md#getListOfEntrants) | **GET** /competitions/{id}/entries | 
 [**updateCompetitions**](CompetitionsApi.md#updateCompetitions) | **PUT** /competitions | 
+[**updateCompetitionsEntries**](CompetitionsApi.md#updateCompetitionsEntries) | **PUT** /competitions/entries | 
 [**updateCompetitionsState**](CompetitionsApi.md#updateCompetitionsState) | **PUT** /competitions/state | 
 
 
@@ -274,7 +276,7 @@ Name | Type | Description  | Notes
 
 
 
-Returns a list of Leaderborads for the Competition id provided
+Use /leadeboard instead. Returns a list of Leaderborads for the Competition id provided
 
 ### Example
 
@@ -323,6 +325,61 @@ Name | Type | Description  | Notes
 - **Accept**: application/json
 
 
+## getListOfEntrants
+
+> EntrantResponse getListOfEntrants(id, opts)
+
+
+
+Returns all Entries for the Competition id provided
+
+### Example
+
+```javascript
+import @ZiqniTechAdminApiClient from '@ziqni-tech/admin-api-client';
+let defaultClient = @ZiqniTechAdminApiClient.ApiClient.instance;
+// Configure OAuth2 access token for authorization: OAuth2
+let OAuth2 = defaultClient.authentications['OAuth2'];
+OAuth2.accessToken = 'YOUR ACCESS TOKEN';
+
+let apiInstance = new @ZiqniTechAdminApiClient.CompetitionsApi();
+let id = "id_example"; // String | Unique identifier of the resource
+let opts = {
+  'limit': 56, // Number | Limit the returned total records found
+  'skip': 56 // Number | Skip the returned records found and return the next batch of records
+};
+apiInstance.getListOfEntrants(id, opts, (error, data, response) => {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+});
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**| Unique identifier of the resource | 
+ **limit** | **Number**| Limit the returned total records found | [optional] 
+ **skip** | **Number**| Skip the returned records found and return the next batch of records | [optional] 
+
+### Return type
+
+[**EntrantResponse**](EntrantResponse.md)
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
 ## updateCompetitions
 
 > ApiResponse updateCompetitions(body)
@@ -357,6 +414,57 @@ apiInstance.updateCompetitions(body, (error, data, response) => {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **body** | [**UpdateCompetitionRequest**](UpdateCompetitionRequest.md)| Update a Competition in the Ziqni database. * A Competitions Id must exist in the Ziqni database for update | 
+
+### Return type
+
+[**ApiResponse**](ApiResponse.md)
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+
+## updateCompetitionsEntries
+
+> ApiResponse updateCompetitionsEntries(opts)
+
+
+
+Updates the status of the Entrants for a Competition id provided
+
+### Example
+
+```javascript
+import @ZiqniTechAdminApiClient from '@ziqni-tech/admin-api-client';
+let defaultClient = @ZiqniTechAdminApiClient.ApiClient.instance;
+// Configure OAuth2 access token for authorization: OAuth2
+let OAuth2 = defaultClient.authentications['OAuth2'];
+OAuth2.accessToken = 'YOUR ACCESS TOKEN';
+
+let apiInstance = new @ZiqniTechAdminApiClient.CompetitionsApi();
+let opts = {
+  'body': [new @ZiqniTechAdminApiClient.EntrantRequest()] // [EntrantRequest] | Updates the status of the Entrants
+};
+apiInstance.updateCompetitionsEntries(opts, (error, data, response) => {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+});
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | [**[EntrantRequest]**](EntrantRequest.md)| Updates the status of the Entrants | [optional] 
 
 ### Return type
 

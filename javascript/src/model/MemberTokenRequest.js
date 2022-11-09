@@ -92,7 +92,7 @@ MemberTokenRequest.prototype['apiKey'] = undefined;
 MemberTokenRequest.prototype['isReferenceId'] = undefined;
 
 /**
- * Allowed origins for the generated token. Leave empty to permit all origins, Alternative provide up to 3 allowed origin URIs like https://my-space.api.ziqni.io 
+ * Allowed origins for the generated token. Leave empty to permit all origins, Alternative provide up to 3 allowed origin URIs like https://my-space.api.ziqni.app 
  * @member {Array.<String>} origins
  */
 MemberTokenRequest.prototype['origins'] = undefined;

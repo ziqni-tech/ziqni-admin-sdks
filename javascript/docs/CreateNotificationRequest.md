@@ -16,5 +16,7 @@ Name | Type | Description | Notes
 **constraints** | **[String]** | Additional constraints | 
 **memberTags** | **[String]** |  | [optional] 
 **memberIds** | **[String]** |  | [optional] 
+**expireAfterDate** | **Date** | Specify the expiry as a date after creation of the record. If expireAfterDays is specified then expireAfterDate should not be specified. | [optional] 
+**expireAfterDays** | **Number** | Specify the expiry in number of days after creation of the record. If expireAfterDate is specified then expireAfterDays should not be specified. | [optional] 
 
 

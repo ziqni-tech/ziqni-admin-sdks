@@ -72,12 +72,6 @@
       //expect(instance).to.be();
     });
 
-    it('should have the property transformerId (base name: "transformerId")', function() {
-      // uncomment below and update the code to test the property transformerId
-      //var instance = new @ZiqniTechAdminApiClient.Connection();
-      //expect(instance).to.be();
-    });
-
     it('should have the property customFields (base name: "customFields")', function() {
       // uncomment below and update the code to test the property customFields
       //var instance = new @ZiqniTechAdminApiClient.Connection();
@@ -108,24 +102,6 @@
       //expect(instance).to.be();
     });
 
-    it('should have the property brokers (base name: "brokers")', function() {
-      // uncomment below and update the code to test the property brokers
-      //var instance = new @ZiqniTechAdminApiClient.Connection();
-      //expect(instance).to.be();
-    });
-
-    it('should have the property groupId (base name: "groupId")', function() {
-      // uncomment below and update the code to test the property groupId
-      //var instance = new @ZiqniTechAdminApiClient.Connection();
-      //expect(instance).to.be();
-    });
-
-    it('should have the property topic (base name: "topic")', function() {
-      // uncomment below and update the code to test the property topic
-      //var instance = new @ZiqniTechAdminApiClient.Connection();
-      //expect(instance).to.be();
-    });
-
     it('should have the property lastKnownStatus (base name: "lastKnownStatus")', function() {
       // uncomment below and update the code to test the property lastKnownStatus
       //var instance = new @ZiqniTechAdminApiClient.Connection();
@@ -138,68 +114,32 @@
       //expect(instance).to.be();
     });
 
-    it('should have the property connectionType (base name: "connectionType")', function() {
-      // uncomment below and update the code to test the property connectionType
-      //var instance = new @ZiqniTechAdminApiClient.Connection();
-      //expect(instance).to.be();
-    });
-
-    it('should have the property uri (base name: "uri")', function() {
-      // uncomment below and update the code to test the property uri
-      //var instance = new @ZiqniTechAdminApiClient.Connection();
-      //expect(instance).to.be();
-    });
-
-    it('should have the property virtualHost (base name: "virtualHost")', function() {
-      // uncomment below and update the code to test the property virtualHost
-      //var instance = new @ZiqniTechAdminApiClient.Connection();
-      //expect(instance).to.be();
-    });
-
-    it('should have the property port (base name: "port")', function() {
-      // uncomment below and update the code to test the property port
-      //var instance = new @ZiqniTechAdminApiClient.Connection();
-      //expect(instance).to.be();
-    });
-
-    it('should have the property userName (base name: "userName")', function() {
-      // uncomment below and update the code to test the property userName
-      //var instance = new @ZiqniTechAdminApiClient.Connection();
-      //expect(instance).to.be();
-    });
-
-    it('should have the property password (base name: "password")', function() {
-      // uncomment below and update the code to test the property password
-      //var instance = new @ZiqniTechAdminApiClient.Connection();
-      //expect(instance).to.be();
-    });
-
-    it('should have the property queueName (base name: "queueName")', function() {
-      // uncomment below and update the code to test the property queueName
-      //var instance = new @ZiqniTechAdminApiClient.Connection();
-      //expect(instance).to.be();
-    });
-
-    it('should have the property exchange (base name: "exchange")', function() {
-      // uncomment below and update the code to test the property exchange
-      //var instance = new @ZiqniTechAdminApiClient.Connection();
-      //expect(instance).to.be();
-    });
-
-    it('should have the property routingKey (base name: "routingKey")', function() {
-      // uncomment below and update the code to test the property routingKey
-      //var instance = new @ZiqniTechAdminApiClient.Connection();
-      //expect(instance).to.be();
-    });
-
     it('should have the property constraints (base name: "constraints")', function() {
       // uncomment below and update the code to test the property constraints
       //var instance = new @ZiqniTechAdminApiClient.Connection();
       //expect(instance).to.be();
     });
 
-    it('should have the property acessKey (base name: "acessKey")', function() {
-      // uncomment below and update the code to test the property acessKey
+    it('should have the property transformerId (base name: "transformerId")', function() {
+      // uncomment below and update the code to test the property transformerId
+      //var instance = new @ZiqniTechAdminApiClient.Connection();
+      //expect(instance).to.be();
+    });
+
+    it('should have the property connectionType (base name: "connectionType")', function() {
+      // uncomment below and update the code to test the property connectionType
+      //var instance = new @ZiqniTechAdminApiClient.Connection();
+      //expect(instance).to.be();
+    });
+
+    it('should have the property secret (base name: "secret")', function() {
+      // uncomment below and update the code to test the property secret
+      //var instance = new @ZiqniTechAdminApiClient.Connection();
+      //expect(instance).to.be();
+    });
+
+    it('should have the property user (base name: "user")', function() {
+      // uncomment below and update the code to test the property user
       //var instance = new @ZiqniTechAdminApiClient.Connection();
       //expect(instance).to.be();
     });

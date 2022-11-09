@@ -69,8 +69,10 @@ import ComputeEngineAllOf from './model/ComputeEngineAllOf';
 import ComputeEngineResponse from './model/ComputeEngineResponse';
 import Condition from './model/Condition';
 import Connection from './model/Connection';
+import ConnectionAllOf from './model/ConnectionAllOf';
 import ConnectionResponse from './model/ConnectionResponse';
 import ConnectionState from './model/ConnectionState';
+import ConnectionType from './model/ConnectionType';
 import Contest from './model/Contest';
 import ContestAllOf from './model/ContestAllOf';
 import ContestLeaderboardResponse from './model/ContestLeaderboardResponse';
@@ -92,6 +94,8 @@ import CreateCompetitionRequest from './model/CreateCompetitionRequest';
 import CreateCompetitionRequestAllOf from './model/CreateCompetitionRequestAllOf';
 import CreateComputeEngineRequest from './model/CreateComputeEngineRequest';
 import CreateComputeEngineRequestAllOf from './model/CreateComputeEngineRequestAllOf';
+import CreateConnectionRequest from './model/CreateConnectionRequest';
+import CreateConnectionRequestAllOf from './model/CreateConnectionRequestAllOf';
 import CreateContestForCompetitionRequest from './model/CreateContestForCompetitionRequest';
 import CreateContestForCompetitionRequestAllOf from './model/CreateContestForCompetitionRequestAllOf';
 import CreateContestRequest from './model/CreateContestRequest';
@@ -102,8 +106,6 @@ import CreateEntityRewardRequestAllOf from './model/CreateEntityRewardRequestAll
 import CreateEventRequest from './model/CreateEventRequest';
 import CreateFileObjectRequest from './model/CreateFileObjectRequest';
 import CreateFileObjectRequestAllOf from './model/CreateFileObjectRequestAllOf';
-import CreateKafkaConnectionRequest from './model/CreateKafkaConnectionRequest';
-import CreateKafkaConnectionRequestAllOf from './model/CreateKafkaConnectionRequestAllOf';
 import CreateLanguageRequest from './model/CreateLanguageRequest';
 import CreateLanguageRequestAllOf from './model/CreateLanguageRequestAllOf';
 import CreateMemberMessageRequest from './model/CreateMemberMessageRequest';
@@ -115,8 +117,6 @@ import CreateNotificationRequestAllOf from './model/CreateNotificationRequestAll
 import CreateOptParamModels from './model/CreateOptParamModels';
 import CreateProductRequest from './model/CreateProductRequest';
 import CreateProductRequestAllOf from './model/CreateProductRequestAllOf';
-import CreateRabbitMqConnectionRequest from './model/CreateRabbitMqConnectionRequest';
-import CreateRabbitMqConnectionRequestAllOf from './model/CreateRabbitMqConnectionRequestAllOf';
 import CreateRepositoryRequest from './model/CreateRepositoryRequest';
 import CreateRepositoryRequestAllOf from './model/CreateRepositoryRequestAllOf';
 import CreateRewardRequest from './model/CreateRewardRequest';
@@ -126,8 +126,6 @@ import CreateRewardTypeRequestAllOf from './model/CreateRewardTypeRequestAllOf';
 import CreateSimpleCompetitionRequest from './model/CreateSimpleCompetitionRequest';
 import CreateSimpleCompetitionRequestAllOf from './model/CreateSimpleCompetitionRequestAllOf';
 import CreateSpaceRequest from './model/CreateSpaceRequest';
-import CreateSqsConnectionRequest from './model/CreateSqsConnectionRequest';
-import CreateSqsConnectionRequestAllOf from './model/CreateSqsConnectionRequestAllOf';
 import CreateTagRequest from './model/CreateTagRequest';
 import CreateTransformerRequest from './model/CreateTransformerRequest';
 import CreateTranslationRequest from './model/CreateTranslationRequest';
@@ -178,9 +176,6 @@ import FileObject from './model/FileObject';
 import FileObjectAllOf from './model/FileObjectAllOf';
 import FileObjectsResponse from './model/FileObjectsResponse';
 import HostingOptions from './model/HostingOptions';
-import KafkaConnection from './model/KafkaConnection';
-import KafkaConnectionAllOf from './model/KafkaConnectionAllOf';
-import KafkaConnectionResponse from './model/KafkaConnectionResponse';
 import Language from './model/Language';
 import LanguageResponse from './model/LanguageResponse';
 import Languages from './model/Languages';
@@ -189,8 +184,8 @@ import LeaderboardAllOf from './model/LeaderboardAllOf';
 import LeaderboardEntry from './model/LeaderboardEntry';
 import LeaderboardFilter from './model/LeaderboardFilter';
 import LeaderboardMember from './model/LeaderboardMember';
+import LeaderboardResponse from './model/LeaderboardResponse';
 import LeaderboardResponseByContest from './model/LeaderboardResponseByContest';
-import LeaderboardSubscriptionRequest from './model/LeaderboardSubscriptionRequest';
 import Location from './model/Location';
 import Macro from './model/Macro';
 import MatchCondition from './model/MatchCondition';
@@ -223,6 +218,9 @@ import NotificationAllOf from './model/NotificationAllOf';
 import NotificationMessage from './model/NotificationMessage';
 import NotificationResponse from './model/NotificationResponse';
 import NotificationStatus from './model/NotificationStatus';
+import ObjectConstraint from './model/ObjectConstraint';
+import ObjectParameters from './model/ObjectParameters';
+import ObjectParametersResponse from './model/ObjectParametersResponse';
 import OptParamModels from './model/OptParamModels';
 import Product from './model/Product';
 import ProductAllOf from './model/ProductAllOf';
@@ -235,9 +233,6 @@ import QueryMultipleFields from './model/QueryMultipleFields';
 import QueryRequest from './model/QueryRequest';
 import QuerySingle from './model/QuerySingle';
 import QuerySortBy from './model/QuerySortBy';
-import RabbitMqConnection from './model/RabbitMqConnection';
-import RabbitMqConnectionAllOf from './model/RabbitMqConnectionAllOf';
-import RabbitMqConnectionResponse from './model/RabbitMqConnectionResponse';
 import RangeQuery from './model/RangeQuery';
 import RankingStrategy from './model/RankingStrategy';
 import Relation from './model/Relation';
@@ -275,9 +270,6 @@ import Space from './model/Space';
 import SpaceAllOf from './model/SpaceAllOf';
 import SpaceResponse from './model/SpaceResponse';
 import SpaceTokenRequest from './model/SpaceTokenRequest';
-import SqsConnection from './model/SqsConnection';
-import SqsConnectionAllOf from './model/SqsConnectionAllOf';
-import SqsConnectionResponse from './model/SqsConnectionResponse';
 import StartEndDate from './model/StartEndDate';
 import Strategy from './model/Strategy';
 import StrategyType from './model/StrategyType';
@@ -314,6 +306,8 @@ import UpdateCompetitionStatusRequest from './model/UpdateCompetitionStatusReque
 import UpdateCompetitionStatusRequestAllOf from './model/UpdateCompetitionStatusRequestAllOf';
 import UpdateComputeEngineRequest from './model/UpdateComputeEngineRequest';
 import UpdateComputeEngineRequestAllOf from './model/UpdateComputeEngineRequestAllOf';
+import UpdateConnectionRequest from './model/UpdateConnectionRequest';
+import UpdateConnectionRequestAllOf from './model/UpdateConnectionRequestAllOf';
 import UpdateConnectionStateRequest from './model/UpdateConnectionStateRequest';
 import UpdateContestRequest from './model/UpdateContestRequest';
 import UpdateContestRequestAllOf from './model/UpdateContestRequestAllOf';
@@ -324,8 +318,6 @@ import UpdateEntityRewardRequest from './model/UpdateEntityRewardRequest';
 import UpdateEntityRewardRequestAllOf from './model/UpdateEntityRewardRequestAllOf';
 import UpdateFileObjectRequest from './model/UpdateFileObjectRequest';
 import UpdateFileObjectRequestAllOf from './model/UpdateFileObjectRequestAllOf';
-import UpdateKafkaConnectionRequest from './model/UpdateKafkaConnectionRequest';
-import UpdateKafkaConnectionRequestAllOf from './model/UpdateKafkaConnectionRequestAllOf';
 import UpdateLanguageRequest from './model/UpdateLanguageRequest';
 import UpdateMemberRequest from './model/UpdateMemberRequest';
 import UpdateMemberRequestAllOf from './model/UpdateMemberRequestAllOf';
@@ -337,8 +329,6 @@ import UpdateNotificationStatusRequestAllOf from './model/UpdateNotificationStat
 import UpdateOptParamModels from './model/UpdateOptParamModels';
 import UpdateProductRequest from './model/UpdateProductRequest';
 import UpdateProductRequestAllOf from './model/UpdateProductRequestAllOf';
-import UpdateRabbitMqConnectionRequest from './model/UpdateRabbitMqConnectionRequest';
-import UpdateRabbitMqConnectionRequestAllOf from './model/UpdateRabbitMqConnectionRequestAllOf';
 import UpdateRepositoryRequest from './model/UpdateRepositoryRequest';
 import UpdateRepositoryRequestAllOf from './model/UpdateRepositoryRequestAllOf';
 import UpdateRewardRequest from './model/UpdateRewardRequest';
@@ -348,8 +338,6 @@ import UpdateRewardTypeRequestAllOf from './model/UpdateRewardTypeRequestAllOf';
 import UpdateRuleRequest from './model/UpdateRuleRequest';
 import UpdateRuleRequestAllOf from './model/UpdateRuleRequestAllOf';
 import UpdateSpaceRequest from './model/UpdateSpaceRequest';
-import UpdateSqsConnectionRequest from './model/UpdateSqsConnectionRequest';
-import UpdateSqsConnectionRequestAllOf from './model/UpdateSqsConnectionRequestAllOf';
 import UpdateStateRequest from './model/UpdateStateRequest';
 import UpdateStateRequestAllOf from './model/UpdateStateRequestAllOf';
 import UpdateTagRequest from './model/UpdateTagRequest';
@@ -379,7 +367,7 @@ import AwardsApi from './api/AwardsApi';
 import CollaboratorsApi from './api/CollaboratorsApi';
 import CompetitionsApi from './api/CompetitionsApi';
 import ComputeEngineApi from './api/ComputeEngineApi';
-import ConsumersApi from './api/ConsumersApi';
+import ConnectionsApi from './api/ConnectionsApi';
 import ContestsApi from './api/ContestsApi';
 import CustomFieldsApi from './api/CustomFieldsApi';
 import DefaultApi from './api/DefaultApi';
@@ -388,6 +376,7 @@ import EventsApi from './api/EventsApi';
 import FileObjectsApi from './api/FileObjectsApi';
 import FileRepositoriesApi from './api/FileRepositoriesApi';
 import LanguagesApi from './api/LanguagesApi';
+import LeaderboardApi from './api/LeaderboardApi';
 import MemberMessagesApi from './api/MemberMessagesApi';
 import MemberTokenApi from './api/MemberTokenApi';
 import MembersApi from './api/MembersApi';
@@ -780,6 +769,12 @@ export {
     Connection,
 
     /**
+     * The ConnectionAllOf model constructor.
+     * @property {module:model/ConnectionAllOf}
+     */
+    ConnectionAllOf,
+
+    /**
      * The ConnectionResponse model constructor.
      * @property {module:model/ConnectionResponse}
      */
@@ -790,6 +785,12 @@ export {
      * @property {module:model/ConnectionState}
      */
     ConnectionState,
+
+    /**
+     * The ConnectionType model constructor.
+     * @property {module:model/ConnectionType}
+     */
+    ConnectionType,
 
     /**
      * The Contest model constructor.
@@ -918,6 +919,18 @@ export {
     CreateComputeEngineRequestAllOf,
 
     /**
+     * The CreateConnectionRequest model constructor.
+     * @property {module:model/CreateConnectionRequest}
+     */
+    CreateConnectionRequest,
+
+    /**
+     * The CreateConnectionRequestAllOf model constructor.
+     * @property {module:model/CreateConnectionRequestAllOf}
+     */
+    CreateConnectionRequestAllOf,
+
+    /**
      * The CreateContestForCompetitionRequest model constructor.
      * @property {module:model/CreateContestForCompetitionRequest}
      */
@@ -976,18 +989,6 @@ export {
      * @property {module:model/CreateFileObjectRequestAllOf}
      */
     CreateFileObjectRequestAllOf,
-
-    /**
-     * The CreateKafkaConnectionRequest model constructor.
-     * @property {module:model/CreateKafkaConnectionRequest}
-     */
-    CreateKafkaConnectionRequest,
-
-    /**
-     * The CreateKafkaConnectionRequestAllOf model constructor.
-     * @property {module:model/CreateKafkaConnectionRequestAllOf}
-     */
-    CreateKafkaConnectionRequestAllOf,
 
     /**
      * The CreateLanguageRequest model constructor.
@@ -1056,18 +1057,6 @@ export {
     CreateProductRequestAllOf,
 
     /**
-     * The CreateRabbitMqConnectionRequest model constructor.
-     * @property {module:model/CreateRabbitMqConnectionRequest}
-     */
-    CreateRabbitMqConnectionRequest,
-
-    /**
-     * The CreateRabbitMqConnectionRequestAllOf model constructor.
-     * @property {module:model/CreateRabbitMqConnectionRequestAllOf}
-     */
-    CreateRabbitMqConnectionRequestAllOf,
-
-    /**
      * The CreateRepositoryRequest model constructor.
      * @property {module:model/CreateRepositoryRequest}
      */
@@ -1120,18 +1109,6 @@ export {
      * @property {module:model/CreateSpaceRequest}
      */
     CreateSpaceRequest,
-
-    /**
-     * The CreateSqsConnectionRequest model constructor.
-     * @property {module:model/CreateSqsConnectionRequest}
-     */
-    CreateSqsConnectionRequest,
-
-    /**
-     * The CreateSqsConnectionRequestAllOf model constructor.
-     * @property {module:model/CreateSqsConnectionRequestAllOf}
-     */
-    CreateSqsConnectionRequestAllOf,
 
     /**
      * The CreateTagRequest model constructor.
@@ -1434,24 +1411,6 @@ export {
     HostingOptions,
 
     /**
-     * The KafkaConnection model constructor.
-     * @property {module:model/KafkaConnection}
-     */
-    KafkaConnection,
-
-    /**
-     * The KafkaConnectionAllOf model constructor.
-     * @property {module:model/KafkaConnectionAllOf}
-     */
-    KafkaConnectionAllOf,
-
-    /**
-     * The KafkaConnectionResponse model constructor.
-     * @property {module:model/KafkaConnectionResponse}
-     */
-    KafkaConnectionResponse,
-
-    /**
      * The Language model constructor.
      * @property {module:model/Language}
      */
@@ -1500,16 +1459,16 @@ export {
     LeaderboardMember,
 
     /**
+     * The LeaderboardResponse model constructor.
+     * @property {module:model/LeaderboardResponse}
+     */
+    LeaderboardResponse,
+
+    /**
      * The LeaderboardResponseByContest model constructor.
      * @property {module:model/LeaderboardResponseByContest}
      */
     LeaderboardResponseByContest,
-
-    /**
-     * The LeaderboardSubscriptionRequest model constructor.
-     * @property {module:model/LeaderboardSubscriptionRequest}
-     */
-    LeaderboardSubscriptionRequest,
 
     /**
      * The Location model constructor.
@@ -1704,6 +1663,24 @@ export {
     NotificationStatus,
 
     /**
+     * The ObjectConstraint model constructor.
+     * @property {module:model/ObjectConstraint}
+     */
+    ObjectConstraint,
+
+    /**
+     * The ObjectParameters model constructor.
+     * @property {module:model/ObjectParameters}
+     */
+    ObjectParameters,
+
+    /**
+     * The ObjectParametersResponse model constructor.
+     * @property {module:model/ObjectParametersResponse}
+     */
+    ObjectParametersResponse,
+
+    /**
      * The OptParamModels model constructor.
      * @property {module:model/OptParamModels}
      */
@@ -1774,24 +1751,6 @@ export {
      * @property {module:model/QuerySortBy}
      */
     QuerySortBy,
-
-    /**
-     * The RabbitMqConnection model constructor.
-     * @property {module:model/RabbitMqConnection}
-     */
-    RabbitMqConnection,
-
-    /**
-     * The RabbitMqConnectionAllOf model constructor.
-     * @property {module:model/RabbitMqConnectionAllOf}
-     */
-    RabbitMqConnectionAllOf,
-
-    /**
-     * The RabbitMqConnectionResponse model constructor.
-     * @property {module:model/RabbitMqConnectionResponse}
-     */
-    RabbitMqConnectionResponse,
 
     /**
      * The RangeQuery model constructor.
@@ -2016,24 +1975,6 @@ export {
     SpaceTokenRequest,
 
     /**
-     * The SqsConnection model constructor.
-     * @property {module:model/SqsConnection}
-     */
-    SqsConnection,
-
-    /**
-     * The SqsConnectionAllOf model constructor.
-     * @property {module:model/SqsConnectionAllOf}
-     */
-    SqsConnectionAllOf,
-
-    /**
-     * The SqsConnectionResponse model constructor.
-     * @property {module:model/SqsConnectionResponse}
-     */
-    SqsConnectionResponse,
-
-    /**
      * The StartEndDate model constructor.
      * @property {module:model/StartEndDate}
      */
@@ -2250,6 +2191,18 @@ export {
     UpdateComputeEngineRequestAllOf,
 
     /**
+     * The UpdateConnectionRequest model constructor.
+     * @property {module:model/UpdateConnectionRequest}
+     */
+    UpdateConnectionRequest,
+
+    /**
+     * The UpdateConnectionRequestAllOf model constructor.
+     * @property {module:model/UpdateConnectionRequestAllOf}
+     */
+    UpdateConnectionRequestAllOf,
+
+    /**
      * The UpdateConnectionStateRequest model constructor.
      * @property {module:model/UpdateConnectionStateRequest}
      */
@@ -2308,18 +2261,6 @@ export {
      * @property {module:model/UpdateFileObjectRequestAllOf}
      */
     UpdateFileObjectRequestAllOf,
-
-    /**
-     * The UpdateKafkaConnectionRequest model constructor.
-     * @property {module:model/UpdateKafkaConnectionRequest}
-     */
-    UpdateKafkaConnectionRequest,
-
-    /**
-     * The UpdateKafkaConnectionRequestAllOf model constructor.
-     * @property {module:model/UpdateKafkaConnectionRequestAllOf}
-     */
-    UpdateKafkaConnectionRequestAllOf,
 
     /**
      * The UpdateLanguageRequest model constructor.
@@ -2388,18 +2329,6 @@ export {
     UpdateProductRequestAllOf,
 
     /**
-     * The UpdateRabbitMqConnectionRequest model constructor.
-     * @property {module:model/UpdateRabbitMqConnectionRequest}
-     */
-    UpdateRabbitMqConnectionRequest,
-
-    /**
-     * The UpdateRabbitMqConnectionRequestAllOf model constructor.
-     * @property {module:model/UpdateRabbitMqConnectionRequestAllOf}
-     */
-    UpdateRabbitMqConnectionRequestAllOf,
-
-    /**
      * The UpdateRepositoryRequest model constructor.
      * @property {module:model/UpdateRepositoryRequest}
      */
@@ -2452,18 +2381,6 @@ export {
      * @property {module:model/UpdateSpaceRequest}
      */
     UpdateSpaceRequest,
-
-    /**
-     * The UpdateSqsConnectionRequest model constructor.
-     * @property {module:model/UpdateSqsConnectionRequest}
-     */
-    UpdateSqsConnectionRequest,
-
-    /**
-     * The UpdateSqsConnectionRequestAllOf model constructor.
-     * @property {module:model/UpdateSqsConnectionRequestAllOf}
-     */
-    UpdateSqsConnectionRequestAllOf,
 
     /**
      * The UpdateStateRequest model constructor.
@@ -2640,10 +2557,10 @@ export {
     ComputeEngineApi,
 
     /**
-    * The ConsumersApi service constructor.
-    * @property {module:api/ConsumersApi}
+    * The ConnectionsApi service constructor.
+    * @property {module:api/ConnectionsApi}
     */
-    ConsumersApi,
+    ConnectionsApi,
 
     /**
     * The ContestsApi service constructor.
@@ -2692,6 +2609,12 @@ export {
     * @property {module:api/LanguagesApi}
     */
     LanguagesApi,
+
+    /**
+    * The LeaderboardApi service constructor.
+    * @property {module:api/LeaderboardApi}
+    */
+    LeaderboardApi,
 
     /**
     * The MemberMessagesApi service constructor.

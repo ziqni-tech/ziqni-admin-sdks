@@ -123,7 +123,7 @@ api.deleteAccountMessages(opts, callback);
 
 ## Documentation for API Endpoints
 
-All URIs are relative to *https://api.ziqni.io*
+All URIs are relative to *https://api.ziqni.com*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
@@ -138,6 +138,8 @@ Class | Method | HTTP request | Description
 *@ZiqniTechAdminApiClient.AchievementsApi* | [**getAchievements**](docs/AchievementsApi.md#getAchievements) | **GET** /achievements | Get Achievements
 *@ZiqniTechAdminApiClient.AchievementsApi* | [**getAchievementsByQuery**](docs/AchievementsApi.md#getAchievementsByQuery) | **POST** /achievements/query | 
 *@ZiqniTechAdminApiClient.AchievementsApi* | [**getAntecendentsForAchievement**](docs/AchievementsApi.md#getAntecendentsForAchievement) | **GET** /achievements/{id}/antecedents | NOT AVAILABLE IN CURRENT RELEASE
+*@ZiqniTechAdminApiClient.AchievementsApi* | [**getIssuedAchievementsCountById**](docs/AchievementsApi.md#getIssuedAchievementsCountById) | **GET** /achievements/{id}/issued | 
+*@ZiqniTechAdminApiClient.AchievementsApi* | [**getMembersAchievementsDetails**](docs/AchievementsApi.md#getMembersAchievementsDetails) | **GET** /achievements/{id}/members | 
 *@ZiqniTechAdminApiClient.AchievementsApi* | [**updateAchievements**](docs/AchievementsApi.md#updateAchievements) | **PUT** /achievements | Update Achievements
 *@ZiqniTechAdminApiClient.AchievementsApi* | [**updateAchievementsLiveStatus**](docs/AchievementsApi.md#updateAchievementsLiveStatus) | **PUT** /achievements/state | 
 *@ZiqniTechAdminApiClient.ActionTypesApi* | [**createActionTypes**](docs/ActionTypesApi.md#createActionTypes) | **POST** /action-types | Create action types
@@ -168,7 +170,9 @@ Class | Method | HTTP request | Description
 *@ZiqniTechAdminApiClient.CompetitionsApi* | [**getCompetitionsByQuery**](docs/CompetitionsApi.md#getCompetitionsByQuery) | **POST** /competitions/query | 
 *@ZiqniTechAdminApiClient.CompetitionsApi* | [**getCompetitionsToClone**](docs/CompetitionsApi.md#getCompetitionsToClone) | **GET** /competitions/{id}/clone | Get Competition To Clone
 *@ZiqniTechAdminApiClient.CompetitionsApi* | [**getLeaderboardByCompetitionId**](docs/CompetitionsApi.md#getLeaderboardByCompetitionId) | **GET** /competitions/{id}/leaderboard | 
+*@ZiqniTechAdminApiClient.CompetitionsApi* | [**getListOfEntrants**](docs/CompetitionsApi.md#getListOfEntrants) | **GET** /competitions/{id}/entries | 
 *@ZiqniTechAdminApiClient.CompetitionsApi* | [**updateCompetitions**](docs/CompetitionsApi.md#updateCompetitions) | **PUT** /competitions | 
+*@ZiqniTechAdminApiClient.CompetitionsApi* | [**updateCompetitionsEntries**](docs/CompetitionsApi.md#updateCompetitionsEntries) | **PUT** /competitions/entries | 
 *@ZiqniTechAdminApiClient.CompetitionsApi* | [**updateCompetitionsState**](docs/CompetitionsApi.md#updateCompetitionsState) | **PUT** /competitions/state | 
 *@ZiqniTechAdminApiClient.ComputeEngineApi* | [**createComputeEngines**](docs/ComputeEngineApi.md#createComputeEngines) | **POST** /compute-engines | 
 *@ZiqniTechAdminApiClient.ComputeEngineApi* | [**deleteComputeEnginesById**](docs/ComputeEngineApi.md#deleteComputeEnginesById) | **DELETE** /compute-engines/{id} | 
@@ -177,33 +181,20 @@ Class | Method | HTTP request | Description
 *@ZiqniTechAdminApiClient.ComputeEngineApi* | [**getComputeEnginesById**](docs/ComputeEngineApi.md#getComputeEnginesById) | **GET** /compute-engines/{id} | 
 *@ZiqniTechAdminApiClient.ComputeEngineApi* | [**getComputeEnginesByQuery**](docs/ComputeEngineApi.md#getComputeEnginesByQuery) | **POST** /compute-engines/query | 
 *@ZiqniTechAdminApiClient.ComputeEngineApi* | [**updateComputeEngines**](docs/ComputeEngineApi.md#updateComputeEngines) | **PUT** /compute-engines | 
-*@ZiqniTechAdminApiClient.ConsumersApi* | [**createKafkaConnections**](docs/ConsumersApi.md#createKafkaConnections) | **POST** /connections/kafka | 
-*@ZiqniTechAdminApiClient.ConsumersApi* | [**createRabbitMQConnections**](docs/ConsumersApi.md#createRabbitMQConnections) | **POST** /connections/rabbitmq | 
-*@ZiqniTechAdminApiClient.ConsumersApi* | [**createSqsConnections**](docs/ConsumersApi.md#createSqsConnections) | **POST** /connections/sqs | 
-*@ZiqniTechAdminApiClient.ConsumersApi* | [**deleteKafkaConnections**](docs/ConsumersApi.md#deleteKafkaConnections) | **DELETE** /connections/kafka | 
-*@ZiqniTechAdminApiClient.ConsumersApi* | [**deleteKafkaConnectionsByQuery**](docs/ConsumersApi.md#deleteKafkaConnectionsByQuery) | **POST** /connections/kafka/delete | 
-*@ZiqniTechAdminApiClient.ConsumersApi* | [**deleteRabbitMQConnections**](docs/ConsumersApi.md#deleteRabbitMQConnections) | **DELETE** /connections/rabbitmq | 
-*@ZiqniTechAdminApiClient.ConsumersApi* | [**deleteRabbitMQConnectionsByQuery**](docs/ConsumersApi.md#deleteRabbitMQConnectionsByQuery) | **POST** /connections/rabbitmq/delete | 
-*@ZiqniTechAdminApiClient.ConsumersApi* | [**deleteSqsConnections**](docs/ConsumersApi.md#deleteSqsConnections) | **DELETE** /connections/sqs | 
-*@ZiqniTechAdminApiClient.ConsumersApi* | [**deleteSqsConnectionsByQuery**](docs/ConsumersApi.md#deleteSqsConnectionsByQuery) | **POST** /connections/sqs/delete | 
-*@ZiqniTechAdminApiClient.ConsumersApi* | [**getKafkaConnections**](docs/ConsumersApi.md#getKafkaConnections) | **GET** /connections/kafka | 
-*@ZiqniTechAdminApiClient.ConsumersApi* | [**getKafkaConnectionsByQuery**](docs/ConsumersApi.md#getKafkaConnectionsByQuery) | **POST** /connections/kafka/query | 
-*@ZiqniTechAdminApiClient.ConsumersApi* | [**getRabbitMQConnections**](docs/ConsumersApi.md#getRabbitMQConnections) | **GET** /connections/rabbitmq | 
-*@ZiqniTechAdminApiClient.ConsumersApi* | [**getRabbitMQConnectionsByQuery**](docs/ConsumersApi.md#getRabbitMQConnectionsByQuery) | **POST** /connections/rabbitmq/query | 
-*@ZiqniTechAdminApiClient.ConsumersApi* | [**getSqsConnections**](docs/ConsumersApi.md#getSqsConnections) | **GET** /connections/sqs | 
-*@ZiqniTechAdminApiClient.ConsumersApi* | [**getSqsConnectionsByQuery**](docs/ConsumersApi.md#getSqsConnectionsByQuery) | **POST** /connections/sqs/query | 
-*@ZiqniTechAdminApiClient.ConsumersApi* | [**updateConnectionsState**](docs/ConsumersApi.md#updateConnectionsState) | **POST** /connections/state | Update connection status
-*@ZiqniTechAdminApiClient.ConsumersApi* | [**updateKafkaConnections**](docs/ConsumersApi.md#updateKafkaConnections) | **PUT** /connections/kafka | 
-*@ZiqniTechAdminApiClient.ConsumersApi* | [**updateKafkaConnectionsState**](docs/ConsumersApi.md#updateKafkaConnectionsState) | **POST** /connections/kafka/state | 
-*@ZiqniTechAdminApiClient.ConsumersApi* | [**updateRabbitMQConnections**](docs/ConsumersApi.md#updateRabbitMQConnections) | **PUT** /connections/rabbitmq | 
-*@ZiqniTechAdminApiClient.ConsumersApi* | [**updateRabbitMQConnectionsState**](docs/ConsumersApi.md#updateRabbitMQConnectionsState) | **POST** /connections/rabbitmq/state | 
-*@ZiqniTechAdminApiClient.ConsumersApi* | [**updateSqsConnections**](docs/ConsumersApi.md#updateSqsConnections) | **PUT** /connections/sqs | 
-*@ZiqniTechAdminApiClient.ConsumersApi* | [**updateSqsConnectionsState**](docs/ConsumersApi.md#updateSqsConnectionsState) | **POST** /connections/sqs/state | 
+*@ZiqniTechAdminApiClient.ConnectionsApi* | [**createConnections**](docs/ConnectionsApi.md#createConnections) | **POST** /connections | 
+*@ZiqniTechAdminApiClient.ConnectionsApi* | [**deleteConnections**](docs/ConnectionsApi.md#deleteConnections) | **DELETE** /connections | 
+*@ZiqniTechAdminApiClient.ConnectionsApi* | [**deleteConnectionsByQuery**](docs/ConnectionsApi.md#deleteConnectionsByQuery) | **POST** /connections/delete | 
+*@ZiqniTechAdminApiClient.ConnectionsApi* | [**describeConnectionObject**](docs/ConnectionsApi.md#describeConnectionObject) | **GET** /connections/_describe | 
+*@ZiqniTechAdminApiClient.ConnectionsApi* | [**getConnections**](docs/ConnectionsApi.md#getConnections) | **GET** /connections | 
+*@ZiqniTechAdminApiClient.ConnectionsApi* | [**getConnectionsByQuery**](docs/ConnectionsApi.md#getConnectionsByQuery) | **POST** /connections/query | 
+*@ZiqniTechAdminApiClient.ConnectionsApi* | [**updateConnections**](docs/ConnectionsApi.md#updateConnections) | **PUT** /connections | 
+*@ZiqniTechAdminApiClient.ConnectionsApi* | [**updateConnectionsState**](docs/ConnectionsApi.md#updateConnectionsState) | **POST** /connections/state | Update connection status
 *@ZiqniTechAdminApiClient.ContestsApi* | [**createContests**](docs/ContestsApi.md#createContests) | **POST** /contests | 
 *@ZiqniTechAdminApiClient.ContestsApi* | [**getContests**](docs/ContestsApi.md#getContests) | **GET** /contests | 
 *@ZiqniTechAdminApiClient.ContestsApi* | [**getContestsByQuery**](docs/ContestsApi.md#getContestsByQuery) | **POST** /contests/query | 
 *@ZiqniTechAdminApiClient.ContestsApi* | [**getContestsLeaderboardById**](docs/ContestsApi.md#getContestsLeaderboardById) | **GET** /contests/{id}/leaderboard | 
 *@ZiqniTechAdminApiClient.ContestsApi* | [**getContestsToClone**](docs/ContestsApi.md#getContestsToClone) | **GET** /contests/{id}/clone | 
+*@ZiqniTechAdminApiClient.ContestsApi* | [**getListOfEntrantsForContest**](docs/ContestsApi.md#getListOfEntrantsForContest) | **GET** /contests/{id}/entries | 
 *@ZiqniTechAdminApiClient.ContestsApi* | [**updateContest**](docs/ContestsApi.md#updateContest) | **PUT** /contests | 
 *@ZiqniTechAdminApiClient.ContestsApi* | [**updateContestsState**](docs/ContestsApi.md#updateContestsState) | **PUT** /contests/state | 
 *@ZiqniTechAdminApiClient.CustomFieldsApi* | [**createCustomFields**](docs/CustomFieldsApi.md#createCustomFields) | **POST** /custom-fields | Create custom fields
@@ -213,7 +204,6 @@ Class | Method | HTTP request | Description
 *@ZiqniTechAdminApiClient.CustomFieldsApi* | [**getCustomFieldsByQuery**](docs/CustomFieldsApi.md#getCustomFieldsByQuery) | **POST** /custom-fields/query | Get custom fields by query
 *@ZiqniTechAdminApiClient.CustomFieldsApi* | [**updateCustomFields**](docs/CustomFieldsApi.md#updateCustomFields) | **PUT** /custom-fields | Update custom fields
 *@ZiqniTechAdminApiClient.DefaultApi* | [**deleteSpace**](docs/DefaultApi.md#deleteSpace) | **DELETE** /spaces | NOT AVAILABLE IN CURRENT RELEASE
-*@ZiqniTechAdminApiClient.DefaultApi* | [**manageLeaderboardSubscription**](docs/DefaultApi.md#manageLeaderboardSubscription) | **POST** /leaderboard | 
 *@ZiqniTechAdminApiClient.DefaultApi* | [**unsubscribeFromEntityChanges**](docs/DefaultApi.md#unsubscribeFromEntityChanges) | **DELETE** /entity-changes | 
 *@ZiqniTechAdminApiClient.EntityChangesApi* | [**manageEntityChangeSubscription**](docs/EntityChangesApi.md#manageEntityChangeSubscription) | **POST** /entity-changes | 
 *@ZiqniTechAdminApiClient.EventsApi* | [**createEvents**](docs/EventsApi.md#createEvents) | **POST** /events | 
@@ -241,6 +231,7 @@ Class | Method | HTTP request | Description
 *@ZiqniTechAdminApiClient.LanguagesApi* | [**getLanguagesByQuery**](docs/LanguagesApi.md#getLanguagesByQuery) | **POST** /languages/query | 
 *@ZiqniTechAdminApiClient.LanguagesApi* | [**getListOfAllLanguages**](docs/LanguagesApi.md#getListOfAllLanguages) | **GET** /languages/available | 
 *@ZiqniTechAdminApiClient.LanguagesApi* | [**updateLanguages**](docs/LanguagesApi.md#updateLanguages) | **PUT** /languages | 
+*@ZiqniTechAdminApiClient.LeaderboardApi* | [**getLeaderboardById**](docs/LeaderboardApi.md#getLeaderboardById) | **GET** /leaderboard | 
 *@ZiqniTechAdminApiClient.MemberMessagesApi* | [**createMemberMessages**](docs/MemberMessagesApi.md#createMemberMessages) | **POST** /member-messages | 
 *@ZiqniTechAdminApiClient.MemberMessagesApi* | [**deleteMemberMessages**](docs/MemberMessagesApi.md#deleteMemberMessages) | **DELETE** /member-messages | 
 *@ZiqniTechAdminApiClient.MemberMessagesApi* | [**deleteMemberMessagesByQuery**](docs/MemberMessagesApi.md#deleteMemberMessagesByQuery) | **POST** /member-messages/delete | 
@@ -383,8 +374,10 @@ Class | Method | HTTP request | Description
  - [@ZiqniTechAdminApiClient.ComputeEngineResponse](docs/ComputeEngineResponse.md)
  - [@ZiqniTechAdminApiClient.Condition](docs/Condition.md)
  - [@ZiqniTechAdminApiClient.Connection](docs/Connection.md)
+ - [@ZiqniTechAdminApiClient.ConnectionAllOf](docs/ConnectionAllOf.md)
  - [@ZiqniTechAdminApiClient.ConnectionResponse](docs/ConnectionResponse.md)
  - [@ZiqniTechAdminApiClient.ConnectionState](docs/ConnectionState.md)
+ - [@ZiqniTechAdminApiClient.ConnectionType](docs/ConnectionType.md)
  - [@ZiqniTechAdminApiClient.Contest](docs/Contest.md)
  - [@ZiqniTechAdminApiClient.ContestAllOf](docs/ContestAllOf.md)
  - [@ZiqniTechAdminApiClient.ContestLeaderboardResponse](docs/ContestLeaderboardResponse.md)
@@ -406,6 +399,8 @@ Class | Method | HTTP request | Description
  - [@ZiqniTechAdminApiClient.CreateCompetitionRequestAllOf](docs/CreateCompetitionRequestAllOf.md)
  - [@ZiqniTechAdminApiClient.CreateComputeEngineRequest](docs/CreateComputeEngineRequest.md)
  - [@ZiqniTechAdminApiClient.CreateComputeEngineRequestAllOf](docs/CreateComputeEngineRequestAllOf.md)
+ - [@ZiqniTechAdminApiClient.CreateConnectionRequest](docs/CreateConnectionRequest.md)
+ - [@ZiqniTechAdminApiClient.CreateConnectionRequestAllOf](docs/CreateConnectionRequestAllOf.md)
  - [@ZiqniTechAdminApiClient.CreateContestForCompetitionRequest](docs/CreateContestForCompetitionRequest.md)
  - [@ZiqniTechAdminApiClient.CreateContestForCompetitionRequestAllOf](docs/CreateContestForCompetitionRequestAllOf.md)
  - [@ZiqniTechAdminApiClient.CreateContestRequest](docs/CreateContestRequest.md)
@@ -416,8 +411,6 @@ Class | Method | HTTP request | Description
  - [@ZiqniTechAdminApiClient.CreateEventRequest](docs/CreateEventRequest.md)
  - [@ZiqniTechAdminApiClient.CreateFileObjectRequest](docs/CreateFileObjectRequest.md)
  - [@ZiqniTechAdminApiClient.CreateFileObjectRequestAllOf](docs/CreateFileObjectRequestAllOf.md)
- - [@ZiqniTechAdminApiClient.CreateKafkaConnectionRequest](docs/CreateKafkaConnectionRequest.md)
- - [@ZiqniTechAdminApiClient.CreateKafkaConnectionRequestAllOf](docs/CreateKafkaConnectionRequestAllOf.md)
  - [@ZiqniTechAdminApiClient.CreateLanguageRequest](docs/CreateLanguageRequest.md)
  - [@ZiqniTechAdminApiClient.CreateLanguageRequestAllOf](docs/CreateLanguageRequestAllOf.md)
  - [@ZiqniTechAdminApiClient.CreateMemberMessageRequest](docs/CreateMemberMessageRequest.md)
@@ -429,8 +422,6 @@ Class | Method | HTTP request | Description
  - [@ZiqniTechAdminApiClient.CreateOptParamModels](docs/CreateOptParamModels.md)
  - [@ZiqniTechAdminApiClient.CreateProductRequest](docs/CreateProductRequest.md)
  - [@ZiqniTechAdminApiClient.CreateProductRequestAllOf](docs/CreateProductRequestAllOf.md)
- - [@ZiqniTechAdminApiClient.CreateRabbitMqConnectionRequest](docs/CreateRabbitMqConnectionRequest.md)
- - [@ZiqniTechAdminApiClient.CreateRabbitMqConnectionRequestAllOf](docs/CreateRabbitMqConnectionRequestAllOf.md)
  - [@ZiqniTechAdminApiClient.CreateRepositoryRequest](docs/CreateRepositoryRequest.md)
  - [@ZiqniTechAdminApiClient.CreateRepositoryRequestAllOf](docs/CreateRepositoryRequestAllOf.md)
  - [@ZiqniTechAdminApiClient.CreateRewardRequest](docs/CreateRewardRequest.md)
@@ -440,8 +431,6 @@ Class | Method | HTTP request | Description
  - [@ZiqniTechAdminApiClient.CreateSimpleCompetitionRequest](docs/CreateSimpleCompetitionRequest.md)
  - [@ZiqniTechAdminApiClient.CreateSimpleCompetitionRequestAllOf](docs/CreateSimpleCompetitionRequestAllOf.md)
  - [@ZiqniTechAdminApiClient.CreateSpaceRequest](docs/CreateSpaceRequest.md)
- - [@ZiqniTechAdminApiClient.CreateSqsConnectionRequest](docs/CreateSqsConnectionRequest.md)
- - [@ZiqniTechAdminApiClient.CreateSqsConnectionRequestAllOf](docs/CreateSqsConnectionRequestAllOf.md)
  - [@ZiqniTechAdminApiClient.CreateTagRequest](docs/CreateTagRequest.md)
  - [@ZiqniTechAdminApiClient.CreateTransformerRequest](docs/CreateTransformerRequest.md)
  - [@ZiqniTechAdminApiClient.CreateTranslationRequest](docs/CreateTranslationRequest.md)
@@ -492,9 +481,6 @@ Class | Method | HTTP request | Description
  - [@ZiqniTechAdminApiClient.FileObjectAllOf](docs/FileObjectAllOf.md)
  - [@ZiqniTechAdminApiClient.FileObjectsResponse](docs/FileObjectsResponse.md)
  - [@ZiqniTechAdminApiClient.HostingOptions](docs/HostingOptions.md)
- - [@ZiqniTechAdminApiClient.KafkaConnection](docs/KafkaConnection.md)
- - [@ZiqniTechAdminApiClient.KafkaConnectionAllOf](docs/KafkaConnectionAllOf.md)
- - [@ZiqniTechAdminApiClient.KafkaConnectionResponse](docs/KafkaConnectionResponse.md)
  - [@ZiqniTechAdminApiClient.Language](docs/Language.md)
  - [@ZiqniTechAdminApiClient.LanguageResponse](docs/LanguageResponse.md)
  - [@ZiqniTechAdminApiClient.Languages](docs/Languages.md)
@@ -503,8 +489,8 @@ Class | Method | HTTP request | Description
  - [@ZiqniTechAdminApiClient.LeaderboardEntry](docs/LeaderboardEntry.md)
  - [@ZiqniTechAdminApiClient.LeaderboardFilter](docs/LeaderboardFilter.md)
  - [@ZiqniTechAdminApiClient.LeaderboardMember](docs/LeaderboardMember.md)
+ - [@ZiqniTechAdminApiClient.LeaderboardResponse](docs/LeaderboardResponse.md)
  - [@ZiqniTechAdminApiClient.LeaderboardResponseByContest](docs/LeaderboardResponseByContest.md)
- - [@ZiqniTechAdminApiClient.LeaderboardSubscriptionRequest](docs/LeaderboardSubscriptionRequest.md)
  - [@ZiqniTechAdminApiClient.Location](docs/Location.md)
  - [@ZiqniTechAdminApiClient.Macro](docs/Macro.md)
  - [@ZiqniTechAdminApiClient.MatchCondition](docs/MatchCondition.md)
@@ -537,6 +523,9 @@ Class | Method | HTTP request | Description
  - [@ZiqniTechAdminApiClient.NotificationMessage](docs/NotificationMessage.md)
  - [@ZiqniTechAdminApiClient.NotificationResponse](docs/NotificationResponse.md)
  - [@ZiqniTechAdminApiClient.NotificationStatus](docs/NotificationStatus.md)
+ - [@ZiqniTechAdminApiClient.ObjectConstraint](docs/ObjectConstraint.md)
+ - [@ZiqniTechAdminApiClient.ObjectParameters](docs/ObjectParameters.md)
+ - [@ZiqniTechAdminApiClient.ObjectParametersResponse](docs/ObjectParametersResponse.md)
  - [@ZiqniTechAdminApiClient.OptParamModels](docs/OptParamModels.md)
  - [@ZiqniTechAdminApiClient.Product](docs/Product.md)
  - [@ZiqniTechAdminApiClient.ProductAllOf](docs/ProductAllOf.md)
@@ -549,9 +538,6 @@ Class | Method | HTTP request | Description
  - [@ZiqniTechAdminApiClient.QueryRequest](docs/QueryRequest.md)
  - [@ZiqniTechAdminApiClient.QuerySingle](docs/QuerySingle.md)
  - [@ZiqniTechAdminApiClient.QuerySortBy](docs/QuerySortBy.md)
- - [@ZiqniTechAdminApiClient.RabbitMqConnection](docs/RabbitMqConnection.md)
- - [@ZiqniTechAdminApiClient.RabbitMqConnectionAllOf](docs/RabbitMqConnectionAllOf.md)
- - [@ZiqniTechAdminApiClient.RabbitMqConnectionResponse](docs/RabbitMqConnectionResponse.md)
  - [@ZiqniTechAdminApiClient.RangeQuery](docs/RangeQuery.md)
  - [@ZiqniTechAdminApiClient.RankingStrategy](docs/RankingStrategy.md)
  - [@ZiqniTechAdminApiClient.Relation](docs/Relation.md)
@@ -589,9 +575,6 @@ Class | Method | HTTP request | Description
  - [@ZiqniTechAdminApiClient.SpaceAllOf](docs/SpaceAllOf.md)
  - [@ZiqniTechAdminApiClient.SpaceResponse](docs/SpaceResponse.md)
  - [@ZiqniTechAdminApiClient.SpaceTokenRequest](docs/SpaceTokenRequest.md)
- - [@ZiqniTechAdminApiClient.SqsConnection](docs/SqsConnection.md)
- - [@ZiqniTechAdminApiClient.SqsConnectionAllOf](docs/SqsConnectionAllOf.md)
- - [@ZiqniTechAdminApiClient.SqsConnectionResponse](docs/SqsConnectionResponse.md)
  - [@ZiqniTechAdminApiClient.StartEndDate](docs/StartEndDate.md)
  - [@ZiqniTechAdminApiClient.Strategy](docs/Strategy.md)
  - [@ZiqniTechAdminApiClient.StrategyType](docs/StrategyType.md)
@@ -628,6 +611,8 @@ Class | Method | HTTP request | Description
  - [@ZiqniTechAdminApiClient.UpdateCompetitionStatusRequestAllOf](docs/UpdateCompetitionStatusRequestAllOf.md)
  - [@ZiqniTechAdminApiClient.UpdateComputeEngineRequest](docs/UpdateComputeEngineRequest.md)
  - [@ZiqniTechAdminApiClient.UpdateComputeEngineRequestAllOf](docs/UpdateComputeEngineRequestAllOf.md)
+ - [@ZiqniTechAdminApiClient.UpdateConnectionRequest](docs/UpdateConnectionRequest.md)
+ - [@ZiqniTechAdminApiClient.UpdateConnectionRequestAllOf](docs/UpdateConnectionRequestAllOf.md)
  - [@ZiqniTechAdminApiClient.UpdateConnectionStateRequest](docs/UpdateConnectionStateRequest.md)
  - [@ZiqniTechAdminApiClient.UpdateContestRequest](docs/UpdateContestRequest.md)
  - [@ZiqniTechAdminApiClient.UpdateContestRequestAllOf](docs/UpdateContestRequestAllOf.md)
@@ -638,8 +623,6 @@ Class | Method | HTTP request | Description
  - [@ZiqniTechAdminApiClient.UpdateEntityRewardRequestAllOf](docs/UpdateEntityRewardRequestAllOf.md)
  - [@ZiqniTechAdminApiClient.UpdateFileObjectRequest](docs/UpdateFileObjectRequest.md)
  - [@ZiqniTechAdminApiClient.UpdateFileObjectRequestAllOf](docs/UpdateFileObjectRequestAllOf.md)
- - [@ZiqniTechAdminApiClient.UpdateKafkaConnectionRequest](docs/UpdateKafkaConnectionRequest.md)
- - [@ZiqniTechAdminApiClient.UpdateKafkaConnectionRequestAllOf](docs/UpdateKafkaConnectionRequestAllOf.md)
  - [@ZiqniTechAdminApiClient.UpdateLanguageRequest](docs/UpdateLanguageRequest.md)
  - [@ZiqniTechAdminApiClient.UpdateMemberRequest](docs/UpdateMemberRequest.md)
  - [@ZiqniTechAdminApiClient.UpdateMemberRequestAllOf](docs/UpdateMemberRequestAllOf.md)
@@ -651,8 +634,6 @@ Class | Method | HTTP request | Description
  - [@ZiqniTechAdminApiClient.UpdateOptParamModels](docs/UpdateOptParamModels.md)
  - [@ZiqniTechAdminApiClient.UpdateProductRequest](docs/UpdateProductRequest.md)
  - [@ZiqniTechAdminApiClient.UpdateProductRequestAllOf](docs/UpdateProductRequestAllOf.md)
- - [@ZiqniTechAdminApiClient.UpdateRabbitMqConnectionRequest](docs/UpdateRabbitMqConnectionRequest.md)
- - [@ZiqniTechAdminApiClient.UpdateRabbitMqConnectionRequestAllOf](docs/UpdateRabbitMqConnectionRequestAllOf.md)
  - [@ZiqniTechAdminApiClient.UpdateRepositoryRequest](docs/UpdateRepositoryRequest.md)
  - [@ZiqniTechAdminApiClient.UpdateRepositoryRequestAllOf](docs/UpdateRepositoryRequestAllOf.md)
  - [@ZiqniTechAdminApiClient.UpdateRewardRequest](docs/UpdateRewardRequest.md)
@@ -662,8 +643,6 @@ Class | Method | HTTP request | Description
  - [@ZiqniTechAdminApiClient.UpdateRuleRequest](docs/UpdateRuleRequest.md)
  - [@ZiqniTechAdminApiClient.UpdateRuleRequestAllOf](docs/UpdateRuleRequestAllOf.md)
  - [@ZiqniTechAdminApiClient.UpdateSpaceRequest](docs/UpdateSpaceRequest.md)
- - [@ZiqniTechAdminApiClient.UpdateSqsConnectionRequest](docs/UpdateSqsConnectionRequest.md)
- - [@ZiqniTechAdminApiClient.UpdateSqsConnectionRequestAllOf](docs/UpdateSqsConnectionRequestAllOf.md)
  - [@ZiqniTechAdminApiClient.UpdateStateRequest](docs/UpdateStateRequest.md)
  - [@ZiqniTechAdminApiClient.UpdateStateRequestAllOf](docs/UpdateStateRequestAllOf.md)
  - [@ZiqniTechAdminApiClient.UpdateTagRequest](docs/UpdateTagRequest.md)
@@ -696,7 +675,7 @@ Class | Method | HTTP request | Description
 
 - **Type**: OAuth
 - **Flow**: accessCode
-- **Authorization URL**: https://iam.ziqni.io/oauth/authorize
+- **Authorization URL**: https://identity.ziqni.com/realms/ziqni/protocol/openid-connect/auth
 - **Scopes**: 
   - AdminAchievements: Grants full read and write access
   - ManageAchievements: Grants read and restricted write access

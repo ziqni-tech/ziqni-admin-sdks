@@ -886,7 +886,7 @@ CompletableFuture<ApiResponse<[**CloneCompetitionResponse**](CloneCompetitionRes
 
 
 
-Returns a list of Leaderborads for the Competition id provided
+Use /leadeboard instead. Returns a list of Leaderborads for the Competition id provided
 
 ### Example
 
@@ -969,7 +969,7 @@ CompletableFuture<[**CompetitionLeaderboardResponse**](CompetitionLeaderboardRes
 
 
 
-Returns a list of Leaderborads for the Competition id provided
+Use /leadeboard instead. Returns a list of Leaderborads for the Competition id provided
 
 ### Example
 

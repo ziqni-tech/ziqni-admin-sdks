@@ -105,6 +105,12 @@ class CreateNotificationRequest {
             if (data.hasOwnProperty('memberIds')) {
                 obj['memberIds'] = ApiClient.convertToType(data['memberIds'], ['String']);
             }
+            if (data.hasOwnProperty('expireAfterDate')) {
+                obj['expireAfterDate'] = ApiClient.convertToType(data['expireAfterDate'], 'Date');
+            }
+            if (data.hasOwnProperty('expireAfterDays')) {
+                obj['expireAfterDays'] = ApiClient.convertToType(data['expireAfterDays'], 'Number');
+            }
         }
         return obj;
     }
@@ -179,6 +185,18 @@ CreateNotificationRequest.prototype['memberTags'] = undefined;
  */
 CreateNotificationRequest.prototype['memberIds'] = undefined;
 
+/**
+ * Specify the expiry as a date after creation of the record. If expireAfterDays is specified then expireAfterDate should not be specified.
+ * @member {Date} expireAfterDate
+ */
+CreateNotificationRequest.prototype['expireAfterDate'] = undefined;
+
+/**
+ * Specify the expiry in number of days after creation of the record. If expireAfterDate is specified then expireAfterDays should not be specified.
+ * @member {Number} expireAfterDays
+ */
+CreateNotificationRequest.prototype['expireAfterDays'] = undefined;
+
 
 // Implement CreateOptParamModels interface:
 /**
@@ -237,6 +255,16 @@ CreateNotificationRequestAllOf.prototype['memberTags'] = undefined;
  * @member {Array.<String>} memberIds
  */
 CreateNotificationRequestAllOf.prototype['memberIds'] = undefined;
+/**
+ * Specify the expiry as a date after creation of the record. If expireAfterDays is specified then expireAfterDate should not be specified.
+ * @member {Date} expireAfterDate
+ */
+CreateNotificationRequestAllOf.prototype['expireAfterDate'] = undefined;
+/**
+ * Specify the expiry in number of days after creation of the record. If expireAfterDate is specified then expireAfterDays should not be specified.
+ * @member {Number} expireAfterDays
+ */
+CreateNotificationRequestAllOf.prototype['expireAfterDays'] = undefined;
 
 
 

@@ -544,7 +544,7 @@ CompletableFuture<ApiResponse<[**ContestResponse**](ContestResponse.md)>>
 
 
 
-Returns a leaderborad for the Contests id provided
+Use /leadeboard instead, Returns a leaderborad for the Contests id provided
 
 ### Example
 
@@ -627,7 +627,7 @@ CompletableFuture<[**ContestLeaderboardResponse**](ContestLeaderboardResponse.md
 
 
 
-Returns a leaderborad for the Contests id provided
+Use /leadeboard instead, Returns a leaderborad for the Contests id provided
 
 ### Example
 

@@ -7115,12 +7115,13 @@ paths:
           $ref: '#/components/responses/ContestLeaderboardResponseBody'
         '503':
           $ref: '#/components/responses/ContestLeaderboardResponseBody'
+      deprecated: true
       security:
         -
           OAuth2:
             - ViewContest
       operationId: getContestsLeaderboardById
-      description: Returns a leaderborad for the Contests id provided
+      description: 'Use /leadeboard instead, Returns a leaderborad for the Contests id provided'
       x-codegen-request-body-name: body
   '/competitions/{id}/clone':
     get:
@@ -7245,70 +7246,6 @@ paths:
             application/json: {}
           description: Onsuccess
       operationId: unsubscribeFromEntityChanges
-  /leaderboard:
-    post:
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/LeaderboardSubscriptionRequest'
-      callbacks:
-        leaderboardUpdate:
-          '{$request.body#/id}':
-            post:
-              requestBody:
-                description: New message
-                content:
-                  application/json:
-                    schema:
-                      $ref: '#/components/schemas/Leaderboard'
-              responses:
-                '202':
-                  description: >
-                    Your implementation should only return return this HTTP status code if
-                    it is using the http protocol and only if the data was received
-                    successfully
-      responses:
-        '200':
-          $ref: '#/components/responses/LeaderboardResponseBody'
-      operationId: manageLeaderboardSubscription
-  '/competitions/{id}/leaderboard':
-    get:
-      tags:
-        - competitions
-      parameters:
-        -
-          $ref: '#/components/parameters/idPath'
-        -
-          $ref: '#/components/parameters/limitResults'
-        -
-          $ref: '#/components/parameters/skipResults'
-      responses:
-        '200':
-          $ref: '#/components/responses/CompetitionLeaderboardResponseBody'
-        '400':
-          $ref: '#/components/responses/CompetitionLeaderboardResponseBody'
-        '401':
-          $ref: '#/components/responses/CompetitionLeaderboardResponseBody'
-        '403':
-          $ref: '#/components/responses/CompetitionLeaderboardResponseBody'
-        '404':
-          $ref: '#/components/responses/CompetitionLeaderboardResponseBody'
-        '413':
-          $ref: '#/components/responses/CompetitionLeaderboardResponseBody'
-        '500':
-          $ref: '#/components/responses/CompetitionLeaderboardResponseBody'
-        '501':
-          $ref: '#/components/responses/CompetitionLeaderboardResponseBody'
-        '503':
-          $ref: '#/components/responses/CompetitionLeaderboardResponseBody'
-      security:
-        -
-          OAuth2:
-            - ViewCompetitions
-      operationId: getLeaderboardByCompetitionId
-      description: Returns a list of Leaderborads for the Competition id provided
-      x-codegen-request-body-name: body
   /connections/delete:
     post:
       requestBody:
@@ -7725,6 +7662,87 @@ paths:
             - AdminConsumer
       operationId: deleteConnections
       description: Delete the Consumer Connection for a given identifier specified
+      x-codegen-request-body-name: body
+  '/competitions/{id}/leaderboard':
+    get:
+      tags:
+        - competitions
+      parameters:
+        -
+          $ref: '#/components/parameters/idPath'
+        -
+          $ref: '#/components/parameters/limitResults'
+        -
+          $ref: '#/components/parameters/skipResults'
+      responses:
+        '200':
+          $ref: '#/components/responses/CompetitionLeaderboardResponseBody'
+        '400':
+          $ref: '#/components/responses/CompetitionLeaderboardResponseBody'
+        '401':
+          $ref: '#/components/responses/CompetitionLeaderboardResponseBody'
+        '403':
+          $ref: '#/components/responses/CompetitionLeaderboardResponseBody'
+        '404':
+          $ref: '#/components/responses/CompetitionLeaderboardResponseBody'
+        '413':
+          $ref: '#/components/responses/CompetitionLeaderboardResponseBody'
+        '500':
+          $ref: '#/components/responses/CompetitionLeaderboardResponseBody'
+        '501':
+          $ref: '#/components/responses/CompetitionLeaderboardResponseBody'
+        '503':
+          $ref: '#/components/responses/CompetitionLeaderboardResponseBody'
+      deprecated: true
+      security:
+        -
+          OAuth2:
+            - ViewCompetitions
+      operationId: getLeaderboardByCompetitionId
+      description: Use /leadeboard instead. Returns a list of Leaderborads for the Competition id provided
+      x-codegen-request-body-name: body
+  /leaderboard:
+    get:
+      tags:
+        - leaderboard
+      parameters:
+        -
+          $ref: '#/components/parameters/limitResults'
+        -
+          $ref: '#/components/parameters/skipResults'
+        -
+          name: id
+          description: ''
+          schema:
+            type: string
+          in: query
+          required: true
+      responses:
+        '200':
+          $ref: '#/components/responses/LeaderboardResponseBody'
+        '400':
+          $ref: '#/components/responses/LeaderboardResponseBody'
+        '401':
+          $ref: '#/components/responses/LeaderboardResponseBody'
+        '403':
+          $ref: '#/components/responses/LeaderboardResponseBody'
+        '404':
+          $ref: '#/components/responses/LeaderboardResponseBody'
+        '413':
+          $ref: '#/components/responses/LeaderboardResponseBody'
+        '500':
+          $ref: '#/components/responses/LeaderboardResponseBody'
+        '501':
+          $ref: '#/components/responses/LeaderboardResponseBody'
+        '503':
+          $ref: '#/components/responses/LeaderboardResponseBody'
+      deprecated: false
+      security:
+        -
+          OAuth2:
+            - ViewCompetitions
+      operationId: getLeaderboardById
+      description: Returns a leaderborads for the competition or contest id provided
       x-codegen-request-body-name: body
 components:
   schemas:
@@ -16722,23 +16740,6 @@ components:
           items:
             $ref: '#/components/schemas/Error'
       example: 2531329f-fb09-4ef7-887e-84e648214436
-    LeaderboardSubscriptionRequest:
-      description: ''
-      required:
-        - entityId
-        - action
-      type: object
-      properties:
-        leaderboardFilter:
-          $ref: '#/components/schemas/LeaderboardFilter'
-          description: Used when subscribing to a leaderboard feed
-        entityId:
-          description: 'Either the competition, contest, tournament or match identifier'
-          type: string
-        action:
-          description: Either subscribe or unsubscribe from the data feed
-          enum:
-            - Subscribe
     LeaderboardFilter:
       description: ''
       required:
@@ -17549,6 +17550,21 @@ components:
               description: Consumer username for authentication
               type: string
               example: testUser
+    LeaderboardResponse:
+      required:
+        - meta
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/MetaExtended'
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Leaderboard'
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
   responses:
     ApiResponseBody:
       content:
@@ -18480,7 +18496,9 @@ components:
       description: A list of messages and/or errors
     LeaderboardResponseBody:
       content:
-        application/json: {}
+        application/json:
+          schema:
+            $ref: '#/components/schemas/LeaderboardResponse'
       description: ''
     RewardTypeResponseBody:
       content:

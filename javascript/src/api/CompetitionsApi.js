@@ -19,6 +19,8 @@ import CompetitionLeaderboardResponse from '../model/CompetitionLeaderboardRespo
 import CompetitionResponse from '../model/CompetitionResponse';
 import CreateCompetitionRequest from '../model/CreateCompetitionRequest';
 import CreateSimpleCompetitionRequest from '../model/CreateSimpleCompetitionRequest';
+import EntrantRequest from '../model/EntrantRequest';
+import EntrantResponse from '../model/EntrantResponse';
 import QueryRequest from '../model/QueryRequest';
 import UpdateCompetitionRequest from '../model/UpdateCompetitionRequest';
 import UpdateCompetitionStatusRequest from '../model/UpdateCompetitionStatusRequest';
@@ -259,7 +261,7 @@ export default class CompetitionsApi {
      */
 
     /**
-     * Returns a list of Leaderborads for the Competition id provided
+     * Use /leadeboard instead. Returns a list of Leaderborads for the Competition id provided
      * @param {String} id Unique identifier of the resource
      * @param {Object} opts Optional parameters
      * @param {Number} opts.limit Limit the returned total records found
@@ -293,6 +295,54 @@ export default class CompetitionsApi {
       let returnType = CompetitionLeaderboardResponse;
       return this.apiClient.callApi(
         '/competitions/{id}/leaderboard', 'GET',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, null, callback
+      );
+    }
+
+    /**
+     * Callback function to receive the result of the getListOfEntrants operation.
+     * @callback module:api/CompetitionsApi~getListOfEntrantsCallback
+     * @param {String} error Error message, if any.
+     * @param {module:model/EntrantResponse} data The data returned by the service call.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * Returns all Entries for the Competition id provided
+     * @param {String} id Unique identifier of the resource
+     * @param {Object} opts Optional parameters
+     * @param {Number} opts.limit Limit the returned total records found
+     * @param {Number} opts.skip Skip the returned records found and return the next batch of records
+     * @param {module:api/CompetitionsApi~getListOfEntrantsCallback} callback The callback function, accepting three arguments: error, data, response
+     * data is of type: {@link module:model/EntrantResponse}
+     */
+    getListOfEntrants(id, opts, callback) {
+      opts = opts || {};
+      let postBody = null;
+      // verify the required parameter 'id' is set
+      if (id === undefined || id === null) {
+        throw new Error("Missing the required parameter 'id' when calling getListOfEntrants");
+      }
+
+      let pathParams = {
+        'id': id
+      };
+      let queryParams = {
+        '_limit': opts['limit'],
+        '_skip': opts['skip']
+      };
+      let headerParams = {
+      };
+      let formParams = {
+      };
+
+      let authNames = ['OAuth2'];
+      let contentTypes = [];
+      let accepts = ['application/json'];
+      let returnType = EntrantResponse;
+      return this.apiClient.callApi(
+        '/competitions/{id}/entries', 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, null, callback
       );
@@ -334,6 +384,45 @@ export default class CompetitionsApi {
       let returnType = ApiResponse;
       return this.apiClient.callApi(
         '/competitions', 'PUT',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, null, callback
+      );
+    }
+
+    /**
+     * Callback function to receive the result of the updateCompetitionsEntries operation.
+     * @callback module:api/CompetitionsApi~updateCompetitionsEntriesCallback
+     * @param {String} error Error message, if any.
+     * @param {module:model/ApiResponse} data The data returned by the service call.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * Updates the status of the Entrants for a Competition id provided
+     * @param {Object} opts Optional parameters
+     * @param {Array.<module:model/EntrantRequest>} opts.body Updates the status of the Entrants
+     * @param {module:api/CompetitionsApi~updateCompetitionsEntriesCallback} callback The callback function, accepting three arguments: error, data, response
+     * data is of type: {@link module:model/ApiResponse}
+     */
+    updateCompetitionsEntries(opts, callback) {
+      opts = opts || {};
+      let postBody = opts['body'];
+
+      let pathParams = {
+      };
+      let queryParams = {
+      };
+      let headerParams = {
+      };
+      let formParams = {
+      };
+
+      let authNames = ['OAuth2'];
+      let contentTypes = ['application/json'];
+      let accepts = ['application/json'];
+      let returnType = ApiResponse;
+      return this.apiClient.callApi(
+        '/competitions/entries', 'PUT',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, null, callback
       );

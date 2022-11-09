@@ -72,6 +72,9 @@ class CustomFieldAllOf {
             if (data.hasOwnProperty('appliesTo')) {
                 obj['appliesTo'] = AppliesTo.constructFromObject(data['appliesTo']);
             }
+            if (data.hasOwnProperty('constraints')) {
+                obj['constraints'] = ApiClient.convertToType(data['constraints'], ['String']);
+            }
         }
         return obj;
     }
@@ -106,6 +109,12 @@ CustomFieldAllOf.prototype['fieldType'] = undefined;
  * @member {module:model/AppliesTo} appliesTo
  */
 CustomFieldAllOf.prototype['appliesTo'] = undefined;
+
+/**
+ * For example \"required\" to indicate the field is required.
+ * @member {Array.<String>} constraints
+ */
+CustomFieldAllOf.prototype['constraints'] = undefined;
 
 
 

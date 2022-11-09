@@ -12,9 +12,10 @@
  */
 
 import ApiClient from '../ApiClient';
-import KafkaConnection from './KafkaConnection';
-import RabbitMqConnection from './RabbitMqConnection';
-import SqsConnection from './SqsConnection';
+import ConnectionAllOf from './ConnectionAllOf';
+import ConnectionType from './ConnectionType';
+import ModelDefault from './ModelDefault';
+import OptParamModels from './OptParamModels';
 
 /**
  * The Connection model module.
@@ -25,31 +26,23 @@ class Connection {
     /**
      * Constructs a new <code>Connection</code>.
      * @alias module:model/Connection
-     * @implements module:model/KafkaConnection
-     * @implements module:model/RabbitMqConnection
-     * @implements module:model/SqsConnection
-     * @param name {String} The type of the consumer
-     * @param brokers {String} Kafka broker endpoints.
-     * @param groupId {String} Group Id for connection
-     * @param topic {String} Topic name
-     * @param lastKnownStatus {String} Last known status of the connection
-     * @param lastKnownStatusCode {Number} Status code correspoding to the last known status
-     * @param transformerId {String} The transformer to use, if empty the default system transformer will be used
+     * @implements module:model/ModelDefault
+     * @implements module:model/OptParamModels
+     * @implements module:model/ConnectionAllOf
      * @param id {String} A unique system generated identifier
      * @param spaceName {String} This is the space name which is linked to the account
      * @param created {Date} ISO8601 timestamp for when a Model was created. All records are stored in UTC time zone
-     * @param uri {String} The SQS endpoint.
-     * @param virtualHost {String} The virtual host of the rabbitmq broker
-     * @param port {Number} The port number on which consumer will connect on rabbitmq broker
-     * @param userName {String} Consumer username for authentication
-     * @param password {String} Consumer password for authentication
-     * @param queueName {String} Name of the queue
+     * @param name {String} The name of the consumer
+     * @param lastKnownStatus {String} Last known status of the connection
+     * @param lastKnownStatusCode {Number} Status code correspoding to the last known status
      * @param constraints {Array.<String>} Additional constraints
-     * @param acessKey {String} The access key of the IAM user
+     * @param transformerId {String} The transformer to use, if empty the default system transformer will be used
+     * @param secret {String} Consumer secret used for authentication
+     * @param user {String} Consumer username for authentication
      */
-    constructor(name, brokers, groupId, topic, lastKnownStatus, lastKnownStatusCode, transformerId, id, spaceName, created, uri, virtualHost, port, userName, password, queueName, constraints, acessKey) { 
-        KafkaConnection.initialize(this, name, brokers, groupId, topic, lastKnownStatus, lastKnownStatusCode, transformerId, id, spaceName, created);RabbitMqConnection.initialize(this, id, spaceName, created, name, uri, virtualHost, port, userName, password, queueName, lastKnownStatus, lastKnownStatusCode, constraints, transformerId);SqsConnection.initialize(this, id, spaceName, created, name, uri, acessKey, lastKnownStatus, lastKnownStatusCode, transformerId);
-        Connection.initialize(this, name, brokers, groupId, topic, lastKnownStatus, lastKnownStatusCode, transformerId, id, spaceName, created, uri, virtualHost, port, userName, password, queueName, constraints, acessKey);
+    constructor(id, spaceName, created, name, lastKnownStatus, lastKnownStatusCode, constraints, transformerId, secret, user) { 
+        ModelDefault.initialize(this, id, spaceName, created);OptParamModels.initialize(this);ConnectionAllOf.initialize(this, name, lastKnownStatus, lastKnownStatusCode, constraints, transformerId, secret, user);
+        Connection.initialize(this, id, spaceName, created, name, lastKnownStatus, lastKnownStatusCode, constraints, transformerId, secret, user);
     }
 
     /**
@@ -57,21 +50,17 @@ class Connection {
      * This method is used by the constructors of any subclasses, in order to implement multiple inheritance (mix-ins).
      * Only for internal use.
      */
-    static initialize(obj, name, brokers, groupId, topic, lastKnownStatus, lastKnownStatusCode, transformerId, id, spaceName, created, uri, virtualHost, port, userName, password, queueName, constraints, acessKey) { 
+    static initialize(obj, id, spaceName, created, name, lastKnownStatus, lastKnownStatusCode, constraints, transformerId, secret, user) { 
+        obj['id'] = id;
+        obj['spaceName'] = spaceName;
+        obj['created'] = created;
         obj['name'] = name;
-        obj['brokers'] = brokers;
-        obj['groupId'] = groupId;
-        obj['topic'] = topic;
         obj['lastKnownStatus'] = lastKnownStatus;
         obj['lastKnownStatusCode'] = lastKnownStatusCode;
-        obj['uri'] = uri;
-        obj['virtualHost'] = virtualHost;
-        obj['port'] = port;
-        obj['userName'] = userName;
-        obj['password'] = password;
-        obj['queueName'] = queueName;
         obj['constraints'] = constraints;
-        obj['acessKey'] = acessKey;
+        obj['transformerId'] = transformerId;
+        obj['secret'] = secret;
+        obj['user'] = user;
     }
 
     /**
@@ -84,9 +73,9 @@ class Connection {
     static constructFromObject(data, obj) {
         if (data) {
             obj = obj || new Connection();
-            KafkaConnection.constructFromObject(data, obj);
-            RabbitMqConnection.constructFromObject(data, obj);
-            SqsConnection.constructFromObject(data, obj);
+            ModelDefault.constructFromObject(data, obj);
+            OptParamModels.constructFromObject(data, obj);
+            ConnectionAllOf.constructFromObject(data, obj);
 
             if (data.hasOwnProperty('id')) {
                 obj['id'] = ApiClient.convertToType(data['id'], 'String');
@@ -96,9 +85,6 @@ class Connection {
             }
             if (data.hasOwnProperty('created')) {
                 obj['created'] = ApiClient.convertToType(data['created'], 'Date');
-            }
-            if (data.hasOwnProperty('transformerId')) {
-                obj['transformerId'] = ApiClient.convertToType(data['transformerId'], 'String');
             }
             if (data.hasOwnProperty('customFields')) {
                 obj['customFields'] = ApiClient.convertToType(data['customFields'], {'String': Object});
@@ -115,53 +101,26 @@ class Connection {
             if (data.hasOwnProperty('description')) {
                 obj['description'] = ApiClient.convertToType(data['description'], 'String');
             }
-            if (data.hasOwnProperty('brokers')) {
-                obj['brokers'] = ApiClient.convertToType(data['brokers'], 'String');
-            }
-            if (data.hasOwnProperty('groupId')) {
-                obj['groupId'] = ApiClient.convertToType(data['groupId'], 'String');
-            }
-            if (data.hasOwnProperty('topic')) {
-                obj['topic'] = ApiClient.convertToType(data['topic'], 'String');
-            }
             if (data.hasOwnProperty('lastKnownStatus')) {
                 obj['lastKnownStatus'] = ApiClient.convertToType(data['lastKnownStatus'], 'String');
             }
             if (data.hasOwnProperty('lastKnownStatusCode')) {
                 obj['lastKnownStatusCode'] = ApiClient.convertToType(data['lastKnownStatusCode'], 'Number');
             }
-            if (data.hasOwnProperty('connectionType')) {
-                obj['connectionType'] = ApiClient.convertToType(data['connectionType'], 'String');
-            }
-            if (data.hasOwnProperty('uri')) {
-                obj['uri'] = ApiClient.convertToType(data['uri'], 'String');
-            }
-            if (data.hasOwnProperty('virtualHost')) {
-                obj['virtualHost'] = ApiClient.convertToType(data['virtualHost'], 'String');
-            }
-            if (data.hasOwnProperty('port')) {
-                obj['port'] = ApiClient.convertToType(data['port'], 'Number');
-            }
-            if (data.hasOwnProperty('userName')) {
-                obj['userName'] = ApiClient.convertToType(data['userName'], 'String');
-            }
-            if (data.hasOwnProperty('password')) {
-                obj['password'] = ApiClient.convertToType(data['password'], 'String');
-            }
-            if (data.hasOwnProperty('queueName')) {
-                obj['queueName'] = ApiClient.convertToType(data['queueName'], 'String');
-            }
-            if (data.hasOwnProperty('exchange')) {
-                obj['exchange'] = ApiClient.convertToType(data['exchange'], 'String');
-            }
-            if (data.hasOwnProperty('routingKey')) {
-                obj['routingKey'] = ApiClient.convertToType(data['routingKey'], 'String');
-            }
             if (data.hasOwnProperty('constraints')) {
                 obj['constraints'] = ApiClient.convertToType(data['constraints'], ['String']);
             }
-            if (data.hasOwnProperty('acessKey')) {
-                obj['acessKey'] = ApiClient.convertToType(data['acessKey'], 'String');
+            if (data.hasOwnProperty('transformerId')) {
+                obj['transformerId'] = ApiClient.convertToType(data['transformerId'], 'String');
+            }
+            if (data.hasOwnProperty('connectionType')) {
+                obj['connectionType'] = ConnectionType.constructFromObject(data['connectionType']);
+            }
+            if (data.hasOwnProperty('secret')) {
+                obj['secret'] = ApiClient.convertToType(data['secret'], 'String');
+            }
+            if (data.hasOwnProperty('user')) {
+                obj['user'] = ApiClient.convertToType(data['user'], 'String');
             }
         }
         return obj;
@@ -183,16 +142,10 @@ Connection.prototype['id'] = undefined;
 Connection.prototype['spaceName'] = undefined;
 
 /**
- * ISO8601 timestamp for when a Model was created. All records are stored in UTC time zone  
+ * ISO8601 timestamp for when a Model was created. All records are stored in UTC time zone
  * @member {Date} created
  */
 Connection.prototype['created'] = undefined;
-
-/**
- * 
- * @member {String} transformerId
- */
-Connection.prototype['transformerId'] = undefined;
 
 /**
  * @member {Object.<String, Object>} customFields
@@ -211,7 +164,7 @@ Connection.prototype['tags'] = undefined;
 Connection.prototype['metadata'] = undefined;
 
 /**
- * The type of the consumer
+ * The name of the consumer
  * @member {String} name
  */
 Connection.prototype['name'] = undefined;
@@ -221,24 +174,6 @@ Connection.prototype['name'] = undefined;
  * @member {String} description
  */
 Connection.prototype['description'] = undefined;
-
-/**
- * Kafka broker endpoints.
- * @member {String} brokers
- */
-Connection.prototype['brokers'] = undefined;
-
-/**
- * Group Id for connection
- * @member {String} groupId
- */
-Connection.prototype['groupId'] = undefined;
-
-/**
- * Topic name
- * @member {String} topic
- */
-Connection.prototype['topic'] = undefined;
 
 /**
  * Last known status of the connection
@@ -253,319 +188,110 @@ Connection.prototype['lastKnownStatus'] = undefined;
 Connection.prototype['lastKnownStatusCode'] = undefined;
 
 /**
- * The type of connection
- * @member {String} connectionType
- */
-Connection.prototype['connectionType'] = undefined;
-
-/**
- * The SQS endpoint.
- * @member {String} uri
- */
-Connection.prototype['uri'] = undefined;
-
-/**
- * The virtual host of the rabbitmq broker
- * @member {String} virtualHost
- */
-Connection.prototype['virtualHost'] = undefined;
-
-/**
- * The port number on which consumer will connect on rabbitmq broker
- * @member {Number} port
- */
-Connection.prototype['port'] = undefined;
-
-/**
- * Consumer username for authentication
- * @member {String} userName
- */
-Connection.prototype['userName'] = undefined;
-
-/**
- * Consumer password for authentication
- * @member {String} password
- */
-Connection.prototype['password'] = undefined;
-
-/**
- * Name of the queue
- * @member {String} queueName
- */
-Connection.prototype['queueName'] = undefined;
-
-/**
- * Exchange to connect to
- * @member {String} exchange
- */
-Connection.prototype['exchange'] = undefined;
-
-/**
- * Routing key to use
- * @member {String} routingKey
- */
-Connection.prototype['routingKey'] = undefined;
-
-/**
  * Additional constraints
  * @member {Array.<String>} constraints
  */
 Connection.prototype['constraints'] = undefined;
 
 /**
- * The access key of the IAM user
- * @member {String} acessKey
- */
-Connection.prototype['acessKey'] = undefined;
-
-
-// Implement KafkaConnection interface:
-/**
- * @member {Object.<String, Object>} customFields
- */
-KafkaConnection.prototype['customFields'] = undefined;
-/**
- * A list of id's used to tag models
- * @member {Array.<String>} tags
- */
-KafkaConnection.prototype['tags'] = undefined;
-/**
- * @member {Object.<String, String>} metadata
- */
-KafkaConnection.prototype['metadata'] = undefined;
-/**
- * The name of the consumer
- * @member {String} name
- */
-KafkaConnection.prototype['name'] = undefined;
-/**
- * The description of the consumer
- * @member {String} description
- */
-KafkaConnection.prototype['description'] = undefined;
-/**
- * Kafka broker endpoints.
- * @member {String} brokers
- */
-KafkaConnection.prototype['brokers'] = undefined;
-/**
- * Group Id for connection
- * @member {String} groupId
- */
-KafkaConnection.prototype['groupId'] = undefined;
-/**
- * Topic name
- * @member {String} topic
- */
-KafkaConnection.prototype['topic'] = undefined;
-/**
- * Last known status of the connection
- * @member {String} lastKnownStatus
- */
-KafkaConnection.prototype['lastKnownStatus'] = undefined;
-/**
- * Status code correspoding to the last known status
- * @member {Number} lastKnownStatusCode
- */
-KafkaConnection.prototype['lastKnownStatusCode'] = undefined;
-/**
  * The transformer to use, if empty the default system transformer will be used
  * @member {String} transformerId
  */
-KafkaConnection.prototype['transformerId'] = undefined;
+Connection.prototype['transformerId'] = undefined;
+
 /**
- * The type of connection
- * @member {String} connectionType
+ * @member {module:model/ConnectionType} connectionType
  */
-KafkaConnection.prototype['connectionType'] = undefined;
+Connection.prototype['connectionType'] = undefined;
+
+/**
+ * Consumer secret used for authentication
+ * @member {String} secret
+ */
+Connection.prototype['secret'] = undefined;
+
+/**
+ * Consumer username for authentication
+ * @member {String} user
+ */
+Connection.prototype['user'] = undefined;
+
+
+// Implement ModelDefault interface:
 /**
  * A unique system generated identifier
  * @member {String} id
  */
-KafkaConnection.prototype['id'] = undefined;
+ModelDefault.prototype['id'] = undefined;
 /**
  * This is the space name which is linked to the account
  * @member {String} spaceName
  */
-KafkaConnection.prototype['spaceName'] = undefined;
+ModelDefault.prototype['spaceName'] = undefined;
 /**
  * ISO8601 timestamp for when a Model was created. All records are stored in UTC time zone
  * @member {Date} created
  */
-KafkaConnection.prototype['created'] = undefined;
-// Implement RabbitMqConnection interface:
-/**
- * A unique system generated identifier
- * @member {String} id
- */
-RabbitMqConnection.prototype['id'] = undefined;
-/**
- * This is the space name which is linked to the account
- * @member {String} spaceName
- */
-RabbitMqConnection.prototype['spaceName'] = undefined;
-/**
- * ISO8601 timestamp for when a Model was created. All records are stored in UTC time zone
- * @member {Date} created
- */
-RabbitMqConnection.prototype['created'] = undefined;
+ModelDefault.prototype['created'] = undefined;
+// Implement OptParamModels interface:
 /**
  * @member {Object.<String, Object>} customFields
  */
-RabbitMqConnection.prototype['customFields'] = undefined;
+OptParamModels.prototype['customFields'] = undefined;
 /**
  * A list of id's used to tag models
  * @member {Array.<String>} tags
  */
-RabbitMqConnection.prototype['tags'] = undefined;
+OptParamModels.prototype['tags'] = undefined;
 /**
  * @member {Object.<String, String>} metadata
  */
-RabbitMqConnection.prototype['metadata'] = undefined;
+OptParamModels.prototype['metadata'] = undefined;
+// Implement ConnectionAllOf interface:
 /**
  * The name of the consumer
  * @member {String} name
  */
-RabbitMqConnection.prototype['name'] = undefined;
+ConnectionAllOf.prototype['name'] = undefined;
 /**
  * The description of the consumer
  * @member {String} description
  */
-RabbitMqConnection.prototype['description'] = undefined;
-/**
- * The SQS endpoint.
- * @member {String} uri
- */
-RabbitMqConnection.prototype['uri'] = undefined;
-/**
- * The virtual host of the rabbitmq broker
- * @member {String} virtualHost
- */
-RabbitMqConnection.prototype['virtualHost'] = undefined;
-/**
- * The port number on which consumer will connect on rabbitmq broker
- * @member {Number} port
- */
-RabbitMqConnection.prototype['port'] = undefined;
-/**
- * Consumer username for authentication
- * @member {String} userName
- */
-RabbitMqConnection.prototype['userName'] = undefined;
-/**
- * Consumer password for authentication
- * @member {String} password
- */
-RabbitMqConnection.prototype['password'] = undefined;
-/**
- * Name of the queue
- * @member {String} queueName
- */
-RabbitMqConnection.prototype['queueName'] = undefined;
-/**
- * Exchange to connect to
- * @member {String} exchange
- */
-RabbitMqConnection.prototype['exchange'] = undefined;
-/**
- * Routing key to use
- * @member {String} routingKey
- */
-RabbitMqConnection.prototype['routingKey'] = undefined;
+ConnectionAllOf.prototype['description'] = undefined;
 /**
  * Last known status of the connection
  * @member {String} lastKnownStatus
  */
-RabbitMqConnection.prototype['lastKnownStatus'] = undefined;
+ConnectionAllOf.prototype['lastKnownStatus'] = undefined;
 /**
  * Status code correspoding to the last known status
  * @member {Number} lastKnownStatusCode
  */
-RabbitMqConnection.prototype['lastKnownStatusCode'] = undefined;
+ConnectionAllOf.prototype['lastKnownStatusCode'] = undefined;
 /**
  * Additional constraints
  * @member {Array.<String>} constraints
  */
-RabbitMqConnection.prototype['constraints'] = undefined;
+ConnectionAllOf.prototype['constraints'] = undefined;
 /**
  * The transformer to use, if empty the default system transformer will be used
  * @member {String} transformerId
  */
-RabbitMqConnection.prototype['transformerId'] = undefined;
+ConnectionAllOf.prototype['transformerId'] = undefined;
 /**
- * The type of connection
- * @member {String} connectionType
+ * @member {module:model/ConnectionType} connectionType
  */
-RabbitMqConnection.prototype['connectionType'] = undefined;
-// Implement SqsConnection interface:
+ConnectionAllOf.prototype['connectionType'] = undefined;
 /**
- * A unique system generated identifier
- * @member {String} id
+ * Consumer secret used for authentication
+ * @member {String} secret
  */
-SqsConnection.prototype['id'] = undefined;
+ConnectionAllOf.prototype['secret'] = undefined;
 /**
- * This is the space name which is linked to the account
- * @member {String} spaceName
+ * Consumer username for authentication
+ * @member {String} user
  */
-SqsConnection.prototype['spaceName'] = undefined;
-/**
- * ISO8601 timestamp for when a Model was created. All records are stored in UTC time zone
- * @member {Date} created
- */
-SqsConnection.prototype['created'] = undefined;
-/**
- * @member {Object.<String, Object>} customFields
- */
-SqsConnection.prototype['customFields'] = undefined;
-/**
- * A list of id's used to tag models
- * @member {Array.<String>} tags
- */
-SqsConnection.prototype['tags'] = undefined;
-/**
- * @member {Object.<String, String>} metadata
- */
-SqsConnection.prototype['metadata'] = undefined;
-/**
- * The type of the consumer
- * @member {String} name
- */
-SqsConnection.prototype['name'] = undefined;
-/**
- * The description of the consumer
- * @member {String} description
- */
-SqsConnection.prototype['description'] = undefined;
-/**
- * The SQS endpoint.
- * @member {String} uri
- */
-SqsConnection.prototype['uri'] = undefined;
-/**
- * The access key of the IAM user
- * @member {String} acessKey
- */
-SqsConnection.prototype['acessKey'] = undefined;
-/**
- * Last known status of the connection
- * @member {String} lastKnownStatus
- */
-SqsConnection.prototype['lastKnownStatus'] = undefined;
-/**
- * Status code correspoding to the last known status
- * @member {Number} lastKnownStatusCode
- */
-SqsConnection.prototype['lastKnownStatusCode'] = undefined;
-/**
- * The transformer to use, if empty the default system transformer will be used
- * @member {String} transformerId
- */
-SqsConnection.prototype['transformerId'] = undefined;
-/**
- * The type of connection
- * @member {String} connectionType
- */
-SqsConnection.prototype['connectionType'] = undefined;
+ConnectionAllOf.prototype['user'] = undefined;
 
 
 
