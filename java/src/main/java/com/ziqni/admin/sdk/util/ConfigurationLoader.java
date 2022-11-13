@@ -137,12 +137,7 @@ public abstract class ConfigurationLoader {
     }
 
     public static Optional<String> getParameter(String name){
-        var envParam = getParameterFromEnvironment(name);
-        var param = Parameters().get(name);
-        var found = Optional.ofNullable(envParam==null || envParam.isEmpty()
-                ? param
-                : envParam
-        );
+        var found = Optional.ofNullable(getParameterFromEnvironment(name,Parameters().get(name)));
 
         if(found.isEmpty())
             logger.info("Parameter NOT FOUND for " + name);
@@ -150,12 +145,17 @@ public abstract class ConfigurationLoader {
         return found;
     }
 
-    private static String getParameterFromEnvironment(String name) {
+    private static String getParameterFromEnvironment(String name, String altParam) {
 
         var variableToCheck = ziqniEnvironmentVariablePrefix + name.toUpperCase().replace('.', '_');
         var envVariableValue = System.getenv(variableToCheck);
-        logger.info("Parameter [{}] value retrieved from environment variables [{}]", variableToCheck, envVariableValue != null);
 
+        if(envVariableValue == null) {
+            logger.info("Parameter [{}] value retrieved from LOADED-PROPS variables [TRUE]", variableToCheck);
+            return altParam;
+        }
+
+        logger.info("Parameter [{}] value retrieved from ENVIRONMENT variables [TRUE]", variableToCheck);
         return envVariableValue;
 
     }
