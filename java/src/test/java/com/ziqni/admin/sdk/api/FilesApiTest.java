@@ -70,12 +70,12 @@ public class FilesApiTest implements tests.utils.CompleteableFutureTestWrapper{
         this.loadCustomFieldsData = new LoadCustomFieldsData();
         this.loadTagsData = new LoadTagsData();
         // the stream holding the file content
-        var resource = getClass().getClassLoader().getResource(testImageName);
-        try {
-            this.imageFile = new File(resource.toURI());
-        } catch (URISyntaxException e) {
-            throw new RuntimeException(e);
-        }
+//        var resource = getClass().getClassLoader().getResource(testImageName);
+//        try {
+//            this.imageFile = new File(resource.toURI());
+//        } catch (URISyntaxException e) {
+//            throw new RuntimeException(e);
+//        }
     }
 
     @BeforeAll
@@ -108,6 +108,40 @@ public class FilesApiTest implements tests.utils.CompleteableFutureTestWrapper{
         }catch (ApiException | InterruptedException e){
             logger.error("error", e.getCause());
         }
+    }
+
+    @Test
+    @Order(1)
+    public void BUG_FIX_createFileAndGetTheFilesForTheRepositoryQuicklyReturnOkTest() throws ApiException, InterruptedException {
+        final var createRequest = loadData.getCreateRequest(repositoryId);
+        final var createRequestAsList = loadData.getCreateRequestAsList(createRequest).get(0);
+
+        ModelApiResponse response = api.createFileObjects(createRequestAsList).join();
+
+        assertNotNull(response);
+        assertNotNull(response.getResults());
+        assertNotNull(response.getErrors());
+        assertEquals(1, response.getResults().size(), "Should contain created entity");
+        assertNotNull(response.getResults().get(0).getId(), "Created entity should has id");
+
+        Thread.sleep(5000);
+
+        var queryRequest = new QueryRequest()
+                .addMustItem(new QueryMultiple()
+                        .queryField("repositoryId")
+                        .queryValues(List.of(createRequest.getRepositoryId())));
+
+        var fileObjectsResponse = $(api.getFileObjectsByQuery(null, queryRequest));
+
+        assertNotNull(fileObjectsResponse);
+        assertNotNull(fileObjectsResponse.getResults());
+
+        var createdFolder = fileObjectsResponse.getResults().get(0);
+
+        assertNotNull(createdFolder);
+        assertEquals(createRequest.getRepositoryId(), createdFolder.getRepositoryId());
+
+        idsToDelete.add(response.getResults().get(0).getId());
     }
 
     @Test
