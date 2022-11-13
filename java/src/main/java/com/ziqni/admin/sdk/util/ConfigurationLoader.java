@@ -137,8 +137,12 @@ public abstract class ConfigurationLoader {
     }
 
     public static Optional<String> getParameter(String name){
+        var envParam = getParameterFromEnvironment(name);
         var param = Parameters().get(name);
-        var found = Optional.ofNullable(param==null || param.isEmpty() ? getParameterFromEnvironment(name) : Parameters().get(name));
+        var found = Optional.ofNullable(envParam==null || envParam.isEmpty()
+                ? param
+                : envParam
+        );
 
         if(found.isEmpty())
             logger.info("Parameter NOT FOUND for " + name);
