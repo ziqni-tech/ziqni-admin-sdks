@@ -11369,9 +11369,7 @@ components:
           example: '1'
         score:
           format: double
-          description: >-
-            The multiplier to apply to source values received for this product action helper
-            events
+          description: The members current score
           type: number
           example: '100'
         bestScores:
