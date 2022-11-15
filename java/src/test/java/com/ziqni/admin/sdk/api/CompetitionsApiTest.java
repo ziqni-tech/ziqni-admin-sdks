@@ -28,6 +28,7 @@ import org.junit.jupiter.api.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.time.LocalDateTime;
 import java.util.*;
 import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
@@ -125,6 +126,22 @@ public class CompetitionsApiTest implements tests.utils.CompleteableFutureTestWr
         logger.info(id);
 
         idsToDelete.add(id);
+    }
+
+    @Test
+    public void getCompetitionsCreatedBetweenDatesReturnOkTest() throws ApiException {
+        final var queryRequest = new QueryRequest().skip(0).limit(20);
+        final var querySingle=new RangeQuery();
+        querySingle.setQueryField("created");
+        querySingle.setGt(LocalDateTime.now().minusDays(2).toString());
+        queryRequest.addRangeItem(querySingle);
+
+        final var response = $(api.getCompetitionsByQuery(queryRequest));
+        assertNotNull(response);
+        assertNotNull(response.getResults());
+        assertNotNull(response.getErrors());
+        assertNotNull(response.getResults().get(0).getId(), "Created entity should has id");
+
     }
 
     @Test
