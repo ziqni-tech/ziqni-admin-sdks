@@ -6,6 +6,8 @@ package com.ziqni.admin.sdk.streaming;
 import com.ziqni.admin.sdk.ZiqniAdminEventBus;
 import com.ziqni.admin.sdk.streaming.handlers.RpcResultsEventHandler;
 import com.ziqni.admin.sdk.streaming.handlers.CallbackEventHandler;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -14,6 +16,8 @@ import java.util.concurrent.*;
 import java.util.function.Consumer;
 
 public class StreamingClient {
+
+    private static final Logger logger = LoggerFactory.getLogger(StreamingClient.class);
 
     private final ExecutorService websocketSendExecutor;
 
@@ -63,6 +67,12 @@ public class StreamingClient {
                         (stompHeaders, tPayload) -> this.wsClient.prepareMessageToSend(stompHeaders, tPayload).run()
                 );
             }
+            catch (IllegalStateException t){
+                if(wsClient.isConnected())
+                    logger.error("Broadcast failed",t);
+
+                completableFuture.completeExceptionally(t);
+            }
             catch (Throwable t) {
                 completableFuture.completeExceptionally(t);
             }
@@ -82,8 +92,10 @@ public class StreamingClient {
     }
 
     public CompletableFuture<Boolean> start() throws Exception {
-        if(this.wsClient==null)
-            this.wsClient = new WsClient(URL, (integer)->{}, eventBus);
+        if(this.wsClient==null) {
+            this.wsClient = new WsClient(URL, (integer) -> {}, eventBus);
+            this.wsClient.setDefaultHeartbeat(new long[] {1000, 1000});
+        }
 
         final var result = new CompletableFuture<Boolean>();
         this.websocketSendExecutor.submit( () -> {
