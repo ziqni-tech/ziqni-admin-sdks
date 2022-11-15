@@ -1,3 +1,24 @@
+# Properties
+If using AdminApiClientConfigBuilder.build() then the SDK will attempt to get properties from the environment variables 
+first, followed by AWS SystemManager-ParameterStore, and finally the application.properties if one exists.   
+
+# Environment variables
+
+## Then in the environment file
+
+| Key                                | Tier     | Type         | Value                             |
+|------------------------------------| -------- | ------------ |-----------------------------------|
+| ZIQNI_ADMIN_CLIENT_AUTH_USERNAME   | Standard | SecureString | <_your-email_>                    |
+| ZIQNI_ADMIN_CLIENT_AUTH_PASSWORD   | Standard | SecureString | <_your-password_>                 |
+| ZIQNI_ADMIN_CLIENT_AUTH_RESOURCE   | Standard | String       | <_your-space-name_>**.ziqni.app** |
+| ZIQNI_ADMIN_CLIENT_AUTH_REALM      | Standard | String       | **ziqni**                         |
+| ZIQNI_ADMIN_CLIENT_AUTH_SERVER_URL | Standard | String       | **https://identity.ziqni.com**    |
+| ZIQNI_ADMIN_CLIENT_SERVER_HOST     | Standard | String       | **api.ziqni.com**                 |
+| ZIQNI_ADMIN_CLIENT_SERVER_PORT     | Standard | String       | **443**                           |
+| ZIQNI_ADMIN_CLIENT_SERVER_SCHEME   | Standard | String       | **wss**                           |
+
+
+
 # AWS Systems Manager Parameter Store
 
 ## Environment variable
