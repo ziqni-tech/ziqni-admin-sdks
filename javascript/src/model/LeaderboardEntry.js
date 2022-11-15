@@ -76,7 +76,7 @@ class LeaderboardEntry {
 LeaderboardEntry.prototype['rank'] = undefined;
 
 /**
- * The multiplier to apply to source values received for this product action helper events
+ * The members current score
  * @member {Number} score
  */
 LeaderboardEntry.prototype['score'] = undefined;
