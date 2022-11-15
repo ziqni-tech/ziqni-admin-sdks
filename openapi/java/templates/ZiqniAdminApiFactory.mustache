@@ -30,11 +30,9 @@ public class ZiqniAdminApiFactory {
 
     public void initialise() throws Exception {
         if(initialised) return;
-
         this.initialised = true;
-
-        ziqniAdminEventBus = new ZiqniAdminEventBus();
-        streamingClient = new StreamingClient(configuration, new WsAddress(configuration).getAddress(), getZiqniAdminEventBus());
+        this.ziqniAdminEventBus = new ZiqniAdminEventBus();
+        this.streamingClient = new StreamingClient(this.configuration, new WsAddress(this.configuration).getAddress(), getZiqniAdminEventBus());
     }
 
     private void init() {
