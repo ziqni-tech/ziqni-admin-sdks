@@ -4,6 +4,7 @@
 package com.ziqni.admin.sdk.streaming;
 
 import com.ziqni.admin.sdk.ZiqniAdminEventBus;
+import com.ziqni.admin.sdk.configuration.AdminApiClientConfiguration;
 import com.ziqni.admin.sdk.streaming.handlers.RpcResultsEventHandler;
 import com.ziqni.admin.sdk.streaming.handlers.CallbackEventHandler;
 import org.slf4j.Logger;
@@ -31,8 +32,11 @@ public class StreamingClient {
 
     private WsClient wsClient;
 
-    public StreamingClient(String URL, ZiqniAdminEventBus eventBus) throws Exception {
+    private final AdminApiClientConfiguration configuration;
 
+    public StreamingClient(AdminApiClientConfiguration configuration, String URL, ZiqniAdminEventBus eventBus) throws Exception {
+
+        this.configuration = configuration;
         this.URL = URL;
         this.eventBus = eventBus;
         this.webSocketClientTasks = new LinkedBlockingDeque<>();
@@ -93,7 +97,7 @@ public class StreamingClient {
 
     public CompletableFuture<Boolean> start() throws Exception {
         if(this.wsClient==null) {
-            this.wsClient = new WsClient(URL, (integer) -> {}, eventBus);
+            this.wsClient = new WsClient(configuration, URL, (integer) -> {}, eventBus);
             this.wsClient.setDefaultHeartbeat(new long[] {1000, 1000});
         }
 

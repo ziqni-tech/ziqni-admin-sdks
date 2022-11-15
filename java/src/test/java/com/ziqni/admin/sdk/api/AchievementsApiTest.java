@@ -13,10 +13,11 @@
 
 package com.ziqni.admin.sdk.api;
 
+import com.ziqni.admin.sdk.configuration.AdminApiClientConfigBuilder;
 import com.ziqni.admin.sdk.data.*;
 import com.ziqni.admin.sdk.model.*;
 import com.ziqni.admin.sdk.util.ApiClientFactoryUtil;
-import com.ziqni.admin.sdk.ZiqniAdminApiFactory;
+import com.ziqni.admin.sdk.configuration.AdminApiClientConfigBuilder;
 import com.ziqni.admin.sdk.ApiException;
 import com.ziqni.admin.sdk.model.*;
 
@@ -60,9 +61,9 @@ public class AchievementsApiTest implements tests.utils.CompleteableFutureTestWr
     List<String> unitOfMeasureIdsToDelete = new ArrayList<>();
 
     public AchievementsApiTest() throws Exception {
-        ApiClientFactoryUtil.initApiClientFactory();
+        ApiClientFactoryUtil.initApiClientFactory(AdminApiClientConfigBuilder.build());
 
-        this.api = ZiqniAdminApiFactory.getAchievementsApi();
+        this.api = ApiClientFactoryUtil.factory.getAchievementsApi();
         this.loadData = new LoadAchievementsData();
         this.loadRewardTypesData = new LoadRewardTypesData();
         this.loadCustomFieldsData = new LoadCustomFieldsData();

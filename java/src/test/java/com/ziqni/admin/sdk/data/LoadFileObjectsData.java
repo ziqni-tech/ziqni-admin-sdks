@@ -4,8 +4,10 @@ import com.ziqni.admin.sdk.ZiqniAdminApiFactory;
 import com.ziqni.admin.sdk.ApiException;
 import com.ziqni.admin.sdk.api.FileObjectsApiWs;
 
+import com.ziqni.admin.sdk.configuration.AdminApiClientConfigBuilder;
 import com.ziqni.admin.sdk.model.CreateFileObjectRequest;
 import com.ziqni.admin.sdk.model.ModelApiResponse;
+import com.ziqni.admin.sdk.util.ApiClientFactoryUtil;
 import tests.utils.CompleteableFutureTestWrapper;
 
 
@@ -22,8 +24,9 @@ public class LoadFileObjectsData implements CompleteableFutureTestWrapper {
 
     private FileObjectsApiWs api;
 
-    public LoadFileObjectsData() {
-        this.api = ZiqniAdminApiFactory.getFileObjectsApi();
+    public LoadFileObjectsData() throws Exception {
+        ApiClientFactoryUtil.initApiClientFactory(AdminApiClientConfigBuilder.build());
+        this.api = ApiClientFactoryUtil.factory.getFileObjectsApi();
     }
 
     public CreateFileObjectRequest getCreateRequest(String repositoryId) {

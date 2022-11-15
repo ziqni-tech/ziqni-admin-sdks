@@ -3,34 +3,41 @@ package {{invokerPackage}};
 import {{invokerPackage}}.api.*;
 import {{invokerPackage}}.streaming.WsAddress;
 import {{invokerPackage}}.streaming.StreamingClient;
+import {{invokerPackage}}.configuration.AdminApiClientConfiguration;
 import java.time.Duration;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
-public abstract class ZiqniAdminApiFactory {
+public class ZiqniAdminApiFactory {
 
-    private static StreamingClient streamingClient;
-    private static ZiqniAdminEventBus ziqniAdminEventBus;
-    private static Boolean initialised = false;
-    {{#apiInfo}}{{#apis}}private static {{classname}}Ws {{#lambda.camelcase}}{{classname}}{{/lambda.camelcase}}Ws;
+    private StreamingClient streamingClient;
+    private ZiqniAdminEventBus ziqniAdminEventBus;
+    private Boolean initialised = false;
+    {{#apiInfo}}{{#apis}}private {{classname}}Ws {{#lambda.camelcase}}{{classname}}{{/lambda.camelcase}}Ws;
     {{/apis}}{{/apiInfo}}
 
-    public static <T> T initialise(Supplier<T> then) throws Exception {
+    private final AdminApiClientConfiguration configuration;
+
+    public ZiqniAdminApiFactory(AdminApiClientConfiguration configuration) {
+        this.configuration = configuration;
+    }
+
+    public <T> T initialise(Supplier<T> then) throws Exception {
         initialise();
         return then.get();
     }
 
-    public static void initialise() throws Exception {
+    public void initialise() throws Exception {
         if(initialised) return;
 
-        ZiqniAdminApiFactory.initialised = true;
+        this.initialised = true;
 
         ziqniAdminEventBus = new ZiqniAdminEventBus();
-        streamingClient = new StreamingClient(new WsAddress().getAddress(), getZiqniAdminEventBus());
+        streamingClient = new StreamingClient(configuration, new WsAddress(configuration).getAddress(), getZiqniAdminEventBus());
     }
 
-    private static void init() {
+    private void init() {
         try {
             initialise();
         } catch (Exception e) {
@@ -38,32 +45,32 @@ public abstract class ZiqniAdminApiFactory {
         }
     }
 
-    public static Boolean getInitialised() {
+    public Boolean getInitialised() {
         return initialised;
     }
 
-    public static StreamingClient getStreamingClient() {
+    public StreamingClient getStreamingClient() {
         assert getInitialised();
         return streamingClient;
     }
 
-    public static ZiqniAdminEventBus getZiqniAdminEventBus() {
+    public ZiqniAdminEventBus getZiqniAdminEventBus() {
         return ziqniAdminEventBus;
     }
 
-    {{#apiInfo}}{{#apis}} public static {{classname}}Ws get{{classname}}() {
+    {{#apiInfo}}{{#apis}} public {{classname}}Ws get{{classname}}() {
         /**
         ------{{#operations}}{{#operation}}{{#callbacks.0}},{{/callbacks.0}}{{/operation}}{{/operations}}
         {{#operations}}{{#operation}}{{#callbacks}}{{#urls}}{{#requests}}{{#allParams}}{{{paramName}}}: {{^required}}Option<{{/required}}{{#isArray}}&{{/isArray}}{{{dataType}}}{{^required}}>{{/required}},
         {{/allParams}}{{{name}}}{{{operationId}}}{{/requests}}
         {{/urls}}{{/callbacks}}{{/operation}}{{/operations}}
         */
-        if(ZiqniAdminApiFactory.{{#lambda.camelcase}}{{classname}}{{/lambda.camelcase}}Ws == null) {
+        if(this.{{#lambda.camelcase}}{{classname}}{{/lambda.camelcase}}Ws == null) {
             init();
-            ZiqniAdminApiFactory.{{#lambda.camelcase}}{{classname}}{{/lambda.camelcase}}Ws = new {{classname}}Ws(streamingClient, Duration.ofSeconds(5));
+            this.{{#lambda.camelcase}}{{classname}}{{/lambda.camelcase}}Ws = new {{classname}}Ws(streamingClient, Duration.ofSeconds(5));
         }
 
-        return ZiqniAdminApiFactory.{{#lambda.camelcase}}{{classname}}{{/lambda.camelcase}}Ws;
+        return this.{{#lambda.camelcase}}{{classname}}{{/lambda.camelcase}}Ws;
     }
 
     {{/apis}}{{/apiInfo}}

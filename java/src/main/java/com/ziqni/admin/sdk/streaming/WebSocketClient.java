@@ -4,7 +4,7 @@
 package com.ziqni.admin.sdk.streaming;
 
 import com.google.common.collect.Iterables;
-import com.ziqni.admin.sdk.configuration.AdminApiClientConfig;
+import com.ziqni.admin.sdk.configuration.AdminApiClientConfiguration;
 import com.ziqni.admin.sdk.util.Common;
 import com.ziqni.admin.sdk.util.CoreClientObjectMapper;
 import org.slf4j.Logger;
@@ -75,16 +75,19 @@ public class WebSocketClient {
     private final AtomicInteger connectionStateAtomic = new AtomicInteger(NotConnected);
     private final Consumer<Integer> onStateChange;
 
+    private final AdminApiClientConfiguration configuration;
 
-    public WebSocketClient(String wsUri, Consumer<Integer> onStateChange) throws Exception {
-        this(wsUri, DEFAULT_RECONNECT_DELAY, DEFAULT_RECONNECT_ATTEMPTS, makeAuthHeader(), onStateChange);
+
+    public WebSocketClient(AdminApiClientConfiguration configuration, String wsUri, Consumer<Integer> onStateChange) throws Exception {
+        this(configuration, wsUri, DEFAULT_RECONNECT_DELAY, DEFAULT_RECONNECT_ATTEMPTS, makeAuthHeader(configuration), onStateChange);
     }
 
-    protected WebSocketClient(String wsUri, StompHeaders stompHeaders, Consumer<Integer> onStateChange) {
-        this(wsUri, DEFAULT_RECONNECT_DELAY, DEFAULT_RECONNECT_ATTEMPTS, stompHeaders, onStateChange);
+    protected WebSocketClient(AdminApiClientConfiguration configuration, String wsUri, StompHeaders stompHeaders, Consumer<Integer> onStateChange) {
+        this(configuration, wsUri, DEFAULT_RECONNECT_DELAY, DEFAULT_RECONNECT_ATTEMPTS, stompHeaders, onStateChange);
     }
 
-    protected WebSocketClient(String wsUri, long reconnectDelay, int reconnectAttempts, StompHeaders stompHeaders, Consumer<Integer> onStateChange) {
+    protected WebSocketClient(AdminApiClientConfiguration configuration, String wsUri, long reconnectDelay, int reconnectAttempts, StompHeaders stompHeaders, Consumer<Integer> onStateChange) {
+        this.configuration = configuration;
         this.wsUri = wsUri;
         this.reconnectAttempts = reconnectAttempts;
         this.taskScheduler = new ThreadPoolTaskScheduler();
@@ -97,14 +100,14 @@ public class WebSocketClient {
         this.onStateChange = onStateChange;
     }
 
-    private static StompHeaders makeAuthHeader() throws Exception {
+    private static StompHeaders makeAuthHeader(AdminApiClientConfiguration configuration) throws Exception {
         StompHeaders stompHeaders = new StompHeaders();
-        updateOauthToken(stompHeaders);
+        updateOauthToken(configuration,stompHeaders);
         return stompHeaders;
     }
 
-    private static void updateOauthToken(StompHeaders stompHeaders) throws Exception {
-        String oauthToken = AdminApiClientConfig.getAccessTokenString();
+    private static void updateOauthToken(AdminApiClientConfiguration configuration, StompHeaders stompHeaders) throws Exception {
+        String oauthToken = configuration.getAccessTokenString();
         if (stompHeaders.containsKey("Authorization"))
             stompHeaders.remove("Authorization");
 
@@ -392,7 +395,7 @@ public class WebSocketClient {
 
     private CompletableFuture<StompSession> doConnect() throws Exception {
 
-        updateOauthToken(stompHeaders);
+        updateOauthToken(configuration,stompHeaders);
 
         ListenableFuture<StompSession> future = stompClient.connect(wsUri, new WebSocketHttpHeaders(), stompHeaders, new StompSessionHandlerAdapter() {
             @Override

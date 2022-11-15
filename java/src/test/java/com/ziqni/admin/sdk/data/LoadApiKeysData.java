@@ -3,9 +3,11 @@ package com.ziqni.admin.sdk.data;
 import com.ziqni.admin.sdk.ZiqniAdminApiFactory;
 import com.ziqni.admin.sdk.ApiException;
 import com.ziqni.admin.sdk.api.ApiKeysApiWs;
+import com.ziqni.admin.sdk.configuration.AdminApiClientConfigBuilder;
 import com.ziqni.admin.sdk.model.CreateApiKeyRequest;
 import com.ziqni.admin.sdk.model.ModelApiResponse;
 import com.ziqni.admin.sdk.model.Role;
+import com.ziqni.admin.sdk.util.ApiClientFactoryUtil;
 import tests.utils.CompleteableFutureTestWrapper;
 
 import java.lang.reflect.UndeclaredThrowableException;
@@ -22,8 +24,9 @@ public class LoadApiKeysData implements CompleteableFutureTestWrapper {
     private Role role = Role.WEB;
     private List<String> constraints = List.of("active", "default");
 
-    public LoadApiKeysData() {
-        this.api = ZiqniAdminApiFactory.getApiKeysApi();
+    public LoadApiKeysData() throws Exception {
+        ApiClientFactoryUtil.initApiClientFactory(AdminApiClientConfigBuilder.build());
+        this.api = ApiClientFactoryUtil.factory.getApiKeysApi();
     }
 
     public CreateApiKeyRequest getCreateRequest() {

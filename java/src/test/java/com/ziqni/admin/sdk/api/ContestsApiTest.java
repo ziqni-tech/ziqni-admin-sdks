@@ -16,7 +16,7 @@ package com.ziqni.admin.sdk.api;
 import com.ziqni.admin.sdk.data.*;
 import com.ziqni.admin.sdk.model.*;
 import com.ziqni.admin.sdk.util.ApiClientFactoryUtil;
-import com.ziqni.admin.sdk.ZiqniAdminApiFactory;
+import com.ziqni.admin.sdk.configuration.AdminApiClientConfigBuilder;
 import com.ziqni.admin.sdk.ApiException;
 import com.ziqni.admin.sdk.data.*;
 import com.ziqni.admin.sdk.model.*;
@@ -62,8 +62,8 @@ public class ContestsApiTest implements tests.utils.CompleteableFutureTestWrappe
     private final List<String> customFieldIdsToDelete = new ArrayList<>();
 
     public ContestsApiTest() throws Exception {
-        ApiClientFactoryUtil.initApiClientFactory();
-        this.api = ZiqniAdminApiFactory.getContestsApi();
+        ApiClientFactoryUtil.initApiClientFactory(AdminApiClientConfigBuilder.build());
+        this.api = ApiClientFactoryUtil.factory.getContestsApi();
         this.loadData = new LoadContestsData();
         this.loadCompetitionsData = new LoadCompetitionsData();
         this.loadProductsData = new LoadProductsData();

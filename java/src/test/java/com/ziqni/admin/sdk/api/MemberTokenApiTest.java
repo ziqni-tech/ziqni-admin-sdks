@@ -18,7 +18,7 @@ import com.ziqni.admin.sdk.data.LoadApiKeysData;
 import com.ziqni.admin.sdk.data.LoadMemberTokenData;
 import com.ziqni.admin.sdk.data.LoadMembersData;
 import com.ziqni.admin.sdk.util.ApiClientFactoryUtil;
-import com.ziqni.admin.sdk.ZiqniAdminApiFactory;
+import com.ziqni.admin.sdk.configuration.AdminApiClientConfigBuilder;
 import com.ziqni.admin.sdk.ApiException;
 import org.junit.jupiter.api.*;
 import org.slf4j.Logger;
@@ -53,8 +53,8 @@ public class MemberTokenApiTest implements tests.utils.CompleteableFutureTestWra
 
 
     public MemberTokenApiTest() throws Exception {
-        ApiClientFactoryUtil.initApiClientFactory();
-        this.api = ZiqniAdminApiFactory.getMemberTokenApi();
+        ApiClientFactoryUtil.initApiClientFactory(AdminApiClientConfigBuilder.build());
+        this.api = ApiClientFactoryUtil.factory.getMemberTokenApi();
         this.loadTestData = new LoadMemberTokenData();
         this.loadMembersData = new LoadMembersData();
         this.loadApiKeysData = new LoadApiKeysData();

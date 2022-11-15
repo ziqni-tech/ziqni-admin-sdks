@@ -13,9 +13,10 @@
 
 package com.ziqni.admin.sdk.api;
 
-import com.ziqni.admin.sdk.ZiqniAdminApiFactory;
+import com.ziqni.admin.sdk.configuration.AdminApiClientConfigBuilder;
 import com.ziqni.admin.sdk.ApiException;
 import com.ziqni.admin.sdk.model.AccountMessageResponse;
+import com.ziqni.admin.sdk.util.ApiClientFactoryUtil;
 import org.junit.jupiter.api.*;
 
 import java.util.Objects;
@@ -30,7 +31,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @Disabled //todo - This needs to come via Identity system
 public class UserApiTest implements tests.utils.CompleteableFutureTestWrapper{
 
-    private final UserApiWs api = ZiqniAdminApiFactory.getUserApi();
 
     /**
      * NOT AVAILABLE IN CURRENT RELEASE
@@ -59,7 +59,9 @@ public class UserApiTest implements tests.utils.CompleteableFutureTestWrapper{
      *          if the Api call fails
      */
     @Test
-    public void getUserTest() throws ApiException {
+    public void getUserTest() throws Exception {
+        ApiClientFactoryUtil.initApiClientFactory(AdminApiClientConfigBuilder.build());
+        UserApiWs api = ApiClientFactoryUtil.factory.getUserApi();
         Boolean includeSpaces = true;
         final var response = $(api.getUser(includeSpaces));
 

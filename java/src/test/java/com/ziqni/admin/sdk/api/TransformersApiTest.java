@@ -16,7 +16,7 @@ package com.ziqni.admin.sdk.api;
 import com.ziqni.admin.sdk.data.LoadTransformerData;
 import com.ziqni.admin.sdk.model.*;
 import com.ziqni.admin.sdk.util.ApiClientFactoryUtil;
-import com.ziqni.admin.sdk.ZiqniAdminApiFactory;
+import com.ziqni.admin.sdk.configuration.AdminApiClientConfigBuilder;
 import com.ziqni.admin.sdk.ApiException;
 import com.ziqni.admin.sdk.model.*;
 import org.junit.jupiter.api.*;
@@ -48,8 +48,8 @@ public class TransformersApiTest implements tests.utils.CompleteableFutureTestWr
     private List<String> idsToDelete = new ArrayList<>();
 
     public TransformersApiTest() throws Exception {
-        ApiClientFactoryUtil.initApiClientFactory();
-        this.api = ZiqniAdminApiFactory.getTransformersApi();
+        ApiClientFactoryUtil.initApiClientFactory(AdminApiClientConfigBuilder.build());
+        this.api = ApiClientFactoryUtil.factory.getTransformersApi();
         this.loadTestData = new LoadTransformerData();
     }
 

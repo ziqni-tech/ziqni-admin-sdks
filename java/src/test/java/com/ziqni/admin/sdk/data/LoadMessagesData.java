@@ -1,5 +1,6 @@
 package com.ziqni.admin.sdk.data;
 
+import com.ziqni.admin.sdk.configuration.AdminApiClientConfigBuilder;
 import com.ziqni.admin.sdk.model.*;
 import com.ziqni.admin.sdk.ZiqniAdminApiFactory;
 import com.ziqni.admin.sdk.ApiException;
@@ -7,6 +8,7 @@ import com.ziqni.admin.sdk.api.AccountMessagesApiWs;
 import com.ziqni.admin.sdk.api.MemberMessagesApiWs;
 import com.ziqni.admin.sdk.api.NotificationsApiWs;
 import com.ziqni.admin.sdk.model.*;
+import com.ziqni.admin.sdk.util.ApiClientFactoryUtil;
 import tests.utils.CompleteableFutureTestWrapper;
 
 import java.util.ArrayList;
@@ -24,10 +26,11 @@ public class LoadMessagesData implements CompleteableFutureTestWrapper {
     private NotificationsApiWs notificationsApiWs;
     private AccountMessagesApiWs accountMessagesApiWs;
 
-    public LoadMessagesData() {
-        this.api = ZiqniAdminApiFactory.getMemberMessagesApi();
-        this.notificationsApiWs = ZiqniAdminApiFactory.getNotificationsApi();
-        this.accountMessagesApiWs = ZiqniAdminApiFactory.getAccountMessagesApi();
+    public LoadMessagesData() throws Exception {
+        ApiClientFactoryUtil.initApiClientFactory(AdminApiClientConfigBuilder.build());
+        this.api = ApiClientFactoryUtil.factory.getMemberMessagesApi();
+        this.notificationsApiWs = ApiClientFactoryUtil.factory.getNotificationsApi();
+        this.accountMessagesApiWs = ApiClientFactoryUtil.factory.getAccountMessagesApi();
     }
 
     public CreateMemberMessageRequest getCreateMemberMessageRequest() {

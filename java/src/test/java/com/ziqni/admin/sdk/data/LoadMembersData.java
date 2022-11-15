@@ -3,9 +3,11 @@ package com.ziqni.admin.sdk.data;
 import com.ziqni.admin.sdk.ZiqniAdminApiFactory;
 import com.ziqni.admin.sdk.ApiException;
 import com.ziqni.admin.sdk.api.MembersApiWs;
+import com.ziqni.admin.sdk.configuration.AdminApiClientConfigBuilder;
 import com.ziqni.admin.sdk.model.CreateMemberRequest;
 import com.ziqni.admin.sdk.model.MemberType;
 import com.ziqni.admin.sdk.model.ModelApiResponse;
+import com.ziqni.admin.sdk.util.ApiClientFactoryUtil;
 import tests.utils.CompleteableFutureTestWrapper;
 
 import java.util.*;
@@ -18,8 +20,9 @@ public class LoadMembersData implements CompleteableFutureTestWrapper {
 
     private MembersApiWs api;
 
-    public LoadMembersData() {
-        this.api = ZiqniAdminApiFactory.getMembersApi();
+    public LoadMembersData() throws Exception {
+        ApiClientFactoryUtil.initApiClientFactory(AdminApiClientConfigBuilder.build());
+        this.api = ApiClientFactoryUtil.factory.getMembersApi();
     }
 
     public CreateMemberRequest getCreateRequest() {

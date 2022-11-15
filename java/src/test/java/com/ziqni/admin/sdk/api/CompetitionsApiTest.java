@@ -18,7 +18,7 @@ import com.ziqni.admin.sdk.data.LoadProductsData;
 import com.ziqni.admin.sdk.data.LoadTagsData;
 import com.ziqni.admin.sdk.model.*;
 import com.ziqni.admin.sdk.util.ApiClientFactoryUtil;
-import com.ziqni.admin.sdk.ZiqniAdminApiFactory;
+import com.ziqni.admin.sdk.configuration.AdminApiClientConfigBuilder;
 import com.ziqni.admin.sdk.ApiException;
 import com.ziqni.admin.sdk.data.LoadCustomFieldsData;
 import com.ziqni.admin.sdk.model.*;
@@ -62,15 +62,15 @@ public class CompetitionsApiTest implements tests.utils.CompleteableFutureTestWr
     private final List<String> customFieldIdsToDelete = new ArrayList<>();
 
     public CompetitionsApiTest() throws Exception {
-        ApiClientFactoryUtil.initApiClientFactory();
-        this.api = ZiqniAdminApiFactory.getCompetitionsApi();
+        ApiClientFactoryUtil.initApiClientFactory(AdminApiClientConfigBuilder.build());
+        this.api = ApiClientFactoryUtil.factory.getCompetitionsApi();
         this.loadData = new LoadCompetitionsData();
         this.loadProductsData = new LoadProductsData();
         this.loadCustomFieldsData = new LoadCustomFieldsData();
         this.loadTagsData = new LoadTagsData();
-        this.rewardsApiWs = ZiqniAdminApiFactory.getRewardsApi();
-        this.rulesApiWs = ZiqniAdminApiFactory.getRulesApi();
-        this.contestsApiWs = ZiqniAdminApiFactory.getContestsApi();
+        this.rewardsApiWs = ApiClientFactoryUtil.factory.getRewardsApi();
+        this.rulesApiWs = ApiClientFactoryUtil.factory.getRulesApi();
+        this.contestsApiWs = ApiClientFactoryUtil.factory.getContestsApi();
     }
 
 

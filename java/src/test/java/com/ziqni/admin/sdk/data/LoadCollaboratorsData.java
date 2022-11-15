@@ -3,8 +3,10 @@ package com.ziqni.admin.sdk.data;
 import com.ziqni.admin.sdk.ZiqniAdminApiFactory;
 import com.ziqni.admin.sdk.ApiException;
 import com.ziqni.admin.sdk.api.CollaboratorsApiWs;
+import com.ziqni.admin.sdk.configuration.AdminApiClientConfigBuilder;
 import com.ziqni.admin.sdk.model.CreateCollaboratorRequest;
 import com.ziqni.admin.sdk.model.ModelApiResponse;
+import com.ziqni.admin.sdk.util.ApiClientFactoryUtil;
 import tests.utils.CompleteableFutureTestWrapper;
 
 import java.util.*;
@@ -17,8 +19,9 @@ public class LoadCollaboratorsData implements CompleteableFutureTestWrapper {
 
     private CollaboratorsApiWs api;
 
-    public LoadCollaboratorsData() {
-        this.api = ZiqniAdminApiFactory.getCollaboratorsApi();
+    public LoadCollaboratorsData()  throws Exception {
+        ApiClientFactoryUtil.initApiClientFactory(AdminApiClientConfigBuilder.build());
+        this.api = ApiClientFactoryUtil.factory.getCollaboratorsApi();
     }
 
     public CreateCollaboratorRequest getCreateRequest() {

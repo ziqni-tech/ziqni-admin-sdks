@@ -3,8 +3,10 @@ package com.ziqni.admin.sdk.data;
 import com.ziqni.admin.sdk.ZiqniAdminApiFactory;
 import com.ziqni.admin.sdk.ApiException;
 import com.ziqni.admin.sdk.api.LanguagesApiWs;
+import com.ziqni.admin.sdk.configuration.AdminApiClientConfigBuilder;
 import com.ziqni.admin.sdk.model.CreateLanguageRequest;
 import com.ziqni.admin.sdk.model.ModelApiResponse;
+import com.ziqni.admin.sdk.util.ApiClientFactoryUtil;
 import tests.utils.CompleteableFutureTestWrapper;
 
 import java.util.List;
@@ -18,8 +20,9 @@ public class LoadLanguagesData implements CompleteableFutureTestWrapper {
 
     private LanguagesApiWs api;
 
-    public LoadLanguagesData() {
-        this.api = ZiqniAdminApiFactory.getLanguagesApi();
+    public LoadLanguagesData() throws Exception {
+        ApiClientFactoryUtil.initApiClientFactory(AdminApiClientConfigBuilder.build());
+        this.api = ApiClientFactoryUtil.factory.getLanguagesApi();
     }
 
     public CreateLanguageRequest getCreateRequest(String key) {

@@ -18,7 +18,7 @@ import com.ziqni.admin.sdk.data.LoadSpacesData;
 import com.ziqni.admin.sdk.data.LoadUsersData;
 import com.ziqni.admin.sdk.model.*;
 import com.ziqni.admin.sdk.util.ApiClientFactoryUtil;
-import com.ziqni.admin.sdk.ZiqniAdminApiFactory;
+import com.ziqni.admin.sdk.configuration.AdminApiClientConfigBuilder;
 import com.ziqni.admin.sdk.ApiException;
 import com.ziqni.admin.sdk.model.*;
 import org.junit.jupiter.api.*;
@@ -59,8 +59,8 @@ public class CollaboratorsApiTest implements tests.utils.CompleteableFutureTestW
     private String email = "given@ziqni.com";
 
     public CollaboratorsApiTest() throws Exception {
-        ApiClientFactoryUtil.initApiClientFactory();
-        this.api = ZiqniAdminApiFactory.getCollaboratorsApi();
+        ApiClientFactoryUtil.initApiClientFactory(AdminApiClientConfigBuilder.build());
+        this.api = ApiClientFactoryUtil.factory.getCollaboratorsApi();
 
         this.loadSpacesData = new LoadSpacesData();
         this.loadCollaboratorsData = new LoadCollaboratorsData();

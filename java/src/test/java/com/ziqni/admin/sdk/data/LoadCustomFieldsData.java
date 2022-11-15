@@ -7,11 +7,13 @@ package com.ziqni.admin.sdk.data;
 import com.ziqni.admin.sdk.ZiqniAdminApiFactory;
 import com.ziqni.admin.sdk.ApiException;
 import com.ziqni.admin.sdk.api.CustomFieldsApiWs;
+import com.ziqni.admin.sdk.configuration.AdminApiClientConfigBuilder;
 import com.ziqni.admin.sdk.model.CreateCustomFieldRequest;
 import com.ziqni.admin.sdk.model.*;
 import com.ziqni.admin.sdk.model.AppliesTo;
 import com.ziqni.admin.sdk.model.FieldType;
 import com.ziqni.admin.sdk.model.ModelApiResponse;
+import com.ziqni.admin.sdk.util.ApiClientFactoryUtil;
 import tests.utils.CompleteableFutureTestWrapper;
 
 import java.util.List;
@@ -27,8 +29,9 @@ public class LoadCustomFieldsData implements CompleteableFutureTestWrapper {
 
     private CustomFieldsApiWs api;
 
-    public LoadCustomFieldsData() {
-        this.api = ZiqniAdminApiFactory.getCustomFieldsApi();
+    public LoadCustomFieldsData() throws Exception {
+        ApiClientFactoryUtil.initApiClientFactory(AdminApiClientConfigBuilder.build());
+        this.api = ApiClientFactoryUtil.factory.getCustomFieldsApi();
     }
 
 

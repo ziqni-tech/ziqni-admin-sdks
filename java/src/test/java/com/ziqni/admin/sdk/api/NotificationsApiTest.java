@@ -18,7 +18,7 @@ import com.ziqni.admin.sdk.data.LoadMessagesData;
 import com.ziqni.admin.sdk.data.LoadTagsData;
 import com.ziqni.admin.sdk.model.*;
 import com.ziqni.admin.sdk.util.ApiClientFactoryUtil;
-import com.ziqni.admin.sdk.ZiqniAdminApiFactory;
+import com.ziqni.admin.sdk.configuration.AdminApiClientConfigBuilder;
 import com.ziqni.admin.sdk.ApiException;
 import com.ziqni.admin.sdk.model.*;
 import org.junit.jupiter.api.*;
@@ -59,8 +59,8 @@ public class NotificationsApiTest implements tests.utils.CompleteableFutureTestW
 
 
     public NotificationsApiTest() throws Exception {
-        ApiClientFactoryUtil.initApiClientFactory();
-        this.api = ZiqniAdminApiFactory.getNotificationsApi();
+        ApiClientFactoryUtil.initApiClientFactory(AdminApiClientConfigBuilder.build());
+        this.api = ApiClientFactoryUtil.factory.getNotificationsApi();
 
         this.loadData = new LoadMessagesData();
         this.loadCustomFieldsData = new LoadCustomFieldsData();

@@ -4,7 +4,9 @@ import com.ziqni.admin.sdk.ZiqniAdminApiFactory;
 import com.ziqni.admin.sdk.ApiException;
 import com.ziqni.admin.sdk.api.ConnectionsApiWs;
 import com.ziqni.admin.sdk.api.ConsumersApiWs;
+import com.ziqni.admin.sdk.configuration.AdminApiClientConfigBuilder;
 import com.ziqni.admin.sdk.model.*;
+import com.ziqni.admin.sdk.util.ApiClientFactoryUtil;
 import tests.utils.CompleteableFutureTestWrapper;
 
 import java.util.*;
@@ -25,8 +27,9 @@ public class LoadConnectionsData implements CompleteableFutureTestWrapper {
     public static String X_EXPIRES = "x-expires";
     private ConnectionsApiWs api;
 
-    public LoadConnectionsData() {
-        this.api = ZiqniAdminApiFactory.getConnectionsApi();
+    public LoadConnectionsData() throws Exception {
+        ApiClientFactoryUtil.initApiClientFactory(AdminApiClientConfigBuilder.build());
+        this.api = ApiClientFactoryUtil.factory.getConnectionsApi();
     }
 
     public CreateConnectionRequest getCreateRabbitMQRequest(String transformerId, String tagKey) {

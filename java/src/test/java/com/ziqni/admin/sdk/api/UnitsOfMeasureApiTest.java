@@ -19,7 +19,7 @@ import com.ziqni.admin.sdk.data.LoadTagsData;
 import com.ziqni.admin.sdk.data.LoadUnitsOfMeasureData;
 import com.ziqni.admin.sdk.model.*;
 import com.ziqni.admin.sdk.util.ApiClientFactoryUtil;
-import com.ziqni.admin.sdk.ZiqniAdminApiFactory;
+import com.ziqni.admin.sdk.configuration.AdminApiClientConfigBuilder;
 import com.ziqni.admin.sdk.ApiException;
 import com.ziqni.admin.sdk.model.*;
 import org.junit.jupiter.api.*;
@@ -58,8 +58,8 @@ public class UnitsOfMeasureApiTest implements tests.utils.CompleteableFutureTest
     private List<String> customFieldIdsToDelete = new ArrayList<>();
 
     public UnitsOfMeasureApiTest() throws Exception {
-        ApiClientFactoryUtil.initApiClientFactory();
-        this.api = ZiqniAdminApiFactory.getUnitsOfMeasureApi();
+        ApiClientFactoryUtil.initApiClientFactory(AdminApiClientConfigBuilder.build());
+        this.api = ApiClientFactoryUtil.factory.getUnitsOfMeasureApi();
         this.loadTestData = new LoadUnitsOfMeasureData();
         this.loadCustomFieldsData = new LoadCustomFieldsData();
         this.loadTagsData = new LoadTagsData();

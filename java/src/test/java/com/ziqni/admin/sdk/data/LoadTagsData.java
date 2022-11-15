@@ -1,5 +1,6 @@
 package com.ziqni.admin.sdk.data;
 
+import com.ziqni.admin.sdk.configuration.AdminApiClientConfigBuilder;
 import com.ziqni.admin.sdk.model.CreateTagRequest;
 import com.ziqni.admin.sdk.model.QueryMultiple;
 import com.ziqni.admin.sdk.ZiqniAdminApiFactory;
@@ -8,6 +9,7 @@ import com.ziqni.admin.sdk.api.TagsApiWs;
 import com.ziqni.admin.sdk.model.*;
 import com.ziqni.admin.sdk.model.ModelApiResponse;
 import com.ziqni.admin.sdk.model.QueryRequest;
+import com.ziqni.admin.sdk.util.ApiClientFactoryUtil;
 import tests.utils.CompleteableFutureTestWrapper;
 
 import java.util.*;
@@ -20,8 +22,9 @@ public class LoadTagsData implements CompleteableFutureTestWrapper {
 
     private TagsApiWs api;
 
-    public LoadTagsData() {
-        this.api = ZiqniAdminApiFactory.getTagsApi();
+    public LoadTagsData() throws Exception {
+        ApiClientFactoryUtil.initApiClientFactory(AdminApiClientConfigBuilder.build());
+        this.api = ApiClientFactoryUtil.factory.getTagsApi();
     }
 
     public CreateTagRequest getCreateRequest() {

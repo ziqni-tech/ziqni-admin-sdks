@@ -17,7 +17,7 @@ import com.ziqni.admin.sdk.data.LoadMessagesData;
 import com.ziqni.admin.sdk.data.LoadTagsData;
 import com.ziqni.admin.sdk.model.*;
 import com.ziqni.admin.sdk.util.ApiClientFactoryUtil;
-import com.ziqni.admin.sdk.ZiqniAdminApiFactory;
+import com.ziqni.admin.sdk.configuration.AdminApiClientConfigBuilder;
 import com.ziqni.admin.sdk.ApiException;
 import com.ziqni.admin.sdk.data.LoadCustomFieldsData;
 import com.ziqni.admin.sdk.model.*;
@@ -59,8 +59,8 @@ public class MemberMessagesApiTest implements tests.utils.CompleteableFutureTest
 
 
     public MemberMessagesApiTest() throws Exception {
-        ApiClientFactoryUtil.initApiClientFactory();
-        this.api = ZiqniAdminApiFactory.getMemberMessagesApi();
+        ApiClientFactoryUtil.initApiClientFactory(AdminApiClientConfigBuilder.build());
+        this.api = ApiClientFactoryUtil.factory.getMemberMessagesApi();
 
         this.loadData = new LoadMessagesData();
         this.loadCustomFieldsData = new LoadCustomFieldsData();

@@ -1,7 +1,7 @@
 package com.ziqni.admin.sdk.api;
 
 import com.ziqni.admin.sdk.ApiException;
-import com.ziqni.admin.sdk.ZiqniAdminApiFactory;
+import com.ziqni.admin.sdk.configuration.AdminApiClientConfigBuilder;
 import com.ziqni.admin.sdk.util.ApiClientFactoryUtil;
 import org.junit.jupiter.api.*;
 import org.slf4j.Logger;
@@ -17,8 +17,8 @@ public class LeaderboardApiTest implements tests.utils.CompleteableFutureTestWra
     private final LeaderboardApiWs api;
 
     public LeaderboardApiTest() throws Exception {
-        ApiClientFactoryUtil.initApiClientFactory();
-        this.api = ZiqniAdminApiFactory.getLeaderboardApi();
+        ApiClientFactoryUtil.initApiClientFactory(AdminApiClientConfigBuilder.build());
+        this.api = ApiClientFactoryUtil.factory.getLeaderboardApi();
 
     }
 

@@ -17,7 +17,7 @@ import com.ziqni.admin.sdk.data.LoadRulesData;
 import com.ziqni.admin.sdk.model.QueryMultiple;
 import com.ziqni.admin.sdk.model.UpdateRuleRequest;
 import com.ziqni.admin.sdk.util.ApiClientFactoryUtil;
-import com.ziqni.admin.sdk.ZiqniAdminApiFactory;
+import com.ziqni.admin.sdk.configuration.AdminApiClientConfigBuilder;
 import com.ziqni.admin.sdk.ApiException;
 import com.ziqni.admin.sdk.model.ModelApiResponse;
 import com.ziqni.admin.sdk.model.QueryRequest;
@@ -41,8 +41,8 @@ public class RulesApiTest implements CompleteableFutureTestWrapper {
     private final String ruleId;
 
     public RulesApiTest() throws Exception {
-        ApiClientFactoryUtil.initApiClientFactory();
-        this.api = ZiqniAdminApiFactory.getRulesApi();
+        ApiClientFactoryUtil.initApiClientFactory(AdminApiClientConfigBuilder.build());
+        this.api = ApiClientFactoryUtil.factory.getRulesApi();
         this.loadRulesData = new LoadRulesData();
         this.ruleId = "7jtR3IABnUjVA_XnyZuB";
 

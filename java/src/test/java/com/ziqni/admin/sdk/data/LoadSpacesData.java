@@ -3,8 +3,10 @@ package com.ziqni.admin.sdk.data;
 import com.ziqni.admin.sdk.ZiqniAdminApiFactory;
 import com.ziqni.admin.sdk.ApiException;
 import com.ziqni.admin.sdk.api.SpacesApiWs;
+import com.ziqni.admin.sdk.configuration.AdminApiClientConfigBuilder;
 import com.ziqni.admin.sdk.model.CreateSpaceRequest;
 import com.ziqni.admin.sdk.model.ModelApiResponse;
+import com.ziqni.admin.sdk.util.ApiClientFactoryUtil;
 import tests.utils.CompleteableFutureTestWrapper;
 
 import java.util.List;
@@ -19,8 +21,9 @@ public class LoadSpacesData implements CompleteableFutureTestWrapper {
 
     private SpacesApiWs api;
 
-    public LoadSpacesData() {
-        this.api = ZiqniAdminApiFactory.getSpacesApi();
+    public LoadSpacesData() throws Exception {
+        ApiClientFactoryUtil.initApiClientFactory(AdminApiClientConfigBuilder.build());
+        this.api = ApiClientFactoryUtil.factory.getSpacesApi();
     }
 
     public CreateSpaceRequest getCreateRequest() {

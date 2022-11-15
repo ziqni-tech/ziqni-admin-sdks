@@ -15,7 +15,7 @@ package com.ziqni.admin.sdk.api;
 import com.ziqni.admin.sdk.data.*;
 import com.ziqni.admin.sdk.model.*;
 import com.ziqni.admin.sdk.util.ApiClientFactoryUtil;
-import com.ziqni.admin.sdk.ZiqniAdminApiFactory;
+import com.ziqni.admin.sdk.configuration.AdminApiClientConfigBuilder;
 import com.ziqni.admin.sdk.ApiException;
 import com.ziqni.admin.sdk.data.*;
 import com.ziqni.admin.sdk.model.*;
@@ -63,8 +63,8 @@ public class FilesApiTest implements tests.utils.CompleteableFutureTestWrapper{
     private File imageFile = null;
 
     public FilesApiTest() throws Exception {
-        ApiClientFactoryUtil.initApiClientFactory();
-        this.api = ZiqniAdminApiFactory.getFileObjectsApi();
+        ApiClientFactoryUtil.initApiClientFactory(AdminApiClientConfigBuilder.build());
+        this.api = ApiClientFactoryUtil.factory.getFileObjectsApi();
         this.loadData = new LoadFileObjectsData();
         this.loadRepositoriesData = new LoadRepositoriesData();
         this.loadCustomFieldsData = new LoadCustomFieldsData();

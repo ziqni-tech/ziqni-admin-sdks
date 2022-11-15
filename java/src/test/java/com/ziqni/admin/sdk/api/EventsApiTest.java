@@ -19,7 +19,7 @@ import com.ziqni.admin.sdk.data.LoadMembersData;
 import com.ziqni.admin.sdk.data.LoadProductsData;
 import com.ziqni.admin.sdk.model.*;
 import com.ziqni.admin.sdk.util.ApiClientFactoryUtil;
-import com.ziqni.admin.sdk.ZiqniAdminApiFactory;
+import com.ziqni.admin.sdk.configuration.AdminApiClientConfigBuilder;
 import com.ziqni.admin.sdk.ApiException;
 import com.ziqni.admin.sdk.model.*;
 import org.junit.jupiter.api.*;
@@ -54,8 +54,8 @@ public class EventsApiTest implements tests.utils.CompleteableFutureTestWrapper{
     private String action;
 
     public EventsApiTest() throws Exception {
-        ApiClientFactoryUtil.initApiClientFactory();
-        this.api = ZiqniAdminApiFactory.getEventsApi();
+        ApiClientFactoryUtil.initApiClientFactory(AdminApiClientConfigBuilder.build());
+        this.api = ApiClientFactoryUtil.factory.getEventsApi();
         this.loadTestData = new LoadEventsData();
         this.loadMembersData = new LoadMembersData();
         this.loadProductsData = new LoadProductsData();

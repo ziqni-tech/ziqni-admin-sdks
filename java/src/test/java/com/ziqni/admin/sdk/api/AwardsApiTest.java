@@ -14,7 +14,7 @@
 package com.ziqni.admin.sdk.api;
 
 import com.ziqni.admin.sdk.util.ApiClientFactoryUtil;
-import com.ziqni.admin.sdk.ZiqniAdminApiFactory;
+import com.ziqni.admin.sdk.configuration.AdminApiClientConfigBuilder;
 import com.ziqni.admin.sdk.ApiException;
 import com.ziqni.admin.sdk.model.*;
 import com.ziqni.admin.sdk.model.AwardResponse;
@@ -37,8 +37,8 @@ public class AwardsApiTest implements tests.utils.CompleteableFutureTestWrapper{
     private final AwardsApiWs api ;
 
     public AwardsApiTest() throws Exception {
-        ApiClientFactoryUtil.initApiClientFactory();
-        this.api = ZiqniAdminApiFactory.getAwardsApi();
+        ApiClientFactoryUtil.initApiClientFactory(AdminApiClientConfigBuilder.build());
+        this.api = ApiClientFactoryUtil.factory.getAwardsApi();
     }
 
     @Test

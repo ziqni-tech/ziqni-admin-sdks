@@ -16,7 +16,7 @@ package com.ziqni.admin.sdk.api;
 import com.ziqni.admin.sdk.data.*;
 import com.ziqni.admin.sdk.model.*;
 import com.ziqni.admin.sdk.util.ApiClientFactoryUtil;
-import com.ziqni.admin.sdk.ZiqniAdminApiFactory;
+import com.ziqni.admin.sdk.configuration.AdminApiClientConfigBuilder;
 import com.ziqni.admin.sdk.ApiException;
 import com.ziqni.admin.sdk.data.*;
 import com.ziqni.admin.sdk.model.*;
@@ -58,8 +58,8 @@ public class WebhooksApiTest implements tests.utils.CompleteableFutureTestWrappe
     List<String> customFieldIdsToDelete = new ArrayList<>();
 
     public WebhooksApiTest() throws Exception {
-        ApiClientFactoryUtil.initApiClientFactory();
-        this.api = ZiqniAdminApiFactory.getWebhooksApi();
+        ApiClientFactoryUtil.initApiClientFactory(AdminApiClientConfigBuilder.build());
+        this.api = ApiClientFactoryUtil.factory.getWebhooksApi();
 
         this.loadData = new LoadWebhooksData();
         this.loadTransformerData = new LoadTransformerData();

@@ -4,7 +4,7 @@
 package com.ziqni.admin.sdk.streaming;
 
 import com.ziqni.admin.sdk.ZiqniAdminEventBus;
-import com.ziqni.admin.sdk.configuration.AdminApiClientConfig;
+import com.ziqni.admin.sdk.configuration.AdminApiClientConfiguration;
 import com.ziqni.admin.sdk.context.WSClientConnected;
 import com.ziqni.admin.sdk.context.WSClientConnecting;
 import com.ziqni.admin.sdk.context.WSClientDisconnected;
@@ -76,12 +76,13 @@ public class WsClient extends WebSocketStompClient{
     private final AtomicInteger connectionStateAtomic = new AtomicInteger(NotConnected);
 
     private final Consumer<Integer> onStateChange;
+    private final AdminApiClientConfiguration configuration;
 
-    public WsClient(final String wsUri, final Consumer<Integer> onStateChange, ZiqniAdminEventBus eventBus) throws Exception {
-        this(wsUri, makeAuthHeader(), onStateChange, eventBus);
+    public WsClient(final AdminApiClientConfiguration configuration, final String wsUri, final Consumer<Integer> onStateChange, ZiqniAdminEventBus eventBus) throws Exception {
+        this(configuration, wsUri, makeAuthHeader(configuration), onStateChange, eventBus);
     }
 
-    protected WsClient(final String wsUri, final StompHeaders stompHeaders, final Consumer<Integer> onStateChange, ZiqniAdminEventBus eventBus) {
+    protected WsClient(final AdminApiClientConfiguration configuration, final String wsUri, final StompHeaders stompHeaders, final Consumer<Integer> onStateChange, ZiqniAdminEventBus eventBus) {
         super(makeSockJs());
         this.wsUri = wsUri;
         this.taskScheduler = new ThreadPoolTaskScheduler();
@@ -92,6 +93,7 @@ public class WsClient extends WebSocketStompClient{
         this.stompHeaders = stompHeaders;
         this.onStateChange = onStateChange;
         this.eventBus = eventBus;
+        this.configuration = configuration;
 
 
         // create stomp client
@@ -116,14 +118,14 @@ public class WsClient extends WebSocketStompClient{
         stompSessionHandler.subscribe(stompSession,handler);
     }
 
-    private static StompHeaders makeAuthHeader() throws Exception{
+    private static StompHeaders makeAuthHeader(AdminApiClientConfiguration configuration) throws Exception{
         StompHeaders stompHeaders = new StompHeaders();
-        updateOauthToken(stompHeaders);
+        updateOauthToken(configuration,stompHeaders);
         return stompHeaders;
     }
 
-    private static void updateOauthToken(StompHeaders stompHeaders) throws Exception{
-        String oauthToken = AdminApiClientConfig.getAccessTokenString();
+    private static void updateOauthToken(AdminApiClientConfiguration configuration, StompHeaders stompHeaders) throws Exception{
+        String oauthToken = configuration.getAccessTokenString();
         stompHeaders.setLogin("Bearer");
         stompHeaders.setPasscode(oauthToken);
     }
@@ -288,7 +290,7 @@ public class WsClient extends WebSocketStompClient{
     private CompletableFuture<StompSession> doConnect() {
 
         try {
-            updateOauthToken(stompHeaders);
+            updateOauthToken(configuration,stompHeaders);
 
             final ListenableFuture<StompSession> future = super.connect(wsUri, new WebSocketHttpHeaders(), stompHeaders, stompSessionHandler);
 

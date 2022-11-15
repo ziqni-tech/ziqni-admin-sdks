@@ -17,7 +17,7 @@ import com.ziqni.admin.sdk.data.LoadRepositoriesData;
 import com.ziqni.admin.sdk.data.LoadTagsData;
 import com.ziqni.admin.sdk.model.*;
 import com.ziqni.admin.sdk.util.ApiClientFactoryUtil;
-import com.ziqni.admin.sdk.ZiqniAdminApiFactory;
+import com.ziqni.admin.sdk.configuration.AdminApiClientConfigBuilder;
 import com.ziqni.admin.sdk.ApiException;
 import com.ziqni.admin.sdk.data.LoadCustomFieldsData;
 import com.ziqni.admin.sdk.data.LoadMetadata;
@@ -55,8 +55,8 @@ public class RepositoriesApiTest implements tests.utils.CompleteableFutureTestWr
     private List<String> customFieldIdsToDelete = new ArrayList<>();
 
     public RepositoriesApiTest() throws Exception {
-        ApiClientFactoryUtil.initApiClientFactory();
-        this.api = ZiqniAdminApiFactory.getFileRepositoriesApi();
+        ApiClientFactoryUtil.initApiClientFactory(AdminApiClientConfigBuilder.build());
+        this.api = ApiClientFactoryUtil.factory.getFileRepositoriesApi();
         this.loadData = new LoadRepositoriesData();
         this.loadCustomFieldsData = new LoadCustomFieldsData();
         this.loadTagsData = new LoadTagsData();

@@ -15,7 +15,7 @@ package com.ziqni.admin.sdk.api;
 
 
 import com.ziqni.admin.sdk.ApiException;
-import com.ziqni.admin.sdk.ZiqniAdminApiFactory;
+import com.ziqni.admin.sdk.configuration.AdminApiClientConfigBuilder;
 import com.ziqni.admin.sdk.data.LoadConnectionsData;
 import com.ziqni.admin.sdk.data.LoadCustomFieldsData;
 import com.ziqni.admin.sdk.data.LoadTagsData;
@@ -63,8 +63,8 @@ public class ConnectionsApiTest implements tests.utils.CompleteableFutureTestWra
     private String transformerId;
 
     public ConnectionsApiTest() throws Exception {
-        ApiClientFactoryUtil.initApiClientFactory();
-        this.api = ZiqniAdminApiFactory.getConnectionsApi();
+        ApiClientFactoryUtil.initApiClientFactory(AdminApiClientConfigBuilder.build());
+        this.api = ApiClientFactoryUtil.factory.getConnectionsApi();
         this.loadData = new LoadConnectionsData();
         this.loadTransformerData = new LoadTransformerData();
         this.loadCustomFieldsData = new LoadCustomFieldsData();

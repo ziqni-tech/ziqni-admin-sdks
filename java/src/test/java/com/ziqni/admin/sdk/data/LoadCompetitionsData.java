@@ -3,9 +3,11 @@ package com.ziqni.admin.sdk.data;
 import com.ziqni.admin.sdk.ZiqniAdminApiFactory;
 import com.ziqni.admin.sdk.ApiException;
 import com.ziqni.admin.sdk.api.CompetitionsApiWs;
+import com.ziqni.admin.sdk.configuration.AdminApiClientConfigBuilder;
 import com.ziqni.admin.sdk.model.*;
 import com.ziqni.admin.sdk.model.*;
 
+import com.ziqni.admin.sdk.util.ApiClientFactoryUtil;
 import com.ziqni.admin.sdk.util.DateUtil;
 import tests.utils.CompleteableFutureTestWrapper;
 
@@ -25,9 +27,10 @@ public class LoadCompetitionsData implements CompleteableFutureTestWrapper {
     private LoadTagsData loadTagsData;
     private LoadUnitsOfMeasureData loadUnitsOfMeasureData;
 
-    public LoadCompetitionsData() {
+    public LoadCompetitionsData() throws Exception {
+        ApiClientFactoryUtil.initApiClientFactory(AdminApiClientConfigBuilder.build());
+        this.api = ApiClientFactoryUtil.factory.getCompetitionsApi();
         this.loadRewardTypesData=new LoadRewardTypesData();
-        this.api = ZiqniAdminApiFactory.getCompetitionsApi();
         this.loadRulesData = new LoadRulesData();
         this.loadTagsData = new LoadTagsData();
         this.loadUnitsOfMeasureData = new LoadUnitsOfMeasureData();
