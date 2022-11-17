@@ -3,7 +3,7 @@
  */
 package com.ziqni.admin.sdk.streaming;
 
-import com.ziqni.admin.sdk.ZiqniAdminEventBus;
+import com.ziqni.admin.sdk.ZiqniAdminSDKEventBus;
 import com.ziqni.admin.sdk.configuration.AdminApiClientConfiguration;
 import com.ziqni.admin.sdk.context.WSClientConnected;
 import com.ziqni.admin.sdk.context.WSClientConnecting;
@@ -22,11 +22,8 @@ import org.springframework.scheduling.TaskScheduler;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
 import org.springframework.util.concurrent.FailureCallback;
 import org.springframework.util.concurrent.ListenableFuture;
-import org.springframework.util.concurrent.ListenableFutureCallback;
 import org.springframework.util.concurrent.SuccessCallback;
-import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.WebSocketHttpHeaders;
-import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.client.jetty.JettyWebSocketClient;
 import org.springframework.web.socket.messaging.WebSocketStompClient;
 import org.springframework.web.socket.sockjs.client.SockJsClient;
@@ -50,8 +47,6 @@ public class WsClient extends WebSocketStompClient{
 
     private final WsStompSessionHandler stompSessionHandler;
 
-    private final Timer reconnectTimer;
-
     private final TaskScheduler taskScheduler;
 
     private final String wsUri;
@@ -59,7 +54,7 @@ public class WsClient extends WebSocketStompClient{
     private final StompHeaders stompHeaders;
 
     private StompSession stompSession;
-    private ZiqniAdminEventBus eventBus;
+    private ZiqniAdminSDKEventBus eventBus;
 
     private final List<SuccessCallback<StompSession>> connectListeners;
 
@@ -78,16 +73,15 @@ public class WsClient extends WebSocketStompClient{
     private final Consumer<Integer> onStateChange;
     private final AdminApiClientConfiguration configuration;
 
-    public WsClient(final AdminApiClientConfiguration configuration, final String wsUri, final Consumer<Integer> onStateChange, ZiqniAdminEventBus eventBus) throws Exception {
+    public WsClient(final AdminApiClientConfiguration configuration, final String wsUri, final Consumer<Integer> onStateChange, ZiqniAdminSDKEventBus eventBus) throws Exception {
         this(configuration, wsUri, makeAuthHeader(configuration), onStateChange, eventBus);
     }
 
-    protected WsClient(final AdminApiClientConfiguration configuration, final String wsUri, final StompHeaders stompHeaders, final Consumer<Integer> onStateChange, ZiqniAdminEventBus eventBus) {
+    protected WsClient(final AdminApiClientConfiguration configuration, final String wsUri, final StompHeaders stompHeaders, final Consumer<Integer> onStateChange, ZiqniAdminSDKEventBus eventBus) {
         super(makeSockJs());
         this.wsUri = wsUri;
         this.taskScheduler = new ThreadPoolTaskScheduler();
-        this.reconnectTimer = new Timer("ReconnectTimer");
-        this.stompSessionHandler = new WsStompSessionHandler();
+        this.stompSessionHandler = new WsStompSessionHandler(eventBus);
         this.connectListeners = new ArrayList<>();
         this.disconnectListeners = new ArrayList<>();
         this.stompHeaders = stompHeaders;
@@ -156,19 +150,19 @@ public class WsClient extends WebSocketStompClient{
         try {
             switch (state){
                 case SevereFailure:
-                    eventBus.managementEventBus.post(new WSClientSevereFailure());
+                    eventBus.managementEventBus.post(new WSClientSevereFailure(stompSession));
                     break;
 
                 case NotConnected:
-                    eventBus.managementEventBus.post(new WSClientDisconnected());
+                    eventBus.managementEventBus.post(new WSClientDisconnected(stompSession));
                     break;
 
                 case Connecting:
-                    eventBus.managementEventBus.post(new WSClientConnecting());
+                    eventBus.managementEventBus.post(new WSClientConnecting(stompSession));
                     break;
 
                 case Connected:
-                    eventBus.managementEventBus.post(new WSClientConnected());
+                    eventBus.managementEventBus.post(new WSClientConnected(stompSession, null));
                     break;
 
                 default:
@@ -259,7 +253,6 @@ public class WsClient extends WebSocketStompClient{
         setConnectionState(Disconnecting);
         final String jobId = Common.getNextId();
         disconnect(jobId);
-        reconnectTimer.cancel();
     }
 
     private void disconnect(final String jobId) {

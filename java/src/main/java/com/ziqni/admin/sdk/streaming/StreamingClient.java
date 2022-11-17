@@ -3,12 +3,15 @@
  */
 package com.ziqni.admin.sdk.streaming;
 
-import com.ziqni.admin.sdk.ZiqniAdminEventBus;
+import com.google.common.eventbus.Subscribe;
+import com.ziqni.admin.sdk.ZiqniAdminSDKEventBus;
 import com.ziqni.admin.sdk.configuration.AdminApiClientConfiguration;
 import com.ziqni.admin.sdk.streaming.handlers.RpcResultsEventHandler;
 import com.ziqni.admin.sdk.streaming.handlers.CallbackEventHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.scheduling.TaskScheduler;
+import org.springframework.scheduling.concurrent.DefaultManagedTaskScheduler;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -20,6 +23,8 @@ public class StreamingClient {
 
     private static final Logger logger = LoggerFactory.getLogger(StreamingClient.class);
 
+    private static final TaskScheduler taskScheduler = new DefaultManagedTaskScheduler();
+
     private final ExecutorService websocketSendExecutor;
 
     public final LinkedBlockingDeque<Runnable> webSocketClientTasks;
@@ -27,14 +32,14 @@ public class StreamingClient {
     private final Map<String, Consumer<StreamingClient>> onStopHandlers = new HashMap<>();
     private final RpcResultsEventHandler rpcResultsEventHandler;
     private final CallbackEventHandler callbackEventHandler;
-    private final ZiqniAdminEventBus eventBus;
+    private final ZiqniAdminSDKEventBus eventBus;
     private final String URL;
 
     private WsClient wsClient;
 
     private final AdminApiClientConfiguration configuration;
 
-    public StreamingClient(AdminApiClientConfiguration configuration, String URL, ZiqniAdminEventBus eventBus) throws Exception {
+    public StreamingClient(AdminApiClientConfiguration configuration, String URL, ZiqniAdminSDKEventBus eventBus) throws Exception {
 
         this.configuration = configuration;
         this.URL = URL;
@@ -43,6 +48,16 @@ public class StreamingClient {
         this.websocketSendExecutor = new ThreadPoolExecutor(1, 1, 0L, TimeUnit.MILLISECONDS, webSocketClientTasks);
         this.rpcResultsEventHandler = RpcResultsEventHandler.create();
         this.callbackEventHandler = CallbackEventHandler.create();
+    }
+
+    @Subscribe
+    public void onWsClientTransportError(){
+        this.stop();
+        try {
+            this.start();
+        } catch (Exception e) {
+            logger.error("Failed to reconnect using start");
+        }
     }
 
     public CompletableFuture<Void> asyncWebSocketClient(Consumer<WsClient> consumer) {
@@ -68,7 +83,12 @@ public class StreamingClient {
                         destination,
                         payload,
                         completableFuture,
-                        (stompHeaders, tPayload) -> this.wsClient.prepareMessageToSend(stompHeaders, tPayload).run()
+                        (stompHeaders, tPayload) -> {
+                            if(Objects.nonNull(tPayload))
+                                this.wsClient.prepareMessageToSend(stompHeaders, tPayload).run();
+                            else
+                                logger.warn("Message body is empty {}", stompHeaders);
+                        }
                 );
             }
             catch (IllegalStateException t){
@@ -98,6 +118,7 @@ public class StreamingClient {
     public CompletableFuture<Boolean> start() throws Exception {
         if(this.wsClient==null) {
             this.wsClient = new WsClient(configuration, URL, (integer) -> {}, eventBus);
+            this.wsClient.setTaskScheduler(taskScheduler);
             this.wsClient.setDefaultHeartbeat(new long[] {1000, 1000});
         }
 

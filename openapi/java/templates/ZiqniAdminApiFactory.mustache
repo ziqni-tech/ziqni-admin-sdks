@@ -12,7 +12,7 @@ import java.util.function.Supplier;
 public class ZiqniAdminApiFactory {
 
     private StreamingClient streamingClient;
-    private ZiqniAdminEventBus ziqniAdminEventBus;
+    private ZiqniAdminSDKEventBus ziqniAdminEventBus;
     private Boolean initialised = false;
     {{#apiInfo}}{{#apis}}private {{classname}}Ws {{#lambda.camelcase}}{{classname}}{{/lambda.camelcase}}Ws;
     {{/apis}}{{/apiInfo}}
@@ -31,7 +31,7 @@ public class ZiqniAdminApiFactory {
     public void initialise() throws Exception {
         if(initialised) return;
         this.initialised = true;
-        this.ziqniAdminEventBus = new ZiqniAdminEventBus();
+        this.ziqniAdminEventBus = new ZiqniAdminSDKEventBus();
         this.streamingClient = new StreamingClient(this.configuration, new WsAddress(this.configuration).getAddress(), getZiqniAdminEventBus());
     }
 
@@ -52,7 +52,7 @@ public class ZiqniAdminApiFactory {
         return streamingClient;
     }
 
-    public ZiqniAdminEventBus getZiqniAdminEventBus() {
+    public ZiqniAdminSDKEventBus getZiqniAdminEventBus() {
         return ziqniAdminEventBus;
     }
 
