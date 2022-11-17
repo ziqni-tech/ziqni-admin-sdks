@@ -6,6 +6,7 @@ package com.ziqni.admin.sdk.streaming;
 import com.google.common.eventbus.Subscribe;
 import com.ziqni.admin.sdk.ZiqniAdminSDKEventBus;
 import com.ziqni.admin.sdk.configuration.AdminApiClientConfiguration;
+import com.ziqni.admin.sdk.context.WsClientTransportError;
 import com.ziqni.admin.sdk.streaming.handlers.RpcResultsEventHandler;
 import com.ziqni.admin.sdk.streaming.handlers.CallbackEventHandler;
 import org.slf4j.Logger;
@@ -48,15 +49,17 @@ public class StreamingClient {
         this.websocketSendExecutor = new ThreadPoolExecutor(1, 1, 0L, TimeUnit.MILLISECONDS, webSocketClientTasks);
         this.rpcResultsEventHandler = RpcResultsEventHandler.create();
         this.callbackEventHandler = CallbackEventHandler.create();
+
+        this.eventBus.managementEventBus.register(this);
     }
 
     @Subscribe
-    public void onWsClientTransportError(){
+    public void onWsClientTransportError(WsClientTransportError wsClientTransportError){
         this.stop();
         try {
             this.start();
         } catch (Exception e) {
-            logger.error("Failed to reconnect using start");
+            logger.error("Failed to reconnect using start", e);
         }
     }
 

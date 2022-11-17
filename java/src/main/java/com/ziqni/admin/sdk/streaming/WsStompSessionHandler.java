@@ -2,6 +2,7 @@ package com.ziqni.admin.sdk.streaming;
 
 import com.ziqni.admin.sdk.ZiqniAdminSDKEventBus;
 import com.ziqni.admin.sdk.context.WSClientConnected;
+import com.ziqni.admin.sdk.context.WSClientSevereFailure;
 import com.ziqni.admin.sdk.context.WsClientTransportError;
 import org.eclipse.jetty.websocket.client.WebSocketClient;
 import org.slf4j.Logger;
@@ -82,6 +83,7 @@ public class WsStompSessionHandler extends StompSessionHandlerAdapter {
     @Override
     public void handleException(StompSession session, StompCommand command, StompHeaders headers, byte[] payload, Throwable exception) {
         logger.debug("Stomp client connection exception. [{}] ", exception.getMessage());
+        eventBus.managementEventBus.post(new WSClientSevereFailure(session,command, headers, payload, exception));
     }
 
     @Override

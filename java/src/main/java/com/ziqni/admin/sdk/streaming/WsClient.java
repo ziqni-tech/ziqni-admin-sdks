@@ -150,7 +150,7 @@ public class WsClient extends WebSocketStompClient{
         try {
             switch (state){
                 case SevereFailure:
-                    eventBus.managementEventBus.post(new WSClientSevereFailure(stompSession));
+                    eventBus.managementEventBus.post(new WSClientSevereFailure(stompSession,null,null,null, null));
                     break;
 
                 case NotConnected:
