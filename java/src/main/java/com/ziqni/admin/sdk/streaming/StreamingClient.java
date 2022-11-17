@@ -4,6 +4,7 @@
 package com.ziqni.admin.sdk.streaming;
 
 import com.google.common.eventbus.Subscribe;
+import com.ziqni.admin.sdk.ApiException;
 import com.ziqni.admin.sdk.ZiqniAdminSDKEventBus;
 import com.ziqni.admin.sdk.configuration.AdminApiClientConfiguration;
 import com.ziqni.admin.sdk.context.WsClientTransportError;
@@ -110,6 +111,11 @@ public class StreamingClient {
 
     public <TOUT, TIN> CompletableFuture<TOUT> sendWithApiCallback(String destination, TIN payload){
         final var completableFuture = new CompletableFuture<TOUT>();
+
+        if(Objects.isNull(this.wsClient) || !this.wsClient.isNotConnected()) {
+            completableFuture.completeExceptionally(new IllegalStateException("The session is not connected"));
+            return completableFuture;
+        }
 
         this.websocketSendExecutor.submit(() -> {
             try {
