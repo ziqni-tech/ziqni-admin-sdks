@@ -14,10 +14,13 @@ import org.slf4j.LoggerFactory;
 import org.springframework.scheduling.TaskScheduler;
 import org.springframework.scheduling.concurrent.DefaultManagedTaskScheduler;
 
+import java.time.OffsetDateTime;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.concurrent.*;
+import java.util.concurrent.atomic.AtomicLong;
+import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.Consumer;
 
 public class StreamingClient {
@@ -53,15 +56,30 @@ public class StreamingClient {
         this.eventBus.managementEventBus.register(this);
     }
 
+    private final AtomicLong reconnectAttempts = new AtomicLong(0);
+    private final AtomicReference<OffsetDateTime> nextReconnect = new AtomicReference<>();
+
     @Subscribe
     public void onWsClientTransportError(WsClientTransportError wsClientTransportError){
         this.stop(false).thenAccept(unused -> {
-            try {
-                this.start();
-            } catch (Exception e) {
-                logger.error("Failed to reconnect using start", e);
-            }
-        });
+            if(Objects.nonNull(this.nextReconnect.get()))
+                return;
+
+            this.reconnectAttempts.incrementAndGet();
+            this.nextReconnect.set(OffsetDateTime.now().plusSeconds(10));
+            taskScheduler.schedule(
+                () -> {
+                    try {
+                        this.start();
+                        this.reconnectAttempts.set(0);
+                        this.nextReconnect.set(null);
+                    } catch (Exception e) {
+                        this.nextReconnect.set(null);
+                        logger.error("Reconnect failed", e);
+                    }
+                },
+                this.nextReconnect.get().toInstant()
+        );});
     }
 
     public CompletableFuture<Void> asyncWebSocketClient(Consumer<WsClient> consumer) {
