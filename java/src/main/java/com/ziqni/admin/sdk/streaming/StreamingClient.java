@@ -4,7 +4,6 @@
 package com.ziqni.admin.sdk.streaming;
 
 import com.google.common.eventbus.Subscribe;
-import com.ziqni.admin.sdk.ApiException;
 import com.ziqni.admin.sdk.ZiqniAdminSDKEventBus;
 import com.ziqni.admin.sdk.configuration.AdminApiClientConfiguration;
 import com.ziqni.admin.sdk.context.WsClientTransportError;
