@@ -56,7 +56,7 @@ public class StreamingClient {
         this.eventBus.managementEventBus.register(this);
     }
 
-    private final AtomicLong reconnectAttempts = new AtomicLong(0);
+    private final AtomicLong reconnectCount = new AtomicLong(0);
     private final AtomicReference<OffsetDateTime> nextReconnect = new AtomicReference<>();
 
     @Subscribe
@@ -65,21 +65,33 @@ public class StreamingClient {
             if(Objects.nonNull(this.nextReconnect.get()))
                 return;
 
-            this.reconnectAttempts.incrementAndGet();
-            this.nextReconnect.set(OffsetDateTime.now().plusSeconds(10));
-            taskScheduler.schedule(
+            scheduleReconnect();
+        });
+    }
+
+    private void scheduleReconnect(){
+        this.reconnectCount.incrementAndGet();
+        this.nextReconnect.set(OffsetDateTime.now().plusSeconds(10));
+
+        taskScheduler.schedule(
                 () -> {
                     try {
-                        this.start();
-                        this.reconnectAttempts.set(0);
-                        this.nextReconnect.set(null);
+                        this.start( connected -> {
+                            if(connected){
+                                this.reconnectCount.set(0);
+                                this.nextReconnect.set(null);
+                            }
+                            else {
+                                scheduleReconnect();
+                            }
+                        });
                     } catch (Exception e) {
-                        this.nextReconnect.set(null);
+                        scheduleReconnect();
                         logger.error("Reconnect failed", e);
                     }
                 },
                 this.nextReconnect.get().toInstant()
-        );});
+        );
     }
 
     public CompletableFuture<Void> asyncWebSocketClient(Consumer<WsClient> consumer) {
@@ -127,6 +139,10 @@ public class StreamingClient {
         return completableFuture;
     }
 
+    public CompletableFuture<Void> stop() {
+        return stop(true);
+    }
+
     public CompletableFuture<Void> stop(boolean executorShutdown) {
         final var out = new CompletableFuture<Void>();
         if(this.wsClient!=null)
@@ -143,6 +159,10 @@ public class StreamingClient {
     }
 
     public CompletableFuture<Boolean> start() throws Exception {
+        return start((started) -> {});
+    }
+
+    public CompletableFuture<Boolean> start(Consumer<Boolean> onComplete) throws Exception {
         if(this.wsClient==null) {
             this.wsClient = new WsClient(configuration, URL, (integer) -> {}, eventBus);
             this.wsClient.setTaskScheduler(taskScheduler);
@@ -157,6 +177,7 @@ public class StreamingClient {
                     this.wsClient.subscribe( this.callbackEventHandler );
                     executeOnStartHandlers();
                 }
+                onComplete.accept(isConnected);
                 return isConnected;
             });
         });
