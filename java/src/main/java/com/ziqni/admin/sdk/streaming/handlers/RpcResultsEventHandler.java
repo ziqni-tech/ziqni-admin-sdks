@@ -32,7 +32,7 @@ public class RpcResultsEventHandler extends EventHandler<String> {
     private static final AtomicLong sequenceNumber = new AtomicLong(0);
 
     public static final AsyncCache<String, RpcResultsResponse<?,?>> awaitingResponseCache = Caffeine.newBuilder()
-            .maximumSize(1000)
+            .maximumSize(10000)
             .expireAfterWrite(5, TimeUnit.MINUTES)
             .evictionListener(new OonRemovalListener(logger))
             .buildAsync();
