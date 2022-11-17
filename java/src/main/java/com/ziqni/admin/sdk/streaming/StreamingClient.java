@@ -61,6 +61,7 @@ public class StreamingClient {
         // implement shutdown hook
         Runtime.getRuntime().addShutdownHook(new Thread( () -> {
             this.reconnectCount.set(-1);
+            this.stop(true);
         }));
     }
 
@@ -84,6 +85,9 @@ public class StreamingClient {
         taskScheduler.schedule(
                 () -> {
                     try {
+                        if(this.reconnectCount.get() < 0) // Shutdown in progress
+                            return;
+
                         this.start( connected -> {
                             if(connected){
                                 this.reconnectCount.set(0);
