@@ -77,18 +77,18 @@ public class WsStompSessionHandler extends StompSessionHandlerAdapter {
             logger.info(entry.getKey()+": "+entry.getValue());
         }
 
-        eventBus.managementEventBus.post(new WSClientConnected(session, connectedHeaders));
+        eventBus.post(new WSClientConnected(session, connectedHeaders));
     }
 
     @Override
     public void handleException(StompSession session, StompCommand command, StompHeaders headers, byte[] payload, Throwable exception) {
         logger.debug("Stomp client connection exception. [{}] ", exception.getMessage());
-        eventBus.managementEventBus.post(new WSClientSevereFailure(session,command, headers, payload, exception));
+        eventBus.post(new WSClientSevereFailure(session,command, headers, payload, exception));
     }
 
     @Override
     public void handleTransportError(StompSession session, Throwable exception) {
         logger.debug("Stomp client connection transport error. [{}] ", exception.getMessage());
-        eventBus.managementEventBus.post(new WsClientTransportError(session,exception));
+        eventBus.post(new WsClientTransportError(session,exception));
     }
 }

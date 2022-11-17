@@ -150,19 +150,19 @@ public class WsClient extends WebSocketStompClient{
         try {
             switch (state){
                 case SevereFailure:
-                    eventBus.managementEventBus.post(new WSClientSevereFailure(stompSession,null,null,null, null));
+                    this.eventBus.post(new WSClientSevereFailure(stompSession,null,null,null, null));
                     break;
 
                 case NotConnected:
-                    eventBus.managementEventBus.post(new WSClientDisconnected(stompSession));
+                    this.eventBus.post(new WSClientDisconnected(stompSession));
                     break;
 
                 case Connecting:
-                    eventBus.managementEventBus.post(new WSClientConnecting(stompSession));
+                    this.eventBus.post(new WSClientConnecting(stompSession));
                     break;
 
                 case Connected:
-                    eventBus.managementEventBus.post(new WSClientConnected(stompSession, null));
+                    this.eventBus.post(new WSClientConnected(stompSession, null));
                     break;
 
                 default:
