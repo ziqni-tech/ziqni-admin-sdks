@@ -55,12 +55,13 @@ public class StreamingClient {
 
     @Subscribe
     public void onWsClientTransportError(WsClientTransportError wsClientTransportError){
-        this.stop();
-        try {
-            this.start();
-        } catch (Exception e) {
-            logger.error("Failed to reconnect using start", e);
-        }
+        this.stop(false).thenAccept(unused -> {
+            try {
+                this.start();
+            } catch (Exception e) {
+                logger.error("Failed to reconnect using start", e);
+            }
+        });
     }
 
     public CompletableFuture<Void> asyncWebSocketClient(Consumer<WsClient> consumer) {
@@ -108,14 +109,19 @@ public class StreamingClient {
         return completableFuture;
     }
 
-    public void stop() {
+    public CompletableFuture<Void> stop(boolean executorShutdown) {
+        final var out = new CompletableFuture<Void>();
         if(this.wsClient!=null)
             this.websocketSendExecutor.submit(() -> {
                 this.wsClient.shutdown();
                 this.wsClient=null;
+                out.complete(null);
             });
 
-        this.websocketSendExecutor.shutdown();
+        if(executorShutdown)
+            this.websocketSendExecutor.shutdown();
+
+        return out;
     }
 
     public CompletableFuture<Boolean> start() throws Exception {
