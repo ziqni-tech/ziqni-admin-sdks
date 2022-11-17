@@ -61,6 +61,7 @@ public class StreamingClient {
         // implement shutdown hook
         Runtime.getRuntime().addShutdownHook(new Thread( () -> {
             this.reconnectCount.set(-1);
+            this.stop(true);
         }));
     }
 
@@ -84,6 +85,9 @@ public class StreamingClient {
         taskScheduler.schedule(
                 () -> {
                     try {
+                        if(this.reconnectCount.get() < 0) // Shutdown in progress
+                            return;
+
                         this.start( connected -> {
                             if(connected){
                                 this.reconnectCount.set(0);
@@ -119,7 +123,10 @@ public class StreamingClient {
     public <TOUT, TIN> CompletableFuture<TOUT> sendWithApiCallback(String destination, TIN payload){
         final var completableFuture = new CompletableFuture<TOUT>();
 
-        if(Objects.isNull(this.wsClient) || this.wsClient.isNotConnected()) {
+        if(Objects.isNull(this.wsClient)
+                || this.wsClient.isNotConnected()
+                || this. websocketSendExecutor.isTerminated()
+                || this. websocketSendExecutor.isShutdown()) {
             completableFuture.completeExceptionally(new IllegalStateException("The session is not connected"));
             return completableFuture;
         }
@@ -176,6 +183,9 @@ public class StreamingClient {
     }
 
     public CompletableFuture<Boolean> start(Consumer<Boolean> onComplete) throws Exception {
+        if(this.websocketSendExecutor.isShutdown() || this.websocketSendExecutor.isTerminated())
+            throw new IllegalStateException("The websocket send executor has been terminated");
+
         if(this.reconnectCount.get() < 0) // Shutdown in progress
             throw new IllegalStateException("The client is shutting down");
 
