@@ -40,6 +40,8 @@ public class StreamingClient {
     private final ZiqniAdminSDKEventBus eventBus;
     private final String URL;
 
+    private final AtomicLong reconnectCount = new AtomicLong(0);
+    private final AtomicReference<OffsetDateTime> nextReconnect = new AtomicReference<>();
     private WsClient wsClient;
 
     private final AdminApiClientConfiguration configuration;
@@ -55,10 +57,12 @@ public class StreamingClient {
         this.callbackEventHandler = CallbackEventHandler.create();
 
         this.eventBus.managementEventBus.register(this);
-    }
 
-    private final AtomicLong reconnectCount = new AtomicLong(0);
-    private final AtomicReference<OffsetDateTime> nextReconnect = new AtomicReference<>();
+        // implement shutdown hook
+        Runtime.getRuntime().addShutdownHook(new Thread( () -> {
+            this.reconnectCount.set(-1);
+        }));
+    }
 
     @Subscribe
     public void onWsClientTransportError(WsClientTransportError wsClientTransportError){
@@ -71,6 +75,9 @@ public class StreamingClient {
     }
 
     private void scheduleReconnect(){
+        if(this.reconnectCount.get() < 0) // Shutdown in progress
+            return;
+
         this.reconnectCount.incrementAndGet();
         this.nextReconnect.set(OffsetDateTime.now().plusSeconds(10));
 
@@ -169,6 +176,9 @@ public class StreamingClient {
     }
 
     public CompletableFuture<Boolean> start(Consumer<Boolean> onComplete) throws Exception {
+        if(this.reconnectCount.get() < 0) // Shutdown in progress
+            throw new IllegalStateException("The client is shutting down");
+
         if(this.wsClient==null) {
             this.wsClient = new WsClient(configuration, URL, (integer) -> {}, eventBus);
             this.wsClient.setTaskScheduler(taskScheduler);
