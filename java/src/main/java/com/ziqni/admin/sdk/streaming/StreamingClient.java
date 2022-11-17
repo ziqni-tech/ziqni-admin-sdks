@@ -112,7 +112,7 @@ public class StreamingClient {
     public <TOUT, TIN> CompletableFuture<TOUT> sendWithApiCallback(String destination, TIN payload){
         final var completableFuture = new CompletableFuture<TOUT>();
 
-        if(Objects.isNull(this.wsClient) || !this.wsClient.isNotConnected()) {
+        if(Objects.isNull(this.wsClient) || this.wsClient.isNotConnected()) {
             completableFuture.completeExceptionally(new IllegalStateException("The session is not connected"));
             return completableFuture;
         }
