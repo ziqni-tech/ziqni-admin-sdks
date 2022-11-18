@@ -82,27 +82,33 @@ public class StreamingClient {
         this.nextReconnect.set(OffsetDateTime.now().plusSeconds(10));
 
         taskScheduler.schedule(
-                () -> {
-                    try {
-                        if(this.reconnectCount.get() < 0) // Shutdown in progress
-                            return;
-
-                        this.start( connected -> {
-                            if(connected){
-                                this.reconnectCount.set(0);
-                                this.nextReconnect.set(null);
-                            }
-                            else {
-                                scheduleReconnect();
-                            }
-                        });
-                    } catch (Throwable throwable) {
-                        scheduleReconnect();
-                        logger.error("Reconnect failed", throwable);
-                    }
-                },
+                this::attemptReconnect,
                 this.nextReconnect.get().toInstant()
         );
+    }
+
+    private void attemptReconnect(){
+        try {
+            if(this.reconnectCount.get() < 0) // Shutdown in progress
+                return;
+
+            this.start( connected -> {
+                try {
+                    if (connected) {
+                        this.reconnectCount.set(0);
+                        this.nextReconnect.set(null);
+                    } else {
+                        scheduleReconnect();
+                    }
+                } catch (Throwable throwable) {
+                    scheduleReconnect();
+                    logger.error("Reconnect failed", throwable);
+                }
+            });
+        } catch (Throwable throwable) {
+            scheduleReconnect();
+            logger.error("Reconnect failed", throwable);
+        }
     }
 
     public CompletableFuture<Void> asyncWebSocketClient(Consumer<WsClient> consumer) {
