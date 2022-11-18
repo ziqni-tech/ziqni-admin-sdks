@@ -96,9 +96,9 @@ public class StreamingClient {
                                 scheduleReconnect();
                             }
                         });
-                    } catch (Exception e) {
+                    } catch (Throwable throwable) {
                         scheduleReconnect();
-                        logger.error("Reconnect failed", e);
+                        logger.error("Reconnect failed", throwable);
                     }
                 },
                 this.nextReconnect.get().toInstant()
