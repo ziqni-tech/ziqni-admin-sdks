@@ -104,6 +104,10 @@ public class StreamingClient {
                     scheduleReconnect();
                     logger.error("Reconnect failed", throwable);
                 }
+            }).exceptionally(throwable -> {
+                logger.warn("Reconnect failed with: {}", throwable.getMessage());
+                scheduleReconnect();
+                return null;
             });
         } catch (Throwable throwable) {
             scheduleReconnect();
