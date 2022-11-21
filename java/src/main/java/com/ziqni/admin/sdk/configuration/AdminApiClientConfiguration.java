@@ -8,11 +8,12 @@ import org.keycloak.admin.client.Keycloak;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.Objects;
 import java.util.Optional;
 
 public class AdminApiClientConfiguration {
 
-    private final Logger logger = LoggerFactory.getLogger(AdminApiClientConfiguration.class);
+    private final static Logger logger = LoggerFactory.getLogger(AdminApiClientConfiguration.class);
 
     private String adminClientServerBasePath;
     private String adminClientServerHost;
@@ -131,5 +132,18 @@ public class AdminApiClientConfiguration {
                 adminClientIdentityUser,
                 adminClientIdentityPass,
                 adminClientIdentityProjectUrl);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof AdminApiClientConfiguration)) return false;
+        AdminApiClientConfiguration that = (AdminApiClientConfiguration) o;
+        return isWebsocket() == that.isWebsocket() && getAdminClientServerBasePath().equals(that.getAdminClientServerBasePath()) && getAdminClientServerHost().equals(that.getAdminClientServerHost()) && getAdminClientServerPort().equals(that.getAdminClientServerPort()) && getAdminClientServerScheme().equals(that.getAdminClientServerScheme()) && adminClientIdentityEndpoint.equals(that.adminClientIdentityEndpoint) && adminClientIdentityRealm.equals(that.adminClientIdentityRealm) && getAdminClientIdentityUser().equals(that.getAdminClientIdentityUser()) && adminClientIdentityPass.equals(that.adminClientIdentityPass) && getAdminClientIdentityProjectUrl().equals(that.getAdminClientIdentityProjectUrl()) && getIdentityClient().equals(that.getIdentityClient());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getAdminClientServerBasePath(), getAdminClientServerHost(), getAdminClientServerPort(), getAdminClientServerScheme(), adminClientIdentityEndpoint, adminClientIdentityRealm, getAdminClientIdentityUser(), adminClientIdentityPass, getAdminClientIdentityProjectUrl(), isWebsocket(), getIdentityClient());
     }
 }
