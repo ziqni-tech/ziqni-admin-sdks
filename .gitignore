@@ -9,3 +9,4 @@
 /javascript/node_modules/
 /javascript/package-lock.json
 /javascript/dist/
+/openapi/cs/generated/
