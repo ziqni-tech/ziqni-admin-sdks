@@ -7744,6 +7744,46 @@ paths:
       operationId: getLeaderboardById
       description: Returns a leaderborads for the competition or contest id provided
       x-codegen-request-body-name: body
+  /log-events/query:
+    post:
+      requestBody:
+        description: >-
+          Retrieve Log Events from Ziqni database by unique Log Events ID's or any other Post body
+          parameters using the POST method
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/QueryRequest'
+      tags:
+        - logEvents
+      responses:
+        '200':
+          $ref: '#/components/responses/LogEventResponseBody'
+        '400':
+          $ref: '#/components/responses/LogEventResponseBody'
+        '401':
+          $ref: '#/components/responses/LogEventResponseBody'
+        '403':
+          $ref: '#/components/responses/LogEventResponseBody'
+        '404':
+          $ref: '#/components/responses/LogEventResponseBody'
+        '413':
+          $ref: '#/components/responses/LogEventResponseBody'
+        '500':
+          $ref: '#/components/responses/LogEventResponseBody'
+        '501':
+          $ref: '#/components/responses/LogEventResponseBody'
+        '503':
+          $ref: '#/components/responses/LogEventResponseBody'
+      security:
+        -
+          OAuth2:
+            - ViewLogEvents
+      operationId: getLogEventsByQuery
+      description: >-
+        Retrieve Log Events from Ziqni database by unique Log Events ID's or any other POST body
+        parameters using the POST method
+      x-codegen-request-body-name: body
 components:
   schemas:
     ProductReduced:
@@ -7810,16 +7850,24 @@ components:
     RewardTypeReduced:
       allOf:
         -
-          $ref: '#/components/schemas/ModelDefault'
-        -
           required:
             - key
+            - id
+            - spaceName
           type: object
           properties:
             key:
               description: A unique key that represents the reward type
               type: string
               example: free-spin-reward
+            id:
+              description: A unique system generated identifier
+              type: string
+              example: sc1samQmVr61KgaPQq7x
+            spaceName:
+              description: This is the space name which is linked to the account
+              type: string
+              example: Your_space_name
     CustomFieldReduced:
       description: This is a Custom field model with fewer parameters
       allOf:
@@ -16246,7 +16294,7 @@ components:
               x-vue-constraint-options:
                 - Disabled
             timeZoneOffset:
-              description: To what time zone teh emmber belongs to
+              description: The timezone offset from UTC to use for this member
               type: string
               x-vue-search-field: true
               x-vue-disaply-order: 1005
@@ -17563,6 +17611,65 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Error'
+    LogEvent:
+      required:
+        - accountId
+        - created
+        - hostName
+        - id
+        - logLevel
+        - message
+        - privateIpAddress
+        - serverType
+        - stackTrace
+        - entityId
+        - entityType
+      type: object
+      properties:
+        accountId:
+          type: string
+        logLevel:
+          type: string
+        message:
+          type: string
+        hostName:
+          type: string
+        created:
+          format: date-time
+          description: date-time
+          type: string
+        serverType:
+          type: string
+        id:
+          type: string
+        stackTrace:
+          type: string
+        privateIpAddress:
+          type: string
+        version:
+          format: int64
+          type: integer
+        entityId:
+          description: ''
+          type: string
+        entityType:
+          description: ''
+          type: string
+    LogEventResponse:
+      required:
+        - meta
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/MetaExtended'
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/LogEvent'
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
   responses:
     ApiResponseBody:
       content:
@@ -18652,6 +18759,15 @@ components:
           schema:
             $ref: '#/components/schemas/ObjectParametersResponse'
       description: ''
+    LogEventResponseBody:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/LogEventResponse'
+          examples:
+            Example:
+              $ref: '#/components/examples/GetErrorResponse'
+      description: A list of log events and/or errors
   parameters:
     spaceName:
       name: spaceName
