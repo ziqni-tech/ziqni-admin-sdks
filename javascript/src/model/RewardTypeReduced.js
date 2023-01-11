@@ -12,7 +12,6 @@
  */
 
 import ApiClient from '../ApiClient';
-import ModelDefault from './ModelDefault';
 import RewardTypeReducedAllOf from './RewardTypeReducedAllOf';
 
 /**
@@ -24,16 +23,14 @@ class RewardTypeReduced {
     /**
      * Constructs a new <code>RewardTypeReduced</code>.
      * @alias module:model/RewardTypeReduced
-     * @implements module:model/ModelDefault
      * @implements module:model/RewardTypeReducedAllOf
+     * @param key {String} A unique key that represents the reward type
      * @param id {String} A unique system generated identifier
      * @param spaceName {String} This is the space name which is linked to the account
-     * @param created {Date} ISO8601 timestamp for when a Model was created. All records are stored in UTC time zone
-     * @param key {String} A unique key that represents the reward type
      */
-    constructor(id, spaceName, created, key) { 
-        ModelDefault.initialize(this, id, spaceName, created);RewardTypeReducedAllOf.initialize(this, key);
-        RewardTypeReduced.initialize(this, id, spaceName, created, key);
+    constructor(key, id, spaceName) { 
+        RewardTypeReducedAllOf.initialize(this, key, id, spaceName);
+        RewardTypeReduced.initialize(this, key, id, spaceName);
     }
 
     /**
@@ -41,11 +38,10 @@ class RewardTypeReduced {
      * This method is used by the constructors of any subclasses, in order to implement multiple inheritance (mix-ins).
      * Only for internal use.
      */
-    static initialize(obj, id, spaceName, created, key) { 
+    static initialize(obj, key, id, spaceName) { 
+        obj['key'] = key;
         obj['id'] = id;
         obj['spaceName'] = spaceName;
-        obj['created'] = created;
-        obj['key'] = key;
     }
 
     /**
@@ -58,20 +54,16 @@ class RewardTypeReduced {
     static constructFromObject(data, obj) {
         if (data) {
             obj = obj || new RewardTypeReduced();
-            ModelDefault.constructFromObject(data, obj);
             RewardTypeReducedAllOf.constructFromObject(data, obj);
 
+            if (data.hasOwnProperty('key')) {
+                obj['key'] = ApiClient.convertToType(data['key'], 'String');
+            }
             if (data.hasOwnProperty('id')) {
                 obj['id'] = ApiClient.convertToType(data['id'], 'String');
             }
             if (data.hasOwnProperty('spaceName')) {
                 obj['spaceName'] = ApiClient.convertToType(data['spaceName'], 'String');
-            }
-            if (data.hasOwnProperty('created')) {
-                obj['created'] = ApiClient.convertToType(data['created'], 'Date');
-            }
-            if (data.hasOwnProperty('key')) {
-                obj['key'] = ApiClient.convertToType(data['key'], 'String');
             }
         }
         return obj;
@@ -79,6 +71,12 @@ class RewardTypeReduced {
 
 
 }
+
+/**
+ * A unique key that represents the reward type
+ * @member {String} key
+ */
+RewardTypeReduced.prototype['key'] = undefined;
 
 /**
  * A unique system generated identifier
@@ -92,41 +90,23 @@ RewardTypeReduced.prototype['id'] = undefined;
  */
 RewardTypeReduced.prototype['spaceName'] = undefined;
 
-/**
- * ISO8601 timestamp for when a Model was created. All records are stored in UTC time zone
- * @member {Date} created
- */
-RewardTypeReduced.prototype['created'] = undefined;
 
-/**
- * A unique key that represents the reward type
- * @member {String} key
- */
-RewardTypeReduced.prototype['key'] = undefined;
-
-
-// Implement ModelDefault interface:
-/**
- * A unique system generated identifier
- * @member {String} id
- */
-ModelDefault.prototype['id'] = undefined;
-/**
- * This is the space name which is linked to the account
- * @member {String} spaceName
- */
-ModelDefault.prototype['spaceName'] = undefined;
-/**
- * ISO8601 timestamp for when a Model was created. All records are stored in UTC time zone
- * @member {Date} created
- */
-ModelDefault.prototype['created'] = undefined;
 // Implement RewardTypeReducedAllOf interface:
 /**
  * A unique key that represents the reward type
  * @member {String} key
  */
 RewardTypeReducedAllOf.prototype['key'] = undefined;
+/**
+ * A unique system generated identifier
+ * @member {String} id
+ */
+RewardTypeReducedAllOf.prototype['id'] = undefined;
+/**
+ * This is the space name which is linked to the account
+ * @member {String} spaceName
+ */
+RewardTypeReducedAllOf.prototype['spaceName'] = undefined;
 
 
 
