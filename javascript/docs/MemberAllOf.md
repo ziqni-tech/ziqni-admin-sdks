@@ -9,6 +9,6 @@ Name | Type | Description | Notes
 **memberType** | [**MemberType**](MemberType.md) |  | 
 **teamMembers** | **[String]** | A social group like Guilds | [optional] 
 **constraints** | **[String]** | Additional constraints | [optional] 
-**timeZoneOffset** | **String** | To what time zone teh emmber belongs to | [optional] 
+**timeZoneOffset** | **String** | The timezone offset from UTC to use for this member | [optional] 
 
 
