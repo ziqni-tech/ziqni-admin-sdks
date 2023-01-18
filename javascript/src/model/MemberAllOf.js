@@ -109,7 +109,7 @@ MemberAllOf.prototype['teamMembers'] = undefined;
 MemberAllOf.prototype['constraints'] = undefined;
 
 /**
- * To what time zone teh emmber belongs to
+ * The timezone offset from UTC to use for this member
  * @member {String} timeZoneOffset
  */
 MemberAllOf.prototype['timeZoneOffset'] = undefined;
