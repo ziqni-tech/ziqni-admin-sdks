@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **memberType** | **MemberType** |  | 
 **teamMembers** | **List&lt;String&gt;** | A social group like Guilds |  [optional]
 **constraints** | **List&lt;String&gt;** | Additional constraints |  [optional]
-**timeZoneOffset** | **String** | To what time zone teh emmber belongs to |  [optional]
+**timeZoneOffset** | **String** | The timezone offset from UTC to use for this member |  [optional]
 
 
 

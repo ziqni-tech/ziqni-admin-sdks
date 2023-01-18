@@ -24,6 +24,7 @@ Name | Type | Description | Notes
 **metadata** | **Map&lt;String, String&gt;** |  |  [optional]
 **constraints** | **List&lt;String&gt;** | Additional constraints, if the value is present it means the | 
 **claimedTimestamp** | **OffsetDateTime** | ISO8601 timestamp for when an Award is claimed. All records are stored in UTC time zone. * |  [optional]
+**memberRefId** | **String** |  |  [optional]
 
 
 

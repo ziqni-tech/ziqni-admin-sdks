@@ -5,13 +5,17 @@
 ## Enum
 
 
-* `STARTING` (value: `"Starting"`)
+* `DELETED` (value: `"Deleted"`)
 
-* `CANCELLING` (value: `"Cancelling"`)
+* `READY` (value: `"Ready"`)
 
-* `FINISHING` (value: `"Finishing"`)
+* `ACTIVE` (value: `"Active"`)
 
-* `FINALISING` (value: `"Finalising"`)
+* `FINISHED` (value: `"Finished"`)
+
+* `FINALISED` (value: `"Finalised"`)
+
+* `CANCELLED` (value: `"Cancelled"`)
 
 
 

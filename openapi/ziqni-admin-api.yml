@@ -7744,6 +7744,46 @@ paths:
       operationId: getLeaderboardById
       description: Returns a leaderborads for the competition or contest id provided
       x-codegen-request-body-name: body
+  /log-events/query:
+    post:
+      requestBody:
+        description: >-
+          Retrieve Log Events from Ziqni database by unique Log Events ID's or any other Post body
+          parameters using the POST method
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/QueryRequest'
+      tags:
+        - logEvents
+      responses:
+        '200':
+          $ref: '#/components/responses/LogEventResponseBody'
+        '400':
+          $ref: '#/components/responses/LogEventResponseBody'
+        '401':
+          $ref: '#/components/responses/LogEventResponseBody'
+        '403':
+          $ref: '#/components/responses/LogEventResponseBody'
+        '404':
+          $ref: '#/components/responses/LogEventResponseBody'
+        '413':
+          $ref: '#/components/responses/LogEventResponseBody'
+        '500':
+          $ref: '#/components/responses/LogEventResponseBody'
+        '501':
+          $ref: '#/components/responses/LogEventResponseBody'
+        '503':
+          $ref: '#/components/responses/LogEventResponseBody'
+      security:
+        -
+          OAuth2:
+            - ViewLogEvents
+      operationId: getLogEventsByQuery
+      description: >-
+        Retrieve Log Events from Ziqni database by unique Log Events ID's or any other POST body
+        parameters using the POST method
+      x-codegen-request-body-name: body
 components:
   schemas:
     ProductReduced:
@@ -7810,16 +7850,24 @@ components:
     RewardTypeReduced:
       allOf:
         -
-          $ref: '#/components/schemas/ModelDefault'
-        -
           required:
             - key
+            - id
+            - spaceName
           type: object
           properties:
             key:
               description: A unique key that represents the reward type
               type: string
               example: free-spin-reward
+            id:
+              description: A unique system generated identifier
+              type: string
+              example: sc1samQmVr61KgaPQq7x
+            spaceName:
+              description: This is the space name which is linked to the account
+              type: string
+              example: Your_space_name
     CustomFieldReduced:
       description: This is a Custom field model with fewer parameters
       allOf:
@@ -9246,15 +9294,6 @@ components:
         - Asc
         - Desc
       type: string
-    ContestStateOperations:
-      description: Operations supported by update contest state action.
-      enum:
-        - Starting
-        - Cancelling
-        - Finishing
-        - Finalising
-      type: string
-      readOnly: true
     StrategyType:
       description: >
         The scoring strategy type. SUMMARY: * "TotalCumulative": The basic strategy where all the
@@ -9344,16 +9383,6 @@ components:
         - Finished
         - Finalised
       type: string
-    CompetitionStatusActions:
-      description: Available actions for competition status
-      enum:
-        - Deleted
-        - Ready
-        - Active
-        - Finished
-        - Cancelled
-      type: string
-      example: '"Deleted"'
     AppliesTo:
       description: To which model does the custom field applies to
       enum:
@@ -11542,56 +11571,6 @@ components:
         totalRecords: 26
         resultCount: 3
         errorCount: 2
-    Notification:
-      allOf:
-        -
-          $ref: '#/components/schemas/ModelDefault'
-        -
-          $ref: '#/components/schemas/OptParamModels'
-        -
-          required:
-            - messageType
-            - subject
-            - body
-            - status
-            - scheduling
-            - constraints
-          type: object
-          properties:
-            messageType:
-              $ref: '#/components/schemas/MessageType'
-            subject:
-              description: The title of the message
-              type: string
-              example: Hello and welcome
-            body:
-              description: The context of the message
-              type: string
-              example: Here is a message to welcome you on board!
-            status:
-              $ref: '#/components/schemas/NotificationStatus'
-            translations:
-              type: array
-              items:
-                $ref: '#/components/schemas/Translation'
-            scheduling:
-              $ref: '#/components/schemas/Scheduling'
-            constraints:
-              description: Additional constraints
-              type: array
-              items:
-                type: string
-              example: '- deprecated'
-            memberTags:
-              description: ''
-              type: array
-              items:
-                type: string
-            memberIds:
-              description: ''
-              type: array
-              items:
-                type: string
     QueryMultiple:
       required:
         - queryField
@@ -11934,7 +11913,9 @@ components:
               type: array
               items:
                 type: string
-              example: '- notifyMember - isMemberAcknowledgmentRequired'
+              example: |-
+                - notifyMember 
+                - acknowledgementRequired
             removeConstraints:
               description: Additional constraints
               type: array
@@ -12212,7 +12193,9 @@ components:
               type: array
               items:
                 type: string
-              example: '- notifyMember - isMemberAcknowledgmentRequired'
+              example: |-
+                - notifyMember 
+                - acknowledgementRequired
               x-vue-constraint: true
       x-vue-list: true
       x-vue-show: true
@@ -12967,7 +12950,8 @@ components:
               items:
                 type: string
               example: |-
-                - memberAcknowledgmentRequired
+                - notifyMember 
+                - acknowledgementRequired
                 - claimed
               x-vue-search-field: true
               x-vue-disaply-order: 1001
@@ -12981,6 +12965,9 @@ components:
               example: '2019-09-25T15:47:00.000+0000'
               x-vue-search-field: true
               x-vue-disaply-order: 1001
+            memberRefId:
+              description: ''
+              type: string
       x-vue-list: true
       x-vue-show: true
       x-vue-getter: awards
@@ -13993,7 +13980,9 @@ components:
               type: array
               items:
                 type: string
-              example: '- memberAcknowledgmentRequired'
+              example: |-
+                - notifyMember 
+                - acknowledgementRequired
             rewardTypeId:
               description: A unique id of the Reward Type
               type: string
@@ -15993,35 +15982,6 @@ components:
           x-vue-form-type: CUSTOM
       x-vue-create: event
       x-vue-creator: events
-    LeaderboardMember:
-      required:
-        - name
-        - rank
-        - points
-        - memberId
-        - memberRefId
-      type: object
-      properties:
-        name:
-          description: The name of the player
-          type: string
-          example: Player 1
-        memberId:
-          description: Unique system identifier of a Member
-          type: string
-          example: Dc4swmQBVd51K6gPQqFx
-        memberRefId:
-          description: The reference to this member in your system
-          type: string
-          example: Player-1
-        rankChangeFrom:
-          format: int32
-          description: 'Previous rank held, null if no changes are recorded'
-          type: integer
-        rankChangeType:
-          format: int32
-          description: '[-1] for rank-down, like 5 to 8. [0] for no change, [1] for rank-up like 9 to 3'
-          type: integer
     CloneCompetitionResponse:
       required:
         - meta
@@ -16188,6 +16148,11 @@ components:
         resource:
           description: This will be ziqni-gapi or similar
           type: string
+        disabledServices:
+          description: 'A list of services to be disabled for this web token '
+          type: array
+          items:
+            type: string
       example:
         apiKey: some text
         isReferenceId: true
@@ -16246,7 +16211,7 @@ components:
               x-vue-constraint-options:
                 - Disabled
             timeZoneOffset:
-              description: To what time zone teh emmber belongs to
+              description: The timezone offset from UTC to use for this member
               type: string
               x-vue-search-field: true
               x-vue-disaply-order: 1005
@@ -17213,80 +17178,6 @@ components:
         linkType:
           description: 'The type of link, relatesTo, refersTo, describes'
           type: string
-    MemberMessage:
-      description: This is the Member Message model
-      allOf:
-        -
-          $ref: '#/components/schemas/ModelDefault'
-        -
-          $ref: '#/components/schemas/OptParamModels'
-        -
-          required:
-            - eventRefType
-            - eventReId
-            - messageType
-            - subject
-            - body
-            - status
-            - expiry
-            - links
-          type: object
-          properties:
-            eventRefType:
-              $ref: '#/components/schemas/EventRefType'
-            eventRefId:
-              description: The reference ID of the event object
-              type: string
-              example: Dc4swmQBVd51K6gPQqFx
-              x-vue-search-all: true
-              x-vue-search-field: true
-              x-vue-disaply-order: 1001
-            messageType:
-              $ref: '#/components/schemas/MessageType'
-              x-vue-disaply-order: 1003
-            subject:
-              description: The title of the message
-              type: string
-              example: Hello and welcome
-              x-vue-disaply-order: 1002
-              x-vue-search-all: true
-              x-vue-search-field: true
-              x-vue-form-type: TEXTAREA
-            body:
-              description: The context of the message
-              type: string
-              example: Here is a message to welcome you on board!
-              x-vue-disaply-order: 1003
-              x-vue-search-all: true
-              x-vue-search-field: true
-              x-vue-form-type: TEXTAREA
-            status:
-              $ref: '#/components/schemas/MessageStatus'
-              x-vue-disaply-order: 1003
-            expiry:
-              format: date-time
-              description: The time that the message will disappear after. ISO8601 timestamp
-              type: string
-              example: '2019-09-25T15:47:00.000+0000'
-              x-vue-search-field: true
-              x-vue-disaply-order: 1004
-            links:
-              $ref: '#/components/schemas/MessageLink'
-              description: ''
-            memberIds:
-              description: ''
-              type: array
-              items:
-                type: string
-      x-vue-list: true
-      x-vue-show: true
-      x-vue-getter: memberMessages
-      x-vue-sort-by: name
-      x-vue-sort-order: Asc
-      x-vue-limit: 10
-      x-vue-ops:
-        - Create
-        - Update
     CreateNotificationRequest:
       allOf:
         -
@@ -17563,6 +17454,249 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Error'
+    LogEvent:
+      required:
+        - accountId
+        - created
+        - hostName
+        - id
+        - logLevel
+        - message
+        - privateIpAddress
+        - serverType
+        - stackTrace
+        - entityId
+        - entityType
+      type: object
+      properties:
+        accountId:
+          type: string
+        logLevel:
+          type: string
+        message:
+          type: string
+        hostName:
+          type: string
+        created:
+          format: date-time
+          description: date-time
+          type: string
+        serverType:
+          type: string
+        id:
+          type: string
+        stackTrace:
+          type: string
+        privateIpAddress:
+          type: string
+        version:
+          format: int64
+          type: integer
+        entityId:
+          description: ''
+          type: string
+        entityType:
+          description: ''
+          type: string
+    LogEventResponse:
+      required:
+        - meta
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/MetaExtended'
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/LogEvent'
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
+    Notification:
+      allOf:
+        -
+          $ref: '#/components/schemas/ModelDefault'
+        -
+          $ref: '#/components/schemas/OptParamModels'
+        -
+          required:
+            - messageType
+            - subject
+            - body
+            - status
+            - scheduling
+            - constraints
+          type: object
+          properties:
+            messageType:
+              $ref: '#/components/schemas/MessageType'
+            subject:
+              description: The title of the message
+              type: string
+              example: Hello and welcome
+              x-vue-translatable: true
+            body:
+              description: The context of the message
+              type: string
+              example: Here is a message to welcome you on board!
+              x-vue-translatable: true
+            status:
+              $ref: '#/components/schemas/NotificationStatus'
+            translations:
+              type: array
+              items:
+                $ref: '#/components/schemas/Translation'
+            scheduling:
+              $ref: '#/components/schemas/Scheduling'
+            constraints:
+              description: Additional constraints
+              type: array
+              items:
+                type: string
+              example: '- deprecated'
+            memberTags:
+              description: ''
+              type: array
+              items:
+                type: string
+            memberIds:
+              description: ''
+              type: array
+              items:
+                type: string
+    MemberMessage:
+      description: This is the Member Message model
+      allOf:
+        -
+          $ref: '#/components/schemas/ModelDefault'
+        -
+          $ref: '#/components/schemas/OptParamModels'
+        -
+          required:
+            - eventRefType
+            - eventReId
+            - messageType
+            - subject
+            - body
+            - status
+            - expiry
+            - links
+          type: object
+          properties:
+            eventRefType:
+              $ref: '#/components/schemas/EventRefType'
+            eventRefId:
+              description: The reference ID of the event object
+              type: string
+              example: Dc4swmQBVd51K6gPQqFx
+              x-vue-search-all: true
+              x-vue-search-field: true
+              x-vue-disaply-order: 1001
+            messageType:
+              $ref: '#/components/schemas/MessageType'
+              x-vue-disaply-order: 1003
+            subject:
+              description: The title of the message
+              type: string
+              example: Hello and welcome
+              x-vue-translatable: true
+              x-vue-disaply-order: 1002
+              x-vue-search-all: true
+              x-vue-search-field: true
+              x-vue-form-type: TEXTAREA
+            body:
+              description: The context of the message
+              type: string
+              example: Here is a message to welcome you on board!
+              x-vue-translatable: true
+              x-vue-disaply-order: 1003
+              x-vue-search-all: true
+              x-vue-search-field: true
+              x-vue-form-type: TEXTAREA
+            status:
+              $ref: '#/components/schemas/MessageStatus'
+              x-vue-disaply-order: 1003
+            expiry:
+              format: date-time
+              description: The time that the message will disappear after. ISO8601 timestamp
+              type: string
+              example: '2019-09-25T15:47:00.000+0000'
+              x-vue-search-field: true
+              x-vue-disaply-order: 1004
+            links:
+              $ref: '#/components/schemas/MessageLink'
+              description: ''
+            memberIds:
+              description: ''
+              type: array
+              items:
+                type: string
+      x-vue-list: true
+      x-vue-show: true
+      x-vue-getter: memberMessages
+      x-vue-sort-by: name
+      x-vue-sort-order: Asc
+      x-vue-limit: 10
+      x-vue-ops:
+        - Create
+        - Update
+    ContestStateOperations:
+      description: Operations supported by update contest state action.
+      enum:
+        - Deleted
+        - Ready
+        - Active
+        - Finished
+        - Finalised
+        - Cancelled
+      type: string
+      readOnly: true
+    CompetitionStatusActions:
+      description: Available actions for competition status
+      enum:
+        - Deleted
+        - Ready
+        - Active
+        - Finished
+        - Finalised
+        - Cancelled
+      type: string
+      example: '"Deleted"'
+    LeaderboardMember:
+      required:
+        - name
+        - rank
+        - points
+        - memberId
+        - memberRefId
+      type: object
+      properties:
+        name:
+          description: The name of the player
+          type: string
+          example: Player 1
+        memberId:
+          description: Unique system identifier of a Member
+          type: string
+          example: Dc4swmQBVd51K6gPQqFx
+        memberRefId:
+          description: The reference to this member in your system
+          type: string
+          example: Player-1
+        rankChangeFrom:
+          format: int32
+          description: 'Previous rank held, null if no changes are recorded'
+          type: integer
+        rankChangeType:
+          format: int32
+          description: '[-1] for rank-down, like 5 to 8. [0] for no change, [1] for rank-up like 9 to 3'
+          type: integer
+        params:
+          description: The user defined values used in the rules builder
+          type: object
+          additionalProperties:
+            type: number
   responses:
     ApiResponseBody:
       content:
@@ -18652,6 +18786,15 @@ components:
           schema:
             $ref: '#/components/schemas/ObjectParametersResponse'
       description: ''
+    LogEventResponseBody:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/LogEventResponse'
+          examples:
+            Example:
+              $ref: '#/components/examples/GetErrorResponse'
+      description: A list of log events and/or errors
   parameters:
     spaceName:
       name: spaceName
