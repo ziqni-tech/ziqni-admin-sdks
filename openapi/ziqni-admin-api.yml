@@ -12921,6 +12921,13 @@ components:
               x-vue-search-field: true
               x-vue-disaply-order: 1001
               x-vue-links-to: Member
+            memberRefId:
+              description: The reference to this member in your system
+              type: string
+              example: Player-1
+              x-vue-search-all: true
+              x-vue-search-field: true
+              x-vue-disaply-order: 1001
             rewardId:
               description: A unique identifier of a Reward
               type: string
