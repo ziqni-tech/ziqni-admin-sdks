@@ -89,6 +89,9 @@ class Award {
             if (data.hasOwnProperty('memberId')) {
                 obj['memberId'] = ApiClient.convertToType(data['memberId'], 'String');
             }
+            if (data.hasOwnProperty('memberRefId')) {
+                obj['memberRefId'] = ApiClient.convertToType(data['memberRefId'], 'String');
+            }
             if (data.hasOwnProperty('rewardId')) {
                 obj['rewardId'] = ApiClient.convertToType(data['rewardId'], 'String');
             }
@@ -158,6 +161,12 @@ Award.prototype['created'] = undefined;
  * @member {String} memberId
  */
 Award.prototype['memberId'] = undefined;
+
+/**
+ * The reference to this member in your system
+ * @member {String} memberRefId
+ */
+Award.prototype['memberRefId'] = undefined;
 
 /**
  * A unique identifier of a Reward
@@ -257,6 +266,11 @@ ModelDefault.prototype['created'] = undefined;
  * @member {String} memberId
  */
 AwardAllOf.prototype['memberId'] = undefined;
+/**
+ * The reference to this member in your system
+ * @member {String} memberRefId
+ */
+AwardAllOf.prototype['memberRefId'] = undefined;
 /**
  * A unique identifier of a Reward
  * @member {String} rewardId
