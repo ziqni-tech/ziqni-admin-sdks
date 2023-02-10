@@ -28,7 +28,7 @@
   var instance;
 
   beforeEach(function() {
-    instance = new @ZiqniTechAdminApiClient.RewardTypeReduced();
+    instance = new @ZiqniTechAdminApiClient.LogEventsApi();
   });
 
   var getProperty = function(object, getter, property) {
@@ -47,31 +47,17 @@
       object[property] = value;
   }
 
-  describe('RewardTypeReduced', function() {
-    it('should create an instance of RewardTypeReduced', function() {
-      // uncomment below and update the code to test RewardTypeReduced
-      //var instance = new @ZiqniTechAdminApiClient.RewardTypeReduced();
-      //expect(instance).to.be.a(@ZiqniTechAdminApiClient.RewardTypeReduced);
+  describe('LogEventsApi', function() {
+    describe('getLogEventsByQuery', function() {
+      it('should call getLogEventsByQuery successfully', function(done) {
+        //uncomment below and update the code to test getLogEventsByQuery
+        //instance.getLogEventsByQuery(function(error) {
+        //  if (error) throw error;
+        //expect().to.be();
+        //});
+        done();
+      });
     });
-
-    it('should have the property key (base name: "key")', function() {
-      // uncomment below and update the code to test the property key
-      //var instance = new @ZiqniTechAdminApiClient.RewardTypeReduced();
-      //expect(instance).to.be();
-    });
-
-    it('should have the property id (base name: "id")', function() {
-      // uncomment below and update the code to test the property id
-      //var instance = new @ZiqniTechAdminApiClient.RewardTypeReduced();
-      //expect(instance).to.be();
-    });
-
-    it('should have the property spaceName (base name: "spaceName")', function() {
-      // uncomment below and update the code to test the property spaceName
-      //var instance = new @ZiqniTechAdminApiClient.RewardTypeReduced();
-      //expect(instance).to.be();
-    });
-
   });
 
 }));

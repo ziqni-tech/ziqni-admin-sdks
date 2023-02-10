@@ -232,6 +232,7 @@ Class | Method | HTTP request | Description
 *@ZiqniTechAdminApiClient.LanguagesApi* | [**getListOfAllLanguages**](docs/LanguagesApi.md#getListOfAllLanguages) | **GET** /languages/available | 
 *@ZiqniTechAdminApiClient.LanguagesApi* | [**updateLanguages**](docs/LanguagesApi.md#updateLanguages) | **PUT** /languages | 
 *@ZiqniTechAdminApiClient.LeaderboardApi* | [**getLeaderboardById**](docs/LeaderboardApi.md#getLeaderboardById) | **GET** /leaderboard | 
+*@ZiqniTechAdminApiClient.LogEventsApi* | [**getLogEventsByQuery**](docs/LogEventsApi.md#getLogEventsByQuery) | **POST** /log-events/query | 
 *@ZiqniTechAdminApiClient.MemberMessagesApi* | [**createMemberMessages**](docs/MemberMessagesApi.md#createMemberMessages) | **POST** /member-messages | 
 *@ZiqniTechAdminApiClient.MemberMessagesApi* | [**deleteMemberMessages**](docs/MemberMessagesApi.md#deleteMemberMessages) | **DELETE** /member-messages | 
 *@ZiqniTechAdminApiClient.MemberMessagesApi* | [**deleteMemberMessagesByQuery**](docs/MemberMessagesApi.md#deleteMemberMessagesByQuery) | **POST** /member-messages/delete | 
@@ -492,6 +493,8 @@ Class | Method | HTTP request | Description
  - [@ZiqniTechAdminApiClient.LeaderboardResponse](docs/LeaderboardResponse.md)
  - [@ZiqniTechAdminApiClient.LeaderboardResponseByContest](docs/LeaderboardResponseByContest.md)
  - [@ZiqniTechAdminApiClient.Location](docs/Location.md)
+ - [@ZiqniTechAdminApiClient.LogEvent](docs/LogEvent.md)
+ - [@ZiqniTechAdminApiClient.LogEventResponse](docs/LogEventResponse.md)
  - [@ZiqniTechAdminApiClient.Macro](docs/Macro.md)
  - [@ZiqniTechAdminApiClient.MatchCondition](docs/MatchCondition.md)
  - [@ZiqniTechAdminApiClient.MaxMin](docs/MaxMin.md)

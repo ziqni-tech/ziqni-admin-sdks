@@ -60,6 +60,18 @@
       //expect(instance).to.be();
     });
 
+    it('should have the property id (base name: "id")', function() {
+      // uncomment below and update the code to test the property id
+      //var instance = new @ZiqniTechAdminApiClient.RewardTypeReducedAllOf();
+      //expect(instance).to.be();
+    });
+
+    it('should have the property spaceName (base name: "spaceName")', function() {
+      // uncomment below and update the code to test the property spaceName
+      //var instance = new @ZiqniTechAdminApiClient.RewardTypeReducedAllOf();
+      //expect(instance).to.be();
+    });
+
   });
 
 }));

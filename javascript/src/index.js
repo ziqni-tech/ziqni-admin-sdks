@@ -187,6 +187,8 @@ import LeaderboardMember from './model/LeaderboardMember';
 import LeaderboardResponse from './model/LeaderboardResponse';
 import LeaderboardResponseByContest from './model/LeaderboardResponseByContest';
 import Location from './model/Location';
+import LogEvent from './model/LogEvent';
+import LogEventResponse from './model/LogEventResponse';
 import Macro from './model/Macro';
 import MatchCondition from './model/MatchCondition';
 import MaxMin from './model/MaxMin';
@@ -377,6 +379,7 @@ import FileObjectsApi from './api/FileObjectsApi';
 import FileRepositoriesApi from './api/FileRepositoriesApi';
 import LanguagesApi from './api/LanguagesApi';
 import LeaderboardApi from './api/LeaderboardApi';
+import LogEventsApi from './api/LogEventsApi';
 import MemberMessagesApi from './api/MemberMessagesApi';
 import MemberTokenApi from './api/MemberTokenApi';
 import MembersApi from './api/MembersApi';
@@ -1475,6 +1478,18 @@ export {
      * @property {module:model/Location}
      */
     Location,
+
+    /**
+     * The LogEvent model constructor.
+     * @property {module:model/LogEvent}
+     */
+    LogEvent,
+
+    /**
+     * The LogEventResponse model constructor.
+     * @property {module:model/LogEventResponse}
+     */
+    LogEventResponse,
 
     /**
      * The Macro model constructor.
@@ -2615,6 +2630,12 @@ export {
     * @property {module:api/LeaderboardApi}
     */
     LeaderboardApi,
+
+    /**
+    * The LogEventsApi service constructor.
+    * @property {module:api/LogEventsApi}
+    */
+    LogEventsApi,
 
     /**
     * The MemberMessagesApi service constructor.
