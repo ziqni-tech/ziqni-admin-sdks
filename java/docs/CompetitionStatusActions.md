@@ -13,6 +13,8 @@
 
 * `FINISHED` (value: `"Finished"`)
 
+* `FINALISED` (value: `"Finalised"`)
+
 * `CANCELLED` (value: `"Cancelled"`)
 
 

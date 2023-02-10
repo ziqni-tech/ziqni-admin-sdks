@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **member** | **String** | The identifier used to find the member information. if this value is set to \&quot;__PUBLIC__\&quot; and isReferenceId is set to \&quot;FALSE\&quot; then a genral use, non-member specific token will be issued | 
 **expires** | **Integer** | The number of minutes this token will be valid for. If left blank the token will only be valid for 30 minutes |  [optional]
 **resource** | **String** | This will be ziqni-gapi or similar | 
+**disabledServices** | **List&lt;String&gt;** | A list of services to be disabled for this web token  |  [optional]
 
 
 
