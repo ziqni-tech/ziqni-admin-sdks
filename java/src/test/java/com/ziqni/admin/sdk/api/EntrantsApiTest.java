@@ -34,12 +34,14 @@ public class EntrantsApiTest implements tests.utils.CompleteableFutureTestWrappe
     @Test
     @Order(12)
     public void getEntrantsByQueryReturnOkTest() throws ApiException {
-        final var id = "ContestId";
+        final var id = "uCbsBYUB7zKGU_u6NGBG";
         var givenQuery = new QueryRequest()
                 .addMustItem(new QueryMultiple()
                         .queryField("participationId")
                         .queryValues(List.of(id))
-                );
+                )
+                .skip(0)
+                .limit(20);
 
         var response = $(api.getEntrantsByQuery( givenQuery));
 
