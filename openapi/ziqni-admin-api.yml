@@ -703,120 +703,6 @@ paths:
       operationId: updateCompetitionsState
       description: Manages the Competitions state
       x-codegen-request-body-name: body
-  '/competitions/{id}/entries':
-    get:
-      tags:
-        - competitions
-      parameters:
-        -
-          $ref: '#/components/parameters/idPath'
-        -
-          $ref: '#/components/parameters/limitResults'
-        -
-          $ref: '#/components/parameters/skipResults'
-      responses:
-        '200':
-          $ref: '#/components/responses/EntrantResponseBody'
-        '400':
-          $ref: '#/components/responses/EntrantResponseBody'
-        '401':
-          $ref: '#/components/responses/EntrantResponseBody'
-        '403':
-          $ref: '#/components/responses/EntrantResponseBody'
-        '404':
-          $ref: '#/components/responses/EntrantResponseBody'
-        '413':
-          $ref: '#/components/responses/EntrantResponseBody'
-        '500':
-          $ref: '#/components/responses/EntrantResponseBody'
-        '501':
-          $ref: '#/components/responses/EntrantResponseBody'
-        '503':
-          $ref: '#/components/responses/EntrantResponseBody'
-      security:
-        -
-          OAuth2:
-            - ViewCompetitions
-      operationId: getListOfEntrants
-      description: Returns all Entries for the Competition id provided
-      x-codegen-request-body-name: body
-  /competitions/entries:
-    put:
-      requestBody:
-        description: Updates the status of the Entrants
-        content:
-          application/json:
-            schema:
-              type: array
-              items:
-                $ref: '#/components/schemas/EntrantRequest'
-      tags:
-        - competitions
-      responses:
-        '201':
-          $ref: '#/components/responses/ApiResponseBody'
-        '202':
-          description: Accepted
-        '400':
-          $ref: '#/components/responses/ApiResponseBody'
-        '401':
-          $ref: '#/components/responses/ApiResponseBody'
-        '403':
-          $ref: '#/components/responses/ApiResponseBody'
-        '404':
-          $ref: '#/components/responses/ApiResponseBody'
-        '413':
-          $ref: '#/components/responses/ApiResponseBody'
-        '500':
-          $ref: '#/components/responses/ApiResponseBody'
-        '501':
-          $ref: '#/components/responses/ApiResponseBody'
-        '503':
-          $ref: '#/components/responses/ApiResponseBody'
-      security:
-        -
-          OAuth2:
-            - ManageCompetition
-      operationId: updateCompetitionsEntries
-      description: Updates the status of the Entrants for a Competition id provided
-      x-codegen-request-body-name: body
-  '/contests/{id}/entries':
-    get:
-      tags:
-        - contests
-      parameters:
-        -
-          $ref: '#/components/parameters/idPath'
-        -
-          $ref: '#/components/parameters/limitResults'
-        -
-          $ref: '#/components/parameters/skipResults'
-      responses:
-        '200':
-          $ref: '#/components/responses/EntrantResponseBody'
-        '400':
-          $ref: '#/components/responses/EntrantResponseBody'
-        '401':
-          $ref: '#/components/responses/EntrantResponseBody'
-        '403':
-          $ref: '#/components/responses/EntrantResponseBody'
-        '404':
-          $ref: '#/components/responses/EntrantResponseBody'
-        '413':
-          $ref: '#/components/responses/EntrantResponseBody'
-        '500':
-          $ref: '#/components/responses/EntrantResponseBody'
-        '501':
-          $ref: '#/components/responses/EntrantResponseBody'
-        '503':
-          $ref: '#/components/responses/EntrantResponseBody'
-      security:
-        -
-          OAuth2:
-            - ViewContest
-      operationId: getListOfEntrantsForContest
-      description: Returns all Entries for the Contest id provided
-      x-codegen-request-body-name: body
   /contests/query:
     post:
       requestBody:
@@ -7784,6 +7670,86 @@ paths:
         Retrieve Log Events from Ziqni database by unique Log Events ID's or any other POST body
         parameters using the POST method
       x-codegen-request-body-name: body
+  /entrants:
+    post:
+      requestBody:
+        description: Updates the status of the Entrants
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/EntrantRequest'
+      tags:
+        - entrants
+      responses:
+        '201':
+          $ref: '#/components/responses/ApiResponseBody'
+        '202':
+          description: Accepted
+        '400':
+          $ref: '#/components/responses/ApiResponseBody'
+        '401':
+          $ref: '#/components/responses/ApiResponseBody'
+        '403':
+          $ref: '#/components/responses/ApiResponseBody'
+        '404':
+          $ref: '#/components/responses/ApiResponseBody'
+        '413':
+          $ref: '#/components/responses/ApiResponseBody'
+        '500':
+          $ref: '#/components/responses/ApiResponseBody'
+        '501':
+          $ref: '#/components/responses/ApiResponseBody'
+        '503':
+          $ref: '#/components/responses/ApiResponseBody'
+      deprecated: false
+      security:
+        -
+          OAuth2:
+            - ManageCompetition
+      operationId: updateEntrants
+      description: Updates the status of the Entrants for a Competition id provided
+      x-codegen-request-body-name: body
+  /entrants/query:
+    summary: Get entrants by query
+    description: This operation allows you to get entrants in your project using a query.
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/QueryRequest'
+      tags:
+        - entrants
+      responses:
+        '200':
+          $ref: '#/components/responses/EntrantResponseBody'
+        '400':
+          $ref: '#/components/responses/EntrantResponseBody'
+        '401':
+          $ref: '#/components/responses/EntrantResponseBody'
+        '403':
+          $ref: '#/components/responses/EntrantResponseBody'
+        '404':
+          $ref: '#/components/responses/EntrantResponseBody'
+        '413':
+          $ref: '#/components/responses/EntrantResponseBody'
+        '500':
+          $ref: '#/components/responses/EntrantResponseBody'
+        '501':
+          $ref: '#/components/responses/EntrantResponseBody'
+        '503':
+          $ref: '#/components/responses/EntrantResponseBody'
+      security:
+        -
+          OAuth2:
+            - ViewCompetitions
+      operationId: getEntrantsByQuery
+      summary: Get entrants by query
+      description: >-
+        Retrieve ConteEntrants from Ziqni database by unique Contests ID's or any other POST body
+        parameters using the POST method
 components:
   schemas:
     ProductReduced:
@@ -11594,10 +11560,18 @@ components:
       properties:
         constraints:
           description: >-
-            scoreDesc - The Ranking that can be Ascending or Descending based on timeDesc.
-            timeDesc - The Ranking that can be Ascending or Descending based on scoreDesc.
-            scoreFirst - The Ranking that can be score first or time first ignoreTime - The
-            Ranking when time is ignored ignoreScore - The Ranking when score is ignored
+            scoreDesc - The Ranking that can be Ascending or Descending based on timeDesc. 
+            
+            timeDesc - The Ranking that can be Ascending or Descending based on scoreDesc. 
+            
+            scoreFirst - The Ranking that can be score first or time first 
+            
+            ignoreTime - The Ranking when time is ignored 
+            
+            ignoreScore - The Ranking when score is ignored
+            
+            excludeIfGoalNotReached - The scores are not included in the leaderboard until the
+            goal is achieved
           type: array
           items:
             type: string
@@ -12093,119 +12067,6 @@ components:
               type: array
               items:
                 type: string
-    Reward:
-      allOf:
-        -
-          $ref: '#/components/schemas/ModelDefault'
-        -
-          $ref: '#/components/schemas/OptParamModels'
-        -
-          required:
-            - rewardRank
-            - rewardValue
-            - rewardType
-            - constraints
-          type: object
-          properties:
-            entityType:
-              $ref: '#/components/schemas/EntityType'
-            entityId:
-              description: A unique identifier of an achievement or contest. Dependant on entityType
-              type: string
-              example: Dc4swmQBVd51K6gPQqFx
-            name:
-              description: The name of a reward
-              type: string
-              example: Welcome badge
-              x-vue-as-string: true
-              x-vue-translatable: true
-              x-vue-search-all: true
-              x-vue-search-field: true
-              x-vue-disaply-order: 1001
-            description:
-              description: The description of a Reward
-              type: string
-              example: A badge to welcome a new player
-              x-vue-translatable: true
-              x-vue-hidden: true
-              x-vue-search-all: true
-              x-vue-search-field: true
-              x-vue-disaply-order: 1002
-            rewardRank:
-              description: >-
-                If used in the context of contest this will associate with the rank of the
-                leaderboard
-              type: string
-              example: '1,2 3 ...10'
-              x-vue-search-field: true
-              x-vue-disaply-order: 1003
-            rewardValue:
-              format: double
-              description: Numerical value of the reward that will be issued based on the reward type
-              type: number
-              example: '1'
-              x-vue-search-field: true
-              x-vue-disaply-order: 1004
-            rewardType:
-              $ref: '#/components/schemas/RewardTypeReduced'
-              x-vue-search-all: true
-              x-vue-search-field: true
-              x-vue-disaply-order: 1005
-            icon:
-              description: An Icon id that has been pre uploaded to the system to display for reward
-              type: string
-              example: Dc4swmQBVd51K6gPQqFx
-              x-vue-hidden: true
-              x-vue-disaply-order: 1000
-              x-vue-form-type: IMAGE
-            issueLimit:
-              format: int32
-              description: how many of thsese rewards are
-              type: integer
-              example: '2'
-              x-vue-search-field: true
-              x-vue-disaply-order: 1005
-            delay:
-              format: int32
-              description: Delay of issuing a reward in minutes
-              type: integer
-              example: '2'
-              x-vue-search-field: true
-              x-vue-disaply-order: 1005
-            pointInTime:
-              format: date-time
-              description: >-
-                ISO8601 timestamp for when a Reward is available until a specific point in
-                time. All records are stored in UTC time zone
-              type: string
-              example: '2019-09-25T15:47:00.000+0000'
-              x-vue-search-field: true
-              x-vue-disaply-order: 1006
-            period:
-              format: int32
-              description: Reward available for a period of time from issuing in minutes
-              type: integer
-              example: '2'
-              x-vue-search-field: true
-              x-vue-disaply-order: 1007
-            constraints:
-              description: Additional constraints
-              type: array
-              items:
-                type: string
-              example: |-
-                - notifyMember 
-                - acknowledgementRequired
-              x-vue-constraint: true
-      x-vue-list: true
-      x-vue-show: true
-      x-vue-getter: rewards
-      x-vue-sort-by: name
-      x-vue-sort-order: Asc
-      x-vue-limit: 10
-      x-vue-ops:
-        - Create
-        - Update
     CreateTagRequest:
       description: Request for tag creation
       required:
@@ -17697,6 +17558,120 @@ components:
           type: object
           additionalProperties:
             type: number
+    Reward:
+      allOf:
+        -
+          $ref: '#/components/schemas/ModelDefault'
+        -
+          $ref: '#/components/schemas/OptParamModels'
+        -
+          required:
+            - rewardRank
+            - rewardValue
+            - rewardType
+            - constraints
+          type: object
+          properties:
+            entityType:
+              $ref: '#/components/schemas/EntityType'
+            entityId:
+              description: A unique identifier of an achievement or contest. Dependant on entityType
+              type: string
+              example: Dc4swmQBVd51K6gPQqFx
+            name:
+              description: The name of a reward
+              type: string
+              example: Welcome badge
+              x-vue-as-string: true
+              x-vue-translatable: true
+              x-vue-search-all: true
+              x-vue-search-field: true
+              x-vue-disaply-order: 1001
+            description:
+              description: The description of a Reward
+              type: string
+              example: A badge to welcome a new player
+              x-vue-translatable: true
+              x-vue-hidden: true
+              x-vue-search-all: true
+              x-vue-search-field: true
+              x-vue-disaply-order: 1002
+            rewardRank:
+              description: >-
+                If used in the context of contest this will associate with the rank of the
+                leaderboard
+              type: string
+              example: '1,2 3 ...10'
+              x-vue-search-field: true
+              x-vue-sortable: true
+              x-vue-disaply-order: 1003
+            rewardValue:
+              format: double
+              description: Numerical value of the reward that will be issued based on the reward type
+              type: number
+              example: '1'
+              x-vue-search-field: true
+              x-vue-disaply-order: 1004
+            rewardType:
+              $ref: '#/components/schemas/RewardTypeReduced'
+              x-vue-search-all: true
+              x-vue-search-field: true
+              x-vue-disaply-order: 1005
+            icon:
+              description: An Icon id that has been pre uploaded to the system to display for reward
+              type: string
+              example: Dc4swmQBVd51K6gPQqFx
+              x-vue-hidden: true
+              x-vue-disaply-order: 1000
+              x-vue-form-type: IMAGE
+            issueLimit:
+              format: int32
+              description: how many of thsese rewards are
+              type: integer
+              example: '2'
+              x-vue-search-field: true
+              x-vue-disaply-order: 1005
+            delay:
+              format: int32
+              description: Delay of issuing a reward in minutes
+              type: integer
+              example: '2'
+              x-vue-search-field: true
+              x-vue-disaply-order: 1005
+            pointInTime:
+              format: date-time
+              description: >-
+                ISO8601 timestamp for when a Reward is available until a specific point in
+                time. All records are stored in UTC time zone
+              type: string
+              example: '2019-09-25T15:47:00.000+0000'
+              x-vue-search-field: true
+              x-vue-disaply-order: 1006
+            period:
+              format: int32
+              description: Reward available for a period of time from issuing in minutes
+              type: integer
+              example: '2'
+              x-vue-search-field: true
+              x-vue-disaply-order: 1007
+            constraints:
+              description: Additional constraints
+              type: array
+              items:
+                type: string
+              example: |-
+                - notifyMember 
+                - acknowledgementRequired
+              x-vue-constraint: true
+      x-vue-list: true
+      x-vue-show: true
+      x-vue-getter: rewards
+      x-vue-sort-by: name
+      x-vue-sort-order: Asc
+      x-vue-limit: 10
+      x-vue-ops:
+        - Create
+        - Update
   responses:
     ApiResponseBody:
       content:
