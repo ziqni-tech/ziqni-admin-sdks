@@ -108,30 +108,10 @@
         done();
       });
     });
-    describe('getListOfEntrants', function() {
-      it('should call getListOfEntrants successfully', function(done) {
-        //uncomment below and update the code to test getListOfEntrants
-        //instance.getListOfEntrants(function(error) {
-        //  if (error) throw error;
-        //expect().to.be();
-        //});
-        done();
-      });
-    });
     describe('updateCompetitions', function() {
       it('should call updateCompetitions successfully', function(done) {
         //uncomment below and update the code to test updateCompetitions
         //instance.updateCompetitions(function(error) {
-        //  if (error) throw error;
-        //expect().to.be();
-        //});
-        done();
-      });
-    });
-    describe('updateCompetitionsEntries', function() {
-      it('should call updateCompetitionsEntries successfully', function(done) {
-        //uncomment below and update the code to test updateCompetitionsEntries
-        //instance.updateCompetitionsEntries(function(error) {
         //  if (error) throw error;
         //expect().to.be();
         //});

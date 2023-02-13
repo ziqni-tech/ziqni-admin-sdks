@@ -7745,6 +7745,45 @@ paths:
         -
           OAuth2:
             - ViewCompetitions
+      operationId: exportEntrantsByQuery
+      summary: Get entrants by query
+      description: >-
+        Retrieve ConteEntrants from Ziqni database by unique Contests ID's or any other POST body
+        parameters using the POST method
+  /entrants/export:
+    summary: Get entrants by query
+    description: This operation allows you to get entrants in your project using a query.
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/QueryRequest'
+      tags:
+        - entrants
+      responses:
+        '200':
+          $ref: '#/components/responses/EntrantResponseBody'
+        '400':
+          $ref: '#/components/responses/EntrantResponseBody'
+        '401':
+          $ref: '#/components/responses/EntrantResponseBody'
+        '403':
+          $ref: '#/components/responses/EntrantResponseBody'
+        '404':
+          $ref: '#/components/responses/EntrantResponseBody'
+        '413':
+          $ref: '#/components/responses/EntrantResponseBody'
+        '500':
+          $ref: '#/components/responses/EntrantResponseBody'
+        '501':
+          $ref: '#/components/responses/EntrantResponseBody'
+        '503':
+          $ref: '#/components/responses/EntrantResponseBody'
+      security:
+        -
+          OAuth2:
+            - ViewCompetitions
       operationId: getEntrantsByQuery
       summary: Get entrants by query
       description: >-
@@ -10324,7 +10363,7 @@ components:
           description: |+
             The key of the parameter that is being searched
           
-          
+
           type: string
         gt:
           description: Greater than value

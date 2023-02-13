@@ -4,10 +4,10 @@ All URIs are relative to *https://api.ziqni.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**exportEntrantsByQuery**](EntrantsApi.md#exportEntrantsByQuery) | **POST** /entrants/export | Get entrants by query
-[**exportEntrantsByQueryWithHttpInfo**](EntrantsApi.md#exportEntrantsByQueryWithHttpInfo) | **POST** /entrants/export | Get entrants by query
-[**getEntrantsByQuery**](EntrantsApi.md#getEntrantsByQuery) | **POST** /entrants/query | Get entrants by query
-[**getEntrantsByQueryWithHttpInfo**](EntrantsApi.md#getEntrantsByQueryWithHttpInfo) | **POST** /entrants/query | Get entrants by query
+[**exportEntrantsByQuery**](EntrantsApi.md#exportEntrantsByQuery) | **POST** /entrants/query | Get entrants by query
+[**exportEntrantsByQueryWithHttpInfo**](EntrantsApi.md#exportEntrantsByQueryWithHttpInfo) | **POST** /entrants/query | Get entrants by query
+[**getEntrantsByQuery**](EntrantsApi.md#getEntrantsByQuery) | **POST** /entrants/export | Get entrants by query
+[**getEntrantsByQueryWithHttpInfo**](EntrantsApi.md#getEntrantsByQueryWithHttpInfo) | **POST** /entrants/export | Get entrants by query
 [**updateEntrants**](EntrantsApi.md#updateEntrants) | **POST** /entrants | 
 [**updateEntrantsWithHttpInfo**](EntrantsApi.md#updateEntrantsWithHttpInfo) | **POST** /entrants | 
 

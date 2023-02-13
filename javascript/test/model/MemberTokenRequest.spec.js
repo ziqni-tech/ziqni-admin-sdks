@@ -90,6 +90,12 @@
       //expect(instance).to.be();
     });
 
+    it('should have the property disabledServices (base name: "disabledServices")', function() {
+      // uncomment below and update the code to test the property disabledServices
+      //var instance = new @ZiqniTechAdminApiClient.MemberTokenRequest();
+      //expect(instance).to.be();
+    });
+
   });
 
 }));

@@ -98,16 +98,6 @@
         done();
       });
     });
-    describe('getListOfEntrantsForContest', function() {
-      it('should call getListOfEntrantsForContest successfully', function(done) {
-        //uncomment below and update the code to test getListOfEntrantsForContest
-        //instance.getListOfEntrantsForContest(function(error) {
-        //  if (error) throw error;
-        //expect().to.be();
-        //});
-        done();
-      });
-    });
     describe('updateContest', function() {
       it('should call updateContest successfully', function(done) {
         //uncomment below and update the code to test updateContest
