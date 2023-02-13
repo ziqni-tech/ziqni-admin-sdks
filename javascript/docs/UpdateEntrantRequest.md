@@ -1,4 +1,4 @@
-# @ZiqniTechAdminApiClient.EntrantRequest
+# @ZiqniTechAdminApiClient.UpdateEntrantRequest
 
 ## Properties
 

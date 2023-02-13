@@ -89,9 +89,6 @@ class Award {
             if (data.hasOwnProperty('memberId')) {
                 obj['memberId'] = ApiClient.convertToType(data['memberId'], 'String');
             }
-            if (data.hasOwnProperty('memberRefId')) {
-                obj['memberRefId'] = ApiClient.convertToType(data['memberRefId'], 'String');
-            }
             if (data.hasOwnProperty('rewardId')) {
                 obj['rewardId'] = ApiClient.convertToType(data['rewardId'], 'String');
             }
@@ -131,6 +128,9 @@ class Award {
             if (data.hasOwnProperty('claimedTimestamp')) {
                 obj['claimedTimestamp'] = ApiClient.convertToType(data['claimedTimestamp'], 'Date');
             }
+            if (data.hasOwnProperty('memberRefId')) {
+                obj['memberRefId'] = ApiClient.convertToType(data['memberRefId'], 'String');
+            }
         }
         return obj;
     }
@@ -161,12 +161,6 @@ Award.prototype['created'] = undefined;
  * @member {String} memberId
  */
 Award.prototype['memberId'] = undefined;
-
-/**
- * The reference to this member in your system
- * @member {String} memberRefId
- */
-Award.prototype['memberRefId'] = undefined;
 
 /**
  * A unique identifier of a Reward
@@ -243,6 +237,12 @@ Award.prototype['constraints'] = undefined;
  */
 Award.prototype['claimedTimestamp'] = undefined;
 
+/**
+ * 
+ * @member {String} memberRefId
+ */
+Award.prototype['memberRefId'] = undefined;
+
 
 // Implement ModelDefault interface:
 /**
@@ -266,11 +266,6 @@ ModelDefault.prototype['created'] = undefined;
  * @member {String} memberId
  */
 AwardAllOf.prototype['memberId'] = undefined;
-/**
- * The reference to this member in your system
- * @member {String} memberRefId
- */
-AwardAllOf.prototype['memberRefId'] = undefined;
 /**
  * A unique identifier of a Reward
  * @member {String} rewardId
@@ -333,6 +328,11 @@ AwardAllOf.prototype['constraints'] = undefined;
  * @member {Date} claimedTimestamp
  */
 AwardAllOf.prototype['claimedTimestamp'] = undefined;
+/**
+ * 
+ * @member {String} memberRefId
+ */
+AwardAllOf.prototype['memberRefId'] = undefined;
 
 
 

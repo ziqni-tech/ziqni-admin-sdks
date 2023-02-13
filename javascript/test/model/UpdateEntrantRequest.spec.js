@@ -28,7 +28,7 @@
   var instance;
 
   beforeEach(function() {
-    instance = new @ZiqniTechAdminApiClient.LeaderboardMember();
+    instance = new @ZiqniTechAdminApiClient.UpdateEntrantRequest();
   });
 
   var getProperty = function(object, getter, property) {
@@ -47,46 +47,34 @@
       object[property] = value;
   }
 
-  describe('LeaderboardMember', function() {
-    it('should create an instance of LeaderboardMember', function() {
-      // uncomment below and update the code to test LeaderboardMember
-      //var instance = new @ZiqniTechAdminApiClient.LeaderboardMember();
-      //expect(instance).to.be.a(@ZiqniTechAdminApiClient.LeaderboardMember);
-    });
-
-    it('should have the property name (base name: "name")', function() {
-      // uncomment below and update the code to test the property name
-      //var instance = new @ZiqniTechAdminApiClient.LeaderboardMember();
-      //expect(instance).to.be();
+  describe('UpdateEntrantRequest', function() {
+    it('should create an instance of UpdateEntrantRequest', function() {
+      // uncomment below and update the code to test UpdateEntrantRequest
+      //var instance = new @ZiqniTechAdminApiClient.UpdateEntrantRequest();
+      //expect(instance).to.be.a(@ZiqniTechAdminApiClient.UpdateEntrantRequest);
     });
 
     it('should have the property memberId (base name: "memberId")', function() {
       // uncomment below and update the code to test the property memberId
-      //var instance = new @ZiqniTechAdminApiClient.LeaderboardMember();
+      //var instance = new @ZiqniTechAdminApiClient.UpdateEntrantRequest();
       //expect(instance).to.be();
     });
 
-    it('should have the property memberRefId (base name: "memberRefId")', function() {
-      // uncomment below and update the code to test the property memberRefId
-      //var instance = new @ZiqniTechAdminApiClient.LeaderboardMember();
+    it('should have the property entityId (base name: "entityId")', function() {
+      // uncomment below and update the code to test the property entityId
+      //var instance = new @ZiqniTechAdminApiClient.UpdateEntrantRequest();
       //expect(instance).to.be();
     });
 
-    it('should have the property rankChangeFrom (base name: "rankChangeFrom")', function() {
-      // uncomment below and update the code to test the property rankChangeFrom
-      //var instance = new @ZiqniTechAdminApiClient.LeaderboardMember();
+    it('should have the property entrantStatus (base name: "entrantStatus")', function() {
+      // uncomment below and update the code to test the property entrantStatus
+      //var instance = new @ZiqniTechAdminApiClient.UpdateEntrantRequest();
       //expect(instance).to.be();
     });
 
-    it('should have the property rankChangeType (base name: "rankChangeType")', function() {
-      // uncomment below and update the code to test the property rankChangeType
-      //var instance = new @ZiqniTechAdminApiClient.LeaderboardMember();
-      //expect(instance).to.be();
-    });
-
-    it('should have the property params (base name: "params")', function() {
-      // uncomment below and update the code to test the property params
-      //var instance = new @ZiqniTechAdminApiClient.LeaderboardMember();
+    it('should have the property entrantAction (base name: "entrantAction")', function() {
+      // uncomment below and update the code to test the property entrantAction
+      //var instance = new @ZiqniTechAdminApiClient.UpdateEntrantRequest();
       //expect(instance).to.be();
     });
 

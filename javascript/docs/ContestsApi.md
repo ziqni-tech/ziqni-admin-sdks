@@ -9,7 +9,6 @@ Method | HTTP request | Description
 [**getContestsByQuery**](ContestsApi.md#getContestsByQuery) | **POST** /contests/query | 
 [**getContestsLeaderboardById**](ContestsApi.md#getContestsLeaderboardById) | **GET** /contests/{id}/leaderboard | 
 [**getContestsToClone**](ContestsApi.md#getContestsToClone) | **GET** /contests/{id}/clone | 
-[**getListOfEntrantsForContest**](ContestsApi.md#getListOfEntrantsForContest) | **GET** /contests/{id}/entries | 
 [**updateContest**](ContestsApi.md#updateContest) | **PUT** /contests | 
 [**updateContestsState**](ContestsApi.md#updateContestsState) | **PUT** /contests/state | 
 
@@ -263,61 +262,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**CloneContestResponse**](CloneContestResponse.md)
-
-### Authorization
-
-[OAuth2](../README.md#OAuth2)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-
-## getListOfEntrantsForContest
-
-> EntrantResponse getListOfEntrantsForContest(id, opts)
-
-
-
-Returns all Entries for the Contest id provided
-
-### Example
-
-```javascript
-import @ZiqniTechAdminApiClient from '@ziqni-tech/admin-api-client';
-let defaultClient = @ZiqniTechAdminApiClient.ApiClient.instance;
-// Configure OAuth2 access token for authorization: OAuth2
-let OAuth2 = defaultClient.authentications['OAuth2'];
-OAuth2.accessToken = 'YOUR ACCESS TOKEN';
-
-let apiInstance = new @ZiqniTechAdminApiClient.ContestsApi();
-let id = "id_example"; // String | Unique identifier of the resource
-let opts = {
-  'limit': 56, // Number | Limit the returned total records found
-  'skip': 56 // Number | Skip the returned records found and return the next batch of records
-};
-apiInstance.getListOfEntrantsForContest(id, opts, (error, data, response) => {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
-});
-```
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **String**| Unique identifier of the resource | 
- **limit** | **Number**| Limit the returned total records found | [optional] 
- **skip** | **Number**| Skip the returned records found and return the next batch of records | [optional] 
-
-### Return type
-
-[**EntrantResponse**](EntrantResponse.md)
 
 ### Authorization
 

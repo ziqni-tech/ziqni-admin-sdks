@@ -72,6 +72,9 @@ class MemberTokenRequest {
             if (data.hasOwnProperty('resource')) {
                 obj['resource'] = ApiClient.convertToType(data['resource'], 'String');
             }
+            if (data.hasOwnProperty('disabledServices')) {
+                obj['disabledServices'] = ApiClient.convertToType(data['disabledServices'], ['String']);
+            }
         }
         return obj;
     }
@@ -114,6 +117,12 @@ MemberTokenRequest.prototype['expires'] = undefined;
  * @member {String} resource
  */
 MemberTokenRequest.prototype['resource'] = undefined;
+
+/**
+ * A list of services to be disabled for this web token 
+ * @member {Array.<String>} disabledServices
+ */
+MemberTokenRequest.prototype['disabledServices'] = undefined;
 
 
 

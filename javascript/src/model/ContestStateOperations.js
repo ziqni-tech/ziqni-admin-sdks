@@ -20,31 +20,45 @@ import ApiClient from '../ApiClient';
 export default class ContestStateOperations {
     
         /**
-         * value: "Starting"
+         * value: "Deleted"
          * @const
          */
-        "Starting" = "Starting";
+        "Deleted" = "Deleted";
 
     
         /**
-         * value: "Cancelling"
+         * value: "Ready"
          * @const
          */
-        "Cancelling" = "Cancelling";
+        "Ready" = "Ready";
 
     
         /**
-         * value: "Finishing"
+         * value: "Active"
          * @const
          */
-        "Finishing" = "Finishing";
+        "Active" = "Active";
 
     
         /**
-         * value: "Finalising"
+         * value: "Finished"
          * @const
          */
-        "Finalising" = "Finalising";
+        "Finished" = "Finished";
+
+    
+        /**
+         * value: "Finalised"
+         * @const
+         */
+        "Finalised" = "Finalised";
+
+    
+        /**
+         * value: "Cancelled"
+         * @const
+         */
+        "Cancelled" = "Cancelled";
 
     
 

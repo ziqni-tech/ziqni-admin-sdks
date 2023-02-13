@@ -48,6 +48,13 @@ export default class CompetitionStatusActions {
 
     
         /**
+         * value: "Finalised"
+         * @const
+         */
+        "Finalised" = "Finalised";
+
+    
+        /**
          * value: "Cancelled"
          * @const
          */

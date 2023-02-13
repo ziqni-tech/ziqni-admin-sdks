@@ -68,6 +68,9 @@ class LeaderboardMember {
             if (data.hasOwnProperty('rankChangeType')) {
                 obj['rankChangeType'] = ApiClient.convertToType(data['rankChangeType'], 'Number');
             }
+            if (data.hasOwnProperty('params')) {
+                obj['params'] = ApiClient.convertToType(data['params'], {'String': 'Number'});
+            }
         }
         return obj;
     }
@@ -104,6 +107,12 @@ LeaderboardMember.prototype['rankChangeFrom'] = undefined;
  * @member {Number} rankChangeType
  */
 LeaderboardMember.prototype['rankChangeType'] = undefined;
+
+/**
+ * The user defined values used in the rules builder
+ * @member {Object.<String, Number>} params
+ */
+LeaderboardMember.prototype['params'] = undefined;
 
 
 

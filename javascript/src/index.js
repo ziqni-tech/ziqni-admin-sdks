@@ -161,7 +161,6 @@ import EntityStateChanged from './model/EntityStateChanged';
 import EntityType from './model/EntityType';
 import Entrant from './model/Entrant';
 import EntrantAction from './model/EntrantAction';
-import EntrantRequest from './model/EntrantRequest';
 import EntrantResponse from './model/EntrantResponse';
 import EntrantStatus from './model/EntrantStatus';
 import Error from './model/Error';
@@ -170,6 +169,7 @@ import Event from './model/Event';
 import EventAllOf from './model/EventAllOf';
 import EventRefType from './model/EventRefType';
 import EventResponse from './model/EventResponse';
+import ExportResponse from './model/ExportResponse';
 import FactDefault from './model/FactDefault';
 import FieldType from './model/FieldType';
 import FileObject from './model/FileObject';
@@ -318,6 +318,7 @@ import UpdateCustomFieldRequest from './model/UpdateCustomFieldRequest';
 import UpdateCustomFieldRequestAllOf from './model/UpdateCustomFieldRequestAllOf';
 import UpdateEntityRewardRequest from './model/UpdateEntityRewardRequest';
 import UpdateEntityRewardRequestAllOf from './model/UpdateEntityRewardRequestAllOf';
+import UpdateEntrantRequest from './model/UpdateEntrantRequest';
 import UpdateFileObjectRequest from './model/UpdateFileObjectRequest';
 import UpdateFileObjectRequestAllOf from './model/UpdateFileObjectRequestAllOf';
 import UpdateLanguageRequest from './model/UpdateLanguageRequest';
@@ -374,6 +375,7 @@ import ContestsApi from './api/ContestsApi';
 import CustomFieldsApi from './api/CustomFieldsApi';
 import DefaultApi from './api/DefaultApi';
 import EntityChangesApi from './api/EntityChangesApi';
+import EntrantsApi from './api/EntrantsApi';
 import EventsApi from './api/EventsApi';
 import FileObjectsApi from './api/FileObjectsApi';
 import FileRepositoriesApi from './api/FileRepositoriesApi';
@@ -1324,12 +1326,6 @@ export {
     EntrantAction,
 
     /**
-     * The EntrantRequest model constructor.
-     * @property {module:model/EntrantRequest}
-     */
-    EntrantRequest,
-
-    /**
      * The EntrantResponse model constructor.
      * @property {module:model/EntrantResponse}
      */
@@ -1376,6 +1372,12 @@ export {
      * @property {module:model/EventResponse}
      */
     EventResponse,
+
+    /**
+     * The ExportResponse model constructor.
+     * @property {module:model/ExportResponse}
+     */
+    ExportResponse,
 
     /**
      * The FactDefault model constructor.
@@ -2266,6 +2268,12 @@ export {
     UpdateEntityRewardRequestAllOf,
 
     /**
+     * The UpdateEntrantRequest model constructor.
+     * @property {module:model/UpdateEntrantRequest}
+     */
+    UpdateEntrantRequest,
+
+    /**
      * The UpdateFileObjectRequest model constructor.
      * @property {module:model/UpdateFileObjectRequest}
      */
@@ -2600,6 +2608,12 @@ export {
     * @property {module:api/EntityChangesApi}
     */
     EntityChangesApi,
+
+    /**
+    * The EntrantsApi service constructor.
+    * @property {module:api/EntrantsApi}
+    */
+    EntrantsApi,
 
     /**
     * The EventsApi service constructor.

@@ -22,7 +22,7 @@ class RankingStrategy {
     /**
      * Constructs a new <code>RankingStrategy</code>.
      * @alias module:model/RankingStrategy
-     * @param constraints {Array.<String>} scoreDesc - The Ranking that can be Ascending or Descending based on timeDesc. timeDesc - The Ranking that can be Ascending or Descending based on scoreDesc. scoreFirst - The Ranking that can be score first or time first ignoreTime - The Ranking when time is ignored ignoreScore - The Ranking when score is ignored
+     * @param constraints {Array.<String>} scoreDesc - The Ranking that can be Ascending or Descending based on timeDesc.  timeDesc - The Ranking that can be Ascending or Descending based on scoreDesc.  scoreFirst - The Ranking that can be score first or time first  ignoreTime - The Ranking when time is ignored  ignoreScore - The Ranking when score is ignored excludeIfGoalNotReached - The scores are not included in the leaderboard until the goal is achieved
      */
     constructor(constraints) { 
         
@@ -60,7 +60,7 @@ class RankingStrategy {
 }
 
 /**
- * scoreDesc - The Ranking that can be Ascending or Descending based on timeDesc. timeDesc - The Ranking that can be Ascending or Descending based on scoreDesc. scoreFirst - The Ranking that can be score first or time first ignoreTime - The Ranking when time is ignored ignoreScore - The Ranking when score is ignored
+ * scoreDesc - The Ranking that can be Ascending or Descending based on timeDesc.  timeDesc - The Ranking that can be Ascending or Descending based on scoreDesc.  scoreFirst - The Ranking that can be score first or time first  ignoreTime - The Ranking when time is ignored  ignoreScore - The Ranking when score is ignored excludeIfGoalNotReached - The scores are not included in the leaderboard until the goal is achieved
  * @member {Array.<String>} constraints
  */
 RankingStrategy.prototype['constraints'] = undefined;

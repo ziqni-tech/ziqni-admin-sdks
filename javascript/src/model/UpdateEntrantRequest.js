@@ -16,21 +16,21 @@ import EntrantAction from './EntrantAction';
 import EntrantStatus from './EntrantStatus';
 
 /**
- * The EntrantRequest model module.
- * @module model/EntrantRequest
+ * The UpdateEntrantRequest model module.
+ * @module model/UpdateEntrantRequest
  * @version 0.0.26
  */
-class EntrantRequest {
+class UpdateEntrantRequest {
     /**
-     * Constructs a new <code>EntrantRequest</code>.
-     * @alias module:model/EntrantRequest
+     * Constructs a new <code>UpdateEntrantRequest</code>.
+     * @alias module:model/UpdateEntrantRequest
      * @param entityId {String} Unique competition identifier
      * @param entrantStatus {module:model/EntrantStatus} 
      * @param entrantAction {module:model/EntrantAction} 
      */
     constructor(entityId, entrantStatus, entrantAction) { 
         
-        EntrantRequest.initialize(this, entityId, entrantStatus, entrantAction);
+        UpdateEntrantRequest.initialize(this, entityId, entrantStatus, entrantAction);
     }
 
     /**
@@ -45,15 +45,15 @@ class EntrantRequest {
     }
 
     /**
-     * Constructs a <code>EntrantRequest</code> from a plain JavaScript object, optionally creating a new instance.
+     * Constructs a <code>UpdateEntrantRequest</code> from a plain JavaScript object, optionally creating a new instance.
      * Copies all relevant properties from <code>data</code> to <code>obj</code> if supplied or a new instance if not.
      * @param {Object} data The plain JavaScript object bearing properties of interest.
-     * @param {module:model/EntrantRequest} obj Optional instance to populate.
-     * @return {module:model/EntrantRequest} The populated <code>EntrantRequest</code> instance.
+     * @param {module:model/UpdateEntrantRequest} obj Optional instance to populate.
+     * @return {module:model/UpdateEntrantRequest} The populated <code>UpdateEntrantRequest</code> instance.
      */
     static constructFromObject(data, obj) {
         if (data) {
-            obj = obj || new EntrantRequest();
+            obj = obj || new UpdateEntrantRequest();
 
             if (data.hasOwnProperty('memberId')) {
                 obj['memberId'] = ApiClient.convertToType(data['memberId'], 'String');
@@ -78,28 +78,28 @@ class EntrantRequest {
  * Unique member identifier. A member has to exist in the Ziqni database
  * @member {String} memberId
  */
-EntrantRequest.prototype['memberId'] = undefined;
+UpdateEntrantRequest.prototype['memberId'] = undefined;
 
 /**
  * Unique competition identifier
  * @member {String} entityId
  */
-EntrantRequest.prototype['entityId'] = undefined;
+UpdateEntrantRequest.prototype['entityId'] = undefined;
 
 /**
  * @member {module:model/EntrantStatus} entrantStatus
  */
-EntrantRequest.prototype['entrantStatus'] = undefined;
+UpdateEntrantRequest.prototype['entrantStatus'] = undefined;
 
 /**
  * @member {module:model/EntrantAction} entrantAction
  */
-EntrantRequest.prototype['entrantAction'] = undefined;
+UpdateEntrantRequest.prototype['entrantAction'] = undefined;
 
 
 
 
 
 
-export default EntrantRequest;
+export default UpdateEntrantRequest;
 

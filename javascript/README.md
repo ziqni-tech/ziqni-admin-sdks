@@ -170,9 +170,7 @@ Class | Method | HTTP request | Description
 *@ZiqniTechAdminApiClient.CompetitionsApi* | [**getCompetitionsByQuery**](docs/CompetitionsApi.md#getCompetitionsByQuery) | **POST** /competitions/query | 
 *@ZiqniTechAdminApiClient.CompetitionsApi* | [**getCompetitionsToClone**](docs/CompetitionsApi.md#getCompetitionsToClone) | **GET** /competitions/{id}/clone | Get Competition To Clone
 *@ZiqniTechAdminApiClient.CompetitionsApi* | [**getLeaderboardByCompetitionId**](docs/CompetitionsApi.md#getLeaderboardByCompetitionId) | **GET** /competitions/{id}/leaderboard | 
-*@ZiqniTechAdminApiClient.CompetitionsApi* | [**getListOfEntrants**](docs/CompetitionsApi.md#getListOfEntrants) | **GET** /competitions/{id}/entries | 
 *@ZiqniTechAdminApiClient.CompetitionsApi* | [**updateCompetitions**](docs/CompetitionsApi.md#updateCompetitions) | **PUT** /competitions | 
-*@ZiqniTechAdminApiClient.CompetitionsApi* | [**updateCompetitionsEntries**](docs/CompetitionsApi.md#updateCompetitionsEntries) | **PUT** /competitions/entries | 
 *@ZiqniTechAdminApiClient.CompetitionsApi* | [**updateCompetitionsState**](docs/CompetitionsApi.md#updateCompetitionsState) | **PUT** /competitions/state | 
 *@ZiqniTechAdminApiClient.ComputeEngineApi* | [**createComputeEngines**](docs/ComputeEngineApi.md#createComputeEngines) | **POST** /compute-engines | 
 *@ZiqniTechAdminApiClient.ComputeEngineApi* | [**deleteComputeEnginesById**](docs/ComputeEngineApi.md#deleteComputeEnginesById) | **DELETE** /compute-engines/{id} | 
@@ -194,7 +192,6 @@ Class | Method | HTTP request | Description
 *@ZiqniTechAdminApiClient.ContestsApi* | [**getContestsByQuery**](docs/ContestsApi.md#getContestsByQuery) | **POST** /contests/query | 
 *@ZiqniTechAdminApiClient.ContestsApi* | [**getContestsLeaderboardById**](docs/ContestsApi.md#getContestsLeaderboardById) | **GET** /contests/{id}/leaderboard | 
 *@ZiqniTechAdminApiClient.ContestsApi* | [**getContestsToClone**](docs/ContestsApi.md#getContestsToClone) | **GET** /contests/{id}/clone | 
-*@ZiqniTechAdminApiClient.ContestsApi* | [**getListOfEntrantsForContest**](docs/ContestsApi.md#getListOfEntrantsForContest) | **GET** /contests/{id}/entries | 
 *@ZiqniTechAdminApiClient.ContestsApi* | [**updateContest**](docs/ContestsApi.md#updateContest) | **PUT** /contests | 
 *@ZiqniTechAdminApiClient.ContestsApi* | [**updateContestsState**](docs/ContestsApi.md#updateContestsState) | **PUT** /contests/state | 
 *@ZiqniTechAdminApiClient.CustomFieldsApi* | [**createCustomFields**](docs/CustomFieldsApi.md#createCustomFields) | **POST** /custom-fields | Create custom fields
@@ -206,6 +203,9 @@ Class | Method | HTTP request | Description
 *@ZiqniTechAdminApiClient.DefaultApi* | [**deleteSpace**](docs/DefaultApi.md#deleteSpace) | **DELETE** /spaces | NOT AVAILABLE IN CURRENT RELEASE
 *@ZiqniTechAdminApiClient.DefaultApi* | [**unsubscribeFromEntityChanges**](docs/DefaultApi.md#unsubscribeFromEntityChanges) | **DELETE** /entity-changes | 
 *@ZiqniTechAdminApiClient.EntityChangesApi* | [**manageEntityChangeSubscription**](docs/EntityChangesApi.md#manageEntityChangeSubscription) | **POST** /entity-changes | 
+*@ZiqniTechAdminApiClient.EntrantsApi* | [**exportEntrantsByQuery**](docs/EntrantsApi.md#exportEntrantsByQuery) | **POST** /entrants/query | Get entrants by query
+*@ZiqniTechAdminApiClient.EntrantsApi* | [**getEntrantsByQuery**](docs/EntrantsApi.md#getEntrantsByQuery) | **POST** /entrants/export | Get entrants by query
+*@ZiqniTechAdminApiClient.EntrantsApi* | [**updateEntrants**](docs/EntrantsApi.md#updateEntrants) | **POST** /entrants | 
 *@ZiqniTechAdminApiClient.EventsApi* | [**createEvents**](docs/EventsApi.md#createEvents) | **POST** /events | 
 *@ZiqniTechAdminApiClient.EventsApi* | [**getEvents**](docs/EventsApi.md#getEvents) | **GET** /events | 
 *@ZiqniTechAdminApiClient.EventsApi* | [**getEventsByQuery**](docs/EventsApi.md#getEventsByQuery) | **POST** /events/query | 
@@ -467,7 +467,6 @@ Class | Method | HTTP request | Description
  - [@ZiqniTechAdminApiClient.EntityType](docs/EntityType.md)
  - [@ZiqniTechAdminApiClient.Entrant](docs/Entrant.md)
  - [@ZiqniTechAdminApiClient.EntrantAction](docs/EntrantAction.md)
- - [@ZiqniTechAdminApiClient.EntrantRequest](docs/EntrantRequest.md)
  - [@ZiqniTechAdminApiClient.EntrantResponse](docs/EntrantResponse.md)
  - [@ZiqniTechAdminApiClient.EntrantStatus](docs/EntrantStatus.md)
  - [@ZiqniTechAdminApiClient.Error](docs/Error.md)
@@ -476,6 +475,7 @@ Class | Method | HTTP request | Description
  - [@ZiqniTechAdminApiClient.EventAllOf](docs/EventAllOf.md)
  - [@ZiqniTechAdminApiClient.EventRefType](docs/EventRefType.md)
  - [@ZiqniTechAdminApiClient.EventResponse](docs/EventResponse.md)
+ - [@ZiqniTechAdminApiClient.ExportResponse](docs/ExportResponse.md)
  - [@ZiqniTechAdminApiClient.FactDefault](docs/FactDefault.md)
  - [@ZiqniTechAdminApiClient.FieldType](docs/FieldType.md)
  - [@ZiqniTechAdminApiClient.FileObject](docs/FileObject.md)
@@ -624,6 +624,7 @@ Class | Method | HTTP request | Description
  - [@ZiqniTechAdminApiClient.UpdateCustomFieldRequestAllOf](docs/UpdateCustomFieldRequestAllOf.md)
  - [@ZiqniTechAdminApiClient.UpdateEntityRewardRequest](docs/UpdateEntityRewardRequest.md)
  - [@ZiqniTechAdminApiClient.UpdateEntityRewardRequestAllOf](docs/UpdateEntityRewardRequestAllOf.md)
+ - [@ZiqniTechAdminApiClient.UpdateEntrantRequest](docs/UpdateEntrantRequest.md)
  - [@ZiqniTechAdminApiClient.UpdateFileObjectRequest](docs/UpdateFileObjectRequest.md)
  - [@ZiqniTechAdminApiClient.UpdateFileObjectRequestAllOf](docs/UpdateFileObjectRequestAllOf.md)
  - [@ZiqniTechAdminApiClient.UpdateLanguageRequest](docs/UpdateLanguageRequest.md)

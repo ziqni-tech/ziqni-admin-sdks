@@ -28,7 +28,7 @@
   var instance;
 
   beforeEach(function() {
-    instance = new @ZiqniTechAdminApiClient.EntrantRequest();
+    instance = new @ZiqniTechAdminApiClient.ExportResponse();
   });
 
   var getProperty = function(object, getter, property) {
@@ -47,34 +47,28 @@
       object[property] = value;
   }
 
-  describe('EntrantRequest', function() {
-    it('should create an instance of EntrantRequest', function() {
-      // uncomment below and update the code to test EntrantRequest
-      //var instance = new @ZiqniTechAdminApiClient.EntrantRequest();
-      //expect(instance).to.be.a(@ZiqniTechAdminApiClient.EntrantRequest);
+  describe('ExportResponse', function() {
+    it('should create an instance of ExportResponse', function() {
+      // uncomment below and update the code to test ExportResponse
+      //var instance = new @ZiqniTechAdminApiClient.ExportResponse();
+      //expect(instance).to.be.a(@ZiqniTechAdminApiClient.ExportResponse);
     });
 
-    it('should have the property memberId (base name: "memberId")', function() {
-      // uncomment below and update the code to test the property memberId
-      //var instance = new @ZiqniTechAdminApiClient.EntrantRequest();
+    it('should have the property meta (base name: "meta")', function() {
+      // uncomment below and update the code to test the property meta
+      //var instance = new @ZiqniTechAdminApiClient.ExportResponse();
       //expect(instance).to.be();
     });
 
-    it('should have the property entityId (base name: "entityId")', function() {
-      // uncomment below and update the code to test the property entityId
-      //var instance = new @ZiqniTechAdminApiClient.EntrantRequest();
+    it('should have the property results (base name: "results")', function() {
+      // uncomment below and update the code to test the property results
+      //var instance = new @ZiqniTechAdminApiClient.ExportResponse();
       //expect(instance).to.be();
     });
 
-    it('should have the property entrantStatus (base name: "entrantStatus")', function() {
-      // uncomment below and update the code to test the property entrantStatus
-      //var instance = new @ZiqniTechAdminApiClient.EntrantRequest();
-      //expect(instance).to.be();
-    });
-
-    it('should have the property entrantAction (base name: "entrantAction")', function() {
-      // uncomment below and update the code to test the property entrantAction
-      //var instance = new @ZiqniTechAdminApiClient.EntrantRequest();
+    it('should have the property errors (base name: "errors")', function() {
+      // uncomment below and update the code to test the property errors
+      //var instance = new @ZiqniTechAdminApiClient.ExportResponse();
       //expect(instance).to.be();
     });
 

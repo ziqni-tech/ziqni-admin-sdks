@@ -7679,7 +7679,7 @@ paths:
             schema:
               type: array
               items:
-                $ref: '#/components/schemas/EntrantRequest'
+                $ref: '#/components/schemas/UpdateEntrantRequest'
       tags:
         - entrants
       responses:
@@ -7712,6 +7712,45 @@ paths:
       description: Updates the status of the Entrants for a Competition id provided
       x-codegen-request-body-name: body
   /entrants/query:
+    summary: Get entrants by query
+    description: This operation allows you to get entrants in your project using a query.
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/QueryRequest'
+      tags:
+        - entrants
+      responses:
+        '200':
+          $ref: '#/components/responses/EntrantResponseBody'
+        '400':
+          $ref: '#/components/responses/EntrantResponseBody'
+        '401':
+          $ref: '#/components/responses/EntrantResponseBody'
+        '403':
+          $ref: '#/components/responses/EntrantResponseBody'
+        '404':
+          $ref: '#/components/responses/EntrantResponseBody'
+        '413':
+          $ref: '#/components/responses/EntrantResponseBody'
+        '500':
+          $ref: '#/components/responses/EntrantResponseBody'
+        '501':
+          $ref: '#/components/responses/EntrantResponseBody'
+        '503':
+          $ref: '#/components/responses/EntrantResponseBody'
+      security:
+        -
+          OAuth2:
+            - ViewCompetitions
+      operationId: exportEntrantsByQuery
+      summary: Get entrants by query
+      description: >-
+        Retrieve ConteEntrants from Ziqni database by unique Contests ID's or any other POST body
+        parameters using the POST method
+  /entrants/export:
     summary: Get entrants by query
     description: This operation allows you to get entrants in your project using a query.
     post:
@@ -7857,25 +7896,6 @@ components:
         created: '2018-02-10T09:30Z'
         fieldType: Text
         value: Sammple Text
-    EntrantRequest:
-      required:
-        - entrantStatus
-        - entityId
-        - entrantAction
-      type: object
-      properties:
-        memberId:
-          description: Unique member identifier. A member has to exist in the Ziqni database
-          type: string
-          example: Dc4swmQBVd51K6gPQqFx
-        entityId:
-          description: Unique competition identifier
-          type: string
-          example: PXXQrm4BuCEBoI5DKW47
-        entrantStatus:
-          $ref: '#/components/schemas/EntrantStatus'
-        entrantAction:
-          $ref: '#/components/schemas/EntrantAction'
     UpdateCompetitionStatusRequest:
       allOf:
         -
@@ -10304,7 +10324,7 @@ components:
           description: |+
             The key of the parameter that is being searched
           
-          
+
           type: string
         gt:
           description: Greater than value
@@ -12717,13 +12737,6 @@ components:
               x-vue-search-field: true
               x-vue-disaply-order: 1001
               x-vue-links-to: Member
-            memberRefId:
-              description: The reference to this member in your system
-              type: string
-              example: Player-1
-              x-vue-search-all: true
-              x-vue-search-field: true
-              x-vue-disaply-order: 1001
             rewardId:
               description: A unique identifier of a Reward
               type: string
@@ -17679,6 +17692,40 @@ components:
       x-vue-ops:
         - Create
         - Update
+    ExportResponse:
+      required:
+        - meta
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/MetaExtended'
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Entrant'
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
+    UpdateEntrantRequest:
+      required:
+        - entrantStatus
+        - entityId
+        - entrantAction
+      type: object
+      properties:
+        memberId:
+          description: Unique member identifier. A member has to exist in the Ziqni database
+          type: string
+          example: Dc4swmQBVd51K6gPQqFx
+        entityId:
+          description: Unique competition identifier
+          type: string
+          example: PXXQrm4BuCEBoI5DKW47
+        entrantStatus:
+          $ref: '#/components/schemas/EntrantStatus'
+        entrantAction:
+          $ref: '#/components/schemas/EntrantAction'
   responses:
     ApiResponseBody:
       content:
