@@ -51,7 +51,7 @@ public class ClassScanner {
     public static final List<Class<?>> getClassesInPackage(String packageName) {
         String path ;
         if(SystemUtils.IS_OS_WINDOWS) {
-            path  = packageName.replaceAll("\\\\.", File.separator);
+            path  = packageName.replaceAll("\\.", "\\" + File.separator);
         }else {
             path = packageName.replaceAll("\\.", File.separator);
         }
