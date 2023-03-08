@@ -3,6 +3,8 @@
  */
 package com.ziqni.admin.sdk.util;
 
+import org.apache.commons.lang3.SystemUtils;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.lang.reflect.Type;
@@ -47,7 +49,12 @@ public class ClassScanner {
     }
 
     public static final List<Class<?>> getClassesInPackage(String packageName) {
-        String path = packageName.replaceAll("\\.", File.separator);
+        String path ;
+        if(SystemUtils.IS_OS_WINDOWS) {
+            path  = packageName.replaceAll("\\\\.", File.separator);
+        }else {
+            path = packageName.replaceAll("\\.", File.separator);
+        }
         List<Class<?>> classes = new ArrayList<>();
         String[] classPathEntries = System.getProperty("java.class.path").split(
                 System.getProperty("path.separator")
