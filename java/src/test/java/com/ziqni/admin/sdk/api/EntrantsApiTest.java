@@ -58,11 +58,11 @@ public class EntrantsApiTest implements tests.utils.CompleteableFutureTestWrappe
     public void updateEntrantsReturnOkTest() throws ApiException {
         final var updateEntrantRequest = new UpdateEntrantRequest()
                 .entrantAction(EntrantAction.DROPSCORE)
-                .entrantStatus(EntrantStatus.INJURED)
+                .entrantStatus(EntrantStatus.ENTRANT)
                 .memberId("")
                 .entityId("");
 
-        var response = $(api.updateEntrants(List.of(updateEntrantRequest)));
+        var response = $(api.updateEntrants(updateEntrantRequest));
 
         assertNotNull(response);
         assertNotNull(response.getResults());
