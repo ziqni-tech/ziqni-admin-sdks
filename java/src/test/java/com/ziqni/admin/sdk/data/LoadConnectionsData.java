@@ -1,15 +1,17 @@
 package com.ziqni.admin.sdk.data;
 
-import com.ziqni.admin.sdk.ZiqniAdminApiFactory;
 import com.ziqni.admin.sdk.ApiException;
 import com.ziqni.admin.sdk.api.ConnectionsApiWs;
-import com.ziqni.admin.sdk.api.ConsumersApiWs;
 import com.ziqni.admin.sdk.configuration.AdminApiClientConfigBuilder;
-import com.ziqni.admin.sdk.model.*;
+import com.ziqni.admin.sdk.model.ConnectionType;
+import com.ziqni.admin.sdk.model.CreateConnectionRequest;
+import com.ziqni.admin.sdk.model.ModelApiResponse;
 import com.ziqni.admin.sdk.util.ApiClientFactoryUtil;
 import tests.utils.CompleteableFutureTestWrapper;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -60,31 +62,31 @@ public class LoadConnectionsData implements CompleteableFutureTestWrapper {
 
     }
 
-    public CreateKafkaConnectionRequest getCreateKafkaRequest(String transformerId) {
-        return new CreateKafkaConnectionRequest()
-                .name("Kafka_1")
-                .topic("Test_Topic")
-                .groupId("Test_Group_Id")
-                .description("My example kafka connection")
-                .brokers("Example broker")
-                .transformerId(transformerId)
-                .metadata(new LoadMetadata().getMetadataAsList())
-                ;
-
-    }
-
-    public CreateSqsConnectionRequest getCreateSqsRequest(String transformerId) {
-        return new CreateSqsConnectionRequest()
-                .name("SQS_1")
-                .acessKey("Test_Access_key")
-                .secretKey("Test_Secret_key")
-                .description("My example sqs connection")
-                .uri("https://www.ziqni.com")
-                .transformerId(transformerId)
-                .metadata(new LoadMetadata().getMetadataAsList())
-                ;
-
-    }
+//    public CreateKafkaConnectionRequest getCreateKafkaRequest(String transformerId) {
+//        return new CreateKafkaConnectionRequest()
+//                .name("Kafka_1")
+//                .topic("Test_Topic")
+//                .groupId("Test_Group_Id")
+//                .description("My example kafka connection")
+//                .brokers("Example broker")
+//                .transformerId(transformerId)
+//                .metadata(new LoadMetadata().getMetadataAsList())
+//                ;
+//
+//    }
+//
+//    public CreateSqsConnectionRequest getCreateSqsRequest(String transformerId) {
+//        return new CreateSqsConnectionRequest()
+//                .name("SQS_1")
+//                .acessKey("Test_Access_key")
+//                .secretKey("Test_Secret_key")
+//                .description("My example sqs connection")
+//                .uri("https://www.ziqni.com")
+//                .transformerId(transformerId)
+//                .metadata(new LoadMetadata().getMetadataAsList())
+//                ;
+//
+//    }
 
     public List<CreateConnectionRequest> getCreateRabbitMqRequestAsList(int numberOfItems, String transformerId, String tagKey) {
         return IntStream.range(0, numberOfItems)
@@ -92,29 +94,29 @@ public class LoadConnectionsData implements CompleteableFutureTestWrapper {
                 .collect(Collectors.toList());
     }
 
-    public List<CreateKafkaConnectionRequest> getCreateKafkaRequestAsList(int numberOfItems, String transformerId) {
-        return IntStream.range(0, numberOfItems)
-                .mapToObj(i -> getCreateKafkaRequest(transformerId))
-                .collect(Collectors.toList());
-    }
+//    public List<CreateKafkaConnectionRequest> getCreateKafkaRequestAsList(int numberOfItems, String transformerId) {
+//        return IntStream.range(0, numberOfItems)
+//                .mapToObj(i -> getCreateKafkaRequest(transformerId))
+//                .collect(Collectors.toList());
+//    }
+//
+//    public List<CreateSqsConnectionRequest> getCreateSqsRequestAsList(int numberOfItems, String transformerId) {
+//        return IntStream.range(0, numberOfItems)
+//                .mapToObj(i -> getCreateSqsRequest(transformerId))
+//                .collect(Collectors.toList());
+//    }
 
-    public List<CreateSqsConnectionRequest> getCreateSqsRequestAsList(int numberOfItems, String transformerId) {
-        return IntStream.range(0, numberOfItems)
-                .mapToObj(i -> getCreateSqsRequest(transformerId))
-                .collect(Collectors.toList());
-    }
-
-    public List<CreateRabbitMqConnectionRequest> getCreateRabbitMqRequestAsList(CreateRabbitMqConnectionRequest request) {
-        return List.of(request);
-    }
-
-    public List<CreateRabbitMqConnectionRequest> getCreateKafkaRequestAsList(CreateRabbitMqConnectionRequest request) {
-        return List.of(request);
-    }
-
-    public List<CreateSqsConnectionRequest> getCreateSqsRequestAsList(CreateSqsConnectionRequest request) {
-        return List.of(request);
-    }
+//    public List<CreateRabbitMqConnectionRequest> getCreateRabbitMqRequestAsList(CreateRabbitMqConnectionRequest request) {
+//        return List.of(request);
+//    }
+//
+//    public List<CreateRabbitMqConnectionRequest> getCreateKafkaRequestAsList(CreateRabbitMqConnectionRequest request) {
+//        return List.of(request);
+//    }
+//
+//    public List<CreateSqsConnectionRequest> getCreateSqsRequestAsList(CreateSqsConnectionRequest request) {
+//        return List.of(request);
+//    }
 
     public ModelApiResponse createRabbitMqTestData(List<CreateConnectionRequest> request) throws ApiException {
         var response = $(api.createConnections(request));
