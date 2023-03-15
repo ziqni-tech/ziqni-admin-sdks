@@ -69,12 +69,17 @@ public class ClassScanner {
                     JarEntry entry;
                     while((entry = is.getNextJarEntry()) != null) {
                         name = entry.getName();
-                        if (name.endsWith(".class")) {
-                            if (name.contains(path) && name.endsWith(".class")) {
+                        if (SystemUtils.IS_OS_WINDOWS && name.endsWith(".class")) {
+                            if (name.contains(path.replaceAll("\\\\","/"))) {
                                 String classPath = name.substring(0, entry.getName().length() - 6);
                                 classPath = classPath.replaceAll("[\\|/]", ".");
                                 classes.add(Class.forName(classPath));
                             }
+                        }
+                        else  if (name.contains(path) && name.endsWith(".class")) {
+                            String classPath = name.substring(0, entry.getName().length() - 6);
+                            classPath = classPath.replaceAll("[\\|/]", ".");
+                            classes.add(Class.forName(classPath));
                         }
                     }
                 } catch (Exception ex) {
