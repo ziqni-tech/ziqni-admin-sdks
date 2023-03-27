@@ -10319,7 +10319,7 @@ components:
           description: |+
             The key of the parameter that is being searched
           
-          
+
           type: string
         gt:
           description: Greater than value
@@ -14109,118 +14109,6 @@ components:
           type: string
       x-vue-create: translation
       x-vue-creator: translations
-    Product:
-      description: This is the Product model
-      allOf:
-        -
-          $ref: '#/components/schemas/ModelDefault'
-        -
-          $ref: '#/components/schemas/OptParamModels'
-        -
-          required:
-            - name
-            - adjustmentFactor
-            - productRefId
-          type: object
-          properties:
-            name:
-              description: The name of the product
-              type: string
-              example: Hockey madness
-              x-vue-as-string: true
-              x-vue-translatable: true
-              x-vue-sortable: true
-              x-vue-search-all: true
-              x-vue-search-field: true
-              x-vue-disaply-order: 1001
-            description:
-              description: The description of the product for your reference
-              type: string
-              example: Spin the hockey wheal
-              x-vue-form-type: TEXTAREA
-              x-vue-as-string: false
-              x-vue-translatable: true
-              x-vue-sortable: true
-              x-vue-hidden: true
-              x-vue-search-all: true
-              x-vue-search-field: true
-              x-vue-disaply-order: 1002
-            adjustmentFactor:
-              format: double
-              description: The multiplier to apply to source values received for this product events
-              type: number
-              example: '1'
-              x-vue-search-field: true
-              x-vue-sortable: true
-              x-vue-disaply-order: 1003
-            productRefId:
-              description: >-
-                The reference to this product in your system. The reference identifier can not
-                be changed after the product has been created
-              type: string
-              example: hockey-madness
-              x-vue-search-all: true
-              x-vue-search-field: true
-              x-vue-sortable: true
-              x-vue-disaply-order: 1000
-            actionTypeAdjustmentFactors:
-              type: array
-              items:
-                $ref: '#/components/schemas/ActionTypeAdjustmentFactor'
-              x-vue-hidden: true
-              x-vue-disaply-order: 1004
-      example:
-        id: someText
-        spaceName: someText
-        created: '2018-02-10T09:30Z'
-        productRefId: '10002'
-        name: test1
-        adjustmentFactor: '1'
-        actionTypeAdjustmentFactors:
-          -
-            adjustmentFactor: 67.71
-            actionTypeId: ziqniModelId
-          -
-            adjustmentFactor: 96.91
-            actionTypeId: ziqniModelId
-        customFields:
-          customField1: customFieldValue1
-          customField2: customFieldValue2
-        metadata:
-          key1: value1
-          key2: value
-        tags:
-          - tagId1
-          - tagId2
-        translations:
-          -
-            languageKey: csb
-            translations:
-              -
-                fieldName: name
-                text: test1
-          -
-            languageKey: den
-            translations:
-              -
-                fieldName: name
-                text: test-temp
-          -
-            languageKey: kmb
-            translations:
-              -
-                fieldName: name
-                text: Level-Up
-      x-vue-list: true
-      x-vue-show: true
-      x-vue-getter: products
-      x-vue-csv-supported: true
-      x-vue-sort-by: name
-      x-vue-sort-order: Asc
-      x-vue-limit: 10
-      x-vue-ops:
-        - Create
-        - Update
     ModelDefault:
       required:
         - id
@@ -14371,168 +14259,6 @@ components:
           x-vue-form-type: META
       example:
         id: 1
-    CreateProductRequest:
-      description: This is a request for Product creation
-      allOf:
-        -
-          $ref: '#/components/schemas/CreateOptParamModels'
-        -
-          required:
-            - name
-            - adjustmentFactor
-            - productRefId
-          type: object
-          properties:
-            name:
-              description: The name of the product
-              type: string
-              example: Hockey madness
-            description:
-              description: The description of the product for your reference
-              type: string
-              example: Spin the hockey wheal
-              x-vue-form-type: TEXTAREA
-            adjustmentFactor:
-              format: double
-              description: The multiplier to apply to source values received for this product events
-              type: number
-              example: '1'
-            productRefId:
-              description: >-
-                The reference to this product in your system. The reference identifier can not
-                be changed after the product has been created
-              type: string
-              example: hockey-madness
-            actionTypeAdjustmentFactors:
-              type: array
-              items:
-                $ref: '#/components/schemas/ActionTypeAdjustmentFactor'
-            translations:
-              type: array
-              items:
-                $ref: '#/components/schemas/Translation'
-      example:
-        productRefId: '10002'
-        name: test1
-        description: description
-        adjustmentFactor: '1'
-        actionTypeAdjustmentFactors:
-          -
-            adjustmentFactor: 67.71
-            actionTypeId: ziqniModelId
-          -
-            adjustmentFactor: 96.91
-            actionTypeId: ziqniModelId
-        customFields:
-          customField1: customFieldValue1
-          customField2: customFieldValue2
-        metadata:
-          key1: value1
-          key2: value
-        tags:
-          - tagId1
-          - tagId2
-        translations:
-          -
-            languageKey: csb
-            translations:
-              -
-                fieldName: name
-                text: test1
-          -
-            languageKey: den
-            translations:
-              -
-                fieldName: name
-                text: test-temp
-          -
-            languageKey: kmb
-            translations:
-              -
-                fieldName: name
-                text: Level-Up
-      x-vue-create: product
-      x-vue-creator: products
-    Event:
-      allOf:
-        -
-          $ref: '#/components/schemas/ModelDefault'
-        -
-          required:
-            - action
-            - sourceValue
-            - points
-            - transactionTimestamp
-          type: object
-          properties:
-            memberId:
-              description: Unique system identifier of a Member
-              type: string
-              example: ac1samQmVr61KgaPQq7x
-            memberRefId:
-              description: The reference to this member in external system
-              type: string
-              example: Player-1
-            action:
-              description: The identifier that describes the meaning of this event
-              type: string
-              example: win
-            batchId:
-              description: >-
-                The batch identifier is used to group related event stream data together. This
-                could be as simple as a UUID or your internal reference to that distinct
-                player session event
-              type: string
-              example: ecrsamQm23r61KgaPQq7x
-            entityId:
-              description: >-
-                It is a reference to a models ID for any of the following objects - Product,
-                Achievement, Reward, Award
-              type: string
-              example: 6c1samQmVr61KgaPQq7x
-            entityRefId:
-              description: >-
-                It is a reference to a models ID for any of the following objects - Product,
-                Achievement, Reward, Award
-              type: string
-              example: 6c1samQmVr61KgaPQq7x
-            sourceValue:
-              format: double
-              description: The actual numerical value related to the event
-              type: number
-              example: '12.345'
-            points:
-              format: double
-              description: >-
-                A value derived from the source value field. In the context of Product
-                additionally an adjustment factor will be applied
-              type: number
-              example: '12.345'
-            transactionTimestamp:
-              format: date-time
-              description: >-
-                ISO8601 timestamp for when this event happened. All records are stored in UTC
-                time zone
-              type: string
-              example: '2019-09-25T15:47:00.000+0000'
-            metadata:
-              $ref: '#/components/schemas/EventMetadata'
-            customFields:
-              type: object
-              additionalProperties: true
-            tags:
-              description: A list of Strings of groups that the tag belongs to
-              type: array
-              items:
-                type: string
-            relatesTo:
-              type: array
-              items:
-                type: string
-            relatesToExternal:
-              type: array
-              items:
-                type: string
     MemberAward:
       description: This is the Member Award model
       allOf:
@@ -15230,17 +14956,6 @@ components:
               description: To what round does the contest belong
               type: integer
               example: '2'
-            groupStage:
-              format: int32
-              description: >-
-                Is used for more complex Competitions e.g. multi round competitions where
-                round 1 group stage matched round 2
-              type: integer
-              example: '2'
-            groupStageLabel:
-              description: The name of the group stages
-              type: string
-              example: Semi-finals
             entrantsFromContest:
               description: >-
                 A list of Ziqni contest identifiers to allow contests chaining. When a
@@ -16198,24 +15913,6 @@ components:
               $ref: '#/components/schemas/RoundType'
               x-vue-search-field: true
               x-vue-disaply-order: 1006
-            groupStage:
-              format: int32
-              description: >-
-                Is used for more complex Competitions e.g. multi round competitions where
-                round 1 group stage matched round 2
-              type: integer
-              example: '2'
-              x-vue-search-field: true
-              x-vue-disaply-order: 1006
-            groupStageLabel:
-              description: The name of the group stages
-              type: string
-              example: Semi-finals
-              x-vue-as-string: true
-              x-vue-translatable: true
-              x-vue-search-all: true
-              x-vue-search-field: true
-              x-vue-disaply-order: 1001
             entrantsFromContest:
               description: >-
                 A list of Ziqni contest identifiers to allow contests chaining. When a
@@ -17721,6 +17418,298 @@ components:
           $ref: '#/components/schemas/EntrantStatus'
         entrantAction:
           $ref: '#/components/schemas/EntrantAction'
+    Event:
+      allOf:
+        -
+          $ref: '#/components/schemas/ModelDefault'
+        -
+          required:
+            - action
+            - sourceValue
+            - points
+            - transactionTimestamp
+          type: object
+          properties:
+            memberId:
+              description: Unique system identifier of a Member
+              type: string
+              example: ac1samQmVr61KgaPQq7x
+            memberRefId:
+              description: The reference to this member in external system
+              type: string
+              example: Player-1
+            action:
+              description: The identifier that describes the meaning of this event
+              type: string
+              example: win
+            batchId:
+              description: >-
+                The batch identifier is used to group related event stream data together. This
+                could be as simple as a UUID or your internal reference to that distinct
+                player session event
+              type: string
+              example: ecrsamQm23r61KgaPQq7x
+            entityId:
+              description: >-
+                It is a reference to a models ID for any of the following objects - Product,
+                Achievement, Reward, Award
+              type: string
+              example: 6c1samQmVr61KgaPQq7x
+            eventRefId:
+              description: >-
+                It is a reference to a models ID for any of the following objects - Product,
+                Achievement, Reward, Award
+              type: string
+              example: 6c1samQmVr61KgaPQq7x
+            entityRefId:
+              description: >-
+                It is a reference to a models ID for any of the following objects - Product,
+                Achievement, Reward, Award
+              type: string
+              example: 6c1samQmVr61KgaPQq7x
+            sourceValue:
+              format: double
+              description: The actual numerical value related to the event
+              type: number
+              example: '12.345'
+            points:
+              format: double
+              description: >-
+                A value derived from the source value field. In the context of Product
+                additionally an adjustment factor will be applied
+              type: number
+              example: '12.345'
+            transactionTimestamp:
+              format: date-time
+              description: >-
+                ISO8601 timestamp for when this event happened. All records are stored in UTC
+                time zone
+              type: string
+              example: '2019-09-25T15:47:00.000+0000'
+            metadata:
+              $ref: '#/components/schemas/EventMetadata'
+            customFields:
+              type: object
+              additionalProperties: true
+            tags:
+              description: A list of Strings of groups that the tag belongs to
+              type: array
+              items:
+                type: string
+            relatesTo:
+              type: array
+              items:
+                type: string
+            relatesToExternal:
+              type: array
+              items:
+                type: string
+    Product:
+      description: This is the Product model
+      allOf:
+        -
+          $ref: '#/components/schemas/ModelDefault'
+        -
+          $ref: '#/components/schemas/OptParamModels'
+        -
+          required:
+            - name
+            - adjustmentFactor
+            - productRefId
+          type: object
+          properties:
+            name:
+              description: The name of the product
+              type: string
+              example: Hockey madness
+              x-vue-as-string: true
+              x-vue-translatable: true
+              x-vue-sortable: true
+              x-vue-search-all: true
+              x-vue-search-field: true
+              x-vue-disaply-order: 1001
+            description:
+              description: The description of the product for your reference
+              type: string
+              example: Spin the hockey wheal
+              x-vue-form-type: TEXTAREA
+              x-vue-as-string: false
+              x-vue-translatable: true
+              x-vue-sortable: true
+              x-vue-hidden: true
+              x-vue-search-all: true
+              x-vue-search-field: true
+              x-vue-disaply-order: 1002
+            adjustmentFactor:
+              format: double
+              description: The multiplier to apply to source values received for this product events
+              type: number
+              example: '1'
+              x-vue-search-field: true
+              x-vue-sortable: true
+              x-vue-disaply-order: 1003
+            productRefId:
+              description: >-
+                The reference to this product in your system. The reference identifier can not
+                be changed after the product has been created
+              type: string
+              example: hockey-madness
+              x-vue-search-all: true
+              x-vue-search-field: true
+              x-vue-sortable: true
+              x-vue-disaply-order: 1000
+            productType:
+              description: The type to this product in your system.
+              type: string
+              example: hockey-madness
+              x-vue-search-all: true
+              x-vue-search-field: true
+              x-vue-sortable: true
+              x-vue-disaply-order: 1005
+            actionTypeAdjustmentFactors:
+              type: array
+              items:
+                $ref: '#/components/schemas/ActionTypeAdjustmentFactor'
+              x-vue-hidden: true
+              x-vue-disaply-order: 1004
+      example:
+        id: someText
+        spaceName: someText
+        created: '2018-02-10T09:30Z'
+        productRefId: '10002'
+        name: test1
+        adjustmentFactor: '1'
+        actionTypeAdjustmentFactors:
+          -
+            adjustmentFactor: 67.71
+            actionTypeId: ziqniModelId
+          -
+            adjustmentFactor: 96.91
+            actionTypeId: ziqniModelId
+        customFields:
+          customField1: customFieldValue1
+          customField2: customFieldValue2
+        metadata:
+          key1: value1
+          key2: value
+        tags:
+          - tagId1
+          - tagId2
+        translations:
+          -
+            languageKey: csb
+            translations:
+              -
+                fieldName: name
+                text: test1
+          -
+            languageKey: den
+            translations:
+              -
+                fieldName: name
+                text: test-temp
+          -
+            languageKey: kmb
+            translations:
+              -
+                fieldName: name
+                text: Level-Up
+      x-vue-list: true
+      x-vue-show: true
+      x-vue-getter: products
+      x-vue-csv-supported: true
+      x-vue-sort-by: name
+      x-vue-sort-order: Asc
+      x-vue-limit: 10
+      x-vue-ops:
+        - Create
+        - Update
+    CreateProductRequest:
+      description: This is a request for Product creation
+      allOf:
+        -
+          $ref: '#/components/schemas/CreateOptParamModels'
+        -
+          required:
+            - name
+            - adjustmentFactor
+            - productRefId
+          type: object
+          properties:
+            name:
+              description: The name of the product
+              type: string
+              example: Hockey madness
+            description:
+              description: The description of the product for your reference
+              type: string
+              example: Spin the hockey wheal
+              x-vue-form-type: TEXTAREA
+            adjustmentFactor:
+              format: double
+              description: The multiplier to apply to source values received for this product events
+              type: number
+              example: '1'
+            productRefId:
+              description: >-
+                The reference to this product in your system. The reference identifier can not
+                be changed after the product has been created
+              type: string
+              example: hockey-madness
+            productType:
+              description: The type to this product in your system.
+              type: string
+              example: hockey-madness
+            actionTypeAdjustmentFactors:
+              type: array
+              items:
+                $ref: '#/components/schemas/ActionTypeAdjustmentFactor'
+            translations:
+              type: array
+              items:
+                $ref: '#/components/schemas/Translation'
+      example:
+        productRefId: '10002'
+        name: test1
+        description: description
+        adjustmentFactor: '1'
+        actionTypeAdjustmentFactors:
+          -
+            adjustmentFactor: 67.71
+            actionTypeId: ziqniModelId
+          -
+            adjustmentFactor: 96.91
+            actionTypeId: ziqniModelId
+        customFields:
+          customField1: customFieldValue1
+          customField2: customFieldValue2
+        metadata:
+          key1: value1
+          key2: value
+        tags:
+          - tagId1
+          - tagId2
+        translations:
+          -
+            languageKey: csb
+            translations:
+              -
+                fieldName: name
+                text: test1
+          -
+            languageKey: den
+            translations:
+              -
+                fieldName: name
+                text: test-temp
+          -
+            languageKey: kmb
+            translations:
+              -
+                fieldName: name
+                text: Level-Up
+      x-vue-create: product
+      x-vue-creator: products
   responses:
     ApiResponseBody:
       content:

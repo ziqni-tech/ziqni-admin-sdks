@@ -14,8 +14,6 @@ Name | Type | Description | Notes
 **termsAndConditions** | **String** | Terms and conditions for participating in the Contest. Can be translated |  [optional]
 **round** | **Integer** | To what round does the contest belong | 
 **roundType** | **RoundType** |  | 
-**groupStage** | **Integer** | Is used for more complex Competitions e.g. multi round competitions where round 1 group stage matched round 2 |  [optional]
-**groupStageLabel** | **String** | The name of the group stages |  [optional]
 **entrantsFromContest** | **List&lt;String&gt;** | A list of Ziqni contest identifiers to allow contests chaining. When a Progression competition is active and you have a 2 round competition the first round has to reference the second round then this parameter becomes mandatory instead of Optional. | 
 **maxNumberOfEntrants** | **Integer** | Maximum number of entrants for the contest |  [optional]
 **minNumberOfEntrants** | **Integer** | Minimum number of entrants for the contest | 
