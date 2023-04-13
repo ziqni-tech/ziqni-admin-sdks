@@ -71,7 +71,7 @@ export default class EntrantsApi {
       let accepts = ['application/json'];
       let returnType = EntrantResponse;
       return this.apiClient.callApi(
-        '/entrants/query', 'POST',
+        '/entrants/export', 'POST',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, null, callback
       );
@@ -111,7 +111,7 @@ export default class EntrantsApi {
       let accepts = ['application/json'];
       let returnType = EntrantResponse;
       return this.apiClient.callApi(
-        '/entrants/export', 'POST',
+        '/entrants/query', 'POST',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, null, callback
       );
@@ -128,7 +128,7 @@ export default class EntrantsApi {
     /**
      * Updates the status of the Entrants for a Competition id provided
      * @param {Object} opts Optional parameters
-     * @param {Array.<module:model/UpdateEntrantRequest>} opts.body Updates the status of the Entrants
+     * @param {module:model/UpdateEntrantRequest} opts.body Updates the status of the Entrants
      * @param {module:api/EntrantsApi~updateEntrantsCallback} callback The callback function, accepting three arguments: error, data, response
      * data is of type: {@link module:model/ApiResponse}
      */

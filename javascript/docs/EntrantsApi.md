@@ -4,8 +4,8 @@ All URIs are relative to *https://api.ziqni.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**exportEntrantsByQuery**](EntrantsApi.md#exportEntrantsByQuery) | **POST** /entrants/query | Get entrants by query
-[**getEntrantsByQuery**](EntrantsApi.md#getEntrantsByQuery) | **POST** /entrants/export | Get entrants by query
+[**exportEntrantsByQuery**](EntrantsApi.md#exportEntrantsByQuery) | **POST** /entrants/export | Get entrants by query
+[**getEntrantsByQuery**](EntrantsApi.md#getEntrantsByQuery) | **POST** /entrants/query | Get entrants by query
 [**updateEntrants**](EntrantsApi.md#updateEntrants) | **POST** /entrants | 
 
 
@@ -131,7 +131,7 @@ OAuth2.accessToken = 'YOUR ACCESS TOKEN';
 
 let apiInstance = new @ZiqniTechAdminApiClient.EntrantsApi();
 let opts = {
-  'body': [new @ZiqniTechAdminApiClient.UpdateEntrantRequest()] // [UpdateEntrantRequest] | Updates the status of the Entrants
+  'body': new @ZiqniTechAdminApiClient.UpdateEntrantRequest() // UpdateEntrantRequest | Updates the status of the Entrants
 };
 apiInstance.updateEntrants(opts, (error, data, response) => {
   if (error) {
@@ -147,7 +147,7 @@ apiInstance.updateEntrants(opts, (error, data, response) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**[UpdateEntrantRequest]**](UpdateEntrantRequest.md)| Updates the status of the Entrants | [optional] 
+ **body** | [**UpdateEntrantRequest**](UpdateEntrantRequest.md)| Updates the status of the Entrants | [optional] 
 
 ### Return type
 

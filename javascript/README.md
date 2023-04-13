@@ -203,8 +203,8 @@ Class | Method | HTTP request | Description
 *@ZiqniTechAdminApiClient.DefaultApi* | [**deleteSpace**](docs/DefaultApi.md#deleteSpace) | **DELETE** /spaces | NOT AVAILABLE IN CURRENT RELEASE
 *@ZiqniTechAdminApiClient.DefaultApi* | [**unsubscribeFromEntityChanges**](docs/DefaultApi.md#unsubscribeFromEntityChanges) | **DELETE** /entity-changes | 
 *@ZiqniTechAdminApiClient.EntityChangesApi* | [**manageEntityChangeSubscription**](docs/EntityChangesApi.md#manageEntityChangeSubscription) | **POST** /entity-changes | 
-*@ZiqniTechAdminApiClient.EntrantsApi* | [**exportEntrantsByQuery**](docs/EntrantsApi.md#exportEntrantsByQuery) | **POST** /entrants/query | Get entrants by query
-*@ZiqniTechAdminApiClient.EntrantsApi* | [**getEntrantsByQuery**](docs/EntrantsApi.md#getEntrantsByQuery) | **POST** /entrants/export | Get entrants by query
+*@ZiqniTechAdminApiClient.EntrantsApi* | [**exportEntrantsByQuery**](docs/EntrantsApi.md#exportEntrantsByQuery) | **POST** /entrants/export | Get entrants by query
+*@ZiqniTechAdminApiClient.EntrantsApi* | [**getEntrantsByQuery**](docs/EntrantsApi.md#getEntrantsByQuery) | **POST** /entrants/query | Get entrants by query
 *@ZiqniTechAdminApiClient.EntrantsApi* | [**updateEntrants**](docs/EntrantsApi.md#updateEntrants) | **POST** /entrants | 
 *@ZiqniTechAdminApiClient.EventsApi* | [**createEvents**](docs/EventsApi.md#createEvents) | **POST** /events | 
 *@ZiqniTechAdminApiClient.EventsApi* | [**getEvents**](docs/EventsApi.md#getEvents) | **GET** /events | 

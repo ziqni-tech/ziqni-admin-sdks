@@ -3,28 +3,22 @@
 ## Enum
 
 
-* `Unknown` (value: `"Unknown"`)
+* `NotEntered` (value: `"NotEntered"`)
 
-* `Deleted` (value: `"Deleted"`)
+* `Entering` (value: `"Entering"`)
 
-* `WrongGroups` (value: `"WrongGroups"`)
+* `Entrant` (value: `"Entrant"`)
 
-* `Disqualified` (value: `"Disqualified"`)
+* `Preparing` (value: `"Preparing"`)
 
-* `Substituted` (value: `"Substituted"`)
+* `Running` (value: `"Running"`)
 
-* `Injured` (value: `"Injured"`)
+* `Completing` (value: `"Completing"`)
 
-* `OptInRequired` (value: `"OptInRequired"`)
+* `Completed` (value: `"Completed"`)
 
-* `Registered` (value: `"Registered"`)
+* `Excluding` (value: `"Excluding"`)
 
-* `Entered` (value: `"Entered"`)
-
-* `Playing` (value: `"Playing"`)
-
-* `Finished` (value: `"Finished"`)
-
-* `Finalised` (value: `"Finalised"`)
+* `Excluded` (value: `"Excluded"`)
 
 
