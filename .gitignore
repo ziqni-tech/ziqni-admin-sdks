@@ -11,3 +11,16 @@
 /javascript/dist/
 /openapi/cs/generated/
 /openapi/obj-c/generated/
+/openapi/swift/generated/
+/swift/.idea/
+/swift/cmake-build-debug/
+/swift/OpenAPIClient/
+/swift/.gitignore
+/swift/.openapi-generator-ignore
+/swift/Cartfile
+/swift/CMakeLists.txt
+/swift/git_push.sh
+/swift/OpenAPIClient.podspec
+/swift/Package.swift
+/swift/project.yml
+/swift/README.md
