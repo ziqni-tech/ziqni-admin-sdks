@@ -10,6 +10,7 @@ import com.ziqni.admin.sdk.streaming.EventHandler;
 import com.ziqni.admin.sdk.streaming.Message;
 import com.ziqni.admin.sdk.streaming.OonRemovalListener;
 import com.ziqni.admin.sdk.util.ClassScanner;
+import org.checkerframework.checker.nullness.qual.NonNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.messaging.simp.stomp.StompHeaders;
@@ -28,7 +29,7 @@ public class RpcResultsEventHandler extends EventHandler<String> {
     private static final AtomicLong sequenceNumber = new AtomicLong(0);
 
     public static final AsyncCache<String, RpcResultsResponse<?,?>> awaitingResponseCache = Caffeine.newBuilder()
-            .maximumSize(100_000)
+            .maximumSize(250_000)
             .expireAfterWrite(5, TimeUnit.MINUTES)
             .evictionListener(new OonRemovalListener(logger))
             .buildAsync();
@@ -62,7 +63,7 @@ public class RpcResultsEventHandler extends EventHandler<String> {
     }
 
     @Override
-    public void handleFrame(StompHeaders headers, Object payload) {
+    public void handleFrame(@NonNull StompHeaders headers, Object payload) {
         var messageId = getMessageId(headers);
 
         if(messageId.isPresent()){
@@ -79,23 +80,18 @@ public class RpcResultsEventHandler extends EventHandler<String> {
         final var messageId = sequenceNumber.incrementAndGet();
         final var streamingResponse = new RpcResultsResponse<>(messageId, payload, completableFuture);
 
-        try {
-            var nextSeq = Long.toString(messageId);
-            StompHeaders headers = new StompHeaders();
-            headers.setDestination(destination);
-            headers.setMessageId(nextSeq);
+        var nextSeq = Long.toString(messageId);
+        StompHeaders headers = new StompHeaders();
+        headers.setDestination(destination);
+        headers.setMessageId(nextSeq);
 
-            logger.debug("WS sent request to destination [{}] with receipt id [{}] and payload [{}] and headers [{}] and callback []", destination, nextSeq, payload, headers.toSingleValueMap());
+        logger.debug("WS sent request to destination [{}] with receipt id [{}] and payload [{}] and headers [{}] and callback []", destination, nextSeq, payload, headers.toSingleValueMap());
 
-            doSend.accept(headers, payload);
-            final var in = new CompletableFuture<RpcResultsResponse<TIN, TOUT>>();
-            in.complete(streamingResponse);
-            awaitingResponseCache.put(streamingResponse.getSequenceNumberAsString(), in);
-            return streamingResponse;
-        }
-        catch (Throwable throwable){
-            throw throwable;
-        }
+        doSend.accept(headers, payload);
+        final var in = new CompletableFuture<RpcResultsResponse<TIN, TOUT>>();
+        in.complete(streamingResponse);
+        awaitingResponseCache.put(streamingResponse.getSequenceNumberAsString(), in);
+        return streamingResponse;
     }
 
     private static Optional<String> getMessageId(StompHeaders headers){
