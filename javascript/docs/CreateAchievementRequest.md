@@ -21,5 +21,6 @@ Name | Type | Description | Notes
 **memberTagsFilter** | [**DependantOn**](DependantOn.md) |  | [optional] 
 **productTagsFilter** | [**DependantOn**](DependantOn.md) |  | [optional] 
 **addConstraints** | **[String]** |  | [optional] 
+**strategy** | [**PointStrategy**](PointStrategy.md) |  | [optional] 
 
 

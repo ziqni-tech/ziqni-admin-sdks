@@ -7,7 +7,7 @@
     <groupId>com.ziqni</groupId>
     <artifactId>ziqni-admin-sdk</artifactId>
     <name>ZIQNI Admin SDK Java Client</name>
-    <version>1.0.12</version>
+    <version>1.0.14</version>
     <packaging>jar</packaging>
     <url>https://github.com/ziqni-tech/ziqni-admin-sdks</url>
     <description>ZIQNI Admin SDK Java Client</description>
@@ -74,6 +74,7 @@
     </properties>
 
     <dependencies>
+
         <dependency>
             <groupId>com.github.ben-manes.caffeine</groupId>
             <artifactId>caffeine</artifactId>
@@ -177,7 +178,6 @@
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
             <version>2.11.0</version>
-            <scope>test</scope>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/commons-fileupload/commons-fileupload -->

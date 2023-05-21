@@ -19,6 +19,7 @@ Name | Type | Description | Notes
 **achievementDependencies** | [**DependantOn**](DependantOn.md) |  |  [optional]
 **memberTagsFilter** | [**DependantOn**](DependantOn.md) |  |  [optional]
 **productTagsFilter** | [**DependantOn**](DependantOn.md) |  |  [optional]
+**strategy** | [**PointStrategy**](PointStrategy.md) |  |  [optional]
 
 
 

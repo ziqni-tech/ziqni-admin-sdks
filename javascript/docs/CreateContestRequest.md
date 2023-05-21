@@ -9,8 +9,6 @@ Name | Type | Description | Notes
 **metadata** | **{String: String}** |  | [optional] 
 **row** | **Number** | The row number for displaying the Contest in a table | [optional] 
 **round** | **Number** | To what round does the contest belong | [optional] 
-**groupStage** | **Number** | Is used for more complex Competitions e.g. multi round competitions where round 1 group stage matched round 2 | [optional] 
-**groupStageLabel** | **String** | The name of the group stages | [optional] 
 **entrantsFromContest** | **[String]** | A list of Ziqni contest identifiers to allow contests chaining. When a Progression competition is active and you have a 2 round competition the first round has to reference the second round then this parameter becomes mandatory instead of Optional. | [optional] 
 **name** | **String** | A name for the Contest. Can be translated | 
 **description** | **String** | A name for the Contest. Can be translated | [optional] 

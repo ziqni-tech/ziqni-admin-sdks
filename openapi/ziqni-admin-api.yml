@@ -1,7 +1,7 @@
 openapi: 3.0.2
 info:
   title: ZIQNI Admin API
-  version: 3.0.1
+  version: 3.0.2
   description: Ziqni Application Services are used to manage and configure spaces.
   contact:
     name: Support Team
@@ -10319,7 +10319,7 @@ components:
           description: |+
             The key of the parameter that is being searched
           
-          
+
           type: string
         gt:
           description: Greater than value
@@ -11773,7 +11773,7 @@ components:
           example: '1000'
         recordTimeWhenSumReaches:
           format: double
-          description: Not supported at the moment
+          description: The time a member gets to the target points value
           type: number
           example: '1'
     UpdateContestRequest:
@@ -12962,41 +12962,6 @@ components:
       x-vue-limit: 10
       x-vue-ops:
         - Update
-    CreateCustomFieldRequest:
-      description: Request to create custom fields
-      required:
-        - name
-        - key
-        - fieldType
-        - appliesTo
-      type: object
-      properties:
-        name:
-          description: The name of a Custom field
-          type: string
-          example: Promotional field
-        key:
-          description: The key of a Custom field
-          type: string
-          example: promotional-field
-          x-vue-form-type: 'NAMEKEY, showKey: true'
-        description:
-          description: The description of a Custom field
-          type: string
-          example: Promotional discount field (AD20) applied to Events
-          x-vue-form-type: TEXTAREA
-        fieldType:
-          $ref: '#/components/schemas/FieldType'
-        appliesTo:
-          $ref: '#/components/schemas/AppliesTo'
-      example:
-        name: some text
-        key: some text
-        description: some text
-        fieldType: TextArray
-        appliesTo: Repository
-      x-vue-create: customField
-      x-vue-creator: customFields
     ComputeEngineResponse:
       required:
         - meta
@@ -14109,118 +14074,6 @@ components:
           type: string
       x-vue-create: translation
       x-vue-creator: translations
-    Product:
-      description: This is the Product model
-      allOf:
-        -
-          $ref: '#/components/schemas/ModelDefault'
-        -
-          $ref: '#/components/schemas/OptParamModels'
-        -
-          required:
-            - name
-            - adjustmentFactor
-            - productRefId
-          type: object
-          properties:
-            name:
-              description: The name of the product
-              type: string
-              example: Hockey madness
-              x-vue-as-string: true
-              x-vue-translatable: true
-              x-vue-sortable: true
-              x-vue-search-all: true
-              x-vue-search-field: true
-              x-vue-disaply-order: 1001
-            description:
-              description: The description of the product for your reference
-              type: string
-              example: Spin the hockey wheal
-              x-vue-form-type: TEXTAREA
-              x-vue-as-string: false
-              x-vue-translatable: true
-              x-vue-sortable: true
-              x-vue-hidden: true
-              x-vue-search-all: true
-              x-vue-search-field: true
-              x-vue-disaply-order: 1002
-            adjustmentFactor:
-              format: double
-              description: The multiplier to apply to source values received for this product events
-              type: number
-              example: '1'
-              x-vue-search-field: true
-              x-vue-sortable: true
-              x-vue-disaply-order: 1003
-            productRefId:
-              description: >-
-                The reference to this product in your system. The reference identifier can not
-                be changed after the product has been created
-              type: string
-              example: hockey-madness
-              x-vue-search-all: true
-              x-vue-search-field: true
-              x-vue-sortable: true
-              x-vue-disaply-order: 1000
-            actionTypeAdjustmentFactors:
-              type: array
-              items:
-                $ref: '#/components/schemas/ActionTypeAdjustmentFactor'
-              x-vue-hidden: true
-              x-vue-disaply-order: 1004
-      example:
-        id: someText
-        spaceName: someText
-        created: '2018-02-10T09:30Z'
-        productRefId: '10002'
-        name: test1
-        adjustmentFactor: '1'
-        actionTypeAdjustmentFactors:
-          -
-            adjustmentFactor: 67.71
-            actionTypeId: ziqniModelId
-          -
-            adjustmentFactor: 96.91
-            actionTypeId: ziqniModelId
-        customFields:
-          customField1: customFieldValue1
-          customField2: customFieldValue2
-        metadata:
-          key1: value1
-          key2: value
-        tags:
-          - tagId1
-          - tagId2
-        translations:
-          -
-            languageKey: csb
-            translations:
-              -
-                fieldName: name
-                text: test1
-          -
-            languageKey: den
-            translations:
-              -
-                fieldName: name
-                text: test-temp
-          -
-            languageKey: kmb
-            translations:
-              -
-                fieldName: name
-                text: Level-Up
-      x-vue-list: true
-      x-vue-show: true
-      x-vue-getter: products
-      x-vue-csv-supported: true
-      x-vue-sort-by: name
-      x-vue-sort-order: Asc
-      x-vue-limit: 10
-      x-vue-ops:
-        - Create
-        - Update
     ModelDefault:
       required:
         - id
@@ -14371,168 +14224,6 @@ components:
           x-vue-form-type: META
       example:
         id: 1
-    CreateProductRequest:
-      description: This is a request for Product creation
-      allOf:
-        -
-          $ref: '#/components/schemas/CreateOptParamModels'
-        -
-          required:
-            - name
-            - adjustmentFactor
-            - productRefId
-          type: object
-          properties:
-            name:
-              description: The name of the product
-              type: string
-              example: Hockey madness
-            description:
-              description: The description of the product for your reference
-              type: string
-              example: Spin the hockey wheal
-              x-vue-form-type: TEXTAREA
-            adjustmentFactor:
-              format: double
-              description: The multiplier to apply to source values received for this product events
-              type: number
-              example: '1'
-            productRefId:
-              description: >-
-                The reference to this product in your system. The reference identifier can not
-                be changed after the product has been created
-              type: string
-              example: hockey-madness
-            actionTypeAdjustmentFactors:
-              type: array
-              items:
-                $ref: '#/components/schemas/ActionTypeAdjustmentFactor'
-            translations:
-              type: array
-              items:
-                $ref: '#/components/schemas/Translation'
-      example:
-        productRefId: '10002'
-        name: test1
-        description: description
-        adjustmentFactor: '1'
-        actionTypeAdjustmentFactors:
-          -
-            adjustmentFactor: 67.71
-            actionTypeId: ziqniModelId
-          -
-            adjustmentFactor: 96.91
-            actionTypeId: ziqniModelId
-        customFields:
-          customField1: customFieldValue1
-          customField2: customFieldValue2
-        metadata:
-          key1: value1
-          key2: value
-        tags:
-          - tagId1
-          - tagId2
-        translations:
-          -
-            languageKey: csb
-            translations:
-              -
-                fieldName: name
-                text: test1
-          -
-            languageKey: den
-            translations:
-              -
-                fieldName: name
-                text: test-temp
-          -
-            languageKey: kmb
-            translations:
-              -
-                fieldName: name
-                text: Level-Up
-      x-vue-create: product
-      x-vue-creator: products
-    Event:
-      allOf:
-        -
-          $ref: '#/components/schemas/ModelDefault'
-        -
-          required:
-            - action
-            - sourceValue
-            - points
-            - transactionTimestamp
-          type: object
-          properties:
-            memberId:
-              description: Unique system identifier of a Member
-              type: string
-              example: ac1samQmVr61KgaPQq7x
-            memberRefId:
-              description: The reference to this member in external system
-              type: string
-              example: Player-1
-            action:
-              description: The identifier that describes the meaning of this event
-              type: string
-              example: win
-            batchId:
-              description: >-
-                The batch identifier is used to group related event stream data together. This
-                could be as simple as a UUID or your internal reference to that distinct
-                player session event
-              type: string
-              example: ecrsamQm23r61KgaPQq7x
-            entityId:
-              description: >-
-                It is a reference to a models ID for any of the following objects - Product,
-                Achievement, Reward, Award
-              type: string
-              example: 6c1samQmVr61KgaPQq7x
-            entityRefId:
-              description: >-
-                It is a reference to a models ID for any of the following objects - Product,
-                Achievement, Reward, Award
-              type: string
-              example: 6c1samQmVr61KgaPQq7x
-            sourceValue:
-              format: double
-              description: The actual numerical value related to the event
-              type: number
-              example: '12.345'
-            points:
-              format: double
-              description: >-
-                A value derived from the source value field. In the context of Product
-                additionally an adjustment factor will be applied
-              type: number
-              example: '12.345'
-            transactionTimestamp:
-              format: date-time
-              description: >-
-                ISO8601 timestamp for when this event happened. All records are stored in UTC
-                time zone
-              type: string
-              example: '2019-09-25T15:47:00.000+0000'
-            metadata:
-              $ref: '#/components/schemas/EventMetadata'
-            customFields:
-              type: object
-              additionalProperties: true
-            tags:
-              description: A list of Strings of groups that the tag belongs to
-              type: array
-              items:
-                type: string
-            relatesTo:
-              type: array
-              items:
-                type: string
-            relatesToExternal:
-              type: array
-              items:
-                type: string
     MemberAward:
       description: This is the Member Award model
       allOf:
@@ -14815,38 +14506,6 @@ components:
             text: some text
       x-vue-update: translation
       x-vue-updater: translations
-    UpdateCustomFieldRequest:
-      description: Request to update custom fields
-      allOf:
-        -
-          $ref: '#/components/schemas/UpdateModelDefault'
-        -
-          required: []
-          type: object
-          properties:
-            name:
-              description: The name of a Custom field
-              type: string
-              example: Promotional field
-            description:
-              description: The description of a Custom field
-              type: string
-              example: Promotional discount field (AD20) applied to Events
-              x-vue-form-type: TEXTAREA
-            fieldType:
-              $ref: '#/components/schemas/FieldType'
-              readOnly: true
-            appliesTo:
-              $ref: '#/components/schemas/AppliesTo'
-              readOnly: true
-      example:
-        id: ziqniModelId
-        name: some text
-        description: some text
-        fieldType: TextArray
-        appliesTo: Repository
-      x-vue-update: customField
-      x-vue-updater: customFields
     Tag:
       description: Tag model
       allOf:
@@ -15230,17 +14889,6 @@ components:
               description: To what round does the contest belong
               type: integer
               example: '2'
-            groupStage:
-              format: int32
-              description: >-
-                Is used for more complex Competitions e.g. multi round competitions where
-                round 1 group stage matched round 2
-              type: integer
-              example: '2'
-            groupStageLabel:
-              description: The name of the group stages
-              type: string
-              example: Semi-finals
             entrantsFromContest:
               description: >-
                 A list of Ziqni contest identifiers to allow contests chaining. When a
@@ -15412,242 +15060,6 @@ components:
             productTagsFilter:
               $ref: '#/components/schemas/DependantOn'
               description: ''
-    Achievement:
-      allOf:
-        -
-          $ref: '#/components/schemas/ModelDefault'
-        -
-          $ref: '#/components/schemas/OptParamModels'
-        -
-          required:
-            - name
-            - icon
-            - ruleSets
-            - schedulings
-            - achievementLiveStatus
-            - constraints
-          type: object
-          properties:
-            name:
-              description: A name for the Achievement. Can be translated
-              type: string
-              x-vue-as-string: true
-              x-vue-translatable: true
-              x-vue-search-all: true
-              x-vue-search-field: true
-              x-vue-disaply-order: 1001
-            description:
-              description: A name for the Achievement. Can be translated
-              type: string
-              x-vue-translatable: true
-              x-vue-search-all: true
-              x-vue-search-field: true
-              x-vue-disaply-order: 1002
-              x-vue-form-type: TEXTAREA
-            termsAndConditions:
-              description: Terms and conditions of an achievement. Can be translated
-              type: string
-              x-vue-translatable: true
-              x-vue-search-all: true
-              x-vue-search-field: true
-              x-vue-disaply-order: 1003
-            icon:
-              description: An Icon id that has been pre uploaded to the system to display for Achievement
-              type: string
-              x-vue-hidden: true
-              x-vue-disaply-order: 1011
-            scheduling:
-              $ref: '#/components/schemas/Scheduling'
-              x-vue-search-field: true
-              x-vue-disaply-order: 1004
-            maxNumberOfIssues:
-              format: int32
-              description: Maximum number of issued achievements
-              type: integer
-              x-vue-search-field: true
-              x-vue-disaply-order: 1006
-            status:
-              $ref: '#/components/schemas/AchievementStatus'
-              x-vue-disaply-order: 1004
-            statusCode:
-              description: The code of the contest
-              type: integer
-              readOnly: true
-              example: '3'
-              x-vue-search-field: true
-              x-vue-disaply-order: 1006
-            constraints:
-              description: 'Additional constraints, if set means true'
-              type: array
-              items:
-                type: string
-              example: |-
-                - deprecated
-                - notifyMember
-                - isHidden
-                - optinRequiredForEntrants
-                - expired
-              x-vue-constraint: true
-              x-vue-search-field: true
-              x-vue-disaply-order: 1100
-            achievementDependencies:
-              $ref: '#/components/schemas/DependantOn'
-              x-vue-search-field: true
-              x-vue-disaply-order: 1003
-            memberTagsFilter:
-              $ref: '#/components/schemas/DependantOn'
-              description: ''
-            productTagsFilter:
-              $ref: '#/components/schemas/DependantOn'
-              description: ''
-      x-vue-table-show: 'All, Live, Draft, Archived'
-      x-vue-list: true
-      x-vue-show: true
-      x-vue-getter: achievements
-      x-vue-sort-by: name
-      x-vue-sort-order: Asc
-      x-vue-limit: 10
-      x-vue-ops:
-        - Create
-        - Update
-      x-vue-enity-links-from:
-        - Rules
-        - Rewards
-        - Awards
-        - Events
-    CreateAchievementRequest:
-      allOf:
-        -
-          $ref: '#/components/schemas/CreateOptParamModels'
-        -
-          required:
-            - name
-            - ruleSets
-            - scheduling
-            - constraints
-          type: object
-          properties:
-            name:
-              description: A name for the Achievement. Can be translated
-              type: string
-              example: Welcome badge
-            description:
-              description: A name for the Achievement. Can be translated
-              type: string
-              example: A Badge to welcome you on board
-            termsAndConditions:
-              description: Terms and conditions of an achievement. Can be translated
-              type: string
-              example: Participate to win
-            icon:
-              description: An Icon id that has been pre uploaded to the system to display for Achievement
-              type: string
-              example: Dc4swmQBVd51K6gPQqFx
-            rules:
-              type: array
-              items:
-                $ref: '#/components/schemas/Rule'
-            scheduling:
-              $ref: '#/components/schemas/Scheduling'
-            maxNumberOfIssues:
-              format: int32
-              description: Maximum number of issued achievements
-              type: integer
-              example: '9999'
-            translations:
-              type: array
-              items:
-                $ref: '#/components/schemas/Translation'
-            rewards:
-              type: array
-              items:
-                $ref: '#/components/schemas/CreateRewardRequest'
-            constraints:
-              deprecated: true
-              description: Additional constraints
-              type: array
-              items:
-                type: string
-              example: '- notifyMember - isHidden - deprecated - optinRequiredForEntrants'
-            achievementDependencies:
-              $ref: '#/components/schemas/DependantOn'
-            memberTagsFilter:
-              $ref: '#/components/schemas/DependantOn'
-              description: ''
-            productTagsFilter:
-              $ref: '#/components/schemas/DependantOn'
-              description: ''
-            addConstraints:
-              description: ''
-              type: array
-              items:
-                type: string
-      x-vue-create: achievement
-      x-vue-creator: achievements
-      x-vue-rules: true
-    UpdateAchievementRequest:
-      allOf:
-        -
-          $ref: '#/components/schemas/UpdateModelDefault'
-        -
-          $ref: '#/components/schemas/UpdateOptParamModels'
-        -
-          required: []
-          type: object
-          properties:
-            name:
-              description: A name for the Achievement. Can be translated
-              type: string
-              example: Welcome badge
-            description:
-              description: A name for the Achievement. Can be translated
-              type: string
-              example: A Badge to welcome you on board
-            termsAndConditions:
-              description: Terms and conditions of an achievement. Can be translated
-              type: string
-              example: Participate to win
-            icon:
-              description: An Icon id that has been pre uploaded to the system to display for Achievement
-              type: string
-              example: Dc4swmQBVd51K6gPQqFx
-            scheduling:
-              $ref: '#/components/schemas/Scheduling'
-            achievementLiveStatus:
-              $ref: '#/components/schemas/AchievementLiveStatus'
-            maxNumberOfIssues:
-              format: int32
-              description: Maximum number of issued achievements
-              type: integer
-              example: '9999'
-            constraints:
-              deprecated: true
-              description: Additional constraints
-              type: array
-              items:
-                type: string
-              example: '- notifyMember - isHidden - deprecated - optinRequiredForEntrants'
-            achievementDependencies:
-              $ref: '#/components/schemas/DependantOn'
-            memberTagsFilter:
-              $ref: '#/components/schemas/DependantOn'
-              description: ''
-            productTagsFilter:
-              $ref: '#/components/schemas/DependantOn'
-              description: ''
-            addConstraints:
-              description: ''
-              type: array
-              items:
-                type: string
-            removeConstraints:
-              description: ''
-              type: array
-              items:
-                type: string
-      x-vue-update: achievement
-      x-vue-updater: achievements
-      x-vue-object-type: achievement
     CreateSimpleCompetitionRequest:
       allOf:
         -
@@ -16198,24 +15610,6 @@ components:
               $ref: '#/components/schemas/RoundType'
               x-vue-search-field: true
               x-vue-disaply-order: 1006
-            groupStage:
-              format: int32
-              description: >-
-                Is used for more complex Competitions e.g. multi round competitions where
-                round 1 group stage matched round 2
-              type: integer
-              example: '2'
-              x-vue-search-field: true
-              x-vue-disaply-order: 1006
-            groupStageLabel:
-              description: The name of the group stages
-              type: string
-              example: Semi-finals
-              x-vue-as-string: true
-              x-vue-translatable: true
-              x-vue-search-all: true
-              x-vue-search-field: true
-              x-vue-disaply-order: 1001
             entrantsFromContest:
               description: >-
                 A list of Ziqni contest identifiers to allow contests chaining. When a
@@ -17721,6 +17115,777 @@ components:
           $ref: '#/components/schemas/EntrantStatus'
         entrantAction:
           $ref: '#/components/schemas/EntrantAction'
+    Event:
+      allOf:
+        -
+          $ref: '#/components/schemas/ModelDefault'
+        -
+          required:
+            - action
+            - sourceValue
+            - points
+            - transactionTimestamp
+          type: object
+          properties:
+            memberId:
+              description: Unique system identifier of a Member
+              type: string
+              example: ac1samQmVr61KgaPQq7x
+            memberRefId:
+              description: The reference to this member in external system
+              type: string
+              example: Player-1
+            action:
+              description: The identifier that describes the meaning of this event
+              type: string
+              example: win
+            batchId:
+              description: >-
+                The batch identifier is used to group related event stream data together. This
+                could be as simple as a UUID or your internal reference to that distinct
+                player session event
+              type: string
+              example: ecrsamQm23r61KgaPQq7x
+            entityId:
+              description: >-
+                It is a reference to a models ID for any of the following objects - Product,
+                Achievement, Reward, Award
+              type: string
+              example: 6c1samQmVr61KgaPQq7x
+            eventRefId:
+              description: >-
+                It is a reference to a models ID for any of the following objects - Product,
+                Achievement, Reward, Award
+              type: string
+              example: 6c1samQmVr61KgaPQq7x
+            entityRefId:
+              description: >-
+                It is a reference to a models ID for any of the following objects - Product,
+                Achievement, Reward, Award
+              type: string
+              example: 6c1samQmVr61KgaPQq7x
+            sourceValue:
+              format: double
+              description: The actual numerical value related to the event
+              type: number
+              example: '12.345'
+            points:
+              format: double
+              description: >-
+                A value derived from the source value field. In the context of Product
+                additionally an adjustment factor will be applied
+              type: number
+              example: '12.345'
+            transactionTimestamp:
+              format: date-time
+              description: >-
+                ISO8601 timestamp for when this event happened. All records are stored in UTC
+                time zone
+              type: string
+              example: '2019-09-25T15:47:00.000+0000'
+            metadata:
+              $ref: '#/components/schemas/EventMetadata'
+            customFields:
+              type: object
+              additionalProperties: true
+            tags:
+              description: A list of Strings of groups that the tag belongs to
+              type: array
+              items:
+                type: string
+            relatesTo:
+              type: array
+              items:
+                type: string
+            relatesToExternal:
+              type: array
+              items:
+                type: string
+    Product:
+      description: This is the Product model
+      allOf:
+        -
+          $ref: '#/components/schemas/ModelDefault'
+        -
+          $ref: '#/components/schemas/OptParamModels'
+        -
+          required:
+            - name
+            - adjustmentFactor
+            - productRefId
+          type: object
+          properties:
+            name:
+              description: The name of the product
+              type: string
+              example: Hockey madness
+              x-vue-as-string: true
+              x-vue-translatable: true
+              x-vue-sortable: true
+              x-vue-search-all: true
+              x-vue-search-field: true
+              x-vue-disaply-order: 1001
+            description:
+              description: The description of the product for your reference
+              type: string
+              example: Spin the hockey wheal
+              x-vue-form-type: TEXTAREA
+              x-vue-as-string: false
+              x-vue-translatable: true
+              x-vue-sortable: true
+              x-vue-hidden: true
+              x-vue-search-all: true
+              x-vue-search-field: true
+              x-vue-disaply-order: 1002
+            adjustmentFactor:
+              format: double
+              description: The multiplier to apply to source values received for this product events
+              type: number
+              example: '1'
+              x-vue-search-field: true
+              x-vue-sortable: true
+              x-vue-disaply-order: 1003
+            productRefId:
+              description: >-
+                The reference to this product in your system. The reference identifier can not
+                be changed after the product has been created
+              type: string
+              example: hockey-madness
+              x-vue-search-all: true
+              x-vue-search-field: true
+              x-vue-sortable: true
+              x-vue-disaply-order: 1000
+            productType:
+              description: The type to this product in your system.
+              type: string
+              example: hockey-madness
+              x-vue-search-all: true
+              x-vue-search-field: true
+              x-vue-sortable: true
+              x-vue-disaply-order: 1005
+            actionTypeAdjustmentFactors:
+              type: array
+              items:
+                $ref: '#/components/schemas/ActionTypeAdjustmentFactor'
+              x-vue-hidden: true
+              x-vue-disaply-order: 1004
+      example:
+        id: someText
+        spaceName: someText
+        created: '2018-02-10T09:30Z'
+        productRefId: '10002'
+        name: test1
+        adjustmentFactor: '1'
+        actionTypeAdjustmentFactors:
+          -
+            adjustmentFactor: 67.71
+            actionTypeId: ziqniModelId
+          -
+            adjustmentFactor: 96.91
+            actionTypeId: ziqniModelId
+        customFields:
+          customField1: customFieldValue1
+          customField2: customFieldValue2
+        metadata:
+          key1: value1
+          key2: value
+        tags:
+          - tagId1
+          - tagId2
+        translations:
+          -
+            languageKey: csb
+            translations:
+              -
+                fieldName: name
+                text: test1
+          -
+            languageKey: den
+            translations:
+              -
+                fieldName: name
+                text: test-temp
+          -
+            languageKey: kmb
+            translations:
+              -
+                fieldName: name
+                text: Level-Up
+      x-vue-list: true
+      x-vue-show: true
+      x-vue-getter: products
+      x-vue-csv-supported: true
+      x-vue-sort-by: name
+      x-vue-sort-order: Asc
+      x-vue-limit: 10
+      x-vue-ops:
+        - Create
+        - Update
+    CreateProductRequest:
+      description: This is a request for Product creation
+      allOf:
+        -
+          $ref: '#/components/schemas/CreateOptParamModels'
+        -
+          required:
+            - name
+            - adjustmentFactor
+            - productRefId
+          type: object
+          properties:
+            name:
+              description: The name of the product
+              type: string
+              example: Hockey madness
+            description:
+              description: The description of the product for your reference
+              type: string
+              example: Spin the hockey wheal
+              x-vue-form-type: TEXTAREA
+            adjustmentFactor:
+              format: double
+              description: The multiplier to apply to source values received for this product events
+              type: number
+              example: '1'
+            productRefId:
+              description: >-
+                The reference to this product in your system. The reference identifier can not
+                be changed after the product has been created
+              type: string
+              example: hockey-madness
+            productType:
+              description: The type to this product in your system.
+              type: string
+              example: hockey-madness
+            actionTypeAdjustmentFactors:
+              type: array
+              items:
+                $ref: '#/components/schemas/ActionTypeAdjustmentFactor'
+            translations:
+              type: array
+              items:
+                $ref: '#/components/schemas/Translation'
+      example:
+        productRefId: '10002'
+        name: test1
+        description: description
+        adjustmentFactor: '1'
+        actionTypeAdjustmentFactors:
+          -
+            adjustmentFactor: 67.71
+            actionTypeId: ziqniModelId
+          -
+            adjustmentFactor: 96.91
+            actionTypeId: ziqniModelId
+        customFields:
+          customField1: customFieldValue1
+          customField2: customFieldValue2
+        metadata:
+          key1: value1
+          key2: value
+        tags:
+          - tagId1
+          - tagId2
+        translations:
+          -
+            languageKey: csb
+            translations:
+              -
+                fieldName: name
+                text: test1
+          -
+            languageKey: den
+            translations:
+              -
+                fieldName: name
+                text: test-temp
+          -
+            languageKey: kmb
+            translations:
+              -
+                fieldName: name
+                text: Level-Up
+      x-vue-create: product
+      x-vue-creator: products
+    EntityGraphRequest:
+      description: ''
+      required:
+        - ids
+        - entityType
+      type: object
+      properties:
+        ids:
+          description: The identifier of the node to create a connected graph for
+          type: array
+          items:
+            type: string
+        constraints:
+          description: Specify the constraints that need to be applied to the filter.
+          type: array
+          items:
+            type: string
+        traversal:
+          $ref: '#/components/schemas/EntityGraphTraversal'
+          description: >-
+            Depth first [DFT] or breadth first [BFT] traversal. is a traversal technique in which
+            all the nodes of the same level are explored first, and then we move to the next
+            level. DFS is also a traversal technique in which traversal is started from the root
+            node and explore the nodes as far as possible until we reach the node that has no
+            unvisited adjacent nodes.
+        languageKey:
+          description: >-
+            The language codes can be found in the settings/transalations section of the back
+            office
+          type: string
+        includes:
+          description: >-
+            What objects to include from the entity in this response. For achievement the
+            following can be included; description, memberTagsFilter, scheduling, and
+            termsAndConditions
+          type: array
+          items:
+            type: string
+        entityType:
+          $ref: '#/components/schemas/EntityType'
+          description: ''
+    EntityGraphTraversal:
+      description: The status of award
+      enum:
+        - DEPTH_FIRST
+        - BREADTH_FIRST
+      type: string
+      readOnly: true
+    EntityGraphNode:
+      description: |-
+        Mission is a specialised view of connected achievements.
+        The first achievement is the container, every dependant achievement is a chained dependency
+      required:
+        - entries
+        - entityId
+        - optInStatus
+      type: object
+      properties:
+        name:
+          description: ''
+          type: string
+        optInStatus:
+          $ref: '#/components/schemas/OptinStatus'
+          description: ''
+        constraints:
+          description: 'isCompleted, etc'
+          type: array
+          items:
+            type: string
+        entityType:
+          description: ''
+          type: string
+        entityId:
+          description: ''
+          type: string
+        entityStatusCode:
+          description: ''
+          type: integer
+        entityStatus:
+          description: ''
+          type: string
+        includes:
+          description: ''
+          type: object
+          additionalProperties:
+            type: object
+    OptinStatus:
+      description: ''
+      required:
+        - entityType
+        - statusCode
+        - status
+        - entityType
+        - entityId
+        - statusCode
+        - status
+      type: object
+      properties:
+        entityType:
+          description: ''
+          type: string
+        entityId:
+          description: ''
+          type: string
+        statusCode:
+          description: >-
+            Processing = 0, NotEntered = 5, Entering = 10, Entrant = 15, Preparing = 20, Running =
+            25, Completing = 30, Completed = 35
+          type: integer
+        status:
+          description: |-
+            Processing = 0, NotEntered = 5, Entering = 10, Entrant = 15,\
+                        \ Preparing = 20, Running = 25, Completing = 30, Completed = 35
+          type: string
+        percentageComplete:
+          description: 'What percentage has been completed so far, this is a number between 0 and 100'
+          type: number
+    EntityGraphEdgeType:
+      description: ''
+      type: object
+    CreateCustomFieldRequest:
+      description: Request to create custom fields
+      required:
+        - name
+        - key
+        - fieldType
+        - appliesTo
+      type: object
+      properties:
+        name:
+          description: The name of a Custom field
+          type: string
+          example: Promotional field
+        key:
+          description: The key of a Custom field
+          type: string
+          example: promotional-field
+          x-vue-form-type: 'NAMEKEY, showKey: true'
+        description:
+          description: The description of a Custom field
+          type: string
+          example: Promotional discount field (AD20) applied to Events
+          x-vue-form-type: TEXTAREA
+        fieldType:
+          $ref: '#/components/schemas/FieldType'
+        appliesTo:
+          $ref: '#/components/schemas/AppliesTo'
+        addConstraints:
+          description: For example "required" to indicate the field is required.
+          type: array
+          items:
+            type: string
+      example:
+        name: some text
+        key: some text
+        description: some text
+        fieldType: TextArray
+        appliesTo: Repository
+      x-vue-create: customField
+      x-vue-creator: customFields
+    UpdateCustomFieldRequest:
+      description: Request to update custom fields
+      allOf:
+        -
+          $ref: '#/components/schemas/UpdateModelDefault'
+        -
+          required: []
+          type: object
+          properties:
+            name:
+              description: The name of a Custom field
+              type: string
+              example: Promotional field
+            description:
+              description: The description of a Custom field
+              type: string
+              example: Promotional discount field (AD20) applied to Events
+              x-vue-form-type: TEXTAREA
+            fieldType:
+              $ref: '#/components/schemas/FieldType'
+              readOnly: true
+            appliesTo:
+              $ref: '#/components/schemas/AppliesTo'
+              readOnly: true
+            addConstraints:
+              description: For example "required" to indicate the field is required.
+              type: array
+              items:
+                type: string
+            removeConstraints:
+              description: For example "required" to indicate the field is required.
+              type: array
+              items:
+                type: string
+      example:
+        id: ziqniModelId
+        name: some text
+        description: some text
+        fieldType: TextArray
+        appliesTo: Repository
+      x-vue-update: customField
+      x-vue-updater: customFields
+    ConditionalOperator:
+      description: Available actions for competition status
+      enum:
+        - Equals
+        - GreaterThan
+        - GreaterThanEquals
+        - LessThan
+        - LessThanEquals
+        - Between
+        - Average
+        - AverageBetween
+      type: string
+    PointStrategy:
+      description: The target points to achieve
+      required:
+        - TargetType
+        - TargetPoints
+        - pointsValueMin
+        - operator
+      type: object
+      properties:
+        operator:
+          $ref: '#/components/schemas/ConditionalOperator'
+          description: The operator
+        pointsValueUpper:
+          description: >-
+            The upper points to achieve. This is only used where secondary number are required
+            like, between, or average between
+          type: number
+        pointsValue:
+          description: The points to achieve
+          type: number
+    Achievement:
+      allOf:
+        -
+          $ref: '#/components/schemas/ModelDefault'
+        -
+          $ref: '#/components/schemas/OptParamModels'
+        -
+          required:
+            - name
+            - icon
+            - ruleSets
+            - schedulings
+            - achievementLiveStatus
+            - constraints
+          type: object
+          properties:
+            name:
+              description: A name for the Achievement. Can be translated
+              type: string
+              x-vue-as-string: true
+              x-vue-translatable: true
+              x-vue-search-all: true
+              x-vue-search-field: true
+              x-vue-disaply-order: 1001
+            description:
+              description: A name for the Achievement. Can be translated
+              type: string
+              x-vue-translatable: true
+              x-vue-search-all: true
+              x-vue-search-field: true
+              x-vue-disaply-order: 1002
+              x-vue-form-type: TEXTAREA
+            termsAndConditions:
+              description: Terms and conditions of an achievement. Can be translated
+              type: string
+              x-vue-translatable: true
+              x-vue-search-all: true
+              x-vue-search-field: true
+              x-vue-disaply-order: 1003
+            icon:
+              description: An Icon id that has been pre uploaded to the system to display for Achievement
+              type: string
+              x-vue-hidden: true
+              x-vue-disaply-order: 1011
+            scheduling:
+              $ref: '#/components/schemas/Scheduling'
+              x-vue-search-field: true
+              x-vue-disaply-order: 1004
+            maxNumberOfIssues:
+              format: int32
+              description: Maximum number of issued achievements
+              type: integer
+              x-vue-search-field: true
+              x-vue-disaply-order: 1006
+            status:
+              $ref: '#/components/schemas/AchievementStatus'
+              x-vue-disaply-order: 1004
+            statusCode:
+              description: The code of the contest
+              type: integer
+              readOnly: true
+              example: '3'
+              x-vue-search-field: true
+              x-vue-disaply-order: 1006
+            constraints:
+              description: 'Additional constraints, if set means true'
+              type: array
+              items:
+                type: string
+              example: |-
+                - deprecated
+                - notifyMember
+                - isHidden
+                - optinRequiredForEntrants
+                - expired
+              x-vue-constraint: true
+              x-vue-search-field: true
+              x-vue-disaply-order: 1100
+            achievementDependencies:
+              $ref: '#/components/schemas/DependantOn'
+              x-vue-search-field: true
+              x-vue-disaply-order: 1003
+            memberTagsFilter:
+              $ref: '#/components/schemas/DependantOn'
+              description: ''
+            productTagsFilter:
+              $ref: '#/components/schemas/DependantOn'
+              description: ''
+            strategy:
+              $ref: '#/components/schemas/PointStrategy'
+              description: The target to reach in order to receive this achievement
+      x-vue-table-show: 'All, Live, Draft, Archived'
+      x-vue-list: true
+      x-vue-show: true
+      x-vue-getter: achievements
+      x-vue-sort-by: name
+      x-vue-sort-order: Asc
+      x-vue-limit: 10
+      x-vue-ops:
+        - Create
+        - Update
+      x-vue-enity-links-from:
+        - Rules
+        - Rewards
+        - Awards
+        - Events
+    CreateAchievementRequest:
+      allOf:
+        -
+          $ref: '#/components/schemas/CreateOptParamModels'
+        -
+          required:
+            - name
+            - ruleSets
+            - scheduling
+            - constraints
+          type: object
+          properties:
+            name:
+              description: A name for the Achievement. Can be translated
+              type: string
+              example: Welcome badge
+            description:
+              description: A name for the Achievement. Can be translated
+              type: string
+              example: A Badge to welcome you on board
+            termsAndConditions:
+              description: Terms and conditions of an achievement. Can be translated
+              type: string
+              example: Participate to win
+            icon:
+              description: An Icon id that has been pre uploaded to the system to display for Achievement
+              type: string
+              example: Dc4swmQBVd51K6gPQqFx
+            rules:
+              type: array
+              items:
+                $ref: '#/components/schemas/Rule'
+            scheduling:
+              $ref: '#/components/schemas/Scheduling'
+            maxNumberOfIssues:
+              format: int32
+              description: Maximum number of issued achievements
+              type: integer
+              example: '9999'
+            translations:
+              type: array
+              items:
+                $ref: '#/components/schemas/Translation'
+            rewards:
+              type: array
+              items:
+                $ref: '#/components/schemas/CreateRewardRequest'
+            constraints:
+              deprecated: true
+              description: Additional constraints
+              type: array
+              items:
+                type: string
+              example: '- notifyMember - isHidden - deprecated - optinRequiredForEntrants'
+            achievementDependencies:
+              $ref: '#/components/schemas/DependantOn'
+            memberTagsFilter:
+              $ref: '#/components/schemas/DependantOn'
+              description: ''
+            productTagsFilter:
+              $ref: '#/components/schemas/DependantOn'
+              description: ''
+            addConstraints:
+              description: ''
+              type: array
+              items:
+                type: string
+            strategy:
+              $ref: '#/components/schemas/PointStrategy'
+              description: The target to reach in order to receive this achievement
+      x-vue-create: achievement
+      x-vue-creator: achievements
+      x-vue-rules: true
+    UpdateAchievementRequest:
+      allOf:
+        -
+          $ref: '#/components/schemas/UpdateModelDefault'
+        -
+          $ref: '#/components/schemas/UpdateOptParamModels'
+        -
+          required: []
+          type: object
+          properties:
+            name:
+              description: A name for the Achievement. Can be translated
+              type: string
+              example: Welcome badge
+            description:
+              description: A name for the Achievement. Can be translated
+              type: string
+              example: A Badge to welcome you on board
+            termsAndConditions:
+              description: Terms and conditions of an achievement. Can be translated
+              type: string
+              example: Participate to win
+            icon:
+              description: An Icon id that has been pre uploaded to the system to display for Achievement
+              type: string
+              example: Dc4swmQBVd51K6gPQqFx
+            scheduling:
+              $ref: '#/components/schemas/Scheduling'
+            achievementLiveStatus:
+              $ref: '#/components/schemas/AchievementLiveStatus'
+            maxNumberOfIssues:
+              format: int32
+              description: Maximum number of issued achievements
+              type: integer
+              example: '9999'
+            constraints:
+              deprecated: true
+              description: Additional constraints
+              type: array
+              items:
+                type: string
+              example: '- notifyMember - isHidden - deprecated - optinRequiredForEntrants'
+            achievementDependencies:
+              $ref: '#/components/schemas/DependantOn'
+            memberTagsFilter:
+              $ref: '#/components/schemas/DependantOn'
+              description: ''
+            productTagsFilter:
+              $ref: '#/components/schemas/DependantOn'
+              description: ''
+            addConstraints:
+              description: ''
+              type: array
+              items:
+                type: string
+            removeConstraints:
+              description: ''
+              type: array
+              items:
+                type: string
+            strategy:
+              $ref: '#/components/schemas/PointStrategy'
+              description: The target to reach in order to receive this achievement
+      x-vue-update: achievement
+      x-vue-updater: achievements
+      x-vue-object-type: achievement
   responses:
     ApiResponseBody:
       content:
