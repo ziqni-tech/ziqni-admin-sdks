@@ -3,7 +3,12 @@
  */
 package com.ziqni.admin.sdk.streaming;
 
-import com.ziqni.admin.sdk.configuration.AdminApiClientConfig;
+import com.ziqni.admin.sdk.ZiqniAdminSDKEventBus;
+import com.ziqni.admin.sdk.configuration.AdminApiClientConfiguration;
+import com.ziqni.admin.sdk.context.WSClientConnected;
+import com.ziqni.admin.sdk.context.WSClientConnecting;
+import com.ziqni.admin.sdk.context.WSClientDisconnected;
+import com.ziqni.admin.sdk.context.WSClientSevereFailure;
 import com.ziqni.admin.sdk.streaming.runnables.MessageToSend;
 import com.ziqni.admin.sdk.util.Common;
 import com.ziqni.admin.sdk.util.ZiqniClientObjectMapper;
@@ -34,7 +39,7 @@ import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Consumer;
 
-public class WsClient {
+public class WsClient extends WebSocketStompClient{
 
     private static final Logger logger = LoggerFactory.getLogger(WsClient.class);
 
@@ -42,17 +47,14 @@ public class WsClient {
 
     private final WsStompSessionHandler stompSessionHandler;
 
-    private final Timer reconnectTimer;
-
     private final TaskScheduler taskScheduler;
 
     private final String wsUri;
 
     private final StompHeaders stompHeaders;
 
-    private WebSocketStompClient stompClient;
-
     private StompSession stompSession;
+    private ZiqniAdminSDKEventBus eventBus;
 
     private final List<SuccessCallback<StompSession>> connectListeners;
 
@@ -69,36 +71,55 @@ public class WsClient {
     private final AtomicInteger connectionStateAtomic = new AtomicInteger(NotConnected);
 
     private final Consumer<Integer> onStateChange;
+    private final AdminApiClientConfiguration configuration;
 
-
-    public WsClient(final String wsUri, final Consumer<Integer> onStateChange) throws Exception {
-        this(wsUri, makeAuthHeader(), onStateChange);
+    public WsClient(final AdminApiClientConfiguration configuration, final String wsUri, final Consumer<Integer> onStateChange, ZiqniAdminSDKEventBus eventBus) throws Exception {
+        this(configuration, wsUri, makeAuthHeader(configuration), onStateChange, eventBus);
     }
 
-    protected WsClient(final String wsUri, final StompHeaders stompHeaders, final Consumer<Integer> onStateChange) {
-
+    protected WsClient(final AdminApiClientConfiguration configuration, final String wsUri, final StompHeaders stompHeaders, final Consumer<Integer> onStateChange, ZiqniAdminSDKEventBus eventBus) {
+        super(makeSockJs());
         this.wsUri = wsUri;
         this.taskScheduler = new ThreadPoolTaskScheduler();
-        this.reconnectTimer = new Timer("ReconnectTimer");
-        this.stompSessionHandler = new WsStompSessionHandler();
+        this.stompSessionHandler = new WsStompSessionHandler(eventBus);
         this.connectListeners = new ArrayList<>();
         this.disconnectListeners = new ArrayList<>();
         this.stompHeaders = stompHeaders;
         this.onStateChange = onStateChange;
+        this.eventBus = eventBus;
+        this.configuration = configuration;
+
+
+        // create stomp client
+        super.setTaskScheduler(taskScheduler);
+
+        var mappingJackson2MessageConverter = new MappingJackson2MessageConverter();
+        mappingJackson2MessageConverter.setObjectMapper(new ZiqniClientObjectMapper().serializingObjectMapper());
+        super.setMessageConverter(mappingJackson2MessageConverter);
+        super.setDefaultHeartbeat(new long[]{10000L, 10000L});
+    }
+
+    private static SockJsClient makeSockJs(){
+        // setup transports & socksjs
+        JettyWebSocketClient jettyWebSocketClient = new JettyWebSocketClient();
+        List<Transport> transports = new ArrayList<>(2);
+        transports.add(new WebSocketTransport(jettyWebSocketClient));
+        var sockJsClient = new SockJsClient(transports);
+        return sockJsClient;
     }
 
     public void subscribe(EventHandler<?> handler) {
         stompSessionHandler.subscribe(stompSession,handler);
     }
 
-    private static StompHeaders makeAuthHeader() throws Exception{
+    private static StompHeaders makeAuthHeader(AdminApiClientConfiguration configuration) throws Exception{
         StompHeaders stompHeaders = new StompHeaders();
-        updateOauthToken(stompHeaders);
+        updateOauthToken(configuration,stompHeaders);
         return stompHeaders;
     }
 
-    private static void updateOauthToken(StompHeaders stompHeaders) throws Exception{
-        String oauthToken = AdminApiClientConfig.getAccessTokenString();
+    private static void updateOauthToken(AdminApiClientConfiguration configuration, StompHeaders stompHeaders) throws Exception{
+        String oauthToken = configuration.getAccessTokenString();
         stompHeaders.setLogin("Bearer");
         stompHeaders.setPasscode(oauthToken);
     }
@@ -122,10 +143,35 @@ public class WsClient {
     public void addDisconnectListener(FailureCallback listener) {
         disconnectListeners.add(listener);
     }
-    
+
     private void setConnectionState(Integer state){
         this.connectionStateAtomic.set(state);
-        
+
+        try {
+            switch (state){
+                case SevereFailure:
+                    this.eventBus.post(new WSClientSevereFailure(stompSession,null,null,null, null));
+                    break;
+
+                case NotConnected:
+                    this.eventBus.post(new WSClientDisconnected(stompSession));
+                    break;
+
+                case Connecting:
+                    this.eventBus.post(new WSClientConnecting(stompSession));
+                    break;
+
+                case Connected:
+                    this.eventBus.post(new WSClientConnected(stompSession, null));
+                    break;
+
+                default:
+                    break;
+            }
+        } catch (Throwable t) {
+            logger.error("Error while publishing to the event bus", t);
+        }
+
         try {
             onStateChange.accept(state);
         } catch (Throwable t) {
@@ -164,7 +210,7 @@ public class WsClient {
         });
     }
 
-    public CompletableFuture<Boolean> startClient(CompletableFuture<Boolean> startResult) {
+    public CompletableFuture<Boolean> startClient(final CompletableFuture<Boolean> startResult) {
         if(isConnected()) {
             startResult.complete(isConnected());
             return startResult;
@@ -173,13 +219,18 @@ public class WsClient {
         try {
             setConnectionState(Connecting);
             logger.info("Connecting");
-            createClient();
-            var connected = doConnect().thenApply(stompSession1 -> {
-                setIsConnected();
-                setConnectionState(Connected);
-                startResult.complete(isConnected());
-                return stompSession1.isConnected();
-            }).join();
+            super.start();
+            doConnect().thenAccept(stompSession1 -> {
+                        setIsConnected();
+                        setConnectionState(Connected);
+                        startResult.complete(isConnected());
+                    })
+                    .exceptionally(throwable -> {
+                        startResult.completeExceptionally(throwable);
+                        logger.error("Failed to start the connection", throwable);
+                        setConnectionState(SevereFailure);
+                        return null;
+                    });
         }
         catch (ConnectionLostException e){
             setConnectionState(SevereFailure);
@@ -202,59 +253,39 @@ public class WsClient {
         setConnectionState(Disconnecting);
         final String jobId = Common.getNextId();
         disconnect(jobId);
-        reconnectTimer.cancel();
     }
 
     private void disconnect(final String jobId) {
         disconnectFunc(jobId);
-        stompClient = null;
         stompSession = null;
     }
 
     private WebSocketStompClient disconnectFunc(String jobId) {
-        if (stompClient != null && stompClient.isRunning()) {
+        if (super.isRunning()) {
             try {
-                if(stompClient.isRunning())
+                if(super.isRunning())
                     try {
-                        stompClient.stop();
+                        super.stop();
                     } catch (RuntimeException e) {
-                        logger.error("Stomp client stop operation exception [{}] produced result [{}] operation for jobId [{}] and connection state is [{}]", e.getMessage(), stompClient.isRunning(), jobId, connectionStateAtomic.get());
+                        logger.error("Stomp client stop operation exception [{}] produced result [{}] operation for jobId [{}] and connection state is [{}]", e.getMessage(), super.isRunning(), jobId, connectionStateAtomic.get());
                     }
                 setConnectionState(NotConnected);
-                return stompClient;
+                return this;
             } catch (Throwable t) {
                 setConnectionState(SevereFailure);
                 logger.error("err stopping client: " + t);
                 throw t;
             }
         } else
-            return stompClient;
-    }
-
-    private void createClient() {
-        // setup transports & socksjs
-        JettyWebSocketClient jettyWebSocketClient = new JettyWebSocketClient();
-        List<Transport> transports = new ArrayList<>(2);
-        transports.add(new WebSocketTransport(jettyWebSocketClient));
-        SockJsClient sockJsClient = new SockJsClient(transports);
-
-        // create stomp client
-        stompClient = new WebSocketStompClient(sockJsClient);
-        stompClient.setTaskScheduler(taskScheduler);
-
-        var mappingJackson2MessageConverter = new MappingJackson2MessageConverter();
-        mappingJackson2MessageConverter.setObjectMapper(new ZiqniClientObjectMapper().serializingObjectMapper());
-        stompClient.setMessageConverter(mappingJackson2MessageConverter);
-
-        stompClient.start();
+            return this;
     }
 
     private CompletableFuture<StompSession> doConnect() {
 
         try {
-            updateOauthToken(stompHeaders);
+            updateOauthToken(configuration,stompHeaders);
 
-            final ListenableFuture<StompSession> future = stompClient.connect(wsUri, new WebSocketHttpHeaders(), stompHeaders, stompSessionHandler);
+            final ListenableFuture<StompSession> future = super.connect(wsUri, new WebSocketHttpHeaders(), stompHeaders, stompSessionHandler);
 
             future.completable()
                     .thenApply(newStompSession -> {
@@ -277,6 +308,8 @@ public class WsClient {
         }
     }
 
+
+
     private void notifyConnectListeners(StompSession session) {
         for (SuccessCallback<StompSession> successCallback : connectListeners) {
             successCallback.onSuccess(session);
@@ -290,8 +323,7 @@ public class WsClient {
     }
 
     private void setIsConnected() {
-        if (stompClient != null
-                && stompClient.isRunning()
+        if (super.isRunning()
                 && stompSession != null
                 && stompSession.isConnected()
                 && !isConnected()

@@ -13,10 +13,11 @@
 
 package com.ziqni.admin.sdk.api;
 
+import com.ziqni.admin.sdk.configuration.AdminApiClientConfigBuilder;
 import com.ziqni.admin.sdk.data.LoadMessagesData;
 import com.ziqni.admin.sdk.model.QueryMultiple;
 import com.ziqni.admin.sdk.util.ApiClientFactoryUtil;
-import com.ziqni.admin.sdk.ZiqniAdminApiFactory;
+
 import com.ziqni.admin.sdk.ApiException;
 import com.ziqni.admin.sdk.model.ModelApiResponse;
 import com.ziqni.admin.sdk.model.QueryRequest;
@@ -52,8 +53,8 @@ public class AccountMessagesApiTest implements tests.utils.CompleteableFutureTes
     private String idForGetTest;
 
     public AccountMessagesApiTest() throws Exception {
-        ApiClientFactoryUtil.initApiClientFactory();
-        this.api = ZiqniAdminApiFactory.getAccountMessagesApi();
+        ApiClientFactoryUtil.initApiClientFactory(AdminApiClientConfigBuilder.build());
+        this.api = ApiClientFactoryUtil.factory.getAccountMessagesApi();
 
         this.loadData = new LoadMessagesData();
     }

@@ -6,14 +6,10 @@ package com.ziqni.admin.sdk.streaming.handlers;
 import com.fasterxml.jackson.databind.JavaType;
 import com.github.benmanes.caffeine.cache.AsyncCache;
 import com.github.benmanes.caffeine.cache.Caffeine;
-import com.github.benmanes.caffeine.cache.RemovalCause;
-import com.github.benmanes.caffeine.cache.RemovalListener;
-import com.ziqni.admin.sdk.streaming.ApiCallbackResponseExpired;
 import com.ziqni.admin.sdk.streaming.EventHandler;
 import com.ziqni.admin.sdk.streaming.Message;
 import com.ziqni.admin.sdk.streaming.OonRemovalListener;
 import com.ziqni.admin.sdk.util.ClassScanner;
-import org.checkerframework.checker.nullness.qual.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.messaging.simp.stomp.StompHeaders;
@@ -32,7 +28,7 @@ public class RpcResultsEventHandler extends EventHandler<String> {
     private static final AtomicLong sequenceNumber = new AtomicLong(0);
 
     public static final AsyncCache<String, RpcResultsResponse<?,?>> awaitingResponseCache = Caffeine.newBuilder()
-            .maximumSize(1000)
+            .maximumSize(100_000)
             .expireAfterWrite(5, TimeUnit.MINUTES)
             .evictionListener(new OonRemovalListener(logger))
             .buildAsync();

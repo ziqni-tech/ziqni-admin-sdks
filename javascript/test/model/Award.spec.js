@@ -156,6 +156,12 @@
       //expect(instance).to.be();
     });
 
+    it('should have the property memberRefId (base name: "memberRefId")', function() {
+      // uncomment below and update the code to test the property memberRefId
+      //var instance = new @ZiqniTechAdminApiClient.Award();
+      //expect(instance).to.be();
+    });
+
   });
 
 }));

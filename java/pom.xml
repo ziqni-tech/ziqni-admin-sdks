@@ -7,7 +7,7 @@
     <groupId>com.ziqni</groupId>
     <artifactId>ziqni-admin-sdk</artifactId>
     <name>ZIQNI Admin SDK Java Client</name>
-    <version>1.0.6</version>
+    <version>1.0.12</version>
     <packaging>jar</packaging>
     <url>https://github.com/ziqni-tech/ziqni-admin-sdks</url>
     <description>ZIQNI Admin SDK Java Client</description>
@@ -69,6 +69,8 @@
         <spring-version>5.3.11</spring-version>
         <jupiter.version>5.7.0</jupiter.version>
         <caffeine.version>3.1.1</caffeine.version>
+        <maven.compiler.plugin.version>2.3.2</maven.compiler.plugin.version>
+        <maven.shade.plugin.version>3.2.4</maven.shade.plugin.version>
     </properties>
 
     <dependencies>
@@ -188,12 +190,6 @@
 
         <!-- TEST Dependencies -->
 
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-engine</artifactId>
-            <version>${jupiter.version}</version>
-            <scope>test</scope>
-        </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
@@ -376,6 +372,7 @@
                     <failOnError>false</failOnError>
                 </configuration>
             </plugin>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-gpg-plugin</artifactId>
@@ -396,5 +393,6 @@
             </plugin>
         </plugins>
     </build>
+
 
 </project>

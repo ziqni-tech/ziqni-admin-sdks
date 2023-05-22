@@ -20,87 +20,66 @@ import ApiClient from '../ApiClient';
 export default class EntrantStatus {
     
         /**
-         * value: "Unknown"
+         * value: "NotEntered"
          * @const
          */
-        "Unknown" = "Unknown";
+        "NotEntered" = "NotEntered";
 
     
         /**
-         * value: "Deleted"
+         * value: "Entering"
          * @const
          */
-        "Deleted" = "Deleted";
+        "Entering" = "Entering";
 
     
         /**
-         * value: "WrongGroups"
+         * value: "Entrant"
          * @const
          */
-        "WrongGroups" = "WrongGroups";
+        "Entrant" = "Entrant";
 
     
         /**
-         * value: "Disqualified"
+         * value: "Preparing"
          * @const
          */
-        "Disqualified" = "Disqualified";
+        "Preparing" = "Preparing";
 
     
         /**
-         * value: "Substituted"
+         * value: "Running"
          * @const
          */
-        "Substituted" = "Substituted";
+        "Running" = "Running";
 
     
         /**
-         * value: "Injured"
+         * value: "Completing"
          * @const
          */
-        "Injured" = "Injured";
+        "Completing" = "Completing";
 
     
         /**
-         * value: "OptInRequired"
+         * value: "Completed"
          * @const
          */
-        "OptInRequired" = "OptInRequired";
+        "Completed" = "Completed";
 
     
         /**
-         * value: "Registered"
+         * value: "Excluding"
          * @const
          */
-        "Registered" = "Registered";
+        "Excluding" = "Excluding";
 
     
         /**
-         * value: "Entered"
+         * value: "Excluded"
          * @const
          */
-        "Entered" = "Entered";
-
-    
-        /**
-         * value: "Playing"
-         * @const
-         */
-        "Playing" = "Playing";
-
-    
-        /**
-         * value: "Finished"
-         * @const
-         */
-        "Finished" = "Finished";
-
-    
-        /**
-         * value: "Finalised"
-         * @const
-         */
-        "Finalised" = "Finalised";
+        "Excluded" = "Excluded";
 
     
 

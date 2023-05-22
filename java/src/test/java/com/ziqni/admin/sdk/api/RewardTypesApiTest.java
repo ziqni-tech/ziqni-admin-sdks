@@ -19,7 +19,7 @@ import com.ziqni.admin.sdk.data.LoadRewardTypesData;
 import com.ziqni.admin.sdk.data.LoadTagsData;
 import com.ziqni.admin.sdk.model.*;
 import com.ziqni.admin.sdk.util.ApiClientFactoryUtil;
-import com.ziqni.admin.sdk.ZiqniAdminApiFactory;
+import com.ziqni.admin.sdk.configuration.AdminApiClientConfigBuilder;
 import com.ziqni.admin.sdk.ApiException;
 import com.ziqni.admin.sdk.model.*;
 import org.junit.jupiter.api.*;
@@ -58,8 +58,8 @@ public class RewardTypesApiTest implements tests.utils.CompleteableFutureTestWra
     private List<String> customFieldIdsToDelete = new ArrayList<>();
 
     public RewardTypesApiTest() throws Exception {
-        ApiClientFactoryUtil.initApiClientFactory();
-        this.api = ZiqniAdminApiFactory.getRewardTypesApi();
+        ApiClientFactoryUtil.initApiClientFactory(AdminApiClientConfigBuilder.build());
+        this.api = ApiClientFactoryUtil.factory.getRewardTypesApi();
 
         this.loadData = new LoadRewardTypesData();
         this.loadCustomFieldsData = new LoadCustomFieldsData();

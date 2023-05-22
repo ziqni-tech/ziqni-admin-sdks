@@ -4,6 +4,6 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**constraints** | **[String]** | scoreDesc - The Ranking that can be Ascending or Descending based on timeDesc. timeDesc - The Ranking that can be Ascending or Descending based on scoreDesc. scoreFirst - The Ranking that can be score first or time first ignoreTime - The Ranking when time is ignored ignoreScore - The Ranking when score is ignored | 
+**constraints** | **[String]** | scoreDesc - The Ranking that can be Ascending or Descending based on timeDesc.  timeDesc - The Ranking that can be Ascending or Descending based on scoreDesc.  scoreFirst - The Ranking that can be score first or time first  ignoreTime - The Ranking when time is ignored  ignoreScore - The Ranking when score is ignored excludeIfGoalNotReached - The scores are not included in the leaderboard until the goal is achieved | 
 
 

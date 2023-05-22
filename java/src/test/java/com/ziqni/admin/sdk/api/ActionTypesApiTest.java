@@ -19,7 +19,7 @@ import com.ziqni.admin.sdk.data.LoadMetadata;
 import com.ziqni.admin.sdk.data.LoadTagsData;
 import com.ziqni.admin.sdk.model.*;
 import com.ziqni.admin.sdk.util.ApiClientFactoryUtil;
-import com.ziqni.admin.sdk.ZiqniAdminApiFactory;
+import com.ziqni.admin.sdk.configuration.AdminApiClientConfigBuilder;
 import com.ziqni.admin.sdk.ApiException;
 import com.ziqni.admin.sdk.model.*;
 import org.junit.jupiter.api.*;
@@ -57,9 +57,9 @@ public class ActionTypesApiTest implements tests.utils.CompleteableFutureTestWra
 
 
     public ActionTypesApiTest() throws Exception {
-        ApiClientFactoryUtil.initApiClientFactory();
+        ApiClientFactoryUtil.initApiClientFactory(AdminApiClientConfigBuilder.build());
 
-        this.api = ZiqniAdminApiFactory.getActionTypesApi();
+        this.api = ApiClientFactoryUtil.factory.getActionTypesApi();
 
         this.loadTestData = new LoadActionTypesData();
         this.loadMetadata = new LoadMetadata();

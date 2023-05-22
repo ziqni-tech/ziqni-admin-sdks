@@ -16,7 +16,7 @@ package com.ziqni.admin.sdk.api;
 import com.ziqni.admin.sdk.data.*;
 import com.ziqni.admin.sdk.model.*;
 import com.ziqni.admin.sdk.util.ApiClientFactoryUtil;
-import com.ziqni.admin.sdk.ZiqniAdminApiFactory;
+import com.ziqni.admin.sdk.configuration.AdminApiClientConfigBuilder;
 import com.ziqni.admin.sdk.ApiException;
 import com.ziqni.admin.sdk.data.*;
 import com.ziqni.admin.sdk.model.*;
@@ -66,8 +66,8 @@ public class RewardsApiTest implements tests.utils.CompleteableFutureTestWrapper
     private List<String> customFieldIdsToDelete = new ArrayList<>();
 
     public RewardsApiTest() throws Exception {
-        ApiClientFactoryUtil.initApiClientFactory();
-        this.api = ZiqniAdminApiFactory.getRewardsApi();
+        ApiClientFactoryUtil.initApiClientFactory(AdminApiClientConfigBuilder.build());
+        this.api = ApiClientFactoryUtil.factory.getRewardsApi();
         this.loadData = new LoadRewardsData();
         this.loadRewardTypesData = new LoadRewardTypesData();
         this.loadAchievementsData = new LoadAchievementsData();

@@ -3,9 +3,11 @@ package com.ziqni.admin.sdk.data;
 import com.ziqni.admin.sdk.ZiqniAdminApiFactory;
 import com.ziqni.admin.sdk.ApiException;
 import com.ziqni.admin.sdk.api.CompetitionsApiWs;
+import com.ziqni.admin.sdk.configuration.AdminApiClientConfigBuilder;
 import com.ziqni.admin.sdk.model.*;
 import com.ziqni.admin.sdk.model.*;
 
+import com.ziqni.admin.sdk.util.ApiClientFactoryUtil;
 import com.ziqni.admin.sdk.util.DateUtil;
 import tests.utils.CompleteableFutureTestWrapper;
 
@@ -23,12 +25,15 @@ public class LoadCompetitionsData implements CompleteableFutureTestWrapper {
     private LoadRewardTypesData loadRewardTypesData;
     private LoadRulesData loadRulesData;
     private LoadTagsData loadTagsData;
+    private LoadUnitsOfMeasureData loadUnitsOfMeasureData;
 
-    public LoadCompetitionsData() {
+    public LoadCompetitionsData() throws Exception {
+        ApiClientFactoryUtil.initApiClientFactory(AdminApiClientConfigBuilder.build());
+        this.api = ApiClientFactoryUtil.factory.getCompetitionsApi();
         this.loadRewardTypesData=new LoadRewardTypesData();
-        this.api = ZiqniAdminApiFactory.getCompetitionsApi();
         this.loadRulesData = new LoadRulesData();
         this.loadTagsData = new LoadTagsData();
+        this.loadUnitsOfMeasureData = new LoadUnitsOfMeasureData();
     }
 
     public CreateCompetitionRequest getCreateRequest(List<String> productIds) {
@@ -69,7 +74,8 @@ public class LoadCompetitionsData implements CompleteableFutureTestWrapper {
              request.setMetadata(new LoadMetadata().getMetadataAsList());
              final var givenConstraints = new ArrayList<String>();
 
-             final var rewardType = loadRewardTypesData.createTestData(loadRewardTypesData.getCreateRequestAsList(1));
+             final var unitOfMeasure = loadUnitsOfMeasureData.createTestData(loadUnitsOfMeasureData.getCreateRequestAsList(1)).getResults().get(0).getId();
+             final var rewardType = loadRewardTypesData.createTestData(List.of(loadRewardTypesData.getCreateRequest().unitOfMeasure(unitOfMeasure)));
              final var rewardName = "Pfunguro";
              final var givenRewardRank = "1,2,3";
              final var givenRewardValue = new Random().nextDouble();
@@ -156,7 +162,8 @@ public class LoadCompetitionsData implements CompleteableFutureTestWrapper {
             request.setMetadata(new LoadMetadata().getMetadataAsList());
             final var givenConstraints = new ArrayList<String>();
 
-            final var rewardType = loadRewardTypesData.createTestData(loadRewardTypesData.getCreateRequestAsList(1));
+            final var unitOfMeasure = loadUnitsOfMeasureData.createTestData(loadUnitsOfMeasureData.getCreateRequestAsList(1)).getResults().get(0).getId();
+            final var rewardType = loadRewardTypesData.createTestData(List.of(loadRewardTypesData.getCreateRequest().unitOfMeasure(unitOfMeasure)));
             final var rewardName = "Pfunguro";
             final var givenRewardRank = "1,2,3";
             final var givenRewardValue = new Random().nextDouble();

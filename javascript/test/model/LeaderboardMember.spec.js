@@ -84,6 +84,12 @@
       //expect(instance).to.be();
     });
 
+    it('should have the property params (base name: "params")', function() {
+      // uncomment below and update the code to test the property params
+      //var instance = new @ZiqniTechAdminApiClient.LeaderboardMember();
+      //expect(instance).to.be();
+    });
+
   });
 
 }));

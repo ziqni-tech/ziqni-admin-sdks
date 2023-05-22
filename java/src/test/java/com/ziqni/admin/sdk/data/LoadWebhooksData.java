@@ -3,9 +3,11 @@ package com.ziqni.admin.sdk.data;
 import com.ziqni.admin.sdk.ZiqniAdminApiFactory;
 import com.ziqni.admin.sdk.ApiException;
 import com.ziqni.admin.sdk.api.WebhooksApiWs;
+import com.ziqni.admin.sdk.configuration.AdminApiClientConfigBuilder;
 import com.ziqni.admin.sdk.model.CreateWebhookRequest;
 
 import com.ziqni.admin.sdk.model.ModelApiResponse;
+import com.ziqni.admin.sdk.util.ApiClientFactoryUtil;
 import tests.utils.CompleteableFutureTestWrapper;
 
 import java.util.*;
@@ -17,8 +19,9 @@ import static org.junit.jupiter.api.Assertions.*;
 public class LoadWebhooksData implements CompleteableFutureTestWrapper {
     private WebhooksApiWs api;
 
-    public LoadWebhooksData() {
-        this.api = ZiqniAdminApiFactory.getWebhooksApi();
+    public LoadWebhooksData() throws Exception {
+        ApiClientFactoryUtil.initApiClientFactory(AdminApiClientConfigBuilder.build());
+        this.api = ApiClientFactoryUtil.factory.getWebhooksApi();
     }
 
     public CreateWebhookRequest getCreateRequest(String transformerId) {

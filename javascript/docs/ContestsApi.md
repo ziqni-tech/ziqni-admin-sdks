@@ -176,7 +176,7 @@ Name | Type | Description  | Notes
 
 
 
-Returns a leaderborad for the Contests id provided
+Use /leadeboard instead, Returns a leaderborad for the Contests id provided
 
 ### Example
 

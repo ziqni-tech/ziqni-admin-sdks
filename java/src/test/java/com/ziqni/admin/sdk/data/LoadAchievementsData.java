@@ -1,10 +1,12 @@
 package com.ziqni.admin.sdk.data;
 
+import com.ziqni.admin.sdk.configuration.AdminApiClientConfigBuilder;
 import com.ziqni.admin.sdk.model.*;
 import com.ziqni.admin.sdk.ZiqniAdminApiFactory;
 import com.ziqni.admin.sdk.ApiException;
 import com.ziqni.admin.sdk.api.AchievementsApiWs;
 import com.ziqni.admin.sdk.model.*;
+import com.ziqni.admin.sdk.util.ApiClientFactoryUtil;
 import tests.utils.CompleteableFutureTestWrapper;
 
 import java.time.OffsetDateTime;
@@ -19,8 +21,9 @@ public class LoadAchievementsData implements CompleteableFutureTestWrapper {
     private AchievementsApiWs api;
     private LoadRulesData loadRulesData;
 
-    public LoadAchievementsData() {
-        this.api = this.api = ZiqniAdminApiFactory.getAchievementsApi();
+    public LoadAchievementsData() throws Exception {
+        ApiClientFactoryUtil.initApiClientFactory(AdminApiClientConfigBuilder.build());
+        this.api = ApiClientFactoryUtil.factory.getAchievementsApi();
         this.loadRulesData = new LoadRulesData();
     }
 
@@ -70,7 +73,7 @@ public class LoadAchievementsData implements CompleteableFutureTestWrapper {
 
 
         return new CreateAchievementRequest()
-                .constraints(archConstraints)
+                .addConstraints(archConstraints)
                 .description("test description")
 
 //                .icon(givenIcon)

@@ -19,7 +19,7 @@ import com.ziqni.admin.sdk.data.LoadRewardTypesData;
 import com.ziqni.admin.sdk.data.LoadTranslationData;
 import com.ziqni.admin.sdk.model.*;
 import com.ziqni.admin.sdk.util.ApiClientFactoryUtil;
-import com.ziqni.admin.sdk.ZiqniAdminApiFactory;
+import com.ziqni.admin.sdk.configuration.AdminApiClientConfigBuilder;
 import com.ziqni.admin.sdk.ApiException;
 
 import com.ziqni.admin.sdk.data.*;
@@ -57,8 +57,8 @@ public class TranslationsApiTest implements CompleteableFutureTestWrapper {
     private List<String> achievementIdsToDelete = new ArrayList<>();
 
     public TranslationsApiTest() throws Exception {
-        ApiClientFactoryUtil.initApiClientFactory();
-        this.api = ZiqniAdminApiFactory.getTranslationsApi();
+        ApiClientFactoryUtil.initApiClientFactory(AdminApiClientConfigBuilder.build());
+        this.api = ApiClientFactoryUtil.factory.getTranslationsApi();
 
         this.loadData = new LoadTranslationData();
         this.loadLanguagesData = new LoadLanguagesData();

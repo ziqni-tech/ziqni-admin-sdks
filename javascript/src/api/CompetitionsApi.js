@@ -261,7 +261,7 @@ export default class CompetitionsApi {
      */
 
     /**
-     * Returns a list of Leaderborads for the Competition id provided
+     * Use /leadeboard instead. Returns a list of Leaderborads for the Competition id provided
      * @param {String} id Unique identifier of the resource
      * @param {Object} opts Optional parameters
      * @param {Number} opts.limit Limit the returned total records found

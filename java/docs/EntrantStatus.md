@@ -5,29 +5,23 @@
 ## Enum
 
 
-* `UNKNOWN` (value: `"Unknown"`)
+* `NOTENTERED` (value: `"NotEntered"`)
 
-* `DELETED` (value: `"Deleted"`)
+* `ENTERING` (value: `"Entering"`)
 
-* `WRONGGROUPS` (value: `"WrongGroups"`)
+* `ENTRANT` (value: `"Entrant"`)
 
-* `DISQUALIFIED` (value: `"Disqualified"`)
+* `PREPARING` (value: `"Preparing"`)
 
-* `SUBSTITUTED` (value: `"Substituted"`)
+* `RUNNING` (value: `"Running"`)
 
-* `INJURED` (value: `"Injured"`)
+* `COMPLETING` (value: `"Completing"`)
 
-* `OPTINREQUIRED` (value: `"OptInRequired"`)
+* `COMPLETED` (value: `"Completed"`)
 
-* `REGISTERED` (value: `"Registered"`)
+* `EXCLUDING` (value: `"Excluding"`)
 
-* `ENTERED` (value: `"Entered"`)
-
-* `PLAYING` (value: `"Playing"`)
-
-* `FINISHED` (value: `"Finished"`)
-
-* `FINALISED` (value: `"Finalised"`)
+* `EXCLUDED` (value: `"Excluded"`)
 
 
 

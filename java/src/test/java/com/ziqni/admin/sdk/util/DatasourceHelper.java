@@ -1,5 +1,6 @@
 package com.ziqni.admin.sdk.util;
 
+import com.ziqni.admin.sdk.configuration.AdminApiClientConfigBuilder;
 import com.ziqni.admin.sdk.model.*;
 import com.ziqni.admin.sdk.ZiqniAdminApiFactory;
 import com.ziqni.admin.sdk.ApiException;
@@ -25,9 +26,9 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 public class DatasourceHelper implements CompleteableFutureTestWrapper {
 
 
-    private static final TransformersApiWs transformersApi = ZiqniAdminApiFactory.getTransformersApi();
-    private static final UserApiWs usersApi = ZiqniAdminApiFactory.getUserApi();
-    private static final TagsApiWs tagsApi = ZiqniAdminApiFactory.getTagsApi();
+    private TransformersApiWs transformersApi;
+    private UserApiWs usersApi;
+    private TagsApiWs tagsApi;
 
     public final ConcurrentMap<String, String> idsToDelete = new ConcurrentHashMap<>();
 //    public final List<String> customFieldsIds = new ArrayList<>();
@@ -35,8 +36,12 @@ public class DatasourceHelper implements CompleteableFutureTestWrapper {
     public final List<String> transformersIds = new ArrayList<>();
     public User user;
 
-    public void setup() {
+    public void setup() throws Exception {
+        ApiClientFactoryUtil.initApiClientFactory(AdminApiClientConfigBuilder.build());
         try {
+            transformersApi = ApiClientFactoryUtil.factory.getTransformersApi();
+            usersApi = ApiClientFactoryUtil.factory.getUserApi();
+            tagsApi = ApiClientFactoryUtil.factory.getTagsApi();
 //            initCustomFields();
             initTags();
             initTestTransformers();

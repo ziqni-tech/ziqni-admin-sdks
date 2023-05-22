@@ -13,9 +13,10 @@
 
 package com.ziqni.admin.sdk.api;
 
-import com.ziqni.admin.sdk.ZiqniAdminApiFactory;
+import com.ziqni.admin.sdk.configuration.AdminApiClientConfigBuilder;
 import com.ziqni.admin.sdk.ApiException;
 import com.ziqni.admin.sdk.model.ProfileResponse;
+import com.ziqni.admin.sdk.util.ApiClientFactoryUtil;
 import org.junit.jupiter.api.*;
 
 
@@ -26,7 +27,6 @@ import org.junit.jupiter.api.*;
 @Disabled
 public class UsersApiTest implements tests.utils.CompleteableFutureTestWrapper{
 
-    private final UserApiWs api = ZiqniAdminApiFactory.getUserApi();
 
 
     /**
@@ -74,7 +74,10 @@ public class UsersApiTest implements tests.utils.CompleteableFutureTestWrapper{
      *          if the Api call fails
      */
     @Test
-    public void getUserForSpaceTest() throws ApiException {
+    public void getUserForSpaceTest() throws Exception {
+        ApiClientFactoryUtil.initApiClientFactory(AdminApiClientConfigBuilder.build());
+        UserApiWs api = ApiClientFactoryUtil.factory.getUserApi();
+
         String id = null;
         String X_API_KEY = null;
         Boolean includeSpaces = null;

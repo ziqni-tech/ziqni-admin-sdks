@@ -128,6 +128,9 @@ class Award {
             if (data.hasOwnProperty('claimedTimestamp')) {
                 obj['claimedTimestamp'] = ApiClient.convertToType(data['claimedTimestamp'], 'Date');
             }
+            if (data.hasOwnProperty('memberRefId')) {
+                obj['memberRefId'] = ApiClient.convertToType(data['memberRefId'], 'String');
+            }
         }
         return obj;
     }
@@ -234,6 +237,12 @@ Award.prototype['constraints'] = undefined;
  */
 Award.prototype['claimedTimestamp'] = undefined;
 
+/**
+ * 
+ * @member {String} memberRefId
+ */
+Award.prototype['memberRefId'] = undefined;
+
 
 // Implement ModelDefault interface:
 /**
@@ -319,6 +328,11 @@ AwardAllOf.prototype['constraints'] = undefined;
  * @member {Date} claimedTimestamp
  */
 AwardAllOf.prototype['claimedTimestamp'] = undefined;
+/**
+ * 
+ * @member {String} memberRefId
+ */
+AwardAllOf.prototype['memberRefId'] = undefined;
 
 
 

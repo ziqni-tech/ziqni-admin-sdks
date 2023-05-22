@@ -17,7 +17,7 @@ import com.ziqni.admin.sdk.data.LoadMetadata;
 import com.ziqni.admin.sdk.data.LoadTagsData;
 import com.ziqni.admin.sdk.model.*;
 import com.ziqni.admin.sdk.util.ApiClientFactoryUtil;
-import com.ziqni.admin.sdk.ZiqniAdminApiFactory;
+import com.ziqni.admin.sdk.configuration.AdminApiClientConfigBuilder;
 import com.ziqni.admin.sdk.ApiException;
 import com.ziqni.admin.sdk.model.*;
 import com.ziqni.admin.sdk.model.Tag;
@@ -47,8 +47,8 @@ public class TagsApiTest implements tests.utils.CompleteableFutureTestWrapper{
     List<String> idsToDelete = new ArrayList<>();
 
     public TagsApiTest() throws Exception {
-        ApiClientFactoryUtil.initApiClientFactory();
-        this.api = ZiqniAdminApiFactory.getTagsApi();
+        ApiClientFactoryUtil.initApiClientFactory(AdminApiClientConfigBuilder.build());
+        this.api = ApiClientFactoryUtil.factory.getTagsApi();
 
         this.loadData = new LoadTagsData();
     }
@@ -598,7 +598,7 @@ public class TagsApiTest implements tests.utils.CompleteableFutureTestWrapper{
 
         Thread.sleep(5000);
 
-        while (!ZiqniAdminApiFactory.getStreamingClient().isConnected()){
+        while (!ApiClientFactoryUtil.factory.getStreamingClient().isConnected()){
             Thread.sleep(100);
         }
 

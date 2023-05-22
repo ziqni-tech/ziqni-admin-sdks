@@ -3,9 +3,11 @@ package com.ziqni.admin.sdk.data;
 import com.ziqni.admin.sdk.ZiqniAdminApiFactory;
 import com.ziqni.admin.sdk.ApiException;
 import com.ziqni.admin.sdk.api.TransformersApiWs;
+import com.ziqni.admin.sdk.configuration.AdminApiClientConfigBuilder;
 import com.ziqni.admin.sdk.model.CreateTransformerRequest;
 import com.ziqni.admin.sdk.model.ModelApiResponse;
 import com.ziqni.admin.sdk.model.SourceLanguage;
+import com.ziqni.admin.sdk.util.ApiClientFactoryUtil;
 import tests.utils.CompleteableFutureTestWrapper;
 
 import java.util.List;
@@ -21,8 +23,9 @@ public class LoadTransformerData implements CompleteableFutureTestWrapper {
     private TransformersApiWs api;
     private final SourceLanguage sourceLanguage = SourceLanguage.SCALA;
 
-    public LoadTransformerData() {
-        this.api = ZiqniAdminApiFactory.getTransformersApi();
+    public LoadTransformerData() throws Exception {
+        ApiClientFactoryUtil.initApiClientFactory(AdminApiClientConfigBuilder.build());
+        this.api = ApiClientFactoryUtil.factory.getTransformersApi();
     }
 
     public CreateTransformerRequest getCreateRequest() {

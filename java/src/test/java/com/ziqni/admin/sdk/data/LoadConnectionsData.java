@@ -1,15 +1,17 @@
 package com.ziqni.admin.sdk.data;
 
-import com.ziqni.admin.sdk.ZiqniAdminApiFactory;
 import com.ziqni.admin.sdk.ApiException;
-import com.ziqni.admin.sdk.api.ConsumersApiWs;
-import com.ziqni.admin.sdk.model.CreateKafkaConnectionRequest;
-import com.ziqni.admin.sdk.model.CreateRabbitMqConnectionRequest;
-import com.ziqni.admin.sdk.model.CreateSqsConnectionRequest;
+import com.ziqni.admin.sdk.api.ConnectionsApiWs;
+import com.ziqni.admin.sdk.configuration.AdminApiClientConfigBuilder;
+import com.ziqni.admin.sdk.model.ConnectionType;
+import com.ziqni.admin.sdk.model.CreateConnectionRequest;
 import com.ziqni.admin.sdk.model.ModelApiResponse;
+import com.ziqni.admin.sdk.util.ApiClientFactoryUtil;
 import tests.utils.CompleteableFutureTestWrapper;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -17,88 +19,107 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class LoadConnectionsData implements CompleteableFutureTestWrapper {
 
-    private ConsumersApiWs api;
+    public static String QUEUE_NAME = "queueName";
+    public static String PORT = "port";
+    public static String EXCHANGE = "exchange";
+    public static String EXCHANGE_TYPE = "exchangeType";
+    public static String ROUTING_KEYS = "routingKeys";
+    public static String VIURTUAL_HOST = "virtualHost";
+    public static String URI = "uri";
+    public static String X_EXPIRES = "x-expires";
+    private ConnectionsApiWs api;
 
-    public LoadConnectionsData() {
-        this.api = ZiqniAdminApiFactory.getConsumersApi();
+    public LoadConnectionsData() throws Exception {
+        ApiClientFactoryUtil.initApiClientFactory(AdminApiClientConfigBuilder.build());
+        this.api = ApiClientFactoryUtil.factory.getConnectionsApi();
     }
 
-    public CreateRabbitMqConnectionRequest getCreateRabbitMQRequest(String transformerId) {
-        List<String> constraints = new ArrayList<>();
+    public CreateConnectionRequest getCreateRabbitMQRequest(String transformerId, String tagKey) {
+        final var customFields = new HashMap<String, Object>();
+        customFields.put(QUEUE_NAME,"my-rabbit-connection");
+        customFields.put(PORT, 8080);
+        customFields.put(EXCHANGE,"test_exchange");
+        customFields.put(EXCHANGE_TYPE, "Test_Exchange");
+        customFields.put(ROUTING_KEYS, List.of("1234543", "key_2"));
+        customFields.put(VIURTUAL_HOST, "test_host");
+        customFields.put(URI, List.of("http://rabbit.com", "http://uri.2"));
+        customFields.put(X_EXPIRES, null);
 
-        return new CreateRabbitMqConnectionRequest()
+        return new CreateConnectionRequest()
                 .name("my-rabbit-connection")
-                .uri("broker-service.competitionlabs.com")
                 .description("Test Description")
-                .port(30007)
-                .virtualHost("/")
-                .addConstraints(List.of("ssl", "durable", "exclusive", "autoDelete"))
-                .exchange("sabai99_prd_events")
-                .queueName("sabai99_events-test-events-stream")
-                .routingKey("BET_LOG_KA")
-                .userName("complabs_stg_client")
-                .password("bKv=73j>TW86")
-                .transformerId(transformerId);
-    }
-
-    public CreateKafkaConnectionRequest getCreateKafkaRequest(String transformerId) {
-        return new CreateKafkaConnectionRequest()
-                .name("Kafka_1")
-                .topic("Test_Topic")
-                .groupId("Test_Group_Id")
-                .description("My example kafka connection")
-                .brokers("Example broker")
+                .connectionType(ConnectionType.RABBITMQ)
+                .secret("my_secret_password")
+                .user("test_user")
                 .transformerId(transformerId)
-                .metadata(new LoadMetadata().getMetadataAsList())
-                ;
+                .tags(List.of(tagKey))
+                .constraints(List.of(
+                        "ssl",
+                        "durable",
+                        "exclusive",
+                        "autoDelete"))
+                .customFields(customFields);
 
     }
 
-    public CreateSqsConnectionRequest getCreateSqsRequest(String transformerId) {
-        return new CreateSqsConnectionRequest()
-                .name("SQS_1")
-                .acessKey("Test_Access_key")
-                .secretKey("Test_Secret_key")
-                .description("My example sqs connection")
-                .uri("https://www.ziqni.com")
-                .transformerId(transformerId)
-                .metadata(new LoadMetadata().getMetadataAsList())
-                ;
+//    public CreateKafkaConnectionRequest getCreateKafkaRequest(String transformerId) {
+//        return new CreateKafkaConnectionRequest()
+//                .name("Kafka_1")
+//                .topic("Test_Topic")
+//                .groupId("Test_Group_Id")
+//                .description("My example kafka connection")
+//                .brokers("Example broker")
+//                .transformerId(transformerId)
+//                .metadata(new LoadMetadata().getMetadataAsList())
+//                ;
+//
+//    }
+//
+//    public CreateSqsConnectionRequest getCreateSqsRequest(String transformerId) {
+//        return new CreateSqsConnectionRequest()
+//                .name("SQS_1")
+//                .acessKey("Test_Access_key")
+//                .secretKey("Test_Secret_key")
+//                .description("My example sqs connection")
+//                .uri("https://www.ziqni.com")
+//                .transformerId(transformerId)
+//                .metadata(new LoadMetadata().getMetadataAsList())
+//                ;
+//
+//    }
 
-    }
-
-    public List<CreateRabbitMqConnectionRequest> getCreateRabbitMqRequestAsList(int numberOfItems, String transformerId) {
+    public List<CreateConnectionRequest> getCreateRabbitMqRequestAsList(int numberOfItems, String transformerId, String tagKey) {
         return IntStream.range(0, numberOfItems)
-                .mapToObj(i -> getCreateRabbitMQRequest(transformerId))
+                .mapToObj(i -> getCreateRabbitMQRequest(transformerId, tagKey))
                 .collect(Collectors.toList());
     }
 
-    public List<CreateKafkaConnectionRequest> getCreateKafkaRequestAsList(int numberOfItems, String transformerId) {
-        return IntStream.range(0, numberOfItems)
-                .mapToObj(i -> getCreateKafkaRequest(transformerId))
-                .collect(Collectors.toList());
-    }
+//    public List<CreateKafkaConnectionRequest> getCreateKafkaRequestAsList(int numberOfItems, String transformerId) {
+//        return IntStream.range(0, numberOfItems)
+//                .mapToObj(i -> getCreateKafkaRequest(transformerId))
+//                .collect(Collectors.toList());
+//    }
+//
+//    public List<CreateSqsConnectionRequest> getCreateSqsRequestAsList(int numberOfItems, String transformerId) {
+//        return IntStream.range(0, numberOfItems)
+//                .mapToObj(i -> getCreateSqsRequest(transformerId))
+//                .collect(Collectors.toList());
+//    }
 
-    public List<CreateSqsConnectionRequest> getCreateSqsRequestAsList(int numberOfItems, String transformerId) {
-        return IntStream.range(0, numberOfItems)
-                .mapToObj(i -> getCreateSqsRequest(transformerId))
-                .collect(Collectors.toList());
-    }
+//    public List<CreateRabbitMqConnectionRequest> getCreateRabbitMqRequestAsList(CreateRabbitMqConnectionRequest request) {
+//        return List.of(request);
+//    }
+//
+//    public List<CreateRabbitMqConnectionRequest> getCreateKafkaRequestAsList(CreateRabbitMqConnectionRequest request) {
+//        return List.of(request);
+//    }
+//
+//    public List<CreateSqsConnectionRequest> getCreateSqsRequestAsList(CreateSqsConnectionRequest request) {
+//        return List.of(request);
+//    }
 
-    public List<CreateRabbitMqConnectionRequest> getCreateRabbitMqRequestAsList(CreateRabbitMqConnectionRequest request) {
-        return List.of(request);
-    }
-
-    public List<CreateRabbitMqConnectionRequest> getCreateKafkaRequestAsList(CreateRabbitMqConnectionRequest request) {
-        return List.of(request);
-    }
-
-    public List<CreateSqsConnectionRequest> getCreateSqsRequestAsList(CreateSqsConnectionRequest request) {
-        return List.of(request);
-    }
-
-    public ModelApiResponse createRabbitMqTestData(CreateRabbitMqConnectionRequest request) throws ApiException {
-        var response = $(api.createRabbitMQConnections(request));
+    public ModelApiResponse createRabbitMqTestData(List<CreateConnectionRequest> request) throws ApiException {
+        var response = $(api.createConnections(request));
 
         assertNotNull(response);
         assertNotNull(response.getResults());
@@ -109,8 +130,8 @@ public class LoadConnectionsData implements CompleteableFutureTestWrapper {
         return response;
     }
 
-    public ModelApiResponse createKafkaTestData(CreateKafkaConnectionRequest request) throws ApiException {
-        var response = $(api.createKafkaConnections(request));
+    public ModelApiResponse createKafkaTestData(List<CreateConnectionRequest> request) throws ApiException {
+        var response = $(api.createConnections(request));
 
         assertNotNull(response);
         assertNotNull(response.getResults());
@@ -121,8 +142,8 @@ public class LoadConnectionsData implements CompleteableFutureTestWrapper {
         return response;
     }
 
-    public ModelApiResponse createSqsTestData(CreateSqsConnectionRequest request) throws ApiException {
-        var response = $(api.createSqsConnections(request));
+    public ModelApiResponse createSqsTestData(List<CreateConnectionRequest> request) throws ApiException {
+        var response = $(api.createConnections(request));
 
         assertNotNull(response);
         assertNotNull(response.getResults());
@@ -134,7 +155,7 @@ public class LoadConnectionsData implements CompleteableFutureTestWrapper {
     }
 
     public void deleteRabbitMqTestData(List<String> idsToDelete) throws ApiException {
-        var response = $(api.deleteRabbitMQConnections(idsToDelete));
+        var response = $(api.deleteConnections(idsToDelete));
 
         assertTrue(Objects.nonNull(response));
         assertEquals(idsToDelete.size(), response.getMeta().getResultCount(), "Failed to delete some rabbitMq custom fields");
@@ -142,7 +163,7 @@ public class LoadConnectionsData implements CompleteableFutureTestWrapper {
     }
 
     public void deleteKafkaTestData(List<String> idsToDelete) throws ApiException {
-        var response = $(api.deleteKafkaConnections(idsToDelete));
+        var response = $(api.deleteConnections(idsToDelete));
 
         assertTrue(Objects.nonNull(response));
         assertEquals(idsToDelete.size(), response.getMeta().getResultCount(), "Failed to delete some kafka custom fields");
@@ -150,7 +171,7 @@ public class LoadConnectionsData implements CompleteableFutureTestWrapper {
     }
 
     public void deleteSqsTestData(List<String> idsToDelete) throws ApiException {
-        var response = $(api.deleteSqsConnections(idsToDelete));
+        var response = $(api.deleteConnections(idsToDelete));
 
         assertTrue(Objects.nonNull(response));
         assertEquals(idsToDelete.size(), response.getMeta().getResultCount(), "Failed to delete some sqs custom fields");

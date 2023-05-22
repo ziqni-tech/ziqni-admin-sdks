@@ -3,9 +3,11 @@ package com.ziqni.admin.sdk.data;
 import com.ziqni.admin.sdk.ZiqniAdminApiFactory;
 import com.ziqni.admin.sdk.ApiException;
 import com.ziqni.admin.sdk.api.ComputeEngineApiWs;
+import com.ziqni.admin.sdk.configuration.AdminApiClientConfigBuilder;
 import com.ziqni.admin.sdk.model.CreateActionTypeRequest;
 import com.ziqni.admin.sdk.model.CreateComputeEngineRequest;
 import com.ziqni.admin.sdk.model.ModelApiResponse;
+import com.ziqni.admin.sdk.util.ApiClientFactoryUtil;
 import tests.utils.CompleteableFutureTestWrapper;
 
 import java.util.ArrayList;
@@ -21,8 +23,9 @@ public class LoadComputeEnginesData implements CompleteableFutureTestWrapper {
 
     private ComputeEngineApiWs api;
 
-    public LoadComputeEnginesData() {
-        this.api = ZiqniAdminApiFactory.getComputeEngineApi();
+    public LoadComputeEnginesData() throws Exception {
+        ApiClientFactoryUtil.initApiClientFactory(AdminApiClientConfigBuilder.build());
+        this.api = ApiClientFactoryUtil.factory.getComputeEngineApi();
     }
 
 

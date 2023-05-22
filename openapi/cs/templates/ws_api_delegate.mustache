@@ -1,0 +1,142 @@
+{{>licenseInfo}}
+package {{package}};
+
+import {{invokerPackage}}.StreamingClient;
+import {{invokerPackage}}.ApiClient;
+import {{invokerPackage}}.ApiException;
+import {{invokerPackage}}.ApiResponse;
+import {{invokerPackage}}.Pair;
+{{#imports}}
+import {{import}};
+{{/imports}}
+
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import java.time.Duration;
+{{^fullJavaUtil}}
+import java.util.*;
+{{/fullJavaUtil}}
+{{#asyncNative}}
+
+import java.util.concurrent.CompletableFuture;
+{{/asyncNative}}
+
+{{>generatedAnnotation}}
+{{#operations}}
+    public class {{classname}}Ws extends {{classname}} {
+    private final ApiClient apiClient;
+    private final ObjectMapper memberVarObjectMapper;
+    private final Duration memberVarReadTimeout;
+    private final StreamingClient streamingClient;
+
+    public {{classname}}Ws(ApiClient apiClient, StreamingClient streamingClient, Duration readTimeout) {
+        this.apiClient = apiClient;
+        this.memberVarObjectMapper = apiClient.getObjectMapper();
+        this.streamingClient = streamingClient;
+        this.memberVarReadTimeout = null;
+    }
+
+{{#operation}}
+    {{#vendorExtensions.x-group-parameters}}
+        {{#hasParams}}
+                /**
+                * {{summary}}
+                * {{notes}}
+                * @param apiRequest {@link API{{operationId}}Request}
+            {{#returnType}}
+                    * @return {{#asyncNative}}CompletableFuture&lt;{{/asyncNative}}{{returnType}}{{#asyncNative}}&gt;{{/asyncNative}}
+            {{/returnType}}
+                * @throws ApiException if fails to make API call
+            {{#isDeprecated}}
+                    * @deprecated
+            {{/isDeprecated}}
+            {{#externalDocs}}
+                    * {{description}}
+                    * @see <a href="{{url}}">{{summary}} Documentation</a>
+            {{/externalDocs}}
+                */
+            {{#isDeprecated}}
+                    @Deprecated
+            {{/isDeprecated}}
+                public {{#returnType}}{{#asyncNative}}CompletableFuture<{{{returnType}}}>{{/asyncNative}}{{^asyncNative}}{{{returnType}}}{{/asyncNative}}{{/returnType}}{{^returnType}}{{#asyncNative}}CompletableFuture<Void>{{/asyncNative}}{{^asyncNative}}void{{/asyncNative}}{{/returnType}} {{operationId}}(API{{operationId}}Request apiRequest) {
+            {{#allParams}}
+                {{{dataType}}} {{paramName}} = apiRequest.{{paramName}}();
+            {{/allParams}}
+            {{#returnType}}return {{/returnType}}{{^returnType}}{{#asyncNative}}return {{/asyncNative}}{{/returnType}}{{operationId}}({{#allParams}}{{paramName}}{{^-last}}, {{/-last}}{{/allParams}});
+                }
+
+                /**
+                * {{summary}}
+                * {{notes}}
+                * @param apiRequest {@link API{{operationId}}Request}
+                * @return {{#asyncNative}}CompletableFuture&lt;{{/asyncNative}}ApiResponse&lt;{{#returnType}}{{returnType}}{{/returnType}}{{^returnType}}Void{{/returnType}}&gt;{{#asyncNative}}&gt;{{/asyncNative}}
+                * @throws ApiException if fails to make API call
+            {{#isDeprecated}}
+                    * @deprecated
+            {{/isDeprecated}}
+            {{#externalDocs}}
+                    * {{description}}
+                    * @see <a href="{{url}}">{{summary}} Documentation</a>
+            {{/externalDocs}}
+                */
+            {{#isDeprecated}}
+                    @Deprecated
+            {{/isDeprecated}}
+                public {{#asyncNative}}CompletableFuture<{{/asyncNative}}ApiResponse<{{#returnType}}{{{returnType}}}{{/returnType}}{{^returnType}}Void{{/returnType}}>{{#asyncNative}}>{{/asyncNative}} {{operationId}}WithHttpInfo(API{{operationId}}Request apiRequest) {
+            {{#allParams}}
+                {{{dataType}}} {{paramName}} = apiRequest.{{paramName}}();
+            {{/allParams}}
+                return {{operationId}}WithHttpInfo({{#allParams}}{{paramName}}{{^-last}}, {{/-last}}{{/allParams}});
+                }
+
+        {{/hasParams}}
+    {{/vendorExtensions.x-group-parameters}}
+        /**
+        * {{summary}}
+        * {{notes}}
+    {{#allParams}}
+            * @param {{paramName}} {{description}}{{#required}} (required){{/required}}{{^required}} (optional{{^isContainer}}{{#defaultValue}}, default to {{.}}{{/defaultValue}}){{/isContainer}}{{/required}}
+    {{/allParams}}
+    {{#returnType}}
+            * @return {{#asyncNative}}CompletableFuture&lt;{{/asyncNative}}{{returnType}}{{#asyncNative}}&gt;{{/asyncNative}}
+    {{/returnType}}
+        * @throws ApiException if fails to make API call
+    {{#isDeprecated}}
+            * @deprecated
+    {{/isDeprecated}}
+    {{#externalDocs}}
+            * {{description}}
+            * @see <a href="{{url}}">{{summary}} Documentation</a>
+    {{/externalDocs}}
+        */
+    {{#isDeprecated}}
+            @Deprecated
+    {{/isDeprecated}}
+        public {{#returnType}}{{#asyncNative}}CompletableFuture<{{{returnType}}}>{{/asyncNative}}{{^asyncNative}}{{{returnType}}}{{/asyncNative}}{{/returnType}}{{^returnType}}{{#asyncNative}}CompletableFuture<Void>{{/asyncNative}}{{^asyncNative}}void{{/asyncNative}}{{/returnType}} {{operationId}}({{#allParams}}{{{dataType}}} {{paramName}}{{^-last}}, {{/-last}}{{/allParams}}) {
+    {{^asyncNative}}
+        {{#returnType}}ApiResponse<{{{returnType}}}> localVarResponse = {{/returnType}}{{operationId}}WithHttpInfo({{#allParams}}{{paramName}}{{^-last}}, {{/-last}}{{/allParams}});
+        {{#returnType}}
+                return localVarResponse.getData();
+        {{/returnType}}
+    {{/asyncNative}}
+    {{#asyncNative}}
+        var request = new HashMap<String, Object>();
+        {{#hasQueryParams}}var queryParam = new HashMap<String, Object>();{{/hasQueryParams}}
+        {{#queryParams}}queryParam.put("{{paramName}}", {{paramName}});
+        {{/queryParams}}
+        {{#hasQueryParams}}request.put("query",queryParam);{{/hasQueryParams}}
+
+        {{#hasPathParams}}var pathParam = new HashMap<String, Object>();{{/hasPathParams}}
+        {{#pathParams}}pathParam.put("{{paramName}}", {{paramName}});
+        {{/pathParams}}
+        {{#hasPathParams}}request.put("path",pathParam);{{/hasPathParams}}
+        {{#hasBodyParam}}{{#bodyParams}}request.put("{{paramName}}",{{paramName}});{{^-last}}, {{/-last}}{{/bodyParams}}{{/hasBodyParam}}
+
+        CompletableFuture<{{^returnType}}Void{{/returnType}}{{#returnType}}{{{returnType}}}{{/returnType}}> result = this.streamingClient.sendWithApiCallback("/aapi/{{{operationId}}}", request);
+        return result;
+    {{/asyncNative}}
+        }
+{{/operation}}
+        }
+{{/operations}}

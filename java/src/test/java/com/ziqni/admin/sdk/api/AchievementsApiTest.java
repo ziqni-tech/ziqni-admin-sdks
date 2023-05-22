@@ -13,13 +13,11 @@
 
 package com.ziqni.admin.sdk.api;
 
-import com.ziqni.admin.sdk.data.LoadAchievementsData;
-import com.ziqni.admin.sdk.data.LoadCustomFieldsData;
-import com.ziqni.admin.sdk.data.LoadRewardTypesData;
-import com.ziqni.admin.sdk.data.LoadTagsData;
+import com.ziqni.admin.sdk.configuration.AdminApiClientConfigBuilder;
+import com.ziqni.admin.sdk.data.*;
 import com.ziqni.admin.sdk.model.*;
 import com.ziqni.admin.sdk.util.ApiClientFactoryUtil;
-import com.ziqni.admin.sdk.ZiqniAdminApiFactory;
+import com.ziqni.admin.sdk.configuration.AdminApiClientConfigBuilder;
 import com.ziqni.admin.sdk.ApiException;
 import com.ziqni.admin.sdk.model.*;
 
@@ -30,6 +28,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.*;
+import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -48,29 +47,34 @@ public class AchievementsApiTest implements tests.utils.CompleteableFutureTestWr
     private final LoadRewardTypesData loadRewardTypesData;
     private final LoadTagsData loadTagsData;
     private final LoadCustomFieldsData loadCustomFieldsData;
+    private final LoadUnitsOfMeasureData loadUnitsOfMeasureData;
 
     private String rewardTypeId;
     private String tagKey;
     private String customFieldKey;
+    private String unitOfMeasureId;
 
     List<String> idsToDelete = new ArrayList<>();
     List<String> rewardTypeIdsToDelete = new ArrayList<>();
     List<String> tagIdsToDelete = new ArrayList<>();
     List<String> customFieldIdsToDelete = new ArrayList<>();
+    List<String> unitOfMeasureIdsToDelete = new ArrayList<>();
 
     public AchievementsApiTest() throws Exception {
-        ApiClientFactoryUtil.initApiClientFactory();
+        ApiClientFactoryUtil.initApiClientFactory(AdminApiClientConfigBuilder.build());
 
-        this.api = ZiqniAdminApiFactory.getAchievementsApi();
+        this.api = ApiClientFactoryUtil.factory.getAchievementsApi();
         this.loadData = new LoadAchievementsData();
         this.loadRewardTypesData = new LoadRewardTypesData();
         this.loadCustomFieldsData = new LoadCustomFieldsData();
         this.loadTagsData = new LoadTagsData();
+        this.loadUnitsOfMeasureData = new LoadUnitsOfMeasureData();
     }
 
     @BeforeAll
     public void setUp() throws ApiException, InterruptedException {
-        final var response = loadRewardTypesData.createTestData(loadRewardTypesData.getCreateRequestAsList(1));
+        unitOfMeasureId = loadUnitsOfMeasureData.createTestData(loadUnitsOfMeasureData.getCreateRequestAsList(1)).getResults().get(0).getId();
+        final var response = loadRewardTypesData.createTestData(List.of(loadRewardTypesData.getCreateRequest().unitOfMeasure(unitOfMeasureId)));
         this.rewardTypeId = response.getResults().get(0).getId();
         rewardTypeIdsToDelete.add(rewardTypeId);
         tagKey = loadTagsData.getModel();
@@ -91,6 +95,72 @@ public class AchievementsApiTest implements tests.utils.CompleteableFutureTestWr
         } catch (ApiException | InterruptedException e) {
             logger.error("error", e.getCause());
         }
+    }
+
+    @Test
+    @Order(1)
+    public void createAchievementsWithOptInRequiredForEntrantsConstraintReturnOkTest() throws ApiException {
+        final var createRequest = loadData.getCreateRequest(rewardTypeId);
+        ///////// ADD THE CONSTRAINT \\\\\\\\\\
+        createRequest.getAddConstraints().add("optinRequiredForEntrants");
+        final var createRequestAsList = loadData.getCreateRequestAsList(createRequest);
+
+        ModelApiResponse response = api.createAchievements(createRequestAsList).join();
+
+        assertNotNull(response);
+        assertNotNull(response.getResults());
+        assertNotNull(response.getErrors());
+        assertEquals(1, response.getResults().size(), "Should contain created entity");
+        assertNotNull(response.getResults().get(0).getId(), "Created entity should has id");
+
+        final var ids = response.getResults().stream().map(Result::getId).collect(Collectors.toList());
+        int limit = 20;
+        int skip = 0;
+        final var achievementsResponse = $(api.getAchievements(ids, limit, skip));
+        final var id = response.getResults().get(0).getId();
+
+        assertNotNull(achievementsResponse);
+        assertNotNull(achievementsResponse.getResults());
+        assertNotNull(achievementsResponse.getErrors());
+        assertTrue(achievementsResponse.getErrors().isEmpty(), "Should have no errors");
+        assertEquals(1, achievementsResponse.getResults().size(), "Should has single result");
+
+        final var item = achievementsResponse.getResults().get(0);
+
+        assertEquals(createRequest.getName(), item.getName(), "Found Name should be equal to created previously");
+        assertEquals(createRequest.getDescription(),item.getDescription());
+        ///////////// THE CONSTRAINT SHOULD BE AVAILABLE \\\\\\\\\\\\\\
+        assertTrue(createRequest.getAddConstraints().contains("optinRequiredForEntrants"));
+
+        //////////// REMOVE THE CONSTRAINT \\\\\\\\\\\\\
+        UpdateAchievementRequest given = new UpdateAchievementRequest()
+                .id(id)
+                .addRemoveConstraintsItem("optinRequiredForEntrants");
+
+        ModelApiResponse updated = $(api.updateAchievements(List.of(given)));
+
+        assertNotNull(updated);
+        assertNotNull(updated.getResults());
+        assertNotNull(updated.getErrors());
+        assertEquals(1, updated.getResults().size(), "Should contain updated entity");
+        assertNotNull(updated.getResults().get(0).getId(), "Created entity should has id");
+
+        final var achsResponse = $(api.getAchievements(ids, limit, skip));
+
+        assertNotNull(achsResponse);
+        assertNotNull(achsResponse.getResults());
+        assertNotNull(achsResponse.getErrors());
+        assertTrue(achsResponse.getErrors().isEmpty(), "Should have no errors");
+        assertEquals(1, achsResponse.getResults().size(), "Should has single result");
+
+        final var updatedItem = achsResponse.getResults().get(0);
+
+        assertEquals(createRequest.getName(), updatedItem.getName(), "Found Name should be equal to created previously");
+        assertEquals(createRequest.getDescription(),updatedItem.getDescription());
+        ///////////// THE CONSTRAINT SHOULD NOT BE AVAILABLE \\\\\\\\\\\\\\
+        assertFalse(updatedItem.getConstraints().contains("optinRequiredForEntrants"));
+
+        idsToDelete.add(id);
     }
 
     @Test

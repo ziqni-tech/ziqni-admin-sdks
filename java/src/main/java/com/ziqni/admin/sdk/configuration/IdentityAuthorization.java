@@ -3,6 +3,7 @@
  */
 package com.ziqni.admin.sdk.configuration;
 
+import org.keycloak.admin.client.Keycloak;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -10,9 +11,8 @@ public class IdentityAuthorization {
 
     private static final Logger logger = LoggerFactory.getLogger(IdentityAuthorization.class);
 
-    public static String getAccessTokenString() {
-        var identityClient = AdminApiClientConfig.getIdentityClient();
-        logger.debug("Is identity client closed [{}]", identityClient.isClosed());
-        return identityClient.tokenManager().getAccessTokenString();
+    public static String getAccessTokenString(Keycloak keycloak) {
+        logger.debug("Is identity client closed [{}]", keycloak.isClosed());
+        return keycloak.tokenManager().getAccessTokenString();
     }
 }

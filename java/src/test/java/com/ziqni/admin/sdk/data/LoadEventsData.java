@@ -1,11 +1,13 @@
 package com.ziqni.admin.sdk.data;
 
+import com.ziqni.admin.sdk.configuration.AdminApiClientConfigBuilder;
 import com.ziqni.admin.sdk.model.CreateEventRequest;
 import com.ziqni.admin.sdk.ZiqniAdminApiFactory;
 import com.ziqni.admin.sdk.ApiException;
 import com.ziqni.admin.sdk.api.EventsApiWs;
 import com.ziqni.admin.sdk.model.ModelApiResponse;
 
+import com.ziqni.admin.sdk.util.ApiClientFactoryUtil;
 import com.ziqni.admin.sdk.util.DateUtil;
 import tests.utils.CompleteableFutureTestWrapper;
 
@@ -19,8 +21,9 @@ public class LoadEventsData implements CompleteableFutureTestWrapper {
 
     private EventsApiWs api;
 
-    public LoadEventsData() {
-        this.api = ZiqniAdminApiFactory.getEventsApi();
+    public LoadEventsData() throws Exception {
+        ApiClientFactoryUtil.initApiClientFactory(AdminApiClientConfigBuilder.build());
+        this.api = ApiClientFactoryUtil.factory.getEventsApi();
     }
 
     public Map<String, Object> getEventsMetada() {

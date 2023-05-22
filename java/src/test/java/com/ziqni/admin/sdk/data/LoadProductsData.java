@@ -3,9 +3,11 @@ package com.ziqni.admin.sdk.data;
 import com.ziqni.admin.sdk.ZiqniAdminApiFactory;
 import com.ziqni.admin.sdk.ApiException;
 import com.ziqni.admin.sdk.api.ProductsApiWs;
+import com.ziqni.admin.sdk.configuration.AdminApiClientConfigBuilder;
 import com.ziqni.admin.sdk.model.ActionTypeAdjustmentFactor;
 import com.ziqni.admin.sdk.model.CreateProductRequest;
 import com.ziqni.admin.sdk.model.ModelApiResponse;
+import com.ziqni.admin.sdk.util.ApiClientFactoryUtil;
 import tests.utils.CompleteableFutureTestWrapper;
 
 import java.util.*;
@@ -18,8 +20,9 @@ public class LoadProductsData implements CompleteableFutureTestWrapper {
 
     private ProductsApiWs api;
 
-    public LoadProductsData() {
-        this.api = ZiqniAdminApiFactory.getProductsApi();
+    public LoadProductsData() throws Exception {
+        ApiClientFactoryUtil.initApiClientFactory(AdminApiClientConfigBuilder.build());
+        this.api = ApiClientFactoryUtil.factory.getProductsApi();
     }
 
     public CreateProductRequest getCreateRequest(String actionTypeId) {

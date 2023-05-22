@@ -3,10 +3,12 @@ package com.ziqni.admin.sdk.data;
 import com.ziqni.admin.sdk.ZiqniAdminApiFactory;
 import com.ziqni.admin.sdk.ApiException;
 import com.ziqni.admin.sdk.api.TranslationsApiWs;
+import com.ziqni.admin.sdk.configuration.AdminApiClientConfigBuilder;
 import com.ziqni.admin.sdk.model.*;
 import com.ziqni.admin.sdk.model.CreateTranslationRequest;
 import com.ziqni.admin.sdk.model.ModelApiResponse;
 import com.ziqni.admin.sdk.model.TranslationEntry;
+import com.ziqni.admin.sdk.util.ApiClientFactoryUtil;
 import org.junit.jupiter.api.Assertions;
 import tests.utils.CompleteableFutureTestWrapper;
 
@@ -20,8 +22,9 @@ public class LoadTranslationData implements CompleteableFutureTestWrapper {
 
     private TranslationsApiWs api;
 
-    public LoadTranslationData() {
-        this.api = ZiqniAdminApiFactory.getTranslationsApi();
+    public LoadTranslationData() throws Exception {
+        ApiClientFactoryUtil.initApiClientFactory(AdminApiClientConfigBuilder.build());
+        this.api = ApiClientFactoryUtil.factory.getTranslationsApi();
     }
 
     public CreateTranslationRequest getCreateRequest(String languageId, String languageKey, String entityId, String entityType) {

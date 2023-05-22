@@ -19,7 +19,7 @@
 //import com.ziqni.admin.sdk.data.LoadTransformerData;
 //import com.ziqni.admin.sdk.model.*;
 //import com.ziqni.admin.sdk.util.ApiClientFactoryUtil;
-//import com.ziqni.admin.sdk.ZiqniAdminApiFactory;
+//import com.ziqni.admin.sdk.configuration.AdminApiClientConfigBuilder;
 //import com.ziqni.admin.sdk.ApiException;
 //
 //import java.util.ArrayList;
@@ -66,8 +66,8 @@
 //    private String transformerId;
 //
 //    public ConsumersApiTest() throws Exception {
-//        ApiClientFactoryUtil.initApiClientFactory();
-//        this.api = ZiqniAdminApiFactory.getConsumersApi();
+//        ApiClientFactoryUtil.initApiClientFactory(AdminApiClientConfigBuilder.build());
+//        this.api = ApiClientFactoryUtil.factory.getConsumersApi();
 //
 //        this.loadData = new LoadConnectionsData();
 //        this.loadTransformerData = new LoadTransformerData();

@@ -3,22 +3,27 @@
  */
 package com.ziqni.admin.sdk.streaming;
 
-import com.ziqni.admin.sdk.configuration.AdminApiClientConfig;
+import com.ziqni.admin.sdk.configuration.AdminApiClientConfiguration;
 
 public class WsAddress {
 
     final String address;
 
-    public WsAddress(){
+    public WsAddress(AdminApiClientConfiguration configuration){
         StringBuilder sb = new StringBuilder();
-        sb.append(AdminApiClientConfig.getAdminClientServerScheme());
+        sb.append(configuration.getAdminClientServerScheme());
         sb.append("://");
-        sb.append(AdminApiClientConfig.getAdminClientServerHost());
-        if(AdminApiClientConfig.getAdminClientServerPort() != null && !(AdminApiClientConfig.getAdminClientServerPort() == 80 || AdminApiClientConfig.getAdminClientServerPort() == 443))
-            sb.append(":").append(AdminApiClientConfig.getAdminClientServerPort());
+        sb.append(configuration.getAdminClientServerHost());
+        if(configuration.getAdminClientServerPort() != null && !(configuration.getAdminClientServerPort() == 80 || configuration.getAdminClientServerPort() == 443))
+            sb.append(":").append(configuration.getAdminClientServerPort());
         sb.append("/ws");
 
         this.address = sb.toString();
+    }
+
+    public WsAddress(String address){
+        assert address.startsWith("ws://") || address.startsWith("wss://"): "The websocket address must start with 'ws://' or 'wss://'";
+        this.address = address;
     }
 
     public String getAddress() {

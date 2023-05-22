@@ -16,7 +16,7 @@ package com.ziqni.admin.sdk.api;
 import com.ziqni.admin.sdk.data.LoadSpacesData;
 import com.ziqni.admin.sdk.model.SpaceResponse;
 import com.ziqni.admin.sdk.util.ApiClientFactoryUtil;
-import com.ziqni.admin.sdk.ZiqniAdminApiFactory;
+import com.ziqni.admin.sdk.configuration.AdminApiClientConfigBuilder;
 import com.ziqni.admin.sdk.ApiException;
 import com.ziqni.admin.sdk.model.CreateSpaceRequest;
 import com.ziqni.admin.sdk.model.ModelApiResponse;
@@ -50,14 +50,15 @@ public class SpacesApiTest implements tests.utils.CompleteableFutureTestWrapper{
     private static final Logger logger = LoggerFactory.getLogger(SpacesApiTest.class);
 
     public SpacesApiTest() throws Exception {
-        ApiClientFactoryUtil.initApiClientFactory();
-        this.api =  ZiqniAdminApiFactory.getSpacesApi();
+        ApiClientFactoryUtil.initApiClientFactory(AdminApiClientConfigBuilder.build());
+        this.api = ApiClientFactoryUtil.factory.getSpacesApi();
+        ApiClientFactoryUtil.initApiClientFactory(AdminApiClientConfigBuilder.build());
 
         this.loadData = new LoadSpacesData();
     }
 
     @AfterAll
-    public void cleanUp() throws InterruptedException {
+    public void cleanUp() throws Exception {
         try {
             Thread.sleep(5000);
             loadData.deleteTestData(spaceNamesToDelete);

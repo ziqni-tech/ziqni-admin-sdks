@@ -1,11 +1,13 @@
 package com.ziqni.admin.sdk.data;
 
+import com.ziqni.admin.sdk.configuration.AdminApiClientConfigBuilder;
 import com.ziqni.admin.sdk.model.CreateUnitOfMeasureRequest;
 import com.ziqni.admin.sdk.ZiqniAdminApiFactory;
 import com.ziqni.admin.sdk.ApiException;
 import com.ziqni.admin.sdk.api.UnitsOfMeasureApiWs;
 import com.ziqni.admin.sdk.model.ModelApiResponse;
 import com.ziqni.admin.sdk.model.UnitOfMeasureType;
+import com.ziqni.admin.sdk.util.ApiClientFactoryUtil;
 import tests.utils.CompleteableFutureTestWrapper;
 
 import java.util.*;
@@ -18,8 +20,9 @@ public class LoadUnitsOfMeasureData implements CompleteableFutureTestWrapper {
 
     private UnitsOfMeasureApiWs api;
 
-    public LoadUnitsOfMeasureData() {
-        this.api = ZiqniAdminApiFactory.getUnitsOfMeasureApi();
+    public LoadUnitsOfMeasureData() throws Exception {
+        ApiClientFactoryUtil.initApiClientFactory(AdminApiClientConfigBuilder.build());
+        this.api = ApiClientFactoryUtil.factory.getUnitsOfMeasureApi();
     }
 
     public CreateUnitOfMeasureRequest getCreateRequest() {

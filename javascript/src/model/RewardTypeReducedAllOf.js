@@ -23,10 +23,12 @@ class RewardTypeReducedAllOf {
      * Constructs a new <code>RewardTypeReducedAllOf</code>.
      * @alias module:model/RewardTypeReducedAllOf
      * @param key {String} A unique key that represents the reward type
+     * @param id {String} A unique system generated identifier
+     * @param spaceName {String} This is the space name which is linked to the account
      */
-    constructor(key) { 
+    constructor(key, id, spaceName) { 
         
-        RewardTypeReducedAllOf.initialize(this, key);
+        RewardTypeReducedAllOf.initialize(this, key, id, spaceName);
     }
 
     /**
@@ -34,8 +36,10 @@ class RewardTypeReducedAllOf {
      * This method is used by the constructors of any subclasses, in order to implement multiple inheritance (mix-ins).
      * Only for internal use.
      */
-    static initialize(obj, key) { 
+    static initialize(obj, key, id, spaceName) { 
         obj['key'] = key;
+        obj['id'] = id;
+        obj['spaceName'] = spaceName;
     }
 
     /**
@@ -52,6 +56,12 @@ class RewardTypeReducedAllOf {
             if (data.hasOwnProperty('key')) {
                 obj['key'] = ApiClient.convertToType(data['key'], 'String');
             }
+            if (data.hasOwnProperty('id')) {
+                obj['id'] = ApiClient.convertToType(data['id'], 'String');
+            }
+            if (data.hasOwnProperty('spaceName')) {
+                obj['spaceName'] = ApiClient.convertToType(data['spaceName'], 'String');
+            }
         }
         return obj;
     }
@@ -64,6 +74,18 @@ class RewardTypeReducedAllOf {
  * @member {String} key
  */
 RewardTypeReducedAllOf.prototype['key'] = undefined;
+
+/**
+ * A unique system generated identifier
+ * @member {String} id
+ */
+RewardTypeReducedAllOf.prototype['id'] = undefined;
+
+/**
+ * This is the space name which is linked to the account
+ * @member {String} spaceName
+ */
+RewardTypeReducedAllOf.prototype['spaceName'] = undefined;
 
 
 

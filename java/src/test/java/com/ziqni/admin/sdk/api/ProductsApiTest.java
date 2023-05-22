@@ -16,7 +16,7 @@ package com.ziqni.admin.sdk.api;
 import com.ziqni.admin.sdk.data.*;
 import com.ziqni.admin.sdk.model.*;
 import com.ziqni.admin.sdk.util.ApiClientFactoryUtil;
-import com.ziqni.admin.sdk.ZiqniAdminApiFactory;
+import com.ziqni.admin.sdk.configuration.AdminApiClientConfigBuilder;
 import com.ziqni.admin.sdk.ApiException;
 import com.ziqni.admin.sdk.model.*;
 import com.ziqni.admin.sdk.data.*;
@@ -57,8 +57,8 @@ public class ProductsApiTest implements tests.utils.CompleteableFutureTestWrappe
     private String actionTypeId;
 
     public ProductsApiTest() throws Exception {
-        ApiClientFactoryUtil.initApiClientFactory();
-        this.api = ZiqniAdminApiFactory.getProductsApi();
+        ApiClientFactoryUtil.initApiClientFactory(AdminApiClientConfigBuilder.build());
+        this.api = ApiClientFactoryUtil.factory.getProductsApi();
         this.loadData = new LoadProductsData();
         this.loadActionTypesData = new LoadActionTypesData();
         this.loadCustomFieldsData = new LoadCustomFieldsData();

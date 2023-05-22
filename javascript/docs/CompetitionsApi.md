@@ -276,7 +276,7 @@ Name | Type | Description  | Notes
 
 
 
-Returns a list of Leaderborads for the Competition id provided
+Use /leadeboard instead. Returns a list of Leaderborads for the Competition id provided
 
 ### Example
 

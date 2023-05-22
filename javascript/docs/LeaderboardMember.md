@@ -9,5 +9,6 @@ Name | Type | Description | Notes
 **memberRefId** | **String** | The reference to this member in your system | 
 **rankChangeFrom** | **Number** | Previous rank held, null if no changes are recorded | [optional] 
 **rankChangeType** | **Number** | [-1] for rank-down, like 5 to 8. [0] for no change, [1] for rank-up like 9 to 3 | [optional] 
+**params** | **{String: Number}** | The user defined values used in the rules builder | [optional] 
 
 

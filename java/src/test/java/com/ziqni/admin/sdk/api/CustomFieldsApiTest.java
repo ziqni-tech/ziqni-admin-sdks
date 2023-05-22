@@ -20,7 +20,7 @@ package com.ziqni.admin.sdk.api;
 import com.ziqni.admin.sdk.data.LoadCustomFieldsData;
 import com.ziqni.admin.sdk.model.*;
 import com.ziqni.admin.sdk.util.ApiClientFactoryUtil;
-import com.ziqni.admin.sdk.ZiqniAdminApiFactory;
+import com.ziqni.admin.sdk.configuration.AdminApiClientConfigBuilder;
 import com.ziqni.admin.sdk.ApiException;
 import com.ziqni.admin.sdk.model.*;
 import org.junit.jupiter.api.*;
@@ -52,8 +52,8 @@ public class CustomFieldsApiTest implements tests.utils.CompleteableFutureTestWr
     List<String> idsToDelete = new ArrayList<>();
 
    public CustomFieldsApiTest() throws Exception {
-       ApiClientFactoryUtil.initApiClientFactory();
-       this.api = ZiqniAdminApiFactory.getCustomFieldsApi();
+       ApiClientFactoryUtil.initApiClientFactory(AdminApiClientConfigBuilder.build());
+       this.api = ApiClientFactoryUtil.factory.getCustomFieldsApi();
 
        this.loadData = new LoadCustomFieldsData();
    }

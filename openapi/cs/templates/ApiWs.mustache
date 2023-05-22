@@ -1,0 +1,181 @@
+{{>licenseInfo}}
+package {{package}};
+import javax.ws.rs.core.GenericType;
+import {{invokerPackage}}.streaming.StreamingClient;
+import {{invokerPackage}}.streaming.EventHandler;
+import {{invokerPackage}}.streaming.handlers.CallbackConsumer;
+import {{invokerPackage}}.ApiException;
+import org.springframework.messaging.simp.stomp.StompHeaders;
+
+{{#imports}}
+import {{import}};
+{{/imports}}
+
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import {{invokerPackage}}.model.*;
+import java.time.Duration;
+{{^fullJavaUtil}}
+import java.util.*;
+{{/fullJavaUtil}}
+{{#asyncNative}}//asyncNative:{{asyncNative}}
+import java.util.concurrent.CompletableFuture;
+{{/asyncNative}}
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.time.Duration;
+import java.util.function.BiConsumer;
+{{>generatedAnnotation}}
+{{#operations}}
+    public class {{classname}}Ws {
+
+    private final Duration memberVarReadTimeout;
+    private final StreamingClient streamingClient;
+
+    public {{classname}}Ws(StreamingClient streamingClient, Duration readTimeout) {
+    this.streamingClient = streamingClient;
+    this.memberVarReadTimeout = readTimeout;
+    }
+    {{#operation}}
+
+{{#callbacks.0}}
+    public class {{operationId}}CallBacks {
+        {{#callbacks}}{{#urls}}{{#requests}}public final static String {{#lambda.uppercase}}{{{name}}}{{/lambda.uppercase}} ="{{{name}}}";
+        {{/requests}}{{/urls}}{{/callbacks}}
+    }
+{{/callbacks.0}}
+
+{{#callbacks}}{{#urls}}{{#requests}}
+    public {{classname}}Ws {{name}}Handler({{#allParams}}BiConsumer<StompHeaders, {{{dataType}}}> {{{paramName}}}{{/allParams}}, BiConsumer<StompHeaders, ApiException> onApiException){
+        {{#allParams}}streamingClient.getCallbackEventHandler().registerCallbackHandler(new CallbackConsumer<{{{dataType}}}>({{{dataType}}}.class, "{{{paramName}}}", {{{paramName}}}, onApiException));{{/allParams}}
+        return this;
+    }
+{{/requests}}{{/urls}}{{/callbacks}}
+    {{#vendorExtensions.x-group-parameters}}
+    {{#hasParams}}
+        /**
+        * {{summary}}
+        * {{notes}}
+        * @param apiRequest {@link API{{operationId}}Request}
+        {{#returnType}}
+            * @return {{#asyncNative}}CompletableFuture&lt;{{/asyncNative}}{{returnType}}{{#asyncNative}}&gt;{{/asyncNative}}
+        {{/returnType}}
+        * @throws ApiException if fails to make API call
+        {{#isDeprecated}}
+            * @deprecated
+        {{/isDeprecated}}
+        {{#externalDocs}}
+            * {{description}}
+            * @see <a href="{{url}}">{{summary}} Documentation</a>
+        {{/externalDocs}}
+        */
+        {{#isDeprecated}}
+            @Deprecated
+        {{/isDeprecated}}
+        public {{#returnType}}{{#asyncNative}}CompletableFuture<{{{returnType}}}>{{/asyncNative}}{{^asyncNative}}{{{returnType}}}{{/asyncNative}}{{/returnType}}{{^returnType}}{{#asyncNative}}CompletableFuture<Void>{{/asyncNative}}{{^asyncNative}}void{{/asyncNative}}{{/returnType}} {{operationId}}(API{{operationId}}Request apiRequest) {
+            {{#allParams}}
+                {{{dataType}}} {{paramName}} = apiRequest.{{paramName}}();
+            {{/allParams}}
+            {{#returnType}}return {{/returnType}}{{^returnType}}{{#asyncNative}}return {{/asyncNative}}{{/returnType}}{{operationId}}({{#allParams}}{{paramName}}{{^-last}}, {{/-last}}{{/allParams}});
+                }
+
+                /**
+                * {{summary}}
+                * {{notes}}
+                * @param apiRequest {@link API{{operationId}}Request}
+                * @return {{#asyncNative}}CompletableFuture&lt;{{/asyncNative}}ApiResponse&lt;{{#returnType}}{{returnType}}{{/returnType}}{{^returnType}}Void{{/returnType}}&gt;{{#asyncNative}}&gt;{{/asyncNative}}
+                * @throws ApiException if fails to make API call
+            {{#isDeprecated}}
+                    * @deprecated
+            {{/isDeprecated}}
+            {{#externalDocs}}
+                    * {{description}}
+                    * @see <a href="{{url}}">{{summary}} Documentation</a>
+            {{/externalDocs}}
+                */
+            {{#isDeprecated}}
+                    @Deprecated
+            {{/isDeprecated}}
+                public {{#asyncNative}}CompletableFuture<{{/asyncNative}}ApiResponse<{{#returnType}}{{{returnType}}}{{/returnType}}{{^returnType}}Void{{/returnType}}>{{#asyncNative}}>{{/asyncNative}} {{operationId}}WithHttpInfo(API{{operationId}}Request apiRequest) {
+            {{#allParams}}
+                {{{dataType}}} {{paramName}} = apiRequest.{{paramName}}();
+            {{/allParams}}
+                return {{operationId}}WithHttpInfo({{#allParams}}{{paramName}}{{^-last}}, {{/-last}}{{/allParams}});
+                }
+
+        {{/hasParams}}
+        {{/vendorExtensions.x-group-parameters}}
+            /**
+            * {{summary}}
+            * {{notes}}
+        {{#allParams}}
+                * @param {{paramName}} {{description}}{{#required}} (required){{/required}}{{^required}} (optional{{^isContainer}}{{#defaultValue}}, default to {{.}}{{/defaultValue}}){{/isContainer}}{{/required}}
+        {{/allParams}}
+        {{#returnType}}
+                * @return {{#asyncNative}}CompletableFuture&lt;{{/asyncNative}}{{returnType}}{{#asyncNative}}&gt;{{/asyncNative}}
+        {{/returnType}}
+            * @throws ApiException if fails to make API call
+        {{#isDeprecated}}
+                * @deprecated
+        {{/isDeprecated}}
+        {{#externalDocs}}
+                * {{description}}
+                * @see <a href="{{url}}">{{summary}} Documentation</a>
+        {{/externalDocs}}
+            */
+        {{#isDeprecated}}
+                @Deprecated
+        {{/isDeprecated}}
+            public {{#returnType}}{{#asyncNative}}CompletableFuture<{{{returnType}}}>{{/asyncNative}}{{^asyncNative}}{{{returnType}}}{{/asyncNative}}{{/returnType}}{{^returnType}}{{#asyncNative}}CompletableFuture<Void>{{/asyncNative}}{{^asyncNative}}void{{/asyncNative}}{{/returnType}} {{operationId}}({{#allParams}}{{{dataType}}} {{paramName}}{{^-last}}, {{/-last}}{{/allParams}}) {
+        {{^asyncNative}}
+            {{#returnType}}ApiResponse<{{{returnType}}}> localVarResponse = {{/returnType}}{{operationId}}WithHttpInfo({{#allParams}}{{paramName}}{{^-last}}, {{/-last}}{{/allParams}});
+            {{#returnType}}
+                    return localVarResponse.getData();
+            {{/returnType}}
+        {{/asyncNative}}
+        {{#asyncNative}}
+                var request = new HashMap<String, Object>();
+            {{#hasQueryParams}}var queryParam = new HashMap<String, Object>();{{/hasQueryParams}}
+            {{#queryParams}}queryParam.put("{{paramName}}", {{paramName}});
+            {{/queryParams}}
+            {{#hasQueryParams}}request.put("query",queryParam);{{/hasQueryParams}}
+
+            {{#hasPathParams}}var pathParam = new HashMap<String, Object>();{{/hasPathParams}}
+            {{#pathParams}}pathParam.put("{{paramName}}", {{paramName}});
+            {{/pathParams}}
+            {{#hasPathParams}}request.put("path",pathParam);{{/hasPathParams}}
+
+            {{#hasBodyParam}}{{#bodyParams}}request.put("body",{{paramName}});{{^-last}}, {{/-last}}{{/bodyParams}}{{/hasBodyParam}}
+
+            CompletableFuture<{{^returnType}}Void{{/returnType}}{{#returnType}}{{{returnType}}}{{/returnType}}> result = this.streamingClient.sendWithApiCallback("/aapi/{{{operationId}}}", request);
+            return result;
+    {{/asyncNative}}
+        }
+{{/operation}}
+
+{{#asyncNative}}
+        private ApiException getApiException(String operationId, HttpResponse<String> response) {
+        String message = formatExceptionMessage(operationId, response.statusCode(), response.body());
+        return new ApiException(response.statusCode(), message, response.headers(), response.body());
+    }
+{{/asyncNative}}
+{{^asyncNative}}
+        protected ApiException getApiException(String operationId, HttpResponse<InputStream> response) throws IOException {
+        String body = response.body() == null ? null : new String(response.body().readAllBytes());
+        String message = formatExceptionMessage(operationId, response.statusCode(), body);
+        return new ApiException(response.statusCode(), message, response.headers(), body);
+    }
+{{/asyncNative}}
+
+    private String formatExceptionMessage(String operationId, int statusCode, String body) {
+    if (body == null || body.isEmpty()) {
+    body = "[no body]";
+    }
+    return operationId + " call failed with: " + statusCode + " - " + body;
+    }
+}
+{{/operations}}

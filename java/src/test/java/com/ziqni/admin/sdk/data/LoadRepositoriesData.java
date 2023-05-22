@@ -1,11 +1,13 @@
 package com.ziqni.admin.sdk.data;
 
+import com.ziqni.admin.sdk.configuration.AdminApiClientConfigBuilder;
 import com.ziqni.admin.sdk.model.HostingOptions;
 import com.ziqni.admin.sdk.ZiqniAdminApiFactory;
 import com.ziqni.admin.sdk.ApiException;
 import com.ziqni.admin.sdk.api.FileRepositoriesApiWs;
 import com.ziqni.admin.sdk.model.CreateRepositoryRequest;
 import com.ziqni.admin.sdk.model.ModelApiResponse;
+import com.ziqni.admin.sdk.util.ApiClientFactoryUtil;
 import tests.utils.CompleteableFutureTestWrapper;
 
 import java.util.*;
@@ -18,8 +20,9 @@ public class LoadRepositoriesData implements CompleteableFutureTestWrapper {
 
     private FileRepositoriesApiWs api;
 
-    public LoadRepositoriesData() {
-        this.api = ZiqniAdminApiFactory.getFileRepositoriesApi();
+    public LoadRepositoriesData() throws Exception {
+        ApiClientFactoryUtil.initApiClientFactory(AdminApiClientConfigBuilder.build());
+        this.api = ApiClientFactoryUtil.factory.getFileRepositoriesApi();
     }
 
     public CreateRepositoryRequest getCreateRequest() {

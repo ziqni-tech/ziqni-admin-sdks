@@ -13,11 +13,12 @@
 
 package com.ziqni.admin.sdk.api;
 
+import com.ziqni.admin.sdk.configuration.AdminApiClientConfigBuilder;
+
 import com.ziqni.admin.sdk.data.LoadApiKeysData;
 import com.ziqni.admin.sdk.data.LoadTagsData;
 import com.ziqni.admin.sdk.model.*;
 import com.ziqni.admin.sdk.util.ApiClientFactoryUtil;
-import com.ziqni.admin.sdk.ZiqniAdminApiFactory;
 import com.ziqni.admin.sdk.ApiException;
 import com.ziqni.admin.sdk.data.LoadCustomFieldsData;
 import com.ziqni.admin.sdk.data.LoadMetadata;
@@ -55,8 +56,8 @@ public class ApiKeysApiTest implements tests.utils.CompleteableFutureTestWrapper
 
 
     public ApiKeysApiTest() throws Exception {
-        ApiClientFactoryUtil.initApiClientFactory();
-        this.api = ZiqniAdminApiFactory.getApiKeysApi();
+        ApiClientFactoryUtil.initApiClientFactory(AdminApiClientConfigBuilder.build());
+        this.api = ApiClientFactoryUtil.factory.getApiKeysApi();
         this.loadTestData = new LoadApiKeysData();
         this.loadMetadata = new LoadMetadata();
         this.loadCustomFieldsData = new LoadCustomFieldsData();

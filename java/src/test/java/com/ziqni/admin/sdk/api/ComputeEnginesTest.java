@@ -3,7 +3,7 @@ package com.ziqni.admin.sdk.api;
 import com.ziqni.admin.sdk.data.LoadComputeEnginesData;
 import com.ziqni.admin.sdk.model.QueryMultiple;
 import com.ziqni.admin.sdk.util.ApiClientFactoryUtil;
-import com.ziqni.admin.sdk.ZiqniAdminApiFactory;
+import com.ziqni.admin.sdk.configuration.AdminApiClientConfigBuilder;
 import com.ziqni.admin.sdk.ApiException;
 import com.ziqni.admin.sdk.model.QueryRequest;
 import com.ziqni.admin.sdk.model.UpdateComputeEngineRequest;
@@ -27,8 +27,8 @@ public class ComputeEnginesTest implements tests.utils.CompleteableFutureTestWra
     List<String> computeEngineIdsToDelete = new ArrayList<>();
 
     public ComputeEnginesTest() throws Exception {
-        ApiClientFactoryUtil.initApiClientFactory();
-        this.api = ZiqniAdminApiFactory.getComputeEngineApi();
+        ApiClientFactoryUtil.initApiClientFactory(AdminApiClientConfigBuilder.build());
+        this.api = ApiClientFactoryUtil.factory.getComputeEngineApi();
         this.loadComputeEnginesData = new LoadComputeEnginesData();
     }
 

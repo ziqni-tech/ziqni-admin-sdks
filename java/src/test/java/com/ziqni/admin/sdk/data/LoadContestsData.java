@@ -3,9 +3,11 @@ package com.ziqni.admin.sdk.data;
 import com.ziqni.admin.sdk.ZiqniAdminApiFactory;
 import com.ziqni.admin.sdk.ApiException;
 import com.ziqni.admin.sdk.api.ContestsApiWs;
+import com.ziqni.admin.sdk.configuration.AdminApiClientConfigBuilder;
 import com.ziqni.admin.sdk.model.*;
 import com.ziqni.admin.sdk.model.*;
 
+import com.ziqni.admin.sdk.util.ApiClientFactoryUtil;
 import com.ziqni.admin.sdk.util.DateUtil;
 import tests.utils.CompleteableFutureTestWrapper;
 
@@ -21,17 +23,20 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 public class LoadContestsData implements CompleteableFutureTestWrapper {
 
     private ContestsApiWs api;
-     private LoadRewardTypesData loadRewardTypesData;
+    private LoadRewardTypesData loadRewardTypesData;
+    private LoadUnitsOfMeasureData loadUnitsOfMeasureData;
     private LoadRulesData loadRulesData;
 
     public String subRuleConstant = "Constant";
     public String subRuleFact = "Fact";
     public String subRuleOperator = "Operator";
 
-    public LoadContestsData() {
+    public LoadContestsData() throws Exception {
+        ApiClientFactoryUtil.initApiClientFactory(AdminApiClientConfigBuilder.build());
+        this.api = ApiClientFactoryUtil.factory.getContestsApi();
         this.loadRewardTypesData=new LoadRewardTypesData();
-        this.api = ZiqniAdminApiFactory.getContestsApi();
         this.loadRulesData = new LoadRulesData();
+        this.loadUnitsOfMeasureData = new LoadUnitsOfMeasureData();
 
     }
 
@@ -97,8 +102,8 @@ public class LoadContestsData implements CompleteableFutureTestWrapper {
 //            request.setRuleSets(ruleSets);
 
             final var givenConstraints = new ArrayList<String>();
-
-            final var rewardType = loadRewardTypesData.createTestData(loadRewardTypesData.getCreateRequestAsList(1));
+            final var unitOfMeasure = loadUnitsOfMeasureData.createTestData(loadUnitsOfMeasureData.getCreateRequestAsList(1));
+            final var rewardType = loadRewardTypesData.createTestData(List.of(loadRewardTypesData.getCreateRequest().unitOfMeasure(unitOfMeasure.getResults().get(0).getId())));
             final var rewardName = "Given Pfunguro";
             final var givenRewardRank = "1,2,3,4-10";
             final var givenRewardValue = new Random().nextDouble();

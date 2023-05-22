@@ -175,7 +175,7 @@ export default class ContestsApi {
      */
 
     /**
-     * Returns a leaderborad for the Contests id provided
+     * Use /leadeboard instead, Returns a leaderborad for the Contests id provided
      * @param {String} id Unique identifier of the resource
      * @param {Object} opts Optional parameters
      * @param {Number} opts.limit Limit the returned total records found
