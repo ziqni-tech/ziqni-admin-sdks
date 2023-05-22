@@ -100,7 +100,7 @@ public class LoadCompetitionsData implements CompleteableFutureTestWrapper {
              scoringStrategy.setRecordTimeWhenSumReaches(300D);
              scoringStrategy.setSumBestXOf(100);
 
-             Strategy strategy = new Strategy();
+             TournamentStrategies strategy = new TournamentStrategies();
              strategy.setRankingStrategy(rankingStrategy);
              strategy.setScoringStrategy(scoringStrategy);
              strategy.setStrategyType(StrategyType.FIRSTTO);
@@ -189,7 +189,7 @@ public class LoadCompetitionsData implements CompleteableFutureTestWrapper {
             scoringStrategy.setRecordTimeWhenSumReaches(300D);
             scoringStrategy.setSumBestXOf(100);
 
-            Strategy strategy = new Strategy();
+            TournamentStrategies strategy = new TournamentStrategies();
             strategy.setRankingStrategy(rankingStrategy);
             strategy.setScoringStrategy(scoringStrategy);
             strategy.setStrategyType(StrategyType.FIRSTTO);

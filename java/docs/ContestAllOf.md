@@ -21,7 +21,7 @@ Name | Type | Description | Notes
 **scheduledEndDate** | **OffsetDateTime** | ISO8601 timestamp for when a Contest should end. All records are stored in UTC time zone | 
 **actualStartDate** | **OffsetDateTime** | ISO8601 timestamp for when a Competition started. All records are stored in UTC time zone |  [optional] [readonly]
 **actualEndDate** | **OffsetDateTime** | ISO8601 timestamp for when a Competition ended. All records are stored in UTC time zone |  [optional] [readonly]
-**strategies** | [**Strategy**](Strategy.md) |  |  [optional]
+**strategies** | [**TournamentStrategies**](TournamentStrategies.md) |  |  [optional]
 **status** | **ContestStatus** |  | 
 **statusCode** | **Integer** | The code of the contest |  [readonly]
 **constraints** | **List&lt;String&gt;** | Additional constraints | 

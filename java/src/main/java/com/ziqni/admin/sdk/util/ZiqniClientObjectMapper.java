@@ -26,7 +26,7 @@ public class ZiqniClientObjectMapper {
         javaTimeModule.addSerializer(LocalDate.class, new LocalDateSerializer());
         javaTimeModule.addDeserializer(LocalDate.class, new LocalDateDeserializer());
         objectMapper.registerModule(javaTimeModule);
-        return objectMapper;
+        return objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
     }
 
     public static class OffsetDateTimeSerializer extends JsonSerializer<OffsetDateTime> {

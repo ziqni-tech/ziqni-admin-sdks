@@ -7951,19 +7951,6 @@ components:
           example: Dc4swmQBVd51K6gPQqFx
         status:
           $ref: '#/components/schemas/ContestStateOperations'
-    Strategy:
-      required:
-        - strategyType
-        - rankingStrategy
-        - scoringStrategy
-      type: object
-      properties:
-        strategyType:
-          $ref: '#/components/schemas/StrategyType'
-        rankingStrategy:
-          $ref: '#/components/schemas/RankingStrategy'
-        scoringStrategy:
-          $ref: '#/components/schemas/ScoringStrategy'
     AchievementLiveStatusRequest:
       allOf:
         -
@@ -11043,7 +11030,7 @@ components:
               type: string
               example: '2019-09-25T15:47:00.000+0000'
             strategies:
-              $ref: '#/components/schemas/Strategy'
+              $ref: '#/components/schemas/TournamentStrategies'
             translations:
               type: array
               items:
@@ -11825,7 +11812,7 @@ components:
               type: string
               example: '2019-09-25T15:47:00.000+0000'
             strategies:
-              $ref: '#/components/schemas/Strategy'
+              $ref: '#/components/schemas/TournamentStrategies'
             constraints:
               description: Additional constraints
               type: array
@@ -14942,7 +14929,7 @@ components:
               type: string
               example: '2019-09-25T15:47:00.000+0000'
             strategies:
-              $ref: '#/components/schemas/Strategy'
+              $ref: '#/components/schemas/TournamentStrategies'
             constraints:
               deprecated: true
               description: Additional constraints
@@ -15147,7 +15134,7 @@ components:
               $ref: '#/components/schemas/DependantOn'
               description: ''
             strategies:
-              $ref: '#/components/schemas/Strategy'
+              $ref: '#/components/schemas/TournamentStrategies'
     CreateApiKeyRequest:
       allOf:
         -
@@ -15673,7 +15660,7 @@ components:
               x-vue-search-field: true
               x-vue-disaply-order: 1004
             strategies:
-              $ref: '#/components/schemas/Strategy'
+              $ref: '#/components/schemas/TournamentStrategies'
               x-vue-disaply-order: 1004
             status:
               $ref: '#/components/schemas/ContestStatus'
@@ -17621,26 +17608,26 @@ components:
         - Average
         - AverageBetween
       type: string
-    PointStrategy:
-      description: The target points to achieve
+    TournamentStrategies:
       required:
-        - TargetType
-        - TargetPoints
-        - pointsValueMin
-        - operator
+        - strategyType
+        - rankingStrategy
+        - scoringStrategy
       type: object
       properties:
-        operator:
-          $ref: '#/components/schemas/ConditionalOperator'
-          description: The operator
-        pointsValueUpper:
-          description: >-
-            The upper points to achieve. This is only used where secondary number are required
-            like, between, or average between
-          type: number
-        pointsValue:
-          description: The points to achieve
-          type: number
+        strategyType:
+          $ref: '#/components/schemas/StrategyType'
+        rankingStrategy:
+          $ref: '#/components/schemas/RankingStrategy'
+        scoringStrategy:
+          $ref: '#/components/schemas/ScoringStrategy'
+    AchievementStrategies:
+      required:
+        - scoringStrategy
+      type: object
+      properties:
+        pointsStrategy:
+          $ref: '#/components/schemas/PointsStrategy'
     Achievement:
       allOf:
         -
@@ -17729,8 +17716,8 @@ components:
             productTagsFilter:
               $ref: '#/components/schemas/DependantOn'
               description: ''
-            strategy:
-              $ref: '#/components/schemas/PointStrategy'
+            strategies:
+              $ref: '#/components/schemas/AchievementStrategies'
               description: The target to reach in order to receive this achievement
       x-vue-table-show: 'All, Live, Draft, Archived'
       x-vue-list: true
@@ -17747,6 +17734,72 @@ components:
         - Rewards
         - Awards
         - Events
+    UpdateAchievementRequest:
+      allOf:
+        -
+          $ref: '#/components/schemas/UpdateModelDefault'
+        -
+          $ref: '#/components/schemas/UpdateOptParamModels'
+        -
+          required: []
+          type: object
+          properties:
+            name:
+              description: A name for the Achievement. Can be translated
+              type: string
+              example: Welcome badge
+            description:
+              description: A name for the Achievement. Can be translated
+              type: string
+              example: A Badge to welcome you on board
+            termsAndConditions:
+              description: Terms and conditions of an achievement. Can be translated
+              type: string
+              example: Participate to win
+            icon:
+              description: An Icon id that has been pre uploaded to the system to display for Achievement
+              type: string
+              example: Dc4swmQBVd51K6gPQqFx
+            scheduling:
+              $ref: '#/components/schemas/Scheduling'
+            achievementLiveStatus:
+              $ref: '#/components/schemas/AchievementLiveStatus'
+            maxNumberOfIssues:
+              format: int32
+              description: Maximum number of issued achievements
+              type: integer
+              example: '9999'
+            constraints:
+              deprecated: true
+              description: Additional constraints
+              type: array
+              items:
+                type: string
+              example: '- notifyMember - isHidden - deprecated - optinRequiredForEntrants'
+            achievementDependencies:
+              $ref: '#/components/schemas/DependantOn'
+            memberTagsFilter:
+              $ref: '#/components/schemas/DependantOn'
+              description: ''
+            productTagsFilter:
+              $ref: '#/components/schemas/DependantOn'
+              description: ''
+            addConstraints:
+              description: ''
+              type: array
+              items:
+                type: string
+            removeConstraints:
+              description: ''
+              type: array
+              items:
+                type: string
+            strategies:
+              $ref: '#/components/schemas/AchievementStrategies'
+              description: The target to reach in order to receive this achievement
+      x-vue-update: achievement
+      x-vue-updater: achievements
+      x-vue-object-type: achievement
     CreateAchievementRequest:
       allOf:
         -
@@ -17814,78 +17867,32 @@ components:
               type: array
               items:
                 type: string
-            strategy:
-              $ref: '#/components/schemas/PointStrategy'
+            strategies:
+              $ref: '#/components/schemas/AchievementStrategies'
               description: The target to reach in order to receive this achievement
       x-vue-create: achievement
       x-vue-creator: achievements
       x-vue-rules: true
-    UpdateAchievementRequest:
-      allOf:
-        -
-          $ref: '#/components/schemas/UpdateModelDefault'
-        -
-          $ref: '#/components/schemas/UpdateOptParamModels'
-        -
-          required: []
-          type: object
-          properties:
-            name:
-              description: A name for the Achievement. Can be translated
-              type: string
-              example: Welcome badge
-            description:
-              description: A name for the Achievement. Can be translated
-              type: string
-              example: A Badge to welcome you on board
-            termsAndConditions:
-              description: Terms and conditions of an achievement. Can be translated
-              type: string
-              example: Participate to win
-            icon:
-              description: An Icon id that has been pre uploaded to the system to display for Achievement
-              type: string
-              example: Dc4swmQBVd51K6gPQqFx
-            scheduling:
-              $ref: '#/components/schemas/Scheduling'
-            achievementLiveStatus:
-              $ref: '#/components/schemas/AchievementLiveStatus'
-            maxNumberOfIssues:
-              format: int32
-              description: Maximum number of issued achievements
-              type: integer
-              example: '9999'
-            constraints:
-              deprecated: true
-              description: Additional constraints
-              type: array
-              items:
-                type: string
-              example: '- notifyMember - isHidden - deprecated - optinRequiredForEntrants'
-            achievementDependencies:
-              $ref: '#/components/schemas/DependantOn'
-            memberTagsFilter:
-              $ref: '#/components/schemas/DependantOn'
-              description: ''
-            productTagsFilter:
-              $ref: '#/components/schemas/DependantOn'
-              description: ''
-            addConstraints:
-              description: ''
-              type: array
-              items:
-                type: string
-            removeConstraints:
-              description: ''
-              type: array
-              items:
-                type: string
-            strategy:
-              $ref: '#/components/schemas/PointStrategy'
-              description: The target to reach in order to receive this achievement
-      x-vue-update: achievement
-      x-vue-updater: achievements
-      x-vue-object-type: achievement
+    PointsStrategy:
+      description: The target points to achieve
+      required:
+        - TargetType
+        - TargetPoints
+        - pointsValueMin
+        - operator
+      type: object
+      properties:
+        operator:
+          $ref: '#/components/schemas/ConditionalOperator'
+          description: The operator
+        pointsValueUpper:
+          description: >-
+            The upper points to achieve. This is only used where secondary number are required
+            like, between, or average between
+          type: number
+        pointsValue:
+          description: The points to achieve
+          type: number
   responses:
     ApiResponseBody:
       content:

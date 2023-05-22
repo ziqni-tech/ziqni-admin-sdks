@@ -22,7 +22,7 @@ Name | Type | Description | Notes
 **rules** | [**List&lt;Rule&gt;**](Rule.md) |  |  [optional]
 **scheduledStartDate** | **OffsetDateTime** | ISO8601 timestamp for when a Contest should start. All records are stored in UTC time zone | 
 **scheduledEndDate** | **OffsetDateTime** | ISO8601 timestamp for when a Contest should end. All records are stored in UTC time zone | 
-**strategies** | [**Strategy**](Strategy.md) |  | 
+**strategies** | [**TournamentStrategies**](TournamentStrategies.md) |  | 
 **constraints** | **List&lt;String&gt;** | Additional constraints | 
 **addConstraints** | **List&lt;String&gt;** | Additional constraints |  [optional]
 **translations** | [**List&lt;Translation&gt;**](Translation.md) |  |  [optional]

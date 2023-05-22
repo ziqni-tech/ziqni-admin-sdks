@@ -3,6 +3,7 @@
  */
 package com.ziqni.admin.sdk.streaming;
 
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
@@ -16,7 +17,7 @@ import java.lang.reflect.Type;
 public abstract class EventHandler<T> implements StompFrameHandler {
 
     private static final Logger logger = LoggerFactory.getLogger(EventHandler.class);
-    protected static final ObjectMapper objectMapper = new ObjectMapper();
+    protected static final ObjectMapper objectMapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
     private Subscription stompSubscription;
     private boolean active = true;
 
