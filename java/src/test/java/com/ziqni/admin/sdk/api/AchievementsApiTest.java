@@ -27,6 +27,7 @@ import org.junit.jupiter.api.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.math.BigDecimal;
 import java.util.*;
 import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
@@ -159,6 +160,48 @@ public class AchievementsApiTest implements tests.utils.CompleteableFutureTestWr
         assertEquals(createRequest.getDescription(),updatedItem.getDescription());
         ///////////// THE CONSTRAINT SHOULD NOT BE AVAILABLE \\\\\\\\\\\\\\
         assertFalse(updatedItem.getConstraints().contains("optinRequiredForEntrants"));
+
+        idsToDelete.add(id);
+    }
+
+    @Test
+    @Order(1)
+    public void createAchievementsWithStrategiesReturnOkTest() throws ApiException {
+        final var pointsStrategy = new PointsStrategy()
+                .operator(ConditionalOperator.AVERAGE)
+                .pointsValue(new BigDecimal(100))
+                .pointsValueUpper(new BigDecimal(1000));
+        final var achievementStrategies = new AchievementStrategies()
+                .pointsStrategy(pointsStrategy);
+        final var createRequest = loadData.getCreateRequest(rewardTypeId)
+                .strategies(achievementStrategies);
+        final var createRequestAsList = loadData.getCreateRequestAsList(createRequest);
+
+        ModelApiResponse response = api.createAchievements(createRequestAsList).join();
+
+        assertNotNull(response);
+        assertNotNull(response.getResults());
+        assertNotNull(response.getErrors());
+        assertEquals(1, response.getResults().size(), "Should contain created entity");
+        assertNotNull(response.getResults().get(0).getId(), "Created entity should has id");
+
+        final var id = response.getResults().get(0).getId();
+
+        AchievementResponse achievementResponse = $(api.getAchievements(List.of(id), 20, 0));
+        assertNotNull(achievementResponse);
+        assertNotNull(achievementResponse.getResults());
+        assertNotNull(achievementResponse.getErrors());
+        assertTrue(achievementResponse.getErrors().isEmpty(), "Should have no errors");
+        assertEquals(1, achievementResponse.getResults().size(), "Should has single result");
+
+        Achievement item = achievementResponse.getResults().get(0);
+
+        assertEquals(id, item.getId(), "Found id should be equal to requested");
+        assertEquals(createRequest.getStrategies(), item.getStrategies(), "Found strategies should be equal to created previously");
+        assertEquals(createRequest.getStrategies().getPointsStrategy(), item.getStrategies().getPointsStrategy(), "Found points strategies should be equal to created previously");
+        assertEquals(createRequest.getStrategies().getPointsStrategy().getPointsValue(), item.getStrategies().getPointsStrategy().getPointsValue(), "Found points value should be equal to created previously");
+        assertEquals(createRequest.getStrategies().getPointsStrategy().getPointsValue(), item.getStrategies().getPointsStrategy().getPointsValueUpper(), "Found points value upper should be equal to created previously");
+        assertEquals(createRequest.getStrategies().getPointsStrategy().getOperator(), item.getStrategies().getPointsStrategy().getOperator(), "Found operator should be equal to created previously");
 
         idsToDelete.add(id);
     }
