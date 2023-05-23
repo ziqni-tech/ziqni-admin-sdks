@@ -200,7 +200,7 @@ public class AchievementsApiTest implements tests.utils.CompleteableFutureTestWr
         assertEquals(createRequest.getStrategies(), item.getStrategies(), "Found strategies should be equal to created previously");
         assertEquals(createRequest.getStrategies().getPointsStrategy(), item.getStrategies().getPointsStrategy(), "Found points strategies should be equal to created previously");
         assertEquals(createRequest.getStrategies().getPointsStrategy().getPointsValue(), item.getStrategies().getPointsStrategy().getPointsValue(), "Found points value should be equal to created previously");
-        assertEquals(createRequest.getStrategies().getPointsStrategy().getPointsValue(), item.getStrategies().getPointsStrategy().getPointsValueUpper(), "Found points value upper should be equal to created previously");
+        assertEquals(createRequest.getStrategies().getPointsStrategy().getPointsValueUpper(), item.getStrategies().getPointsStrategy().getPointsValueUpper(), "Found points value upper should be equal to created previously");
         assertEquals(createRequest.getStrategies().getPointsStrategy().getOperator(), item.getStrategies().getPointsStrategy().getOperator(), "Found operator should be equal to created previously");
 
         idsToDelete.add(id);
