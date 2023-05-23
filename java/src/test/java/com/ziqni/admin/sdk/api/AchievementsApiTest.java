@@ -209,6 +209,7 @@ public class AchievementsApiTest implements tests.utils.CompleteableFutureTestWr
     @Test
     @Order(1)
     public void updateAchievementsWithStrategiesReturnOkTest() throws ApiException {
+        /////////// Create \\\\\\\\\\\\
         final var pointsStrategy = new PointsStrategy()
                 .operator(ConditionalOperator.AVERAGE)
                 .pointsValue(new BigDecimal(100))
