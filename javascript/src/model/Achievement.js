@@ -14,10 +14,10 @@
 import ApiClient from '../ApiClient';
 import AchievementAllOf from './AchievementAllOf';
 import AchievementStatus from './AchievementStatus';
+import AchievementStrategies from './AchievementStrategies';
 import DependantOn from './DependantOn';
 import ModelDefault from './ModelDefault';
 import OptParamModels from './OptParamModels';
-import PointStrategy from './PointStrategy';
 import Scheduling from './Scheduling';
 
 /**
@@ -126,8 +126,8 @@ class Achievement {
             if (data.hasOwnProperty('productTagsFilter')) {
                 obj['productTagsFilter'] = DependantOn.constructFromObject(data['productTagsFilter']);
             }
-            if (data.hasOwnProperty('strategy')) {
-                obj['strategy'] = PointStrategy.constructFromObject(data['strategy']);
+            if (data.hasOwnProperty('strategies')) {
+                obj['strategies'] = AchievementStrategies.constructFromObject(data['strategies']);
             }
         }
         return obj;
@@ -238,9 +238,9 @@ Achievement.prototype['memberTagsFilter'] = undefined;
 Achievement.prototype['productTagsFilter'] = undefined;
 
 /**
- * @member {module:model/PointStrategy} strategy
+ * @member {module:model/AchievementStrategies} strategies
  */
-Achievement.prototype['strategy'] = undefined;
+Achievement.prototype['strategies'] = undefined;
 
 
 // Implement ModelDefault interface:
@@ -330,9 +330,9 @@ AchievementAllOf.prototype['memberTagsFilter'] = undefined;
  */
 AchievementAllOf.prototype['productTagsFilter'] = undefined;
 /**
- * @member {module:model/PointStrategy} strategy
+ * @member {module:model/AchievementStrategies} strategies
  */
-AchievementAllOf.prototype['strategy'] = undefined;
+AchievementAllOf.prototype['strategies'] = undefined;
 
 
 

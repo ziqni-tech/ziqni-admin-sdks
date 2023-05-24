@@ -1,4 +1,4 @@
-# @ZiqniTechAdminApiClient.Strategy
+# @ZiqniTechAdminApiClient.TournamentStrategies
 
 ## Properties
 

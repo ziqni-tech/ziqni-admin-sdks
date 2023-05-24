@@ -15,20 +15,20 @@ import ApiClient from '../ApiClient';
 import ConditionalOperator from './ConditionalOperator';
 
 /**
- * The PointStrategy model module.
- * @module model/PointStrategy
+ * The PointsStrategy model module.
+ * @module model/PointsStrategy
  * @version 0.0.26
  */
-class PointStrategy {
+class PointsStrategy {
     /**
-     * Constructs a new <code>PointStrategy</code>.
+     * Constructs a new <code>PointsStrategy</code>.
      * The target points to achieve
-     * @alias module:model/PointStrategy
+     * @alias module:model/PointsStrategy
      * @param operator {module:model/ConditionalOperator} 
      */
     constructor(operator) { 
         
-        PointStrategy.initialize(this, operator);
+        PointsStrategy.initialize(this, operator);
     }
 
     /**
@@ -41,15 +41,15 @@ class PointStrategy {
     }
 
     /**
-     * Constructs a <code>PointStrategy</code> from a plain JavaScript object, optionally creating a new instance.
+     * Constructs a <code>PointsStrategy</code> from a plain JavaScript object, optionally creating a new instance.
      * Copies all relevant properties from <code>data</code> to <code>obj</code> if supplied or a new instance if not.
      * @param {Object} data The plain JavaScript object bearing properties of interest.
-     * @param {module:model/PointStrategy} obj Optional instance to populate.
-     * @return {module:model/PointStrategy} The populated <code>PointStrategy</code> instance.
+     * @param {module:model/PointsStrategy} obj Optional instance to populate.
+     * @return {module:model/PointsStrategy} The populated <code>PointsStrategy</code> instance.
      */
     static constructFromObject(data, obj) {
         if (data) {
-            obj = obj || new PointStrategy();
+            obj = obj || new PointsStrategy();
 
             if (data.hasOwnProperty('operator')) {
                 obj['operator'] = ConditionalOperator.constructFromObject(data['operator']);
@@ -70,24 +70,24 @@ class PointStrategy {
 /**
  * @member {module:model/ConditionalOperator} operator
  */
-PointStrategy.prototype['operator'] = undefined;
+PointsStrategy.prototype['operator'] = undefined;
 
 /**
  * The upper points to achieve. This is only used where secondary number are required like, between, or average between
  * @member {Number} pointsValueUpper
  */
-PointStrategy.prototype['pointsValueUpper'] = undefined;
+PointsStrategy.prototype['pointsValueUpper'] = undefined;
 
 /**
  * The points to achieve
  * @member {Number} pointsValue
  */
-PointStrategy.prototype['pointsValue'] = undefined;
+PointsStrategy.prototype['pointsValue'] = undefined;
 
 
 
 
 
 
-export default PointStrategy;
+export default PointsStrategy;
 

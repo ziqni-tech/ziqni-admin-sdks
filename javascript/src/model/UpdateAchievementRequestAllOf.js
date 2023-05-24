@@ -13,8 +13,8 @@
 
 import ApiClient from '../ApiClient';
 import AchievementLiveStatus from './AchievementLiveStatus';
+import AchievementStrategies from './AchievementStrategies';
 import DependantOn from './DependantOn';
-import PointStrategy from './PointStrategy';
 import Scheduling from './Scheduling';
 
 /**
@@ -90,8 +90,8 @@ class UpdateAchievementRequestAllOf {
             if (data.hasOwnProperty('removeConstraints')) {
                 obj['removeConstraints'] = ApiClient.convertToType(data['removeConstraints'], ['String']);
             }
-            if (data.hasOwnProperty('strategy')) {
-                obj['strategy'] = PointStrategy.constructFromObject(data['strategy']);
+            if (data.hasOwnProperty('strategies')) {
+                obj['strategies'] = AchievementStrategies.constructFromObject(data['strategies']);
             }
         }
         return obj;
@@ -174,9 +174,9 @@ UpdateAchievementRequestAllOf.prototype['addConstraints'] = undefined;
 UpdateAchievementRequestAllOf.prototype['removeConstraints'] = undefined;
 
 /**
- * @member {module:model/PointStrategy} strategy
+ * @member {module:model/AchievementStrategies} strategies
  */
-UpdateAchievementRequestAllOf.prototype['strategy'] = undefined;
+UpdateAchievementRequestAllOf.prototype['strategies'] = undefined;
 
 
 

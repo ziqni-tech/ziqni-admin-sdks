@@ -17,7 +17,7 @@ import ContestStatus from './ContestStatus';
 import ModelDefault from './ModelDefault';
 import OptParamModels from './OptParamModels';
 import RoundType from './RoundType';
-import Strategy from './Strategy';
+import TournamentStrategies from './TournamentStrategies';
 
 /**
  * The Contest model module.
@@ -150,7 +150,7 @@ class Contest {
                 obj['actualEndDate'] = ApiClient.convertToType(data['actualEndDate'], 'Date');
             }
             if (data.hasOwnProperty('strategies')) {
-                obj['strategies'] = Strategy.constructFromObject(data['strategies']);
+                obj['strategies'] = TournamentStrategies.constructFromObject(data['strategies']);
             }
             if (data.hasOwnProperty('status')) {
                 obj['status'] = ContestStatus.constructFromObject(data['status']);
@@ -286,7 +286,7 @@ Contest.prototype['actualStartDate'] = undefined;
 Contest.prototype['actualEndDate'] = undefined;
 
 /**
- * @member {module:model/Strategy} strategies
+ * @member {module:model/TournamentStrategies} strategies
  */
 Contest.prototype['strategies'] = undefined;
 
@@ -409,7 +409,7 @@ ContestAllOf.prototype['actualStartDate'] = undefined;
  */
 ContestAllOf.prototype['actualEndDate'] = undefined;
 /**
- * @member {module:model/Strategy} strategies
+ * @member {module:model/TournamentStrategies} strategies
  */
 ContestAllOf.prototype['strategies'] = undefined;
 /**

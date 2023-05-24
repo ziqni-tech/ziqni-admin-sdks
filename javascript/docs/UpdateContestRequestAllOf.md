@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **minNumberOfEntrants** | **Number** | Minimum number of entrants for the contest | [optional] 
 **scheduledStartDate** | **Date** | ISO8601 timestamp for when a Contest should start. All records are stored in UTC time zone | [optional] 
 **scheduledEndDate** | **Date** | ISO8601 timestamp for when a Contest should end. All records are stored in UTC time zone | [optional] 
-**strategies** | [**Strategy**](Strategy.md) |  | [optional] 
+**strategies** | [**TournamentStrategies**](TournamentStrategies.md) |  | [optional] 
 **constraints** | **[String]** | Additional constraints | [optional] 
 
 

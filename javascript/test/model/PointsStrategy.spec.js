@@ -28,7 +28,7 @@
   var instance;
 
   beforeEach(function() {
-    instance = new @ZiqniTechAdminApiClient.Strategy();
+    instance = new @ZiqniTechAdminApiClient.PointsStrategy();
   });
 
   var getProperty = function(object, getter, property) {
@@ -47,28 +47,28 @@
       object[property] = value;
   }
 
-  describe('Strategy', function() {
-    it('should create an instance of Strategy', function() {
-      // uncomment below and update the code to test Strategy
-      //var instance = new @ZiqniTechAdminApiClient.Strategy();
-      //expect(instance).to.be.a(@ZiqniTechAdminApiClient.Strategy);
+  describe('PointsStrategy', function() {
+    it('should create an instance of PointsStrategy', function() {
+      // uncomment below and update the code to test PointsStrategy
+      //var instance = new @ZiqniTechAdminApiClient.PointsStrategy();
+      //expect(instance).to.be.a(@ZiqniTechAdminApiClient.PointsStrategy);
     });
 
-    it('should have the property strategyType (base name: "strategyType")', function() {
-      // uncomment below and update the code to test the property strategyType
-      //var instance = new @ZiqniTechAdminApiClient.Strategy();
+    it('should have the property operator (base name: "operator")', function() {
+      // uncomment below and update the code to test the property operator
+      //var instance = new @ZiqniTechAdminApiClient.PointsStrategy();
       //expect(instance).to.be();
     });
 
-    it('should have the property rankingStrategy (base name: "rankingStrategy")', function() {
-      // uncomment below and update the code to test the property rankingStrategy
-      //var instance = new @ZiqniTechAdminApiClient.Strategy();
+    it('should have the property pointsValueUpper (base name: "pointsValueUpper")', function() {
+      // uncomment below and update the code to test the property pointsValueUpper
+      //var instance = new @ZiqniTechAdminApiClient.PointsStrategy();
       //expect(instance).to.be();
     });
 
-    it('should have the property scoringStrategy (base name: "scoringStrategy")', function() {
-      // uncomment below and update the code to test the property scoringStrategy
-      //var instance = new @ZiqniTechAdminApiClient.Strategy();
+    it('should have the property pointsValue (base name: "pointsValue")', function() {
+      // uncomment below and update the code to test the property pointsValue
+      //var instance = new @ZiqniTechAdminApiClient.PointsStrategy();
       //expect(instance).to.be();
     });
 

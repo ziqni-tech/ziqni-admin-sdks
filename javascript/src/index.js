@@ -28,6 +28,7 @@ import AchievementReducedAllOf from './model/AchievementReducedAllOf';
 import AchievementReducedResponse from './model/AchievementReducedResponse';
 import AchievementResponse from './model/AchievementResponse';
 import AchievementStatus from './model/AchievementStatus';
+import AchievementStrategies from './model/AchievementStrategies';
 import ActionType from './model/ActionType';
 import ActionTypeAdjustmentFactor from './model/ActionTypeAdjustmentFactor';
 import ActionTypeAllOf from './model/ActionTypeAllOf';
@@ -229,7 +230,7 @@ import ObjectParameters from './model/ObjectParameters';
 import ObjectParametersResponse from './model/ObjectParametersResponse';
 import OptParamModels from './model/OptParamModels';
 import OptinStatus from './model/OptinStatus';
-import PointStrategy from './model/PointStrategy';
+import PointsStrategy from './model/PointsStrategy';
 import Product from './model/Product';
 import ProductAllOf from './model/ProductAllOf';
 import ProductReduced from './model/ProductReduced';
@@ -279,7 +280,6 @@ import SpaceAllOf from './model/SpaceAllOf';
 import SpaceResponse from './model/SpaceResponse';
 import SpaceTokenRequest from './model/SpaceTokenRequest';
 import StartEndDate from './model/StartEndDate';
-import Strategy from './model/Strategy';
 import StrategyType from './model/StrategyType';
 import SubscriptionTypes from './model/SubscriptionTypes';
 import Tag from './model/Tag';
@@ -287,6 +287,7 @@ import TagAllOf from './model/TagAllOf';
 import TagResponse from './model/TagResponse';
 import Token from './model/Token';
 import TokenResponse from './model/TokenResponse';
+import TournamentStrategies from './model/TournamentStrategies';
 import Transformer from './model/Transformer';
 import TransformerAllOf from './model/TransformerAllOf';
 import TransformerResponse from './model/TransformerResponse';
@@ -532,6 +533,12 @@ export {
      * @property {module:model/AchievementStatus}
      */
     AchievementStatus,
+
+    /**
+     * The AchievementStrategies model constructor.
+     * @property {module:model/AchievementStrategies}
+     */
+    AchievementStrategies,
 
     /**
      * The ActionType model constructor.
@@ -1740,10 +1747,10 @@ export {
     OptinStatus,
 
     /**
-     * The PointStrategy model constructor.
-     * @property {module:model/PointStrategy}
+     * The PointsStrategy model constructor.
+     * @property {module:model/PointsStrategy}
      */
-    PointStrategy,
+    PointsStrategy,
 
     /**
      * The Product model constructor.
@@ -2040,12 +2047,6 @@ export {
     StartEndDate,
 
     /**
-     * The Strategy model constructor.
-     * @property {module:model/Strategy}
-     */
-    Strategy,
-
-    /**
      * The StrategyType model constructor.
      * @property {module:model/StrategyType}
      */
@@ -2086,6 +2087,12 @@ export {
      * @property {module:model/TokenResponse}
      */
     TokenResponse,
+
+    /**
+     * The TournamentStrategies model constructor.
+     * @property {module:model/TournamentStrategies}
+     */
+    TournamentStrategies,
 
     /**
      * The Transformer model constructor.

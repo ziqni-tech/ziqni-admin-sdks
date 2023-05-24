@@ -126,8 +126,8 @@
       //expect(instance).to.be();
     });
 
-    it('should have the property strategy (base name: "strategy")', function() {
-      // uncomment below and update the code to test the property strategy
+    it('should have the property strategies (base name: "strategies")', function() {
+      // uncomment below and update the code to test the property strategies
       //var instance = new @ZiqniTechAdminApiClient.AchievementAllOf();
       //expect(instance).to.be();
     });
