@@ -17,7 +17,7 @@ import CreateOptParamModels from './CreateOptParamModels';
 import CreateRewardRequest from './CreateRewardRequest';
 import RoundType from './RoundType';
 import Rule from './Rule';
-import Strategy from './Strategy';
+import TournamentStrategies from './TournamentStrategies';
 import Translation from './Translation';
 
 /**
@@ -39,7 +39,7 @@ class CreateContestForCompetitionRequest {
      * @param minNumberOfEntrants {Number} Minimum number of entrants for the contest
      * @param scheduledStartDate {Date} ISO8601 timestamp for when a Contest should start. All records are stored in UTC time zone
      * @param scheduledEndDate {Date} ISO8601 timestamp for when a Contest should end. All records are stored in UTC time zone
-     * @param strategies {module:model/Strategy} 
+     * @param strategies {module:model/TournamentStrategies} 
      * @param constraints {Array.<String>} Additional constraints
      */
     constructor(competitionId, row, round, name, roundType, minNumberOfEntrants, scheduledStartDate, scheduledEndDate, strategies, constraints) { 
@@ -133,7 +133,7 @@ class CreateContestForCompetitionRequest {
                 obj['scheduledEndDate'] = ApiClient.convertToType(data['scheduledEndDate'], 'Date');
             }
             if (data.hasOwnProperty('strategies')) {
-                obj['strategies'] = Strategy.constructFromObject(data['strategies']);
+                obj['strategies'] = TournamentStrategies.constructFromObject(data['strategies']);
             }
             if (data.hasOwnProperty('translations')) {
                 obj['translations'] = ApiClient.convertToType(data['translations'], [Translation]);
@@ -257,7 +257,7 @@ CreateContestForCompetitionRequest.prototype['scheduledStartDate'] = undefined;
 CreateContestForCompetitionRequest.prototype['scheduledEndDate'] = undefined;
 
 /**
- * @member {module:model/Strategy} strategies
+ * @member {module:model/TournamentStrategies} strategies
  */
 CreateContestForCompetitionRequest.prototype['strategies'] = undefined;
 
@@ -368,7 +368,7 @@ CreateContestForCompetitionRequestAllOf.prototype['scheduledStartDate'] = undefi
  */
 CreateContestForCompetitionRequestAllOf.prototype['scheduledEndDate'] = undefined;
 /**
- * @member {module:model/Strategy} strategies
+ * @member {module:model/TournamentStrategies} strategies
  */
 CreateContestForCompetitionRequestAllOf.prototype['strategies'] = undefined;
 /**

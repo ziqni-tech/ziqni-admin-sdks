@@ -14,7 +14,7 @@
 import ApiClient from '../ApiClient';
 import ContestStatus from './ContestStatus';
 import RoundType from './RoundType';
-import Strategy from './Strategy';
+import TournamentStrategies from './TournamentStrategies';
 
 /**
  * The ContestAllOf model module.
@@ -117,7 +117,7 @@ class ContestAllOf {
                 obj['actualEndDate'] = ApiClient.convertToType(data['actualEndDate'], 'Date');
             }
             if (data.hasOwnProperty('strategies')) {
-                obj['strategies'] = Strategy.constructFromObject(data['strategies']);
+                obj['strategies'] = TournamentStrategies.constructFromObject(data['strategies']);
             }
             if (data.hasOwnProperty('status')) {
                 obj['status'] = ContestStatus.constructFromObject(data['status']);
@@ -219,7 +219,7 @@ ContestAllOf.prototype['actualStartDate'] = undefined;
 ContestAllOf.prototype['actualEndDate'] = undefined;
 
 /**
- * @member {module:model/Strategy} strategies
+ * @member {module:model/TournamentStrategies} strategies
  */
 ContestAllOf.prototype['strategies'] = undefined;
 

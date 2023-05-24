@@ -1,4 +1,4 @@
-# @ZiqniTechAdminApiClient.PointStrategy
+# @ZiqniTechAdminApiClient.PointsStrategy
 
 ## Properties
 

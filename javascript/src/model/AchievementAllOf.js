@@ -13,8 +13,8 @@
 
 import ApiClient from '../ApiClient';
 import AchievementStatus from './AchievementStatus';
+import AchievementStrategies from './AchievementStrategies';
 import DependantOn from './DependantOn';
-import PointStrategy from './PointStrategy';
 import Scheduling from './Scheduling';
 
 /**
@@ -93,8 +93,8 @@ class AchievementAllOf {
             if (data.hasOwnProperty('productTagsFilter')) {
                 obj['productTagsFilter'] = DependantOn.constructFromObject(data['productTagsFilter']);
             }
-            if (data.hasOwnProperty('strategy')) {
-                obj['strategy'] = PointStrategy.constructFromObject(data['strategy']);
+            if (data.hasOwnProperty('strategies')) {
+                obj['strategies'] = AchievementStrategies.constructFromObject(data['strategies']);
             }
         }
         return obj;
@@ -171,9 +171,9 @@ AchievementAllOf.prototype['memberTagsFilter'] = undefined;
 AchievementAllOf.prototype['productTagsFilter'] = undefined;
 
 /**
- * @member {module:model/PointStrategy} strategy
+ * @member {module:model/AchievementStrategies} strategies
  */
-AchievementAllOf.prototype['strategy'] = undefined;
+AchievementAllOf.prototype['strategies'] = undefined;
 
 
 

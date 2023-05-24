@@ -12,11 +12,11 @@
  */
 
 import ApiClient from '../ApiClient';
+import AchievementStrategies from './AchievementStrategies';
 import CreateAchievementRequestAllOf from './CreateAchievementRequestAllOf';
 import CreateOptParamModels from './CreateOptParamModels';
 import CreateRewardRequest from './CreateRewardRequest';
 import DependantOn from './DependantOn';
-import PointStrategy from './PointStrategy';
 import Rule from './Rule';
 import Scheduling from './Scheduling';
 import Translation from './Translation';
@@ -116,8 +116,8 @@ class CreateAchievementRequest {
             if (data.hasOwnProperty('addConstraints')) {
                 obj['addConstraints'] = ApiClient.convertToType(data['addConstraints'], ['String']);
             }
-            if (data.hasOwnProperty('strategy')) {
-                obj['strategy'] = PointStrategy.constructFromObject(data['strategy']);
+            if (data.hasOwnProperty('strategies')) {
+                obj['strategies'] = AchievementStrategies.constructFromObject(data['strategies']);
             }
         }
         return obj;
@@ -221,9 +221,9 @@ CreateAchievementRequest.prototype['productTagsFilter'] = undefined;
 CreateAchievementRequest.prototype['addConstraints'] = undefined;
 
 /**
- * @member {module:model/PointStrategy} strategy
+ * @member {module:model/AchievementStrategies} strategies
  */
-CreateAchievementRequest.prototype['strategy'] = undefined;
+CreateAchievementRequest.prototype['strategies'] = undefined;
 
 
 // Implement CreateOptParamModels interface:
@@ -306,9 +306,9 @@ CreateAchievementRequestAllOf.prototype['productTagsFilter'] = undefined;
  */
 CreateAchievementRequestAllOf.prototype['addConstraints'] = undefined;
 /**
- * @member {module:model/PointStrategy} strategy
+ * @member {module:model/AchievementStrategies} strategies
  */
-CreateAchievementRequestAllOf.prototype['strategy'] = undefined;
+CreateAchievementRequestAllOf.prototype['strategies'] = undefined;
 
 
 

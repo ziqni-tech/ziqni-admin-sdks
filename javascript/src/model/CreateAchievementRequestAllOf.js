@@ -12,9 +12,9 @@
  */
 
 import ApiClient from '../ApiClient';
+import AchievementStrategies from './AchievementStrategies';
 import CreateRewardRequest from './CreateRewardRequest';
 import DependantOn from './DependantOn';
-import PointStrategy from './PointStrategy';
 import Rule from './Rule';
 import Scheduling from './Scheduling';
 import Translation from './Translation';
@@ -101,8 +101,8 @@ class CreateAchievementRequestAllOf {
             if (data.hasOwnProperty('addConstraints')) {
                 obj['addConstraints'] = ApiClient.convertToType(data['addConstraints'], ['String']);
             }
-            if (data.hasOwnProperty('strategy')) {
-                obj['strategy'] = PointStrategy.constructFromObject(data['strategy']);
+            if (data.hasOwnProperty('strategies')) {
+                obj['strategies'] = AchievementStrategies.constructFromObject(data['strategies']);
             }
         }
         return obj;
@@ -189,9 +189,9 @@ CreateAchievementRequestAllOf.prototype['productTagsFilter'] = undefined;
 CreateAchievementRequestAllOf.prototype['addConstraints'] = undefined;
 
 /**
- * @member {module:model/PointStrategy} strategy
+ * @member {module:model/AchievementStrategies} strategies
  */
-CreateAchievementRequestAllOf.prototype['strategy'] = undefined;
+CreateAchievementRequestAllOf.prototype['strategies'] = undefined;
 
 
 
