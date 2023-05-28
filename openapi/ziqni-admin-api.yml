@@ -1,7 +1,7 @@
 openapi: 3.0.2
 info:
   title: ZIQNI Admin API
-  version: 3.0.2
+  version: 3.0.3
   description: Ziqni Application Services are used to manage and configure spaces.
   contact:
     name: Support Team
@@ -17605,8 +17605,6 @@ components:
         - LessThan
         - LessThanEquals
         - Between
-        - Average
-        - AverageBetween
       type: string
     TournamentStrategies:
       required:
