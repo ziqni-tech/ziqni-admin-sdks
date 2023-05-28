@@ -21,6 +21,6 @@ Name | Type | Description | Notes
 **productTagsFilter** | [**DependantOn**](DependantOn.md) |  | [optional] 
 **addConstraints** | **[String]** |  | [optional] 
 **removeConstraints** | **[String]** |  | [optional] 
-**strategy** | [**PointStrategy**](PointStrategy.md) |  | [optional] 
+**strategies** | [**AchievementStrategies**](AchievementStrategies.md) |  | [optional] 
 
 

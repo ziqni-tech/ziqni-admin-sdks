@@ -17,21 +17,21 @@ import ScoringStrategy from './ScoringStrategy';
 import StrategyType from './StrategyType';
 
 /**
- * The Strategy model module.
- * @module model/Strategy
+ * The TournamentStrategies model module.
+ * @module model/TournamentStrategies
  * @version 0.0.26
  */
-class Strategy {
+class TournamentStrategies {
     /**
-     * Constructs a new <code>Strategy</code>.
-     * @alias module:model/Strategy
+     * Constructs a new <code>TournamentStrategies</code>.
+     * @alias module:model/TournamentStrategies
      * @param strategyType {module:model/StrategyType} 
      * @param rankingStrategy {module:model/RankingStrategy} 
      * @param scoringStrategy {module:model/ScoringStrategy} 
      */
     constructor(strategyType, rankingStrategy, scoringStrategy) { 
         
-        Strategy.initialize(this, strategyType, rankingStrategy, scoringStrategy);
+        TournamentStrategies.initialize(this, strategyType, rankingStrategy, scoringStrategy);
     }
 
     /**
@@ -46,15 +46,15 @@ class Strategy {
     }
 
     /**
-     * Constructs a <code>Strategy</code> from a plain JavaScript object, optionally creating a new instance.
+     * Constructs a <code>TournamentStrategies</code> from a plain JavaScript object, optionally creating a new instance.
      * Copies all relevant properties from <code>data</code> to <code>obj</code> if supplied or a new instance if not.
      * @param {Object} data The plain JavaScript object bearing properties of interest.
-     * @param {module:model/Strategy} obj Optional instance to populate.
-     * @return {module:model/Strategy} The populated <code>Strategy</code> instance.
+     * @param {module:model/TournamentStrategies} obj Optional instance to populate.
+     * @return {module:model/TournamentStrategies} The populated <code>TournamentStrategies</code> instance.
      */
     static constructFromObject(data, obj) {
         if (data) {
-            obj = obj || new Strategy();
+            obj = obj || new TournamentStrategies();
 
             if (data.hasOwnProperty('strategyType')) {
                 obj['strategyType'] = StrategyType.constructFromObject(data['strategyType']);
@@ -75,22 +75,22 @@ class Strategy {
 /**
  * @member {module:model/StrategyType} strategyType
  */
-Strategy.prototype['strategyType'] = undefined;
+TournamentStrategies.prototype['strategyType'] = undefined;
 
 /**
  * @member {module:model/RankingStrategy} rankingStrategy
  */
-Strategy.prototype['rankingStrategy'] = undefined;
+TournamentStrategies.prototype['rankingStrategy'] = undefined;
 
 /**
  * @member {module:model/ScoringStrategy} scoringStrategy
  */
-Strategy.prototype['scoringStrategy'] = undefined;
+TournamentStrategies.prototype['scoringStrategy'] = undefined;
 
 
 
 
 
 
-export default Strategy;
+export default TournamentStrategies;
 

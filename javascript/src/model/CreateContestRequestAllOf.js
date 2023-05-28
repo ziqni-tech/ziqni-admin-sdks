@@ -15,7 +15,7 @@ import ApiClient from '../ApiClient';
 import CreateRewardRequest from './CreateRewardRequest';
 import RoundType from './RoundType';
 import Rule from './Rule';
-import Strategy from './Strategy';
+import TournamentStrategies from './TournamentStrategies';
 import Translation from './Translation';
 
 /**
@@ -32,7 +32,7 @@ class CreateContestRequestAllOf {
      * @param minNumberOfEntrants {Number} Minimum number of entrants for the contest
      * @param scheduledStartDate {Date} ISO8601 timestamp for when a Contest should start. All records are stored in UTC time zone
      * @param scheduledEndDate {Date} ISO8601 timestamp for when a Contest should end. All records are stored in UTC time zone
-     * @param strategies {module:model/Strategy} 
+     * @param strategies {module:model/TournamentStrategies} 
      * @param constraints {Array.<String>} Additional constraints
      */
     constructor(name, roundType, minNumberOfEntrants, scheduledStartDate, scheduledEndDate, strategies, constraints) { 
@@ -103,7 +103,7 @@ class CreateContestRequestAllOf {
                 obj['scheduledEndDate'] = ApiClient.convertToType(data['scheduledEndDate'], 'Date');
             }
             if (data.hasOwnProperty('strategies')) {
-                obj['strategies'] = Strategy.constructFromObject(data['strategies']);
+                obj['strategies'] = TournamentStrategies.constructFromObject(data['strategies']);
             }
             if (data.hasOwnProperty('constraints')) {
                 obj['constraints'] = ApiClient.convertToType(data['constraints'], ['String']);
@@ -195,7 +195,7 @@ CreateContestRequestAllOf.prototype['scheduledStartDate'] = undefined;
 CreateContestRequestAllOf.prototype['scheduledEndDate'] = undefined;
 
 /**
- * @member {module:model/Strategy} strategies
+ * @member {module:model/TournamentStrategies} strategies
  */
 CreateContestRequestAllOf.prototype['strategies'] = undefined;
 

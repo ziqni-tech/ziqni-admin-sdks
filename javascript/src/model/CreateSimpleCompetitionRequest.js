@@ -18,7 +18,7 @@ import CreateRewardRequest from './CreateRewardRequest';
 import CreateSimpleCompetitionRequestAllOf from './CreateSimpleCompetitionRequestAllOf';
 import DependantOn from './DependantOn';
 import Rule from './Rule';
-import Strategy from './Strategy';
+import TournamentStrategies from './TournamentStrategies';
 import Translation from './Translation';
 
 /**
@@ -129,7 +129,7 @@ class CreateSimpleCompetitionRequest {
                 obj['productTagsFilter'] = DependantOn.constructFromObject(data['productTagsFilter']);
             }
             if (data.hasOwnProperty('strategies')) {
-                obj['strategies'] = Strategy.constructFromObject(data['strategies']);
+                obj['strategies'] = TournamentStrategies.constructFromObject(data['strategies']);
             }
         }
         return obj;
@@ -245,7 +245,7 @@ CreateSimpleCompetitionRequest.prototype['entrantMemberTagsFilter'] = undefined;
 CreateSimpleCompetitionRequest.prototype['productTagsFilter'] = undefined;
 
 /**
- * @member {module:model/Strategy} strategies
+ * @member {module:model/TournamentStrategies} strategies
  */
 CreateSimpleCompetitionRequest.prototype['strategies'] = undefined;
 
@@ -340,7 +340,7 @@ CreateSimpleCompetitionRequestAllOf.prototype['entrantMemberTagsFilter'] = undef
  */
 CreateSimpleCompetitionRequestAllOf.prototype['productTagsFilter'] = undefined;
 /**
- * @member {module:model/Strategy} strategies
+ * @member {module:model/TournamentStrategies} strategies
  */
 CreateSimpleCompetitionRequestAllOf.prototype['strategies'] = undefined;
 

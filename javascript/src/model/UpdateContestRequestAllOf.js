@@ -13,7 +13,7 @@
 
 import ApiClient from '../ApiClient';
 import RoundType from './RoundType';
-import Strategy from './Strategy';
+import TournamentStrategies from './TournamentStrategies';
 
 /**
  * The UpdateContestRequestAllOf model module.
@@ -74,7 +74,7 @@ class UpdateContestRequestAllOf {
                 obj['scheduledEndDate'] = ApiClient.convertToType(data['scheduledEndDate'], 'Date');
             }
             if (data.hasOwnProperty('strategies')) {
-                obj['strategies'] = Strategy.constructFromObject(data['strategies']);
+                obj['strategies'] = TournamentStrategies.constructFromObject(data['strategies']);
             }
             if (data.hasOwnProperty('constraints')) {
                 obj['constraints'] = ApiClient.convertToType(data['constraints'], ['String']);
@@ -134,7 +134,7 @@ UpdateContestRequestAllOf.prototype['scheduledStartDate'] = undefined;
 UpdateContestRequestAllOf.prototype['scheduledEndDate'] = undefined;
 
 /**
- * @member {module:model/Strategy} strategies
+ * @member {module:model/TournamentStrategies} strategies
  */
 UpdateContestRequestAllOf.prototype['strategies'] = undefined;
 
