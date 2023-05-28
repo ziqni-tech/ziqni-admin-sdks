@@ -1,7 +1,7 @@
 openapi: 3.0.2
 info:
   title: ZIQNI Admin API
-  version: 3.0.3
+  version: 3.0.4
   description: Ziqni Application Services are used to manage and configure spaces.
   contact:
     name: Support Team
@@ -17878,6 +17878,8 @@ components:
         - TargetPoints
         - pointsValueMin
         - operator
+        - context
+        - action
       type: object
       properties:
         operator:
@@ -17891,6 +17893,12 @@ components:
         pointsValue:
           description: The points to achieve
           type: number
+        context:
+          description: 'The context this strategy is bound to, like: achievement'
+          type: string
+        action:
+          description: 'The action this strategy is bound to, like: achievement.points'
+          type: string
   responses:
     ApiResponseBody:
       content:

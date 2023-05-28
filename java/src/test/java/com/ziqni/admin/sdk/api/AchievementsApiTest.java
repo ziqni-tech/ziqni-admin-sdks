@@ -168,7 +168,7 @@ public class AchievementsApiTest implements tests.utils.CompleteableFutureTestWr
     @Order(1)
     public void createAchievementsWithStrategiesReturnOkTest() throws ApiException {
         final var pointsStrategy = new PointsStrategy()
-                .operator(ConditionalOperator.AVERAGE)
+                .operator(ConditionalOperator.EQUALS)
                 .pointsValue(new BigDecimal(100))
                 .pointsValueUpper(new BigDecimal(1000));
         final var achievementStrategies = new AchievementStrategies()
@@ -211,7 +211,7 @@ public class AchievementsApiTest implements tests.utils.CompleteableFutureTestWr
     public void updateAchievementsWithStrategiesReturnOkTest() throws ApiException {
         /////////// Create \\\\\\\\\\\\
         final var pointsStrategy = new PointsStrategy()
-                .operator(ConditionalOperator.AVERAGE)
+                .operator(ConditionalOperator.EQUALS)
                 .pointsValue(new BigDecimal(100))
                 .pointsValueUpper(new BigDecimal(1000));
         final var achievementStrategies = new AchievementStrategies()

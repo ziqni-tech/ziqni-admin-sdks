@@ -23,15 +23,11 @@ public abstract class EventHandler<T> implements StompFrameHandler {
 
     /**
      * Get the Topic name this handler should attach to
-     *
-     * @return
      */
     public abstract String getTopic();
 
     /**
      * Jackson value type that is expected to be returned
-     *
-     * @return
      */
     public abstract JavaType getValType(StompHeaders headers);
 
