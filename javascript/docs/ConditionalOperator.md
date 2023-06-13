@@ -15,8 +15,4 @@
 
 * `Between` (value: `"Between"`)
 
-* `Average` (value: `"Average"`)
-
-* `AverageBetween` (value: `"AverageBetween"`)
-
 
