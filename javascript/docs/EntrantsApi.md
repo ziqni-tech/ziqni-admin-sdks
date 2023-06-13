@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 ## exportEntrantsByQuery
 
-> EntrantResponse exportEntrantsByQuery(opts)
+> EntrantCountResponse exportEntrantsByQuery(opts)
 
 Get entrants by query
 
@@ -49,7 +49,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**EntrantResponse**](EntrantResponse.md)
+[**EntrantCountResponse**](EntrantCountResponse.md)
 
 ### Authorization
 
