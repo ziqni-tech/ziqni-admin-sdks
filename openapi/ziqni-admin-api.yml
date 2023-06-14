@@ -1,7 +1,7 @@
 openapi: 3.0.2
 info:
   title: ZIQNI Admin API
-  version: 3.0.4
+  version: 3.0.6
   description: Ziqni Application Services are used to manage and configure spaces.
   contact:
     name: Support Team
@@ -7748,6 +7748,37 @@ paths:
       description: >-
         Retrieve ConteEntrants from Ziqni database by unique Contests ID's or any other POST body
         parameters using the POST method
+  /graphs:
+    summary: Structures the connections data as a graph.
+    description: >-
+      The ZIQNI graph data structure consists of a finite (and possibly mutable) set of vertices (also
+      called nodes or points), together with a set of ordered pairs for a directed graph. These pairs
+      are known as edges (also called links or lines), and for a directed graph are also known as edges
+      but also sometimes arrows or arcs whicj are joined using the dependant on must or should within
+      achievements.
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EntityGraphRequest'
+        required: true
+      tags:
+        - graphs
+      responses:
+        '200':
+          $ref: '#/components/responses/EntityGraphResponseBody'
+        '400':
+          $ref: '#/components/responses/EntityGraphResponseBody'
+        '500':
+          $ref: '#/components/responses/EntityGraphResponseBody'
+      security:
+        -
+          OAuth2:
+            - ViewMissions
+      operationId: getGraph
+      summary: Get achievements by member reference id
+      description: Returns a list of graphs based on the entity type.
   /entrants/export:
     summary: Get entrants by query
     description: This operation allows you to get entrants in your project using a query.
@@ -7761,23 +7792,23 @@ paths:
         - entrants
       responses:
         '200':
-          $ref: '#/components/responses/EntrantResponseBody'
+          $ref: '#/components/responses/EntrantCountResponseBody'
         '400':
-          $ref: '#/components/responses/EntrantResponseBody'
+          $ref: '#/components/responses/EntrantCountResponseBody'
         '401':
-          $ref: '#/components/responses/EntrantResponseBody'
+          $ref: '#/components/responses/EntrantCountResponseBody'
         '403':
-          $ref: '#/components/responses/EntrantResponseBody'
+          $ref: '#/components/responses/EntrantCountResponseBody'
         '404':
-          $ref: '#/components/responses/EntrantResponseBody'
+          $ref: '#/components/responses/EntrantCountResponseBody'
         '413':
-          $ref: '#/components/responses/EntrantResponseBody'
+          $ref: '#/components/responses/EntrantCountResponseBody'
         '500':
-          $ref: '#/components/responses/EntrantResponseBody'
+          $ref: '#/components/responses/EntrantCountResponseBody'
         '501':
-          $ref: '#/components/responses/EntrantResponseBody'
+          $ref: '#/components/responses/EntrantCountResponseBody'
         '503':
-          $ref: '#/components/responses/EntrantResponseBody'
+          $ref: '#/components/responses/EntrantCountResponseBody'
       security:
         -
           OAuth2:
@@ -15428,6 +15459,15 @@ components:
           type: array
           items:
             type: string
+        languageKey:
+          description: 'The language code to use if none is provided in the member api requests '
+          type: string
+        currencyKey:
+          description: The language key to use if none is provided in the member api requests
+          type: string
+        timeZoneOffset:
+          description: The time zone to use when returning date and time values
+          type: integer
       example:
         apiKey: some text
         isReferenceId: true
@@ -17626,6 +17666,305 @@ components:
       properties:
         pointsStrategy:
           $ref: '#/components/schemas/PointsStrategy'
+    PointsStrategy:
+      description: The target points to achieve
+      required:
+        - TargetType
+        - TargetPoints
+        - pointsValueMin
+        - operator
+        - context
+        - action
+      type: object
+      properties:
+        operator:
+          $ref: '#/components/schemas/ConditionalOperator'
+          description: The operator
+        pointsValueUpper:
+          description: >-
+            The upper points to achieve. This is only used where secondary number are required
+            like, between, or average between
+          type: number
+        pointsValue:
+          description: The points to achieve
+          type: number
+        context:
+          description: 'The context this strategy is bound to, like: achievement'
+          type: string
+        action:
+          description: 'The action this strategy is bound to, like: achievement.points'
+          type: string
+    EntityGraph:
+      description: ''
+      required:
+        - links
+      type: object
+      properties:
+        edges:
+          description: Pairs of nodes that specify a line joining these two nodes are said to form an edge
+          type: array
+          items:
+            $ref: '#/components/schemas/EntityGraphEdge'
+        nodesInCompletedState:
+          format: int32
+          description: Nodes in this graph that are in state greater than 35
+          type: integer
+    EntityGraphEdge:
+      description: ''
+      required:
+        - ordering
+      type: object
+      properties:
+        ordering:
+          description: ''
+          type: integer
+        constraints:
+          description: ''
+          type: array
+          items:
+            type: string
+        tailEntityId:
+          description: 'X the tail of the edge '
+          type: string
+        headEntityId:
+          description: Y the head of the edge.
+          type: string
+        graphEdgeType:
+          $ref: '#/components/schemas/EntityGraphEdgeType'
+          description: ''
+    EntityGraphResponse:
+      description: '        '
+      required: []
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/MetaExtended'
+          description: ''
+        data:
+          $ref: '#/components/schemas/EntityGraphResult'
+          description: ''
+        errors:
+          description: ''
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
+    EntityGraphResult:
+      description: ''
+      required:
+        - nodes
+        - links
+      type: object
+      properties:
+        nodes:
+          description: ''
+          type: array
+          items:
+            $ref: '#/components/schemas/EntityGraphNode'
+        graphs:
+          description: ''
+          type: array
+          items:
+            $ref: '#/components/schemas/EntityGraph'
+    EntrantCountResponse:
+      required:
+        - numberOfRecords
+        - downloadUrl
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
+        numberOfRecords:
+          type: integer
+        downloadUrl:
+          type: string
+    EntrantExport:
+      required:
+        - accountId
+        - bestScores
+        - goalReached
+        - markerTimeStamp
+        - participationId
+        - timestamp
+        - updateCount
+        - id
+      type: object
+      properties:
+        memberId:
+          type: string
+        memberRefId:
+          type: string
+        name:
+          type: string
+        points:
+          description: double
+          type: array
+          items:
+            format: double
+            type: number
+        rank:
+          format: int32
+          description: integer
+          type: integer
+        groups:
+          type: array
+          items:
+            type: string
+        rewards:
+          description: Rewards
+          type: array
+          items:
+            $ref: '#/components/schemas/Reward'
+    CreateAchievementRequest:
+      allOf:
+        -
+          $ref: '#/components/schemas/CreateOptParamModels'
+        -
+          required:
+            - name
+            - ruleSets
+            - scheduling
+            - constraints
+          type: object
+          properties:
+            name:
+              description: A name for the Achievement. Can be translated
+              type: string
+              example: Welcome badge
+            description:
+              description: A name for the Achievement. Can be translated
+              type: string
+              example: A Badge to welcome you on board
+            termsAndConditions:
+              description: Terms and conditions of an achievement. Can be translated
+              type: string
+              example: Participate to win
+            icon:
+              description: An Icon id that has been pre uploaded to the system to display for Achievement
+              type: string
+              example: Dc4swmQBVd51K6gPQqFx
+            rules:
+              type: array
+              items:
+                $ref: '#/components/schemas/Rule'
+            scheduling:
+              $ref: '#/components/schemas/Scheduling'
+            maxNumberOfIssues:
+              format: int32
+              description: Maximum number of issued achievements
+              type: integer
+              example: '9999'
+            translations:
+              type: array
+              items:
+                $ref: '#/components/schemas/Translation'
+            rewards:
+              type: array
+              items:
+                $ref: '#/components/schemas/CreateRewardRequest'
+            constraints:
+              deprecated: true
+              description: Additional constraints
+              type: array
+              items:
+                type: string
+              example: '- notifyMember - isHidden - deprecated - optinRequiredForEntrants'
+            achievementDependencies:
+              $ref: '#/components/schemas/DependantOn'
+            memberTagsFilter:
+              $ref: '#/components/schemas/DependantOn'
+              description: ''
+            productIds:
+              description: ''
+              type: array
+              items:
+                type: string
+            productTagsFilter:
+              $ref: '#/components/schemas/DependantOn'
+              description: ''
+            addConstraints:
+              description: ''
+              type: array
+              items:
+                type: string
+            strategies:
+              $ref: '#/components/schemas/AchievementStrategies'
+              description: The target to reach in order to receive this achievement
+      x-vue-create: achievement
+      x-vue-creator: achievements
+      x-vue-rules: true
+    UpdateAchievementRequest:
+      allOf:
+        -
+          $ref: '#/components/schemas/UpdateModelDefault'
+        -
+          $ref: '#/components/schemas/UpdateOptParamModels'
+        -
+          required: []
+          type: object
+          properties:
+            name:
+              description: A name for the Achievement. Can be translated
+              type: string
+              example: Welcome badge
+            description:
+              description: A name for the Achievement. Can be translated
+              type: string
+              example: A Badge to welcome you on board
+            termsAndConditions:
+              description: Terms and conditions of an achievement. Can be translated
+              type: string
+              example: Participate to win
+            icon:
+              description: An Icon id that has been pre uploaded to the system to display for Achievement
+              type: string
+              example: Dc4swmQBVd51K6gPQqFx
+            scheduling:
+              $ref: '#/components/schemas/Scheduling'
+            achievementLiveStatus:
+              $ref: '#/components/schemas/AchievementLiveStatus'
+            maxNumberOfIssues:
+              format: int32
+              description: Maximum number of issued achievements
+              type: integer
+              example: '9999'
+            constraints:
+              deprecated: true
+              description: Additional constraints
+              type: array
+              items:
+                type: string
+              example: '- notifyMember - isHidden - deprecated - optinRequiredForEntrants'
+            achievementDependencies:
+              $ref: '#/components/schemas/DependantOn'
+            memberTagsFilter:
+              $ref: '#/components/schemas/DependantOn'
+              description: ''
+            productIds:
+              description: ''
+              type: array
+              items:
+                type: string
+            productTagsFilter:
+              $ref: '#/components/schemas/DependantOn'
+              description: ''
+            addConstraints:
+              description: ''
+              type: array
+              items:
+                type: string
+            removeConstraints:
+              description: ''
+              type: array
+              items:
+                type: string
+            strategies:
+              $ref: '#/components/schemas/AchievementStrategies'
+              description: The target to reach in order to receive this achievement
+      x-vue-update: achievement
+      x-vue-updater: achievements
+      x-vue-object-type: achievement
     Achievement:
       allOf:
         -
@@ -17711,6 +18050,12 @@ components:
             memberTagsFilter:
               $ref: '#/components/schemas/DependantOn'
               description: ''
+            products:
+              description: ''
+              type: array
+              items:
+                $ref: '#/components/schemas/ProductReduced'
+              x-vue-disaply-order: 1006
             productTagsFilter:
               $ref: '#/components/schemas/DependantOn'
               description: ''
@@ -17732,173 +18077,6 @@ components:
         - Rewards
         - Awards
         - Events
-    UpdateAchievementRequest:
-      allOf:
-        -
-          $ref: '#/components/schemas/UpdateModelDefault'
-        -
-          $ref: '#/components/schemas/UpdateOptParamModels'
-        -
-          required: []
-          type: object
-          properties:
-            name:
-              description: A name for the Achievement. Can be translated
-              type: string
-              example: Welcome badge
-            description:
-              description: A name for the Achievement. Can be translated
-              type: string
-              example: A Badge to welcome you on board
-            termsAndConditions:
-              description: Terms and conditions of an achievement. Can be translated
-              type: string
-              example: Participate to win
-            icon:
-              description: An Icon id that has been pre uploaded to the system to display for Achievement
-              type: string
-              example: Dc4swmQBVd51K6gPQqFx
-            scheduling:
-              $ref: '#/components/schemas/Scheduling'
-            achievementLiveStatus:
-              $ref: '#/components/schemas/AchievementLiveStatus'
-            maxNumberOfIssues:
-              format: int32
-              description: Maximum number of issued achievements
-              type: integer
-              example: '9999'
-            constraints:
-              deprecated: true
-              description: Additional constraints
-              type: array
-              items:
-                type: string
-              example: '- notifyMember - isHidden - deprecated - optinRequiredForEntrants'
-            achievementDependencies:
-              $ref: '#/components/schemas/DependantOn'
-            memberTagsFilter:
-              $ref: '#/components/schemas/DependantOn'
-              description: ''
-            productTagsFilter:
-              $ref: '#/components/schemas/DependantOn'
-              description: ''
-            addConstraints:
-              description: ''
-              type: array
-              items:
-                type: string
-            removeConstraints:
-              description: ''
-              type: array
-              items:
-                type: string
-            strategies:
-              $ref: '#/components/schemas/AchievementStrategies'
-              description: The target to reach in order to receive this achievement
-      x-vue-update: achievement
-      x-vue-updater: achievements
-      x-vue-object-type: achievement
-    CreateAchievementRequest:
-      allOf:
-        -
-          $ref: '#/components/schemas/CreateOptParamModels'
-        -
-          required:
-            - name
-            - ruleSets
-            - scheduling
-            - constraints
-          type: object
-          properties:
-            name:
-              description: A name for the Achievement. Can be translated
-              type: string
-              example: Welcome badge
-            description:
-              description: A name for the Achievement. Can be translated
-              type: string
-              example: A Badge to welcome you on board
-            termsAndConditions:
-              description: Terms and conditions of an achievement. Can be translated
-              type: string
-              example: Participate to win
-            icon:
-              description: An Icon id that has been pre uploaded to the system to display for Achievement
-              type: string
-              example: Dc4swmQBVd51K6gPQqFx
-            rules:
-              type: array
-              items:
-                $ref: '#/components/schemas/Rule'
-            scheduling:
-              $ref: '#/components/schemas/Scheduling'
-            maxNumberOfIssues:
-              format: int32
-              description: Maximum number of issued achievements
-              type: integer
-              example: '9999'
-            translations:
-              type: array
-              items:
-                $ref: '#/components/schemas/Translation'
-            rewards:
-              type: array
-              items:
-                $ref: '#/components/schemas/CreateRewardRequest'
-            constraints:
-              deprecated: true
-              description: Additional constraints
-              type: array
-              items:
-                type: string
-              example: '- notifyMember - isHidden - deprecated - optinRequiredForEntrants'
-            achievementDependencies:
-              $ref: '#/components/schemas/DependantOn'
-            memberTagsFilter:
-              $ref: '#/components/schemas/DependantOn'
-              description: ''
-            productTagsFilter:
-              $ref: '#/components/schemas/DependantOn'
-              description: ''
-            addConstraints:
-              description: ''
-              type: array
-              items:
-                type: string
-            strategies:
-              $ref: '#/components/schemas/AchievementStrategies'
-              description: The target to reach in order to receive this achievement
-      x-vue-create: achievement
-      x-vue-creator: achievements
-      x-vue-rules: true
-    PointsStrategy:
-      description: The target points to achieve
-      required:
-        - TargetType
-        - TargetPoints
-        - pointsValueMin
-        - operator
-        - context
-        - action
-      type: object
-      properties:
-        operator:
-          $ref: '#/components/schemas/ConditionalOperator'
-          description: The operator
-        pointsValueUpper:
-          description: >-
-            The upper points to achieve. This is only used where secondary number are required
-            like, between, or average between
-          type: number
-        pointsValue:
-          description: The points to achieve
-          type: number
-        context:
-          description: 'The context this strategy is bound to, like: achievement'
-          type: string
-        action:
-          description: 'The action this strategy is bound to, like: achievement.points'
-          type: string
   responses:
     ApiResponseBody:
       content:
@@ -18997,6 +19175,18 @@ components:
             Example:
               $ref: '#/components/examples/GetErrorResponse'
       description: A list of log events and/or errors
+    EntityGraphResponseBody:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/EntityGraphResponse'
+      description: ''
+    EntrantCountResponseBody:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/EntrantCountResponse'
+      description: A count of Entrants for the competition/contest to export and/or errors
   parameters:
     spaceName:
       name: spaceName
