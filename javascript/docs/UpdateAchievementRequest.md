@@ -18,6 +18,7 @@ Name | Type | Description | Notes
 **constraints** | **[String]** | Additional constraints | [optional] 
 **achievementDependencies** | [**DependantOn**](DependantOn.md) |  | [optional] 
 **memberTagsFilter** | [**DependantOn**](DependantOn.md) |  | [optional] 
+**productIds** | **[String]** |  | [optional] 
 **productTagsFilter** | [**DependantOn**](DependantOn.md) |  | [optional] 
 **addConstraints** | **[String]** |  | [optional] 
 **removeConstraints** | **[String]** |  | [optional] 
