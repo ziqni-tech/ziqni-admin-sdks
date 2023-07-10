@@ -71,18 +71,18 @@ public class ProductsApiTest implements tests.utils.CompleteableFutureTestWrappe
 
     @BeforeAll
     public void setUp() {
-//        try {
-//            var actionTypeResponse = loadActionTypesData.createTestData(List.of(loadActionTypesData.getCreateRequest()));
-//
-//            actionTypeId = actionTypeResponse.getResults().get(0).getId();
-//            actionTypesToDelete.add(actionTypeId);
-//
-//            tagId = loadTagsData.getModel();
-//            customFieldKey = loadCustomFieldsData.getModel(customFieldIdsToDelete, AppliesTo.PRODUCT);
-//            tagIdsToDelete.add(tagId);
-//        } catch (ApiException e) {
-//            logger.error("error", e.getCause());
-//        }
+        try {
+            var actionTypeResponse = loadActionTypesData.createTestData(List.of(loadActionTypesData.getCreateRequest()));
+
+            actionTypeId = actionTypeResponse.getResults().get(0).getId();
+            actionTypesToDelete.add(actionTypeId);
+
+            tagId = loadTagsData.getModel();
+            customFieldKey = loadCustomFieldsData.getModel(customFieldIdsToDelete, AppliesTo.PRODUCT);
+            tagIdsToDelete.add(tagId);
+        } catch (ApiException e) {
+            logger.error("error", e.getCause());
+        }
     }
 
     @AfterAll
