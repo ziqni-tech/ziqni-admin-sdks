@@ -1388,12 +1388,14 @@ givenMetadata.put(UUID.randomUUID().toString(),"a".repeat(101));
         public void readDataFromCsvAndCreateProductsReturnOkTest() throws ApiException {
             var resource = getClass().getClassLoader().getResource("game_table.csv");
 
-            List<List<String>> records = new ArrayList<>();
+            List<ProductDetails> records = new ArrayList<>();
             try (BufferedReader br = new BufferedReader(new FileReader(resource.getFile()))) {
                 String line;
                 while ((line = br.readLine()) != null) {
                     String[] values = line.split(",");
-                    records.add(Arrays.asList(values));
+                    var prodDet = Arrays.asList(values);
+                    if (prodDet.size() == 4)
+                        records.add(new ProductDetails(prodDet.get(0), prodDet.get(1), prodDet.get(2), prodDet.get(3)));
                 }
             } catch (IOException e) {
                 throw new RuntimeException(e);
@@ -1413,5 +1415,20 @@ givenMetadata.put(UUID.randomUUID().toString(),"a".repeat(101));
             assertNotNull(response.getResults().get(0).getId(), "Created entity should has id");
 
             idsToDelete.add(response.getResults().get(0).getId());
+        }
+
+        class ProductDetails {
+
+            private String gameId;
+            private String gameName;
+            private String groupName;
+            private String provider;
+
+            public ProductDetails(String gameId, String gameName, String groupName, String provider) {
+                this.gameId = gameId;
+                this.gameName = gameName;
+                this.groupName = groupName;
+                this.provider = provider;
+            }
         }
 }
