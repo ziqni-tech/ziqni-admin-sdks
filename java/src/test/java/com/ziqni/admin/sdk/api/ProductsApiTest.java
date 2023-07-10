@@ -24,6 +24,10 @@ import org.junit.jupiter.api.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -67,18 +71,18 @@ public class ProductsApiTest implements tests.utils.CompleteableFutureTestWrappe
 
     @BeforeAll
     public void setUp() {
-        try {
-            var actionTypeResponse = loadActionTypesData.createTestData(List.of(loadActionTypesData.getCreateRequest()));
-
-            actionTypeId = actionTypeResponse.getResults().get(0).getId();
-            actionTypesToDelete.add(actionTypeId);
-
-            tagId = loadTagsData.getModel();
-            customFieldKey = loadCustomFieldsData.getModel(customFieldIdsToDelete, AppliesTo.PRODUCT);
-            tagIdsToDelete.add(tagId);
-        } catch (ApiException e) {
-            logger.error("error", e.getCause());
-        }
+//        try {
+//            var actionTypeResponse = loadActionTypesData.createTestData(List.of(loadActionTypesData.getCreateRequest()));
+//
+//            actionTypeId = actionTypeResponse.getResults().get(0).getId();
+//            actionTypesToDelete.add(actionTypeId);
+//
+//            tagId = loadTagsData.getModel();
+//            customFieldKey = loadCustomFieldsData.getModel(customFieldIdsToDelete, AppliesTo.PRODUCT);
+//            tagIdsToDelete.add(tagId);
+//        } catch (ApiException e) {
+//            logger.error("error", e.getCause());
+//        }
     }
 
     @AfterAll
@@ -1378,4 +1382,36 @@ givenMetadata.put(UUID.randomUUID().toString(),"a".repeat(101));
         assertEquals(1, deleteResponse.getMeta().getResultCount(), "Results should contain entry");
         assertEquals(0, deleteResponse.getErrors().size(), "Errors should be empty");
     }
+
+        @Test
+        @Order(1)
+        public void readDataFromCsvAndCreateProductsReturnOkTest() throws ApiException {
+            var resource = getClass().getClassLoader().getResource("game_table.csv");
+
+            List<List<String>> records = new ArrayList<>();
+            try (BufferedReader br = new BufferedReader(new FileReader(resource.getFile()))) {
+                String line;
+                while ((line = br.readLine()) != null) {
+                    String[] values = line.split(",");
+                    records.add(Arrays.asList(values));
+                }
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+
+            records.forEach(record -> {
+
+            });
+
+            final var createRequest = loadData.getCreateRequest(actionTypeId);
+            ModelApiResponse response = $(api.createProducts(List.of(createRequest)));
+
+            assertNotNull(response);
+            assertNotNull(response.getResults());
+            assertNotNull(response.getErrors());
+            assertEquals(1, response.getResults().size(), "Should contain created entity");
+            assertNotNull(response.getResults().get(0).getId(), "Created entity should has id");
+
+            idsToDelete.add(response.getResults().get(0).getId());
+        }
 }
