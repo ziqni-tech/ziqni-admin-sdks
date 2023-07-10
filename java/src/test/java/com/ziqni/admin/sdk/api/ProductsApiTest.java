@@ -49,6 +49,7 @@ public class ProductsApiTest implements tests.utils.CompleteableFutureTestWrappe
     private final LoadActionTypesData loadActionTypesData;
     private final LoadTagsData loadTagsData;
     private final LoadCustomFieldsData loadCustomFieldsData;
+    private final LoadUnitsOfMeasureData loadUnitsOfMeasureData;
 
     private String tagId;
     private String customFieldKey;
@@ -57,6 +58,7 @@ public class ProductsApiTest implements tests.utils.CompleteableFutureTestWrappe
     private final List<String> actionTypesToDelete = new ArrayList<>();
     private final List<String> tagIdsToDelete = new ArrayList<>();
     private final List<String> customFieldIdsToDelete = new ArrayList<>();
+    private final List<String> unitOfMeasureIdsToDelete = new ArrayList<>();
 
     private String actionTypeId;
 
@@ -67,12 +69,15 @@ public class ProductsApiTest implements tests.utils.CompleteableFutureTestWrappe
         this.loadActionTypesData = new LoadActionTypesData();
         this.loadCustomFieldsData = new LoadCustomFieldsData();
         this.loadTagsData = new LoadTagsData();
+        this.loadUnitsOfMeasureData = new LoadUnitsOfMeasureData();
     }
 
     @BeforeAll
     public void setUp() {
         try {
-            var actionTypeResponse = loadActionTypesData.createTestData(List.of(loadActionTypesData.getCreateRequest()));
+            var unitOfMeasureResp = loadUnitsOfMeasureData.createTestData(loadUnitsOfMeasureData.getCreateRequestAsList(loadUnitsOfMeasureData.getCreateRequest()));
+            var unitOfMeasureId = unitOfMeasureResp.getResults().get(0).getId();
+            var actionTypeResponse = loadActionTypesData.createTestData(List.of(loadActionTypesData.getCreateRequest().unitOfMeasure(unitOfMeasureId)));
 
             actionTypeId = actionTypeResponse.getResults().get(0).getId();
             actionTypesToDelete.add(actionTypeId);
@@ -1384,7 +1389,6 @@ givenMetadata.put(UUID.randomUUID().toString(),"a".repeat(101));
     }
 
         @Test
-        @Order(1)
         public void readDataFromCsvAndCreateProductsReturnOkTest() {
             var resource = getClass().getClassLoader().getResource("game_table.csv");
 
