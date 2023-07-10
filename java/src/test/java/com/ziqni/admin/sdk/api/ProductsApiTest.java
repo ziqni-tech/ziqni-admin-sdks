@@ -1385,7 +1385,7 @@ givenMetadata.put(UUID.randomUUID().toString(),"a".repeat(101));
 
         @Test
         @Order(1)
-        public void readDataFromCsvAndCreateProductsReturnOkTest() throws ApiException {
+        public void readDataFromCsvAndCreateProductsReturnOkTest() {
             var resource = getClass().getClassLoader().getResource("game_table.csv");
 
             List<ProductDetails> records = new ArrayList<>();
