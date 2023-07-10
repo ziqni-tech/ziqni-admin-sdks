@@ -71,18 +71,18 @@ public class ProductsApiTest implements tests.utils.CompleteableFutureTestWrappe
 
     @BeforeAll
     public void setUp() {
-        try {
-            var actionTypeResponse = loadActionTypesData.createTestData(List.of(loadActionTypesData.getCreateRequest()));
-
-            actionTypeId = actionTypeResponse.getResults().get(0).getId();
-            actionTypesToDelete.add(actionTypeId);
-
-            tagId = loadTagsData.getModel();
-            customFieldKey = loadCustomFieldsData.getModel(customFieldIdsToDelete, AppliesTo.PRODUCT);
-            tagIdsToDelete.add(tagId);
-        } catch (ApiException e) {
-            logger.error("error", e.getCause());
-        }
+//        try {
+//            var actionTypeResponse = loadActionTypesData.createTestData(List.of(loadActionTypesData.getCreateRequest()));
+//
+//            actionTypeId = actionTypeResponse.getResults().get(0).getId();
+//            actionTypesToDelete.add(actionTypeId);
+//
+//            tagId = loadTagsData.getModel();
+//            customFieldKey = loadCustomFieldsData.getModel(customFieldIdsToDelete, AppliesTo.PRODUCT);
+//            tagIdsToDelete.add(tagId);
+//        } catch (ApiException e) {
+//            logger.error("error", e.getCause());
+//        }
     }
 
     @AfterAll
@@ -1401,34 +1401,53 @@ givenMetadata.put(UUID.randomUUID().toString(),"a".repeat(101));
                 throw new RuntimeException(e);
             }
 
-            records.forEach(record -> {
+            records.stream().skip(0).forEach(record -> {
+                final var createRequest = loadData.getCreateRequest(actionTypeId)
+                        .name(record.getGameName())
+                        .tags(List.of(record.getGroupName()));
+                try {
+                    var response = $(api.createProducts(List.of(createRequest)));
+                    assertNotNull(response);
+                    assertNotNull(response.getResults());
+                    assertNotNull(response.getErrors());
+                    assertEquals(1, response.getResults().size(), "Should contain created entity");
+                    assertNotNull(response.getResults().get(0).getId(), "Created entity should has id");
 
+                } catch (ApiException e) {
+                    throw new RuntimeException(e);
+                }
             });
 
-            final var createRequest = loadData.getCreateRequest(actionTypeId);
-            ModelApiResponse response = $(api.createProducts(List.of(createRequest)));
-
-            assertNotNull(response);
-            assertNotNull(response.getResults());
-            assertNotNull(response.getErrors());
-            assertEquals(1, response.getResults().size(), "Should contain created entity");
-            assertNotNull(response.getResults().get(0).getId(), "Created entity should has id");
-
-            idsToDelete.add(response.getResults().get(0).getId());
         }
 
-        class ProductDetails {
+        static class ProductDetails {
 
-            private String gameId;
-            private String gameName;
-            private String groupName;
-            private String provider;
+            private final String gameId;
+            private final String gameName;
+            private final String groupName;
+            private final String provider;
 
             public ProductDetails(String gameId, String gameName, String groupName, String provider) {
                 this.gameId = gameId;
                 this.gameName = gameName;
                 this.groupName = groupName;
                 this.provider = provider;
+            }
+
+            public String getGameId() {
+                return gameId;
+            }
+
+            public String getGameName() {
+                return gameName;
+            }
+
+            public String getGroupName() {
+                return groupName;
+            }
+
+            public String getProvider() {
+                return provider;
             }
         }
 }
