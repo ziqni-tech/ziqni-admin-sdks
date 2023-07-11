@@ -73,14 +73,17 @@ public class ProductsApiTest implements tests.utils.CompleteableFutureTestWrappe
     }
 
     @BeforeAll
-    public void setUp() {
+    public void setUp() throws InterruptedException {
         try {
             var unitOfMeasureResp = loadUnitsOfMeasureData.createTestData(loadUnitsOfMeasureData.getCreateRequestAsList(loadUnitsOfMeasureData.getCreateRequest()));
             var unitOfMeasureId = unitOfMeasureResp.getResults().get(0).getId();
+            Thread.sleep(5000);
             var actionTypeResponse = loadActionTypesData.createTestData(List.of(loadActionTypesData.getCreateRequest().unitOfMeasure(unitOfMeasureId)));
 
             actionTypeId = actionTypeResponse.getResults().get(0).getId();
             actionTypesToDelete.add(actionTypeId);
+
+            Thread.sleep(5000);
 
             tagId = loadTagsData.getModel();
             customFieldKey = loadCustomFieldsData.getModel(customFieldIdsToDelete, AppliesTo.PRODUCT);
@@ -1408,7 +1411,8 @@ givenMetadata.put(UUID.randomUUID().toString(),"a".repeat(101));
             records.stream().skip(0).forEach(record -> {
                 final var createRequest = loadData.getCreateRequest(actionTypeId)
                         .name(record.getGameName())
-                        .tags(List.of(record.getGroupName()));
+                        .tags(List.of(record.getGroupName()))
+                        .description(record.getProvider());
                 try {
                     var response = $(api.createProducts(List.of(createRequest)));
                     assertNotNull(response);
