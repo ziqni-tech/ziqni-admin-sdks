@@ -98,7 +98,7 @@ public class LoadContestsData implements CompleteableFutureTestWrapper {
             request.setScheduledStartDate(DateUtil.now());
             request.setScheduledEndDate(DateUtil.nowPlusDays(1));
             request.setCompetitionId(competitionId);
-            request.setStrategies(strategy);
+//            request.setStrategies(strategy);
 //            request.setRuleSets(ruleSets);
 
             final var givenConstraints = new ArrayList<String>();

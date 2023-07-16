@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 ## exportEntrantsByQuery
 
-> CompletableFuture<EntrantResponse> exportEntrantsByQuery(queryRequest)
+> CompletableFuture<EntrantCountResponse> exportEntrantsByQuery(queryRequest)
 
 Get entrants by query
 
@@ -45,7 +45,7 @@ public class Example {
         EntrantsApi apiInstance = new EntrantsApi(defaultClient);
         QueryRequest queryRequest = new QueryRequest(); // QueryRequest | 
         try {
-            CompletableFuture<EntrantResponse> result = apiInstance.exportEntrantsByQuery(queryRequest);
+            CompletableFuture<EntrantCountResponse> result = apiInstance.exportEntrantsByQuery(queryRequest);
             System.out.println(result.get());
         } catch (ApiException e) {
             System.err.println("Exception when calling EntrantsApi#exportEntrantsByQuery");
@@ -67,7 +67,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-CompletableFuture<[**EntrantResponse**](EntrantResponse.md)>
+CompletableFuture<[**EntrantCountResponse**](EntrantCountResponse.md)>
 
 
 ### Authorization
@@ -82,19 +82,19 @@ CompletableFuture<[**EntrantResponse**](EntrantResponse.md)>
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | A list of Entrants for the competition/contest and/or errors |  -  |
-| **400** | A list of Entrants for the competition/contest and/or errors |  -  |
-| **401** | A list of Entrants for the competition/contest and/or errors |  -  |
-| **403** | A list of Entrants for the competition/contest and/or errors |  -  |
-| **404** | A list of Entrants for the competition/contest and/or errors |  -  |
-| **413** | A list of Entrants for the competition/contest and/or errors |  -  |
-| **500** | A list of Entrants for the competition/contest and/or errors |  -  |
-| **501** | A list of Entrants for the competition/contest and/or errors |  -  |
-| **503** | A list of Entrants for the competition/contest and/or errors |  -  |
+| **200** | A count of Entrants for the competition/contest to export and/or errors |  -  |
+| **400** | A count of Entrants for the competition/contest to export and/or errors |  -  |
+| **401** | A count of Entrants for the competition/contest to export and/or errors |  -  |
+| **403** | A count of Entrants for the competition/contest to export and/or errors |  -  |
+| **404** | A count of Entrants for the competition/contest to export and/or errors |  -  |
+| **413** | A count of Entrants for the competition/contest to export and/or errors |  -  |
+| **500** | A count of Entrants for the competition/contest to export and/or errors |  -  |
+| **501** | A count of Entrants for the competition/contest to export and/or errors |  -  |
+| **503** | A count of Entrants for the competition/contest to export and/or errors |  -  |
 
 ## exportEntrantsByQueryWithHttpInfo
 
-> CompletableFuture<ApiResponse<EntrantResponse>> exportEntrantsByQuery exportEntrantsByQueryWithHttpInfo(queryRequest)
+> CompletableFuture<ApiResponse<EntrantCountResponse>> exportEntrantsByQuery exportEntrantsByQueryWithHttpInfo(queryRequest)
 
 Get entrants by query
 
@@ -125,7 +125,7 @@ public class Example {
         EntrantsApi apiInstance = new EntrantsApi(defaultClient);
         QueryRequest queryRequest = new QueryRequest(); // QueryRequest | 
         try {
-            CompletableFuture<ApiResponse<EntrantResponse>> response = apiInstance.exportEntrantsByQueryWithHttpInfo(queryRequest);
+            CompletableFuture<ApiResponse<EntrantCountResponse>> response = apiInstance.exportEntrantsByQueryWithHttpInfo(queryRequest);
             System.out.println("Status code: " + response.get().getStatusCode());
             System.out.println("Response headers: " + response.get().getHeaders());
             System.out.println("Response body: " + response.get().getData());
@@ -156,7 +156,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-CompletableFuture<ApiResponse<[**EntrantResponse**](EntrantResponse.md)>>
+CompletableFuture<ApiResponse<[**EntrantCountResponse**](EntrantCountResponse.md)>>
 
 
 ### Authorization
@@ -171,15 +171,15 @@ CompletableFuture<ApiResponse<[**EntrantResponse**](EntrantResponse.md)>>
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | A list of Entrants for the competition/contest and/or errors |  -  |
-| **400** | A list of Entrants for the competition/contest and/or errors |  -  |
-| **401** | A list of Entrants for the competition/contest and/or errors |  -  |
-| **403** | A list of Entrants for the competition/contest and/or errors |  -  |
-| **404** | A list of Entrants for the competition/contest and/or errors |  -  |
-| **413** | A list of Entrants for the competition/contest and/or errors |  -  |
-| **500** | A list of Entrants for the competition/contest and/or errors |  -  |
-| **501** | A list of Entrants for the competition/contest and/or errors |  -  |
-| **503** | A list of Entrants for the competition/contest and/or errors |  -  |
+| **200** | A count of Entrants for the competition/contest to export and/or errors |  -  |
+| **400** | A count of Entrants for the competition/contest to export and/or errors |  -  |
+| **401** | A count of Entrants for the competition/contest to export and/or errors |  -  |
+| **403** | A count of Entrants for the competition/contest to export and/or errors |  -  |
+| **404** | A count of Entrants for the competition/contest to export and/or errors |  -  |
+| **413** | A count of Entrants for the competition/contest to export and/or errors |  -  |
+| **500** | A count of Entrants for the competition/contest to export and/or errors |  -  |
+| **501** | A count of Entrants for the competition/contest to export and/or errors |  -  |
+| **503** | A count of Entrants for the competition/contest to export and/or errors |  -  |
 
 
 ## getEntrantsByQuery

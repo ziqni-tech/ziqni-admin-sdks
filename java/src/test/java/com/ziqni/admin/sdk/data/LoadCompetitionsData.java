@@ -111,7 +111,7 @@ public class LoadCompetitionsData implements CompleteableFutureTestWrapper {
              createContestRequest.setRoundType(RoundType.TIMEBOUND);
              createContestRequest.setRewards(List.of(createRewardRequest));
              createContestRequest.setMinNumberOfEntrants(1);
-             createContestRequest.setStrategies(strategy);
+//             createContestRequest.setStrategies(strategy);
              createContestRequest.setScheduledStartDate(DateUtil.now());
              createContestRequest.setScheduledEndDate(DateUtil.nowPlusDays(1));
              request.setContests(createContestRequest);
@@ -194,7 +194,7 @@ public class LoadCompetitionsData implements CompleteableFutureTestWrapper {
             strategy.setScoringStrategy(scoringStrategy);
             strategy.setStrategyType(StrategyType.FIRSTTO);
 
-            request.setStrategies(strategy);
+//            request.setStrategies(strategy);
         }catch (ApiException ex)
         {
 

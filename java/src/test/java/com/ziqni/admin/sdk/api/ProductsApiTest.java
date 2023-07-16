@@ -24,6 +24,10 @@ import org.junit.jupiter.api.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -45,6 +49,7 @@ public class ProductsApiTest implements tests.utils.CompleteableFutureTestWrappe
     private final LoadActionTypesData loadActionTypesData;
     private final LoadTagsData loadTagsData;
     private final LoadCustomFieldsData loadCustomFieldsData;
+    private final LoadUnitsOfMeasureData loadUnitsOfMeasureData;
 
     private String tagId;
     private String customFieldKey;
@@ -53,6 +58,7 @@ public class ProductsApiTest implements tests.utils.CompleteableFutureTestWrappe
     private final List<String> actionTypesToDelete = new ArrayList<>();
     private final List<String> tagIdsToDelete = new ArrayList<>();
     private final List<String> customFieldIdsToDelete = new ArrayList<>();
+    private final List<String> unitOfMeasureIdsToDelete = new ArrayList<>();
 
     private String actionTypeId;
 
@@ -63,15 +69,21 @@ public class ProductsApiTest implements tests.utils.CompleteableFutureTestWrappe
         this.loadActionTypesData = new LoadActionTypesData();
         this.loadCustomFieldsData = new LoadCustomFieldsData();
         this.loadTagsData = new LoadTagsData();
+        this.loadUnitsOfMeasureData = new LoadUnitsOfMeasureData();
     }
 
     @BeforeAll
-    public void setUp() {
+    public void setUp() throws InterruptedException {
         try {
-            var actionTypeResponse = loadActionTypesData.createTestData(List.of(loadActionTypesData.getCreateRequest()));
+            var unitOfMeasureResp = loadUnitsOfMeasureData.createTestData(loadUnitsOfMeasureData.getCreateRequestAsList(loadUnitsOfMeasureData.getCreateRequest()));
+            var unitOfMeasureId = unitOfMeasureResp.getResults().get(0).getId();
+            Thread.sleep(5000);
+            var actionTypeResponse = loadActionTypesData.createTestData(List.of(loadActionTypesData.getCreateRequest().unitOfMeasure(unitOfMeasureId)));
 
             actionTypeId = actionTypeResponse.getResults().get(0).getId();
             actionTypesToDelete.add(actionTypeId);
+
+            Thread.sleep(5000);
 
             tagId = loadTagsData.getModel();
             customFieldKey = loadCustomFieldsData.getModel(customFieldIdsToDelete, AppliesTo.PRODUCT);
@@ -1378,4 +1390,72 @@ givenMetadata.put(UUID.randomUUID().toString(),"a".repeat(101));
         assertEquals(1, deleteResponse.getMeta().getResultCount(), "Results should contain entry");
         assertEquals(0, deleteResponse.getErrors().size(), "Errors should be empty");
     }
+
+        @Test
+        public void readDataFromCsvAndCreateProductsReturnOkTest() {
+            var resource = getClass().getClassLoader().getResource("game_table.csv");
+
+            List<ProductDetails> records = new ArrayList<>();
+            try (BufferedReader br = new BufferedReader(new FileReader(resource.getFile()))) {
+                String line;
+                while ((line = br.readLine()) != null) {
+                    String[] values = line.split(",");
+                    var prodDet = Arrays.asList(values);
+                    if (prodDet.size() == 4)
+                        records.add(new ProductDetails(prodDet.get(0), prodDet.get(1), prodDet.get(2), prodDet.get(3)));
+                }
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+
+            records.stream().skip(0).forEach(record -> {
+                final var createRequest = loadData.getCreateRequest(actionTypeId)
+                        .name(record.getGameName())
+                        .tags(List.of(record.getGroupName()))
+                        .description(record.getProvider());
+                try {
+                    var response = $(api.createProducts(List.of(createRequest)));
+                    assertNotNull(response);
+                    assertNotNull(response.getResults());
+                    assertNotNull(response.getErrors());
+                    assertEquals(1, response.getResults().size(), "Should contain created entity");
+                    assertNotNull(response.getResults().get(0).getId(), "Created entity should has id");
+
+                } catch (ApiException e) {
+                    throw new RuntimeException(e);
+                }
+            });
+
+        }
+
+        static class ProductDetails {
+
+            private final String gameId;
+            private final String gameName;
+            private final String groupName;
+            private final String provider;
+
+            public ProductDetails(String gameId, String gameName, String groupName, String provider) {
+                this.gameId = gameId;
+                this.gameName = gameName;
+                this.groupName = groupName;
+                this.provider = provider;
+            }
+
+            public String getGameId() {
+                return gameId;
+            }
+
+            public String getGameName() {
+                return gameName;
+            }
+
+            public String getGroupName() {
+                return groupName;
+            }
+
+            public String getProvider() {
+                return provider;
+            }
+        }
 }

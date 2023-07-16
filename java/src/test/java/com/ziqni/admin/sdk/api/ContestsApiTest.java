@@ -1158,7 +1158,7 @@ public class ContestsApiTest implements tests.utils.CompleteableFutureTestWrappe
 
     @Test
     public void createContestEmptyStrategyObjectReturnErrorTest() throws ApiException {
-        final var createRequest = loadData.getCreateRequest(competitionId).strategies(new Strategy());
+        final var createRequest = loadData.getCreateRequest(competitionId).strategies(new TournamentStrategies());
 
         final var response = $(api.createContests(createRequest));
 
