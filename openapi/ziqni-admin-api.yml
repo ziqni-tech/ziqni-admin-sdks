@@ -1,7 +1,7 @@
 openapi: 3.0.2
 info:
   title: ZIQNI Admin API
-  version: 3.0.2
+  version: 3.0.6
   description: Ziqni Application Services are used to manage and configure spaces.
   contact:
     name: Support Team
@@ -7748,6 +7748,37 @@ paths:
       description: >-
         Retrieve ConteEntrants from Ziqni database by unique Contests ID's or any other POST body
         parameters using the POST method
+  /graphs:
+    summary: Structures the connections data as a graph.
+    description: >-
+      The ZIQNI graph data structure consists of a finite (and possibly mutable) set of vertices (also
+      called nodes or points), together with a set of ordered pairs for a directed graph. These pairs
+      are known as edges (also called links or lines), and for a directed graph are also known as edges
+      but also sometimes arrows or arcs whicj are joined using the dependant on must or should within
+      achievements.
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EntityGraphRequest'
+        required: true
+      tags:
+        - graphs
+      responses:
+        '200':
+          $ref: '#/components/responses/EntityGraphResponseBody'
+        '400':
+          $ref: '#/components/responses/EntityGraphResponseBody'
+        '500':
+          $ref: '#/components/responses/EntityGraphResponseBody'
+      security:
+        -
+          OAuth2:
+            - ViewMissions
+      operationId: getGraph
+      summary: Get achievements by member reference id
+      description: Returns a list of graphs based on the entity type.
   /entrants/export:
     summary: Get entrants by query
     description: This operation allows you to get entrants in your project using a query.
@@ -7761,23 +7792,23 @@ paths:
         - entrants
       responses:
         '200':
-          $ref: '#/components/responses/EntrantResponseBody'
+          $ref: '#/components/responses/EntrantCountResponseBody'
         '400':
-          $ref: '#/components/responses/EntrantResponseBody'
+          $ref: '#/components/responses/EntrantCountResponseBody'
         '401':
-          $ref: '#/components/responses/EntrantResponseBody'
+          $ref: '#/components/responses/EntrantCountResponseBody'
         '403':
-          $ref: '#/components/responses/EntrantResponseBody'
+          $ref: '#/components/responses/EntrantCountResponseBody'
         '404':
-          $ref: '#/components/responses/EntrantResponseBody'
+          $ref: '#/components/responses/EntrantCountResponseBody'
         '413':
-          $ref: '#/components/responses/EntrantResponseBody'
+          $ref: '#/components/responses/EntrantCountResponseBody'
         '500':
-          $ref: '#/components/responses/EntrantResponseBody'
+          $ref: '#/components/responses/EntrantCountResponseBody'
         '501':
-          $ref: '#/components/responses/EntrantResponseBody'
+          $ref: '#/components/responses/EntrantCountResponseBody'
         '503':
-          $ref: '#/components/responses/EntrantResponseBody'
+          $ref: '#/components/responses/EntrantCountResponseBody'
       security:
         -
           OAuth2:
@@ -13551,121 +13582,6 @@ components:
         metadata: {}
       x-vue-create: actionType
       x-vue-creator: actionTypes
-    UpdateMemberRequest:
-      description: This is a request for Member update
-      allOf:
-        -
-          $ref: '#/components/schemas/UpdateModelDefault'
-        -
-          $ref: '#/components/schemas/UpdateOptParamModels'
-        -
-          required: []
-          type: object
-          properties:
-            name:
-              description: The name of the member that is used on leader boards and public displays
-              type: string
-              example: Player 1
-            memberType:
-              $ref: '#/components/schemas/MemberType'
-            teamMembers:
-              description: A social group like Guilds
-              type: array
-              items:
-                type: string
-            addConstraints:
-              description: Additional constraints
-              type: array
-              items:
-                type: string
-              example: '- Disabled'
-            removeConstraints:
-              description: Additional constraints
-              type: array
-              items:
-                type: string
-              example: '- Disabled'
-            timeZoneOffset:
-              description: To what time zone teh emmber belongs to
-              type: string
-      example:
-        id: ziqniModelId
-        name: name
-        memberType: Individual
-        teamMembers:
-          - ziqniMemberId
-          - ziqniMemberId
-        addConstraints:
-          - disabled
-        timeZoneOffset: UTC
-        customFields:
-          customField1: customFieldValue1
-          customField2: customFieldValue2
-        metadata:
-          metaKey1: metaValue1
-          metaKey2: metaValue2
-        tags:
-          - ziqniTagId
-          - ziqniTagId
-      x-vue-update: member
-      x-vue-updater: members
-    CreateMemberRequest:
-      description: This is a request for Member creation
-      allOf:
-        -
-          required:
-            - name
-            - memberRefId
-            - memberType
-          type: object
-          properties:
-            name:
-              description: The name of the member that is used on leader boards and public displays
-              type: string
-              example: Player 1
-            memberRefId:
-              description: The reference to this member in your system
-              type: string
-              example: Player-1
-            memberType:
-              $ref: '#/components/schemas/MemberType'
-            teamMembers:
-              description: A social group like Guilds
-              type: array
-              items:
-                type: string
-            addConstraints:
-              description: Additional constraints
-              type: array
-              items:
-                type: string
-              example: '- notifyMember - isMemberAcknowledgmentRequired'
-            timeZoneOffset:
-              description: To what time zone teh emmber belongs to
-              type: string
-        -
-          $ref: '#/components/schemas/CreateOptParamModels'
-      example:
-        name: name
-        memberRefId: memberRefId
-        memberType: Individual
-        teamMembers:
-          - ziqniMemberId
-          - ziqniMemberId
-        addConstraints:
-          - disabled
-        timeZoneOffset: UTC
-        customFields:
-          customField1: customFieldValue1
-          customField2: customFieldValue2
-        metadata:
-          metaKey1: metaValue1
-          metaKey2: metaValue2
-        tags:
-          - ziqniTagId
-          - ziqniTagId
-      x-vue-create: member
-      x-vue-creator: members
     CreateRewardTypeRequest:
       description: This is a request for Reward Type creation
       allOf:
@@ -14132,58 +14048,6 @@ components:
           - some text
           - some text
         metadata: {}
-    UpdateProductRequest:
-      description: This is a request for Product update
-      allOf:
-        -
-          $ref: '#/components/schemas/UpdateModelDefault'
-        -
-          $ref: '#/components/schemas/UpdateOptParamModels'
-        -
-          required: []
-          type: object
-          properties:
-            name:
-              description: The name of the product
-              type: string
-              example: Hockey madness
-            description:
-              description: The description of the product for your reference
-              type: string
-              example: Spin the hockey wheal
-              x-vue-form-type: TEXTAREA
-            adjustmentFactor:
-              format: double
-              description: The multiplier to apply to source values received for this product events
-              type: number
-              example: '1'
-            actionTypeAdjustmentFactors:
-              type: array
-              items:
-                $ref: '#/components/schemas/ActionTypeAdjustmentFactor'
-      example:
-        id: ziqniModelId
-        metadata:
-          key1: value1
-          key2: value
-        tags:
-          - tagId1
-          - tagId2
-        customFields:
-          customField1: customFieldValue1
-          customField2: customFieldValue2
-        name: name
-        description: description
-        adjustmentFactor: 28.55
-        actionTypeAdjustmentFactors:
-          -
-            adjustmentFactor: 67.71
-            actionTypeId: ziqniModelId
-          -
-            adjustmentFactor: 96.91
-            actionTypeId: ziqniModelId
-      x-vue-update: product
-      x-vue-updater: products
     UpdateOptParamModels:
       type: object
       properties:
@@ -15428,6 +15292,15 @@ components:
           type: array
           items:
             type: string
+        languageKey:
+          description: 'The language code to use if none is provided in the member api requests '
+          type: string
+        currencyKey:
+          description: The language key to use if none is provided in the member api requests
+          type: string
+        timeZoneOffset:
+          description: The time zone to use when returning date and time values
+          type: integer
       example:
         apiKey: some text
         isReferenceId: true
@@ -15436,92 +15309,6 @@ components:
           - some text
         member: some text
         expires: 72
-    Member:
-      description: This is the Member model
-      allOf:
-        -
-          $ref: '#/components/schemas/ModelDefault'
-        -
-          $ref: '#/components/schemas/OptParamModels'
-        -
-          required:
-            - name
-            - memberType
-            - memberRefId
-          type: object
-          properties:
-            name:
-              description: The name of the member that is used on leader boards and public displays
-              type: string
-              example: Player 1
-              x-vue-as-string: true
-              x-vue-search-all: true
-              x-vue-search-field: true
-              x-vue-disaply-order: 1001
-            memberRefId:
-              description: The reference to this member in your system
-              type: string
-              example: Player-1
-              x-vue-search-all: true
-              x-vue-search-field: true
-              x-vue-disaply-order: 1000
-            memberType:
-              $ref: '#/components/schemas/MemberType'
-              x-vue-disaply-order: 1002
-            teamMembers:
-              description: A social group like Guilds
-              type: array
-              items:
-                type: string
-              x-vue-hidden: true
-              x-vue-disaply-order: 1003
-            constraints:
-              description: Additional constraints
-              type: array
-              items:
-                type: string
-              x-vue-search-field: true
-              x-vue-disaply-order: 1006
-              x-vue-constraint: true
-              x-vue-constraint-options:
-                - Disabled
-            timeZoneOffset:
-              description: The timezone offset from UTC to use for this member
-              type: string
-              x-vue-search-field: true
-              x-vue-disaply-order: 1005
-      example:
-        id: ziqniModelId
-        spaceName: ziqniModelSpaceName
-        created: '2018-02-10T09:30Z'
-        name: name
-        memberRefId: memberRefId
-        memberType: Individual
-        teamMembers:
-          - ziqniMemberId
-          - ziqniMemberId
-        constraints:
-          - disabled
-        timeZoneOffset: UTC
-        customFields:
-          customField1: customFieldValue1
-          customField2: customFieldValue2
-        tags:
-          - ziqniTagId
-          - ziqniTagId
-        metadata:
-          key1: value1
-          key2: value
-      x-vue-list: true
-      x-vue-show: true
-      x-vue-getter: members
-      x-vue-csv-supported: true
-      x-vue-sort-by: name
-      x-vue-sort-order: Asc
-      x-vue-limit: 10
-      x-vue-ops:
-        - Create
-        - Update
     Contest:
       allOf:
         -
@@ -17188,212 +16975,6 @@ components:
               type: array
               items:
                 type: string
-    Product:
-      description: This is the Product model
-      allOf:
-        -
-          $ref: '#/components/schemas/ModelDefault'
-        -
-          $ref: '#/components/schemas/OptParamModels'
-        -
-          required:
-            - name
-            - adjustmentFactor
-            - productRefId
-          type: object
-          properties:
-            name:
-              description: The name of the product
-              type: string
-              example: Hockey madness
-              x-vue-as-string: true
-              x-vue-translatable: true
-              x-vue-sortable: true
-              x-vue-search-all: true
-              x-vue-search-field: true
-              x-vue-disaply-order: 1001
-            description:
-              description: The description of the product for your reference
-              type: string
-              example: Spin the hockey wheal
-              x-vue-form-type: TEXTAREA
-              x-vue-as-string: false
-              x-vue-translatable: true
-              x-vue-sortable: true
-              x-vue-hidden: true
-              x-vue-search-all: true
-              x-vue-search-field: true
-              x-vue-disaply-order: 1002
-            adjustmentFactor:
-              format: double
-              description: The multiplier to apply to source values received for this product events
-              type: number
-              example: '1'
-              x-vue-search-field: true
-              x-vue-sortable: true
-              x-vue-disaply-order: 1003
-            productRefId:
-              description: >-
-                The reference to this product in your system. The reference identifier can not
-                be changed after the product has been created
-              type: string
-              example: hockey-madness
-              x-vue-search-all: true
-              x-vue-search-field: true
-              x-vue-sortable: true
-              x-vue-disaply-order: 1000
-            productType:
-              description: The type to this product in your system.
-              type: string
-              example: hockey-madness
-              x-vue-search-all: true
-              x-vue-search-field: true
-              x-vue-sortable: true
-              x-vue-disaply-order: 1005
-            actionTypeAdjustmentFactors:
-              type: array
-              items:
-                $ref: '#/components/schemas/ActionTypeAdjustmentFactor'
-              x-vue-hidden: true
-              x-vue-disaply-order: 1004
-      example:
-        id: someText
-        spaceName: someText
-        created: '2018-02-10T09:30Z'
-        productRefId: '10002'
-        name: test1
-        adjustmentFactor: '1'
-        actionTypeAdjustmentFactors:
-          -
-            adjustmentFactor: 67.71
-            actionTypeId: ziqniModelId
-          -
-            adjustmentFactor: 96.91
-            actionTypeId: ziqniModelId
-        customFields:
-          customField1: customFieldValue1
-          customField2: customFieldValue2
-        metadata:
-          key1: value1
-          key2: value
-        tags:
-          - tagId1
-          - tagId2
-        translations:
-          -
-            languageKey: csb
-            translations:
-              -
-                fieldName: name
-                text: test1
-          -
-            languageKey: den
-            translations:
-              -
-                fieldName: name
-                text: test-temp
-          -
-            languageKey: kmb
-            translations:
-              -
-                fieldName: name
-                text: Level-Up
-      x-vue-list: true
-      x-vue-show: true
-      x-vue-getter: products
-      x-vue-csv-supported: true
-      x-vue-sort-by: name
-      x-vue-sort-order: Asc
-      x-vue-limit: 10
-      x-vue-ops:
-        - Create
-        - Update
-    CreateProductRequest:
-      description: This is a request for Product creation
-      allOf:
-        -
-          $ref: '#/components/schemas/CreateOptParamModels'
-        -
-          required:
-            - name
-            - adjustmentFactor
-            - productRefId
-          type: object
-          properties:
-            name:
-              description: The name of the product
-              type: string
-              example: Hockey madness
-            description:
-              description: The description of the product for your reference
-              type: string
-              example: Spin the hockey wheal
-              x-vue-form-type: TEXTAREA
-            adjustmentFactor:
-              format: double
-              description: The multiplier to apply to source values received for this product events
-              type: number
-              example: '1'
-            productRefId:
-              description: >-
-                The reference to this product in your system. The reference identifier can not
-                be changed after the product has been created
-              type: string
-              example: hockey-madness
-            productType:
-              description: The type to this product in your system.
-              type: string
-              example: hockey-madness
-            actionTypeAdjustmentFactors:
-              type: array
-              items:
-                $ref: '#/components/schemas/ActionTypeAdjustmentFactor'
-            translations:
-              type: array
-              items:
-                $ref: '#/components/schemas/Translation'
-      example:
-        productRefId: '10002'
-        name: test1
-        description: description
-        adjustmentFactor: '1'
-        actionTypeAdjustmentFactors:
-          -
-            adjustmentFactor: 67.71
-            actionTypeId: ziqniModelId
-          -
-            adjustmentFactor: 96.91
-            actionTypeId: ziqniModelId
-        customFields:
-          customField1: customFieldValue1
-          customField2: customFieldValue2
-        metadata:
-          key1: value1
-          key2: value
-        tags:
-          - tagId1
-          - tagId2
-        translations:
-          -
-            languageKey: csb
-            translations:
-              -
-                fieldName: name
-                text: test1
-          -
-            languageKey: den
-            translations:
-              -
-                fieldName: name
-                text: test-temp
-          -
-            languageKey: kmb
-            translations:
-              -
-                fieldName: name
-                text: Level-Up
-      x-vue-create: product
-      x-vue-creator: products
     EntityGraphRequest:
       description: ''
       required:
@@ -17511,9 +17092,6 @@ components:
         percentageComplete:
           description: 'What percentage has been completed so far, this is a number between 0 and 100'
           type: number
-    EntityGraphEdgeType:
-      description: ''
-      type: object
     CreateCustomFieldRequest:
       description: Request to create custom fields
       required:
@@ -17605,8 +17183,6 @@ components:
         - LessThan
         - LessThanEquals
         - Between
-        - Average
-        - AverageBetween
       type: string
     TournamentStrategies:
       required:
@@ -17628,6 +17204,302 @@ components:
       properties:
         pointsStrategy:
           $ref: '#/components/schemas/PointsStrategy'
+    PointsStrategy:
+      description: The target points to achieve
+      required:
+        - TargetType
+        - TargetPoints
+        - pointsValueMin
+        - operator
+        - context
+        - action
+      type: object
+      properties:
+        operator:
+          $ref: '#/components/schemas/ConditionalOperator'
+          description: The operator
+        pointsValueUpper:
+          description: >-
+            The upper points to achieve. This is only used where secondary number are required
+            like, between, or average between
+          type: number
+        pointsValue:
+          description: The points to achieve
+          type: number
+        context:
+          description: 'The context this strategy is bound to, like: achievement'
+          type: string
+        action:
+          description: 'The action this strategy is bound to, like: achievement.points'
+          type: string
+    EntityGraph:
+      description: ''
+      required:
+        - links
+      type: object
+      properties:
+        edges:
+          description: Pairs of nodes that specify a line joining these two nodes are said to form an edge
+          type: array
+          items:
+            $ref: '#/components/schemas/EntityGraphEdge'
+        nodesInCompletedState:
+          format: int32
+          description: Nodes in this graph that are in state greater than 35
+          type: integer
+    EntityGraphEdge:
+      description: ''
+      required:
+        - ordering
+      type: object
+      properties:
+        ordering:
+          description: ''
+          type: integer
+        constraints:
+          description: ''
+          type: array
+          items:
+            type: string
+        tailEntityId:
+          description: 'X the tail of the edge '
+          type: string
+        headEntityId:
+          description: Y the head of the edge.
+          type: string
+        graphEdgeType:
+          $ref: '#/components/schemas/EntityGraphEdgeType'
+          description: ''
+    EntityGraphResponse:
+      description: '        '
+      required: []
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/MetaExtended'
+          description: ''
+        data:
+          $ref: '#/components/schemas/EntityGraphResult'
+          description: ''
+        errors:
+          description: ''
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
+    EntityGraphResult:
+      description: ''
+      required:
+        - nodes
+        - links
+      type: object
+      properties:
+        nodes:
+          description: ''
+          type: array
+          items:
+            $ref: '#/components/schemas/EntityGraphNode'
+        graphs:
+          description: ''
+          type: array
+          items:
+            $ref: '#/components/schemas/EntityGraph'
+    EntrantCountResponse:
+      required:
+        - numberOfRecords
+        - downloadUrl
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
+        numberOfRecords:
+          type: integer
+        downloadUrl:
+          type: string
+    EntrantExport:
+      required:
+        - accountId
+        - bestScores
+        - goalReached
+        - markerTimeStamp
+        - participationId
+        - timestamp
+        - updateCount
+        - id
+      type: object
+      properties:
+        memberId:
+          type: string
+        memberRefId:
+          type: string
+        name:
+          type: string
+        points:
+          description: double
+          type: number
+        rank:
+          format: int32
+          description: integer
+          type: integer
+        groups:
+          type: array
+          items:
+            type: string
+        rewards:
+          description: Rewards
+          type: array
+          items:
+            $ref: '#/components/schemas/Reward'
+    CreateAchievementRequest:
+      allOf:
+        -
+          $ref: '#/components/schemas/CreateOptParamModels'
+        -
+          required:
+            - name
+            - ruleSets
+            - scheduling
+            - constraints
+          type: object
+          properties:
+            name:
+              description: A name for the Achievement. Can be translated
+              type: string
+              example: Welcome badge
+            description:
+              description: A name for the Achievement. Can be translated
+              type: string
+              example: A Badge to welcome you on board
+            termsAndConditions:
+              description: Terms and conditions of an achievement. Can be translated
+              type: string
+              example: Participate to win
+            icon:
+              description: An Icon id that has been pre uploaded to the system to display for Achievement
+              type: string
+              example: Dc4swmQBVd51K6gPQqFx
+            rules:
+              type: array
+              items:
+                $ref: '#/components/schemas/Rule'
+            scheduling:
+              $ref: '#/components/schemas/Scheduling'
+            maxNumberOfIssues:
+              format: int32
+              description: Maximum number of issued achievements
+              type: integer
+              example: '9999'
+            translations:
+              type: array
+              items:
+                $ref: '#/components/schemas/Translation'
+            rewards:
+              type: array
+              items:
+                $ref: '#/components/schemas/CreateRewardRequest'
+            constraints:
+              deprecated: true
+              description: Additional constraints
+              type: array
+              items:
+                type: string
+              example: '- notifyMember - isHidden - deprecated - optinRequiredForEntrants'
+            achievementDependencies:
+              $ref: '#/components/schemas/DependantOn'
+            memberTagsFilter:
+              $ref: '#/components/schemas/DependantOn'
+              description: ''
+            productIds:
+              description: ''
+              type: array
+              items:
+                type: string
+            productTagsFilter:
+              $ref: '#/components/schemas/DependantOn'
+              description: ''
+            addConstraints:
+              description: ''
+              type: array
+              items:
+                type: string
+            strategies:
+              $ref: '#/components/schemas/AchievementStrategies'
+              description: The target to reach in order to receive this achievement
+      x-vue-create: achievement
+      x-vue-creator: achievements
+      x-vue-rules: true
+    UpdateAchievementRequest:
+      allOf:
+        -
+          $ref: '#/components/schemas/UpdateModelDefault'
+        -
+          $ref: '#/components/schemas/UpdateOptParamModels'
+        -
+          required: []
+          type: object
+          properties:
+            name:
+              description: A name for the Achievement. Can be translated
+              type: string
+              example: Welcome badge
+            description:
+              description: A name for the Achievement. Can be translated
+              type: string
+              example: A Badge to welcome you on board
+            termsAndConditions:
+              description: Terms and conditions of an achievement. Can be translated
+              type: string
+              example: Participate to win
+            icon:
+              description: An Icon id that has been pre uploaded to the system to display for Achievement
+              type: string
+              example: Dc4swmQBVd51K6gPQqFx
+            scheduling:
+              $ref: '#/components/schemas/Scheduling'
+            achievementLiveStatus:
+              $ref: '#/components/schemas/AchievementLiveStatus'
+            maxNumberOfIssues:
+              format: int32
+              description: Maximum number of issued achievements
+              type: integer
+              example: '9999'
+            constraints:
+              deprecated: true
+              description: Additional constraints
+              type: array
+              items:
+                type: string
+              example: '- notifyMember - isHidden - deprecated - optinRequiredForEntrants'
+            achievementDependencies:
+              $ref: '#/components/schemas/DependantOn'
+            memberTagsFilter:
+              $ref: '#/components/schemas/DependantOn'
+              description: ''
+            productIds:
+              description: ''
+              type: array
+              items:
+                type: string
+            productTagsFilter:
+              $ref: '#/components/schemas/DependantOn'
+              description: ''
+            addConstraints:
+              description: ''
+              type: array
+              items:
+                type: string
+            removeConstraints:
+              description: ''
+              type: array
+              items:
+                type: string
+            strategies:
+              $ref: '#/components/schemas/AchievementStrategies'
+              description: The target to reach in order to receive this achievement
+      x-vue-update: achievement
+      x-vue-updater: achievements
+      x-vue-object-type: achievement
     Achievement:
       allOf:
         -
@@ -17713,6 +17585,12 @@ components:
             memberTagsFilter:
               $ref: '#/components/schemas/DependantOn'
               description: ''
+            products:
+              description: ''
+              type: array
+              items:
+                $ref: '#/components/schemas/ProductReduced'
+              x-vue-disaply-order: 1006
             productTagsFilter:
               $ref: '#/components/schemas/DependantOn'
               description: ''
@@ -17734,7 +17612,235 @@ components:
         - Rewards
         - Awards
         - Events
-    UpdateAchievementRequest:
+    EntityGraphEdgeType:
+      description: The type of link
+      enum:
+        - ROOT
+        - MUST
+        - SHOULD
+        - MUST_NOT
+        - UNKNOWN
+        - BROKEN
+      type: string
+      readOnly: true
+    Member:
+      description: This is the Member model
+      allOf:
+        -
+          $ref: '#/components/schemas/ModelDefault'
+        -
+          $ref: '#/components/schemas/OptParamModels'
+        -
+          required:
+            - name
+            - memberType
+            - memberRefId
+          type: object
+          properties:
+            name:
+              description: The name of the member that is used on leader boards and public displays
+              type: string
+              example: Player 1
+              x-vue-as-string: true
+              x-vue-search-all: true
+              x-vue-search-field: true
+              x-vue-disaply-order: 1001
+            memberRefId:
+              description: The reference to this member in your system
+              type: string
+              example: Player-1
+              x-vue-search-all: true
+              x-vue-search-field: true
+              x-vue-disaply-order: 1000
+            memberType:
+              $ref: '#/components/schemas/MemberType'
+              x-vue-disaply-order: 1002
+            icon:
+              description: An Icon id that has been pre uploaded to the system to display for Member
+              type: string
+              x-vue-hidden: true
+              x-vue-disaply-order: 1007
+            teamMembers:
+              description: A social group like Guilds
+              type: array
+              items:
+                type: string
+              x-vue-hidden: true
+              x-vue-disaply-order: 1003
+            constraints:
+              description: Additional constraints
+              type: array
+              items:
+                type: string
+              x-vue-search-field: true
+              x-vue-disaply-order: 1006
+              x-vue-constraint: true
+              x-vue-constraint-options:
+                - Disabled
+            timeZoneOffset:
+              description: The timezone offset from UTC to use for this member
+              type: string
+              x-vue-search-field: true
+              x-vue-disaply-order: 1005
+      example:
+        id: ziqniModelId
+        spaceName: ziqniModelSpaceName
+        created: '2018-02-10T09:30Z'
+        name: name
+        memberRefId: memberRefId
+        memberType: Individual
+        teamMembers:
+          - ziqniMemberId
+          - ziqniMemberId
+        constraints:
+          - disabled
+        timeZoneOffset: UTC
+        customFields:
+          customField1: customFieldValue1
+          customField2: customFieldValue2
+        tags:
+          - ziqniTagId
+          - ziqniTagId
+        metadata:
+          key1: value1
+          key2: value
+      x-vue-list: true
+      x-vue-show: true
+      x-vue-getter: members
+      x-vue-csv-supported: true
+      x-vue-sort-by: name
+      x-vue-sort-order: Asc
+      x-vue-limit: 10
+      x-vue-ops:
+        - Create
+        - Update
+    Product:
+      description: This is the Product model
+      allOf:
+        -
+          $ref: '#/components/schemas/ModelDefault'
+        -
+          $ref: '#/components/schemas/OptParamModels'
+        -
+          required:
+            - name
+            - adjustmentFactor
+            - productRefId
+          type: object
+          properties:
+            name:
+              description: The name of the product
+              type: string
+              example: Hockey madness
+              x-vue-as-string: true
+              x-vue-translatable: true
+              x-vue-sortable: true
+              x-vue-search-all: true
+              x-vue-search-field: true
+              x-vue-disaply-order: 1001
+            description:
+              description: The description of the product for your reference
+              type: string
+              example: Spin the hockey wheal
+              x-vue-form-type: TEXTAREA
+              x-vue-as-string: false
+              x-vue-translatable: true
+              x-vue-sortable: true
+              x-vue-hidden: true
+              x-vue-search-all: true
+              x-vue-search-field: true
+              x-vue-disaply-order: 1002
+            adjustmentFactor:
+              format: double
+              description: The multiplier to apply to source values received for this product events
+              type: number
+              example: '1'
+              x-vue-search-field: true
+              x-vue-sortable: true
+              x-vue-disaply-order: 1003
+            productRefId:
+              description: >-
+                The reference to this product in your system. The reference identifier can not
+                be changed after the product has been created
+              type: string
+              example: hockey-madness
+              x-vue-search-all: true
+              x-vue-search-field: true
+              x-vue-sortable: true
+              x-vue-disaply-order: 1000
+            productType:
+              description: The type to this product in your system.
+              type: string
+              example: hockey-madness
+              x-vue-search-all: true
+              x-vue-search-field: true
+              x-vue-sortable: true
+              x-vue-disaply-order: 1005
+            actionTypeAdjustmentFactors:
+              type: array
+              items:
+                $ref: '#/components/schemas/ActionTypeAdjustmentFactor'
+              x-vue-hidden: true
+              x-vue-disaply-order: 1004
+            icon:
+              description: An Icon id that has been pre uploaded to the system to display for Product
+              type: string
+              x-vue-hidden: true
+              x-vue-disaply-order: 1006
+      example:
+        id: someText
+        spaceName: someText
+        created: '2018-02-10T09:30Z'
+        productRefId: '10002'
+        name: test1
+        adjustmentFactor: '1'
+        actionTypeAdjustmentFactors:
+          -
+            adjustmentFactor: 67.71
+            actionTypeId: ziqniModelId
+          -
+            adjustmentFactor: 96.91
+            actionTypeId: ziqniModelId
+        customFields:
+          customField1: customFieldValue1
+          customField2: customFieldValue2
+        metadata:
+          key1: value1
+          key2: value
+        tags:
+          - tagId1
+          - tagId2
+        translations:
+          -
+            languageKey: csb
+            translations:
+              -
+                fieldName: name
+                text: test1
+          -
+            languageKey: den
+            translations:
+              -
+                fieldName: name
+                text: test-temp
+          -
+            languageKey: kmb
+            translations:
+              -
+                fieldName: name
+                text: Level-Up
+      x-vue-list: true
+      x-vue-show: true
+      x-vue-getter: products
+      x-vue-csv-supported: true
+      x-vue-sort-by: name
+      x-vue-sort-order: Asc
+      x-vue-limit: 10
+      x-vue-ops:
+        - Create
+        - Update
+    UpdateProductRequest:
+      description: This is a request for Product update
       allOf:
         -
           $ref: '#/components/schemas/UpdateModelDefault'
@@ -17745,154 +17851,263 @@ components:
           type: object
           properties:
             name:
-              description: A name for the Achievement. Can be translated
+              description: The name of the product
               type: string
-              example: Welcome badge
+              example: Hockey madness
             description:
-              description: A name for the Achievement. Can be translated
+              description: The description of the product for your reference
               type: string
-              example: A Badge to welcome you on board
-            termsAndConditions:
-              description: Terms and conditions of an achievement. Can be translated
-              type: string
-              example: Participate to win
+              example: Spin the hockey wheal
+              x-vue-form-type: TEXTAREA
             icon:
-              description: An Icon id that has been pre uploaded to the system to display for Achievement
+              description: An Icon id that has been pre uploaded to the system to display for Product
               type: string
               example: Dc4swmQBVd51K6gPQqFx
-            scheduling:
-              $ref: '#/components/schemas/Scheduling'
-            achievementLiveStatus:
-              $ref: '#/components/schemas/AchievementLiveStatus'
-            maxNumberOfIssues:
-              format: int32
-              description: Maximum number of issued achievements
-              type: integer
-              example: '9999'
-            constraints:
-              deprecated: true
+            adjustmentFactor:
+              format: double
+              description: The multiplier to apply to source values received for this product events
+              type: number
+              example: '1'
+            actionTypeAdjustmentFactors:
+              type: array
+              items:
+                $ref: '#/components/schemas/ActionTypeAdjustmentFactor'
+      example:
+        id: ziqniModelId
+        metadata:
+          key1: value1
+          key2: value
+        tags:
+          - tagId1
+          - tagId2
+        customFields:
+          customField1: customFieldValue1
+          customField2: customFieldValue2
+        name: name
+        description: description
+        adjustmentFactor: 28.55
+        actionTypeAdjustmentFactors:
+          -
+            adjustmentFactor: 67.71
+            actionTypeId: ziqniModelId
+          -
+            adjustmentFactor: 96.91
+            actionTypeId: ziqniModelId
+      x-vue-update: product
+      x-vue-updater: products
+    UpdateMemberRequest:
+      description: This is a request for Member update
+      allOf:
+        -
+          $ref: '#/components/schemas/UpdateModelDefault'
+        -
+          $ref: '#/components/schemas/UpdateOptParamModels'
+        -
+          required: []
+          type: object
+          properties:
+            name:
+              description: The name of the member that is used on leader boards and public displays
+              type: string
+              example: Player 1
+            memberType:
+              $ref: '#/components/schemas/MemberType'
+            teamMembers:
+              description: A social group like Guilds
+              type: array
+              items:
+                type: string
+            icon:
+              description: An Icon id that has been pre uploaded to the system to display for Member
+              type: string
+              example: Dc4swmQBVd51K6gPQqFx
+            addConstraints:
               description: Additional constraints
               type: array
               items:
                 type: string
-              example: '- notifyMember - isHidden - deprecated - optinRequiredForEntrants'
-            achievementDependencies:
-              $ref: '#/components/schemas/DependantOn'
-            memberTagsFilter:
-              $ref: '#/components/schemas/DependantOn'
-              description: ''
-            productTagsFilter:
-              $ref: '#/components/schemas/DependantOn'
-              description: ''
-            addConstraints:
-              description: ''
-              type: array
-              items:
-                type: string
+              example: '- Disabled'
             removeConstraints:
-              description: ''
+              description: Additional constraints
               type: array
               items:
                 type: string
-            strategies:
-              $ref: '#/components/schemas/AchievementStrategies'
-              description: The target to reach in order to receive this achievement
-      x-vue-update: achievement
-      x-vue-updater: achievements
-      x-vue-object-type: achievement
-    CreateAchievementRequest:
+              example: '- Disabled'
+            timeZoneOffset:
+              description: To what time zone teh emmber belongs to
+              type: string
+      example:
+        id: ziqniModelId
+        name: name
+        memberType: Individual
+        teamMembers:
+          - ziqniMemberId
+          - ziqniMemberId
+        addConstraints:
+          - disabled
+        timeZoneOffset: UTC
+        customFields:
+          customField1: customFieldValue1
+          customField2: customFieldValue2
+        metadata:
+          metaKey1: metaValue1
+          metaKey2: metaValue2
+        tags:
+          - ziqniTagId
+          - ziqniTagId
+      x-vue-update: member
+      x-vue-updater: members
+    CreateMemberRequest:
+      description: This is a request for Member creation
+      allOf:
+        -
+          required:
+            - name
+            - memberRefId
+            - memberType
+          type: object
+          properties:
+            name:
+              description: The name of the member that is used on leader boards and public displays
+              type: string
+              example: Player 1
+            memberRefId:
+              description: The reference to this member in your system
+              type: string
+              example: Player-1
+            memberType:
+              $ref: '#/components/schemas/MemberType'
+            icon:
+              description: An Icon id that has been pre uploaded to the system to display for Member
+              type: string
+              example: Dc4swmQBVd51K6gPQqFx
+            teamMembers:
+              description: A social group like Guilds
+              type: array
+              items:
+                type: string
+            addConstraints:
+              description: Additional constraints
+              type: array
+              items:
+                type: string
+              example: '- notifyMember - isMemberAcknowledgmentRequired'
+            timeZoneOffset:
+              description: To what time zone teh emmber belongs to
+              type: string
+        -
+          $ref: '#/components/schemas/CreateOptParamModels'
+      example:
+        name: name
+        memberRefId: memberRefId
+        memberType: Individual
+        teamMembers:
+          - ziqniMemberId
+          - ziqniMemberId
+        addConstraints:
+          - disabled
+        timeZoneOffset: UTC
+        customFields:
+          customField1: customFieldValue1
+          customField2: customFieldValue2
+        metadata:
+          metaKey1: metaValue1
+          metaKey2: metaValue2
+        tags:
+          - ziqniTagId
+          - ziqniTagId
+      x-vue-create: member
+      x-vue-creator: members
+    CreateProductRequest:
+      description: This is a request for Product creation
       allOf:
         -
           $ref: '#/components/schemas/CreateOptParamModels'
         -
           required:
             - name
-            - ruleSets
-            - scheduling
-            - constraints
+            - adjustmentFactor
+            - productRefId
           type: object
           properties:
             name:
-              description: A name for the Achievement. Can be translated
+              description: The name of the product
               type: string
-              example: Welcome badge
+              example: Hockey madness
             description:
-              description: A name for the Achievement. Can be translated
+              description: The description of the product for your reference
               type: string
-              example: A Badge to welcome you on board
-            termsAndConditions:
-              description: Terms and conditions of an achievement. Can be translated
-              type: string
-              example: Participate to win
+              example: Spin the hockey wheal
+              x-vue-form-type: TEXTAREA
+            adjustmentFactor:
+              format: double
+              description: The multiplier to apply to source values received for this product events
+              type: number
+              example: '1'
             icon:
-              description: An Icon id that has been pre uploaded to the system to display for Achievement
+              description: An Icon id that has been pre uploaded to the system to display for Product
               type: string
               example: Dc4swmQBVd51K6gPQqFx
-            rules:
+            productRefId:
+              description: >-
+                The reference to this product in your system. The reference identifier can not
+                be changed after the product has been created
+              type: string
+              example: hockey-madness
+            productType:
+              description: The type to this product in your system.
+              type: string
+              example: hockey-madness
+            actionTypeAdjustmentFactors:
               type: array
               items:
-                $ref: '#/components/schemas/Rule'
-            scheduling:
-              $ref: '#/components/schemas/Scheduling'
-            maxNumberOfIssues:
-              format: int32
-              description: Maximum number of issued achievements
-              type: integer
-              example: '9999'
+                $ref: '#/components/schemas/ActionTypeAdjustmentFactor'
             translations:
               type: array
               items:
                 $ref: '#/components/schemas/Translation'
-            rewards:
-              type: array
-              items:
-                $ref: '#/components/schemas/CreateRewardRequest'
-            constraints:
-              deprecated: true
-              description: Additional constraints
-              type: array
-              items:
-                type: string
-              example: '- notifyMember - isHidden - deprecated - optinRequiredForEntrants'
-            achievementDependencies:
-              $ref: '#/components/schemas/DependantOn'
-            memberTagsFilter:
-              $ref: '#/components/schemas/DependantOn'
-              description: ''
-            productTagsFilter:
-              $ref: '#/components/schemas/DependantOn'
-              description: ''
-            addConstraints:
-              description: ''
-              type: array
-              items:
-                type: string
-            strategies:
-              $ref: '#/components/schemas/AchievementStrategies'
-              description: The target to reach in order to receive this achievement
-      x-vue-create: achievement
-      x-vue-creator: achievements
-      x-vue-rules: true
-    PointsStrategy:
-      description: The target points to achieve
-      required:
-        - TargetType
-        - TargetPoints
-        - pointsValueMin
-        - operator
-      type: object
-      properties:
-        operator:
-          $ref: '#/components/schemas/ConditionalOperator'
-          description: The operator
-        pointsValueUpper:
-          description: >-
-            The upper points to achieve. This is only used where secondary number are required
-            like, between, or average between
-          type: number
-        pointsValue:
-          description: The points to achieve
-          type: number
+      example:
+        productRefId: '10002'
+        name: test1
+        description: description
+        adjustmentFactor: '1'
+        actionTypeAdjustmentFactors:
+          -
+            adjustmentFactor: 67.71
+            actionTypeId: ziqniModelId
+          -
+            adjustmentFactor: 96.91
+            actionTypeId: ziqniModelId
+        customFields:
+          customField1: customFieldValue1
+          customField2: customFieldValue2
+        metadata:
+          key1: value1
+          key2: value
+        tags:
+          - tagId1
+          - tagId2
+        translations:
+          -
+            languageKey: csb
+            translations:
+              -
+                fieldName: name
+                text: test1
+          -
+            languageKey: den
+            translations:
+              -
+                fieldName: name
+                text: test-temp
+          -
+            languageKey: kmb
+            translations:
+              -
+                fieldName: name
+                text: Level-Up
+      x-vue-create: product
+      x-vue-creator: products
   responses:
     ApiResponseBody:
       content:
@@ -18991,6 +19206,18 @@ components:
             Example:
               $ref: '#/components/examples/GetErrorResponse'
       description: A list of log events and/or errors
+    EntityGraphResponseBody:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/EntityGraphResponse'
+      description: ''
+    EntrantCountResponseBody:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/EntrantCountResponse'
+      description: A count of Entrants for the competition/contest to export and/or errors
   parameters:
     spaceName:
       name: spaceName

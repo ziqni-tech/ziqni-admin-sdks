@@ -14,6 +14,9 @@ Name | Type | Description | Notes
 **expires** | **Integer** | The number of minutes this token will be valid for. If left blank the token will only be valid for 30 minutes |  [optional]
 **resource** | **String** | This will be ziqni-gapi or similar | 
 **disabledServices** | **List&lt;String&gt;** | A list of services to be disabled for this web token  |  [optional]
+**languageKey** | **String** | The language code to use if none is provided in the member api requests  |  [optional]
+**currencyKey** | **String** | The language key to use if none is provided in the member api requests |  [optional]
+**timeZoneOffset** | **Integer** | The time zone to use when returning date and time values |  [optional]
 
 
 

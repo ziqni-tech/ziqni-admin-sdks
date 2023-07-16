@@ -1,14 +1,14 @@
 
 
-# KafkaConnectionResponse
+# EntityGraphResponse
 
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**meta** | [**MetaExtended**](MetaExtended.md) |  | 
-**results** | [**List&lt;KafkaConnection&gt;**](KafkaConnection.md) |  |  [optional]
+**meta** | [**MetaExtended**](MetaExtended.md) |  |  [optional]
+**data** | [**EntityGraphResult**](EntityGraphResult.md) |  |  [optional]
 **errors** | [**List&lt;Error&gt;**](Error.md) |  |  [optional]
 
 
