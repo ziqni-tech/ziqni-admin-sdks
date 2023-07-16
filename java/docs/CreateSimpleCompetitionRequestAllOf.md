@@ -23,7 +23,7 @@ Name | Type | Description | Notes
 **productIds** | **List&lt;String&gt;** |  | 
 **entrantMemberTagsFilter** | [**DependantOn**](DependantOn.md) |  |  [optional]
 **productTagsFilter** | [**DependantOn**](DependantOn.md) |  |  [optional]
-**strategies** | [**Strategy**](Strategy.md) |  |  [optional]
+**strategies** | [**TournamentStrategies**](TournamentStrategies.md) |  |  [optional]
 
 
 
