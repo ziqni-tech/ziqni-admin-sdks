@@ -13582,121 +13582,6 @@ components:
         metadata: {}
       x-vue-create: actionType
       x-vue-creator: actionTypes
-    UpdateMemberRequest:
-      description: This is a request for Member update
-      allOf:
-        -
-          $ref: '#/components/schemas/UpdateModelDefault'
-        -
-          $ref: '#/components/schemas/UpdateOptParamModels'
-        -
-          required: []
-          type: object
-          properties:
-            name:
-              description: The name of the member that is used on leader boards and public displays
-              type: string
-              example: Player 1
-            memberType:
-              $ref: '#/components/schemas/MemberType'
-            teamMembers:
-              description: A social group like Guilds
-              type: array
-              items:
-                type: string
-            addConstraints:
-              description: Additional constraints
-              type: array
-              items:
-                type: string
-              example: '- Disabled'
-            removeConstraints:
-              description: Additional constraints
-              type: array
-              items:
-                type: string
-              example: '- Disabled'
-            timeZoneOffset:
-              description: To what time zone teh emmber belongs to
-              type: string
-      example:
-        id: ziqniModelId
-        name: name
-        memberType: Individual
-        teamMembers:
-          - ziqniMemberId
-          - ziqniMemberId
-        addConstraints:
-          - disabled
-        timeZoneOffset: UTC
-        customFields:
-          customField1: customFieldValue1
-          customField2: customFieldValue2
-        metadata:
-          metaKey1: metaValue1
-          metaKey2: metaValue2
-        tags:
-          - ziqniTagId
-          - ziqniTagId
-      x-vue-update: member
-      x-vue-updater: members
-    CreateMemberRequest:
-      description: This is a request for Member creation
-      allOf:
-        -
-          required:
-            - name
-            - memberRefId
-            - memberType
-          type: object
-          properties:
-            name:
-              description: The name of the member that is used on leader boards and public displays
-              type: string
-              example: Player 1
-            memberRefId:
-              description: The reference to this member in your system
-              type: string
-              example: Player-1
-            memberType:
-              $ref: '#/components/schemas/MemberType'
-            teamMembers:
-              description: A social group like Guilds
-              type: array
-              items:
-                type: string
-            addConstraints:
-              description: Additional constraints
-              type: array
-              items:
-                type: string
-              example: '- notifyMember - isMemberAcknowledgmentRequired'
-            timeZoneOffset:
-              description: To what time zone teh emmber belongs to
-              type: string
-        -
-          $ref: '#/components/schemas/CreateOptParamModels'
-      example:
-        name: name
-        memberRefId: memberRefId
-        memberType: Individual
-        teamMembers:
-          - ziqniMemberId
-          - ziqniMemberId
-        addConstraints:
-          - disabled
-        timeZoneOffset: UTC
-        customFields:
-          customField1: customFieldValue1
-          customField2: customFieldValue2
-        metadata:
-          metaKey1: metaValue1
-          metaKey2: metaValue2
-        tags:
-          - ziqniTagId
-          - ziqniTagId
-      x-vue-create: member
-      x-vue-creator: members
     CreateRewardTypeRequest:
       description: This is a request for Reward Type creation
       allOf:
@@ -14163,58 +14048,6 @@ components:
           - some text
           - some text
         metadata: {}
-    UpdateProductRequest:
-      description: This is a request for Product update
-      allOf:
-        -
-          $ref: '#/components/schemas/UpdateModelDefault'
-        -
-          $ref: '#/components/schemas/UpdateOptParamModels'
-        -
-          required: []
-          type: object
-          properties:
-            name:
-              description: The name of the product
-              type: string
-              example: Hockey madness
-            description:
-              description: The description of the product for your reference
-              type: string
-              example: Spin the hockey wheal
-              x-vue-form-type: TEXTAREA
-            adjustmentFactor:
-              format: double
-              description: The multiplier to apply to source values received for this product events
-              type: number
-              example: '1'
-            actionTypeAdjustmentFactors:
-              type: array
-              items:
-                $ref: '#/components/schemas/ActionTypeAdjustmentFactor'
-      example:
-        id: ziqniModelId
-        metadata:
-          key1: value1
-          key2: value
-        tags:
-          - tagId1
-          - tagId2
-        customFields:
-          customField1: customFieldValue1
-          customField2: customFieldValue2
-        name: name
-        description: description
-        adjustmentFactor: 28.55
-        actionTypeAdjustmentFactors:
-          -
-            adjustmentFactor: 67.71
-            actionTypeId: ziqniModelId
-          -
-            adjustmentFactor: 96.91
-            actionTypeId: ziqniModelId
-      x-vue-update: product
-      x-vue-updater: products
     UpdateOptParamModels:
       type: object
       properties:
@@ -15476,92 +15309,6 @@ components:
           - some text
         member: some text
         expires: 72
-    Member:
-      description: This is the Member model
-      allOf:
-        -
-          $ref: '#/components/schemas/ModelDefault'
-        -
-          $ref: '#/components/schemas/OptParamModels'
-        -
-          required:
-            - name
-            - memberType
-            - memberRefId
-          type: object
-          properties:
-            name:
-              description: The name of the member that is used on leader boards and public displays
-              type: string
-              example: Player 1
-              x-vue-as-string: true
-              x-vue-search-all: true
-              x-vue-search-field: true
-              x-vue-disaply-order: 1001
-            memberRefId:
-              description: The reference to this member in your system
-              type: string
-              example: Player-1
-              x-vue-search-all: true
-              x-vue-search-field: true
-              x-vue-disaply-order: 1000
-            memberType:
-              $ref: '#/components/schemas/MemberType'
-              x-vue-disaply-order: 1002
-            teamMembers:
-              description: A social group like Guilds
-              type: array
-              items:
-                type: string
-              x-vue-hidden: true
-              x-vue-disaply-order: 1003
-            constraints:
-              description: Additional constraints
-              type: array
-              items:
-                type: string
-              x-vue-search-field: true
-              x-vue-disaply-order: 1006
-              x-vue-constraint: true
-              x-vue-constraint-options:
-                - Disabled
-            timeZoneOffset:
-              description: The timezone offset from UTC to use for this member
-              type: string
-              x-vue-search-field: true
-              x-vue-disaply-order: 1005
-      example:
-        id: ziqniModelId
-        spaceName: ziqniModelSpaceName
-        created: '2018-02-10T09:30Z'
-        name: name
-        memberRefId: memberRefId
-        memberType: Individual
-        teamMembers:
-          - ziqniMemberId
-          - ziqniMemberId
-        constraints:
-          - disabled
-        timeZoneOffset: UTC
-        customFields:
-          customField1: customFieldValue1
-          customField2: customFieldValue2
-        tags:
-          - ziqniTagId
-          - ziqniTagId
-        metadata:
-          key1: value1
-          key2: value
-      x-vue-list: true
-      x-vue-show: true
-      x-vue-getter: members
-      x-vue-csv-supported: true
-      x-vue-sort-by: name
-      x-vue-sort-order: Asc
-      x-vue-limit: 10
-      x-vue-ops:
-        - Create
-        - Update
     Contest:
       allOf:
         -
@@ -17228,212 +16975,6 @@ components:
               type: array
               items:
                 type: string
-    Product:
-      description: This is the Product model
-      allOf:
-        -
-          $ref: '#/components/schemas/ModelDefault'
-        -
-          $ref: '#/components/schemas/OptParamModels'
-        -
-          required:
-            - name
-            - adjustmentFactor
-            - productRefId
-          type: object
-          properties:
-            name:
-              description: The name of the product
-              type: string
-              example: Hockey madness
-              x-vue-as-string: true
-              x-vue-translatable: true
-              x-vue-sortable: true
-              x-vue-search-all: true
-              x-vue-search-field: true
-              x-vue-disaply-order: 1001
-            description:
-              description: The description of the product for your reference
-              type: string
-              example: Spin the hockey wheal
-              x-vue-form-type: TEXTAREA
-              x-vue-as-string: false
-              x-vue-translatable: true
-              x-vue-sortable: true
-              x-vue-hidden: true
-              x-vue-search-all: true
-              x-vue-search-field: true
-              x-vue-disaply-order: 1002
-            adjustmentFactor:
-              format: double
-              description: The multiplier to apply to source values received for this product events
-              type: number
-              example: '1'
-              x-vue-search-field: true
-              x-vue-sortable: true
-              x-vue-disaply-order: 1003
-            productRefId:
-              description: >-
-                The reference to this product in your system. The reference identifier can not
-                be changed after the product has been created
-              type: string
-              example: hockey-madness
-              x-vue-search-all: true
-              x-vue-search-field: true
-              x-vue-sortable: true
-              x-vue-disaply-order: 1000
-            productType:
-              description: The type to this product in your system.
-              type: string
-              example: hockey-madness
-              x-vue-search-all: true
-              x-vue-search-field: true
-              x-vue-sortable: true
-              x-vue-disaply-order: 1005
-            actionTypeAdjustmentFactors:
-              type: array
-              items:
-                $ref: '#/components/schemas/ActionTypeAdjustmentFactor'
-              x-vue-hidden: true
-              x-vue-disaply-order: 1004
-      example:
-        id: someText
-        spaceName: someText
-        created: '2018-02-10T09:30Z'
-        productRefId: '10002'
-        name: test1
-        adjustmentFactor: '1'
-        actionTypeAdjustmentFactors:
-          -
-            adjustmentFactor: 67.71
-            actionTypeId: ziqniModelId
-          -
-            adjustmentFactor: 96.91
-            actionTypeId: ziqniModelId
-        customFields:
-          customField1: customFieldValue1
-          customField2: customFieldValue2
-        metadata:
-          key1: value1
-          key2: value
-        tags:
-          - tagId1
-          - tagId2
-        translations:
-          -
-            languageKey: csb
-            translations:
-              -
-                fieldName: name
-                text: test1
-          -
-            languageKey: den
-            translations:
-              -
-                fieldName: name
-                text: test-temp
-          -
-            languageKey: kmb
-            translations:
-              -
-                fieldName: name
-                text: Level-Up
-      x-vue-list: true
-      x-vue-show: true
-      x-vue-getter: products
-      x-vue-csv-supported: true
-      x-vue-sort-by: name
-      x-vue-sort-order: Asc
-      x-vue-limit: 10
-      x-vue-ops:
-        - Create
-        - Update
-    CreateProductRequest:
-      description: This is a request for Product creation
-      allOf:
-        -
-          $ref: '#/components/schemas/CreateOptParamModels'
-        -
-          required:
-            - name
-            - adjustmentFactor
-            - productRefId
-          type: object
-          properties:
-            name:
-              description: The name of the product
-              type: string
-              example: Hockey madness
-            description:
-              description: The description of the product for your reference
-              type: string
-              example: Spin the hockey wheal
-              x-vue-form-type: TEXTAREA
-            adjustmentFactor:
-              format: double
-              description: The multiplier to apply to source values received for this product events
-              type: number
-              example: '1'
-            productRefId:
-              description: >-
-                The reference to this product in your system. The reference identifier can not
-                be changed after the product has been created
-              type: string
-              example: hockey-madness
-            productType:
-              description: The type to this product in your system.
-              type: string
-              example: hockey-madness
-            actionTypeAdjustmentFactors:
-              type: array
-              items:
-                $ref: '#/components/schemas/ActionTypeAdjustmentFactor'
-            translations:
-              type: array
-              items:
-                $ref: '#/components/schemas/Translation'
-      example:
-        productRefId: '10002'
-        name: test1
-        description: description
-        adjustmentFactor: '1'
-        actionTypeAdjustmentFactors:
-          -
-            adjustmentFactor: 67.71
-            actionTypeId: ziqniModelId
-          -
-            adjustmentFactor: 96.91
-            actionTypeId: ziqniModelId
-        customFields:
-          customField1: customFieldValue1
-          customField2: customFieldValue2
-        metadata:
-          key1: value1
-          key2: value
-        tags:
-          - tagId1
-          - tagId2
-        translations:
-          -
-            languageKey: csb
-            translations:
-              -
-                fieldName: name
-                text: test1
-          -
-            languageKey: den
-            translations:
-              -
-                fieldName: name
-                text: test-temp
-          -
-            languageKey: kmb
-            translations:
-              -
-                fieldName: name
-                text: Level-Up
-      x-vue-create: product
-      x-vue-creator: products
     EntityGraphRequest:
       description: ''
       required:
@@ -17551,9 +17092,6 @@ components:
         percentageComplete:
           description: 'What percentage has been completed so far, this is a number between 0 and 100'
           type: number
-    EntityGraphEdgeType:
-      description: ''
-      type: object
     CreateCustomFieldRequest:
       description: Request to create custom fields
       required:
@@ -17799,10 +17337,7 @@ components:
           type: string
         points:
           description: double
-          type: array
-          items:
-            format: double
-            type: number
+          type: number
         rank:
           format: int32
           description: integer
@@ -18077,6 +17612,502 @@ components:
         - Rewards
         - Awards
         - Events
+    EntityGraphEdgeType:
+      description: The type of link
+      enum:
+        - ROOT
+        - MUST
+        - SHOULD
+        - MUST_NOT
+        - UNKNOWN
+        - BROKEN
+      type: string
+      readOnly: true
+    Member:
+      description: This is the Member model
+      allOf:
+        -
+          $ref: '#/components/schemas/ModelDefault'
+        -
+          $ref: '#/components/schemas/OptParamModels'
+        -
+          required:
+            - name
+            - memberType
+            - memberRefId
+          type: object
+          properties:
+            name:
+              description: The name of the member that is used on leader boards and public displays
+              type: string
+              example: Player 1
+              x-vue-as-string: true
+              x-vue-search-all: true
+              x-vue-search-field: true
+              x-vue-disaply-order: 1001
+            memberRefId:
+              description: The reference to this member in your system
+              type: string
+              example: Player-1
+              x-vue-search-all: true
+              x-vue-search-field: true
+              x-vue-disaply-order: 1000
+            memberType:
+              $ref: '#/components/schemas/MemberType'
+              x-vue-disaply-order: 1002
+            icon:
+              description: An Icon id that has been pre uploaded to the system to display for Member
+              type: string
+              x-vue-hidden: true
+              x-vue-disaply-order: 1007
+            teamMembers:
+              description: A social group like Guilds
+              type: array
+              items:
+                type: string
+              x-vue-hidden: true
+              x-vue-disaply-order: 1003
+            constraints:
+              description: Additional constraints
+              type: array
+              items:
+                type: string
+              x-vue-search-field: true
+              x-vue-disaply-order: 1006
+              x-vue-constraint: true
+              x-vue-constraint-options:
+                - Disabled
+            timeZoneOffset:
+              description: The timezone offset from UTC to use for this member
+              type: string
+              x-vue-search-field: true
+              x-vue-disaply-order: 1005
+      example:
+        id: ziqniModelId
+        spaceName: ziqniModelSpaceName
+        created: '2018-02-10T09:30Z'
+        name: name
+        memberRefId: memberRefId
+        memberType: Individual
+        teamMembers:
+          - ziqniMemberId
+          - ziqniMemberId
+        constraints:
+          - disabled
+        timeZoneOffset: UTC
+        customFields:
+          customField1: customFieldValue1
+          customField2: customFieldValue2
+        tags:
+          - ziqniTagId
+          - ziqniTagId
+        metadata:
+          key1: value1
+          key2: value
+      x-vue-list: true
+      x-vue-show: true
+      x-vue-getter: members
+      x-vue-csv-supported: true
+      x-vue-sort-by: name
+      x-vue-sort-order: Asc
+      x-vue-limit: 10
+      x-vue-ops:
+        - Create
+        - Update
+    Product:
+      description: This is the Product model
+      allOf:
+        -
+          $ref: '#/components/schemas/ModelDefault'
+        -
+          $ref: '#/components/schemas/OptParamModels'
+        -
+          required:
+            - name
+            - adjustmentFactor
+            - productRefId
+          type: object
+          properties:
+            name:
+              description: The name of the product
+              type: string
+              example: Hockey madness
+              x-vue-as-string: true
+              x-vue-translatable: true
+              x-vue-sortable: true
+              x-vue-search-all: true
+              x-vue-search-field: true
+              x-vue-disaply-order: 1001
+            description:
+              description: The description of the product for your reference
+              type: string
+              example: Spin the hockey wheal
+              x-vue-form-type: TEXTAREA
+              x-vue-as-string: false
+              x-vue-translatable: true
+              x-vue-sortable: true
+              x-vue-hidden: true
+              x-vue-search-all: true
+              x-vue-search-field: true
+              x-vue-disaply-order: 1002
+            adjustmentFactor:
+              format: double
+              description: The multiplier to apply to source values received for this product events
+              type: number
+              example: '1'
+              x-vue-search-field: true
+              x-vue-sortable: true
+              x-vue-disaply-order: 1003
+            productRefId:
+              description: >-
+                The reference to this product in your system. The reference identifier can not
+                be changed after the product has been created
+              type: string
+              example: hockey-madness
+              x-vue-search-all: true
+              x-vue-search-field: true
+              x-vue-sortable: true
+              x-vue-disaply-order: 1000
+            productType:
+              description: The type to this product in your system.
+              type: string
+              example: hockey-madness
+              x-vue-search-all: true
+              x-vue-search-field: true
+              x-vue-sortable: true
+              x-vue-disaply-order: 1005
+            actionTypeAdjustmentFactors:
+              type: array
+              items:
+                $ref: '#/components/schemas/ActionTypeAdjustmentFactor'
+              x-vue-hidden: true
+              x-vue-disaply-order: 1004
+            icon:
+              description: An Icon id that has been pre uploaded to the system to display for Product
+              type: string
+              x-vue-hidden: true
+              x-vue-disaply-order: 1006
+      example:
+        id: someText
+        spaceName: someText
+        created: '2018-02-10T09:30Z'
+        productRefId: '10002'
+        name: test1
+        adjustmentFactor: '1'
+        actionTypeAdjustmentFactors:
+          -
+            adjustmentFactor: 67.71
+            actionTypeId: ziqniModelId
+          -
+            adjustmentFactor: 96.91
+            actionTypeId: ziqniModelId
+        customFields:
+          customField1: customFieldValue1
+          customField2: customFieldValue2
+        metadata:
+          key1: value1
+          key2: value
+        tags:
+          - tagId1
+          - tagId2
+        translations:
+          -
+            languageKey: csb
+            translations:
+              -
+                fieldName: name
+                text: test1
+          -
+            languageKey: den
+            translations:
+              -
+                fieldName: name
+                text: test-temp
+          -
+            languageKey: kmb
+            translations:
+              -
+                fieldName: name
+                text: Level-Up
+      x-vue-list: true
+      x-vue-show: true
+      x-vue-getter: products
+      x-vue-csv-supported: true
+      x-vue-sort-by: name
+      x-vue-sort-order: Asc
+      x-vue-limit: 10
+      x-vue-ops:
+        - Create
+        - Update
+    UpdateProductRequest:
+      description: This is a request for Product update
+      allOf:
+        -
+          $ref: '#/components/schemas/UpdateModelDefault'
+        -
+          $ref: '#/components/schemas/UpdateOptParamModels'
+        -
+          required: []
+          type: object
+          properties:
+            name:
+              description: The name of the product
+              type: string
+              example: Hockey madness
+            description:
+              description: The description of the product for your reference
+              type: string
+              example: Spin the hockey wheal
+              x-vue-form-type: TEXTAREA
+            icon:
+              description: An Icon id that has been pre uploaded to the system to display for Product
+              type: string
+              example: Dc4swmQBVd51K6gPQqFx
+            adjustmentFactor:
+              format: double
+              description: The multiplier to apply to source values received for this product events
+              type: number
+              example: '1'
+            actionTypeAdjustmentFactors:
+              type: array
+              items:
+                $ref: '#/components/schemas/ActionTypeAdjustmentFactor'
+      example:
+        id: ziqniModelId
+        metadata:
+          key1: value1
+          key2: value
+        tags:
+          - tagId1
+          - tagId2
+        customFields:
+          customField1: customFieldValue1
+          customField2: customFieldValue2
+        name: name
+        description: description
+        adjustmentFactor: 28.55
+        actionTypeAdjustmentFactors:
+          -
+            adjustmentFactor: 67.71
+            actionTypeId: ziqniModelId
+          -
+            adjustmentFactor: 96.91
+            actionTypeId: ziqniModelId
+      x-vue-update: product
+      x-vue-updater: products
+    UpdateMemberRequest:
+      description: This is a request for Member update
+      allOf:
+        -
+          $ref: '#/components/schemas/UpdateModelDefault'
+        -
+          $ref: '#/components/schemas/UpdateOptParamModels'
+        -
+          required: []
+          type: object
+          properties:
+            name:
+              description: The name of the member that is used on leader boards and public displays
+              type: string
+              example: Player 1
+            memberType:
+              $ref: '#/components/schemas/MemberType'
+            teamMembers:
+              description: A social group like Guilds
+              type: array
+              items:
+                type: string
+            icon:
+              description: An Icon id that has been pre uploaded to the system to display for Member
+              type: string
+              example: Dc4swmQBVd51K6gPQqFx
+            addConstraints:
+              description: Additional constraints
+              type: array
+              items:
+                type: string
+              example: '- Disabled'
+            removeConstraints:
+              description: Additional constraints
+              type: array
+              items:
+                type: string
+              example: '- Disabled'
+            timeZoneOffset:
+              description: To what time zone teh emmber belongs to
+              type: string
+      example:
+        id: ziqniModelId
+        name: name
+        memberType: Individual
+        teamMembers:
+          - ziqniMemberId
+          - ziqniMemberId
+        addConstraints:
+          - disabled
+        timeZoneOffset: UTC
+        customFields:
+          customField1: customFieldValue1
+          customField2: customFieldValue2
+        metadata:
+          metaKey1: metaValue1
+          metaKey2: metaValue2
+        tags:
+          - ziqniTagId
+          - ziqniTagId
+      x-vue-update: member
+      x-vue-updater: members
+    CreateMemberRequest:
+      description: This is a request for Member creation
+      allOf:
+        -
+          required:
+            - name
+            - memberRefId
+            - memberType
+          type: object
+          properties:
+            name:
+              description: The name of the member that is used on leader boards and public displays
+              type: string
+              example: Player 1
+            memberRefId:
+              description: The reference to this member in your system
+              type: string
+              example: Player-1
+            memberType:
+              $ref: '#/components/schemas/MemberType'
+            icon:
+              description: An Icon id that has been pre uploaded to the system to display for Member
+              type: string
+              example: Dc4swmQBVd51K6gPQqFx
+            teamMembers:
+              description: A social group like Guilds
+              type: array
+              items:
+                type: string
+            addConstraints:
+              description: Additional constraints
+              type: array
+              items:
+                type: string
+              example: '- notifyMember - isMemberAcknowledgmentRequired'
+            timeZoneOffset:
+              description: To what time zone teh emmber belongs to
+              type: string
+        -
+          $ref: '#/components/schemas/CreateOptParamModels'
+      example:
+        name: name
+        memberRefId: memberRefId
+        memberType: Individual
+        teamMembers:
+          - ziqniMemberId
+          - ziqniMemberId
+        addConstraints:
+          - disabled
+        timeZoneOffset: UTC
+        customFields:
+          customField1: customFieldValue1
+          customField2: customFieldValue2
+        metadata:
+          metaKey1: metaValue1
+          metaKey2: metaValue2
+        tags:
+          - ziqniTagId
+          - ziqniTagId
+      x-vue-create: member
+      x-vue-creator: members
+    CreateProductRequest:
+      description: This is a request for Product creation
+      allOf:
+        -
+          $ref: '#/components/schemas/CreateOptParamModels'
+        -
+          required:
+            - name
+            - adjustmentFactor
+            - productRefId
+          type: object
+          properties:
+            name:
+              description: The name of the product
+              type: string
+              example: Hockey madness
+            description:
+              description: The description of the product for your reference
+              type: string
+              example: Spin the hockey wheal
+              x-vue-form-type: TEXTAREA
+            adjustmentFactor:
+              format: double
+              description: The multiplier to apply to source values received for this product events
+              type: number
+              example: '1'
+            icon:
+              description: An Icon id that has been pre uploaded to the system to display for Product
+              type: string
+              example: Dc4swmQBVd51K6gPQqFx
+            productRefId:
+              description: >-
+                The reference to this product in your system. The reference identifier can not
+                be changed after the product has been created
+              type: string
+              example: hockey-madness
+            productType:
+              description: The type to this product in your system.
+              type: string
+              example: hockey-madness
+            actionTypeAdjustmentFactors:
+              type: array
+              items:
+                $ref: '#/components/schemas/ActionTypeAdjustmentFactor'
+            translations:
+              type: array
+              items:
+                $ref: '#/components/schemas/Translation'
+      example:
+        productRefId: '10002'
+        name: test1
+        description: description
+        adjustmentFactor: '1'
+        actionTypeAdjustmentFactors:
+          -
+            adjustmentFactor: 67.71
+            actionTypeId: ziqniModelId
+          -
+            adjustmentFactor: 96.91
+            actionTypeId: ziqniModelId
+        customFields:
+          customField1: customFieldValue1
+          customField2: customFieldValue2
+        metadata:
+          key1: value1
+          key2: value
+        tags:
+          - tagId1
+          - tagId2
+        translations:
+          -
+            languageKey: csb
+            translations:
+              -
+                fieldName: name
+                text: test1
+          -
+            languageKey: den
+            translations:
+              -
+                fieldName: name
+                text: test-temp
+          -
+            languageKey: kmb
+            translations:
+              -
+                fieldName: name
+                text: Level-Up
+      x-vue-create: product
+      x-vue-creator: products
   responses:
     ApiResponseBody:
       content:

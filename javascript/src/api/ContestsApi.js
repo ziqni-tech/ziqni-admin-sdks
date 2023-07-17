@@ -18,6 +18,7 @@ import CloneContestResponse from '../model/CloneContestResponse';
 import ContestLeaderboardResponse from '../model/ContestLeaderboardResponse';
 import ContestResponse from '../model/ContestResponse';
 import CreateContestForCompetitionRequest from '../model/CreateContestForCompetitionRequest';
+import EntrantResponse from '../model/EntrantResponse';
 import QueryRequest from '../model/QueryRequest';
 import UpdateContestRequest from '../model/UpdateContestRequest';
 import UpdateContestStateRequest from '../model/UpdateContestStateRequest';
@@ -250,6 +251,54 @@ export default class ContestsApi {
       let returnType = CloneContestResponse;
       return this.apiClient.callApi(
         '/contests/{id}/clone', 'GET',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, null, callback
+      );
+    }
+
+    /**
+     * Callback function to receive the result of the getListOfEntrantsForContest operation.
+     * @callback module:api/ContestsApi~getListOfEntrantsForContestCallback
+     * @param {String} error Error message, if any.
+     * @param {module:model/EntrantResponse} data The data returned by the service call.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * Returns all Entries for the Contest id provided
+     * @param {String} id Unique identifier of the resource
+     * @param {Object} opts Optional parameters
+     * @param {Number} opts.limit Limit the returned total records found
+     * @param {Number} opts.skip Skip the returned records found and return the next batch of records
+     * @param {module:api/ContestsApi~getListOfEntrantsForContestCallback} callback The callback function, accepting three arguments: error, data, response
+     * data is of type: {@link module:model/EntrantResponse}
+     */
+    getListOfEntrantsForContest(id, opts, callback) {
+      opts = opts || {};
+      let postBody = null;
+      // verify the required parameter 'id' is set
+      if (id === undefined || id === null) {
+        throw new Error("Missing the required parameter 'id' when calling getListOfEntrantsForContest");
+      }
+
+      let pathParams = {
+        'id': id
+      };
+      let queryParams = {
+        '_limit': opts['limit'],
+        '_skip': opts['skip']
+      };
+      let headerParams = {
+      };
+      let formParams = {
+      };
+
+      let authNames = ['OAuth2'];
+      let contentTypes = [];
+      let accepts = ['application/json'];
+      let returnType = EntrantResponse;
+      return this.apiClient.callApi(
+        '/contests/{id}/entries', 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, null, callback
       );
