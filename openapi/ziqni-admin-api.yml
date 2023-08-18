@@ -7818,6 +7818,460 @@ paths:
       description: >-
         Retrieve ConteEntrants from Ziqni database by unique Contests ID's or any other POST body
         parameters using the POST method
+  /instant-wins:
+    summary: Manage products
+    description: These operations allow you to manage products in your project.
+    get:
+      tags:
+        - instant-wins
+      parameters:
+        -
+          $ref: '#/components/parameters/idQuery'
+        -
+          $ref: '#/components/parameters/limitResults'
+        -
+          $ref: '#/components/parameters/skipResults'
+      responses:
+        '200':
+          $ref: '#/components/responses/InstantWinResponseBody'
+        '400':
+          $ref: '#/components/responses/InstantWinResponseBody'
+        '401':
+          $ref: '#/components/responses/InstantWinResponseBody'
+        '403':
+          $ref: '#/components/responses/InstantWinResponseBody'
+        '404':
+          $ref: '#/components/responses/InstantWinResponseBody'
+        '500':
+          $ref: '#/components/responses/InstantWinResponseBody'
+        '501':
+          $ref: '#/components/responses/InstantWinResponseBody'
+      security:
+        -
+          OAuth2:
+            - ViewProducts
+      operationId: getInstantWins
+      summary: Get instant wins
+      description: >-
+        Returns a list of Instant wins. This assumes that products have first been uploaded via a POST
+        request or web console
+      x-codegen-request-body-name: body
+      x-vue-item: Product
+      x-vue-list: Products
+    put:
+      requestBody:
+        description: >-
+          Update a Product or multiple Products in the Ziqni database. * Product Ref Id can not be
+          changed after creation * A products Id must exist in the Ziqni database to update the
+          product
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/UpdateInstantWinRequest'
+          file/csv:
+            schema:
+              format: binary
+              type: string
+        required: true
+      tags:
+        - instant-wins
+      responses:
+        '200':
+          $ref: '#/components/responses/ApiResponseBody'
+        '400':
+          $ref: '#/components/responses/ApiResponseBody'
+        '401':
+          $ref: '#/components/responses/ApiResponseBody'
+        '403':
+          $ref: '#/components/responses/ApiResponseBody'
+        '404':
+          $ref: '#/components/responses/ApiResponseBody'
+        '500':
+          $ref: '#/components/responses/ApiResponseBody'
+        '501':
+          $ref: '#/components/responses/ApiResponseBody'
+      security:
+        -
+          OAuth2:
+            - ManageProducts
+      operationId: updateInstantWins
+      summary: Update instant wins
+      description: Update existing Instant wins in the Ziqni database
+      x-codegen-request-body-name: body
+    post:
+      requestBody:
+        description: >-
+          Create Products in the Ziqni database. An array can contain a maximum of 10,000 products
+          in one request
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/CreateInstantWinRequest'
+          file/csv:
+            schema:
+              format: binary
+              type: string
+        required: true
+      tags:
+        - instant-wins
+      responses:
+        '200':
+          $ref: '#/components/responses/ApiResponseBody'
+        '400':
+          $ref: '#/components/responses/ApiResponseBody'
+        '401':
+          $ref: '#/components/responses/ApiResponseBody'
+        '403':
+          $ref: '#/components/responses/ApiResponseBody'
+        '404':
+          $ref: '#/components/responses/ApiResponseBody'
+        '500':
+          $ref: '#/components/responses/ApiResponseBody'
+        '501':
+          $ref: '#/components/responses/ApiResponseBody'
+      security:
+        -
+          OAuth2:
+            - AdminProducts
+      operationId: createInstantWins
+      summary: Create instant wins
+      description: Create new Instant win in the Ziqni database
+      x-codegen-request-body-name: body
+    delete:
+      tags:
+        - instant-wins
+      parameters:
+        -
+          $ref: '#/components/parameters/idQuery'
+      responses:
+        '200':
+          $ref: '#/components/responses/ApiResponseBody'
+        '400':
+          $ref: '#/components/responses/ApiResponseBody'
+        '401':
+          $ref: '#/components/responses/ApiResponseBody'
+        '403':
+          $ref: '#/components/responses/ApiResponseBody'
+        '404':
+          $ref: '#/components/responses/ApiResponseBody'
+        '500':
+          $ref: '#/components/responses/ApiResponseBody'
+        '501':
+          $ref: '#/components/responses/ApiResponseBody'
+      security:
+        -
+          OAuth2:
+            - AdminProducts
+      operationId: deleteInstantWins
+      summary: Delete instant wins
+      description: Delete Instant win for a given identifier specified
+      x-codegen-request-body-name: body
+  /instant-wins/delete:
+    summary: Delete products by query
+    description: This operation allows you to delete products in your project using a query.
+    post:
+      requestBody:
+        description: >-
+          Delete Products from Ziqni database by unique Product ID's or any other POST body
+          parameters using the POST method
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/QueryRequest'
+            examples:
+              Example:
+                value:
+                  must:
+                    -
+                      queryField: some text
+                      queryValues:
+                        - some text
+                        - some text
+                    -
+                      queryField: some text
+                      queryValues:
+                        - some text
+                        - some text
+                  mustNot:
+                    -
+                      queryField: some text
+                      queryValues:
+                        - some text
+                        - some text
+                    -
+                      queryField: some text
+                      queryValues:
+                        - some text
+                        - some text
+                  should:
+                    -
+                      queryField: some text
+                      queryValues:
+                        - some text
+                        - some text
+                    -
+                      queryField: some text
+                      queryValues:
+                        - some text
+                        - some text
+                  gte:
+                    -
+                      queryField: some text
+                      queryValue: some text
+                    -
+                      queryField: some text
+                      queryValue: some text
+                  gt:
+                    -
+                      queryField: some text
+                      queryValue: some text
+                    -
+                      queryField: some text
+                      queryValue: some text
+                  lte:
+                    -
+                      queryField: some text
+                      queryValue: some text
+                    -
+                      queryField: some text
+                      queryValue: some text
+                  lt:
+                    -
+                      queryField: some text
+                      queryValue: some text
+                    -
+                      queryField: some text
+                      queryValue: some text
+                  range:
+                    -
+                      queryField: some text
+                      gt: some text
+                      lt: some text
+                      constraints:
+                        - some text
+                        - some text
+                    -
+                      queryField: some text
+                      gt: some text
+                      lt: some text
+                      constraints:
+                        - some text
+                        - some text
+                  sortBy:
+                    -
+                      queryField: some text
+                      order: Desc
+                    -
+                      queryField: some text
+                      order: Desc
+                  multiFields:
+                    -
+                      queryFields:
+                        - some text
+                        - some text
+                      queryValue: some text
+                    -
+                      queryFields:
+                        - some text
+                        - some text
+                      queryValue: some text
+                  includeFields:
+                    - some text
+                    - some text
+                  hasValue:
+                    - some text
+                    - some text
+                  hasNoValue:
+                    - some text
+                    - some text
+                  shouldMatch: 87
+                  skip: 97
+                  limit: 5
+                  constraints:
+                    - some text
+                    - some text
+      tags:
+        - instant-wins
+      responses:
+        '200':
+          $ref: '#/components/responses/ApiResponseBody'
+        '400':
+          $ref: '#/components/responses/ApiResponseBody'
+        '401':
+          $ref: '#/components/responses/ApiResponseBody'
+        '403':
+          $ref: '#/components/responses/ApiResponseBody'
+        '404':
+          $ref: '#/components/responses/ApiResponseBody'
+        '500':
+          $ref: '#/components/responses/ApiResponseBody'
+        '501':
+          $ref: '#/components/responses/ApiResponseBody'
+      security:
+        -
+          OAuth2:
+            - AdminProducts
+      operationId: deleteInstantWinsByQuery
+      summary: Delete instant-wins by query
+      description: >-
+        Delete Products from Ziqni database by unique Instant win ID's or any other POST body
+        parameters using the POST method
+      x-codegen-request-body-name: body
+  /instant-wins/query:
+    summary: Get products by query
+    description: This operation allows you to get products in your project using a query.
+    post:
+      requestBody:
+        description: >-
+          Retrieve Products from Ziqni database by unique Product ID's or any other POST body
+          parameters using the POST method
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/QueryRequest'
+            examples:
+              Example:
+                value:
+                  must:
+                    -
+                      queryField: some text
+                      queryValues:
+                        - some text
+                        - some text
+                    -
+                      queryField: some text
+                      queryValues:
+                        - some text
+                        - some text
+                  mustNot:
+                    -
+                      queryField: some text
+                      queryValues:
+                        - some text
+                        - some text
+                    -
+                      queryField: some text
+                      queryValues:
+                        - some text
+                        - some text
+                  should:
+                    -
+                      queryField: some text
+                      queryValues:
+                        - some text
+                        - some text
+                    -
+                      queryField: some text
+                      queryValues:
+                        - some text
+                        - some text
+                  gte:
+                    -
+                      queryField: some text
+                      queryValue: some text
+                    -
+                      queryField: some text
+                      queryValue: some text
+                  gt:
+                    -
+                      queryField: some text
+                      queryValue: some text
+                    -
+                      queryField: some text
+                      queryValue: some text
+                  lte:
+                    -
+                      queryField: some text
+                      queryValue: some text
+                    -
+                      queryField: some text
+                      queryValue: some text
+                  lt:
+                    -
+                      queryField: some text
+                      queryValue: some text
+                    -
+                      queryField: some text
+                      queryValue: some text
+                  range:
+                    -
+                      queryField: some text
+                      gt: some text
+                      lt: some text
+                      constraints:
+                        - some text
+                        - some text
+                    -
+                      queryField: some text
+                      gt: some text
+                      lt: some text
+                      constraints:
+                        - some text
+                        - some text
+                  sortBy:
+                    -
+                      queryField: some text
+                      order: Asc
+                    -
+                      queryField: some text
+                      order: Desc
+                  multiFields:
+                    -
+                      queryFields:
+                        - some text
+                        - some text
+                      queryValue: some text
+                    -
+                      queryFields:
+                        - some text
+                        - some text
+                      queryValue: some text
+                  includeFields:
+                    - some text
+                    - some text
+                  hasValue:
+                    - some text
+                    - some text
+                  hasNoValue:
+                    - some text
+                    - some text
+                  shouldMatch: 76
+                  skip: 85
+                  limit: 86
+                  constraints:
+                    - some text
+                    - some text
+      tags:
+        - instant-wins
+      responses:
+        '200':
+          $ref: '#/components/responses/InstantWinResponseBody'
+        '400':
+          $ref: '#/components/responses/InstantWinResponseBody'
+        '401':
+          $ref: '#/components/responses/InstantWinResponseBody'
+        '403':
+          $ref: '#/components/responses/InstantWinResponseBody'
+        '404':
+          $ref: '#/components/responses/InstantWinResponseBody'
+        '500':
+          $ref: '#/components/responses/InstantWinResponseBody'
+        '501':
+          $ref: '#/components/responses/InstantWinResponseBody'
+      security:
+        -
+          OAuth2:
+            - ViewProducts
+      operationId: getInstantWinsByQuery
+      summary: Get instant wins by query
+      description: >-
+        Retrieve Instant wins from Ziqni database by unique Instant win ID's or any other POST body
+        parameters using the POST method
+      x-codegen-request-body-name: body
 components:
   schemas:
     ProductReduced:
@@ -10337,7 +10791,7 @@ components:
           description: |+
             The key of the parameter that is being searched
           
-          
+
           type: string
         gt:
           description: Greater than value
@@ -18108,6 +18562,328 @@ components:
                 text: Level-Up
       x-vue-create: product
       x-vue-creator: products
+    InstantWinResponse:
+      description: This is the Response for Instant win
+      required:
+        - meta
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/MetaExtended'
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/InstantWin'
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
+      example:
+        meta:
+          objectType: some text
+          totalRecords: 26
+          resultCount: 2
+          errorCount: 0
+          limit: 2
+          skip: 0
+        results:
+          -
+            id: ziqniModelId
+            spaceName: ziqniSpaceName
+            created: '2018-02-10T09:30Z'
+            productRefId: '10002'
+            name: test1
+            adjustmentFactor: '1'
+            actionTypeAdjustmentFactors:
+              -
+                adjustmentFactor: 67.71
+                actionTypeId: ziqniModelId
+              -
+                adjustmentFactor: 96.91
+                actionTypeId: ziqniModelId
+            customFields:
+              customField1: customFieldValue1
+              customField2: customFieldValue2
+            metadata:
+              key1: value1
+              key2: value
+            tags:
+              - tagId1
+              - tagId2
+            translations:
+              -
+                languageKey: csb
+                translations:
+                  -
+                    fieldName: name
+                    text: test1
+              -
+                languageKey: den
+                translations:
+                  -
+                    fieldName: name
+                    text: test-temp
+              -
+                languageKey: kmb
+                translations:
+                  -
+                    fieldName: name
+                    text: Level-Up
+          -
+            id: ziqniModelId
+            spaceName: ziqniSpaceName
+            created: '2018-02-10T09:30Z'
+            productRefId: '10002'
+            name: test1
+            adjustmentFactor: '1'
+            actionTypeAdjustmentFactors:
+              -
+                adjustmentFactor: 67.71
+                actionTypeId: ziqniModelId
+              -
+                adjustmentFactor: 96.91
+                actionTypeId: ziqniModelId
+            customFields:
+              customField1: customFieldValue1
+              customField2: customFieldValue2
+            metadata:
+              key1: value1
+              key2: value
+            tags:
+              - tagId1
+              - tagId2
+            translations:
+              -
+                languageKey: csb
+                translations:
+                  -
+                    fieldName: name
+                    text: test1
+              -
+                languageKey: den
+                translations:
+                  -
+                    fieldName: name
+                    text: test-temp
+              -
+                languageKey: kmb
+                translations:
+                  -
+                    fieldName: name
+                    text: Level-Up
+        errors:
+          -
+            modelId: some text
+            errorCode: 78
+            message: some text
+            errorAt: 90
+            detail:
+              -
+                modelId: some text
+                errorCode: 90
+                message: some text
+                errorAt: 24
+              -
+                modelId: some text
+                errorCode: 52
+                message: some text
+                errorAt: 45
+          -
+            modelId: some text
+            errorCode: 55
+            message: some text
+            errorAt: 64
+            detail:
+              -
+                modelId: some text
+                errorCode: 72
+                message: some text
+                errorAt: 56
+              -
+                modelId: some text
+                errorCode: 56
+                message: some text
+                errorAt: 90
+    InstantWin:
+      description: ''
+      type: object
+      allOf:
+        -
+          required:
+            - instantWinType
+            - tiles
+          type: object
+          properties:
+            name:
+              type: string
+            description:
+              type: string
+            termsAndConditions:
+              type: string
+            constraints:
+              type: array
+              items:
+                type: string
+              example: hasRewards
+            statusCode:
+              format: int32
+              description: integer
+              type: integer
+            instantWinType:
+              description: integer
+              type: integer
+            tiles:
+              description: ''
+              type: array
+              items:
+                $ref: '#/components/schemas/InstantWinTile'
+            version:
+              format: int64
+              type: integer
+        -
+          $ref: '#/components/schemas/OptParamModels'
+        -
+          $ref: '#/components/schemas/ModelDefault'
+    UpdateInstantWinRequest:
+      description: This is a request for Product update
+      allOf:
+        -
+          $ref: '#/components/schemas/UpdateModelDefault'
+        -
+          $ref: '#/components/schemas/UpdateOptParamModels'
+        -
+          required: []
+          type: object
+          properties:
+            name:
+              type: string
+            description:
+              type: string
+            termsAndConditions:
+              type: string
+            constraints:
+              type: array
+              items:
+                type: string
+              example: hasRewards
+            statusCode:
+              format: int32
+              description: integer
+              type: integer
+            instantWinType:
+              description: integer
+              type: integer
+            tiles:
+              description: ''
+              type: array
+              items:
+                $ref: '#/components/schemas/InstantWinTile'
+      example:
+        id: ziqniModelId
+        metadata:
+          key1: value1
+          key2: value
+        tags:
+          - tagId1
+          - tagId2
+        customFields:
+          customField1: customFieldValue1
+          customField2: customFieldValue2
+        name: name
+        description: description
+        adjustmentFactor: 28.55
+        actionTypeAdjustmentFactors:
+          -
+            adjustmentFactor: 67.71
+            actionTypeId: ziqniModelId
+          -
+            adjustmentFactor: 96.91
+            actionTypeId: ziqniModelId
+      x-vue-update: product
+      x-vue-updater: products
+    GridLocation:
+      description: >-
+        This struct contains two integer-valued fields, row and col . A GridLocation can be used to
+        represent a location in a two-dimensional grid.
+      required:
+        - row
+        - col
+      type: object
+      properties:
+        row:
+          description: ''
+          type: integer
+        col:
+          description: ''
+          type: integer
+    InstantWinTile:
+      description: ''
+      required:
+        - orderNumber
+        - probability
+        - icon
+        - horizontalPosition
+        - verticalPosition
+      type: object
+      properties:
+        icon:
+          description: The id to the image file
+          type: string
+        text:
+          description: ''
+          type: string
+        contraints:
+          description: 'hasPrizes, glow'
+          type: array
+          items:
+            type: string
+          example: hasPrizes
+        reward:
+          $ref: '#/components/schemas/RewardReduced'
+          description: The reward associated with this tile
+        location:
+          $ref: '#/components/schemas/GridLocation'
+          description: ''
+    CreateInstantWinRequest:
+      description: This is a request for Product creation
+      allOf:
+        -
+          $ref: '#/components/schemas/CreateOptParamModels'
+        -
+          required:
+            - name
+            - gridLocation
+          type: object
+          properties:
+            name:
+              type: string
+            description:
+              type: string
+            termsAndConditions:
+              type: string
+            constraints:
+              type: array
+              items:
+                type: string
+              example: hasRewards
+            statusCode:
+              format: int32
+              description: integer
+              type: integer
+            instantWinType:
+              description: integer
+              type: integer
+            tiles:
+              description: ''
+              type: array
+              items:
+                $ref: '#/components/schemas/InstantWinTile'
+            translations:
+              type: array
+              items:
+                $ref: '#/components/schemas/Translation'
+      x-vue-create: instant-win
+      x-vue-creator: instant-wins
   responses:
     ApiResponseBody:
       content:
@@ -19218,6 +19994,140 @@ components:
           schema:
             $ref: '#/components/schemas/EntrantCountResponse'
       description: A count of Entrants for the competition/contest to export and/or errors
+    InstantWinResponseBody:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/InstantWinResponse'
+          examples:
+            ProductResponseBodyExample:
+              value:
+                meta:
+                  objectType: some text
+                  totalRecords: 26
+                  resultCount: 2
+                  errorCount: 0
+                  limit: 2
+                  skip: 0
+                results:
+                  -
+                    id: ziqniModelId
+                    spaceName: ziqniSpaceName
+                    created: '2018-02-10T09:30Z'
+                    productRefId: '10002'
+                    name: test1
+                    adjustmentFactor: '1'
+                    actionTypeAdjustmentFactors:
+                      -
+                        adjustmentFactor: 67.71
+                        actionTypeId: ziqniModelId
+                      -
+                        adjustmentFactor: 96.91
+                        actionTypeId: ziqniModelId
+                    customFields:
+                      customField1: customFieldValue1
+                      customField2: customFieldValue2
+                    metadata:
+                      key1: value1
+                      key2: value
+                    tags:
+                      - tagId1
+                      - tagId2
+                    translations:
+                      -
+                        languageKey: csb
+                        translations:
+                          -
+                            fieldName: name
+                            text: test1
+                      -
+                        languageKey: den
+                        translations:
+                          -
+                            fieldName: name
+                            text: test-temp
+                      -
+                        languageKey: kmb
+                        translations:
+                          -
+                            fieldName: name
+                            text: Level-Up
+                  -
+                    id: ziqniModelId
+                    spaceName: ziqniSpaceName
+                    created: '2018-02-10T09:30Z'
+                    productRefId: '10002'
+                    name: test1
+                    adjustmentFactor: '1'
+                    actionTypeAdjustmentFactors:
+                      -
+                        adjustmentFactor: 67.71
+                        actionTypeId: ziqniModelId
+                      -
+                        adjustmentFactor: 96.91
+                        actionTypeId: ziqniModelId
+                    customFields:
+                      customField1: customFieldValue1
+                      customField2: customFieldValue2
+                    metadata:
+                      key1: value1
+                      key2: value
+                    tags:
+                      - tagId1
+                      - tagId2
+                    translations:
+                      -
+                        languageKey: csb
+                        translations:
+                          -
+                            fieldName: name
+                            text: test1
+                      -
+                        languageKey: den
+                        translations:
+                          -
+                            fieldName: name
+                            text: test-temp
+                      -
+                        languageKey: kmb
+                        translations:
+                          -
+                            fieldName: name
+                            text: Level-Up
+                errors:
+                  -
+                    modelId: some text
+                    errorCode: 33
+                    message: some text
+                    errorAt: 13
+                    detail:
+                      -
+                        modelId: some text
+                        errorCode: 98
+                        message: some text
+                        errorAt: 97
+                      -
+                        modelId: some text
+                        errorCode: 25
+                        message: some text
+                        errorAt: 58
+                  -
+                    modelId: some text
+                    errorCode: 30
+                    message: some text
+                    errorAt: 46
+                    detail:
+                      -
+                        modelId: some text
+                        errorCode: 68
+                        message: some text
+                        errorAt: 8
+                      -
+                        modelId: some text
+                        errorCode: 19
+                        message: some text
+                        errorAt: 36
+      description: A list of products and/or errors
   parameters:
     spaceName:
       name: spaceName
