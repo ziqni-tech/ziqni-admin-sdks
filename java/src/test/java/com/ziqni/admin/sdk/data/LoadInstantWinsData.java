@@ -1,9 +1,11 @@
 package com.ziqni.admin.sdk.data;
 
 import com.ziqni.admin.sdk.ApiException;
+import com.ziqni.admin.sdk.api.InstantWinsApiWs;
 import com.ziqni.admin.sdk.api.ProductsApiWs;
 import com.ziqni.admin.sdk.configuration.AdminApiClientConfigBuilder;
 import com.ziqni.admin.sdk.model.ActionTypeAdjustmentFactor;
+import com.ziqni.admin.sdk.model.CreateInstantWinRequest;
 import com.ziqni.admin.sdk.model.CreateProductRequest;
 import com.ziqni.admin.sdk.model.ModelApiResponse;
 import com.ziqni.admin.sdk.util.ApiClientFactoryUtil;
@@ -17,50 +19,52 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class LoadInstantWinsData implements CompleteableFutureTestWrapper {
 
-    private ProductsApiWs api;
+    private final InstantWinsApiWs api;
 
     public LoadInstantWinsData() throws Exception {
         ApiClientFactoryUtil.initApiClientFactory(AdminApiClientConfigBuilder.build());
-        this.api = ApiClientFactoryUtil.factory.getProductsApi();
+        this.api = ApiClientFactoryUtil.factory.getInstantWinsApi();
     }
 
-    public CreateProductRequest getCreateRequest(String actionTypeId) {
+    public CreateInstantWinRequest getCreateRequest(String rewardId) {
         String name = "Test_name-" + UUID.randomUUID();
-        String refId = "Test_key-" + UUID.randomUUID();
         String description = "Test description";
-        Double adjustmentFactor = new Random().nextDouble();
 
-        final var c = new CreateProductRequest()
+        final var c = new CreateInstantWinRequest()
                 .name(name)
-                .productRefId(refId)
                 .description(description)
-                .adjustmentFactor(adjustmentFactor)
-                .metadata(new LoadMetadata().getMetadataAsList());
+                .instantWinType(1)
+                .termsAndConditions("Test terms and conditions")
+                .statusCode(15)
+                .tiles(List.of())
+                .metadata(new LoadMetadata().getMetadataAsList())
+                .tags(List.of())
+                .translations(List.of());
 
-        Optional.ofNullable(actionTypeId).ifPresent( a ->
-                c.actionTypeAdjustmentFactors(new ArrayList<>(Arrays.asList(
-                        new ActionTypeAdjustmentFactor()
-                                .actionTypeId(a)
-                                .adjustmentFactor(new Random().nextDouble())
-                )))
-        );
+//        Optional.ofNullable(rewardId).ifPresent( a ->
+//                c.(new ArrayList<>(Arrays.asList(
+//                        new ActionTypeAdjustmentFactor()
+//                                .actionTypeId(a)
+//                                .adjustmentFactor(new Random().nextDouble())
+//                )))
+//        );
 
         return c;
 
     }
 
-    public List<CreateProductRequest> getCreateRequestAsList(int numberOfItems, String actionTypeId) {
+    public List<CreateInstantWinRequest> getCreateRequestAsList(int numberOfItems, String rewardId) {
         return IntStream.range(0, numberOfItems)
-                .mapToObj(i -> getCreateRequest(actionTypeId))
+                .mapToObj(i -> getCreateRequest(rewardId))
                 .collect(Collectors.toList());
     }
 
-    public List<CreateProductRequest> getCreateRequestAsList(CreateProductRequest request) {
+    public List<CreateInstantWinRequest> getCreateRequestAsList(CreateInstantWinRequest request) {
         return List.of(request);
     }
 
-    public ModelApiResponse createTestData(List<CreateProductRequest> requestList) throws ApiException {
-        var response = api.createProducts(requestList).join();
+    public ModelApiResponse createTestData(List<CreateInstantWinRequest> requestList) throws ApiException {
+        var response = api.createInstantWins(requestList).join();
 
         assertNotNull(response);
         assertNotNull(response.getResults());
@@ -74,10 +78,10 @@ public class LoadInstantWinsData implements CompleteableFutureTestWrapper {
 
     public void deleteTestData(List<String> idsToDelete) throws ApiException {
         if(idsToDelete.size() > 0) {
-            var response = $(api.deleteProducts(idsToDelete));
+            var response = $(api.deleteInstantWins(idsToDelete));
 
             assertTrue(Objects.nonNull(response));
-            assertEquals(idsToDelete.size(), response.getMeta().getResultCount(), "Failed to delete some products");
+            assertEquals(idsToDelete.size(), response.getMeta().getResultCount(), "Failed to delete some instant wins");
         }
     }
 
