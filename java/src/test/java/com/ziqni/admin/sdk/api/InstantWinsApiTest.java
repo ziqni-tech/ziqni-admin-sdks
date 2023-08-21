@@ -3,6 +3,7 @@ package com.ziqni.admin.sdk.api;
 import com.ziqni.admin.sdk.ApiException;
 import com.ziqni.admin.sdk.configuration.AdminApiClientConfigBuilder;
 import com.ziqni.admin.sdk.data.LoadInstantWinsData;
+import com.ziqni.admin.sdk.data.LoadRewardTypesData;
 import com.ziqni.admin.sdk.data.LoadRewardsData;
 import com.ziqni.admin.sdk.model.*;
 import com.ziqni.admin.sdk.util.ApiClientFactoryUtil;
@@ -26,8 +27,10 @@ public class InstantWinsApiTest implements tests.utils.CompleteableFutureTestWra
 
     private final LoadInstantWinsData loadTestData;
     private final LoadRewardsData loadRewardsData;
+    private final LoadRewardTypesData loadRewardTypesData;
 
     private String rewardId;
+    private String rewardTypeId;
 
     private List<String> idsToDelete = new ArrayList<>();
 
@@ -36,13 +39,20 @@ public class InstantWinsApiTest implements tests.utils.CompleteableFutureTestWra
         this.api = ApiClientFactoryUtil.factory.getInstantWinsApi();
         this.loadTestData = new LoadInstantWinsData();
         this.loadRewardsData = new LoadRewardsData();
+        this.loadRewardTypesData = new LoadRewardTypesData();
     }
 
     //    @BeforeAll
-    public void setUp() throws ApiException {
-        //nothing to initialise here
+    public void setUp() throws ApiException, InterruptedException {
+        rewardTypeId = loadRewardTypesData.createTestData(loadRewardTypesData
+                        .getCreateRequestAsList(1))
+                .getResults()
+                .get(0)
+                .getId();
+        Thread.sleep(5000);
         rewardId = loadRewardsData
-                .createTestData(loadRewardsData.getCreateRequestAsList(1,"","",""))
+                .createTestData(loadRewardsData
+                        .getCreateRequestAsList(1,rewardTypeId,"Achievement","72xq530BN5Uvmi6FyzgZ"))
                 .getResults()
                 .get(0)
                 .getId();
@@ -61,7 +71,6 @@ public class InstantWinsApiTest implements tests.utils.CompleteableFutureTestWra
     @Test
     @Order(1)
     public void createInstantWinOkTest() throws ApiException {
-
         var request = loadTestData.getCreateRequest(rewardId);
         var response = $(api.createInstantWins(loadTestData.getCreateRequestAsList(request)));
         var id = response.getResults().get(0).getId();
