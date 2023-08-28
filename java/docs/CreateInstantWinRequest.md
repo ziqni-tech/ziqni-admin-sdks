@@ -2,7 +2,7 @@
 
 # CreateInstantWinRequest
 
-This is a request for Product creation
+This is a request for Instant win creation
 
 ## Properties
 
@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 **constraints** | **List&lt;String&gt;** |  |  [optional]
 **statusCode** | **Integer** | integer |  [optional]
 **instantWinType** | **Integer** | integer |  [optional]
-**tiles** | [**List&lt;InstantWinTile&gt;**](InstantWinTile.md) |  |  [optional]
+**tiles** | [**List&lt;CreateInstantWinTile&gt;**](CreateInstantWinTile.md) |  |  [optional]
 **translations** | [**List&lt;Translation&gt;**](Translation.md) |  |  [optional]
 
 

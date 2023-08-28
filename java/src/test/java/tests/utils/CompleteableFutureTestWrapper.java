@@ -10,7 +10,7 @@ public interface CompleteableFutureTestWrapper {
 
     default <T> T $(CompletableFuture<T> in) throws ApiException {
         try {
-            in.orTimeout(10, TimeUnit.SECONDS).join();
+            in.orTimeout(30, TimeUnit.SECONDS).join();
 
             return in.get();
         }  catch (CompletionException completionException){

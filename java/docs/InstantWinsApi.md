@@ -49,7 +49,7 @@ public class Example {
         OAuth2.setAccessToken("YOUR ACCESS TOKEN");
 
         InstantWinsApi apiInstance = new InstantWinsApi(defaultClient);
-        List<CreateInstantWinRequest> body = Arrays.asList(); // List<CreateInstantWinRequest> | Create Products in the Ziqni database. An array can contain a maximum of 10,000 products in one request
+        List<CreateInstantWinRequest> body = Arrays.asList(); // List<CreateInstantWinRequest> | Create Instant wins in the Ziqni database. An array can contain a maximum of 10,000 instant wins in one request
         try {
             CompletableFuture<ModelApiResponse> result = apiInstance.createInstantWins(body);
             System.out.println(result.get());
@@ -69,7 +69,7 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**List&lt;CreateInstantWinRequest&gt;**](CreateInstantWinRequest.md)| Create Products in the Ziqni database. An array can contain a maximum of 10,000 products in one request |
+ **body** | [**List&lt;CreateInstantWinRequest&gt;**](CreateInstantWinRequest.md)| Create Instant wins in the Ziqni database. An array can contain a maximum of 10,000 instant wins in one request |
 
 ### Return type
 
@@ -127,7 +127,7 @@ public class Example {
         OAuth2.setAccessToken("YOUR ACCESS TOKEN");
 
         InstantWinsApi apiInstance = new InstantWinsApi(defaultClient);
-        List<CreateInstantWinRequest> body = Arrays.asList(); // List<CreateInstantWinRequest> | Create Products in the Ziqni database. An array can contain a maximum of 10,000 products in one request
+        List<CreateInstantWinRequest> body = Arrays.asList(); // List<CreateInstantWinRequest> | Create Instant wins in the Ziqni database. An array can contain a maximum of 10,000 instant wins in one request
         try {
             CompletableFuture<ApiResponse<ModelApiResponse>> response = apiInstance.createInstantWinsWithHttpInfo(body);
             System.out.println("Status code: " + response.get().getStatusCode());
@@ -156,7 +156,7 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**List&lt;CreateInstantWinRequest&gt;**](CreateInstantWinRequest.md)| Create Products in the Ziqni database. An array can contain a maximum of 10,000 products in one request |
+ **body** | [**List&lt;CreateInstantWinRequest&gt;**](CreateInstantWinRequest.md)| Create Instant wins in the Ziqni database. An array can contain a maximum of 10,000 instant wins in one request |
 
 ### Return type
 
@@ -355,7 +355,7 @@ CompletableFuture<ApiResponse<[**ModelApiResponse**](ModelApiResponse.md)>>
 
 Delete instant-wins by query
 
-Delete Products from Ziqni database by unique Instant win ID&#39;s or any other POST body parameters using the POST method
+Delete Instant wins from Ziqni database by unique Instant win ID&#39;s or any other POST body parameters using the POST method
 
 ### Example
 
@@ -379,7 +379,7 @@ public class Example {
         OAuth2.setAccessToken("YOUR ACCESS TOKEN");
 
         InstantWinsApi apiInstance = new InstantWinsApi(defaultClient);
-        QueryRequest body = new QueryRequest(); // QueryRequest | Delete Products from Ziqni database by unique Product ID's or any other POST body parameters using the POST method
+        QueryRequest body = new QueryRequest(); // QueryRequest | Delete Instant Wins from Ziqni database by unique Instant win ID's or any other POST body parameters using the POST method
         try {
             CompletableFuture<ModelApiResponse> result = apiInstance.deleteInstantWinsByQuery(body);
             System.out.println(result.get());
@@ -399,7 +399,7 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**QueryRequest**](QueryRequest.md)| Delete Products from Ziqni database by unique Product ID&#39;s or any other POST body parameters using the POST method | [optional]
+ **body** | [**QueryRequest**](QueryRequest.md)| Delete Instant Wins from Ziqni database by unique Instant win ID&#39;s or any other POST body parameters using the POST method | [optional]
 
 ### Return type
 
@@ -432,7 +432,7 @@ CompletableFuture<[**ModelApiResponse**](ModelApiResponse.md)>
 
 Delete instant-wins by query
 
-Delete Products from Ziqni database by unique Instant win ID&#39;s or any other POST body parameters using the POST method
+Delete Instant wins from Ziqni database by unique Instant win ID&#39;s or any other POST body parameters using the POST method
 
 ### Example
 
@@ -457,7 +457,7 @@ public class Example {
         OAuth2.setAccessToken("YOUR ACCESS TOKEN");
 
         InstantWinsApi apiInstance = new InstantWinsApi(defaultClient);
-        QueryRequest body = new QueryRequest(); // QueryRequest | Delete Products from Ziqni database by unique Product ID's or any other POST body parameters using the POST method
+        QueryRequest body = new QueryRequest(); // QueryRequest | Delete Instant Wins from Ziqni database by unique Instant win ID's or any other POST body parameters using the POST method
         try {
             CompletableFuture<ApiResponse<ModelApiResponse>> response = apiInstance.deleteInstantWinsByQueryWithHttpInfo(body);
             System.out.println("Status code: " + response.get().getStatusCode());
@@ -486,7 +486,7 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**QueryRequest**](QueryRequest.md)| Delete Products from Ziqni database by unique Product ID&#39;s or any other POST body parameters using the POST method | [optional]
+ **body** | [**QueryRequest**](QueryRequest.md)| Delete Instant Wins from Ziqni database by unique Instant win ID&#39;s or any other POST body parameters using the POST method | [optional]
 
 ### Return type
 
@@ -520,7 +520,7 @@ CompletableFuture<ApiResponse<[**ModelApiResponse**](ModelApiResponse.md)>>
 
 Get instant wins
 
-Returns a list of Instant wins. This assumes that products have first been uploaded via a POST request or web console
+Returns a list of Instant wins. This assumes that instant wins have first been uploaded via a POST request or web console
 
 ### Example
 
@@ -587,13 +587,13 @@ CompletableFuture<[**InstantWinResponse**](InstantWinResponse.md)>
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | A list of products and/or errors |  -  |
-| **400** | A list of products and/or errors |  -  |
-| **401** | A list of products and/or errors |  -  |
-| **403** | A list of products and/or errors |  -  |
-| **404** | A list of products and/or errors |  -  |
-| **500** | A list of products and/or errors |  -  |
-| **501** | A list of products and/or errors |  -  |
+| **200** | A list of Instant wins and/or errors |  -  |
+| **400** | A list of Instant wins and/or errors |  -  |
+| **401** | A list of Instant wins and/or errors |  -  |
+| **403** | A list of Instant wins and/or errors |  -  |
+| **404** | A list of Instant wins and/or errors |  -  |
+| **500** | A list of Instant wins and/or errors |  -  |
+| **501** | A list of Instant wins and/or errors |  -  |
 
 ## getInstantWinsWithHttpInfo
 
@@ -601,7 +601,7 @@ CompletableFuture<[**InstantWinResponse**](InstantWinResponse.md)>
 
 Get instant wins
 
-Returns a list of Instant wins. This assumes that products have first been uploaded via a POST request or web console
+Returns a list of Instant wins. This assumes that instant wins have first been uploaded via a POST request or web console
 
 ### Example
 
@@ -678,13 +678,13 @@ CompletableFuture<ApiResponse<[**InstantWinResponse**](InstantWinResponse.md)>>
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | A list of products and/or errors |  -  |
-| **400** | A list of products and/or errors |  -  |
-| **401** | A list of products and/or errors |  -  |
-| **403** | A list of products and/or errors |  -  |
-| **404** | A list of products and/or errors |  -  |
-| **500** | A list of products and/or errors |  -  |
-| **501** | A list of products and/or errors |  -  |
+| **200** | A list of Instant wins and/or errors |  -  |
+| **400** | A list of Instant wins and/or errors |  -  |
+| **401** | A list of Instant wins and/or errors |  -  |
+| **403** | A list of Instant wins and/or errors |  -  |
+| **404** | A list of Instant wins and/or errors |  -  |
+| **500** | A list of Instant wins and/or errors |  -  |
+| **501** | A list of Instant wins and/or errors |  -  |
 
 
 ## getInstantWinsByQuery
@@ -717,7 +717,7 @@ public class Example {
         OAuth2.setAccessToken("YOUR ACCESS TOKEN");
 
         InstantWinsApi apiInstance = new InstantWinsApi(defaultClient);
-        QueryRequest body = new QueryRequest(); // QueryRequest | Retrieve Products from Ziqni database by unique Product ID's or any other POST body parameters using the POST method
+        QueryRequest body = new QueryRequest(); // QueryRequest | Retrieve Instant wins from Ziqni database by unique Instant win ID's or any other POST body parameters using the POST method
         try {
             CompletableFuture<InstantWinResponse> result = apiInstance.getInstantWinsByQuery(body);
             System.out.println(result.get());
@@ -737,7 +737,7 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**QueryRequest**](QueryRequest.md)| Retrieve Products from Ziqni database by unique Product ID&#39;s or any other POST body parameters using the POST method | [optional]
+ **body** | [**QueryRequest**](QueryRequest.md)| Retrieve Instant wins from Ziqni database by unique Instant win ID&#39;s or any other POST body parameters using the POST method | [optional]
 
 ### Return type
 
@@ -756,13 +756,13 @@ CompletableFuture<[**InstantWinResponse**](InstantWinResponse.md)>
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | A list of products and/or errors |  -  |
-| **400** | A list of products and/or errors |  -  |
-| **401** | A list of products and/or errors |  -  |
-| **403** | A list of products and/or errors |  -  |
-| **404** | A list of products and/or errors |  -  |
-| **500** | A list of products and/or errors |  -  |
-| **501** | A list of products and/or errors |  -  |
+| **200** | A list of Instant wins and/or errors |  -  |
+| **400** | A list of Instant wins and/or errors |  -  |
+| **401** | A list of Instant wins and/or errors |  -  |
+| **403** | A list of Instant wins and/or errors |  -  |
+| **404** | A list of Instant wins and/or errors |  -  |
+| **500** | A list of Instant wins and/or errors |  -  |
+| **501** | A list of Instant wins and/or errors |  -  |
 
 ## getInstantWinsByQueryWithHttpInfo
 
@@ -795,7 +795,7 @@ public class Example {
         OAuth2.setAccessToken("YOUR ACCESS TOKEN");
 
         InstantWinsApi apiInstance = new InstantWinsApi(defaultClient);
-        QueryRequest body = new QueryRequest(); // QueryRequest | Retrieve Products from Ziqni database by unique Product ID's or any other POST body parameters using the POST method
+        QueryRequest body = new QueryRequest(); // QueryRequest | Retrieve Instant wins from Ziqni database by unique Instant win ID's or any other POST body parameters using the POST method
         try {
             CompletableFuture<ApiResponse<InstantWinResponse>> response = apiInstance.getInstantWinsByQueryWithHttpInfo(body);
             System.out.println("Status code: " + response.get().getStatusCode());
@@ -824,7 +824,7 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**QueryRequest**](QueryRequest.md)| Retrieve Products from Ziqni database by unique Product ID&#39;s or any other POST body parameters using the POST method | [optional]
+ **body** | [**QueryRequest**](QueryRequest.md)| Retrieve Instant wins from Ziqni database by unique Instant win ID&#39;s or any other POST body parameters using the POST method | [optional]
 
 ### Return type
 
@@ -843,13 +843,13 @@ CompletableFuture<ApiResponse<[**InstantWinResponse**](InstantWinResponse.md)>>
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | A list of products and/or errors |  -  |
-| **400** | A list of products and/or errors |  -  |
-| **401** | A list of products and/or errors |  -  |
-| **403** | A list of products and/or errors |  -  |
-| **404** | A list of products and/or errors |  -  |
-| **500** | A list of products and/or errors |  -  |
-| **501** | A list of products and/or errors |  -  |
+| **200** | A list of Instant wins and/or errors |  -  |
+| **400** | A list of Instant wins and/or errors |  -  |
+| **401** | A list of Instant wins and/or errors |  -  |
+| **403** | A list of Instant wins and/or errors |  -  |
+| **404** | A list of Instant wins and/or errors |  -  |
+| **500** | A list of Instant wins and/or errors |  -  |
+| **501** | A list of Instant wins and/or errors |  -  |
 
 
 ## updateInstantWins
@@ -882,7 +882,7 @@ public class Example {
         OAuth2.setAccessToken("YOUR ACCESS TOKEN");
 
         InstantWinsApi apiInstance = new InstantWinsApi(defaultClient);
-        List<UpdateInstantWinRequest> body = Arrays.asList(); // List<UpdateInstantWinRequest> | Update a Product or multiple Products in the Ziqni database. * Product Ref Id can not be changed after creation * A products Id must exist in the Ziqni database to update the product
+        List<UpdateInstantWinRequest> body = Arrays.asList(); // List<UpdateInstantWinRequest> | Update a Instant win or multiple Instant wins in the Ziqni database. 
         try {
             CompletableFuture<ModelApiResponse> result = apiInstance.updateInstantWins(body);
             System.out.println(result.get());
@@ -902,7 +902,7 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**List&lt;UpdateInstantWinRequest&gt;**](UpdateInstantWinRequest.md)| Update a Product or multiple Products in the Ziqni database. * Product Ref Id can not be changed after creation * A products Id must exist in the Ziqni database to update the product |
+ **body** | [**List&lt;UpdateInstantWinRequest&gt;**](UpdateInstantWinRequest.md)| Update a Instant win or multiple Instant wins in the Ziqni database.  |
 
 ### Return type
 
@@ -960,7 +960,7 @@ public class Example {
         OAuth2.setAccessToken("YOUR ACCESS TOKEN");
 
         InstantWinsApi apiInstance = new InstantWinsApi(defaultClient);
-        List<UpdateInstantWinRequest> body = Arrays.asList(); // List<UpdateInstantWinRequest> | Update a Product or multiple Products in the Ziqni database. * Product Ref Id can not be changed after creation * A products Id must exist in the Ziqni database to update the product
+        List<UpdateInstantWinRequest> body = Arrays.asList(); // List<UpdateInstantWinRequest> | Update a Instant win or multiple Instant wins in the Ziqni database. 
         try {
             CompletableFuture<ApiResponse<ModelApiResponse>> response = apiInstance.updateInstantWinsWithHttpInfo(body);
             System.out.println("Status code: " + response.get().getStatusCode());
@@ -989,7 +989,7 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**List&lt;UpdateInstantWinRequest&gt;**](UpdateInstantWinRequest.md)| Update a Product or multiple Products in the Ziqni database. * Product Ref Id can not be changed after creation * A products Id must exist in the Ziqni database to update the product |
+ **body** | [**List&lt;UpdateInstantWinRequest&gt;**](UpdateInstantWinRequest.md)| Update a Instant win or multiple Instant wins in the Ziqni database.  |
 
 ### Return type
 

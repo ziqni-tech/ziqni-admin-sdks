@@ -1,7 +1,7 @@
 openapi: 3.0.2
 info:
   title: ZIQNI Admin API
-  version: 3.0.6
+  version: 3.0.9
   description: Ziqni Application Services are used to manage and configure spaces.
   contact:
     name: Support Team
@@ -7818,165 +7818,13 @@ paths:
       description: >-
         Retrieve ConteEntrants from Ziqni database by unique Contests ID's or any other POST body
         parameters using the POST method
-  /instant-wins:
-    summary: Manage products
-    description: These operations allow you to manage products in your project.
-    get:
-      tags:
-        - instant-wins
-      parameters:
-        -
-          $ref: '#/components/parameters/idQuery'
-        -
-          $ref: '#/components/parameters/limitResults'
-        -
-          $ref: '#/components/parameters/skipResults'
-      responses:
-        '200':
-          $ref: '#/components/responses/InstantWinResponseBody'
-        '400':
-          $ref: '#/components/responses/InstantWinResponseBody'
-        '401':
-          $ref: '#/components/responses/InstantWinResponseBody'
-        '403':
-          $ref: '#/components/responses/InstantWinResponseBody'
-        '404':
-          $ref: '#/components/responses/InstantWinResponseBody'
-        '500':
-          $ref: '#/components/responses/InstantWinResponseBody'
-        '501':
-          $ref: '#/components/responses/InstantWinResponseBody'
-      security:
-        -
-          OAuth2:
-            - ViewProducts
-      operationId: getInstantWins
-      summary: Get instant wins
-      description: >-
-        Returns a list of Instant wins. This assumes that products have first been uploaded via a POST
-        request or web console
-      x-codegen-request-body-name: body
-      x-vue-item: Product
-      x-vue-list: Products
-    put:
-      requestBody:
-        description: >-
-          Update a Product or multiple Products in the Ziqni database. * Product Ref Id can not be
-          changed after creation * A products Id must exist in the Ziqni database to update the
-          product
-        content:
-          application/json:
-            schema:
-              type: array
-              items:
-                $ref: '#/components/schemas/UpdateInstantWinRequest'
-          file/csv:
-            schema:
-              format: binary
-              type: string
-        required: true
-      tags:
-        - instant-wins
-      responses:
-        '200':
-          $ref: '#/components/responses/ApiResponseBody'
-        '400':
-          $ref: '#/components/responses/ApiResponseBody'
-        '401':
-          $ref: '#/components/responses/ApiResponseBody'
-        '403':
-          $ref: '#/components/responses/ApiResponseBody'
-        '404':
-          $ref: '#/components/responses/ApiResponseBody'
-        '500':
-          $ref: '#/components/responses/ApiResponseBody'
-        '501':
-          $ref: '#/components/responses/ApiResponseBody'
-      security:
-        -
-          OAuth2:
-            - ManageProducts
-      operationId: updateInstantWins
-      summary: Update instant wins
-      description: Update existing Instant wins in the Ziqni database
-      x-codegen-request-body-name: body
-    post:
-      requestBody:
-        description: >-
-          Create Products in the Ziqni database. An array can contain a maximum of 10,000 products
-          in one request
-        content:
-          application/json:
-            schema:
-              type: array
-              items:
-                $ref: '#/components/schemas/CreateInstantWinRequest'
-          file/csv:
-            schema:
-              format: binary
-              type: string
-        required: true
-      tags:
-        - instant-wins
-      responses:
-        '200':
-          $ref: '#/components/responses/ApiResponseBody'
-        '400':
-          $ref: '#/components/responses/ApiResponseBody'
-        '401':
-          $ref: '#/components/responses/ApiResponseBody'
-        '403':
-          $ref: '#/components/responses/ApiResponseBody'
-        '404':
-          $ref: '#/components/responses/ApiResponseBody'
-        '500':
-          $ref: '#/components/responses/ApiResponseBody'
-        '501':
-          $ref: '#/components/responses/ApiResponseBody'
-      security:
-        -
-          OAuth2:
-            - AdminProducts
-      operationId: createInstantWins
-      summary: Create instant wins
-      description: Create new Instant win in the Ziqni database
-      x-codegen-request-body-name: body
-    delete:
-      tags:
-        - instant-wins
-      parameters:
-        -
-          $ref: '#/components/parameters/idQuery'
-      responses:
-        '200':
-          $ref: '#/components/responses/ApiResponseBody'
-        '400':
-          $ref: '#/components/responses/ApiResponseBody'
-        '401':
-          $ref: '#/components/responses/ApiResponseBody'
-        '403':
-          $ref: '#/components/responses/ApiResponseBody'
-        '404':
-          $ref: '#/components/responses/ApiResponseBody'
-        '500':
-          $ref: '#/components/responses/ApiResponseBody'
-        '501':
-          $ref: '#/components/responses/ApiResponseBody'
-      security:
-        -
-          OAuth2:
-            - AdminProducts
-      operationId: deleteInstantWins
-      summary: Delete instant wins
-      description: Delete Instant win for a given identifier specified
-      x-codegen-request-body-name: body
   /instant-wins/delete:
-    summary: Delete products by query
-    description: This operation allows you to delete products in your project using a query.
+    summary: Delete instant wins by query
+    description: This operation allows you to delete instant wins in your project using a query.
     post:
       requestBody:
         description: >-
-          Delete Products from Ziqni database by unique Product ID's or any other POST body
+          Delete Instant Wins from Ziqni database by unique Instant win ID's or any other POST body
           parameters using the POST method
         content:
           application/json:
@@ -8114,21 +7962,21 @@ paths:
       security:
         -
           OAuth2:
-            - AdminProducts
+            - AdminInstantWins
       operationId: deleteInstantWinsByQuery
       summary: Delete instant-wins by query
       description: >-
-        Delete Products from Ziqni database by unique Instant win ID's or any other POST body
+        Delete Instant wins from Ziqni database by unique Instant win ID's or any other POST body
         parameters using the POST method
       x-codegen-request-body-name: body
   /instant-wins/query:
-    summary: Get products by query
-    description: This operation allows you to get products in your project using a query.
+    summary: Get instant wins by query
+    description: This operation allows you to get instant wins in your project using a query.
     post:
       requestBody:
         description: >-
-          Retrieve Products from Ziqni database by unique Product ID's or any other POST body
-          parameters using the POST method
+          Retrieve Instant wins from Ziqni database by unique Instant win ID's or any other POST
+          body parameters using the POST method
         content:
           application/json:
             schema:
@@ -8265,12 +8113,161 @@ paths:
       security:
         -
           OAuth2:
-            - ViewProducts
+            - ViewInstantWins
       operationId: getInstantWinsByQuery
       summary: Get instant wins by query
       description: >-
         Retrieve Instant wins from Ziqni database by unique Instant win ID's or any other POST body
         parameters using the POST method
+      x-codegen-request-body-name: body
+  /instant-wins:
+    summary: Manage instant wins
+    description: These operations allow you to manage instant wins in your project.
+    get:
+      tags:
+        - instant-wins
+      parameters:
+        -
+          $ref: '#/components/parameters/idQuery'
+        -
+          $ref: '#/components/parameters/limitResults'
+        -
+          $ref: '#/components/parameters/skipResults'
+      responses:
+        '200':
+          $ref: '#/components/responses/InstantWinResponseBody'
+        '400':
+          $ref: '#/components/responses/InstantWinResponseBody'
+        '401':
+          $ref: '#/components/responses/InstantWinResponseBody'
+        '403':
+          $ref: '#/components/responses/InstantWinResponseBody'
+        '404':
+          $ref: '#/components/responses/InstantWinResponseBody'
+        '500':
+          $ref: '#/components/responses/InstantWinResponseBody'
+        '501':
+          $ref: '#/components/responses/InstantWinResponseBody'
+      security:
+        -
+          OAuth2:
+            - ViewInstantWins
+      operationId: getInstantWins
+      summary: Get instant wins
+      description: >-
+        Returns a list of Instant wins. This assumes that instant wins have first been uploaded via a
+        POST request or web console
+      x-codegen-request-body-name: body
+      x-vue-item: InstantWin
+      x-vue-list: InstantWins
+    put:
+      requestBody:
+        description: 'Update a Instant win or multiple Instant wins in the Ziqni database. '
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/UpdateInstantWinRequest'
+          file/csv:
+            schema:
+              format: binary
+              type: string
+        required: true
+      tags:
+        - instant-wins
+      responses:
+        '200':
+          $ref: '#/components/responses/ApiResponseBody'
+        '400':
+          $ref: '#/components/responses/ApiResponseBody'
+        '401':
+          $ref: '#/components/responses/ApiResponseBody'
+        '403':
+          $ref: '#/components/responses/ApiResponseBody'
+        '404':
+          $ref: '#/components/responses/ApiResponseBody'
+        '500':
+          $ref: '#/components/responses/ApiResponseBody'
+        '501':
+          $ref: '#/components/responses/ApiResponseBody'
+      security:
+        -
+          OAuth2:
+            - ManageInstantWins
+      operationId: updateInstantWins
+      summary: Update instant wins
+      description: Update existing Instant wins in the Ziqni database
+      x-codegen-request-body-name: body
+    post:
+      requestBody:
+        description: >-
+          Create Instant wins in the Ziqni database. An array can contain a maximum of 10,000
+          instant wins in one request
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/CreateInstantWinRequest'
+          file/csv:
+            schema:
+              format: binary
+              type: string
+        required: true
+      tags:
+        - instant-wins
+      responses:
+        '200':
+          $ref: '#/components/responses/ApiResponseBody'
+        '400':
+          $ref: '#/components/responses/ApiResponseBody'
+        '401':
+          $ref: '#/components/responses/ApiResponseBody'
+        '403':
+          $ref: '#/components/responses/ApiResponseBody'
+        '404':
+          $ref: '#/components/responses/ApiResponseBody'
+        '500':
+          $ref: '#/components/responses/ApiResponseBody'
+        '501':
+          $ref: '#/components/responses/ApiResponseBody'
+      security:
+        -
+          OAuth2:
+            - AdminInstantWins
+      operationId: createInstantWins
+      summary: Create instant wins
+      description: Create new Instant win in the Ziqni database
+      x-codegen-request-body-name: body
+    delete:
+      tags:
+        - instant-wins
+      parameters:
+        -
+          $ref: '#/components/parameters/idQuery'
+      responses:
+        '200':
+          $ref: '#/components/responses/ApiResponseBody'
+        '400':
+          $ref: '#/components/responses/ApiResponseBody'
+        '401':
+          $ref: '#/components/responses/ApiResponseBody'
+        '403':
+          $ref: '#/components/responses/ApiResponseBody'
+        '404':
+          $ref: '#/components/responses/ApiResponseBody'
+        '500':
+          $ref: '#/components/responses/ApiResponseBody'
+        '501':
+          $ref: '#/components/responses/ApiResponseBody'
+      security:
+        -
+          OAuth2:
+            - AdminInstantWins
+      operationId: deleteInstantWins
+      summary: Delete instant wins
+      description: Delete Instant win for a given identifier specified
       x-codegen-request-body-name: body
 components:
   schemas:
@@ -15510,71 +15507,6 @@ components:
             tags:
               description: ''
               type: string
-    CreateEventRequest:
-      required:
-        - action
-        - sourceValue
-        - transactionTimestamp
-        - entityRefId
-        - memberRefId
-        - eventRefId
-      type: object
-      properties:
-        memberRefId:
-          description: The reference to this member in external system
-          type: string
-          example: Player-1
-        action:
-          description: The identifier that describes the meaning of this event
-          type: string
-          example: win
-        batchId:
-          description: >-
-            The batch identifier is used to group related event stream data together. This could
-            be as simple as a UUID or your internal reference to that distinct player session
-            event
-          type: string
-          example: ecrsamQm23r61KgaPQq7x
-        entityRefId:
-          description: It is a reference to a game/product ID from external system
-          type: string
-          example: fruits
-        sourceValue:
-          format: double
-          description: The actual numerical value related to the event
-          type: number
-          example: '12.345'
-        transactionTimestamp:
-          format: date-time
-          description: >-
-            ISO8601 timestamp for when this event happened. All records are stored in UTC time
-            zone
-          type: string
-          example: '2019-09-25T15:47:00.000+0000'
-        tags:
-          description: A list of Strings of groups that the tag belongs to
-          type: array
-          items:
-            type: string
-          example:
-            - Dc4swmQBVd51K6gPQqFx
-            - Dc4swmQBVd51K6gPQqF2
-          x-vue-tags: true
-          x-vue-form-type: TAG
-        eventRefId:
-          description: ''
-          type: string
-        memberId:
-          description: ''
-          type: string
-        customFields:
-          description: A list of custom field entries
-          type: object
-          additionalProperties: true
-          x-vue-custom-fields: true
-          x-vue-form-type: CUSTOM
-      x-vue-create: event
-      x-vue-creator: events
     CloneCompetitionResponse:
       required:
         - meta
@@ -17429,6 +17361,12 @@ components:
               type: array
               items:
                 type: string
+            unitOfMeasure:
+              description: >-
+                The unit of measure is used to determine the type of the source value. It is
+                used to normalize points values for currency based calculations by normalizing
+                the source value.
+              type: string
     EntityGraphRequest:
       description: ''
       required:
@@ -18744,63 +18682,6 @@ components:
           $ref: '#/components/schemas/OptParamModels'
         -
           $ref: '#/components/schemas/ModelDefault'
-    UpdateInstantWinRequest:
-      description: This is a request for Product update
-      allOf:
-        -
-          $ref: '#/components/schemas/UpdateModelDefault'
-        -
-          $ref: '#/components/schemas/UpdateOptParamModels'
-        -
-          required: []
-          type: object
-          properties:
-            name:
-              type: string
-            description:
-              type: string
-            termsAndConditions:
-              type: string
-            constraints:
-              type: array
-              items:
-                type: string
-              example: hasRewards
-            statusCode:
-              format: int32
-              description: integer
-              type: integer
-            instantWinType:
-              description: integer
-              type: integer
-            tiles:
-              description: ''
-              type: array
-              items:
-                $ref: '#/components/schemas/InstantWinTile'
-      example:
-        id: ziqniModelId
-        metadata:
-          key1: value1
-          key2: value
-        tags:
-          - tagId1
-          - tagId2
-        customFields:
-          customField1: customFieldValue1
-          customField2: customFieldValue2
-        name: name
-        description: description
-        adjustmentFactor: 28.55
-        actionTypeAdjustmentFactors:
-          -
-            adjustmentFactor: 67.71
-            actionTypeId: ziqniModelId
-          -
-            adjustmentFactor: 96.91
-            actionTypeId: ziqniModelId
-      x-vue-update: product
-      x-vue-updater: products
     GridLocation:
       description: >-
         This struct contains two integer-valued fields, row and col . A GridLocation can be used to
@@ -18824,6 +18705,7 @@ components:
         - icon
         - horizontalPosition
         - verticalPosition
+        - probability
       type: object
       properties:
         icon:
@@ -18844,8 +18726,12 @@ components:
         location:
           $ref: '#/components/schemas/GridLocation'
           description: ''
+        probability:
+          format: double
+          description: ''
+          type: number
     CreateInstantWinRequest:
-      description: This is a request for Product creation
+      description: This is a request for Instant win creation
       allOf:
         -
           $ref: '#/components/schemas/CreateOptParamModels'
@@ -18877,13 +18763,207 @@ components:
               description: ''
               type: array
               items:
-                $ref: '#/components/schemas/InstantWinTile'
+                $ref: '#/components/schemas/CreateInstantWinTile'
             translations:
               type: array
               items:
                 $ref: '#/components/schemas/Translation'
-      x-vue-create: instant-win
-      x-vue-creator: instant-wins
+      x-vue-create: instantWin
+      x-vue-creator: instantWins
+    UpdateInstantWinRequest:
+      description: This is a request for Instant win update
+      allOf:
+        -
+          $ref: '#/components/schemas/UpdateModelDefault'
+        -
+          $ref: '#/components/schemas/UpdateOptParamModels'
+        -
+          required: []
+          type: object
+          properties:
+            name:
+              type: string
+            description:
+              type: string
+            termsAndConditions:
+              type: string
+            constraints:
+              type: array
+              items:
+                type: string
+              example: hasRewards
+            statusCode:
+              format: int32
+              description: integer
+              type: integer
+            instantWinType:
+              description: integer
+              type: integer
+            tiles:
+              description: ''
+              type: array
+              items:
+                $ref: '#/components/schemas/UpdateInstantWinTile'
+      example:
+        id: ziqniModelId
+        metadata:
+          key1: value1
+          key2: value
+        tags:
+          - tagId1
+          - tagId2
+        customFields:
+          customField1: customFieldValue1
+          customField2: customFieldValue2
+        name: name
+        description: description
+        adjustmentFactor: 28.55
+        actionTypeAdjustmentFactors:
+          -
+            adjustmentFactor: 67.71
+            actionTypeId: ziqniModelId
+          -
+            adjustmentFactor: 96.91
+            actionTypeId: ziqniModelId
+      x-vue-update: instantWin
+      x-vue-updater: instantWins
+    CreateInstantWinTile:
+      description: ''
+      required:
+        - orderNumber
+        - probability
+        - icon
+        - horizontalPosition
+        - verticalPosition
+        - probability
+      type: object
+      properties:
+        icon:
+          description: The id to the image file
+          type: string
+        text:
+          description: ''
+          type: string
+        contraints:
+          description: 'hasPrizes, glow'
+          type: array
+          items:
+            type: string
+          example: hasPrizes
+        reward:
+          $ref: '#/components/schemas/CreateRewardRequest'
+          description: The reward associated with this tile
+        location:
+          $ref: '#/components/schemas/GridLocation'
+          description: ''
+        probability:
+          format: double
+          description: ''
+          type: number
+    UpdateInstantWinTile:
+      description: ''
+      required:
+        - orderNumber
+        - probability
+        - icon
+        - horizontalPosition
+        - verticalPosition
+        - probability
+      type: object
+      properties:
+        icon:
+          description: The id to the image file
+          type: string
+        text:
+          description: ''
+          type: string
+        contraints:
+          description: 'hasPrizes, glow'
+          type: array
+          items:
+            type: string
+          example: hasPrizes
+        reward:
+          $ref: '#/components/schemas/UpdateRewardRequest'
+          description: The reward associated with this tile
+        location:
+          $ref: '#/components/schemas/GridLocation'
+          description: ''
+        probability:
+          format: double
+          description: ''
+          type: number
+    CreateEventRequest:
+      required:
+        - action
+        - sourceValue
+        - transactionTimestamp
+        - entityRefId
+        - memberRefId
+        - eventRefId
+      type: object
+      properties:
+        memberRefId:
+          description: The reference to this member in external system
+          type: string
+          example: Player-1
+        action:
+          description: The identifier that describes the meaning of this event
+          type: string
+          example: win
+        batchId:
+          description: >-
+            The batch identifier is used to group related event stream data together. This could
+            be as simple as a UUID or your internal reference to that distinct player session
+            event
+          type: string
+          example: ecrsamQm23r61KgaPQq7x
+        entityRefId:
+          description: It is a reference to a game/product ID from external system
+          type: string
+          example: fruits
+        sourceValue:
+          format: double
+          description: The actual numerical value related to the event
+          type: number
+          example: '12.345'
+        transactionTimestamp:
+          format: date-time
+          description: >-
+            ISO8601 timestamp for when this event happened. All records are stored in UTC time
+            zone
+          type: string
+          example: '2019-09-25T15:47:00.000+0000'
+        tags:
+          description: A list of Strings of groups that the tag belongs to
+          type: array
+          items:
+            type: string
+          example:
+            - Dc4swmQBVd51K6gPQqFx
+            - Dc4swmQBVd51K6gPQqF2
+          x-vue-tags: true
+          x-vue-form-type: TAG
+        eventRefId:
+          description: ''
+          type: string
+        memberId:
+          description: ''
+          type: string
+        customFields:
+          description: A list of custom field entries
+          type: object
+          additionalProperties: true
+          x-vue-custom-fields: true
+          x-vue-form-type: CUSTOM
+        unitOfMeasure:
+          description: >-
+            The unit of measure is used to determine the type of the source value. It is used to
+            normalize points values for currency based calculations by normalizing the source
+            value.
+          type: string
+      x-vue-create: event
+      x-vue-creator: events
   responses:
     ApiResponseBody:
       content:
@@ -20000,134 +20080,46 @@ components:
           schema:
             $ref: '#/components/schemas/InstantWinResponse'
           examples:
-            ProductResponseBodyExample:
+            Example:
               value:
-                meta:
-                  objectType: some text
-                  totalRecords: 26
-                  resultCount: 2
-                  errorCount: 0
-                  limit: 2
-                  skip: 0
+                meta: {}
                 results:
-                  -
-                    id: ziqniModelId
-                    spaceName: ziqniSpaceName
-                    created: '2018-02-10T09:30Z'
-                    productRefId: '10002'
-                    name: test1
-                    adjustmentFactor: '1'
-                    actionTypeAdjustmentFactors:
-                      -
-                        adjustmentFactor: 67.71
-                        actionTypeId: ziqniModelId
-                      -
-                        adjustmentFactor: 96.91
-                        actionTypeId: ziqniModelId
-                    customFields:
-                      customField1: customFieldValue1
-                      customField2: customFieldValue2
-                    metadata:
-                      key1: value1
-                      key2: value
-                    tags:
-                      - tagId1
-                      - tagId2
-                    translations:
-                      -
-                        languageKey: csb
-                        translations:
-                          -
-                            fieldName: name
-                            text: test1
-                      -
-                        languageKey: den
-                        translations:
-                          -
-                            fieldName: name
-                            text: test-temp
-                      -
-                        languageKey: kmb
-                        translations:
-                          -
-                            fieldName: name
-                            text: Level-Up
-                  -
-                    id: ziqniModelId
-                    spaceName: ziqniSpaceName
-                    created: '2018-02-10T09:30Z'
-                    productRefId: '10002'
-                    name: test1
-                    adjustmentFactor: '1'
-                    actionTypeAdjustmentFactors:
-                      -
-                        adjustmentFactor: 67.71
-                        actionTypeId: ziqniModelId
-                      -
-                        adjustmentFactor: 96.91
-                        actionTypeId: ziqniModelId
-                    customFields:
-                      customField1: customFieldValue1
-                      customField2: customFieldValue2
-                    metadata:
-                      key1: value1
-                      key2: value
-                    tags:
-                      - tagId1
-                      - tagId2
-                    translations:
-                      -
-                        languageKey: csb
-                        translations:
-                          -
-                            fieldName: name
-                            text: test1
-                      -
-                        languageKey: den
-                        translations:
-                          -
-                            fieldName: name
-                            text: test-temp
-                      -
-                        languageKey: kmb
-                        translations:
-                          -
-                            fieldName: name
-                            text: Level-Up
+                  - {}
+                  - {}
                 errors:
                   -
                     modelId: some text
-                    errorCode: 33
+                    errorCode: 96
                     message: some text
-                    errorAt: 13
+                    errorAt: 98
                     detail:
                       -
                         modelId: some text
-                        errorCode: 98
+                        errorCode: 96
                         message: some text
-                        errorAt: 97
+                        errorAt: 89
                       -
                         modelId: some text
-                        errorCode: 25
+                        errorCode: 34
                         message: some text
-                        errorAt: 58
+                        errorAt: 87
                   -
                     modelId: some text
-                    errorCode: 30
+                    errorCode: 75
                     message: some text
-                    errorAt: 46
+                    errorAt: 39
                     detail:
                       -
                         modelId: some text
-                        errorCode: 68
+                        errorCode: 10
                         message: some text
-                        errorAt: 8
+                        errorAt: 98
                       -
                         modelId: some text
-                        errorCode: 19
+                        errorCode: 56
                         message: some text
-                        errorAt: 36
-      description: A list of products and/or errors
+                        errorAt: 92
+      description: A list of Instant wins and/or errors
   parameters:
     spaceName:
       name: spaceName

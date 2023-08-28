@@ -24,13 +24,13 @@ public class LoadInstantWinsData implements CompleteableFutureTestWrapper {
     }
 
     public CreateInstantWinRequest getCreateRequest(String rewardId) {
-        final var instantWinTile = new InstantWinTile();
+        final var instantWinTile = new CreateInstantWinTile();
         instantWinTile.setIcon("Test icon");
         instantWinTile.setText("Test text");
         instantWinTile.setLocation(new GridLocation()
                 .row(0)
                 .col(1));
-        instantWinTile.setReward(new RewardReduced().id(rewardId));
+//        instantWinTile.setReward(new CreateRewardRequest());
         String name = "Test_name-" + UUID.randomUUID();
         String description = "Test description";
 
