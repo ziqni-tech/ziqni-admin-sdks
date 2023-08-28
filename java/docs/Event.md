@@ -25,6 +25,7 @@ Name | Type | Description | Notes
 **tags** | **List&lt;String&gt;** | A list of Strings of groups that the tag belongs to |  [optional]
 **relatesTo** | **List&lt;String&gt;** |  |  [optional]
 **relatesToExternal** | **List&lt;String&gt;** |  |  [optional]
+**unitOfMeasure** | **String** | The unit of measure is used to determine the type of the source value. It is used to normalize points values for currency based calculations by normalizing the source value. |  [optional]
 
 
 

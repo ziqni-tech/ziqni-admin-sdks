@@ -17,6 +17,7 @@ Name | Type | Description | Notes
 **eventRefId** | **String** |  | 
 **memberId** | **String** |  |  [optional]
 **customFields** | **Map&lt;String, Object&gt;** | A list of custom field entries |  [optional]
+**unitOfMeasure** | **String** | The unit of measure is used to determine the type of the source value. It is used to normalize points values for currency based calculations by normalizing the source value. |  [optional]
 
 
 

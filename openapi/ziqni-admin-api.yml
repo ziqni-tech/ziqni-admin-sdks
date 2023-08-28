@@ -1,7 +1,7 @@
 openapi: 3.0.2
 info:
   title: ZIQNI Admin API
-  version: 3.0.7
+  version: 3.0.9
   description: Ziqni Application Services are used to manage and configure spaces.
   contact:
     name: Support Team
@@ -15507,71 +15507,6 @@ components:
             tags:
               description: ''
               type: string
-    CreateEventRequest:
-      required:
-        - action
-        - sourceValue
-        - transactionTimestamp
-        - entityRefId
-        - memberRefId
-        - eventRefId
-      type: object
-      properties:
-        memberRefId:
-          description: The reference to this member in external system
-          type: string
-          example: Player-1
-        action:
-          description: The identifier that describes the meaning of this event
-          type: string
-          example: win
-        batchId:
-          description: >-
-            The batch identifier is used to group related event stream data together. This could
-            be as simple as a UUID or your internal reference to that distinct player session
-            event
-          type: string
-          example: ecrsamQm23r61KgaPQq7x
-        entityRefId:
-          description: It is a reference to a game/product ID from external system
-          type: string
-          example: fruits
-        sourceValue:
-          format: double
-          description: The actual numerical value related to the event
-          type: number
-          example: '12.345'
-        transactionTimestamp:
-          format: date-time
-          description: >-
-            ISO8601 timestamp for when this event happened. All records are stored in UTC time
-            zone
-          type: string
-          example: '2019-09-25T15:47:00.000+0000'
-        tags:
-          description: A list of Strings of groups that the tag belongs to
-          type: array
-          items:
-            type: string
-          example:
-            - Dc4swmQBVd51K6gPQqFx
-            - Dc4swmQBVd51K6gPQqF2
-          x-vue-tags: true
-          x-vue-form-type: TAG
-        eventRefId:
-          description: ''
-          type: string
-        memberId:
-          description: ''
-          type: string
-        customFields:
-          description: A list of custom field entries
-          type: object
-          additionalProperties: true
-          x-vue-custom-fields: true
-          x-vue-form-type: CUSTOM
-      x-vue-create: event
-      x-vue-creator: events
     CloneCompetitionResponse:
       required:
         - meta
@@ -17426,6 +17361,12 @@ components:
               type: array
               items:
                 type: string
+            unitOfMeasure:
+              description: >-
+                The unit of measure is used to determine the type of the source value. It is
+                used to normalize points values for currency based calculations by normalizing
+                the source value.
+              type: string
     EntityGraphRequest:
       description: ''
       required:
@@ -18952,6 +18893,77 @@ components:
           format: double
           description: ''
           type: number
+    CreateEventRequest:
+      required:
+        - action
+        - sourceValue
+        - transactionTimestamp
+        - entityRefId
+        - memberRefId
+        - eventRefId
+      type: object
+      properties:
+        memberRefId:
+          description: The reference to this member in external system
+          type: string
+          example: Player-1
+        action:
+          description: The identifier that describes the meaning of this event
+          type: string
+          example: win
+        batchId:
+          description: >-
+            The batch identifier is used to group related event stream data together. This could
+            be as simple as a UUID or your internal reference to that distinct player session
+            event
+          type: string
+          example: ecrsamQm23r61KgaPQq7x
+        entityRefId:
+          description: It is a reference to a game/product ID from external system
+          type: string
+          example: fruits
+        sourceValue:
+          format: double
+          description: The actual numerical value related to the event
+          type: number
+          example: '12.345'
+        transactionTimestamp:
+          format: date-time
+          description: >-
+            ISO8601 timestamp for when this event happened. All records are stored in UTC time
+            zone
+          type: string
+          example: '2019-09-25T15:47:00.000+0000'
+        tags:
+          description: A list of Strings of groups that the tag belongs to
+          type: array
+          items:
+            type: string
+          example:
+            - Dc4swmQBVd51K6gPQqFx
+            - Dc4swmQBVd51K6gPQqF2
+          x-vue-tags: true
+          x-vue-form-type: TAG
+        eventRefId:
+          description: ''
+          type: string
+        memberId:
+          description: ''
+          type: string
+        customFields:
+          description: A list of custom field entries
+          type: object
+          additionalProperties: true
+          x-vue-custom-fields: true
+          x-vue-form-type: CUSTOM
+        unitOfMeasure:
+          description: >-
+            The unit of measure is used to determine the type of the source value. It is used to
+            normalize points values for currency based calculations by normalizing the source
+            value.
+          type: string
+      x-vue-create: event
+      x-vue-creator: events
   responses:
     ApiResponseBody:
       content:
