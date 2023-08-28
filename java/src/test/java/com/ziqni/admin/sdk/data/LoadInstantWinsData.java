@@ -4,10 +4,7 @@ import com.ziqni.admin.sdk.ApiException;
 import com.ziqni.admin.sdk.api.InstantWinsApiWs;
 import com.ziqni.admin.sdk.api.ProductsApiWs;
 import com.ziqni.admin.sdk.configuration.AdminApiClientConfigBuilder;
-import com.ziqni.admin.sdk.model.ActionTypeAdjustmentFactor;
-import com.ziqni.admin.sdk.model.CreateInstantWinRequest;
-import com.ziqni.admin.sdk.model.CreateProductRequest;
-import com.ziqni.admin.sdk.model.ModelApiResponse;
+import com.ziqni.admin.sdk.model.*;
 import com.ziqni.admin.sdk.util.ApiClientFactoryUtil;
 import tests.utils.CompleteableFutureTestWrapper;
 
@@ -27,6 +24,13 @@ public class LoadInstantWinsData implements CompleteableFutureTestWrapper {
     }
 
     public CreateInstantWinRequest getCreateRequest(String rewardId) {
+        final var instantWinTile = new InstantWinTile();
+        instantWinTile.setIcon("Test icon");
+        instantWinTile.setText("Test text");
+        instantWinTile.setLocation(new GridLocation()
+                .row(0)
+                .col(1));
+        instantWinTile.setReward(new RewardReduced().id(rewardId));
         String name = "Test_name-" + UUID.randomUUID();
         String description = "Test description";
 
@@ -36,7 +40,7 @@ public class LoadInstantWinsData implements CompleteableFutureTestWrapper {
                 .instantWinType(1)
                 .termsAndConditions("Test terms and conditions")
                 .statusCode(15)
-                .tiles(List.of())
+                .tiles(List.of(instantWinTile))
                 .metadata(new LoadMetadata().getMetadataAsList())
                 .tags(List.of())
                 .translations(List.of());
