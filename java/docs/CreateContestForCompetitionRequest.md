@@ -28,6 +28,10 @@ Name | Type | Description | Notes
 **strategies** | [**TournamentStrategies**](TournamentStrategies.md) |  | 
 **translations** | [**List&lt;Translation&gt;**](Translation.md) |  |  [optional]
 **rewards** | [**List&lt;CreateRewardRequest&gt;**](CreateRewardRequest.md) |  |  [optional]
+**icon** | **String** | Link to the icon |  [optional]
+**banner** | **String** | Link to the banner |  [optional]
+**bannerLowResolution** | **String** | Link to the bannerLowResolution |  [optional]
+**bannerHighResolution** | **String** | Link to the bannerHighResolution |  [optional]
 **constraints** | **List&lt;String&gt;** | Additional constraints | 
 
 
