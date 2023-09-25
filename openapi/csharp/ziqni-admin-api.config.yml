@@ -1,23 +1,6 @@
-basePackage: Ziqni
-configPackage: Ziqni.config
-apiPackage: Ziqni.Api
-modelPackage: Ziqni.Model
-nameSpace: Ziqni
-groupId: com.ziqni
-artifactId: ziqni-admin-sdk
+apiName: ZiqniAdminSDK
+disallowAdditionalPropertiesIfNotPresent: false
 hideGenerationTimestamp: true
-#files:
-#  ApiClientFactory.mustache:
-#    folder: src/main/java/com/ziqni/admin/sdk
-#    templateType: SupportingFiles
-#    destinationFilename: ApiClientFactory.java
-#  ws_api_delegate.mustache:
-#    templateType: API
-#    destinationFilename: Ws.java
-#  ZiqniAdminApiFactory.mustache:
-#    folder: src/main/java/com/ziqni/admin/sdk
-#    templateType: SupportingFiles
-#    destinationFilename: ZiqniAdminApiFactory.java
-#  ApiWs.mustache:
-#    templateType: API
-#    destinationFilename: Ws.java
+netCoreProjectFile: true
+packageName: Ziqni
+targetFramework: net7.0
