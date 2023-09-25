@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 ## GetLogEventsByQuery
 
-> LogEventResponse GetLogEventsByQuery (QueryRequest body = null)
+> LogEventResponse GetLogEventsByQuery (QueryRequest? body = null)
 
 
 
@@ -36,7 +36,7 @@ namespace Example
             Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new LogEventsApi(Configuration.Default);
-            var body = new QueryRequest(); // QueryRequest | Retrieve Log Events from Ziqni database by unique Log Events ID's or any other Post body parameters using the POST method (optional) 
+            var body = new QueryRequest?(); // QueryRequest? | Retrieve Log Events from Ziqni database by unique Log Events ID's or any other Post body parameters using the POST method (optional) 
 
             try
             {
@@ -59,7 +59,7 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**QueryRequest**](QueryRequest.md)| Retrieve Log Events from Ziqni database by unique Log Events ID&#39;s or any other Post body parameters using the POST method | [optional] 
+ **body** | [**QueryRequest?**](QueryRequest?.md)| Retrieve Log Events from Ziqni database by unique Log Events ID&#39;s or any other Post body parameters using the POST method | [optional] 
 
 ### Return type
 

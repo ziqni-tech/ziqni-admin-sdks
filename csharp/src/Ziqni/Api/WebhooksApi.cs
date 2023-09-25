@@ -55,7 +55,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The unique identifiers of the resources (optional)</param>
         /// <returns>ApiResponse</returns>
-        ApiResponse DeleteWebhooks (List<string> id = default(List<string>));
+        ApiResponse DeleteWebhooks (List<string>? id = default(List<string>?));
 
         /// <summary>
         /// 
@@ -66,7 +66,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The unique identifiers of the resources (optional)</param>
         /// <returns>ApiResponse of ApiResponse</returns>
-        ApiResponse<ApiResponse> DeleteWebhooksWithHttpInfo (List<string> id = default(List<string>));
+        ApiResponse<ApiResponse> DeleteWebhooksWithHttpInfo (List<string>? id = default(List<string>?));
         /// <summary>
         /// Delete webhooks by query
         /// </summary>
@@ -76,7 +76,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Delete a Webhook or a list of Webhooks from Ziqni by unique Webhook ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <returns>ApiResponse</returns>
-        ApiResponse DeleteWebhooksByQuery (QueryRequest body = default(QueryRequest));
+        ApiResponse DeleteWebhooksByQuery (QueryRequest? body = default(QueryRequest?));
 
         /// <summary>
         /// Delete webhooks by query
@@ -87,7 +87,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Delete a Webhook or a list of Webhooks from Ziqni by unique Webhook ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <returns>ApiResponse of ApiResponse</returns>
-        ApiResponse<ApiResponse> DeleteWebhooksByQueryWithHttpInfo (QueryRequest body = default(QueryRequest));
+        ApiResponse<ApiResponse> DeleteWebhooksByQueryWithHttpInfo (QueryRequest? body = default(QueryRequest?));
         /// <summary>
         /// 
         /// </summary>
@@ -99,7 +99,7 @@ namespace Ziqni.Api
         /// <param name="limit">Limit the returned total records found (optional)</param>
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <returns>WebhookResponse</returns>
-        WebhookResponse GetWebhooks (List<string> id = default(List<string>), int? limit = default(int?), int? skip = default(int?));
+        WebhookResponse GetWebhooks (List<string>? id = default(List<string>?), int? limit = default(int?), int? skip = default(int?));
 
         /// <summary>
         /// 
@@ -112,7 +112,7 @@ namespace Ziqni.Api
         /// <param name="limit">Limit the returned total records found (optional)</param>
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <returns>ApiResponse of WebhookResponse</returns>
-        ApiResponse<WebhookResponse> GetWebhooksWithHttpInfo (List<string> id = default(List<string>), int? limit = default(int?), int? skip = default(int?));
+        ApiResponse<WebhookResponse> GetWebhooksWithHttpInfo (List<string>? id = default(List<string>?), int? limit = default(int?), int? skip = default(int?));
         /// <summary>
         /// 
         /// </summary>
@@ -122,7 +122,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Retrieve a Webhook or a list of Webhooks from Ziqni by unique Webhook ID&#39;s or any other Post body parameters using the POST method (optional)</param>
         /// <returns>WebhookResponse</returns>
-        WebhookResponse GetWebhooksByQuery (QueryRequest body = default(QueryRequest));
+        WebhookResponse GetWebhooksByQuery (QueryRequest? body = default(QueryRequest?));
 
         /// <summary>
         /// 
@@ -133,7 +133,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Retrieve a Webhook or a list of Webhooks from Ziqni by unique Webhook ID&#39;s or any other Post body parameters using the POST method (optional)</param>
         /// <returns>ApiResponse of WebhookResponse</returns>
-        ApiResponse<WebhookResponse> GetWebhooksByQueryWithHttpInfo (QueryRequest body = default(QueryRequest));
+        ApiResponse<WebhookResponse> GetWebhooksByQueryWithHttpInfo (QueryRequest? body = default(QueryRequest?));
         /// <summary>
         /// 
         /// </summary>
@@ -209,7 +209,7 @@ namespace Ziqni.Api
         /// <param name="id">The unique identifiers of the resources (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse> DeleteWebhooksAsync (List<string> id = default(List<string>), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse> DeleteWebhooksAsync (List<string>? id = default(List<string>?), CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// 
@@ -221,7 +221,7 @@ namespace Ziqni.Api
         /// <param name="id">The unique identifiers of the resources (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (ApiResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<ApiResponse>> DeleteWebhooksWithHttpInfoAsync (List<string> id = default(List<string>), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<ApiResponse>> DeleteWebhooksWithHttpInfoAsync (List<string>? id = default(List<string>?), CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Delete webhooks by query
         /// </summary>
@@ -232,7 +232,7 @@ namespace Ziqni.Api
         /// <param name="body">Delete a Webhook or a list of Webhooks from Ziqni by unique Webhook ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse> DeleteWebhooksByQueryAsync (QueryRequest body = default(QueryRequest), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse> DeleteWebhooksByQueryAsync (QueryRequest? body = default(QueryRequest?), CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Delete webhooks by query
@@ -244,7 +244,7 @@ namespace Ziqni.Api
         /// <param name="body">Delete a Webhook or a list of Webhooks from Ziqni by unique Webhook ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (ApiResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<ApiResponse>> DeleteWebhooksByQueryWithHttpInfoAsync (QueryRequest body = default(QueryRequest), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<ApiResponse>> DeleteWebhooksByQueryWithHttpInfoAsync (QueryRequest? body = default(QueryRequest?), CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// 
         /// </summary>
@@ -257,7 +257,7 @@ namespace Ziqni.Api
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of WebhookResponse</returns>
-        System.Threading.Tasks.Task<WebhookResponse> GetWebhooksAsync (List<string> id = default(List<string>), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<WebhookResponse> GetWebhooksAsync (List<string>? id = default(List<string>?), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// 
@@ -271,7 +271,7 @@ namespace Ziqni.Api
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (WebhookResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<WebhookResponse>> GetWebhooksWithHttpInfoAsync (List<string> id = default(List<string>), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<WebhookResponse>> GetWebhooksWithHttpInfoAsync (List<string>? id = default(List<string>?), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// 
         /// </summary>
@@ -282,7 +282,7 @@ namespace Ziqni.Api
         /// <param name="body">Retrieve a Webhook or a list of Webhooks from Ziqni by unique Webhook ID&#39;s or any other Post body parameters using the POST method (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of WebhookResponse</returns>
-        System.Threading.Tasks.Task<WebhookResponse> GetWebhooksByQueryAsync (QueryRequest body = default(QueryRequest), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<WebhookResponse> GetWebhooksByQueryAsync (QueryRequest? body = default(QueryRequest?), CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// 
@@ -294,7 +294,7 @@ namespace Ziqni.Api
         /// <param name="body">Retrieve a Webhook or a list of Webhooks from Ziqni by unique Webhook ID&#39;s or any other Post body parameters using the POST method (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (WebhookResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<WebhookResponse>> GetWebhooksByQueryWithHttpInfoAsync (QueryRequest body = default(QueryRequest), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<WebhookResponse>> GetWebhooksByQueryWithHttpInfoAsync (QueryRequest? body = default(QueryRequest?), CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// 
         /// </summary>
@@ -619,7 +619,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The unique identifiers of the resources (optional)</param>
         /// <returns>ApiResponse</returns>
-        public ApiResponse DeleteWebhooks (List<string> id = default(List<string>))
+        public ApiResponse DeleteWebhooks (List<string>? id = default(List<string>?))
         {
              ApiResponse<ApiResponse> localVarResponse = DeleteWebhooksWithHttpInfo(id);
              return localVarResponse.Data;
@@ -631,7 +631,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The unique identifiers of the resources (optional)</param>
         /// <returns>ApiResponse of ApiResponse</returns>
-        public ApiResponse<ApiResponse> DeleteWebhooksWithHttpInfo (List<string> id = default(List<string>))
+        public ApiResponse<ApiResponse> DeleteWebhooksWithHttpInfo (List<string>? id = default(List<string>?))
         {
 
             var localVarPath = "/webhooks";
@@ -689,7 +689,7 @@ namespace Ziqni.Api
         /// <param name="id">The unique identifiers of the resources (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<ApiResponse> DeleteWebhooksAsync (List<string> id = default(List<string>), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<ApiResponse> DeleteWebhooksAsync (List<string>? id = default(List<string>?), CancellationToken cancellationToken = default(CancellationToken))
         {
              ApiResponse<ApiResponse> localVarResponse = await DeleteWebhooksWithHttpInfoAsync(id, cancellationToken);
              return localVarResponse.Data;
@@ -703,7 +703,7 @@ namespace Ziqni.Api
         /// <param name="id">The unique identifiers of the resources (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (ApiResponse)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<ApiResponse>> DeleteWebhooksWithHttpInfoAsync (List<string> id = default(List<string>), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<ApiResponse<ApiResponse>> DeleteWebhooksWithHttpInfoAsync (List<string>? id = default(List<string>?), CancellationToken cancellationToken = default(CancellationToken))
         {
 
             var localVarPath = "/webhooks";
@@ -760,7 +760,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Delete a Webhook or a list of Webhooks from Ziqni by unique Webhook ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <returns>ApiResponse</returns>
-        public ApiResponse DeleteWebhooksByQuery (QueryRequest body = default(QueryRequest))
+        public ApiResponse DeleteWebhooksByQuery (QueryRequest? body = default(QueryRequest?))
         {
              ApiResponse<ApiResponse> localVarResponse = DeleteWebhooksByQueryWithHttpInfo(body);
              return localVarResponse.Data;
@@ -772,7 +772,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Delete a Webhook or a list of Webhooks from Ziqni by unique Webhook ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <returns>ApiResponse of ApiResponse</returns>
-        public ApiResponse<ApiResponse> DeleteWebhooksByQueryWithHttpInfo (QueryRequest body = default(QueryRequest))
+        public ApiResponse<ApiResponse> DeleteWebhooksByQueryWithHttpInfo (QueryRequest? body = default(QueryRequest?))
         {
 
             var localVarPath = "/webhooks/delete";
@@ -838,7 +838,7 @@ namespace Ziqni.Api
         /// <param name="body">Delete a Webhook or a list of Webhooks from Ziqni by unique Webhook ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<ApiResponse> DeleteWebhooksByQueryAsync (QueryRequest body = default(QueryRequest), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<ApiResponse> DeleteWebhooksByQueryAsync (QueryRequest? body = default(QueryRequest?), CancellationToken cancellationToken = default(CancellationToken))
         {
              ApiResponse<ApiResponse> localVarResponse = await DeleteWebhooksByQueryWithHttpInfoAsync(body, cancellationToken);
              return localVarResponse.Data;
@@ -852,7 +852,7 @@ namespace Ziqni.Api
         /// <param name="body">Delete a Webhook or a list of Webhooks from Ziqni by unique Webhook ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (ApiResponse)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<ApiResponse>> DeleteWebhooksByQueryWithHttpInfoAsync (QueryRequest body = default(QueryRequest), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<ApiResponse<ApiResponse>> DeleteWebhooksByQueryWithHttpInfoAsync (QueryRequest? body = default(QueryRequest?), CancellationToken cancellationToken = default(CancellationToken))
         {
 
             var localVarPath = "/webhooks/delete";
@@ -919,7 +919,7 @@ namespace Ziqni.Api
         /// <param name="limit">Limit the returned total records found (optional)</param>
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <returns>WebhookResponse</returns>
-        public WebhookResponse GetWebhooks (List<string> id = default(List<string>), int? limit = default(int?), int? skip = default(int?))
+        public WebhookResponse GetWebhooks (List<string>? id = default(List<string>?), int? limit = default(int?), int? skip = default(int?))
         {
              ApiResponse<WebhookResponse> localVarResponse = GetWebhooksWithHttpInfo(id, limit, skip);
              return localVarResponse.Data;
@@ -933,7 +933,7 @@ namespace Ziqni.Api
         /// <param name="limit">Limit the returned total records found (optional)</param>
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <returns>ApiResponse of WebhookResponse</returns>
-        public ApiResponse<WebhookResponse> GetWebhooksWithHttpInfo (List<string> id = default(List<string>), int? limit = default(int?), int? skip = default(int?))
+        public ApiResponse<WebhookResponse> GetWebhooksWithHttpInfo (List<string>? id = default(List<string>?), int? limit = default(int?), int? skip = default(int?))
         {
 
             var localVarPath = "/webhooks";
@@ -995,7 +995,7 @@ namespace Ziqni.Api
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of WebhookResponse</returns>
-        public async System.Threading.Tasks.Task<WebhookResponse> GetWebhooksAsync (List<string> id = default(List<string>), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<WebhookResponse> GetWebhooksAsync (List<string>? id = default(List<string>?), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken))
         {
              ApiResponse<WebhookResponse> localVarResponse = await GetWebhooksWithHttpInfoAsync(id, limit, skip, cancellationToken);
              return localVarResponse.Data;
@@ -1011,7 +1011,7 @@ namespace Ziqni.Api
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (WebhookResponse)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<WebhookResponse>> GetWebhooksWithHttpInfoAsync (List<string> id = default(List<string>), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<ApiResponse<WebhookResponse>> GetWebhooksWithHttpInfoAsync (List<string>? id = default(List<string>?), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken))
         {
 
             var localVarPath = "/webhooks";
@@ -1070,7 +1070,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Retrieve a Webhook or a list of Webhooks from Ziqni by unique Webhook ID&#39;s or any other Post body parameters using the POST method (optional)</param>
         /// <returns>WebhookResponse</returns>
-        public WebhookResponse GetWebhooksByQuery (QueryRequest body = default(QueryRequest))
+        public WebhookResponse GetWebhooksByQuery (QueryRequest? body = default(QueryRequest?))
         {
              ApiResponse<WebhookResponse> localVarResponse = GetWebhooksByQueryWithHttpInfo(body);
              return localVarResponse.Data;
@@ -1082,7 +1082,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Retrieve a Webhook or a list of Webhooks from Ziqni by unique Webhook ID&#39;s or any other Post body parameters using the POST method (optional)</param>
         /// <returns>ApiResponse of WebhookResponse</returns>
-        public ApiResponse<WebhookResponse> GetWebhooksByQueryWithHttpInfo (QueryRequest body = default(QueryRequest))
+        public ApiResponse<WebhookResponse> GetWebhooksByQueryWithHttpInfo (QueryRequest? body = default(QueryRequest?))
         {
 
             var localVarPath = "/webhooks/query";
@@ -1148,7 +1148,7 @@ namespace Ziqni.Api
         /// <param name="body">Retrieve a Webhook or a list of Webhooks from Ziqni by unique Webhook ID&#39;s or any other Post body parameters using the POST method (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of WebhookResponse</returns>
-        public async System.Threading.Tasks.Task<WebhookResponse> GetWebhooksByQueryAsync (QueryRequest body = default(QueryRequest), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<WebhookResponse> GetWebhooksByQueryAsync (QueryRequest? body = default(QueryRequest?), CancellationToken cancellationToken = default(CancellationToken))
         {
              ApiResponse<WebhookResponse> localVarResponse = await GetWebhooksByQueryWithHttpInfoAsync(body, cancellationToken);
              return localVarResponse.Data;
@@ -1162,7 +1162,7 @@ namespace Ziqni.Api
         /// <param name="body">Retrieve a Webhook or a list of Webhooks from Ziqni by unique Webhook ID&#39;s or any other Post body parameters using the POST method (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (WebhookResponse)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<WebhookResponse>> GetWebhooksByQueryWithHttpInfoAsync (QueryRequest body = default(QueryRequest), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<ApiResponse<WebhookResponse>> GetWebhooksByQueryWithHttpInfoAsync (QueryRequest? body = default(QueryRequest?), CancellationToken cancellationToken = default(CancellationToken))
         {
 
             var localVarPath = "/webhooks/query";

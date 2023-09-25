@@ -57,7 +57,7 @@ namespace Ziqni.Api
         /// <param name="limit">Limit the returned total records found (optional)</param>
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <returns>ContestResponse</returns>
-        ContestResponse GetContests (List<string> id = default(List<string>), int? limit = default(int?), int? skip = default(int?));
+        ContestResponse GetContests (List<string>? id = default(List<string>?), int? limit = default(int?), int? skip = default(int?));
 
         /// <summary>
         /// 
@@ -70,7 +70,7 @@ namespace Ziqni.Api
         /// <param name="limit">Limit the returned total records found (optional)</param>
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <returns>ApiResponse of ContestResponse</returns>
-        ApiResponse<ContestResponse> GetContestsWithHttpInfo (List<string> id = default(List<string>), int? limit = default(int?), int? skip = default(int?));
+        ApiResponse<ContestResponse> GetContestsWithHttpInfo (List<string>? id = default(List<string>?), int? limit = default(int?), int? skip = default(int?));
         /// <summary>
         /// 
         /// </summary>
@@ -80,7 +80,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Retrieve Contests from Ziqni database by unique Contest ID&#39;s or any other Post body parameters using the POST method (optional)</param>
         /// <returns>ContestResponse</returns>
-        ContestResponse GetContestsByQuery (QueryRequest body = default(QueryRequest));
+        ContestResponse GetContestsByQuery (QueryRequest? body = default(QueryRequest?));
 
         /// <summary>
         /// 
@@ -91,7 +91,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Retrieve Contests from Ziqni database by unique Contest ID&#39;s or any other Post body parameters using the POST method (optional)</param>
         /// <returns>ApiResponse of ContestResponse</returns>
-        ApiResponse<ContestResponse> GetContestsByQueryWithHttpInfo (QueryRequest body = default(QueryRequest));
+        ApiResponse<ContestResponse> GetContestsByQueryWithHttpInfo (QueryRequest? body = default(QueryRequest?));
         /// <summary>
         /// 
         /// </summary>
@@ -170,7 +170,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Updates the state of the Contest (optional)</param>
         /// <returns>ApiResponse</returns>
-        ApiResponse UpdateContestsState (List<UpdateContestStateRequest> body = default(List<UpdateContestStateRequest>));
+        ApiResponse UpdateContestsState (List<UpdateContestStateRequest>? body = default(List<UpdateContestStateRequest>?));
 
         /// <summary>
         /// 
@@ -181,7 +181,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Updates the state of the Contest (optional)</param>
         /// <returns>ApiResponse of ApiResponse</returns>
-        ApiResponse<ApiResponse> UpdateContestsStateWithHttpInfo (List<UpdateContestStateRequest> body = default(List<UpdateContestStateRequest>));
+        ApiResponse<ApiResponse> UpdateContestsStateWithHttpInfo (List<UpdateContestStateRequest>? body = default(List<UpdateContestStateRequest>?));
         #endregion Synchronous Operations
         #region Asynchronous Operations
         /// <summary>
@@ -219,7 +219,7 @@ namespace Ziqni.Api
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ContestResponse</returns>
-        System.Threading.Tasks.Task<ContestResponse> GetContestsAsync (List<string> id = default(List<string>), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<ContestResponse> GetContestsAsync (List<string>? id = default(List<string>?), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// 
@@ -233,7 +233,7 @@ namespace Ziqni.Api
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (ContestResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<ContestResponse>> GetContestsWithHttpInfoAsync (List<string> id = default(List<string>), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<ContestResponse>> GetContestsWithHttpInfoAsync (List<string>? id = default(List<string>?), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// 
         /// </summary>
@@ -244,7 +244,7 @@ namespace Ziqni.Api
         /// <param name="body">Retrieve Contests from Ziqni database by unique Contest ID&#39;s or any other Post body parameters using the POST method (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ContestResponse</returns>
-        System.Threading.Tasks.Task<ContestResponse> GetContestsByQueryAsync (QueryRequest body = default(QueryRequest), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<ContestResponse> GetContestsByQueryAsync (QueryRequest? body = default(QueryRequest?), CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// 
@@ -256,7 +256,7 @@ namespace Ziqni.Api
         /// <param name="body">Retrieve Contests from Ziqni database by unique Contest ID&#39;s or any other Post body parameters using the POST method (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (ContestResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<ContestResponse>> GetContestsByQueryWithHttpInfoAsync (QueryRequest body = default(QueryRequest), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<ContestResponse>> GetContestsByQueryWithHttpInfoAsync (QueryRequest? body = default(QueryRequest?), CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// 
         /// </summary>
@@ -342,7 +342,7 @@ namespace Ziqni.Api
         /// <param name="body">Updates the state of the Contest (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse> UpdateContestsStateAsync (List<UpdateContestStateRequest> body = default(List<UpdateContestStateRequest>), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse> UpdateContestsStateAsync (List<UpdateContestStateRequest>? body = default(List<UpdateContestStateRequest>?), CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// 
@@ -354,7 +354,7 @@ namespace Ziqni.Api
         /// <param name="body">Updates the state of the Contest (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (ApiResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<ApiResponse>> UpdateContestsStateWithHttpInfoAsync (List<UpdateContestStateRequest> body = default(List<UpdateContestStateRequest>), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<ApiResponse>> UpdateContestsStateWithHttpInfoAsync (List<UpdateContestStateRequest>? body = default(List<UpdateContestStateRequest>?), CancellationToken cancellationToken = default(CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -637,7 +637,7 @@ namespace Ziqni.Api
         /// <param name="limit">Limit the returned total records found (optional)</param>
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <returns>ContestResponse</returns>
-        public ContestResponse GetContests (List<string> id = default(List<string>), int? limit = default(int?), int? skip = default(int?))
+        public ContestResponse GetContests (List<string>? id = default(List<string>?), int? limit = default(int?), int? skip = default(int?))
         {
              ApiResponse<ContestResponse> localVarResponse = GetContestsWithHttpInfo(id, limit, skip);
              return localVarResponse.Data;
@@ -651,7 +651,7 @@ namespace Ziqni.Api
         /// <param name="limit">Limit the returned total records found (optional)</param>
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <returns>ApiResponse of ContestResponse</returns>
-        public ApiResponse<ContestResponse> GetContestsWithHttpInfo (List<string> id = default(List<string>), int? limit = default(int?), int? skip = default(int?))
+        public ApiResponse<ContestResponse> GetContestsWithHttpInfo (List<string>? id = default(List<string>?), int? limit = default(int?), int? skip = default(int?))
         {
 
             var localVarPath = "/contests";
@@ -713,7 +713,7 @@ namespace Ziqni.Api
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ContestResponse</returns>
-        public async System.Threading.Tasks.Task<ContestResponse> GetContestsAsync (List<string> id = default(List<string>), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<ContestResponse> GetContestsAsync (List<string>? id = default(List<string>?), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken))
         {
              ApiResponse<ContestResponse> localVarResponse = await GetContestsWithHttpInfoAsync(id, limit, skip, cancellationToken);
              return localVarResponse.Data;
@@ -729,7 +729,7 @@ namespace Ziqni.Api
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (ContestResponse)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<ContestResponse>> GetContestsWithHttpInfoAsync (List<string> id = default(List<string>), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<ApiResponse<ContestResponse>> GetContestsWithHttpInfoAsync (List<string>? id = default(List<string>?), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken))
         {
 
             var localVarPath = "/contests";
@@ -788,7 +788,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Retrieve Contests from Ziqni database by unique Contest ID&#39;s or any other Post body parameters using the POST method (optional)</param>
         /// <returns>ContestResponse</returns>
-        public ContestResponse GetContestsByQuery (QueryRequest body = default(QueryRequest))
+        public ContestResponse GetContestsByQuery (QueryRequest? body = default(QueryRequest?))
         {
              ApiResponse<ContestResponse> localVarResponse = GetContestsByQueryWithHttpInfo(body);
              return localVarResponse.Data;
@@ -800,7 +800,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Retrieve Contests from Ziqni database by unique Contest ID&#39;s or any other Post body parameters using the POST method (optional)</param>
         /// <returns>ApiResponse of ContestResponse</returns>
-        public ApiResponse<ContestResponse> GetContestsByQueryWithHttpInfo (QueryRequest body = default(QueryRequest))
+        public ApiResponse<ContestResponse> GetContestsByQueryWithHttpInfo (QueryRequest? body = default(QueryRequest?))
         {
 
             var localVarPath = "/contests/query";
@@ -866,7 +866,7 @@ namespace Ziqni.Api
         /// <param name="body">Retrieve Contests from Ziqni database by unique Contest ID&#39;s or any other Post body parameters using the POST method (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ContestResponse</returns>
-        public async System.Threading.Tasks.Task<ContestResponse> GetContestsByQueryAsync (QueryRequest body = default(QueryRequest), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<ContestResponse> GetContestsByQueryAsync (QueryRequest? body = default(QueryRequest?), CancellationToken cancellationToken = default(CancellationToken))
         {
              ApiResponse<ContestResponse> localVarResponse = await GetContestsByQueryWithHttpInfoAsync(body, cancellationToken);
              return localVarResponse.Data;
@@ -880,7 +880,7 @@ namespace Ziqni.Api
         /// <param name="body">Retrieve Contests from Ziqni database by unique Contest ID&#39;s or any other Post body parameters using the POST method (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (ContestResponse)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<ContestResponse>> GetContestsByQueryWithHttpInfoAsync (QueryRequest body = default(QueryRequest), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<ApiResponse<ContestResponse>> GetContestsByQueryWithHttpInfoAsync (QueryRequest? body = default(QueryRequest?), CancellationToken cancellationToken = default(CancellationToken))
         {
 
             var localVarPath = "/contests/query";
@@ -1418,7 +1418,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Updates the state of the Contest (optional)</param>
         /// <returns>ApiResponse</returns>
-        public ApiResponse UpdateContestsState (List<UpdateContestStateRequest> body = default(List<UpdateContestStateRequest>))
+        public ApiResponse UpdateContestsState (List<UpdateContestStateRequest>? body = default(List<UpdateContestStateRequest>?))
         {
              ApiResponse<ApiResponse> localVarResponse = UpdateContestsStateWithHttpInfo(body);
              return localVarResponse.Data;
@@ -1430,7 +1430,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Updates the state of the Contest (optional)</param>
         /// <returns>ApiResponse of ApiResponse</returns>
-        public ApiResponse<ApiResponse> UpdateContestsStateWithHttpInfo (List<UpdateContestStateRequest> body = default(List<UpdateContestStateRequest>))
+        public ApiResponse<ApiResponse> UpdateContestsStateWithHttpInfo (List<UpdateContestStateRequest>? body = default(List<UpdateContestStateRequest>?))
         {
 
             var localVarPath = "/contests/state";
@@ -1496,7 +1496,7 @@ namespace Ziqni.Api
         /// <param name="body">Updates the state of the Contest (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<ApiResponse> UpdateContestsStateAsync (List<UpdateContestStateRequest> body = default(List<UpdateContestStateRequest>), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<ApiResponse> UpdateContestsStateAsync (List<UpdateContestStateRequest>? body = default(List<UpdateContestStateRequest>?), CancellationToken cancellationToken = default(CancellationToken))
         {
              ApiResponse<ApiResponse> localVarResponse = await UpdateContestsStateWithHttpInfoAsync(body, cancellationToken);
              return localVarResponse.Data;
@@ -1510,7 +1510,7 @@ namespace Ziqni.Api
         /// <param name="body">Updates the state of the Contest (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (ApiResponse)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<ApiResponse>> UpdateContestsStateWithHttpInfoAsync (List<UpdateContestStateRequest> body = default(List<UpdateContestStateRequest>), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<ApiResponse<ApiResponse>> UpdateContestsStateWithHttpInfoAsync (List<UpdateContestStateRequest>? body = default(List<UpdateContestStateRequest>?), CancellationToken cancellationToken = default(CancellationToken))
         {
 
             var localVarPath = "/contests/state";

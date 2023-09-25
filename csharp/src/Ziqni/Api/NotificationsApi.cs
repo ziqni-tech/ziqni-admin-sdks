@@ -55,7 +55,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The unique identifiers of the resources (optional)</param>
         /// <returns>ApiResponse</returns>
-        ApiResponse DeleteNotifications (List<string> id = default(List<string>));
+        ApiResponse DeleteNotifications (List<string>? id = default(List<string>?));
 
         /// <summary>
         /// 
@@ -66,7 +66,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The unique identifiers of the resources (optional)</param>
         /// <returns>ApiResponse of ApiResponse</returns>
-        ApiResponse<ApiResponse> DeleteNotificationsWithHttpInfo (List<string> id = default(List<string>));
+        ApiResponse<ApiResponse> DeleteNotificationsWithHttpInfo (List<string>? id = default(List<string>?));
         /// <summary>
         /// 
         /// </summary>
@@ -76,7 +76,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Delete Notification Messages from Ziqni database by unique message ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <returns>ApiResponse</returns>
-        ApiResponse DeleteNotificationsByQuery (QueryRequest body = default(QueryRequest));
+        ApiResponse DeleteNotificationsByQuery (QueryRequest? body = default(QueryRequest?));
 
         /// <summary>
         /// 
@@ -87,7 +87,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Delete Notification Messages from Ziqni database by unique message ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <returns>ApiResponse of ApiResponse</returns>
-        ApiResponse<ApiResponse> DeleteNotificationsByQueryWithHttpInfo (QueryRequest body = default(QueryRequest));
+        ApiResponse<ApiResponse> DeleteNotificationsByQueryWithHttpInfo (QueryRequest? body = default(QueryRequest?));
         /// <summary>
         /// 
         /// </summary>
@@ -99,7 +99,7 @@ namespace Ziqni.Api
         /// <param name="limit">Limit the returned total records found (optional)</param>
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <returns>NotificationResponse</returns>
-        NotificationResponse GetNotifications (List<string> id = default(List<string>), int? limit = default(int?), int? skip = default(int?));
+        NotificationResponse GetNotifications (List<string>? id = default(List<string>?), int? limit = default(int?), int? skip = default(int?));
 
         /// <summary>
         /// 
@@ -112,7 +112,7 @@ namespace Ziqni.Api
         /// <param name="limit">Limit the returned total records found (optional)</param>
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <returns>ApiResponse of NotificationResponse</returns>
-        ApiResponse<NotificationResponse> GetNotificationsWithHttpInfo (List<string> id = default(List<string>), int? limit = default(int?), int? skip = default(int?));
+        ApiResponse<NotificationResponse> GetNotificationsWithHttpInfo (List<string>? id = default(List<string>?), int? limit = default(int?), int? skip = default(int?));
         /// <summary>
         /// 
         /// </summary>
@@ -122,7 +122,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Retrieve Notification Messages from Ziqni database by unique message ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <returns>NotificationResponse</returns>
-        NotificationResponse GetNotificationsByQuery (QueryRequest body = default(QueryRequest));
+        NotificationResponse GetNotificationsByQuery (QueryRequest? body = default(QueryRequest?));
 
         /// <summary>
         /// 
@@ -133,7 +133,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Retrieve Notification Messages from Ziqni database by unique message ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <returns>ApiResponse of NotificationResponse</returns>
-        ApiResponse<NotificationResponse> GetNotificationsByQueryWithHttpInfo (QueryRequest body = default(QueryRequest));
+        ApiResponse<NotificationResponse> GetNotificationsByQueryWithHttpInfo (QueryRequest? body = default(QueryRequest?));
         #endregion Synchronous Operations
         #region Asynchronous Operations
         /// <summary>
@@ -169,7 +169,7 @@ namespace Ziqni.Api
         /// <param name="id">The unique identifiers of the resources (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse> DeleteNotificationsAsync (List<string> id = default(List<string>), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse> DeleteNotificationsAsync (List<string>? id = default(List<string>?), CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// 
@@ -181,7 +181,7 @@ namespace Ziqni.Api
         /// <param name="id">The unique identifiers of the resources (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (ApiResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<ApiResponse>> DeleteNotificationsWithHttpInfoAsync (List<string> id = default(List<string>), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<ApiResponse>> DeleteNotificationsWithHttpInfoAsync (List<string>? id = default(List<string>?), CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// 
         /// </summary>
@@ -192,7 +192,7 @@ namespace Ziqni.Api
         /// <param name="body">Delete Notification Messages from Ziqni database by unique message ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse> DeleteNotificationsByQueryAsync (QueryRequest body = default(QueryRequest), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse> DeleteNotificationsByQueryAsync (QueryRequest? body = default(QueryRequest?), CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// 
@@ -204,7 +204,7 @@ namespace Ziqni.Api
         /// <param name="body">Delete Notification Messages from Ziqni database by unique message ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (ApiResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<ApiResponse>> DeleteNotificationsByQueryWithHttpInfoAsync (QueryRequest body = default(QueryRequest), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<ApiResponse>> DeleteNotificationsByQueryWithHttpInfoAsync (QueryRequest? body = default(QueryRequest?), CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// 
         /// </summary>
@@ -217,7 +217,7 @@ namespace Ziqni.Api
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of NotificationResponse</returns>
-        System.Threading.Tasks.Task<NotificationResponse> GetNotificationsAsync (List<string> id = default(List<string>), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<NotificationResponse> GetNotificationsAsync (List<string>? id = default(List<string>?), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// 
@@ -231,7 +231,7 @@ namespace Ziqni.Api
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (NotificationResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<NotificationResponse>> GetNotificationsWithHttpInfoAsync (List<string> id = default(List<string>), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<NotificationResponse>> GetNotificationsWithHttpInfoAsync (List<string>? id = default(List<string>?), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// 
         /// </summary>
@@ -242,7 +242,7 @@ namespace Ziqni.Api
         /// <param name="body">Retrieve Notification Messages from Ziqni database by unique message ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of NotificationResponse</returns>
-        System.Threading.Tasks.Task<NotificationResponse> GetNotificationsByQueryAsync (QueryRequest body = default(QueryRequest), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<NotificationResponse> GetNotificationsByQueryAsync (QueryRequest? body = default(QueryRequest?), CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// 
@@ -254,7 +254,7 @@ namespace Ziqni.Api
         /// <param name="body">Retrieve Notification Messages from Ziqni database by unique message ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (NotificationResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<NotificationResponse>> GetNotificationsByQueryWithHttpInfoAsync (QueryRequest body = default(QueryRequest), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<NotificationResponse>> GetNotificationsByQueryWithHttpInfoAsync (QueryRequest? body = default(QueryRequest?), CancellationToken cancellationToken = default(CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -535,7 +535,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The unique identifiers of the resources (optional)</param>
         /// <returns>ApiResponse</returns>
-        public ApiResponse DeleteNotifications (List<string> id = default(List<string>))
+        public ApiResponse DeleteNotifications (List<string>? id = default(List<string>?))
         {
              ApiResponse<ApiResponse> localVarResponse = DeleteNotificationsWithHttpInfo(id);
              return localVarResponse.Data;
@@ -547,7 +547,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The unique identifiers of the resources (optional)</param>
         /// <returns>ApiResponse of ApiResponse</returns>
-        public ApiResponse<ApiResponse> DeleteNotificationsWithHttpInfo (List<string> id = default(List<string>))
+        public ApiResponse<ApiResponse> DeleteNotificationsWithHttpInfo (List<string>? id = default(List<string>?))
         {
 
             var localVarPath = "/notifications";
@@ -605,7 +605,7 @@ namespace Ziqni.Api
         /// <param name="id">The unique identifiers of the resources (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<ApiResponse> DeleteNotificationsAsync (List<string> id = default(List<string>), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<ApiResponse> DeleteNotificationsAsync (List<string>? id = default(List<string>?), CancellationToken cancellationToken = default(CancellationToken))
         {
              ApiResponse<ApiResponse> localVarResponse = await DeleteNotificationsWithHttpInfoAsync(id, cancellationToken);
              return localVarResponse.Data;
@@ -619,7 +619,7 @@ namespace Ziqni.Api
         /// <param name="id">The unique identifiers of the resources (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (ApiResponse)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<ApiResponse>> DeleteNotificationsWithHttpInfoAsync (List<string> id = default(List<string>), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<ApiResponse<ApiResponse>> DeleteNotificationsWithHttpInfoAsync (List<string>? id = default(List<string>?), CancellationToken cancellationToken = default(CancellationToken))
         {
 
             var localVarPath = "/notifications";
@@ -676,7 +676,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Delete Notification Messages from Ziqni database by unique message ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <returns>ApiResponse</returns>
-        public ApiResponse DeleteNotificationsByQuery (QueryRequest body = default(QueryRequest))
+        public ApiResponse DeleteNotificationsByQuery (QueryRequest? body = default(QueryRequest?))
         {
              ApiResponse<ApiResponse> localVarResponse = DeleteNotificationsByQueryWithHttpInfo(body);
              return localVarResponse.Data;
@@ -688,7 +688,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Delete Notification Messages from Ziqni database by unique message ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <returns>ApiResponse of ApiResponse</returns>
-        public ApiResponse<ApiResponse> DeleteNotificationsByQueryWithHttpInfo (QueryRequest body = default(QueryRequest))
+        public ApiResponse<ApiResponse> DeleteNotificationsByQueryWithHttpInfo (QueryRequest? body = default(QueryRequest?))
         {
 
             var localVarPath = "/notifications/delete";
@@ -754,7 +754,7 @@ namespace Ziqni.Api
         /// <param name="body">Delete Notification Messages from Ziqni database by unique message ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<ApiResponse> DeleteNotificationsByQueryAsync (QueryRequest body = default(QueryRequest), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<ApiResponse> DeleteNotificationsByQueryAsync (QueryRequest? body = default(QueryRequest?), CancellationToken cancellationToken = default(CancellationToken))
         {
              ApiResponse<ApiResponse> localVarResponse = await DeleteNotificationsByQueryWithHttpInfoAsync(body, cancellationToken);
              return localVarResponse.Data;
@@ -768,7 +768,7 @@ namespace Ziqni.Api
         /// <param name="body">Delete Notification Messages from Ziqni database by unique message ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (ApiResponse)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<ApiResponse>> DeleteNotificationsByQueryWithHttpInfoAsync (QueryRequest body = default(QueryRequest), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<ApiResponse<ApiResponse>> DeleteNotificationsByQueryWithHttpInfoAsync (QueryRequest? body = default(QueryRequest?), CancellationToken cancellationToken = default(CancellationToken))
         {
 
             var localVarPath = "/notifications/delete";
@@ -835,7 +835,7 @@ namespace Ziqni.Api
         /// <param name="limit">Limit the returned total records found (optional)</param>
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <returns>NotificationResponse</returns>
-        public NotificationResponse GetNotifications (List<string> id = default(List<string>), int? limit = default(int?), int? skip = default(int?))
+        public NotificationResponse GetNotifications (List<string>? id = default(List<string>?), int? limit = default(int?), int? skip = default(int?))
         {
              ApiResponse<NotificationResponse> localVarResponse = GetNotificationsWithHttpInfo(id, limit, skip);
              return localVarResponse.Data;
@@ -849,7 +849,7 @@ namespace Ziqni.Api
         /// <param name="limit">Limit the returned total records found (optional)</param>
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <returns>ApiResponse of NotificationResponse</returns>
-        public ApiResponse<NotificationResponse> GetNotificationsWithHttpInfo (List<string> id = default(List<string>), int? limit = default(int?), int? skip = default(int?))
+        public ApiResponse<NotificationResponse> GetNotificationsWithHttpInfo (List<string>? id = default(List<string>?), int? limit = default(int?), int? skip = default(int?))
         {
 
             var localVarPath = "/notifications";
@@ -911,7 +911,7 @@ namespace Ziqni.Api
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of NotificationResponse</returns>
-        public async System.Threading.Tasks.Task<NotificationResponse> GetNotificationsAsync (List<string> id = default(List<string>), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<NotificationResponse> GetNotificationsAsync (List<string>? id = default(List<string>?), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken))
         {
              ApiResponse<NotificationResponse> localVarResponse = await GetNotificationsWithHttpInfoAsync(id, limit, skip, cancellationToken);
              return localVarResponse.Data;
@@ -927,7 +927,7 @@ namespace Ziqni.Api
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (NotificationResponse)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<NotificationResponse>> GetNotificationsWithHttpInfoAsync (List<string> id = default(List<string>), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<ApiResponse<NotificationResponse>> GetNotificationsWithHttpInfoAsync (List<string>? id = default(List<string>?), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken))
         {
 
             var localVarPath = "/notifications";
@@ -986,7 +986,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Retrieve Notification Messages from Ziqni database by unique message ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <returns>NotificationResponse</returns>
-        public NotificationResponse GetNotificationsByQuery (QueryRequest body = default(QueryRequest))
+        public NotificationResponse GetNotificationsByQuery (QueryRequest? body = default(QueryRequest?))
         {
              ApiResponse<NotificationResponse> localVarResponse = GetNotificationsByQueryWithHttpInfo(body);
              return localVarResponse.Data;
@@ -998,7 +998,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Retrieve Notification Messages from Ziqni database by unique message ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <returns>ApiResponse of NotificationResponse</returns>
-        public ApiResponse<NotificationResponse> GetNotificationsByQueryWithHttpInfo (QueryRequest body = default(QueryRequest))
+        public ApiResponse<NotificationResponse> GetNotificationsByQueryWithHttpInfo (QueryRequest? body = default(QueryRequest?))
         {
 
             var localVarPath = "/notifications/query";
@@ -1064,7 +1064,7 @@ namespace Ziqni.Api
         /// <param name="body">Retrieve Notification Messages from Ziqni database by unique message ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of NotificationResponse</returns>
-        public async System.Threading.Tasks.Task<NotificationResponse> GetNotificationsByQueryAsync (QueryRequest body = default(QueryRequest), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<NotificationResponse> GetNotificationsByQueryAsync (QueryRequest? body = default(QueryRequest?), CancellationToken cancellationToken = default(CancellationToken))
         {
              ApiResponse<NotificationResponse> localVarResponse = await GetNotificationsByQueryWithHttpInfoAsync(body, cancellationToken);
              return localVarResponse.Data;
@@ -1078,7 +1078,7 @@ namespace Ziqni.Api
         /// <param name="body">Retrieve Notification Messages from Ziqni database by unique message ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (NotificationResponse)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<NotificationResponse>> GetNotificationsByQueryWithHttpInfoAsync (QueryRequest body = default(QueryRequest), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<ApiResponse<NotificationResponse>> GetNotificationsByQueryWithHttpInfoAsync (QueryRequest? body = default(QueryRequest?), CancellationToken cancellationToken = default(CancellationToken))
         {
 
             var localVarPath = "/notifications/query";

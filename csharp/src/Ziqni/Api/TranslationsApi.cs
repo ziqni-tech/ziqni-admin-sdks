@@ -55,7 +55,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The unique identifiers of the resources (optional)</param>
         /// <returns>ApiResponse</returns>
-        ApiResponse DeleteTranslations (List<string> id = default(List<string>));
+        ApiResponse DeleteTranslations (List<string>? id = default(List<string>?));
 
         /// <summary>
         /// 
@@ -66,7 +66,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The unique identifiers of the resources (optional)</param>
         /// <returns>ApiResponse of ApiResponse</returns>
-        ApiResponse<ApiResponse> DeleteTranslationsWithHttpInfo (List<string> id = default(List<string>));
+        ApiResponse<ApiResponse> DeleteTranslationsWithHttpInfo (List<string>? id = default(List<string>?));
         /// <summary>
         /// Delete translations by query
         /// </summary>
@@ -76,7 +76,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Delete a Translation or a list of Translations from Ziqni by unique Translation ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <returns>ApiResponse</returns>
-        ApiResponse DeleteTranslationsByQuery (QueryRequest body = default(QueryRequest));
+        ApiResponse DeleteTranslationsByQuery (QueryRequest? body = default(QueryRequest?));
 
         /// <summary>
         /// Delete translations by query
@@ -87,7 +87,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Delete a Translation or a list of Translations from Ziqni by unique Translation ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <returns>ApiResponse of ApiResponse</returns>
-        ApiResponse<ApiResponse> DeleteTranslationsByQueryWithHttpInfo (QueryRequest body = default(QueryRequest));
+        ApiResponse<ApiResponse> DeleteTranslationsByQueryWithHttpInfo (QueryRequest? body = default(QueryRequest?));
         /// <summary>
         /// 
         /// </summary>
@@ -99,7 +99,7 @@ namespace Ziqni.Api
         /// <param name="limit">Limit the returned total records found (optional)</param>
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <returns>TranslationResponse</returns>
-        TranslationResponse GetTranslations (List<string> id = default(List<string>), int? limit = default(int?), int? skip = default(int?));
+        TranslationResponse GetTranslations (List<string>? id = default(List<string>?), int? limit = default(int?), int? skip = default(int?));
 
         /// <summary>
         /// 
@@ -112,7 +112,7 @@ namespace Ziqni.Api
         /// <param name="limit">Limit the returned total records found (optional)</param>
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <returns>ApiResponse of TranslationResponse</returns>
-        ApiResponse<TranslationResponse> GetTranslationsWithHttpInfo (List<string> id = default(List<string>), int? limit = default(int?), int? skip = default(int?));
+        ApiResponse<TranslationResponse> GetTranslationsWithHttpInfo (List<string>? id = default(List<string>?), int? limit = default(int?), int? skip = default(int?));
         /// <summary>
         /// 
         /// </summary>
@@ -124,7 +124,7 @@ namespace Ziqni.Api
         /// <param name="limit">Limit the returned total records found (optional)</param>
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <returns>TranslationResponse</returns>
-        TranslationResponse GetTranslationsByEntityId (List<string> refIds = default(List<string>), int? limit = default(int?), int? skip = default(int?));
+        TranslationResponse GetTranslationsByEntityId (List<string>? refIds = default(List<string>?), int? limit = default(int?), int? skip = default(int?));
 
         /// <summary>
         /// 
@@ -137,7 +137,7 @@ namespace Ziqni.Api
         /// <param name="limit">Limit the returned total records found (optional)</param>
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <returns>ApiResponse of TranslationResponse</returns>
-        ApiResponse<TranslationResponse> GetTranslationsByEntityIdWithHttpInfo (List<string> refIds = default(List<string>), int? limit = default(int?), int? skip = default(int?));
+        ApiResponse<TranslationResponse> GetTranslationsByEntityIdWithHttpInfo (List<string>? refIds = default(List<string>?), int? limit = default(int?), int? skip = default(int?));
         /// <summary>
         /// 
         /// </summary>
@@ -147,7 +147,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Retrieve a Translation or a list of Translations from Ziqni by unique Translation ID&#39;s or any other Post body parameters using the POST method (optional)</param>
         /// <returns>TranslationResponse</returns>
-        TranslationResponse GetTranslationsByQuery (QueryRequest body = default(QueryRequest));
+        TranslationResponse GetTranslationsByQuery (QueryRequest? body = default(QueryRequest?));
 
         /// <summary>
         /// 
@@ -158,7 +158,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Retrieve a Translation or a list of Translations from Ziqni by unique Translation ID&#39;s or any other Post body parameters using the POST method (optional)</param>
         /// <returns>ApiResponse of TranslationResponse</returns>
-        ApiResponse<TranslationResponse> GetTranslationsByQueryWithHttpInfo (QueryRequest body = default(QueryRequest));
+        ApiResponse<TranslationResponse> GetTranslationsByQueryWithHttpInfo (QueryRequest? body = default(QueryRequest?));
         /// <summary>
         /// 
         /// </summary>
@@ -215,7 +215,7 @@ namespace Ziqni.Api
         /// <param name="id">The unique identifiers of the resources (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse> DeleteTranslationsAsync (List<string> id = default(List<string>), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse> DeleteTranslationsAsync (List<string>? id = default(List<string>?), CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// 
@@ -227,7 +227,7 @@ namespace Ziqni.Api
         /// <param name="id">The unique identifiers of the resources (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (ApiResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<ApiResponse>> DeleteTranslationsWithHttpInfoAsync (List<string> id = default(List<string>), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<ApiResponse>> DeleteTranslationsWithHttpInfoAsync (List<string>? id = default(List<string>?), CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Delete translations by query
         /// </summary>
@@ -238,7 +238,7 @@ namespace Ziqni.Api
         /// <param name="body">Delete a Translation or a list of Translations from Ziqni by unique Translation ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse> DeleteTranslationsByQueryAsync (QueryRequest body = default(QueryRequest), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse> DeleteTranslationsByQueryAsync (QueryRequest? body = default(QueryRequest?), CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Delete translations by query
@@ -250,7 +250,7 @@ namespace Ziqni.Api
         /// <param name="body">Delete a Translation or a list of Translations from Ziqni by unique Translation ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (ApiResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<ApiResponse>> DeleteTranslationsByQueryWithHttpInfoAsync (QueryRequest body = default(QueryRequest), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<ApiResponse>> DeleteTranslationsByQueryWithHttpInfoAsync (QueryRequest? body = default(QueryRequest?), CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// 
         /// </summary>
@@ -263,7 +263,7 @@ namespace Ziqni.Api
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of TranslationResponse</returns>
-        System.Threading.Tasks.Task<TranslationResponse> GetTranslationsAsync (List<string> id = default(List<string>), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<TranslationResponse> GetTranslationsAsync (List<string>? id = default(List<string>?), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// 
@@ -277,7 +277,7 @@ namespace Ziqni.Api
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (TranslationResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<TranslationResponse>> GetTranslationsWithHttpInfoAsync (List<string> id = default(List<string>), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<TranslationResponse>> GetTranslationsWithHttpInfoAsync (List<string>? id = default(List<string>?), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// 
         /// </summary>
@@ -290,7 +290,7 @@ namespace Ziqni.Api
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of TranslationResponse</returns>
-        System.Threading.Tasks.Task<TranslationResponse> GetTranslationsByEntityIdAsync (List<string> refIds = default(List<string>), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<TranslationResponse> GetTranslationsByEntityIdAsync (List<string>? refIds = default(List<string>?), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// 
@@ -304,7 +304,7 @@ namespace Ziqni.Api
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (TranslationResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<TranslationResponse>> GetTranslationsByEntityIdWithHttpInfoAsync (List<string> refIds = default(List<string>), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<TranslationResponse>> GetTranslationsByEntityIdWithHttpInfoAsync (List<string>? refIds = default(List<string>?), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// 
         /// </summary>
@@ -315,7 +315,7 @@ namespace Ziqni.Api
         /// <param name="body">Retrieve a Translation or a list of Translations from Ziqni by unique Translation ID&#39;s or any other Post body parameters using the POST method (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of TranslationResponse</returns>
-        System.Threading.Tasks.Task<TranslationResponse> GetTranslationsByQueryAsync (QueryRequest body = default(QueryRequest), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<TranslationResponse> GetTranslationsByQueryAsync (QueryRequest? body = default(QueryRequest?), CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// 
@@ -327,7 +327,7 @@ namespace Ziqni.Api
         /// <param name="body">Retrieve a Translation or a list of Translations from Ziqni by unique Translation ID&#39;s or any other Post body parameters using the POST method (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (TranslationResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<TranslationResponse>> GetTranslationsByQueryWithHttpInfoAsync (QueryRequest body = default(QueryRequest), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<TranslationResponse>> GetTranslationsByQueryWithHttpInfoAsync (QueryRequest? body = default(QueryRequest?), CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// 
         /// </summary>
@@ -631,7 +631,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The unique identifiers of the resources (optional)</param>
         /// <returns>ApiResponse</returns>
-        public ApiResponse DeleteTranslations (List<string> id = default(List<string>))
+        public ApiResponse DeleteTranslations (List<string>? id = default(List<string>?))
         {
              ApiResponse<ApiResponse> localVarResponse = DeleteTranslationsWithHttpInfo(id);
              return localVarResponse.Data;
@@ -643,7 +643,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The unique identifiers of the resources (optional)</param>
         /// <returns>ApiResponse of ApiResponse</returns>
-        public ApiResponse<ApiResponse> DeleteTranslationsWithHttpInfo (List<string> id = default(List<string>))
+        public ApiResponse<ApiResponse> DeleteTranslationsWithHttpInfo (List<string>? id = default(List<string>?))
         {
 
             var localVarPath = "/translations";
@@ -701,7 +701,7 @@ namespace Ziqni.Api
         /// <param name="id">The unique identifiers of the resources (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<ApiResponse> DeleteTranslationsAsync (List<string> id = default(List<string>), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<ApiResponse> DeleteTranslationsAsync (List<string>? id = default(List<string>?), CancellationToken cancellationToken = default(CancellationToken))
         {
              ApiResponse<ApiResponse> localVarResponse = await DeleteTranslationsWithHttpInfoAsync(id, cancellationToken);
              return localVarResponse.Data;
@@ -715,7 +715,7 @@ namespace Ziqni.Api
         /// <param name="id">The unique identifiers of the resources (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (ApiResponse)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<ApiResponse>> DeleteTranslationsWithHttpInfoAsync (List<string> id = default(List<string>), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<ApiResponse<ApiResponse>> DeleteTranslationsWithHttpInfoAsync (List<string>? id = default(List<string>?), CancellationToken cancellationToken = default(CancellationToken))
         {
 
             var localVarPath = "/translations";
@@ -772,7 +772,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Delete a Translation or a list of Translations from Ziqni by unique Translation ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <returns>ApiResponse</returns>
-        public ApiResponse DeleteTranslationsByQuery (QueryRequest body = default(QueryRequest))
+        public ApiResponse DeleteTranslationsByQuery (QueryRequest? body = default(QueryRequest?))
         {
              ApiResponse<ApiResponse> localVarResponse = DeleteTranslationsByQueryWithHttpInfo(body);
              return localVarResponse.Data;
@@ -784,7 +784,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Delete a Translation or a list of Translations from Ziqni by unique Translation ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <returns>ApiResponse of ApiResponse</returns>
-        public ApiResponse<ApiResponse> DeleteTranslationsByQueryWithHttpInfo (QueryRequest body = default(QueryRequest))
+        public ApiResponse<ApiResponse> DeleteTranslationsByQueryWithHttpInfo (QueryRequest? body = default(QueryRequest?))
         {
 
             var localVarPath = "/translations/delete";
@@ -850,7 +850,7 @@ namespace Ziqni.Api
         /// <param name="body">Delete a Translation or a list of Translations from Ziqni by unique Translation ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<ApiResponse> DeleteTranslationsByQueryAsync (QueryRequest body = default(QueryRequest), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<ApiResponse> DeleteTranslationsByQueryAsync (QueryRequest? body = default(QueryRequest?), CancellationToken cancellationToken = default(CancellationToken))
         {
              ApiResponse<ApiResponse> localVarResponse = await DeleteTranslationsByQueryWithHttpInfoAsync(body, cancellationToken);
              return localVarResponse.Data;
@@ -864,7 +864,7 @@ namespace Ziqni.Api
         /// <param name="body">Delete a Translation or a list of Translations from Ziqni by unique Translation ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (ApiResponse)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<ApiResponse>> DeleteTranslationsByQueryWithHttpInfoAsync (QueryRequest body = default(QueryRequest), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<ApiResponse<ApiResponse>> DeleteTranslationsByQueryWithHttpInfoAsync (QueryRequest? body = default(QueryRequest?), CancellationToken cancellationToken = default(CancellationToken))
         {
 
             var localVarPath = "/translations/delete";
@@ -931,7 +931,7 @@ namespace Ziqni.Api
         /// <param name="limit">Limit the returned total records found (optional)</param>
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <returns>TranslationResponse</returns>
-        public TranslationResponse GetTranslations (List<string> id = default(List<string>), int? limit = default(int?), int? skip = default(int?))
+        public TranslationResponse GetTranslations (List<string>? id = default(List<string>?), int? limit = default(int?), int? skip = default(int?))
         {
              ApiResponse<TranslationResponse> localVarResponse = GetTranslationsWithHttpInfo(id, limit, skip);
              return localVarResponse.Data;
@@ -945,7 +945,7 @@ namespace Ziqni.Api
         /// <param name="limit">Limit the returned total records found (optional)</param>
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <returns>ApiResponse of TranslationResponse</returns>
-        public ApiResponse<TranslationResponse> GetTranslationsWithHttpInfo (List<string> id = default(List<string>), int? limit = default(int?), int? skip = default(int?))
+        public ApiResponse<TranslationResponse> GetTranslationsWithHttpInfo (List<string>? id = default(List<string>?), int? limit = default(int?), int? skip = default(int?))
         {
 
             var localVarPath = "/translations";
@@ -1007,7 +1007,7 @@ namespace Ziqni.Api
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of TranslationResponse</returns>
-        public async System.Threading.Tasks.Task<TranslationResponse> GetTranslationsAsync (List<string> id = default(List<string>), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<TranslationResponse> GetTranslationsAsync (List<string>? id = default(List<string>?), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken))
         {
              ApiResponse<TranslationResponse> localVarResponse = await GetTranslationsWithHttpInfoAsync(id, limit, skip, cancellationToken);
              return localVarResponse.Data;
@@ -1023,7 +1023,7 @@ namespace Ziqni.Api
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (TranslationResponse)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<TranslationResponse>> GetTranslationsWithHttpInfoAsync (List<string> id = default(List<string>), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<ApiResponse<TranslationResponse>> GetTranslationsWithHttpInfoAsync (List<string>? id = default(List<string>?), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken))
         {
 
             var localVarPath = "/translations";
@@ -1084,7 +1084,7 @@ namespace Ziqni.Api
         /// <param name="limit">Limit the returned total records found (optional)</param>
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <returns>TranslationResponse</returns>
-        public TranslationResponse GetTranslationsByEntityId (List<string> refIds = default(List<string>), int? limit = default(int?), int? skip = default(int?))
+        public TranslationResponse GetTranslationsByEntityId (List<string>? refIds = default(List<string>?), int? limit = default(int?), int? skip = default(int?))
         {
              ApiResponse<TranslationResponse> localVarResponse = GetTranslationsByEntityIdWithHttpInfo(refIds, limit, skip);
              return localVarResponse.Data;
@@ -1098,7 +1098,7 @@ namespace Ziqni.Api
         /// <param name="limit">Limit the returned total records found (optional)</param>
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <returns>ApiResponse of TranslationResponse</returns>
-        public ApiResponse<TranslationResponse> GetTranslationsByEntityIdWithHttpInfo (List<string> refIds = default(List<string>), int? limit = default(int?), int? skip = default(int?))
+        public ApiResponse<TranslationResponse> GetTranslationsByEntityIdWithHttpInfo (List<string>? refIds = default(List<string>?), int? limit = default(int?), int? skip = default(int?))
         {
 
             var localVarPath = "/translations/find-by-entity-id";
@@ -1160,7 +1160,7 @@ namespace Ziqni.Api
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of TranslationResponse</returns>
-        public async System.Threading.Tasks.Task<TranslationResponse> GetTranslationsByEntityIdAsync (List<string> refIds = default(List<string>), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<TranslationResponse> GetTranslationsByEntityIdAsync (List<string>? refIds = default(List<string>?), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken))
         {
              ApiResponse<TranslationResponse> localVarResponse = await GetTranslationsByEntityIdWithHttpInfoAsync(refIds, limit, skip, cancellationToken);
              return localVarResponse.Data;
@@ -1176,7 +1176,7 @@ namespace Ziqni.Api
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (TranslationResponse)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<TranslationResponse>> GetTranslationsByEntityIdWithHttpInfoAsync (List<string> refIds = default(List<string>), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<ApiResponse<TranslationResponse>> GetTranslationsByEntityIdWithHttpInfoAsync (List<string>? refIds = default(List<string>?), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken))
         {
 
             var localVarPath = "/translations/find-by-entity-id";
@@ -1235,7 +1235,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Retrieve a Translation or a list of Translations from Ziqni by unique Translation ID&#39;s or any other Post body parameters using the POST method (optional)</param>
         /// <returns>TranslationResponse</returns>
-        public TranslationResponse GetTranslationsByQuery (QueryRequest body = default(QueryRequest))
+        public TranslationResponse GetTranslationsByQuery (QueryRequest? body = default(QueryRequest?))
         {
              ApiResponse<TranslationResponse> localVarResponse = GetTranslationsByQueryWithHttpInfo(body);
              return localVarResponse.Data;
@@ -1247,7 +1247,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Retrieve a Translation or a list of Translations from Ziqni by unique Translation ID&#39;s or any other Post body parameters using the POST method (optional)</param>
         /// <returns>ApiResponse of TranslationResponse</returns>
-        public ApiResponse<TranslationResponse> GetTranslationsByQueryWithHttpInfo (QueryRequest body = default(QueryRequest))
+        public ApiResponse<TranslationResponse> GetTranslationsByQueryWithHttpInfo (QueryRequest? body = default(QueryRequest?))
         {
 
             var localVarPath = "/translations/query";
@@ -1313,7 +1313,7 @@ namespace Ziqni.Api
         /// <param name="body">Retrieve a Translation or a list of Translations from Ziqni by unique Translation ID&#39;s or any other Post body parameters using the POST method (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of TranslationResponse</returns>
-        public async System.Threading.Tasks.Task<TranslationResponse> GetTranslationsByQueryAsync (QueryRequest body = default(QueryRequest), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<TranslationResponse> GetTranslationsByQueryAsync (QueryRequest? body = default(QueryRequest?), CancellationToken cancellationToken = default(CancellationToken))
         {
              ApiResponse<TranslationResponse> localVarResponse = await GetTranslationsByQueryWithHttpInfoAsync(body, cancellationToken);
              return localVarResponse.Data;
@@ -1327,7 +1327,7 @@ namespace Ziqni.Api
         /// <param name="body">Retrieve a Translation or a list of Translations from Ziqni by unique Translation ID&#39;s or any other Post body parameters using the POST method (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (TranslationResponse)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<TranslationResponse>> GetTranslationsByQueryWithHttpInfoAsync (QueryRequest body = default(QueryRequest), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<ApiResponse<TranslationResponse>> GetTranslationsByQueryWithHttpInfoAsync (QueryRequest? body = default(QueryRequest?), CancellationToken cancellationToken = default(CancellationToken))
         {
 
             var localVarPath = "/translations/query";

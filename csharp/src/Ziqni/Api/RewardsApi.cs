@@ -55,7 +55,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The unique identifiers of the resources (optional)</param>
         /// <returns>ApiResponse</returns>
-        ApiResponse DeleteRewards (List<string> id = default(List<string>));
+        ApiResponse DeleteRewards (List<string>? id = default(List<string>?));
 
         /// <summary>
         /// 
@@ -66,7 +66,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The unique identifiers of the resources (optional)</param>
         /// <returns>ApiResponse of ApiResponse</returns>
-        ApiResponse<ApiResponse> DeleteRewardsWithHttpInfo (List<string> id = default(List<string>));
+        ApiResponse<ApiResponse> DeleteRewardsWithHttpInfo (List<string>? id = default(List<string>?));
         /// <summary>
         /// 
         /// </summary>
@@ -76,7 +76,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Delete Rewards from Ziqni database by unique Rewards ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <returns>ApiResponse</returns>
-        ApiResponse DeleteRewardsByQuery (QueryRequest body = default(QueryRequest));
+        ApiResponse DeleteRewardsByQuery (QueryRequest? body = default(QueryRequest?));
 
         /// <summary>
         /// 
@@ -87,7 +87,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Delete Rewards from Ziqni database by unique Rewards ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <returns>ApiResponse of ApiResponse</returns>
-        ApiResponse<ApiResponse> DeleteRewardsByQueryWithHttpInfo (QueryRequest body = default(QueryRequest));
+        ApiResponse<ApiResponse> DeleteRewardsByQueryWithHttpInfo (QueryRequest? body = default(QueryRequest?));
         /// <summary>
         /// 
         /// </summary>
@@ -99,7 +99,7 @@ namespace Ziqni.Api
         /// <param name="limit">Limit the returned total records found (optional)</param>
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <returns>RewardResponse</returns>
-        RewardResponse GetRewards (List<string> id = default(List<string>), int? limit = default(int?), int? skip = default(int?));
+        RewardResponse GetRewards (List<string>? id = default(List<string>?), int? limit = default(int?), int? skip = default(int?));
 
         /// <summary>
         /// 
@@ -112,7 +112,7 @@ namespace Ziqni.Api
         /// <param name="limit">Limit the returned total records found (optional)</param>
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <returns>ApiResponse of RewardResponse</returns>
-        ApiResponse<RewardResponse> GetRewardsWithHttpInfo (List<string> id = default(List<string>), int? limit = default(int?), int? skip = default(int?));
+        ApiResponse<RewardResponse> GetRewardsWithHttpInfo (List<string>? id = default(List<string>?), int? limit = default(int?), int? skip = default(int?));
         /// <summary>
         /// 
         /// </summary>
@@ -122,7 +122,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Retrieve Rewards from Ziqni database by unique Rewards ID&#39;s or any other Post body parameters using the POST method (optional)</param>
         /// <returns>RewardResponse</returns>
-        RewardResponse GetRewardsByQuery (QueryRequest body = default(QueryRequest));
+        RewardResponse GetRewardsByQuery (QueryRequest? body = default(QueryRequest?));
 
         /// <summary>
         /// 
@@ -133,7 +133,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Retrieve Rewards from Ziqni database by unique Rewards ID&#39;s or any other Post body parameters using the POST method (optional)</param>
         /// <returns>ApiResponse of RewardResponse</returns>
-        ApiResponse<RewardResponse> GetRewardsByQueryWithHttpInfo (QueryRequest body = default(QueryRequest));
+        ApiResponse<RewardResponse> GetRewardsByQueryWithHttpInfo (QueryRequest? body = default(QueryRequest?));
         /// <summary>
         /// 
         /// </summary>
@@ -190,7 +190,7 @@ namespace Ziqni.Api
         /// <param name="id">The unique identifiers of the resources (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse> DeleteRewardsAsync (List<string> id = default(List<string>), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse> DeleteRewardsAsync (List<string>? id = default(List<string>?), CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// 
@@ -202,7 +202,7 @@ namespace Ziqni.Api
         /// <param name="id">The unique identifiers of the resources (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (ApiResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<ApiResponse>> DeleteRewardsWithHttpInfoAsync (List<string> id = default(List<string>), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<ApiResponse>> DeleteRewardsWithHttpInfoAsync (List<string>? id = default(List<string>?), CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// 
         /// </summary>
@@ -213,7 +213,7 @@ namespace Ziqni.Api
         /// <param name="body">Delete Rewards from Ziqni database by unique Rewards ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse> DeleteRewardsByQueryAsync (QueryRequest body = default(QueryRequest), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse> DeleteRewardsByQueryAsync (QueryRequest? body = default(QueryRequest?), CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// 
@@ -225,7 +225,7 @@ namespace Ziqni.Api
         /// <param name="body">Delete Rewards from Ziqni database by unique Rewards ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (ApiResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<ApiResponse>> DeleteRewardsByQueryWithHttpInfoAsync (QueryRequest body = default(QueryRequest), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<ApiResponse>> DeleteRewardsByQueryWithHttpInfoAsync (QueryRequest? body = default(QueryRequest?), CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// 
         /// </summary>
@@ -238,7 +238,7 @@ namespace Ziqni.Api
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of RewardResponse</returns>
-        System.Threading.Tasks.Task<RewardResponse> GetRewardsAsync (List<string> id = default(List<string>), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<RewardResponse> GetRewardsAsync (List<string>? id = default(List<string>?), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// 
@@ -252,7 +252,7 @@ namespace Ziqni.Api
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (RewardResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<RewardResponse>> GetRewardsWithHttpInfoAsync (List<string> id = default(List<string>), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<RewardResponse>> GetRewardsWithHttpInfoAsync (List<string>? id = default(List<string>?), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// 
         /// </summary>
@@ -263,7 +263,7 @@ namespace Ziqni.Api
         /// <param name="body">Retrieve Rewards from Ziqni database by unique Rewards ID&#39;s or any other Post body parameters using the POST method (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of RewardResponse</returns>
-        System.Threading.Tasks.Task<RewardResponse> GetRewardsByQueryAsync (QueryRequest body = default(QueryRequest), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<RewardResponse> GetRewardsByQueryAsync (QueryRequest? body = default(QueryRequest?), CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// 
@@ -275,7 +275,7 @@ namespace Ziqni.Api
         /// <param name="body">Retrieve Rewards from Ziqni database by unique Rewards ID&#39;s or any other Post body parameters using the POST method (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (RewardResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<RewardResponse>> GetRewardsByQueryWithHttpInfoAsync (QueryRequest body = default(QueryRequest), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<RewardResponse>> GetRewardsByQueryWithHttpInfoAsync (QueryRequest? body = default(QueryRequest?), CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// 
         /// </summary>
@@ -579,7 +579,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The unique identifiers of the resources (optional)</param>
         /// <returns>ApiResponse</returns>
-        public ApiResponse DeleteRewards (List<string> id = default(List<string>))
+        public ApiResponse DeleteRewards (List<string>? id = default(List<string>?))
         {
              ApiResponse<ApiResponse> localVarResponse = DeleteRewardsWithHttpInfo(id);
              return localVarResponse.Data;
@@ -591,7 +591,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The unique identifiers of the resources (optional)</param>
         /// <returns>ApiResponse of ApiResponse</returns>
-        public ApiResponse<ApiResponse> DeleteRewardsWithHttpInfo (List<string> id = default(List<string>))
+        public ApiResponse<ApiResponse> DeleteRewardsWithHttpInfo (List<string>? id = default(List<string>?))
         {
 
             var localVarPath = "/rewards";
@@ -649,7 +649,7 @@ namespace Ziqni.Api
         /// <param name="id">The unique identifiers of the resources (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<ApiResponse> DeleteRewardsAsync (List<string> id = default(List<string>), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<ApiResponse> DeleteRewardsAsync (List<string>? id = default(List<string>?), CancellationToken cancellationToken = default(CancellationToken))
         {
              ApiResponse<ApiResponse> localVarResponse = await DeleteRewardsWithHttpInfoAsync(id, cancellationToken);
              return localVarResponse.Data;
@@ -663,7 +663,7 @@ namespace Ziqni.Api
         /// <param name="id">The unique identifiers of the resources (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (ApiResponse)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<ApiResponse>> DeleteRewardsWithHttpInfoAsync (List<string> id = default(List<string>), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<ApiResponse<ApiResponse>> DeleteRewardsWithHttpInfoAsync (List<string>? id = default(List<string>?), CancellationToken cancellationToken = default(CancellationToken))
         {
 
             var localVarPath = "/rewards";
@@ -720,7 +720,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Delete Rewards from Ziqni database by unique Rewards ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <returns>ApiResponse</returns>
-        public ApiResponse DeleteRewardsByQuery (QueryRequest body = default(QueryRequest))
+        public ApiResponse DeleteRewardsByQuery (QueryRequest? body = default(QueryRequest?))
         {
              ApiResponse<ApiResponse> localVarResponse = DeleteRewardsByQueryWithHttpInfo(body);
              return localVarResponse.Data;
@@ -732,7 +732,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Delete Rewards from Ziqni database by unique Rewards ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <returns>ApiResponse of ApiResponse</returns>
-        public ApiResponse<ApiResponse> DeleteRewardsByQueryWithHttpInfo (QueryRequest body = default(QueryRequest))
+        public ApiResponse<ApiResponse> DeleteRewardsByQueryWithHttpInfo (QueryRequest? body = default(QueryRequest?))
         {
 
             var localVarPath = "/rewards/delete";
@@ -798,7 +798,7 @@ namespace Ziqni.Api
         /// <param name="body">Delete Rewards from Ziqni database by unique Rewards ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<ApiResponse> DeleteRewardsByQueryAsync (QueryRequest body = default(QueryRequest), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<ApiResponse> DeleteRewardsByQueryAsync (QueryRequest? body = default(QueryRequest?), CancellationToken cancellationToken = default(CancellationToken))
         {
              ApiResponse<ApiResponse> localVarResponse = await DeleteRewardsByQueryWithHttpInfoAsync(body, cancellationToken);
              return localVarResponse.Data;
@@ -812,7 +812,7 @@ namespace Ziqni.Api
         /// <param name="body">Delete Rewards from Ziqni database by unique Rewards ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (ApiResponse)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<ApiResponse>> DeleteRewardsByQueryWithHttpInfoAsync (QueryRequest body = default(QueryRequest), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<ApiResponse<ApiResponse>> DeleteRewardsByQueryWithHttpInfoAsync (QueryRequest? body = default(QueryRequest?), CancellationToken cancellationToken = default(CancellationToken))
         {
 
             var localVarPath = "/rewards/delete";
@@ -879,7 +879,7 @@ namespace Ziqni.Api
         /// <param name="limit">Limit the returned total records found (optional)</param>
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <returns>RewardResponse</returns>
-        public RewardResponse GetRewards (List<string> id = default(List<string>), int? limit = default(int?), int? skip = default(int?))
+        public RewardResponse GetRewards (List<string>? id = default(List<string>?), int? limit = default(int?), int? skip = default(int?))
         {
              ApiResponse<RewardResponse> localVarResponse = GetRewardsWithHttpInfo(id, limit, skip);
              return localVarResponse.Data;
@@ -893,7 +893,7 @@ namespace Ziqni.Api
         /// <param name="limit">Limit the returned total records found (optional)</param>
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <returns>ApiResponse of RewardResponse</returns>
-        public ApiResponse<RewardResponse> GetRewardsWithHttpInfo (List<string> id = default(List<string>), int? limit = default(int?), int? skip = default(int?))
+        public ApiResponse<RewardResponse> GetRewardsWithHttpInfo (List<string>? id = default(List<string>?), int? limit = default(int?), int? skip = default(int?))
         {
 
             var localVarPath = "/rewards";
@@ -955,7 +955,7 @@ namespace Ziqni.Api
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of RewardResponse</returns>
-        public async System.Threading.Tasks.Task<RewardResponse> GetRewardsAsync (List<string> id = default(List<string>), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<RewardResponse> GetRewardsAsync (List<string>? id = default(List<string>?), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken))
         {
              ApiResponse<RewardResponse> localVarResponse = await GetRewardsWithHttpInfoAsync(id, limit, skip, cancellationToken);
              return localVarResponse.Data;
@@ -971,7 +971,7 @@ namespace Ziqni.Api
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (RewardResponse)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<RewardResponse>> GetRewardsWithHttpInfoAsync (List<string> id = default(List<string>), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<ApiResponse<RewardResponse>> GetRewardsWithHttpInfoAsync (List<string>? id = default(List<string>?), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken))
         {
 
             var localVarPath = "/rewards";
@@ -1030,7 +1030,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Retrieve Rewards from Ziqni database by unique Rewards ID&#39;s or any other Post body parameters using the POST method (optional)</param>
         /// <returns>RewardResponse</returns>
-        public RewardResponse GetRewardsByQuery (QueryRequest body = default(QueryRequest))
+        public RewardResponse GetRewardsByQuery (QueryRequest? body = default(QueryRequest?))
         {
              ApiResponse<RewardResponse> localVarResponse = GetRewardsByQueryWithHttpInfo(body);
              return localVarResponse.Data;
@@ -1042,7 +1042,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Retrieve Rewards from Ziqni database by unique Rewards ID&#39;s or any other Post body parameters using the POST method (optional)</param>
         /// <returns>ApiResponse of RewardResponse</returns>
-        public ApiResponse<RewardResponse> GetRewardsByQueryWithHttpInfo (QueryRequest body = default(QueryRequest))
+        public ApiResponse<RewardResponse> GetRewardsByQueryWithHttpInfo (QueryRequest? body = default(QueryRequest?))
         {
 
             var localVarPath = "/rewards/query";
@@ -1108,7 +1108,7 @@ namespace Ziqni.Api
         /// <param name="body">Retrieve Rewards from Ziqni database by unique Rewards ID&#39;s or any other Post body parameters using the POST method (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of RewardResponse</returns>
-        public async System.Threading.Tasks.Task<RewardResponse> GetRewardsByQueryAsync (QueryRequest body = default(QueryRequest), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<RewardResponse> GetRewardsByQueryAsync (QueryRequest? body = default(QueryRequest?), CancellationToken cancellationToken = default(CancellationToken))
         {
              ApiResponse<RewardResponse> localVarResponse = await GetRewardsByQueryWithHttpInfoAsync(body, cancellationToken);
              return localVarResponse.Data;
@@ -1122,7 +1122,7 @@ namespace Ziqni.Api
         /// <param name="body">Retrieve Rewards from Ziqni database by unique Rewards ID&#39;s or any other Post body parameters using the POST method (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (RewardResponse)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<RewardResponse>> GetRewardsByQueryWithHttpInfoAsync (QueryRequest body = default(QueryRequest), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<ApiResponse<RewardResponse>> GetRewardsByQueryWithHttpInfoAsync (QueryRequest? body = default(QueryRequest?), CancellationToken cancellationToken = default(CancellationToken))
         {
 
             var localVarPath = "/rewards/query";

@@ -100,7 +100,7 @@ Name | Type | Description  | Notes
 
 ## DeleteActionTypes
 
-> ApiResponse DeleteActionTypes (List<string> id = null)
+> ApiResponse DeleteActionTypes (List<string>? id = null)
 
 Delete action types
 
@@ -126,7 +126,7 @@ namespace Example
             Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new ActionTypesApi(Configuration.Default);
-            var id = new List<string>(); // List<string> | The unique identifiers of the resources (optional) 
+            var id = new List<string>?(); // List<string>? | The unique identifiers of the resources (optional) 
 
             try
             {
@@ -150,7 +150,7 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | [**List&lt;string&gt;**](string.md)| The unique identifiers of the resources | [optional] 
+ **id** | [**List&lt;string&gt;?**](string.md)| The unique identifiers of the resources | [optional] 
 
 ### Return type
 
@@ -185,7 +185,7 @@ Name | Type | Description  | Notes
 
 ## DeleteActionTypesByQuery
 
-> ApiResponse DeleteActionTypesByQuery (QueryRequest body = null)
+> ApiResponse DeleteActionTypesByQuery (QueryRequest? body = null)
 
 Delete action types by query
 
@@ -211,7 +211,7 @@ namespace Example
             Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new ActionTypesApi(Configuration.Default);
-            var body = new QueryRequest(); // QueryRequest | Delete Action types from Ziqni database by unique Action types ID's or any other POST body parameters using the POST method (optional) 
+            var body = new QueryRequest?(); // QueryRequest? | Delete Action types from Ziqni database by unique Action types ID's or any other POST body parameters using the POST method (optional) 
 
             try
             {
@@ -235,7 +235,7 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**QueryRequest**](QueryRequest.md)| Delete Action types from Ziqni database by unique Action types ID&#39;s or any other POST body parameters using the POST method | [optional] 
+ **body** | [**QueryRequest?**](QueryRequest?.md)| Delete Action types from Ziqni database by unique Action types ID&#39;s or any other POST body parameters using the POST method | [optional] 
 
 ### Return type
 
@@ -270,7 +270,7 @@ Name | Type | Description  | Notes
 
 ## GetActionTypes
 
-> ActionTypeResponse GetActionTypes (List<string> id = null, int? limit = null, int? skip = null)
+> ActionTypeResponse GetActionTypes (List<string>? id = null, int? limit = null, int? skip = null)
 
 Get action types
 
@@ -296,7 +296,7 @@ namespace Example
             Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new ActionTypesApi(Configuration.Default);
-            var id = new List<string>(); // List<string> | The unique identifiers of the resources (optional) 
+            var id = new List<string>?(); // List<string>? | The unique identifiers of the resources (optional) 
             var limit = 56;  // int? | Limit the returned total records found (optional) 
             var skip = 56;  // int? | Skip the returned records found and return the next batch of records (optional) 
 
@@ -322,7 +322,7 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | [**List&lt;string&gt;**](string.md)| The unique identifiers of the resources | [optional] 
+ **id** | [**List&lt;string&gt;?**](string.md)| The unique identifiers of the resources | [optional] 
  **limit** | **int?**| Limit the returned total records found | [optional] 
  **skip** | **int?**| Skip the returned records found and return the next batch of records | [optional] 
 
@@ -359,7 +359,7 @@ Name | Type | Description  | Notes
 
 ## GetActionTypesByQuery
 
-> ActionTypeResponse GetActionTypesByQuery (QueryRequest body = null)
+> ActionTypeResponse GetActionTypesByQuery (QueryRequest? body = null)
 
 Get action types by query
 
@@ -385,7 +385,7 @@ namespace Example
             Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new ActionTypesApi(Configuration.Default);
-            var body = new QueryRequest(); // QueryRequest | Retrieve Action types from Ziqni database by unique Action type ID's or any other POST body parameters using the POST method (optional) 
+            var body = new QueryRequest?(); // QueryRequest? | Retrieve Action types from Ziqni database by unique Action type ID's or any other POST body parameters using the POST method (optional) 
 
             try
             {
@@ -409,7 +409,7 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**QueryRequest**](QueryRequest.md)| Retrieve Action types from Ziqni database by unique Action type ID&#39;s or any other POST body parameters using the POST method | [optional] 
+ **body** | [**QueryRequest?**](QueryRequest?.md)| Retrieve Action types from Ziqni database by unique Action type ID&#39;s or any other POST body parameters using the POST method | [optional] 
 
 ### Return type
 

@@ -55,7 +55,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The unique identifiers of the resources (optional)</param>
         /// <returns>ApiResponse</returns>
-        ApiResponse DeleteCustomFields (List<string> id = default(List<string>));
+        ApiResponse DeleteCustomFields (List<string>? id = default(List<string>?));
 
         /// <summary>
         /// Delete custom fields
@@ -66,7 +66,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The unique identifiers of the resources (optional)</param>
         /// <returns>ApiResponse of ApiResponse</returns>
-        ApiResponse<ApiResponse> DeleteCustomFieldsWithHttpInfo (List<string> id = default(List<string>));
+        ApiResponse<ApiResponse> DeleteCustomFieldsWithHttpInfo (List<string>? id = default(List<string>?));
         /// <summary>
         /// Delete custom fields by query
         /// </summary>
@@ -76,7 +76,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Delete Custom fields from Ziqni database by unique Custom field ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <returns>ApiResponse</returns>
-        ApiResponse DeleteCustomFieldsByQuery (QueryRequest body = default(QueryRequest));
+        ApiResponse DeleteCustomFieldsByQuery (QueryRequest? body = default(QueryRequest?));
 
         /// <summary>
         /// Delete custom fields by query
@@ -87,7 +87,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Delete Custom fields from Ziqni database by unique Custom field ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <returns>ApiResponse of ApiResponse</returns>
-        ApiResponse<ApiResponse> DeleteCustomFieldsByQueryWithHttpInfo (QueryRequest body = default(QueryRequest));
+        ApiResponse<ApiResponse> DeleteCustomFieldsByQueryWithHttpInfo (QueryRequest? body = default(QueryRequest?));
         /// <summary>
         /// Get custom fields
         /// </summary>
@@ -99,7 +99,7 @@ namespace Ziqni.Api
         /// <param name="limit">Limit the returned total records found (optional)</param>
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <returns>CustomFieldResponse</returns>
-        CustomFieldResponse GetCustomFields (List<string> id = default(List<string>), int? limit = default(int?), int? skip = default(int?));
+        CustomFieldResponse GetCustomFields (List<string>? id = default(List<string>?), int? limit = default(int?), int? skip = default(int?));
 
         /// <summary>
         /// Get custom fields
@@ -112,7 +112,7 @@ namespace Ziqni.Api
         /// <param name="limit">Limit the returned total records found (optional)</param>
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <returns>ApiResponse of CustomFieldResponse</returns>
-        ApiResponse<CustomFieldResponse> GetCustomFieldsWithHttpInfo (List<string> id = default(List<string>), int? limit = default(int?), int? skip = default(int?));
+        ApiResponse<CustomFieldResponse> GetCustomFieldsWithHttpInfo (List<string>? id = default(List<string>?), int? limit = default(int?), int? skip = default(int?));
         /// <summary>
         /// Get custom fields by query
         /// </summary>
@@ -122,7 +122,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Retrieve Custom fields from Ziqni database by unique Custom field ID&#39;s or any other Post body parameters using the POST method (optional)</param>
         /// <returns>CustomFieldResponse</returns>
-        CustomFieldResponse GetCustomFieldsByQuery (QueryRequest body = default(QueryRequest));
+        CustomFieldResponse GetCustomFieldsByQuery (QueryRequest? body = default(QueryRequest?));
 
         /// <summary>
         /// Get custom fields by query
@@ -133,7 +133,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Retrieve Custom fields from Ziqni database by unique Custom field ID&#39;s or any other Post body parameters using the POST method (optional)</param>
         /// <returns>ApiResponse of CustomFieldResponse</returns>
-        ApiResponse<CustomFieldResponse> GetCustomFieldsByQueryWithHttpInfo (QueryRequest body = default(QueryRequest));
+        ApiResponse<CustomFieldResponse> GetCustomFieldsByQueryWithHttpInfo (QueryRequest? body = default(QueryRequest?));
         /// <summary>
         /// Update custom fields
         /// </summary>
@@ -190,7 +190,7 @@ namespace Ziqni.Api
         /// <param name="id">The unique identifiers of the resources (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse> DeleteCustomFieldsAsync (List<string> id = default(List<string>), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse> DeleteCustomFieldsAsync (List<string>? id = default(List<string>?), CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Delete custom fields
@@ -202,7 +202,7 @@ namespace Ziqni.Api
         /// <param name="id">The unique identifiers of the resources (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (ApiResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<ApiResponse>> DeleteCustomFieldsWithHttpInfoAsync (List<string> id = default(List<string>), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<ApiResponse>> DeleteCustomFieldsWithHttpInfoAsync (List<string>? id = default(List<string>?), CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Delete custom fields by query
         /// </summary>
@@ -213,7 +213,7 @@ namespace Ziqni.Api
         /// <param name="body">Delete Custom fields from Ziqni database by unique Custom field ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse> DeleteCustomFieldsByQueryAsync (QueryRequest body = default(QueryRequest), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse> DeleteCustomFieldsByQueryAsync (QueryRequest? body = default(QueryRequest?), CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Delete custom fields by query
@@ -225,7 +225,7 @@ namespace Ziqni.Api
         /// <param name="body">Delete Custom fields from Ziqni database by unique Custom field ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (ApiResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<ApiResponse>> DeleteCustomFieldsByQueryWithHttpInfoAsync (QueryRequest body = default(QueryRequest), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<ApiResponse>> DeleteCustomFieldsByQueryWithHttpInfoAsync (QueryRequest? body = default(QueryRequest?), CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Get custom fields
         /// </summary>
@@ -238,7 +238,7 @@ namespace Ziqni.Api
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of CustomFieldResponse</returns>
-        System.Threading.Tasks.Task<CustomFieldResponse> GetCustomFieldsAsync (List<string> id = default(List<string>), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<CustomFieldResponse> GetCustomFieldsAsync (List<string>? id = default(List<string>?), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Get custom fields
@@ -252,7 +252,7 @@ namespace Ziqni.Api
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (CustomFieldResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<CustomFieldResponse>> GetCustomFieldsWithHttpInfoAsync (List<string> id = default(List<string>), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<CustomFieldResponse>> GetCustomFieldsWithHttpInfoAsync (List<string>? id = default(List<string>?), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Get custom fields by query
         /// </summary>
@@ -263,7 +263,7 @@ namespace Ziqni.Api
         /// <param name="body">Retrieve Custom fields from Ziqni database by unique Custom field ID&#39;s or any other Post body parameters using the POST method (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of CustomFieldResponse</returns>
-        System.Threading.Tasks.Task<CustomFieldResponse> GetCustomFieldsByQueryAsync (QueryRequest body = default(QueryRequest), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<CustomFieldResponse> GetCustomFieldsByQueryAsync (QueryRequest? body = default(QueryRequest?), CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Get custom fields by query
@@ -275,7 +275,7 @@ namespace Ziqni.Api
         /// <param name="body">Retrieve Custom fields from Ziqni database by unique Custom field ID&#39;s or any other Post body parameters using the POST method (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (CustomFieldResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<CustomFieldResponse>> GetCustomFieldsByQueryWithHttpInfoAsync (QueryRequest body = default(QueryRequest), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<CustomFieldResponse>> GetCustomFieldsByQueryWithHttpInfoAsync (QueryRequest? body = default(QueryRequest?), CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Update custom fields
         /// </summary>
@@ -579,7 +579,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The unique identifiers of the resources (optional)</param>
         /// <returns>ApiResponse</returns>
-        public ApiResponse DeleteCustomFields (List<string> id = default(List<string>))
+        public ApiResponse DeleteCustomFields (List<string>? id = default(List<string>?))
         {
              ApiResponse<ApiResponse> localVarResponse = DeleteCustomFieldsWithHttpInfo(id);
              return localVarResponse.Data;
@@ -591,7 +591,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The unique identifiers of the resources (optional)</param>
         /// <returns>ApiResponse of ApiResponse</returns>
-        public ApiResponse<ApiResponse> DeleteCustomFieldsWithHttpInfo (List<string> id = default(List<string>))
+        public ApiResponse<ApiResponse> DeleteCustomFieldsWithHttpInfo (List<string>? id = default(List<string>?))
         {
 
             var localVarPath = "/custom-fields";
@@ -649,7 +649,7 @@ namespace Ziqni.Api
         /// <param name="id">The unique identifiers of the resources (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<ApiResponse> DeleteCustomFieldsAsync (List<string> id = default(List<string>), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<ApiResponse> DeleteCustomFieldsAsync (List<string>? id = default(List<string>?), CancellationToken cancellationToken = default(CancellationToken))
         {
              ApiResponse<ApiResponse> localVarResponse = await DeleteCustomFieldsWithHttpInfoAsync(id, cancellationToken);
              return localVarResponse.Data;
@@ -663,7 +663,7 @@ namespace Ziqni.Api
         /// <param name="id">The unique identifiers of the resources (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (ApiResponse)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<ApiResponse>> DeleteCustomFieldsWithHttpInfoAsync (List<string> id = default(List<string>), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<ApiResponse<ApiResponse>> DeleteCustomFieldsWithHttpInfoAsync (List<string>? id = default(List<string>?), CancellationToken cancellationToken = default(CancellationToken))
         {
 
             var localVarPath = "/custom-fields";
@@ -720,7 +720,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Delete Custom fields from Ziqni database by unique Custom field ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <returns>ApiResponse</returns>
-        public ApiResponse DeleteCustomFieldsByQuery (QueryRequest body = default(QueryRequest))
+        public ApiResponse DeleteCustomFieldsByQuery (QueryRequest? body = default(QueryRequest?))
         {
              ApiResponse<ApiResponse> localVarResponse = DeleteCustomFieldsByQueryWithHttpInfo(body);
              return localVarResponse.Data;
@@ -732,7 +732,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Delete Custom fields from Ziqni database by unique Custom field ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <returns>ApiResponse of ApiResponse</returns>
-        public ApiResponse<ApiResponse> DeleteCustomFieldsByQueryWithHttpInfo (QueryRequest body = default(QueryRequest))
+        public ApiResponse<ApiResponse> DeleteCustomFieldsByQueryWithHttpInfo (QueryRequest? body = default(QueryRequest?))
         {
 
             var localVarPath = "/custom-fields/delete";
@@ -798,7 +798,7 @@ namespace Ziqni.Api
         /// <param name="body">Delete Custom fields from Ziqni database by unique Custom field ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<ApiResponse> DeleteCustomFieldsByQueryAsync (QueryRequest body = default(QueryRequest), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<ApiResponse> DeleteCustomFieldsByQueryAsync (QueryRequest? body = default(QueryRequest?), CancellationToken cancellationToken = default(CancellationToken))
         {
              ApiResponse<ApiResponse> localVarResponse = await DeleteCustomFieldsByQueryWithHttpInfoAsync(body, cancellationToken);
              return localVarResponse.Data;
@@ -812,7 +812,7 @@ namespace Ziqni.Api
         /// <param name="body">Delete Custom fields from Ziqni database by unique Custom field ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (ApiResponse)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<ApiResponse>> DeleteCustomFieldsByQueryWithHttpInfoAsync (QueryRequest body = default(QueryRequest), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<ApiResponse<ApiResponse>> DeleteCustomFieldsByQueryWithHttpInfoAsync (QueryRequest? body = default(QueryRequest?), CancellationToken cancellationToken = default(CancellationToken))
         {
 
             var localVarPath = "/custom-fields/delete";
@@ -879,7 +879,7 @@ namespace Ziqni.Api
         /// <param name="limit">Limit the returned total records found (optional)</param>
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <returns>CustomFieldResponse</returns>
-        public CustomFieldResponse GetCustomFields (List<string> id = default(List<string>), int? limit = default(int?), int? skip = default(int?))
+        public CustomFieldResponse GetCustomFields (List<string>? id = default(List<string>?), int? limit = default(int?), int? skip = default(int?))
         {
              ApiResponse<CustomFieldResponse> localVarResponse = GetCustomFieldsWithHttpInfo(id, limit, skip);
              return localVarResponse.Data;
@@ -893,7 +893,7 @@ namespace Ziqni.Api
         /// <param name="limit">Limit the returned total records found (optional)</param>
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <returns>ApiResponse of CustomFieldResponse</returns>
-        public ApiResponse<CustomFieldResponse> GetCustomFieldsWithHttpInfo (List<string> id = default(List<string>), int? limit = default(int?), int? skip = default(int?))
+        public ApiResponse<CustomFieldResponse> GetCustomFieldsWithHttpInfo (List<string>? id = default(List<string>?), int? limit = default(int?), int? skip = default(int?))
         {
 
             var localVarPath = "/custom-fields";
@@ -955,7 +955,7 @@ namespace Ziqni.Api
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of CustomFieldResponse</returns>
-        public async System.Threading.Tasks.Task<CustomFieldResponse> GetCustomFieldsAsync (List<string> id = default(List<string>), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<CustomFieldResponse> GetCustomFieldsAsync (List<string>? id = default(List<string>?), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken))
         {
              ApiResponse<CustomFieldResponse> localVarResponse = await GetCustomFieldsWithHttpInfoAsync(id, limit, skip, cancellationToken);
              return localVarResponse.Data;
@@ -971,7 +971,7 @@ namespace Ziqni.Api
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (CustomFieldResponse)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<CustomFieldResponse>> GetCustomFieldsWithHttpInfoAsync (List<string> id = default(List<string>), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<ApiResponse<CustomFieldResponse>> GetCustomFieldsWithHttpInfoAsync (List<string>? id = default(List<string>?), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken))
         {
 
             var localVarPath = "/custom-fields";
@@ -1030,7 +1030,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Retrieve Custom fields from Ziqni database by unique Custom field ID&#39;s or any other Post body parameters using the POST method (optional)</param>
         /// <returns>CustomFieldResponse</returns>
-        public CustomFieldResponse GetCustomFieldsByQuery (QueryRequest body = default(QueryRequest))
+        public CustomFieldResponse GetCustomFieldsByQuery (QueryRequest? body = default(QueryRequest?))
         {
              ApiResponse<CustomFieldResponse> localVarResponse = GetCustomFieldsByQueryWithHttpInfo(body);
              return localVarResponse.Data;
@@ -1042,7 +1042,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Retrieve Custom fields from Ziqni database by unique Custom field ID&#39;s or any other Post body parameters using the POST method (optional)</param>
         /// <returns>ApiResponse of CustomFieldResponse</returns>
-        public ApiResponse<CustomFieldResponse> GetCustomFieldsByQueryWithHttpInfo (QueryRequest body = default(QueryRequest))
+        public ApiResponse<CustomFieldResponse> GetCustomFieldsByQueryWithHttpInfo (QueryRequest? body = default(QueryRequest?))
         {
 
             var localVarPath = "/custom-fields/query";
@@ -1108,7 +1108,7 @@ namespace Ziqni.Api
         /// <param name="body">Retrieve Custom fields from Ziqni database by unique Custom field ID&#39;s or any other Post body parameters using the POST method (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of CustomFieldResponse</returns>
-        public async System.Threading.Tasks.Task<CustomFieldResponse> GetCustomFieldsByQueryAsync (QueryRequest body = default(QueryRequest), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<CustomFieldResponse> GetCustomFieldsByQueryAsync (QueryRequest? body = default(QueryRequest?), CancellationToken cancellationToken = default(CancellationToken))
         {
              ApiResponse<CustomFieldResponse> localVarResponse = await GetCustomFieldsByQueryWithHttpInfoAsync(body, cancellationToken);
              return localVarResponse.Data;
@@ -1122,7 +1122,7 @@ namespace Ziqni.Api
         /// <param name="body">Retrieve Custom fields from Ziqni database by unique Custom field ID&#39;s or any other Post body parameters using the POST method (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (CustomFieldResponse)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<CustomFieldResponse>> GetCustomFieldsByQueryWithHttpInfoAsync (QueryRequest body = default(QueryRequest), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<ApiResponse<CustomFieldResponse>> GetCustomFieldsByQueryWithHttpInfoAsync (QueryRequest? body = default(QueryRequest?), CancellationToken cancellationToken = default(CancellationToken))
         {
 
             var localVarPath = "/custom-fields/query";

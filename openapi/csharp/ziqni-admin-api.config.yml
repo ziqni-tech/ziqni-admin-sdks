@@ -1,6 +1,9 @@
 apiName: ZiqniAdminSDK
+packageName: Ziqni
 disallowAdditionalPropertiesIfNotPresent: false
 hideGenerationTimestamp: true
-netCoreProjectFile: true
-packageName: Ziqni
+netCoreProjectFile: false
 targetFramework: net6.0
+frameworkStrategy: net6.0
+nullableReferenceTypes: true
+description:

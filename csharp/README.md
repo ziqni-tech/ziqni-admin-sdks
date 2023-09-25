@@ -83,7 +83,7 @@ namespace Example
             Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new AccountMessagesApi(Configuration.Default);
-            var id = new List<string>(); // List<string> | The unique identifiers of the resources (optional) 
+            var id = new List<string>?(); // List<string>? | The unique identifiers of the resources (optional) 
 
             try
             {

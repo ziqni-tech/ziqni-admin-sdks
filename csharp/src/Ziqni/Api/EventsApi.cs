@@ -34,7 +34,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Create an Event (optional)</param>
         /// <returns>ApiResponse</returns>
-        ApiResponse CreateEvents (List<CreateEventRequest> body = default(List<CreateEventRequest>));
+        ApiResponse CreateEvents (List<CreateEventRequest>? body = default(List<CreateEventRequest>?));
 
         /// <summary>
         /// 
@@ -45,7 +45,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Create an Event (optional)</param>
         /// <returns>ApiResponse of ApiResponse</returns>
-        ApiResponse<ApiResponse> CreateEventsWithHttpInfo (List<CreateEventRequest> body = default(List<CreateEventRequest>));
+        ApiResponse<ApiResponse> CreateEventsWithHttpInfo (List<CreateEventRequest>? body = default(List<CreateEventRequest>?));
         /// <summary>
         /// 
         /// </summary>
@@ -57,7 +57,7 @@ namespace Ziqni.Api
         /// <param name="limit">Limit the returned total records found (optional)</param>
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <returns>EventResponse</returns>
-        EventResponse GetEvents (List<string> id = default(List<string>), int? limit = default(int?), int? skip = default(int?));
+        EventResponse GetEvents (List<string>? id = default(List<string>?), int? limit = default(int?), int? skip = default(int?));
 
         /// <summary>
         /// 
@@ -70,7 +70,7 @@ namespace Ziqni.Api
         /// <param name="limit">Limit the returned total records found (optional)</param>
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <returns>ApiResponse of EventResponse</returns>
-        ApiResponse<EventResponse> GetEventsWithHttpInfo (List<string> id = default(List<string>), int? limit = default(int?), int? skip = default(int?));
+        ApiResponse<EventResponse> GetEventsWithHttpInfo (List<string>? id = default(List<string>?), int? limit = default(int?), int? skip = default(int?));
         /// <summary>
         /// 
         /// </summary>
@@ -80,7 +80,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Retrieve an Event or a list of Events from Ziqni by unique Event ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <returns>EventResponse</returns>
-        EventResponse GetEventsByQuery (QueryRequest body = default(QueryRequest));
+        EventResponse GetEventsByQuery (QueryRequest? body = default(QueryRequest?));
 
         /// <summary>
         /// 
@@ -91,7 +91,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Retrieve an Event or a list of Events from Ziqni by unique Event ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <returns>ApiResponse of EventResponse</returns>
-        ApiResponse<EventResponse> GetEventsByQueryWithHttpInfo (QueryRequest body = default(QueryRequest));
+        ApiResponse<EventResponse> GetEventsByQueryWithHttpInfo (QueryRequest? body = default(QueryRequest?));
         #endregion Synchronous Operations
         #region Asynchronous Operations
         /// <summary>
@@ -104,7 +104,7 @@ namespace Ziqni.Api
         /// <param name="body">Create an Event (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse> CreateEventsAsync (List<CreateEventRequest> body = default(List<CreateEventRequest>), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse> CreateEventsAsync (List<CreateEventRequest>? body = default(List<CreateEventRequest>?), CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// 
@@ -116,7 +116,7 @@ namespace Ziqni.Api
         /// <param name="body">Create an Event (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (ApiResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<ApiResponse>> CreateEventsWithHttpInfoAsync (List<CreateEventRequest> body = default(List<CreateEventRequest>), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<ApiResponse>> CreateEventsWithHttpInfoAsync (List<CreateEventRequest>? body = default(List<CreateEventRequest>?), CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// 
         /// </summary>
@@ -129,7 +129,7 @@ namespace Ziqni.Api
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of EventResponse</returns>
-        System.Threading.Tasks.Task<EventResponse> GetEventsAsync (List<string> id = default(List<string>), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<EventResponse> GetEventsAsync (List<string>? id = default(List<string>?), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// 
@@ -143,7 +143,7 @@ namespace Ziqni.Api
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (EventResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<EventResponse>> GetEventsWithHttpInfoAsync (List<string> id = default(List<string>), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<EventResponse>> GetEventsWithHttpInfoAsync (List<string>? id = default(List<string>?), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// 
         /// </summary>
@@ -154,7 +154,7 @@ namespace Ziqni.Api
         /// <param name="body">Retrieve an Event or a list of Events from Ziqni by unique Event ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of EventResponse</returns>
-        System.Threading.Tasks.Task<EventResponse> GetEventsByQueryAsync (QueryRequest body = default(QueryRequest), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<EventResponse> GetEventsByQueryAsync (QueryRequest? body = default(QueryRequest?), CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// 
@@ -166,7 +166,7 @@ namespace Ziqni.Api
         /// <param name="body">Retrieve an Event or a list of Events from Ziqni by unique Event ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (EventResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<EventResponse>> GetEventsByQueryWithHttpInfoAsync (QueryRequest body = default(QueryRequest), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<EventResponse>> GetEventsByQueryWithHttpInfoAsync (QueryRequest? body = default(QueryRequest?), CancellationToken cancellationToken = default(CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -284,7 +284,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Create an Event (optional)</param>
         /// <returns>ApiResponse</returns>
-        public ApiResponse CreateEvents (List<CreateEventRequest> body = default(List<CreateEventRequest>))
+        public ApiResponse CreateEvents (List<CreateEventRequest>? body = default(List<CreateEventRequest>?))
         {
              ApiResponse<ApiResponse> localVarResponse = CreateEventsWithHttpInfo(body);
              return localVarResponse.Data;
@@ -296,7 +296,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Create an Event (optional)</param>
         /// <returns>ApiResponse of ApiResponse</returns>
-        public ApiResponse<ApiResponse> CreateEventsWithHttpInfo (List<CreateEventRequest> body = default(List<CreateEventRequest>))
+        public ApiResponse<ApiResponse> CreateEventsWithHttpInfo (List<CreateEventRequest>? body = default(List<CreateEventRequest>?))
         {
 
             var localVarPath = "/events";
@@ -362,7 +362,7 @@ namespace Ziqni.Api
         /// <param name="body">Create an Event (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<ApiResponse> CreateEventsAsync (List<CreateEventRequest> body = default(List<CreateEventRequest>), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<ApiResponse> CreateEventsAsync (List<CreateEventRequest>? body = default(List<CreateEventRequest>?), CancellationToken cancellationToken = default(CancellationToken))
         {
              ApiResponse<ApiResponse> localVarResponse = await CreateEventsWithHttpInfoAsync(body, cancellationToken);
              return localVarResponse.Data;
@@ -376,7 +376,7 @@ namespace Ziqni.Api
         /// <param name="body">Create an Event (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (ApiResponse)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<ApiResponse>> CreateEventsWithHttpInfoAsync (List<CreateEventRequest> body = default(List<CreateEventRequest>), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<ApiResponse<ApiResponse>> CreateEventsWithHttpInfoAsync (List<CreateEventRequest>? body = default(List<CreateEventRequest>?), CancellationToken cancellationToken = default(CancellationToken))
         {
 
             var localVarPath = "/events";
@@ -443,7 +443,7 @@ namespace Ziqni.Api
         /// <param name="limit">Limit the returned total records found (optional)</param>
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <returns>EventResponse</returns>
-        public EventResponse GetEvents (List<string> id = default(List<string>), int? limit = default(int?), int? skip = default(int?))
+        public EventResponse GetEvents (List<string>? id = default(List<string>?), int? limit = default(int?), int? skip = default(int?))
         {
              ApiResponse<EventResponse> localVarResponse = GetEventsWithHttpInfo(id, limit, skip);
              return localVarResponse.Data;
@@ -457,7 +457,7 @@ namespace Ziqni.Api
         /// <param name="limit">Limit the returned total records found (optional)</param>
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <returns>ApiResponse of EventResponse</returns>
-        public ApiResponse<EventResponse> GetEventsWithHttpInfo (List<string> id = default(List<string>), int? limit = default(int?), int? skip = default(int?))
+        public ApiResponse<EventResponse> GetEventsWithHttpInfo (List<string>? id = default(List<string>?), int? limit = default(int?), int? skip = default(int?))
         {
 
             var localVarPath = "/events";
@@ -519,7 +519,7 @@ namespace Ziqni.Api
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of EventResponse</returns>
-        public async System.Threading.Tasks.Task<EventResponse> GetEventsAsync (List<string> id = default(List<string>), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<EventResponse> GetEventsAsync (List<string>? id = default(List<string>?), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken))
         {
              ApiResponse<EventResponse> localVarResponse = await GetEventsWithHttpInfoAsync(id, limit, skip, cancellationToken);
              return localVarResponse.Data;
@@ -535,7 +535,7 @@ namespace Ziqni.Api
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (EventResponse)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<EventResponse>> GetEventsWithHttpInfoAsync (List<string> id = default(List<string>), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<ApiResponse<EventResponse>> GetEventsWithHttpInfoAsync (List<string>? id = default(List<string>?), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken))
         {
 
             var localVarPath = "/events";
@@ -594,7 +594,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Retrieve an Event or a list of Events from Ziqni by unique Event ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <returns>EventResponse</returns>
-        public EventResponse GetEventsByQuery (QueryRequest body = default(QueryRequest))
+        public EventResponse GetEventsByQuery (QueryRequest? body = default(QueryRequest?))
         {
              ApiResponse<EventResponse> localVarResponse = GetEventsByQueryWithHttpInfo(body);
              return localVarResponse.Data;
@@ -606,7 +606,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Retrieve an Event or a list of Events from Ziqni by unique Event ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <returns>ApiResponse of EventResponse</returns>
-        public ApiResponse<EventResponse> GetEventsByQueryWithHttpInfo (QueryRequest body = default(QueryRequest))
+        public ApiResponse<EventResponse> GetEventsByQueryWithHttpInfo (QueryRequest? body = default(QueryRequest?))
         {
 
             var localVarPath = "/events/query";
@@ -672,7 +672,7 @@ namespace Ziqni.Api
         /// <param name="body">Retrieve an Event or a list of Events from Ziqni by unique Event ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of EventResponse</returns>
-        public async System.Threading.Tasks.Task<EventResponse> GetEventsByQueryAsync (QueryRequest body = default(QueryRequest), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<EventResponse> GetEventsByQueryAsync (QueryRequest? body = default(QueryRequest?), CancellationToken cancellationToken = default(CancellationToken))
         {
              ApiResponse<EventResponse> localVarResponse = await GetEventsByQueryWithHttpInfoAsync(body, cancellationToken);
              return localVarResponse.Data;
@@ -686,7 +686,7 @@ namespace Ziqni.Api
         /// <param name="body">Retrieve an Event or a list of Events from Ziqni by unique Event ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (EventResponse)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<EventResponse>> GetEventsByQueryWithHttpInfoAsync (QueryRequest body = default(QueryRequest), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<ApiResponse<EventResponse>> GetEventsByQueryWithHttpInfoAsync (QueryRequest? body = default(QueryRequest?), CancellationToken cancellationToken = default(CancellationToken))
         {
 
             var localVarPath = "/events/query";

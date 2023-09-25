@@ -55,7 +55,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="emails">The list of user emails to search by (optional)</param>
         /// <returns>ApiResponse</returns>
-        ApiResponse DeleteCollaborators (List<string> emails = default(List<string>));
+        ApiResponse DeleteCollaborators (List<string>? emails = default(List<string>?));
 
         /// <summary>
         /// 
@@ -66,7 +66,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="emails">The list of user emails to search by (optional)</param>
         /// <returns>ApiResponse of ApiResponse</returns>
-        ApiResponse<ApiResponse> DeleteCollaboratorsWithHttpInfo (List<string> emails = default(List<string>));
+        ApiResponse<ApiResponse> DeleteCollaboratorsWithHttpInfo (List<string>? emails = default(List<string>?));
         /// <summary>
         /// 
         /// </summary>
@@ -97,7 +97,7 @@ namespace Ziqni.Api
         /// <param name="limit">Limit the returned total records found (optional)</param>
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <returns>CollaboratorResponse</returns>
-        CollaboratorResponse GetCollaborators (List<string> emails = default(List<string>), int? limit = default(int?), int? skip = default(int?));
+        CollaboratorResponse GetCollaborators (List<string>? emails = default(List<string>?), int? limit = default(int?), int? skip = default(int?));
 
         /// <summary>
         /// 
@@ -110,7 +110,7 @@ namespace Ziqni.Api
         /// <param name="limit">Limit the returned total records found (optional)</param>
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <returns>ApiResponse of CollaboratorResponse</returns>
-        ApiResponse<CollaboratorResponse> GetCollaboratorsWithHttpInfo (List<string> emails = default(List<string>), int? limit = default(int?), int? skip = default(int?));
+        ApiResponse<CollaboratorResponse> GetCollaboratorsWithHttpInfo (List<string>? emails = default(List<string>?), int? limit = default(int?), int? skip = default(int?));
         /// <summary>
         /// 
         /// </summary>
@@ -167,7 +167,7 @@ namespace Ziqni.Api
         /// <param name="emails">The list of user emails to search by (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse> DeleteCollaboratorsAsync (List<string> emails = default(List<string>), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse> DeleteCollaboratorsAsync (List<string>? emails = default(List<string>?), CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// 
@@ -179,7 +179,7 @@ namespace Ziqni.Api
         /// <param name="emails">The list of user emails to search by (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (ApiResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<ApiResponse>> DeleteCollaboratorsWithHttpInfoAsync (List<string> emails = default(List<string>), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<ApiResponse>> DeleteCollaboratorsWithHttpInfoAsync (List<string>? emails = default(List<string>?), CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// 
         /// </summary>
@@ -213,7 +213,7 @@ namespace Ziqni.Api
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of CollaboratorResponse</returns>
-        System.Threading.Tasks.Task<CollaboratorResponse> GetCollaboratorsAsync (List<string> emails = default(List<string>), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<CollaboratorResponse> GetCollaboratorsAsync (List<string>? emails = default(List<string>?), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// 
@@ -227,7 +227,7 @@ namespace Ziqni.Api
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (CollaboratorResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<CollaboratorResponse>> GetCollaboratorsWithHttpInfoAsync (List<string> emails = default(List<string>), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<CollaboratorResponse>> GetCollaboratorsWithHttpInfoAsync (List<string>? emails = default(List<string>?), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// 
         /// </summary>
@@ -531,7 +531,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="emails">The list of user emails to search by (optional)</param>
         /// <returns>ApiResponse</returns>
-        public ApiResponse DeleteCollaborators (List<string> emails = default(List<string>))
+        public ApiResponse DeleteCollaborators (List<string>? emails = default(List<string>?))
         {
              ApiResponse<ApiResponse> localVarResponse = DeleteCollaboratorsWithHttpInfo(emails);
              return localVarResponse.Data;
@@ -543,7 +543,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="emails">The list of user emails to search by (optional)</param>
         /// <returns>ApiResponse of ApiResponse</returns>
-        public ApiResponse<ApiResponse> DeleteCollaboratorsWithHttpInfo (List<string> emails = default(List<string>))
+        public ApiResponse<ApiResponse> DeleteCollaboratorsWithHttpInfo (List<string>? emails = default(List<string>?))
         {
 
             var localVarPath = "/collaborators";
@@ -601,7 +601,7 @@ namespace Ziqni.Api
         /// <param name="emails">The list of user emails to search by (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<ApiResponse> DeleteCollaboratorsAsync (List<string> emails = default(List<string>), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<ApiResponse> DeleteCollaboratorsAsync (List<string>? emails = default(List<string>?), CancellationToken cancellationToken = default(CancellationToken))
         {
              ApiResponse<ApiResponse> localVarResponse = await DeleteCollaboratorsWithHttpInfoAsync(emails, cancellationToken);
              return localVarResponse.Data;
@@ -615,7 +615,7 @@ namespace Ziqni.Api
         /// <param name="emails">The list of user emails to search by (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (ApiResponse)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<ApiResponse>> DeleteCollaboratorsWithHttpInfoAsync (List<string> emails = default(List<string>), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<ApiResponse<ApiResponse>> DeleteCollaboratorsWithHttpInfoAsync (List<string>? emails = default(List<string>?), CancellationToken cancellationToken = default(CancellationToken))
         {
 
             var localVarPath = "/collaborators";
@@ -809,7 +809,7 @@ namespace Ziqni.Api
         /// <param name="limit">Limit the returned total records found (optional)</param>
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <returns>CollaboratorResponse</returns>
-        public CollaboratorResponse GetCollaborators (List<string> emails = default(List<string>), int? limit = default(int?), int? skip = default(int?))
+        public CollaboratorResponse GetCollaborators (List<string>? emails = default(List<string>?), int? limit = default(int?), int? skip = default(int?))
         {
              ApiResponse<CollaboratorResponse> localVarResponse = GetCollaboratorsWithHttpInfo(emails, limit, skip);
              return localVarResponse.Data;
@@ -823,7 +823,7 @@ namespace Ziqni.Api
         /// <param name="limit">Limit the returned total records found (optional)</param>
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <returns>ApiResponse of CollaboratorResponse</returns>
-        public ApiResponse<CollaboratorResponse> GetCollaboratorsWithHttpInfo (List<string> emails = default(List<string>), int? limit = default(int?), int? skip = default(int?))
+        public ApiResponse<CollaboratorResponse> GetCollaboratorsWithHttpInfo (List<string>? emails = default(List<string>?), int? limit = default(int?), int? skip = default(int?))
         {
 
             var localVarPath = "/collaborators";
@@ -885,7 +885,7 @@ namespace Ziqni.Api
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of CollaboratorResponse</returns>
-        public async System.Threading.Tasks.Task<CollaboratorResponse> GetCollaboratorsAsync (List<string> emails = default(List<string>), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<CollaboratorResponse> GetCollaboratorsAsync (List<string>? emails = default(List<string>?), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken))
         {
              ApiResponse<CollaboratorResponse> localVarResponse = await GetCollaboratorsWithHttpInfoAsync(emails, limit, skip, cancellationToken);
              return localVarResponse.Data;
@@ -901,7 +901,7 @@ namespace Ziqni.Api
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (CollaboratorResponse)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<CollaboratorResponse>> GetCollaboratorsWithHttpInfoAsync (List<string> emails = default(List<string>), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<ApiResponse<CollaboratorResponse>> GetCollaboratorsWithHttpInfoAsync (List<string>? emails = default(List<string>?), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken))
         {
 
             var localVarPath = "/collaborators";

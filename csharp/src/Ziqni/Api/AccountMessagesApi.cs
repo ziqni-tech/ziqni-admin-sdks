@@ -34,7 +34,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The unique identifiers of the resources (optional)</param>
         /// <returns>ApiResponse</returns>
-        ApiResponse DeleteAccountMessages (List<string> id = default(List<string>));
+        ApiResponse DeleteAccountMessages (List<string>? id = default(List<string>?));
 
         /// <summary>
         /// 
@@ -45,7 +45,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The unique identifiers of the resources (optional)</param>
         /// <returns>ApiResponse of ApiResponse</returns>
-        ApiResponse<ApiResponse> DeleteAccountMessagesWithHttpInfo (List<string> id = default(List<string>));
+        ApiResponse<ApiResponse> DeleteAccountMessagesWithHttpInfo (List<string>? id = default(List<string>?));
         /// <summary>
         /// 
         /// </summary>
@@ -55,7 +55,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Delete Account Messages from Ziqni database by unique message ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <returns>ApiResponse</returns>
-        ApiResponse DeleteAccountMessagesByQuery (QueryRequest body = default(QueryRequest));
+        ApiResponse DeleteAccountMessagesByQuery (QueryRequest? body = default(QueryRequest?));
 
         /// <summary>
         /// 
@@ -66,7 +66,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Delete Account Messages from Ziqni database by unique message ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <returns>ApiResponse of ApiResponse</returns>
-        ApiResponse<ApiResponse> DeleteAccountMessagesByQueryWithHttpInfo (QueryRequest body = default(QueryRequest));
+        ApiResponse<ApiResponse> DeleteAccountMessagesByQueryWithHttpInfo (QueryRequest? body = default(QueryRequest?));
         /// <summary>
         /// 
         /// </summary>
@@ -78,7 +78,7 @@ namespace Ziqni.Api
         /// <param name="limit">Limit the returned total records found (optional)</param>
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <returns>AccountMessageResponse</returns>
-        AccountMessageResponse GetAccountMessages (List<string> id = default(List<string>), int? limit = default(int?), int? skip = default(int?));
+        AccountMessageResponse GetAccountMessages (List<string>? id = default(List<string>?), int? limit = default(int?), int? skip = default(int?));
 
         /// <summary>
         /// 
@@ -91,7 +91,7 @@ namespace Ziqni.Api
         /// <param name="limit">Limit the returned total records found (optional)</param>
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <returns>ApiResponse of AccountMessageResponse</returns>
-        ApiResponse<AccountMessageResponse> GetAccountMessagesWithHttpInfo (List<string> id = default(List<string>), int? limit = default(int?), int? skip = default(int?));
+        ApiResponse<AccountMessageResponse> GetAccountMessagesWithHttpInfo (List<string>? id = default(List<string>?), int? limit = default(int?), int? skip = default(int?));
         /// <summary>
         /// 
         /// </summary>
@@ -101,7 +101,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Retrieve Account Messages from Ziqni database by unique message ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <returns>AccountMessageResponse</returns>
-        AccountMessageResponse GetAccountMessagesByQuery (QueryRequest body = default(QueryRequest));
+        AccountMessageResponse GetAccountMessagesByQuery (QueryRequest? body = default(QueryRequest?));
 
         /// <summary>
         /// 
@@ -112,7 +112,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Retrieve Account Messages from Ziqni database by unique message ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <returns>ApiResponse of AccountMessageResponse</returns>
-        ApiResponse<AccountMessageResponse> GetAccountMessagesByQueryWithHttpInfo (QueryRequest body = default(QueryRequest));
+        ApiResponse<AccountMessageResponse> GetAccountMessagesByQueryWithHttpInfo (QueryRequest? body = default(QueryRequest?));
         #endregion Synchronous Operations
         #region Asynchronous Operations
         /// <summary>
@@ -125,7 +125,7 @@ namespace Ziqni.Api
         /// <param name="id">The unique identifiers of the resources (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse> DeleteAccountMessagesAsync (List<string> id = default(List<string>), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse> DeleteAccountMessagesAsync (List<string>? id = default(List<string>?), CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// 
@@ -137,7 +137,7 @@ namespace Ziqni.Api
         /// <param name="id">The unique identifiers of the resources (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (ApiResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<ApiResponse>> DeleteAccountMessagesWithHttpInfoAsync (List<string> id = default(List<string>), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<ApiResponse>> DeleteAccountMessagesWithHttpInfoAsync (List<string>? id = default(List<string>?), CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// 
         /// </summary>
@@ -148,7 +148,7 @@ namespace Ziqni.Api
         /// <param name="body">Delete Account Messages from Ziqni database by unique message ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse> DeleteAccountMessagesByQueryAsync (QueryRequest body = default(QueryRequest), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse> DeleteAccountMessagesByQueryAsync (QueryRequest? body = default(QueryRequest?), CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// 
@@ -160,7 +160,7 @@ namespace Ziqni.Api
         /// <param name="body">Delete Account Messages from Ziqni database by unique message ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (ApiResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<ApiResponse>> DeleteAccountMessagesByQueryWithHttpInfoAsync (QueryRequest body = default(QueryRequest), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<ApiResponse>> DeleteAccountMessagesByQueryWithHttpInfoAsync (QueryRequest? body = default(QueryRequest?), CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// 
         /// </summary>
@@ -173,7 +173,7 @@ namespace Ziqni.Api
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of AccountMessageResponse</returns>
-        System.Threading.Tasks.Task<AccountMessageResponse> GetAccountMessagesAsync (List<string> id = default(List<string>), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<AccountMessageResponse> GetAccountMessagesAsync (List<string>? id = default(List<string>?), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// 
@@ -187,7 +187,7 @@ namespace Ziqni.Api
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (AccountMessageResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<AccountMessageResponse>> GetAccountMessagesWithHttpInfoAsync (List<string> id = default(List<string>), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<AccountMessageResponse>> GetAccountMessagesWithHttpInfoAsync (List<string>? id = default(List<string>?), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// 
         /// </summary>
@@ -198,7 +198,7 @@ namespace Ziqni.Api
         /// <param name="body">Retrieve Account Messages from Ziqni database by unique message ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of AccountMessageResponse</returns>
-        System.Threading.Tasks.Task<AccountMessageResponse> GetAccountMessagesByQueryAsync (QueryRequest body = default(QueryRequest), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<AccountMessageResponse> GetAccountMessagesByQueryAsync (QueryRequest? body = default(QueryRequest?), CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// 
@@ -210,7 +210,7 @@ namespace Ziqni.Api
         /// <param name="body">Retrieve Account Messages from Ziqni database by unique message ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (AccountMessageResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<AccountMessageResponse>> GetAccountMessagesByQueryWithHttpInfoAsync (QueryRequest body = default(QueryRequest), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<AccountMessageResponse>> GetAccountMessagesByQueryWithHttpInfoAsync (QueryRequest? body = default(QueryRequest?), CancellationToken cancellationToken = default(CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -328,7 +328,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The unique identifiers of the resources (optional)</param>
         /// <returns>ApiResponse</returns>
-        public ApiResponse DeleteAccountMessages (List<string> id = default(List<string>))
+        public ApiResponse DeleteAccountMessages (List<string>? id = default(List<string>?))
         {
              ApiResponse<ApiResponse> localVarResponse = DeleteAccountMessagesWithHttpInfo(id);
              return localVarResponse.Data;
@@ -340,7 +340,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The unique identifiers of the resources (optional)</param>
         /// <returns>ApiResponse of ApiResponse</returns>
-        public ApiResponse<ApiResponse> DeleteAccountMessagesWithHttpInfo (List<string> id = default(List<string>))
+        public ApiResponse<ApiResponse> DeleteAccountMessagesWithHttpInfo (List<string>? id = default(List<string>?))
         {
 
             var localVarPath = "/account-messages";
@@ -398,7 +398,7 @@ namespace Ziqni.Api
         /// <param name="id">The unique identifiers of the resources (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<ApiResponse> DeleteAccountMessagesAsync (List<string> id = default(List<string>), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<ApiResponse> DeleteAccountMessagesAsync (List<string>? id = default(List<string>?), CancellationToken cancellationToken = default(CancellationToken))
         {
              ApiResponse<ApiResponse> localVarResponse = await DeleteAccountMessagesWithHttpInfoAsync(id, cancellationToken);
              return localVarResponse.Data;
@@ -412,7 +412,7 @@ namespace Ziqni.Api
         /// <param name="id">The unique identifiers of the resources (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (ApiResponse)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<ApiResponse>> DeleteAccountMessagesWithHttpInfoAsync (List<string> id = default(List<string>), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<ApiResponse<ApiResponse>> DeleteAccountMessagesWithHttpInfoAsync (List<string>? id = default(List<string>?), CancellationToken cancellationToken = default(CancellationToken))
         {
 
             var localVarPath = "/account-messages";
@@ -469,7 +469,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Delete Account Messages from Ziqni database by unique message ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <returns>ApiResponse</returns>
-        public ApiResponse DeleteAccountMessagesByQuery (QueryRequest body = default(QueryRequest))
+        public ApiResponse DeleteAccountMessagesByQuery (QueryRequest? body = default(QueryRequest?))
         {
              ApiResponse<ApiResponse> localVarResponse = DeleteAccountMessagesByQueryWithHttpInfo(body);
              return localVarResponse.Data;
@@ -481,7 +481,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Delete Account Messages from Ziqni database by unique message ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <returns>ApiResponse of ApiResponse</returns>
-        public ApiResponse<ApiResponse> DeleteAccountMessagesByQueryWithHttpInfo (QueryRequest body = default(QueryRequest))
+        public ApiResponse<ApiResponse> DeleteAccountMessagesByQueryWithHttpInfo (QueryRequest? body = default(QueryRequest?))
         {
 
             var localVarPath = "/account-messages/delete";
@@ -547,7 +547,7 @@ namespace Ziqni.Api
         /// <param name="body">Delete Account Messages from Ziqni database by unique message ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<ApiResponse> DeleteAccountMessagesByQueryAsync (QueryRequest body = default(QueryRequest), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<ApiResponse> DeleteAccountMessagesByQueryAsync (QueryRequest? body = default(QueryRequest?), CancellationToken cancellationToken = default(CancellationToken))
         {
              ApiResponse<ApiResponse> localVarResponse = await DeleteAccountMessagesByQueryWithHttpInfoAsync(body, cancellationToken);
              return localVarResponse.Data;
@@ -561,7 +561,7 @@ namespace Ziqni.Api
         /// <param name="body">Delete Account Messages from Ziqni database by unique message ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (ApiResponse)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<ApiResponse>> DeleteAccountMessagesByQueryWithHttpInfoAsync (QueryRequest body = default(QueryRequest), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<ApiResponse<ApiResponse>> DeleteAccountMessagesByQueryWithHttpInfoAsync (QueryRequest? body = default(QueryRequest?), CancellationToken cancellationToken = default(CancellationToken))
         {
 
             var localVarPath = "/account-messages/delete";
@@ -628,7 +628,7 @@ namespace Ziqni.Api
         /// <param name="limit">Limit the returned total records found (optional)</param>
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <returns>AccountMessageResponse</returns>
-        public AccountMessageResponse GetAccountMessages (List<string> id = default(List<string>), int? limit = default(int?), int? skip = default(int?))
+        public AccountMessageResponse GetAccountMessages (List<string>? id = default(List<string>?), int? limit = default(int?), int? skip = default(int?))
         {
              ApiResponse<AccountMessageResponse> localVarResponse = GetAccountMessagesWithHttpInfo(id, limit, skip);
              return localVarResponse.Data;
@@ -642,7 +642,7 @@ namespace Ziqni.Api
         /// <param name="limit">Limit the returned total records found (optional)</param>
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <returns>ApiResponse of AccountMessageResponse</returns>
-        public ApiResponse<AccountMessageResponse> GetAccountMessagesWithHttpInfo (List<string> id = default(List<string>), int? limit = default(int?), int? skip = default(int?))
+        public ApiResponse<AccountMessageResponse> GetAccountMessagesWithHttpInfo (List<string>? id = default(List<string>?), int? limit = default(int?), int? skip = default(int?))
         {
 
             var localVarPath = "/account-messages";
@@ -704,7 +704,7 @@ namespace Ziqni.Api
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of AccountMessageResponse</returns>
-        public async System.Threading.Tasks.Task<AccountMessageResponse> GetAccountMessagesAsync (List<string> id = default(List<string>), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<AccountMessageResponse> GetAccountMessagesAsync (List<string>? id = default(List<string>?), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken))
         {
              ApiResponse<AccountMessageResponse> localVarResponse = await GetAccountMessagesWithHttpInfoAsync(id, limit, skip, cancellationToken);
              return localVarResponse.Data;
@@ -720,7 +720,7 @@ namespace Ziqni.Api
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (AccountMessageResponse)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<AccountMessageResponse>> GetAccountMessagesWithHttpInfoAsync (List<string> id = default(List<string>), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<ApiResponse<AccountMessageResponse>> GetAccountMessagesWithHttpInfoAsync (List<string>? id = default(List<string>?), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken))
         {
 
             var localVarPath = "/account-messages";
@@ -779,7 +779,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Retrieve Account Messages from Ziqni database by unique message ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <returns>AccountMessageResponse</returns>
-        public AccountMessageResponse GetAccountMessagesByQuery (QueryRequest body = default(QueryRequest))
+        public AccountMessageResponse GetAccountMessagesByQuery (QueryRequest? body = default(QueryRequest?))
         {
              ApiResponse<AccountMessageResponse> localVarResponse = GetAccountMessagesByQueryWithHttpInfo(body);
              return localVarResponse.Data;
@@ -791,7 +791,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Retrieve Account Messages from Ziqni database by unique message ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <returns>ApiResponse of AccountMessageResponse</returns>
-        public ApiResponse<AccountMessageResponse> GetAccountMessagesByQueryWithHttpInfo (QueryRequest body = default(QueryRequest))
+        public ApiResponse<AccountMessageResponse> GetAccountMessagesByQueryWithHttpInfo (QueryRequest? body = default(QueryRequest?))
         {
 
             var localVarPath = "/account-messages/query";
@@ -857,7 +857,7 @@ namespace Ziqni.Api
         /// <param name="body">Retrieve Account Messages from Ziqni database by unique message ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of AccountMessageResponse</returns>
-        public async System.Threading.Tasks.Task<AccountMessageResponse> GetAccountMessagesByQueryAsync (QueryRequest body = default(QueryRequest), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<AccountMessageResponse> GetAccountMessagesByQueryAsync (QueryRequest? body = default(QueryRequest?), CancellationToken cancellationToken = default(CancellationToken))
         {
              ApiResponse<AccountMessageResponse> localVarResponse = await GetAccountMessagesByQueryWithHttpInfoAsync(body, cancellationToken);
              return localVarResponse.Data;
@@ -871,7 +871,7 @@ namespace Ziqni.Api
         /// <param name="body">Retrieve Account Messages from Ziqni database by unique message ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (AccountMessageResponse)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<AccountMessageResponse>> GetAccountMessagesByQueryWithHttpInfoAsync (QueryRequest body = default(QueryRequest), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<ApiResponse<AccountMessageResponse>> GetAccountMessagesByQueryWithHttpInfoAsync (QueryRequest? body = default(QueryRequest?), CancellationToken cancellationToken = default(CancellationToken))
         {
 
             var localVarPath = "/account-messages/query";

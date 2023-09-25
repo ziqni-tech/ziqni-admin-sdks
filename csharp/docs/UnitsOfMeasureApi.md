@@ -101,7 +101,7 @@ Name | Type | Description  | Notes
 
 ## DeleteUnitsOfMeasure
 
-> ApiResponse DeleteUnitsOfMeasure (List<string> id = null)
+> ApiResponse DeleteUnitsOfMeasure (List<string>? id = null)
 
 
 
@@ -127,7 +127,7 @@ namespace Example
             Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new UnitsOfMeasureApi(Configuration.Default);
-            var id = new List<string>(); // List<string> | The unique identifiers of the resources (optional) 
+            var id = new List<string>?(); // List<string>? | The unique identifiers of the resources (optional) 
 
             try
             {
@@ -150,7 +150,7 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | [**List&lt;string&gt;**](string.md)| The unique identifiers of the resources | [optional] 
+ **id** | [**List&lt;string&gt;?**](string.md)| The unique identifiers of the resources | [optional] 
 
 ### Return type
 
@@ -187,7 +187,7 @@ Name | Type | Description  | Notes
 
 ## DeleteUnitsOfMeasureByQuery
 
-> ApiResponse DeleteUnitsOfMeasureByQuery (QueryRequest body = null)
+> ApiResponse DeleteUnitsOfMeasureByQuery (QueryRequest? body = null)
 
 Delete units of measure by query
 
@@ -213,7 +213,7 @@ namespace Example
             Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new UnitsOfMeasureApi(Configuration.Default);
-            var body = new QueryRequest(); // QueryRequest | Delete Units of measure from Ziqni database by unique Unit of measure ID's or any other POST body parameters using the POST method (optional) 
+            var body = new QueryRequest?(); // QueryRequest? | Delete Units of measure from Ziqni database by unique Unit of measure ID's or any other POST body parameters using the POST method (optional) 
 
             try
             {
@@ -237,7 +237,7 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**QueryRequest**](QueryRequest.md)| Delete Units of measure from Ziqni database by unique Unit of measure ID&#39;s or any other POST body parameters using the POST method | [optional] 
+ **body** | [**QueryRequest?**](QueryRequest?.md)| Delete Units of measure from Ziqni database by unique Unit of measure ID&#39;s or any other POST body parameters using the POST method | [optional] 
 
 ### Return type
 
@@ -274,7 +274,7 @@ Name | Type | Description  | Notes
 
 ## GetUnitsOfMeasure
 
-> UnitOfMeasureResponse GetUnitsOfMeasure (List<string> id = null, int? limit = null, int? skip = null)
+> UnitOfMeasureResponse GetUnitsOfMeasure (List<string>? id = null, int? limit = null, int? skip = null)
 
 
 
@@ -300,7 +300,7 @@ namespace Example
             Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new UnitsOfMeasureApi(Configuration.Default);
-            var id = new List<string>(); // List<string> | The unique identifiers of the resources (optional) 
+            var id = new List<string>?(); // List<string>? | The unique identifiers of the resources (optional) 
             var limit = 56;  // int? | Limit the returned total records found (optional) 
             var skip = 56;  // int? | Skip the returned records found and return the next batch of records (optional) 
 
@@ -325,7 +325,7 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | [**List&lt;string&gt;**](string.md)| The unique identifiers of the resources | [optional] 
+ **id** | [**List&lt;string&gt;?**](string.md)| The unique identifiers of the resources | [optional] 
  **limit** | **int?**| Limit the returned total records found | [optional] 
  **skip** | **int?**| Skip the returned records found and return the next batch of records | [optional] 
 
@@ -364,7 +364,7 @@ Name | Type | Description  | Notes
 
 ## GetUnitsOfMeasureByQuery
 
-> UnitOfMeasureResponse GetUnitsOfMeasureByQuery (QueryRequest body = null)
+> UnitOfMeasureResponse GetUnitsOfMeasureByQuery (QueryRequest? body = null)
 
 
 
@@ -390,7 +390,7 @@ namespace Example
             Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new UnitsOfMeasureApi(Configuration.Default);
-            var body = new QueryRequest(); // QueryRequest | Retrieve Units of measure from Ziqni database by unique Unit of measure ID's or any other POST body parameters using the POST method (optional) 
+            var body = new QueryRequest?(); // QueryRequest? | Retrieve Units of measure from Ziqni database by unique Unit of measure ID's or any other POST body parameters using the POST method (optional) 
 
             try
             {
@@ -413,7 +413,7 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**QueryRequest**](QueryRequest.md)| Retrieve Units of measure from Ziqni database by unique Unit of measure ID&#39;s or any other POST body parameters using the POST method | [optional] 
+ **body** | [**QueryRequest?**](QueryRequest?.md)| Retrieve Units of measure from Ziqni database by unique Unit of measure ID&#39;s or any other POST body parameters using the POST method | [optional] 
 
 ### Return type
 

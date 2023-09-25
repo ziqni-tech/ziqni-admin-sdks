@@ -102,7 +102,7 @@ Name | Type | Description  | Notes
 
 ## DeleteApiKeys
 
-> ApiResponse DeleteApiKeys (List<string> id = null)
+> ApiResponse DeleteApiKeys (List<string>? id = null)
 
 Delete api keys
 
@@ -128,7 +128,7 @@ namespace Example
             Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new ApiKeysApi(Configuration.Default);
-            var id = new List<string>(); // List<string> | The unique identifiers of the resources (optional) 
+            var id = new List<string>?(); // List<string>? | The unique identifiers of the resources (optional) 
 
             try
             {
@@ -152,7 +152,7 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | [**List&lt;string&gt;**](string.md)| The unique identifiers of the resources | [optional] 
+ **id** | [**List&lt;string&gt;?**](string.md)| The unique identifiers of the resources | [optional] 
 
 ### Return type
 
@@ -272,7 +272,7 @@ Name | Type | Description  | Notes
 
 ## DeleteApiKeysByQuery
 
-> ApiResponse DeleteApiKeysByQuery (QueryRequest body = null)
+> ApiResponse DeleteApiKeysByQuery (QueryRequest? body = null)
 
 Delete api keys by query
 
@@ -298,7 +298,7 @@ namespace Example
             Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new ApiKeysApi(Configuration.Default);
-            var body = new QueryRequest(); // QueryRequest | Delete an Api key or a list of Api keys from Ziqni by unique Api key ID's or any other POST body parameters using the POST method (optional) 
+            var body = new QueryRequest?(); // QueryRequest? | Delete an Api key or a list of Api keys from Ziqni by unique Api key ID's or any other POST body parameters using the POST method (optional) 
 
             try
             {
@@ -322,7 +322,7 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**QueryRequest**](QueryRequest.md)| Delete an Api key or a list of Api keys from Ziqni by unique Api key ID&#39;s or any other POST body parameters using the POST method | [optional] 
+ **body** | [**QueryRequest?**](QueryRequest?.md)| Delete an Api key or a list of Api keys from Ziqni by unique Api key ID&#39;s or any other POST body parameters using the POST method | [optional] 
 
 ### Return type
 
@@ -357,7 +357,7 @@ Name | Type | Description  | Notes
 
 ## GetApiKeys
 
-> ApiKeyResponse GetApiKeys (List<string> id = null, int? limit = null, int? skip = null)
+> ApiKeyResponse GetApiKeys (List<string>? id = null, int? limit = null, int? skip = null)
 
 Get api keys
 
@@ -383,7 +383,7 @@ namespace Example
             Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new ApiKeysApi(Configuration.Default);
-            var id = new List<string>(); // List<string> | The unique identifiers of the resources (optional) 
+            var id = new List<string>?(); // List<string>? | The unique identifiers of the resources (optional) 
             var limit = 56;  // int? | Limit the returned total records found (optional) 
             var skip = 56;  // int? | Skip the returned records found and return the next batch of records (optional) 
 
@@ -409,7 +409,7 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | [**List&lt;string&gt;**](string.md)| The unique identifiers of the resources | [optional] 
+ **id** | [**List&lt;string&gt;?**](string.md)| The unique identifiers of the resources | [optional] 
  **limit** | **int?**| Limit the returned total records found | [optional] 
  **skip** | **int?**| Skip the returned records found and return the next batch of records | [optional] 
 
@@ -531,7 +531,7 @@ Name | Type | Description  | Notes
 
 ## GetApiKeysByQuery
 
-> ApiKeyResponse GetApiKeysByQuery (QueryRequest body = null)
+> ApiKeyResponse GetApiKeysByQuery (QueryRequest? body = null)
 
 Get api keys by query
 
@@ -557,7 +557,7 @@ namespace Example
             Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new ApiKeysApi(Configuration.Default);
-            var body = new QueryRequest(); // QueryRequest | Retrieve an Api key or a list of Api keys from Ziqni by unique Api key ID's or any other POST body parameters using the POST method (optional) 
+            var body = new QueryRequest?(); // QueryRequest? | Retrieve an Api key or a list of Api keys from Ziqni by unique Api key ID's or any other POST body parameters using the POST method (optional) 
 
             try
             {
@@ -581,7 +581,7 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**QueryRequest**](QueryRequest.md)| Retrieve an Api key or a list of Api keys from Ziqni by unique Api key ID&#39;s or any other POST body parameters using the POST method | [optional] 
+ **body** | [**QueryRequest?**](QueryRequest?.md)| Retrieve an Api key or a list of Api keys from Ziqni by unique Api key ID&#39;s or any other POST body parameters using the POST method | [optional] 
 
 ### Return type
 

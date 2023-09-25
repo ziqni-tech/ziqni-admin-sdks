@@ -100,7 +100,7 @@ Name | Type | Description  | Notes
 
 ## DeleteRewardTypes
 
-> ApiResponse DeleteRewardTypes (List<string> id = null)
+> ApiResponse DeleteRewardTypes (List<string>? id = null)
 
 Delete reward types
 
@@ -126,7 +126,7 @@ namespace Example
             Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new RewardTypesApi(Configuration.Default);
-            var id = new List<string>(); // List<string> | The unique identifiers of the resources (optional) 
+            var id = new List<string>?(); // List<string>? | The unique identifiers of the resources (optional) 
 
             try
             {
@@ -150,7 +150,7 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | [**List&lt;string&gt;**](string.md)| The unique identifiers of the resources | [optional] 
+ **id** | [**List&lt;string&gt;?**](string.md)| The unique identifiers of the resources | [optional] 
 
 ### Return type
 
@@ -185,7 +185,7 @@ Name | Type | Description  | Notes
 
 ## DeleteRewardTypesByQuery
 
-> ApiResponse DeleteRewardTypesByQuery (QueryRequest body = null)
+> ApiResponse DeleteRewardTypesByQuery (QueryRequest? body = null)
 
 Delete reward types by query
 
@@ -211,7 +211,7 @@ namespace Example
             Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new RewardTypesApi(Configuration.Default);
-            var body = new QueryRequest(); // QueryRequest | Delete Reward types from Ziqni database by unique Reward types ID's or any other POST body parameters using the POST method (optional) 
+            var body = new QueryRequest?(); // QueryRequest? | Delete Reward types from Ziqni database by unique Reward types ID's or any other POST body parameters using the POST method (optional) 
 
             try
             {
@@ -235,7 +235,7 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**QueryRequest**](QueryRequest.md)| Delete Reward types from Ziqni database by unique Reward types ID&#39;s or any other POST body parameters using the POST method | [optional] 
+ **body** | [**QueryRequest?**](QueryRequest?.md)| Delete Reward types from Ziqni database by unique Reward types ID&#39;s or any other POST body parameters using the POST method | [optional] 
 
 ### Return type
 
@@ -270,7 +270,7 @@ Name | Type | Description  | Notes
 
 ## GetRewardTypes
 
-> RewardTypeResponse GetRewardTypes (List<string> id = null, int? limit = null, int? skip = null)
+> RewardTypeResponse GetRewardTypes (List<string>? id = null, int? limit = null, int? skip = null)
 
 Get reward types
 
@@ -296,7 +296,7 @@ namespace Example
             Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new RewardTypesApi(Configuration.Default);
-            var id = new List<string>(); // List<string> | The unique identifiers of the resources (optional) 
+            var id = new List<string>?(); // List<string>? | The unique identifiers of the resources (optional) 
             var limit = 56;  // int? | Limit the returned total records found (optional) 
             var skip = 56;  // int? | Skip the returned records found and return the next batch of records (optional) 
 
@@ -322,7 +322,7 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | [**List&lt;string&gt;**](string.md)| The unique identifiers of the resources | [optional] 
+ **id** | [**List&lt;string&gt;?**](string.md)| The unique identifiers of the resources | [optional] 
  **limit** | **int?**| Limit the returned total records found | [optional] 
  **skip** | **int?**| Skip the returned records found and return the next batch of records | [optional] 
 
@@ -359,7 +359,7 @@ Name | Type | Description  | Notes
 
 ## GetRewardTypesByQuery
 
-> RewardTypeResponse GetRewardTypesByQuery (QueryRequest body = null)
+> RewardTypeResponse GetRewardTypesByQuery (QueryRequest? body = null)
 
 Get reward types by query
 
@@ -385,7 +385,7 @@ namespace Example
             Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new RewardTypesApi(Configuration.Default);
-            var body = new QueryRequest(); // QueryRequest | Retrieve Reward types from Ziqni database by unique Reward type ID's or any other POST body parameters using the POST method (optional) 
+            var body = new QueryRequest?(); // QueryRequest? | Retrieve Reward types from Ziqni database by unique Reward type ID's or any other POST body parameters using the POST method (optional) 
 
             try
             {
@@ -409,7 +409,7 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**QueryRequest**](QueryRequest.md)| Retrieve Reward types from Ziqni database by unique Reward type ID&#39;s or any other POST body parameters using the POST method | [optional] 
+ **body** | [**QueryRequest?**](QueryRequest?.md)| Retrieve Reward types from Ziqni database by unique Reward type ID&#39;s or any other POST body parameters using the POST method | [optional] 
 
 ### Return type
 

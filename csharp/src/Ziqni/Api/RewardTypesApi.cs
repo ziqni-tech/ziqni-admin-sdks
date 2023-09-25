@@ -55,7 +55,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The unique identifiers of the resources (optional)</param>
         /// <returns>ApiResponse</returns>
-        ApiResponse DeleteRewardTypes (List<string> id = default(List<string>));
+        ApiResponse DeleteRewardTypes (List<string>? id = default(List<string>?));
 
         /// <summary>
         /// Delete reward types
@@ -66,7 +66,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The unique identifiers of the resources (optional)</param>
         /// <returns>ApiResponse of ApiResponse</returns>
-        ApiResponse<ApiResponse> DeleteRewardTypesWithHttpInfo (List<string> id = default(List<string>));
+        ApiResponse<ApiResponse> DeleteRewardTypesWithHttpInfo (List<string>? id = default(List<string>?));
         /// <summary>
         /// Delete reward types by query
         /// </summary>
@@ -76,7 +76,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Delete Reward types from Ziqni database by unique Reward types ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <returns>ApiResponse</returns>
-        ApiResponse DeleteRewardTypesByQuery (QueryRequest body = default(QueryRequest));
+        ApiResponse DeleteRewardTypesByQuery (QueryRequest? body = default(QueryRequest?));
 
         /// <summary>
         /// Delete reward types by query
@@ -87,7 +87,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Delete Reward types from Ziqni database by unique Reward types ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <returns>ApiResponse of ApiResponse</returns>
-        ApiResponse<ApiResponse> DeleteRewardTypesByQueryWithHttpInfo (QueryRequest body = default(QueryRequest));
+        ApiResponse<ApiResponse> DeleteRewardTypesByQueryWithHttpInfo (QueryRequest? body = default(QueryRequest?));
         /// <summary>
         /// Get reward types
         /// </summary>
@@ -99,7 +99,7 @@ namespace Ziqni.Api
         /// <param name="limit">Limit the returned total records found (optional)</param>
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <returns>RewardTypeResponse</returns>
-        RewardTypeResponse GetRewardTypes (List<string> id = default(List<string>), int? limit = default(int?), int? skip = default(int?));
+        RewardTypeResponse GetRewardTypes (List<string>? id = default(List<string>?), int? limit = default(int?), int? skip = default(int?));
 
         /// <summary>
         /// Get reward types
@@ -112,7 +112,7 @@ namespace Ziqni.Api
         /// <param name="limit">Limit the returned total records found (optional)</param>
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <returns>ApiResponse of RewardTypeResponse</returns>
-        ApiResponse<RewardTypeResponse> GetRewardTypesWithHttpInfo (List<string> id = default(List<string>), int? limit = default(int?), int? skip = default(int?));
+        ApiResponse<RewardTypeResponse> GetRewardTypesWithHttpInfo (List<string>? id = default(List<string>?), int? limit = default(int?), int? skip = default(int?));
         /// <summary>
         /// Get reward types by query
         /// </summary>
@@ -122,7 +122,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Retrieve Reward types from Ziqni database by unique Reward type ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <returns>RewardTypeResponse</returns>
-        RewardTypeResponse GetRewardTypesByQuery (QueryRequest body = default(QueryRequest));
+        RewardTypeResponse GetRewardTypesByQuery (QueryRequest? body = default(QueryRequest?));
 
         /// <summary>
         /// Get reward types by query
@@ -133,7 +133,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Retrieve Reward types from Ziqni database by unique Reward type ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <returns>ApiResponse of RewardTypeResponse</returns>
-        ApiResponse<RewardTypeResponse> GetRewardTypesByQueryWithHttpInfo (QueryRequest body = default(QueryRequest));
+        ApiResponse<RewardTypeResponse> GetRewardTypesByQueryWithHttpInfo (QueryRequest? body = default(QueryRequest?));
         /// <summary>
         /// Update Reward Types
         /// </summary>
@@ -190,7 +190,7 @@ namespace Ziqni.Api
         /// <param name="id">The unique identifiers of the resources (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse> DeleteRewardTypesAsync (List<string> id = default(List<string>), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse> DeleteRewardTypesAsync (List<string>? id = default(List<string>?), CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Delete reward types
@@ -202,7 +202,7 @@ namespace Ziqni.Api
         /// <param name="id">The unique identifiers of the resources (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (ApiResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<ApiResponse>> DeleteRewardTypesWithHttpInfoAsync (List<string> id = default(List<string>), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<ApiResponse>> DeleteRewardTypesWithHttpInfoAsync (List<string>? id = default(List<string>?), CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Delete reward types by query
         /// </summary>
@@ -213,7 +213,7 @@ namespace Ziqni.Api
         /// <param name="body">Delete Reward types from Ziqni database by unique Reward types ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse> DeleteRewardTypesByQueryAsync (QueryRequest body = default(QueryRequest), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse> DeleteRewardTypesByQueryAsync (QueryRequest? body = default(QueryRequest?), CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Delete reward types by query
@@ -225,7 +225,7 @@ namespace Ziqni.Api
         /// <param name="body">Delete Reward types from Ziqni database by unique Reward types ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (ApiResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<ApiResponse>> DeleteRewardTypesByQueryWithHttpInfoAsync (QueryRequest body = default(QueryRequest), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<ApiResponse>> DeleteRewardTypesByQueryWithHttpInfoAsync (QueryRequest? body = default(QueryRequest?), CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Get reward types
         /// </summary>
@@ -238,7 +238,7 @@ namespace Ziqni.Api
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of RewardTypeResponse</returns>
-        System.Threading.Tasks.Task<RewardTypeResponse> GetRewardTypesAsync (List<string> id = default(List<string>), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<RewardTypeResponse> GetRewardTypesAsync (List<string>? id = default(List<string>?), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Get reward types
@@ -252,7 +252,7 @@ namespace Ziqni.Api
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (RewardTypeResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<RewardTypeResponse>> GetRewardTypesWithHttpInfoAsync (List<string> id = default(List<string>), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<RewardTypeResponse>> GetRewardTypesWithHttpInfoAsync (List<string>? id = default(List<string>?), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Get reward types by query
         /// </summary>
@@ -263,7 +263,7 @@ namespace Ziqni.Api
         /// <param name="body">Retrieve Reward types from Ziqni database by unique Reward type ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of RewardTypeResponse</returns>
-        System.Threading.Tasks.Task<RewardTypeResponse> GetRewardTypesByQueryAsync (QueryRequest body = default(QueryRequest), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<RewardTypeResponse> GetRewardTypesByQueryAsync (QueryRequest? body = default(QueryRequest?), CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Get reward types by query
@@ -275,7 +275,7 @@ namespace Ziqni.Api
         /// <param name="body">Retrieve Reward types from Ziqni database by unique Reward type ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (RewardTypeResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<RewardTypeResponse>> GetRewardTypesByQueryWithHttpInfoAsync (QueryRequest body = default(QueryRequest), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<RewardTypeResponse>> GetRewardTypesByQueryWithHttpInfoAsync (QueryRequest? body = default(QueryRequest?), CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Update Reward Types
         /// </summary>
@@ -579,7 +579,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The unique identifiers of the resources (optional)</param>
         /// <returns>ApiResponse</returns>
-        public ApiResponse DeleteRewardTypes (List<string> id = default(List<string>))
+        public ApiResponse DeleteRewardTypes (List<string>? id = default(List<string>?))
         {
              ApiResponse<ApiResponse> localVarResponse = DeleteRewardTypesWithHttpInfo(id);
              return localVarResponse.Data;
@@ -591,7 +591,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The unique identifiers of the resources (optional)</param>
         /// <returns>ApiResponse of ApiResponse</returns>
-        public ApiResponse<ApiResponse> DeleteRewardTypesWithHttpInfo (List<string> id = default(List<string>))
+        public ApiResponse<ApiResponse> DeleteRewardTypesWithHttpInfo (List<string>? id = default(List<string>?))
         {
 
             var localVarPath = "/reward-types";
@@ -649,7 +649,7 @@ namespace Ziqni.Api
         /// <param name="id">The unique identifiers of the resources (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<ApiResponse> DeleteRewardTypesAsync (List<string> id = default(List<string>), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<ApiResponse> DeleteRewardTypesAsync (List<string>? id = default(List<string>?), CancellationToken cancellationToken = default(CancellationToken))
         {
              ApiResponse<ApiResponse> localVarResponse = await DeleteRewardTypesWithHttpInfoAsync(id, cancellationToken);
              return localVarResponse.Data;
@@ -663,7 +663,7 @@ namespace Ziqni.Api
         /// <param name="id">The unique identifiers of the resources (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (ApiResponse)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<ApiResponse>> DeleteRewardTypesWithHttpInfoAsync (List<string> id = default(List<string>), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<ApiResponse<ApiResponse>> DeleteRewardTypesWithHttpInfoAsync (List<string>? id = default(List<string>?), CancellationToken cancellationToken = default(CancellationToken))
         {
 
             var localVarPath = "/reward-types";
@@ -720,7 +720,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Delete Reward types from Ziqni database by unique Reward types ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <returns>ApiResponse</returns>
-        public ApiResponse DeleteRewardTypesByQuery (QueryRequest body = default(QueryRequest))
+        public ApiResponse DeleteRewardTypesByQuery (QueryRequest? body = default(QueryRequest?))
         {
              ApiResponse<ApiResponse> localVarResponse = DeleteRewardTypesByQueryWithHttpInfo(body);
              return localVarResponse.Data;
@@ -732,7 +732,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Delete Reward types from Ziqni database by unique Reward types ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <returns>ApiResponse of ApiResponse</returns>
-        public ApiResponse<ApiResponse> DeleteRewardTypesByQueryWithHttpInfo (QueryRequest body = default(QueryRequest))
+        public ApiResponse<ApiResponse> DeleteRewardTypesByQueryWithHttpInfo (QueryRequest? body = default(QueryRequest?))
         {
 
             var localVarPath = "/reward-types/delete";
@@ -798,7 +798,7 @@ namespace Ziqni.Api
         /// <param name="body">Delete Reward types from Ziqni database by unique Reward types ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<ApiResponse> DeleteRewardTypesByQueryAsync (QueryRequest body = default(QueryRequest), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<ApiResponse> DeleteRewardTypesByQueryAsync (QueryRequest? body = default(QueryRequest?), CancellationToken cancellationToken = default(CancellationToken))
         {
              ApiResponse<ApiResponse> localVarResponse = await DeleteRewardTypesByQueryWithHttpInfoAsync(body, cancellationToken);
              return localVarResponse.Data;
@@ -812,7 +812,7 @@ namespace Ziqni.Api
         /// <param name="body">Delete Reward types from Ziqni database by unique Reward types ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (ApiResponse)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<ApiResponse>> DeleteRewardTypesByQueryWithHttpInfoAsync (QueryRequest body = default(QueryRequest), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<ApiResponse<ApiResponse>> DeleteRewardTypesByQueryWithHttpInfoAsync (QueryRequest? body = default(QueryRequest?), CancellationToken cancellationToken = default(CancellationToken))
         {
 
             var localVarPath = "/reward-types/delete";
@@ -879,7 +879,7 @@ namespace Ziqni.Api
         /// <param name="limit">Limit the returned total records found (optional)</param>
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <returns>RewardTypeResponse</returns>
-        public RewardTypeResponse GetRewardTypes (List<string> id = default(List<string>), int? limit = default(int?), int? skip = default(int?))
+        public RewardTypeResponse GetRewardTypes (List<string>? id = default(List<string>?), int? limit = default(int?), int? skip = default(int?))
         {
              ApiResponse<RewardTypeResponse> localVarResponse = GetRewardTypesWithHttpInfo(id, limit, skip);
              return localVarResponse.Data;
@@ -893,7 +893,7 @@ namespace Ziqni.Api
         /// <param name="limit">Limit the returned total records found (optional)</param>
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <returns>ApiResponse of RewardTypeResponse</returns>
-        public ApiResponse<RewardTypeResponse> GetRewardTypesWithHttpInfo (List<string> id = default(List<string>), int? limit = default(int?), int? skip = default(int?))
+        public ApiResponse<RewardTypeResponse> GetRewardTypesWithHttpInfo (List<string>? id = default(List<string>?), int? limit = default(int?), int? skip = default(int?))
         {
 
             var localVarPath = "/reward-types";
@@ -955,7 +955,7 @@ namespace Ziqni.Api
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of RewardTypeResponse</returns>
-        public async System.Threading.Tasks.Task<RewardTypeResponse> GetRewardTypesAsync (List<string> id = default(List<string>), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<RewardTypeResponse> GetRewardTypesAsync (List<string>? id = default(List<string>?), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken))
         {
              ApiResponse<RewardTypeResponse> localVarResponse = await GetRewardTypesWithHttpInfoAsync(id, limit, skip, cancellationToken);
              return localVarResponse.Data;
@@ -971,7 +971,7 @@ namespace Ziqni.Api
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (RewardTypeResponse)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<RewardTypeResponse>> GetRewardTypesWithHttpInfoAsync (List<string> id = default(List<string>), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<ApiResponse<RewardTypeResponse>> GetRewardTypesWithHttpInfoAsync (List<string>? id = default(List<string>?), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken))
         {
 
             var localVarPath = "/reward-types";
@@ -1030,7 +1030,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Retrieve Reward types from Ziqni database by unique Reward type ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <returns>RewardTypeResponse</returns>
-        public RewardTypeResponse GetRewardTypesByQuery (QueryRequest body = default(QueryRequest))
+        public RewardTypeResponse GetRewardTypesByQuery (QueryRequest? body = default(QueryRequest?))
         {
              ApiResponse<RewardTypeResponse> localVarResponse = GetRewardTypesByQueryWithHttpInfo(body);
              return localVarResponse.Data;
@@ -1042,7 +1042,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Retrieve Reward types from Ziqni database by unique Reward type ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <returns>ApiResponse of RewardTypeResponse</returns>
-        public ApiResponse<RewardTypeResponse> GetRewardTypesByQueryWithHttpInfo (QueryRequest body = default(QueryRequest))
+        public ApiResponse<RewardTypeResponse> GetRewardTypesByQueryWithHttpInfo (QueryRequest? body = default(QueryRequest?))
         {
 
             var localVarPath = "/reward-types/query";
@@ -1108,7 +1108,7 @@ namespace Ziqni.Api
         /// <param name="body">Retrieve Reward types from Ziqni database by unique Reward type ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of RewardTypeResponse</returns>
-        public async System.Threading.Tasks.Task<RewardTypeResponse> GetRewardTypesByQueryAsync (QueryRequest body = default(QueryRequest), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<RewardTypeResponse> GetRewardTypesByQueryAsync (QueryRequest? body = default(QueryRequest?), CancellationToken cancellationToken = default(CancellationToken))
         {
              ApiResponse<RewardTypeResponse> localVarResponse = await GetRewardTypesByQueryWithHttpInfoAsync(body, cancellationToken);
              return localVarResponse.Data;
@@ -1122,7 +1122,7 @@ namespace Ziqni.Api
         /// <param name="body">Retrieve Reward types from Ziqni database by unique Reward type ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (RewardTypeResponse)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<RewardTypeResponse>> GetRewardTypesByQueryWithHttpInfoAsync (QueryRequest body = default(QueryRequest), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<ApiResponse<RewardTypeResponse>> GetRewardTypesByQueryWithHttpInfoAsync (QueryRequest? body = default(QueryRequest?), CancellationToken cancellationToken = default(CancellationToken))
         {
 
             var localVarPath = "/reward-types/query";

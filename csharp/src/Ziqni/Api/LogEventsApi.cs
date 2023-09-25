@@ -34,7 +34,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Retrieve Log Events from Ziqni database by unique Log Events ID&#39;s or any other Post body parameters using the POST method (optional)</param>
         /// <returns>LogEventResponse</returns>
-        LogEventResponse GetLogEventsByQuery (QueryRequest body = default(QueryRequest));
+        LogEventResponse GetLogEventsByQuery (QueryRequest? body = default(QueryRequest?));
 
         /// <summary>
         /// 
@@ -45,7 +45,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Retrieve Log Events from Ziqni database by unique Log Events ID&#39;s or any other Post body parameters using the POST method (optional)</param>
         /// <returns>ApiResponse of LogEventResponse</returns>
-        ApiResponse<LogEventResponse> GetLogEventsByQueryWithHttpInfo (QueryRequest body = default(QueryRequest));
+        ApiResponse<LogEventResponse> GetLogEventsByQueryWithHttpInfo (QueryRequest? body = default(QueryRequest?));
         #endregion Synchronous Operations
         #region Asynchronous Operations
         /// <summary>
@@ -58,7 +58,7 @@ namespace Ziqni.Api
         /// <param name="body">Retrieve Log Events from Ziqni database by unique Log Events ID&#39;s or any other Post body parameters using the POST method (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of LogEventResponse</returns>
-        System.Threading.Tasks.Task<LogEventResponse> GetLogEventsByQueryAsync (QueryRequest body = default(QueryRequest), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<LogEventResponse> GetLogEventsByQueryAsync (QueryRequest? body = default(QueryRequest?), CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// 
@@ -70,7 +70,7 @@ namespace Ziqni.Api
         /// <param name="body">Retrieve Log Events from Ziqni database by unique Log Events ID&#39;s or any other Post body parameters using the POST method (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (LogEventResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<LogEventResponse>> GetLogEventsByQueryWithHttpInfoAsync (QueryRequest body = default(QueryRequest), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<LogEventResponse>> GetLogEventsByQueryWithHttpInfoAsync (QueryRequest? body = default(QueryRequest?), CancellationToken cancellationToken = default(CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -188,7 +188,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Retrieve Log Events from Ziqni database by unique Log Events ID&#39;s or any other Post body parameters using the POST method (optional)</param>
         /// <returns>LogEventResponse</returns>
-        public LogEventResponse GetLogEventsByQuery (QueryRequest body = default(QueryRequest))
+        public LogEventResponse GetLogEventsByQuery (QueryRequest? body = default(QueryRequest?))
         {
              ApiResponse<LogEventResponse> localVarResponse = GetLogEventsByQueryWithHttpInfo(body);
              return localVarResponse.Data;
@@ -200,7 +200,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Retrieve Log Events from Ziqni database by unique Log Events ID&#39;s or any other Post body parameters using the POST method (optional)</param>
         /// <returns>ApiResponse of LogEventResponse</returns>
-        public ApiResponse<LogEventResponse> GetLogEventsByQueryWithHttpInfo (QueryRequest body = default(QueryRequest))
+        public ApiResponse<LogEventResponse> GetLogEventsByQueryWithHttpInfo (QueryRequest? body = default(QueryRequest?))
         {
 
             var localVarPath = "/log-events/query";
@@ -266,7 +266,7 @@ namespace Ziqni.Api
         /// <param name="body">Retrieve Log Events from Ziqni database by unique Log Events ID&#39;s or any other Post body parameters using the POST method (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of LogEventResponse</returns>
-        public async System.Threading.Tasks.Task<LogEventResponse> GetLogEventsByQueryAsync (QueryRequest body = default(QueryRequest), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<LogEventResponse> GetLogEventsByQueryAsync (QueryRequest? body = default(QueryRequest?), CancellationToken cancellationToken = default(CancellationToken))
         {
              ApiResponse<LogEventResponse> localVarResponse = await GetLogEventsByQueryWithHttpInfoAsync(body, cancellationToken);
              return localVarResponse.Data;
@@ -280,7 +280,7 @@ namespace Ziqni.Api
         /// <param name="body">Retrieve Log Events from Ziqni database by unique Log Events ID&#39;s or any other Post body parameters using the POST method (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (LogEventResponse)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<LogEventResponse>> GetLogEventsByQueryWithHttpInfoAsync (QueryRequest body = default(QueryRequest), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<ApiResponse<LogEventResponse>> GetLogEventsByQueryWithHttpInfoAsync (QueryRequest? body = default(QueryRequest?), CancellationToken cancellationToken = default(CancellationToken))
         {
 
             var localVarPath = "/log-events/query";

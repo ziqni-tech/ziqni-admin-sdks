@@ -55,7 +55,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The unique identifiers of the resources (optional)</param>
         /// <returns>ApiResponse</returns>
-        ApiResponse DeleteProducts (List<string> id = default(List<string>));
+        ApiResponse DeleteProducts (List<string>? id = default(List<string>?));
 
         /// <summary>
         /// Delete products
@@ -66,7 +66,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The unique identifiers of the resources (optional)</param>
         /// <returns>ApiResponse of ApiResponse</returns>
-        ApiResponse<ApiResponse> DeleteProductsWithHttpInfo (List<string> id = default(List<string>));
+        ApiResponse<ApiResponse> DeleteProductsWithHttpInfo (List<string>? id = default(List<string>?));
         /// <summary>
         /// Delete products by query
         /// </summary>
@@ -76,7 +76,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Delete Products from Ziqni database by unique Product ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <returns>ApiResponse</returns>
-        ApiResponse DeleteProductsByQuery (QueryRequest body = default(QueryRequest));
+        ApiResponse DeleteProductsByQuery (QueryRequest? body = default(QueryRequest?));
 
         /// <summary>
         /// Delete products by query
@@ -87,7 +87,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Delete Products from Ziqni database by unique Product ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <returns>ApiResponse of ApiResponse</returns>
-        ApiResponse<ApiResponse> DeleteProductsByQueryWithHttpInfo (QueryRequest body = default(QueryRequest));
+        ApiResponse<ApiResponse> DeleteProductsByQueryWithHttpInfo (QueryRequest? body = default(QueryRequest?));
         /// <summary>
         /// Get products
         /// </summary>
@@ -99,7 +99,7 @@ namespace Ziqni.Api
         /// <param name="limit">Limit the returned total records found (optional)</param>
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <returns>ProductResponse</returns>
-        ProductResponse GetProducts (List<string> id = default(List<string>), int? limit = default(int?), int? skip = default(int?));
+        ProductResponse GetProducts (List<string>? id = default(List<string>?), int? limit = default(int?), int? skip = default(int?));
 
         /// <summary>
         /// Get products
@@ -112,7 +112,7 @@ namespace Ziqni.Api
         /// <param name="limit">Limit the returned total records found (optional)</param>
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <returns>ApiResponse of ProductResponse</returns>
-        ApiResponse<ProductResponse> GetProductsWithHttpInfo (List<string> id = default(List<string>), int? limit = default(int?), int? skip = default(int?));
+        ApiResponse<ProductResponse> GetProductsWithHttpInfo (List<string>? id = default(List<string>?), int? limit = default(int?), int? skip = default(int?));
         /// <summary>
         /// Get products by query
         /// </summary>
@@ -122,7 +122,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Retrieve Products from Ziqni database by unique Product ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <returns>ProductResponse</returns>
-        ProductResponse GetProductsByQuery (QueryRequest body = default(QueryRequest));
+        ProductResponse GetProductsByQuery (QueryRequest? body = default(QueryRequest?));
 
         /// <summary>
         /// Get products by query
@@ -133,7 +133,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Retrieve Products from Ziqni database by unique Product ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <returns>ApiResponse of ProductResponse</returns>
-        ApiResponse<ProductResponse> GetProductsByQueryWithHttpInfo (QueryRequest body = default(QueryRequest));
+        ApiResponse<ProductResponse> GetProductsByQueryWithHttpInfo (QueryRequest? body = default(QueryRequest?));
         /// <summary>
         /// Get products by reference ids
         /// </summary>
@@ -145,7 +145,7 @@ namespace Ziqni.Api
         /// <param name="limit">Limit the returned total records found (optional)</param>
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <returns>ProductResponse</returns>
-        ProductResponse GetProductsByRefId (List<string> refIds = default(List<string>), int? limit = default(int?), int? skip = default(int?));
+        ProductResponse GetProductsByRefId (List<string>? refIds = default(List<string>?), int? limit = default(int?), int? skip = default(int?));
 
         /// <summary>
         /// Get products by reference ids
@@ -158,7 +158,7 @@ namespace Ziqni.Api
         /// <param name="limit">Limit the returned total records found (optional)</param>
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <returns>ApiResponse of ProductResponse</returns>
-        ApiResponse<ProductResponse> GetProductsByRefIdWithHttpInfo (List<string> refIds = default(List<string>), int? limit = default(int?), int? skip = default(int?));
+        ApiResponse<ProductResponse> GetProductsByRefIdWithHttpInfo (List<string>? refIds = default(List<string>?), int? limit = default(int?), int? skip = default(int?));
         /// <summary>
         /// Update products
         /// </summary>
@@ -215,7 +215,7 @@ namespace Ziqni.Api
         /// <param name="id">The unique identifiers of the resources (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse> DeleteProductsAsync (List<string> id = default(List<string>), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse> DeleteProductsAsync (List<string>? id = default(List<string>?), CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Delete products
@@ -227,7 +227,7 @@ namespace Ziqni.Api
         /// <param name="id">The unique identifiers of the resources (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (ApiResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<ApiResponse>> DeleteProductsWithHttpInfoAsync (List<string> id = default(List<string>), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<ApiResponse>> DeleteProductsWithHttpInfoAsync (List<string>? id = default(List<string>?), CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Delete products by query
         /// </summary>
@@ -238,7 +238,7 @@ namespace Ziqni.Api
         /// <param name="body">Delete Products from Ziqni database by unique Product ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse> DeleteProductsByQueryAsync (QueryRequest body = default(QueryRequest), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse> DeleteProductsByQueryAsync (QueryRequest? body = default(QueryRequest?), CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Delete products by query
@@ -250,7 +250,7 @@ namespace Ziqni.Api
         /// <param name="body">Delete Products from Ziqni database by unique Product ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (ApiResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<ApiResponse>> DeleteProductsByQueryWithHttpInfoAsync (QueryRequest body = default(QueryRequest), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<ApiResponse>> DeleteProductsByQueryWithHttpInfoAsync (QueryRequest? body = default(QueryRequest?), CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Get products
         /// </summary>
@@ -263,7 +263,7 @@ namespace Ziqni.Api
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ProductResponse</returns>
-        System.Threading.Tasks.Task<ProductResponse> GetProductsAsync (List<string> id = default(List<string>), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<ProductResponse> GetProductsAsync (List<string>? id = default(List<string>?), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Get products
@@ -277,7 +277,7 @@ namespace Ziqni.Api
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (ProductResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<ProductResponse>> GetProductsWithHttpInfoAsync (List<string> id = default(List<string>), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<ProductResponse>> GetProductsWithHttpInfoAsync (List<string>? id = default(List<string>?), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Get products by query
         /// </summary>
@@ -288,7 +288,7 @@ namespace Ziqni.Api
         /// <param name="body">Retrieve Products from Ziqni database by unique Product ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ProductResponse</returns>
-        System.Threading.Tasks.Task<ProductResponse> GetProductsByQueryAsync (QueryRequest body = default(QueryRequest), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<ProductResponse> GetProductsByQueryAsync (QueryRequest? body = default(QueryRequest?), CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Get products by query
@@ -300,7 +300,7 @@ namespace Ziqni.Api
         /// <param name="body">Retrieve Products from Ziqni database by unique Product ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (ProductResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<ProductResponse>> GetProductsByQueryWithHttpInfoAsync (QueryRequest body = default(QueryRequest), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<ProductResponse>> GetProductsByQueryWithHttpInfoAsync (QueryRequest? body = default(QueryRequest?), CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Get products by reference ids
         /// </summary>
@@ -313,7 +313,7 @@ namespace Ziqni.Api
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ProductResponse</returns>
-        System.Threading.Tasks.Task<ProductResponse> GetProductsByRefIdAsync (List<string> refIds = default(List<string>), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<ProductResponse> GetProductsByRefIdAsync (List<string>? refIds = default(List<string>?), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Get products by reference ids
@@ -327,7 +327,7 @@ namespace Ziqni.Api
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (ProductResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<ProductResponse>> GetProductsByRefIdWithHttpInfoAsync (List<string> refIds = default(List<string>), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<ProductResponse>> GetProductsByRefIdWithHttpInfoAsync (List<string>? refIds = default(List<string>?), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Update products
         /// </summary>
@@ -633,7 +633,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The unique identifiers of the resources (optional)</param>
         /// <returns>ApiResponse</returns>
-        public ApiResponse DeleteProducts (List<string> id = default(List<string>))
+        public ApiResponse DeleteProducts (List<string>? id = default(List<string>?))
         {
              ApiResponse<ApiResponse> localVarResponse = DeleteProductsWithHttpInfo(id);
              return localVarResponse.Data;
@@ -645,7 +645,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The unique identifiers of the resources (optional)</param>
         /// <returns>ApiResponse of ApiResponse</returns>
-        public ApiResponse<ApiResponse> DeleteProductsWithHttpInfo (List<string> id = default(List<string>))
+        public ApiResponse<ApiResponse> DeleteProductsWithHttpInfo (List<string>? id = default(List<string>?))
         {
 
             var localVarPath = "/products";
@@ -703,7 +703,7 @@ namespace Ziqni.Api
         /// <param name="id">The unique identifiers of the resources (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<ApiResponse> DeleteProductsAsync (List<string> id = default(List<string>), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<ApiResponse> DeleteProductsAsync (List<string>? id = default(List<string>?), CancellationToken cancellationToken = default(CancellationToken))
         {
              ApiResponse<ApiResponse> localVarResponse = await DeleteProductsWithHttpInfoAsync(id, cancellationToken);
              return localVarResponse.Data;
@@ -717,7 +717,7 @@ namespace Ziqni.Api
         /// <param name="id">The unique identifiers of the resources (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (ApiResponse)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<ApiResponse>> DeleteProductsWithHttpInfoAsync (List<string> id = default(List<string>), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<ApiResponse<ApiResponse>> DeleteProductsWithHttpInfoAsync (List<string>? id = default(List<string>?), CancellationToken cancellationToken = default(CancellationToken))
         {
 
             var localVarPath = "/products";
@@ -774,7 +774,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Delete Products from Ziqni database by unique Product ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <returns>ApiResponse</returns>
-        public ApiResponse DeleteProductsByQuery (QueryRequest body = default(QueryRequest))
+        public ApiResponse DeleteProductsByQuery (QueryRequest? body = default(QueryRequest?))
         {
              ApiResponse<ApiResponse> localVarResponse = DeleteProductsByQueryWithHttpInfo(body);
              return localVarResponse.Data;
@@ -786,7 +786,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Delete Products from Ziqni database by unique Product ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <returns>ApiResponse of ApiResponse</returns>
-        public ApiResponse<ApiResponse> DeleteProductsByQueryWithHttpInfo (QueryRequest body = default(QueryRequest))
+        public ApiResponse<ApiResponse> DeleteProductsByQueryWithHttpInfo (QueryRequest? body = default(QueryRequest?))
         {
 
             var localVarPath = "/products/delete";
@@ -852,7 +852,7 @@ namespace Ziqni.Api
         /// <param name="body">Delete Products from Ziqni database by unique Product ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<ApiResponse> DeleteProductsByQueryAsync (QueryRequest body = default(QueryRequest), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<ApiResponse> DeleteProductsByQueryAsync (QueryRequest? body = default(QueryRequest?), CancellationToken cancellationToken = default(CancellationToken))
         {
              ApiResponse<ApiResponse> localVarResponse = await DeleteProductsByQueryWithHttpInfoAsync(body, cancellationToken);
              return localVarResponse.Data;
@@ -866,7 +866,7 @@ namespace Ziqni.Api
         /// <param name="body">Delete Products from Ziqni database by unique Product ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (ApiResponse)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<ApiResponse>> DeleteProductsByQueryWithHttpInfoAsync (QueryRequest body = default(QueryRequest), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<ApiResponse<ApiResponse>> DeleteProductsByQueryWithHttpInfoAsync (QueryRequest? body = default(QueryRequest?), CancellationToken cancellationToken = default(CancellationToken))
         {
 
             var localVarPath = "/products/delete";
@@ -933,7 +933,7 @@ namespace Ziqni.Api
         /// <param name="limit">Limit the returned total records found (optional)</param>
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <returns>ProductResponse</returns>
-        public ProductResponse GetProducts (List<string> id = default(List<string>), int? limit = default(int?), int? skip = default(int?))
+        public ProductResponse GetProducts (List<string>? id = default(List<string>?), int? limit = default(int?), int? skip = default(int?))
         {
              ApiResponse<ProductResponse> localVarResponse = GetProductsWithHttpInfo(id, limit, skip);
              return localVarResponse.Data;
@@ -947,7 +947,7 @@ namespace Ziqni.Api
         /// <param name="limit">Limit the returned total records found (optional)</param>
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <returns>ApiResponse of ProductResponse</returns>
-        public ApiResponse<ProductResponse> GetProductsWithHttpInfo (List<string> id = default(List<string>), int? limit = default(int?), int? skip = default(int?))
+        public ApiResponse<ProductResponse> GetProductsWithHttpInfo (List<string>? id = default(List<string>?), int? limit = default(int?), int? skip = default(int?))
         {
 
             var localVarPath = "/products";
@@ -1009,7 +1009,7 @@ namespace Ziqni.Api
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ProductResponse</returns>
-        public async System.Threading.Tasks.Task<ProductResponse> GetProductsAsync (List<string> id = default(List<string>), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<ProductResponse> GetProductsAsync (List<string>? id = default(List<string>?), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken))
         {
              ApiResponse<ProductResponse> localVarResponse = await GetProductsWithHttpInfoAsync(id, limit, skip, cancellationToken);
              return localVarResponse.Data;
@@ -1025,7 +1025,7 @@ namespace Ziqni.Api
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (ProductResponse)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<ProductResponse>> GetProductsWithHttpInfoAsync (List<string> id = default(List<string>), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<ApiResponse<ProductResponse>> GetProductsWithHttpInfoAsync (List<string>? id = default(List<string>?), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken))
         {
 
             var localVarPath = "/products";
@@ -1084,7 +1084,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Retrieve Products from Ziqni database by unique Product ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <returns>ProductResponse</returns>
-        public ProductResponse GetProductsByQuery (QueryRequest body = default(QueryRequest))
+        public ProductResponse GetProductsByQuery (QueryRequest? body = default(QueryRequest?))
         {
              ApiResponse<ProductResponse> localVarResponse = GetProductsByQueryWithHttpInfo(body);
              return localVarResponse.Data;
@@ -1096,7 +1096,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Retrieve Products from Ziqni database by unique Product ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <returns>ApiResponse of ProductResponse</returns>
-        public ApiResponse<ProductResponse> GetProductsByQueryWithHttpInfo (QueryRequest body = default(QueryRequest))
+        public ApiResponse<ProductResponse> GetProductsByQueryWithHttpInfo (QueryRequest? body = default(QueryRequest?))
         {
 
             var localVarPath = "/products/query";
@@ -1162,7 +1162,7 @@ namespace Ziqni.Api
         /// <param name="body">Retrieve Products from Ziqni database by unique Product ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ProductResponse</returns>
-        public async System.Threading.Tasks.Task<ProductResponse> GetProductsByQueryAsync (QueryRequest body = default(QueryRequest), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<ProductResponse> GetProductsByQueryAsync (QueryRequest? body = default(QueryRequest?), CancellationToken cancellationToken = default(CancellationToken))
         {
              ApiResponse<ProductResponse> localVarResponse = await GetProductsByQueryWithHttpInfoAsync(body, cancellationToken);
              return localVarResponse.Data;
@@ -1176,7 +1176,7 @@ namespace Ziqni.Api
         /// <param name="body">Retrieve Products from Ziqni database by unique Product ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (ProductResponse)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<ProductResponse>> GetProductsByQueryWithHttpInfoAsync (QueryRequest body = default(QueryRequest), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<ApiResponse<ProductResponse>> GetProductsByQueryWithHttpInfoAsync (QueryRequest? body = default(QueryRequest?), CancellationToken cancellationToken = default(CancellationToken))
         {
 
             var localVarPath = "/products/query";
@@ -1243,7 +1243,7 @@ namespace Ziqni.Api
         /// <param name="limit">Limit the returned total records found (optional)</param>
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <returns>ProductResponse</returns>
-        public ProductResponse GetProductsByRefId (List<string> refIds = default(List<string>), int? limit = default(int?), int? skip = default(int?))
+        public ProductResponse GetProductsByRefId (List<string>? refIds = default(List<string>?), int? limit = default(int?), int? skip = default(int?))
         {
              ApiResponse<ProductResponse> localVarResponse = GetProductsByRefIdWithHttpInfo(refIds, limit, skip);
              return localVarResponse.Data;
@@ -1257,7 +1257,7 @@ namespace Ziqni.Api
         /// <param name="limit">Limit the returned total records found (optional)</param>
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <returns>ApiResponse of ProductResponse</returns>
-        public ApiResponse<ProductResponse> GetProductsByRefIdWithHttpInfo (List<string> refIds = default(List<string>), int? limit = default(int?), int? skip = default(int?))
+        public ApiResponse<ProductResponse> GetProductsByRefIdWithHttpInfo (List<string>? refIds = default(List<string>?), int? limit = default(int?), int? skip = default(int?))
         {
 
             var localVarPath = "/products/find-by-ref-identifiers/";
@@ -1319,7 +1319,7 @@ namespace Ziqni.Api
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ProductResponse</returns>
-        public async System.Threading.Tasks.Task<ProductResponse> GetProductsByRefIdAsync (List<string> refIds = default(List<string>), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<ProductResponse> GetProductsByRefIdAsync (List<string>? refIds = default(List<string>?), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken))
         {
              ApiResponse<ProductResponse> localVarResponse = await GetProductsByRefIdWithHttpInfoAsync(refIds, limit, skip, cancellationToken);
              return localVarResponse.Data;
@@ -1335,7 +1335,7 @@ namespace Ziqni.Api
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (ProductResponse)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<ProductResponse>> GetProductsByRefIdWithHttpInfoAsync (List<string> refIds = default(List<string>), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<ApiResponse<ProductResponse>> GetProductsByRefIdWithHttpInfoAsync (List<string>? refIds = default(List<string>?), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken))
         {
 
             var localVarPath = "/products/find-by-ref-identifiers/";

@@ -55,7 +55,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The unique identifiers of the resources (optional)</param>
         /// <returns>ApiResponse</returns>
-        ApiResponse DeleteActionTypes (List<string> id = default(List<string>));
+        ApiResponse DeleteActionTypes (List<string>? id = default(List<string>?));
 
         /// <summary>
         /// Delete action types
@@ -66,7 +66,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The unique identifiers of the resources (optional)</param>
         /// <returns>ApiResponse of ApiResponse</returns>
-        ApiResponse<ApiResponse> DeleteActionTypesWithHttpInfo (List<string> id = default(List<string>));
+        ApiResponse<ApiResponse> DeleteActionTypesWithHttpInfo (List<string>? id = default(List<string>?));
         /// <summary>
         /// Delete action types by query
         /// </summary>
@@ -76,7 +76,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Delete Action types from Ziqni database by unique Action types ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <returns>ApiResponse</returns>
-        ApiResponse DeleteActionTypesByQuery (QueryRequest body = default(QueryRequest));
+        ApiResponse DeleteActionTypesByQuery (QueryRequest? body = default(QueryRequest?));
 
         /// <summary>
         /// Delete action types by query
@@ -87,7 +87,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Delete Action types from Ziqni database by unique Action types ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <returns>ApiResponse of ApiResponse</returns>
-        ApiResponse<ApiResponse> DeleteActionTypesByQueryWithHttpInfo (QueryRequest body = default(QueryRequest));
+        ApiResponse<ApiResponse> DeleteActionTypesByQueryWithHttpInfo (QueryRequest? body = default(QueryRequest?));
         /// <summary>
         /// Get action types
         /// </summary>
@@ -99,7 +99,7 @@ namespace Ziqni.Api
         /// <param name="limit">Limit the returned total records found (optional)</param>
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <returns>ActionTypeResponse</returns>
-        ActionTypeResponse GetActionTypes (List<string> id = default(List<string>), int? limit = default(int?), int? skip = default(int?));
+        ActionTypeResponse GetActionTypes (List<string>? id = default(List<string>?), int? limit = default(int?), int? skip = default(int?));
 
         /// <summary>
         /// Get action types
@@ -112,7 +112,7 @@ namespace Ziqni.Api
         /// <param name="limit">Limit the returned total records found (optional)</param>
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <returns>ApiResponse of ActionTypeResponse</returns>
-        ApiResponse<ActionTypeResponse> GetActionTypesWithHttpInfo (List<string> id = default(List<string>), int? limit = default(int?), int? skip = default(int?));
+        ApiResponse<ActionTypeResponse> GetActionTypesWithHttpInfo (List<string>? id = default(List<string>?), int? limit = default(int?), int? skip = default(int?));
         /// <summary>
         /// Get action types by query
         /// </summary>
@@ -122,7 +122,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Retrieve Action types from Ziqni database by unique Action type ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <returns>ActionTypeResponse</returns>
-        ActionTypeResponse GetActionTypesByQuery (QueryRequest body = default(QueryRequest));
+        ActionTypeResponse GetActionTypesByQuery (QueryRequest? body = default(QueryRequest?));
 
         /// <summary>
         /// Get action types by query
@@ -133,7 +133,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Retrieve Action types from Ziqni database by unique Action type ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <returns>ApiResponse of ActionTypeResponse</returns>
-        ApiResponse<ActionTypeResponse> GetActionTypesByQueryWithHttpInfo (QueryRequest body = default(QueryRequest));
+        ApiResponse<ActionTypeResponse> GetActionTypesByQueryWithHttpInfo (QueryRequest? body = default(QueryRequest?));
         /// <summary>
         /// Update action types
         /// </summary>
@@ -190,7 +190,7 @@ namespace Ziqni.Api
         /// <param name="id">The unique identifiers of the resources (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse> DeleteActionTypesAsync (List<string> id = default(List<string>), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse> DeleteActionTypesAsync (List<string>? id = default(List<string>?), CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Delete action types
@@ -202,7 +202,7 @@ namespace Ziqni.Api
         /// <param name="id">The unique identifiers of the resources (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (ApiResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<ApiResponse>> DeleteActionTypesWithHttpInfoAsync (List<string> id = default(List<string>), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<ApiResponse>> DeleteActionTypesWithHttpInfoAsync (List<string>? id = default(List<string>?), CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Delete action types by query
         /// </summary>
@@ -213,7 +213,7 @@ namespace Ziqni.Api
         /// <param name="body">Delete Action types from Ziqni database by unique Action types ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse> DeleteActionTypesByQueryAsync (QueryRequest body = default(QueryRequest), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse> DeleteActionTypesByQueryAsync (QueryRequest? body = default(QueryRequest?), CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Delete action types by query
@@ -225,7 +225,7 @@ namespace Ziqni.Api
         /// <param name="body">Delete Action types from Ziqni database by unique Action types ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (ApiResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<ApiResponse>> DeleteActionTypesByQueryWithHttpInfoAsync (QueryRequest body = default(QueryRequest), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<ApiResponse>> DeleteActionTypesByQueryWithHttpInfoAsync (QueryRequest? body = default(QueryRequest?), CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Get action types
         /// </summary>
@@ -238,7 +238,7 @@ namespace Ziqni.Api
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ActionTypeResponse</returns>
-        System.Threading.Tasks.Task<ActionTypeResponse> GetActionTypesAsync (List<string> id = default(List<string>), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<ActionTypeResponse> GetActionTypesAsync (List<string>? id = default(List<string>?), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Get action types
@@ -252,7 +252,7 @@ namespace Ziqni.Api
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (ActionTypeResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<ActionTypeResponse>> GetActionTypesWithHttpInfoAsync (List<string> id = default(List<string>), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<ActionTypeResponse>> GetActionTypesWithHttpInfoAsync (List<string>? id = default(List<string>?), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Get action types by query
         /// </summary>
@@ -263,7 +263,7 @@ namespace Ziqni.Api
         /// <param name="body">Retrieve Action types from Ziqni database by unique Action type ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ActionTypeResponse</returns>
-        System.Threading.Tasks.Task<ActionTypeResponse> GetActionTypesByQueryAsync (QueryRequest body = default(QueryRequest), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<ActionTypeResponse> GetActionTypesByQueryAsync (QueryRequest? body = default(QueryRequest?), CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Get action types by query
@@ -275,7 +275,7 @@ namespace Ziqni.Api
         /// <param name="body">Retrieve Action types from Ziqni database by unique Action type ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (ActionTypeResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<ActionTypeResponse>> GetActionTypesByQueryWithHttpInfoAsync (QueryRequest body = default(QueryRequest), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<ActionTypeResponse>> GetActionTypesByQueryWithHttpInfoAsync (QueryRequest? body = default(QueryRequest?), CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Update action types
         /// </summary>
@@ -579,7 +579,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The unique identifiers of the resources (optional)</param>
         /// <returns>ApiResponse</returns>
-        public ApiResponse DeleteActionTypes (List<string> id = default(List<string>))
+        public ApiResponse DeleteActionTypes (List<string>? id = default(List<string>?))
         {
              ApiResponse<ApiResponse> localVarResponse = DeleteActionTypesWithHttpInfo(id);
              return localVarResponse.Data;
@@ -591,7 +591,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The unique identifiers of the resources (optional)</param>
         /// <returns>ApiResponse of ApiResponse</returns>
-        public ApiResponse<ApiResponse> DeleteActionTypesWithHttpInfo (List<string> id = default(List<string>))
+        public ApiResponse<ApiResponse> DeleteActionTypesWithHttpInfo (List<string>? id = default(List<string>?))
         {
 
             var localVarPath = "/action-types";
@@ -649,7 +649,7 @@ namespace Ziqni.Api
         /// <param name="id">The unique identifiers of the resources (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<ApiResponse> DeleteActionTypesAsync (List<string> id = default(List<string>), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<ApiResponse> DeleteActionTypesAsync (List<string>? id = default(List<string>?), CancellationToken cancellationToken = default(CancellationToken))
         {
              ApiResponse<ApiResponse> localVarResponse = await DeleteActionTypesWithHttpInfoAsync(id, cancellationToken);
              return localVarResponse.Data;
@@ -663,7 +663,7 @@ namespace Ziqni.Api
         /// <param name="id">The unique identifiers of the resources (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (ApiResponse)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<ApiResponse>> DeleteActionTypesWithHttpInfoAsync (List<string> id = default(List<string>), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<ApiResponse<ApiResponse>> DeleteActionTypesWithHttpInfoAsync (List<string>? id = default(List<string>?), CancellationToken cancellationToken = default(CancellationToken))
         {
 
             var localVarPath = "/action-types";
@@ -720,7 +720,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Delete Action types from Ziqni database by unique Action types ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <returns>ApiResponse</returns>
-        public ApiResponse DeleteActionTypesByQuery (QueryRequest body = default(QueryRequest))
+        public ApiResponse DeleteActionTypesByQuery (QueryRequest? body = default(QueryRequest?))
         {
              ApiResponse<ApiResponse> localVarResponse = DeleteActionTypesByQueryWithHttpInfo(body);
              return localVarResponse.Data;
@@ -732,7 +732,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Delete Action types from Ziqni database by unique Action types ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <returns>ApiResponse of ApiResponse</returns>
-        public ApiResponse<ApiResponse> DeleteActionTypesByQueryWithHttpInfo (QueryRequest body = default(QueryRequest))
+        public ApiResponse<ApiResponse> DeleteActionTypesByQueryWithHttpInfo (QueryRequest? body = default(QueryRequest?))
         {
 
             var localVarPath = "/action-types/delete";
@@ -798,7 +798,7 @@ namespace Ziqni.Api
         /// <param name="body">Delete Action types from Ziqni database by unique Action types ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<ApiResponse> DeleteActionTypesByQueryAsync (QueryRequest body = default(QueryRequest), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<ApiResponse> DeleteActionTypesByQueryAsync (QueryRequest? body = default(QueryRequest?), CancellationToken cancellationToken = default(CancellationToken))
         {
              ApiResponse<ApiResponse> localVarResponse = await DeleteActionTypesByQueryWithHttpInfoAsync(body, cancellationToken);
              return localVarResponse.Data;
@@ -812,7 +812,7 @@ namespace Ziqni.Api
         /// <param name="body">Delete Action types from Ziqni database by unique Action types ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (ApiResponse)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<ApiResponse>> DeleteActionTypesByQueryWithHttpInfoAsync (QueryRequest body = default(QueryRequest), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<ApiResponse<ApiResponse>> DeleteActionTypesByQueryWithHttpInfoAsync (QueryRequest? body = default(QueryRequest?), CancellationToken cancellationToken = default(CancellationToken))
         {
 
             var localVarPath = "/action-types/delete";
@@ -879,7 +879,7 @@ namespace Ziqni.Api
         /// <param name="limit">Limit the returned total records found (optional)</param>
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <returns>ActionTypeResponse</returns>
-        public ActionTypeResponse GetActionTypes (List<string> id = default(List<string>), int? limit = default(int?), int? skip = default(int?))
+        public ActionTypeResponse GetActionTypes (List<string>? id = default(List<string>?), int? limit = default(int?), int? skip = default(int?))
         {
              ApiResponse<ActionTypeResponse> localVarResponse = GetActionTypesWithHttpInfo(id, limit, skip);
              return localVarResponse.Data;
@@ -893,7 +893,7 @@ namespace Ziqni.Api
         /// <param name="limit">Limit the returned total records found (optional)</param>
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <returns>ApiResponse of ActionTypeResponse</returns>
-        public ApiResponse<ActionTypeResponse> GetActionTypesWithHttpInfo (List<string> id = default(List<string>), int? limit = default(int?), int? skip = default(int?))
+        public ApiResponse<ActionTypeResponse> GetActionTypesWithHttpInfo (List<string>? id = default(List<string>?), int? limit = default(int?), int? skip = default(int?))
         {
 
             var localVarPath = "/action-types";
@@ -955,7 +955,7 @@ namespace Ziqni.Api
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ActionTypeResponse</returns>
-        public async System.Threading.Tasks.Task<ActionTypeResponse> GetActionTypesAsync (List<string> id = default(List<string>), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<ActionTypeResponse> GetActionTypesAsync (List<string>? id = default(List<string>?), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken))
         {
              ApiResponse<ActionTypeResponse> localVarResponse = await GetActionTypesWithHttpInfoAsync(id, limit, skip, cancellationToken);
              return localVarResponse.Data;
@@ -971,7 +971,7 @@ namespace Ziqni.Api
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (ActionTypeResponse)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<ActionTypeResponse>> GetActionTypesWithHttpInfoAsync (List<string> id = default(List<string>), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<ApiResponse<ActionTypeResponse>> GetActionTypesWithHttpInfoAsync (List<string>? id = default(List<string>?), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken))
         {
 
             var localVarPath = "/action-types";
@@ -1030,7 +1030,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Retrieve Action types from Ziqni database by unique Action type ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <returns>ActionTypeResponse</returns>
-        public ActionTypeResponse GetActionTypesByQuery (QueryRequest body = default(QueryRequest))
+        public ActionTypeResponse GetActionTypesByQuery (QueryRequest? body = default(QueryRequest?))
         {
              ApiResponse<ActionTypeResponse> localVarResponse = GetActionTypesByQueryWithHttpInfo(body);
              return localVarResponse.Data;
@@ -1042,7 +1042,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Retrieve Action types from Ziqni database by unique Action type ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <returns>ApiResponse of ActionTypeResponse</returns>
-        public ApiResponse<ActionTypeResponse> GetActionTypesByQueryWithHttpInfo (QueryRequest body = default(QueryRequest))
+        public ApiResponse<ActionTypeResponse> GetActionTypesByQueryWithHttpInfo (QueryRequest? body = default(QueryRequest?))
         {
 
             var localVarPath = "/action-types/query";
@@ -1108,7 +1108,7 @@ namespace Ziqni.Api
         /// <param name="body">Retrieve Action types from Ziqni database by unique Action type ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ActionTypeResponse</returns>
-        public async System.Threading.Tasks.Task<ActionTypeResponse> GetActionTypesByQueryAsync (QueryRequest body = default(QueryRequest), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<ActionTypeResponse> GetActionTypesByQueryAsync (QueryRequest? body = default(QueryRequest?), CancellationToken cancellationToken = default(CancellationToken))
         {
              ApiResponse<ActionTypeResponse> localVarResponse = await GetActionTypesByQueryWithHttpInfoAsync(body, cancellationToken);
              return localVarResponse.Data;
@@ -1122,7 +1122,7 @@ namespace Ziqni.Api
         /// <param name="body">Retrieve Action types from Ziqni database by unique Action type ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (ActionTypeResponse)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<ActionTypeResponse>> GetActionTypesByQueryWithHttpInfoAsync (QueryRequest body = default(QueryRequest), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<ApiResponse<ActionTypeResponse>> GetActionTypesByQueryWithHttpInfoAsync (QueryRequest? body = default(QueryRequest?), CancellationToken cancellationToken = default(CancellationToken))
         {
 
             var localVarPath = "/action-types/query";

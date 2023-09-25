@@ -55,7 +55,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The unique identifiers of the resources (optional)</param>
         /// <returns>ApiResponse</returns>
-        ApiResponse DeleteAchievements (List<string> id = default(List<string>));
+        ApiResponse DeleteAchievements (List<string>? id = default(List<string>?));
 
         /// <summary>
         /// Delete Achievements
@@ -66,7 +66,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The unique identifiers of the resources (optional)</param>
         /// <returns>ApiResponse of ApiResponse</returns>
-        ApiResponse<ApiResponse> DeleteAchievementsWithHttpInfo (List<string> id = default(List<string>));
+        ApiResponse<ApiResponse> DeleteAchievementsWithHttpInfo (List<string>? id = default(List<string>?));
         /// <summary>
         /// 
         /// </summary>
@@ -76,7 +76,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Delete Achievements from Ziqni database by unique Achievements ID&#39;s or any other Post body parameters using the POST method (optional)</param>
         /// <returns>ApiResponse</returns>
-        ApiResponse DeleteAchievementsByQuery (QueryRequest body = default(QueryRequest));
+        ApiResponse DeleteAchievementsByQuery (QueryRequest? body = default(QueryRequest?));
 
         /// <summary>
         /// 
@@ -87,7 +87,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Delete Achievements from Ziqni database by unique Achievements ID&#39;s or any other Post body parameters using the POST method (optional)</param>
         /// <returns>ApiResponse of ApiResponse</returns>
-        ApiResponse<ApiResponse> DeleteAchievementsByQueryWithHttpInfo (QueryRequest body = default(QueryRequest));
+        ApiResponse<ApiResponse> DeleteAchievementsByQueryWithHttpInfo (QueryRequest? body = default(QueryRequest?));
         /// <summary>
         /// 
         /// </summary>
@@ -120,7 +120,7 @@ namespace Ziqni.Api
         /// <param name="limit">Limit the returned total records found (optional)</param>
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <returns>AchievementResponse</returns>
-        AchievementResponse GetAchievements (List<string> id = default(List<string>), int? limit = default(int?), int? skip = default(int?));
+        AchievementResponse GetAchievements (List<string>? id = default(List<string>?), int? limit = default(int?), int? skip = default(int?));
 
         /// <summary>
         /// Get Achievements
@@ -133,7 +133,7 @@ namespace Ziqni.Api
         /// <param name="limit">Limit the returned total records found (optional)</param>
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <returns>ApiResponse of AchievementResponse</returns>
-        ApiResponse<AchievementResponse> GetAchievementsWithHttpInfo (List<string> id = default(List<string>), int? limit = default(int?), int? skip = default(int?));
+        ApiResponse<AchievementResponse> GetAchievementsWithHttpInfo (List<string>? id = default(List<string>?), int? limit = default(int?), int? skip = default(int?));
         /// <summary>
         /// 
         /// </summary>
@@ -143,7 +143,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Retrieve Achievements from Ziqni database by unique Achievements ID&#39;s or any other Post body parameters using the POST method (optional)</param>
         /// <returns>AchievementResponse</returns>
-        AchievementResponse GetAchievementsByQuery (QueryRequest body = default(QueryRequest));
+        AchievementResponse GetAchievementsByQuery (QueryRequest? body = default(QueryRequest?));
 
         /// <summary>
         /// 
@@ -154,7 +154,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Retrieve Achievements from Ziqni database by unique Achievements ID&#39;s or any other Post body parameters using the POST method (optional)</param>
         /// <returns>ApiResponse of AchievementResponse</returns>
-        ApiResponse<AchievementResponse> GetAchievementsByQueryWithHttpInfo (QueryRequest body = default(QueryRequest));
+        ApiResponse<AchievementResponse> GetAchievementsByQueryWithHttpInfo (QueryRequest? body = default(QueryRequest?));
         /// <summary>
         /// NOT AVAILABLE IN CURRENT RELEASE
         /// </summary>
@@ -213,7 +213,7 @@ namespace Ziqni.Api
         /// <param name="limit">Limit the returned total records found (optional)</param>
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <returns>MemberAchievementIssuedResponse</returns>
-        MemberAchievementIssuedResponse GetMembersAchievementsDetails (string id, string memberId = default(string), int? limit = default(int?), int? skip = default(int?));
+        MemberAchievementIssuedResponse GetMembersAchievementsDetails (string id, string? memberId = default(string?), int? limit = default(int?), int? skip = default(int?));
 
         /// <summary>
         /// 
@@ -227,7 +227,7 @@ namespace Ziqni.Api
         /// <param name="limit">Limit the returned total records found (optional)</param>
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <returns>ApiResponse of MemberAchievementIssuedResponse</returns>
-        ApiResponse<MemberAchievementIssuedResponse> GetMembersAchievementsDetailsWithHttpInfo (string id, string memberId = default(string), int? limit = default(int?), int? skip = default(int?));
+        ApiResponse<MemberAchievementIssuedResponse> GetMembersAchievementsDetailsWithHttpInfo (string id, string? memberId = default(string?), int? limit = default(int?), int? skip = default(int?));
         /// <summary>
         /// Update Achievements
         /// </summary>
@@ -258,7 +258,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Updates the state of the Achievement (optional)</param>
         /// <returns>ApiResponse</returns>
-        ApiResponse UpdateAchievementsLiveStatus (List<AchievementLiveStatusRequest> body = default(List<AchievementLiveStatusRequest>));
+        ApiResponse UpdateAchievementsLiveStatus (List<AchievementLiveStatusRequest>? body = default(List<AchievementLiveStatusRequest>?));
 
         /// <summary>
         /// 
@@ -269,7 +269,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Updates the state of the Achievement (optional)</param>
         /// <returns>ApiResponse of ApiResponse</returns>
-        ApiResponse<ApiResponse> UpdateAchievementsLiveStatusWithHttpInfo (List<AchievementLiveStatusRequest> body = default(List<AchievementLiveStatusRequest>));
+        ApiResponse<ApiResponse> UpdateAchievementsLiveStatusWithHttpInfo (List<AchievementLiveStatusRequest>? body = default(List<AchievementLiveStatusRequest>?));
         #endregion Synchronous Operations
         #region Asynchronous Operations
         /// <summary>
@@ -305,7 +305,7 @@ namespace Ziqni.Api
         /// <param name="id">The unique identifiers of the resources (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse> DeleteAchievementsAsync (List<string> id = default(List<string>), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse> DeleteAchievementsAsync (List<string>? id = default(List<string>?), CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Delete Achievements
@@ -317,7 +317,7 @@ namespace Ziqni.Api
         /// <param name="id">The unique identifiers of the resources (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (ApiResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<ApiResponse>> DeleteAchievementsWithHttpInfoAsync (List<string> id = default(List<string>), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<ApiResponse>> DeleteAchievementsWithHttpInfoAsync (List<string>? id = default(List<string>?), CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// 
         /// </summary>
@@ -328,7 +328,7 @@ namespace Ziqni.Api
         /// <param name="body">Delete Achievements from Ziqni database by unique Achievements ID&#39;s or any other Post body parameters using the POST method (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse> DeleteAchievementsByQueryAsync (QueryRequest body = default(QueryRequest), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse> DeleteAchievementsByQueryAsync (QueryRequest? body = default(QueryRequest?), CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// 
@@ -340,7 +340,7 @@ namespace Ziqni.Api
         /// <param name="body">Delete Achievements from Ziqni database by unique Achievements ID&#39;s or any other Post body parameters using the POST method (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (ApiResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<ApiResponse>> DeleteAchievementsByQueryWithHttpInfoAsync (QueryRequest body = default(QueryRequest), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<ApiResponse>> DeleteAchievementsByQueryWithHttpInfoAsync (QueryRequest? body = default(QueryRequest?), CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// 
         /// </summary>
@@ -376,7 +376,7 @@ namespace Ziqni.Api
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of AchievementResponse</returns>
-        System.Threading.Tasks.Task<AchievementResponse> GetAchievementsAsync (List<string> id = default(List<string>), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<AchievementResponse> GetAchievementsAsync (List<string>? id = default(List<string>?), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Get Achievements
@@ -390,7 +390,7 @@ namespace Ziqni.Api
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (AchievementResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<AchievementResponse>> GetAchievementsWithHttpInfoAsync (List<string> id = default(List<string>), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<AchievementResponse>> GetAchievementsWithHttpInfoAsync (List<string>? id = default(List<string>?), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// 
         /// </summary>
@@ -401,7 +401,7 @@ namespace Ziqni.Api
         /// <param name="body">Retrieve Achievements from Ziqni database by unique Achievements ID&#39;s or any other Post body parameters using the POST method (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of AchievementResponse</returns>
-        System.Threading.Tasks.Task<AchievementResponse> GetAchievementsByQueryAsync (QueryRequest body = default(QueryRequest), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<AchievementResponse> GetAchievementsByQueryAsync (QueryRequest? body = default(QueryRequest?), CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// 
@@ -413,7 +413,7 @@ namespace Ziqni.Api
         /// <param name="body">Retrieve Achievements from Ziqni database by unique Achievements ID&#39;s or any other Post body parameters using the POST method (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (AchievementResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<AchievementResponse>> GetAchievementsByQueryWithHttpInfoAsync (QueryRequest body = default(QueryRequest), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<AchievementResponse>> GetAchievementsByQueryWithHttpInfoAsync (QueryRequest? body = default(QueryRequest?), CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// NOT AVAILABLE IN CURRENT RELEASE
         /// </summary>
@@ -477,7 +477,7 @@ namespace Ziqni.Api
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of MemberAchievementIssuedResponse</returns>
-        System.Threading.Tasks.Task<MemberAchievementIssuedResponse> GetMembersAchievementsDetailsAsync (string id, string memberId = default(string), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<MemberAchievementIssuedResponse> GetMembersAchievementsDetailsAsync (string id, string? memberId = default(string?), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// 
@@ -492,7 +492,7 @@ namespace Ziqni.Api
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (MemberAchievementIssuedResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<MemberAchievementIssuedResponse>> GetMembersAchievementsDetailsWithHttpInfoAsync (string id, string memberId = default(string), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<MemberAchievementIssuedResponse>> GetMembersAchievementsDetailsWithHttpInfoAsync (string id, string? memberId = default(string?), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Update Achievements
         /// </summary>
@@ -526,7 +526,7 @@ namespace Ziqni.Api
         /// <param name="body">Updates the state of the Achievement (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse> UpdateAchievementsLiveStatusAsync (List<AchievementLiveStatusRequest> body = default(List<AchievementLiveStatusRequest>), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse> UpdateAchievementsLiveStatusAsync (List<AchievementLiveStatusRequest>? body = default(List<AchievementLiveStatusRequest>?), CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// 
@@ -538,7 +538,7 @@ namespace Ziqni.Api
         /// <param name="body">Updates the state of the Achievement (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (ApiResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<ApiResponse>> UpdateAchievementsLiveStatusWithHttpInfoAsync (List<AchievementLiveStatusRequest> body = default(List<AchievementLiveStatusRequest>), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<ApiResponse>> UpdateAchievementsLiveStatusWithHttpInfoAsync (List<AchievementLiveStatusRequest>? body = default(List<AchievementLiveStatusRequest>?), CancellationToken cancellationToken = default(CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -819,7 +819,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The unique identifiers of the resources (optional)</param>
         /// <returns>ApiResponse</returns>
-        public ApiResponse DeleteAchievements (List<string> id = default(List<string>))
+        public ApiResponse DeleteAchievements (List<string>? id = default(List<string>?))
         {
              ApiResponse<ApiResponse> localVarResponse = DeleteAchievementsWithHttpInfo(id);
              return localVarResponse.Data;
@@ -831,7 +831,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The unique identifiers of the resources (optional)</param>
         /// <returns>ApiResponse of ApiResponse</returns>
-        public ApiResponse<ApiResponse> DeleteAchievementsWithHttpInfo (List<string> id = default(List<string>))
+        public ApiResponse<ApiResponse> DeleteAchievementsWithHttpInfo (List<string>? id = default(List<string>?))
         {
 
             var localVarPath = "/achievements";
@@ -889,7 +889,7 @@ namespace Ziqni.Api
         /// <param name="id">The unique identifiers of the resources (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<ApiResponse> DeleteAchievementsAsync (List<string> id = default(List<string>), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<ApiResponse> DeleteAchievementsAsync (List<string>? id = default(List<string>?), CancellationToken cancellationToken = default(CancellationToken))
         {
              ApiResponse<ApiResponse> localVarResponse = await DeleteAchievementsWithHttpInfoAsync(id, cancellationToken);
              return localVarResponse.Data;
@@ -903,7 +903,7 @@ namespace Ziqni.Api
         /// <param name="id">The unique identifiers of the resources (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (ApiResponse)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<ApiResponse>> DeleteAchievementsWithHttpInfoAsync (List<string> id = default(List<string>), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<ApiResponse<ApiResponse>> DeleteAchievementsWithHttpInfoAsync (List<string>? id = default(List<string>?), CancellationToken cancellationToken = default(CancellationToken))
         {
 
             var localVarPath = "/achievements";
@@ -960,7 +960,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Delete Achievements from Ziqni database by unique Achievements ID&#39;s or any other Post body parameters using the POST method (optional)</param>
         /// <returns>ApiResponse</returns>
-        public ApiResponse DeleteAchievementsByQuery (QueryRequest body = default(QueryRequest))
+        public ApiResponse DeleteAchievementsByQuery (QueryRequest? body = default(QueryRequest?))
         {
              ApiResponse<ApiResponse> localVarResponse = DeleteAchievementsByQueryWithHttpInfo(body);
              return localVarResponse.Data;
@@ -972,7 +972,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Delete Achievements from Ziqni database by unique Achievements ID&#39;s or any other Post body parameters using the POST method (optional)</param>
         /// <returns>ApiResponse of ApiResponse</returns>
-        public ApiResponse<ApiResponse> DeleteAchievementsByQueryWithHttpInfo (QueryRequest body = default(QueryRequest))
+        public ApiResponse<ApiResponse> DeleteAchievementsByQueryWithHttpInfo (QueryRequest? body = default(QueryRequest?))
         {
 
             var localVarPath = "/achievements/delete";
@@ -1038,7 +1038,7 @@ namespace Ziqni.Api
         /// <param name="body">Delete Achievements from Ziqni database by unique Achievements ID&#39;s or any other Post body parameters using the POST method (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<ApiResponse> DeleteAchievementsByQueryAsync (QueryRequest body = default(QueryRequest), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<ApiResponse> DeleteAchievementsByQueryAsync (QueryRequest? body = default(QueryRequest?), CancellationToken cancellationToken = default(CancellationToken))
         {
              ApiResponse<ApiResponse> localVarResponse = await DeleteAchievementsByQueryWithHttpInfoAsync(body, cancellationToken);
              return localVarResponse.Data;
@@ -1052,7 +1052,7 @@ namespace Ziqni.Api
         /// <param name="body">Delete Achievements from Ziqni database by unique Achievements ID&#39;s or any other Post body parameters using the POST method (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (ApiResponse)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<ApiResponse>> DeleteAchievementsByQueryWithHttpInfoAsync (QueryRequest body = default(QueryRequest), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<ApiResponse<ApiResponse>> DeleteAchievementsByQueryWithHttpInfoAsync (QueryRequest? body = default(QueryRequest?), CancellationToken cancellationToken = default(CancellationToken))
         {
 
             var localVarPath = "/achievements/delete";
@@ -1266,7 +1266,7 @@ namespace Ziqni.Api
         /// <param name="limit">Limit the returned total records found (optional)</param>
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <returns>AchievementResponse</returns>
-        public AchievementResponse GetAchievements (List<string> id = default(List<string>), int? limit = default(int?), int? skip = default(int?))
+        public AchievementResponse GetAchievements (List<string>? id = default(List<string>?), int? limit = default(int?), int? skip = default(int?))
         {
              ApiResponse<AchievementResponse> localVarResponse = GetAchievementsWithHttpInfo(id, limit, skip);
              return localVarResponse.Data;
@@ -1280,7 +1280,7 @@ namespace Ziqni.Api
         /// <param name="limit">Limit the returned total records found (optional)</param>
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <returns>ApiResponse of AchievementResponse</returns>
-        public ApiResponse<AchievementResponse> GetAchievementsWithHttpInfo (List<string> id = default(List<string>), int? limit = default(int?), int? skip = default(int?))
+        public ApiResponse<AchievementResponse> GetAchievementsWithHttpInfo (List<string>? id = default(List<string>?), int? limit = default(int?), int? skip = default(int?))
         {
 
             var localVarPath = "/achievements";
@@ -1342,7 +1342,7 @@ namespace Ziqni.Api
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of AchievementResponse</returns>
-        public async System.Threading.Tasks.Task<AchievementResponse> GetAchievementsAsync (List<string> id = default(List<string>), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<AchievementResponse> GetAchievementsAsync (List<string>? id = default(List<string>?), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken))
         {
              ApiResponse<AchievementResponse> localVarResponse = await GetAchievementsWithHttpInfoAsync(id, limit, skip, cancellationToken);
              return localVarResponse.Data;
@@ -1358,7 +1358,7 @@ namespace Ziqni.Api
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (AchievementResponse)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<AchievementResponse>> GetAchievementsWithHttpInfoAsync (List<string> id = default(List<string>), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<ApiResponse<AchievementResponse>> GetAchievementsWithHttpInfoAsync (List<string>? id = default(List<string>?), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken))
         {
 
             var localVarPath = "/achievements";
@@ -1417,7 +1417,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Retrieve Achievements from Ziqni database by unique Achievements ID&#39;s or any other Post body parameters using the POST method (optional)</param>
         /// <returns>AchievementResponse</returns>
-        public AchievementResponse GetAchievementsByQuery (QueryRequest body = default(QueryRequest))
+        public AchievementResponse GetAchievementsByQuery (QueryRequest? body = default(QueryRequest?))
         {
              ApiResponse<AchievementResponse> localVarResponse = GetAchievementsByQueryWithHttpInfo(body);
              return localVarResponse.Data;
@@ -1429,7 +1429,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Retrieve Achievements from Ziqni database by unique Achievements ID&#39;s or any other Post body parameters using the POST method (optional)</param>
         /// <returns>ApiResponse of AchievementResponse</returns>
-        public ApiResponse<AchievementResponse> GetAchievementsByQueryWithHttpInfo (QueryRequest body = default(QueryRequest))
+        public ApiResponse<AchievementResponse> GetAchievementsByQueryWithHttpInfo (QueryRequest? body = default(QueryRequest?))
         {
 
             var localVarPath = "/achievements/query";
@@ -1495,7 +1495,7 @@ namespace Ziqni.Api
         /// <param name="body">Retrieve Achievements from Ziqni database by unique Achievements ID&#39;s or any other Post body parameters using the POST method (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of AchievementResponse</returns>
-        public async System.Threading.Tasks.Task<AchievementResponse> GetAchievementsByQueryAsync (QueryRequest body = default(QueryRequest), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<AchievementResponse> GetAchievementsByQueryAsync (QueryRequest? body = default(QueryRequest?), CancellationToken cancellationToken = default(CancellationToken))
         {
              ApiResponse<AchievementResponse> localVarResponse = await GetAchievementsByQueryWithHttpInfoAsync(body, cancellationToken);
              return localVarResponse.Data;
@@ -1509,7 +1509,7 @@ namespace Ziqni.Api
         /// <param name="body">Retrieve Achievements from Ziqni database by unique Achievements ID&#39;s or any other Post body parameters using the POST method (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (AchievementResponse)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<AchievementResponse>> GetAchievementsByQueryWithHttpInfoAsync (QueryRequest body = default(QueryRequest), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<ApiResponse<AchievementResponse>> GetAchievementsByQueryWithHttpInfoAsync (QueryRequest? body = default(QueryRequest?), CancellationToken cancellationToken = default(CancellationToken))
         {
 
             var localVarPath = "/achievements/query";
@@ -1883,7 +1883,7 @@ namespace Ziqni.Api
         /// <param name="limit">Limit the returned total records found (optional)</param>
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <returns>MemberAchievementIssuedResponse</returns>
-        public MemberAchievementIssuedResponse GetMembersAchievementsDetails (string id, string memberId = default(string), int? limit = default(int?), int? skip = default(int?))
+        public MemberAchievementIssuedResponse GetMembersAchievementsDetails (string id, string? memberId = default(string?), int? limit = default(int?), int? skip = default(int?))
         {
              ApiResponse<MemberAchievementIssuedResponse> localVarResponse = GetMembersAchievementsDetailsWithHttpInfo(id, memberId, limit, skip);
              return localVarResponse.Data;
@@ -1898,7 +1898,7 @@ namespace Ziqni.Api
         /// <param name="limit">Limit the returned total records found (optional)</param>
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <returns>ApiResponse of MemberAchievementIssuedResponse</returns>
-        public ApiResponse<MemberAchievementIssuedResponse> GetMembersAchievementsDetailsWithHttpInfo (string id, string memberId = default(string), int? limit = default(int?), int? skip = default(int?))
+        public ApiResponse<MemberAchievementIssuedResponse> GetMembersAchievementsDetailsWithHttpInfo (string id, string? memberId = default(string?), int? limit = default(int?), int? skip = default(int?))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -1965,7 +1965,7 @@ namespace Ziqni.Api
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of MemberAchievementIssuedResponse</returns>
-        public async System.Threading.Tasks.Task<MemberAchievementIssuedResponse> GetMembersAchievementsDetailsAsync (string id, string memberId = default(string), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<MemberAchievementIssuedResponse> GetMembersAchievementsDetailsAsync (string id, string? memberId = default(string?), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken))
         {
              ApiResponse<MemberAchievementIssuedResponse> localVarResponse = await GetMembersAchievementsDetailsWithHttpInfoAsync(id, memberId, limit, skip, cancellationToken);
              return localVarResponse.Data;
@@ -1982,7 +1982,7 @@ namespace Ziqni.Api
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (MemberAchievementIssuedResponse)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<MemberAchievementIssuedResponse>> GetMembersAchievementsDetailsWithHttpInfoAsync (string id, string memberId = default(string), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<ApiResponse<MemberAchievementIssuedResponse>> GetMembersAchievementsDetailsWithHttpInfoAsync (string id, string? memberId = default(string?), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -2208,7 +2208,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Updates the state of the Achievement (optional)</param>
         /// <returns>ApiResponse</returns>
-        public ApiResponse UpdateAchievementsLiveStatus (List<AchievementLiveStatusRequest> body = default(List<AchievementLiveStatusRequest>))
+        public ApiResponse UpdateAchievementsLiveStatus (List<AchievementLiveStatusRequest>? body = default(List<AchievementLiveStatusRequest>?))
         {
              ApiResponse<ApiResponse> localVarResponse = UpdateAchievementsLiveStatusWithHttpInfo(body);
              return localVarResponse.Data;
@@ -2220,7 +2220,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Updates the state of the Achievement (optional)</param>
         /// <returns>ApiResponse of ApiResponse</returns>
-        public ApiResponse<ApiResponse> UpdateAchievementsLiveStatusWithHttpInfo (List<AchievementLiveStatusRequest> body = default(List<AchievementLiveStatusRequest>))
+        public ApiResponse<ApiResponse> UpdateAchievementsLiveStatusWithHttpInfo (List<AchievementLiveStatusRequest>? body = default(List<AchievementLiveStatusRequest>?))
         {
 
             var localVarPath = "/achievements/state";
@@ -2286,7 +2286,7 @@ namespace Ziqni.Api
         /// <param name="body">Updates the state of the Achievement (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<ApiResponse> UpdateAchievementsLiveStatusAsync (List<AchievementLiveStatusRequest> body = default(List<AchievementLiveStatusRequest>), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<ApiResponse> UpdateAchievementsLiveStatusAsync (List<AchievementLiveStatusRequest>? body = default(List<AchievementLiveStatusRequest>?), CancellationToken cancellationToken = default(CancellationToken))
         {
              ApiResponse<ApiResponse> localVarResponse = await UpdateAchievementsLiveStatusWithHttpInfoAsync(body, cancellationToken);
              return localVarResponse.Data;
@@ -2300,7 +2300,7 @@ namespace Ziqni.Api
         /// <param name="body">Updates the state of the Achievement (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (ApiResponse)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<ApiResponse>> UpdateAchievementsLiveStatusWithHttpInfoAsync (List<AchievementLiveStatusRequest> body = default(List<AchievementLiveStatusRequest>), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<ApiResponse<ApiResponse>> UpdateAchievementsLiveStatusWithHttpInfoAsync (List<AchievementLiveStatusRequest>? body = default(List<AchievementLiveStatusRequest>?), CancellationToken cancellationToken = default(CancellationToken))
         {
 
             var localVarPath = "/achievements/state";

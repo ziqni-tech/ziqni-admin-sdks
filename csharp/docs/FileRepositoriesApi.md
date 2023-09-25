@@ -101,7 +101,7 @@ Name | Type | Description  | Notes
 
 ## DeleteFileRepositories
 
-> ApiResponse DeleteFileRepositories (List<string> id = null, bool? permanent = null)
+> ApiResponse DeleteFileRepositories (List<string>? id = null, bool? permanent = null)
 
 
 
@@ -127,7 +127,7 @@ namespace Example
             Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new FileRepositoriesApi(Configuration.Default);
-            var id = new List<string>(); // List<string> | The unique identifiers of the resources (optional) 
+            var id = new List<string>?(); // List<string>? | The unique identifiers of the resources (optional) 
             var permanent = true;  // bool? | Permanently delete the file object. Default is false (optional) 
 
             try
@@ -151,7 +151,7 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | [**List&lt;string&gt;**](string.md)| The unique identifiers of the resources | [optional] 
+ **id** | [**List&lt;string&gt;?**](string.md)| The unique identifiers of the resources | [optional] 
  **permanent** | **bool?**| Permanently delete the file object. Default is false | [optional] 
 
 ### Return type
@@ -189,7 +189,7 @@ Name | Type | Description  | Notes
 
 ## DeleteFileRepositoriesByQuery
 
-> ApiResponse DeleteFileRepositoriesByQuery (QueryRequest body = null)
+> ApiResponse DeleteFileRepositoriesByQuery (QueryRequest? body = null)
 
 
 
@@ -215,7 +215,7 @@ namespace Example
             Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new FileRepositoriesApi(Configuration.Default);
-            var body = new QueryRequest(); // QueryRequest | Delete repositories from a Ziqni space by unique repository ID's or any other POST body parameters using the POST method (optional) 
+            var body = new QueryRequest?(); // QueryRequest? | Delete repositories from a Ziqni space by unique repository ID's or any other POST body parameters using the POST method (optional) 
 
             try
             {
@@ -238,7 +238,7 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**QueryRequest**](QueryRequest.md)| Delete repositories from a Ziqni space by unique repository ID&#39;s or any other POST body parameters using the POST method | [optional] 
+ **body** | [**QueryRequest?**](QueryRequest?.md)| Delete repositories from a Ziqni space by unique repository ID&#39;s or any other POST body parameters using the POST method | [optional] 
 
 ### Return type
 
@@ -275,7 +275,7 @@ Name | Type | Description  | Notes
 
 ## GetFileRepositories
 
-> RepositoryResponse GetFileRepositories (int? limit = null, int? skip = null, List<string> id = null)
+> RepositoryResponse GetFileRepositories (int? limit = null, int? skip = null, List<string>? id = null)
 
 
 
@@ -303,7 +303,7 @@ namespace Example
             var apiInstance = new FileRepositoriesApi(Configuration.Default);
             var limit = 56;  // int? | Limit the returned total records found (optional) 
             var skip = 56;  // int? | Skip the returned records found and return the next batch of records (optional) 
-            var id = new List<string>(); // List<string> | The unique identifiers of the resources (optional) 
+            var id = new List<string>?(); // List<string>? | The unique identifiers of the resources (optional) 
 
             try
             {
@@ -328,7 +328,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **limit** | **int?**| Limit the returned total records found | [optional] 
  **skip** | **int?**| Skip the returned records found and return the next batch of records | [optional] 
- **id** | [**List&lt;string&gt;**](string.md)| The unique identifiers of the resources | [optional] 
+ **id** | [**List&lt;string&gt;?**](string.md)| The unique identifiers of the resources | [optional] 
 
 ### Return type
 
@@ -365,7 +365,7 @@ Name | Type | Description  | Notes
 
 ## GetFileRepositoriesByQuery
 
-> RepositoryResponse GetFileRepositoriesByQuery (QueryRequest body = null)
+> RepositoryResponse GetFileRepositoriesByQuery (QueryRequest? body = null)
 
 
 
@@ -391,7 +391,7 @@ namespace Example
             Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new FileRepositoriesApi(Configuration.Default);
-            var body = new QueryRequest(); // QueryRequest | Retrieve file object repositories from Ziqni by unique repository ID's or any other POST body parameters using the POST method (optional) 
+            var body = new QueryRequest?(); // QueryRequest? | Retrieve file object repositories from Ziqni by unique repository ID's or any other POST body parameters using the POST method (optional) 
 
             try
             {
@@ -414,7 +414,7 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**QueryRequest**](QueryRequest.md)| Retrieve file object repositories from Ziqni by unique repository ID&#39;s or any other POST body parameters using the POST method | [optional] 
+ **body** | [**QueryRequest?**](QueryRequest?.md)| Retrieve file object repositories from Ziqni by unique repository ID&#39;s or any other POST body parameters using the POST method | [optional] 
 
 ### Return type
 

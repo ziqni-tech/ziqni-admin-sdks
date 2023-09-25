@@ -34,7 +34,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="queryRequest"> (optional)</param>
         /// <returns>EntrantCountResponse</returns>
-        EntrantCountResponse ExportEntrantsByQuery (QueryRequest queryRequest = default(QueryRequest));
+        EntrantCountResponse ExportEntrantsByQuery (QueryRequest? queryRequest = default(QueryRequest?));
 
         /// <summary>
         /// Get entrants by query
@@ -45,7 +45,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="queryRequest"> (optional)</param>
         /// <returns>ApiResponse of EntrantCountResponse</returns>
-        ApiResponse<EntrantCountResponse> ExportEntrantsByQueryWithHttpInfo (QueryRequest queryRequest = default(QueryRequest));
+        ApiResponse<EntrantCountResponse> ExportEntrantsByQueryWithHttpInfo (QueryRequest? queryRequest = default(QueryRequest?));
         /// <summary>
         /// Get entrants by query
         /// </summary>
@@ -55,7 +55,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="queryRequest"> (optional)</param>
         /// <returns>EntrantResponse</returns>
-        EntrantResponse GetEntrantsByQuery (QueryRequest queryRequest = default(QueryRequest));
+        EntrantResponse GetEntrantsByQuery (QueryRequest? queryRequest = default(QueryRequest?));
 
         /// <summary>
         /// Get entrants by query
@@ -66,7 +66,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="queryRequest"> (optional)</param>
         /// <returns>ApiResponse of EntrantResponse</returns>
-        ApiResponse<EntrantResponse> GetEntrantsByQueryWithHttpInfo (QueryRequest queryRequest = default(QueryRequest));
+        ApiResponse<EntrantResponse> GetEntrantsByQueryWithHttpInfo (QueryRequest? queryRequest = default(QueryRequest?));
         /// <summary>
         /// 
         /// </summary>
@@ -76,7 +76,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Updates the status of the Entrants (optional)</param>
         /// <returns>ApiResponse</returns>
-        ApiResponse UpdateEntrants (UpdateEntrantRequest body = default(UpdateEntrantRequest));
+        ApiResponse UpdateEntrants (UpdateEntrantRequest? body = default(UpdateEntrantRequest?));
 
         /// <summary>
         /// 
@@ -87,7 +87,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Updates the status of the Entrants (optional)</param>
         /// <returns>ApiResponse of ApiResponse</returns>
-        ApiResponse<ApiResponse> UpdateEntrantsWithHttpInfo (UpdateEntrantRequest body = default(UpdateEntrantRequest));
+        ApiResponse<ApiResponse> UpdateEntrantsWithHttpInfo (UpdateEntrantRequest? body = default(UpdateEntrantRequest?));
         #endregion Synchronous Operations
         #region Asynchronous Operations
         /// <summary>
@@ -100,7 +100,7 @@ namespace Ziqni.Api
         /// <param name="queryRequest"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of EntrantCountResponse</returns>
-        System.Threading.Tasks.Task<EntrantCountResponse> ExportEntrantsByQueryAsync (QueryRequest queryRequest = default(QueryRequest), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<EntrantCountResponse> ExportEntrantsByQueryAsync (QueryRequest? queryRequest = default(QueryRequest?), CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Get entrants by query
@@ -112,7 +112,7 @@ namespace Ziqni.Api
         /// <param name="queryRequest"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (EntrantCountResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<EntrantCountResponse>> ExportEntrantsByQueryWithHttpInfoAsync (QueryRequest queryRequest = default(QueryRequest), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<EntrantCountResponse>> ExportEntrantsByQueryWithHttpInfoAsync (QueryRequest? queryRequest = default(QueryRequest?), CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Get entrants by query
         /// </summary>
@@ -123,7 +123,7 @@ namespace Ziqni.Api
         /// <param name="queryRequest"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of EntrantResponse</returns>
-        System.Threading.Tasks.Task<EntrantResponse> GetEntrantsByQueryAsync (QueryRequest queryRequest = default(QueryRequest), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<EntrantResponse> GetEntrantsByQueryAsync (QueryRequest? queryRequest = default(QueryRequest?), CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Get entrants by query
@@ -135,7 +135,7 @@ namespace Ziqni.Api
         /// <param name="queryRequest"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (EntrantResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<EntrantResponse>> GetEntrantsByQueryWithHttpInfoAsync (QueryRequest queryRequest = default(QueryRequest), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<EntrantResponse>> GetEntrantsByQueryWithHttpInfoAsync (QueryRequest? queryRequest = default(QueryRequest?), CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// 
         /// </summary>
@@ -146,7 +146,7 @@ namespace Ziqni.Api
         /// <param name="body">Updates the status of the Entrants (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse> UpdateEntrantsAsync (UpdateEntrantRequest body = default(UpdateEntrantRequest), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse> UpdateEntrantsAsync (UpdateEntrantRequest? body = default(UpdateEntrantRequest?), CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// 
@@ -158,7 +158,7 @@ namespace Ziqni.Api
         /// <param name="body">Updates the status of the Entrants (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (ApiResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<ApiResponse>> UpdateEntrantsWithHttpInfoAsync (UpdateEntrantRequest body = default(UpdateEntrantRequest), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<ApiResponse>> UpdateEntrantsWithHttpInfoAsync (UpdateEntrantRequest? body = default(UpdateEntrantRequest?), CancellationToken cancellationToken = default(CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -276,7 +276,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="queryRequest"> (optional)</param>
         /// <returns>EntrantCountResponse</returns>
-        public EntrantCountResponse ExportEntrantsByQuery (QueryRequest queryRequest = default(QueryRequest))
+        public EntrantCountResponse ExportEntrantsByQuery (QueryRequest? queryRequest = default(QueryRequest?))
         {
              ApiResponse<EntrantCountResponse> localVarResponse = ExportEntrantsByQueryWithHttpInfo(queryRequest);
              return localVarResponse.Data;
@@ -288,7 +288,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="queryRequest"> (optional)</param>
         /// <returns>ApiResponse of EntrantCountResponse</returns>
-        public ApiResponse<EntrantCountResponse> ExportEntrantsByQueryWithHttpInfo (QueryRequest queryRequest = default(QueryRequest))
+        public ApiResponse<EntrantCountResponse> ExportEntrantsByQueryWithHttpInfo (QueryRequest? queryRequest = default(QueryRequest?))
         {
 
             var localVarPath = "/entrants/export";
@@ -354,7 +354,7 @@ namespace Ziqni.Api
         /// <param name="queryRequest"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of EntrantCountResponse</returns>
-        public async System.Threading.Tasks.Task<EntrantCountResponse> ExportEntrantsByQueryAsync (QueryRequest queryRequest = default(QueryRequest), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<EntrantCountResponse> ExportEntrantsByQueryAsync (QueryRequest? queryRequest = default(QueryRequest?), CancellationToken cancellationToken = default(CancellationToken))
         {
              ApiResponse<EntrantCountResponse> localVarResponse = await ExportEntrantsByQueryWithHttpInfoAsync(queryRequest, cancellationToken);
              return localVarResponse.Data;
@@ -368,7 +368,7 @@ namespace Ziqni.Api
         /// <param name="queryRequest"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (EntrantCountResponse)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<EntrantCountResponse>> ExportEntrantsByQueryWithHttpInfoAsync (QueryRequest queryRequest = default(QueryRequest), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<ApiResponse<EntrantCountResponse>> ExportEntrantsByQueryWithHttpInfoAsync (QueryRequest? queryRequest = default(QueryRequest?), CancellationToken cancellationToken = default(CancellationToken))
         {
 
             var localVarPath = "/entrants/export";
@@ -433,7 +433,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="queryRequest"> (optional)</param>
         /// <returns>EntrantResponse</returns>
-        public EntrantResponse GetEntrantsByQuery (QueryRequest queryRequest = default(QueryRequest))
+        public EntrantResponse GetEntrantsByQuery (QueryRequest? queryRequest = default(QueryRequest?))
         {
              ApiResponse<EntrantResponse> localVarResponse = GetEntrantsByQueryWithHttpInfo(queryRequest);
              return localVarResponse.Data;
@@ -445,7 +445,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="queryRequest"> (optional)</param>
         /// <returns>ApiResponse of EntrantResponse</returns>
-        public ApiResponse<EntrantResponse> GetEntrantsByQueryWithHttpInfo (QueryRequest queryRequest = default(QueryRequest))
+        public ApiResponse<EntrantResponse> GetEntrantsByQueryWithHttpInfo (QueryRequest? queryRequest = default(QueryRequest?))
         {
 
             var localVarPath = "/entrants/query";
@@ -511,7 +511,7 @@ namespace Ziqni.Api
         /// <param name="queryRequest"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of EntrantResponse</returns>
-        public async System.Threading.Tasks.Task<EntrantResponse> GetEntrantsByQueryAsync (QueryRequest queryRequest = default(QueryRequest), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<EntrantResponse> GetEntrantsByQueryAsync (QueryRequest? queryRequest = default(QueryRequest?), CancellationToken cancellationToken = default(CancellationToken))
         {
              ApiResponse<EntrantResponse> localVarResponse = await GetEntrantsByQueryWithHttpInfoAsync(queryRequest, cancellationToken);
              return localVarResponse.Data;
@@ -525,7 +525,7 @@ namespace Ziqni.Api
         /// <param name="queryRequest"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (EntrantResponse)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<EntrantResponse>> GetEntrantsByQueryWithHttpInfoAsync (QueryRequest queryRequest = default(QueryRequest), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<ApiResponse<EntrantResponse>> GetEntrantsByQueryWithHttpInfoAsync (QueryRequest? queryRequest = default(QueryRequest?), CancellationToken cancellationToken = default(CancellationToken))
         {
 
             var localVarPath = "/entrants/query";
@@ -590,7 +590,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Updates the status of the Entrants (optional)</param>
         /// <returns>ApiResponse</returns>
-        public ApiResponse UpdateEntrants (UpdateEntrantRequest body = default(UpdateEntrantRequest))
+        public ApiResponse UpdateEntrants (UpdateEntrantRequest? body = default(UpdateEntrantRequest?))
         {
              ApiResponse<ApiResponse> localVarResponse = UpdateEntrantsWithHttpInfo(body);
              return localVarResponse.Data;
@@ -602,7 +602,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Updates the status of the Entrants (optional)</param>
         /// <returns>ApiResponse of ApiResponse</returns>
-        public ApiResponse<ApiResponse> UpdateEntrantsWithHttpInfo (UpdateEntrantRequest body = default(UpdateEntrantRequest))
+        public ApiResponse<ApiResponse> UpdateEntrantsWithHttpInfo (UpdateEntrantRequest? body = default(UpdateEntrantRequest?))
         {
 
             var localVarPath = "/entrants";
@@ -668,7 +668,7 @@ namespace Ziqni.Api
         /// <param name="body">Updates the status of the Entrants (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<ApiResponse> UpdateEntrantsAsync (UpdateEntrantRequest body = default(UpdateEntrantRequest), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<ApiResponse> UpdateEntrantsAsync (UpdateEntrantRequest? body = default(UpdateEntrantRequest?), CancellationToken cancellationToken = default(CancellationToken))
         {
              ApiResponse<ApiResponse> localVarResponse = await UpdateEntrantsWithHttpInfoAsync(body, cancellationToken);
              return localVarResponse.Data;
@@ -682,7 +682,7 @@ namespace Ziqni.Api
         /// <param name="body">Updates the status of the Entrants (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (ApiResponse)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<ApiResponse>> UpdateEntrantsWithHttpInfoAsync (UpdateEntrantRequest body = default(UpdateEntrantRequest), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<ApiResponse<ApiResponse>> UpdateEntrantsWithHttpInfoAsync (UpdateEntrantRequest? body = default(UpdateEntrantRequest?), CancellationToken cancellationToken = default(CancellationToken))
         {
 
             var localVarPath = "/entrants";

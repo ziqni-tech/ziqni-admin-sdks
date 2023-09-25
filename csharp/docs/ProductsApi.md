@@ -101,7 +101,7 @@ Name | Type | Description  | Notes
 
 ## DeleteProducts
 
-> ApiResponse DeleteProducts (List<string> id = null)
+> ApiResponse DeleteProducts (List<string>? id = null)
 
 Delete products
 
@@ -127,7 +127,7 @@ namespace Example
             Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new ProductsApi(Configuration.Default);
-            var id = new List<string>(); // List<string> | The unique identifiers of the resources (optional) 
+            var id = new List<string>?(); // List<string>? | The unique identifiers of the resources (optional) 
 
             try
             {
@@ -151,7 +151,7 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | [**List&lt;string&gt;**](string.md)| The unique identifiers of the resources | [optional] 
+ **id** | [**List&lt;string&gt;?**](string.md)| The unique identifiers of the resources | [optional] 
 
 ### Return type
 
@@ -186,7 +186,7 @@ Name | Type | Description  | Notes
 
 ## DeleteProductsByQuery
 
-> ApiResponse DeleteProductsByQuery (QueryRequest body = null)
+> ApiResponse DeleteProductsByQuery (QueryRequest? body = null)
 
 Delete products by query
 
@@ -212,7 +212,7 @@ namespace Example
             Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new ProductsApi(Configuration.Default);
-            var body = new QueryRequest(); // QueryRequest | Delete Products from Ziqni database by unique Product ID's or any other POST body parameters using the POST method (optional) 
+            var body = new QueryRequest?(); // QueryRequest? | Delete Products from Ziqni database by unique Product ID's or any other POST body parameters using the POST method (optional) 
 
             try
             {
@@ -236,7 +236,7 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**QueryRequest**](QueryRequest.md)| Delete Products from Ziqni database by unique Product ID&#39;s or any other POST body parameters using the POST method | [optional] 
+ **body** | [**QueryRequest?**](QueryRequest?.md)| Delete Products from Ziqni database by unique Product ID&#39;s or any other POST body parameters using the POST method | [optional] 
 
 ### Return type
 
@@ -271,7 +271,7 @@ Name | Type | Description  | Notes
 
 ## GetProducts
 
-> ProductResponse GetProducts (List<string> id = null, int? limit = null, int? skip = null)
+> ProductResponse GetProducts (List<string>? id = null, int? limit = null, int? skip = null)
 
 Get products
 
@@ -297,7 +297,7 @@ namespace Example
             Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new ProductsApi(Configuration.Default);
-            var id = new List<string>(); // List<string> | The unique identifiers of the resources (optional) 
+            var id = new List<string>?(); // List<string>? | The unique identifiers of the resources (optional) 
             var limit = 56;  // int? | Limit the returned total records found (optional) 
             var skip = 56;  // int? | Skip the returned records found and return the next batch of records (optional) 
 
@@ -323,7 +323,7 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | [**List&lt;string&gt;**](string.md)| The unique identifiers of the resources | [optional] 
+ **id** | [**List&lt;string&gt;?**](string.md)| The unique identifiers of the resources | [optional] 
  **limit** | **int?**| Limit the returned total records found | [optional] 
  **skip** | **int?**| Skip the returned records found and return the next batch of records | [optional] 
 
@@ -360,7 +360,7 @@ Name | Type | Description  | Notes
 
 ## GetProductsByQuery
 
-> ProductResponse GetProductsByQuery (QueryRequest body = null)
+> ProductResponse GetProductsByQuery (QueryRequest? body = null)
 
 Get products by query
 
@@ -386,7 +386,7 @@ namespace Example
             Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new ProductsApi(Configuration.Default);
-            var body = new QueryRequest(); // QueryRequest | Retrieve Products from Ziqni database by unique Product ID's or any other POST body parameters using the POST method (optional) 
+            var body = new QueryRequest?(); // QueryRequest? | Retrieve Products from Ziqni database by unique Product ID's or any other POST body parameters using the POST method (optional) 
 
             try
             {
@@ -410,7 +410,7 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**QueryRequest**](QueryRequest.md)| Retrieve Products from Ziqni database by unique Product ID&#39;s or any other POST body parameters using the POST method | [optional] 
+ **body** | [**QueryRequest?**](QueryRequest?.md)| Retrieve Products from Ziqni database by unique Product ID&#39;s or any other POST body parameters using the POST method | [optional] 
 
 ### Return type
 
@@ -445,7 +445,7 @@ Name | Type | Description  | Notes
 
 ## GetProductsByRefId
 
-> ProductResponse GetProductsByRefId (List<string> refIds = null, int? limit = null, int? skip = null)
+> ProductResponse GetProductsByRefId (List<string>? refIds = null, int? limit = null, int? skip = null)
 
 Get products by reference ids
 
@@ -471,7 +471,7 @@ namespace Example
             Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new ProductsApi(Configuration.Default);
-            var refIds = new List<string>(); // List<string> | The reference ids  of the resources (optional) 
+            var refIds = new List<string>?(); // List<string>? | The reference ids  of the resources (optional) 
             var limit = 56;  // int? | Limit the returned total records found (optional) 
             var skip = 56;  // int? | Skip the returned records found and return the next batch of records (optional) 
 
@@ -497,7 +497,7 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **refIds** | [**List&lt;string&gt;**](string.md)| The reference ids  of the resources | [optional] 
+ **refIds** | [**List&lt;string&gt;?**](string.md)| The reference ids  of the resources | [optional] 
  **limit** | **int?**| Limit the returned total records found | [optional] 
  **skip** | **int?**| Skip the returned records found and return the next batch of records | [optional] 
 

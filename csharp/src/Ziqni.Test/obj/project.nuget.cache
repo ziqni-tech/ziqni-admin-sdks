@@ -1,0 +1,25 @@
+{
+  "version": 2,
+  "dgSpecHash": "qQJB7Ceo1Ox636LrJY+j+dk4XDtXEm7WuI/DqqKk/T5AGRwewCHI9sfbpxgIm0bJSB3fekXssGPT86Gf/b8YYQ==",
+  "success": false,
+  "projectFilePath": "/home/carel/IdeaProjects/ziqni-tech/ziqni-admin-sdks/csharp/src/Ziqni.Test/Ziqni.Test.csproj",
+  "expectedPackageFiles": [
+    "/home/carel/.nuget/packages/jsonsubtypes/1.6.0/jsonsubtypes.1.6.0.nupkg.sha512",
+    "/home/carel/.nuget/packages/microsoft.netframework.referenceassemblies/1.0.3/microsoft.netframework.referenceassemblies.1.0.3.nupkg.sha512",
+    "/home/carel/.nuget/packages/microsoft.netframework.referenceassemblies.net45/1.0.3/microsoft.netframework.referenceassemblies.net45.1.0.3.nupkg.sha512",
+    "/home/carel/.nuget/packages/newtonsoft.json/12.0.3/newtonsoft.json.12.0.3.nupkg.sha512",
+    "/home/carel/.nuget/packages/nunit/2.6.4/nunit.2.6.4.nupkg.sha512",
+    "/home/carel/.nuget/packages/restsharp/105.1.0/restsharp.105.1.0.nupkg.sha512"
+  ],
+  "logs": [
+    {
+      "code": "NU1201",
+      "level": "Error",
+      "message": "Project Ziqni is not compatible with net45 (.NETFramework,Version=v4.5). Project Ziqni supports: net6.0 (.NETCoreApp,Version=v6.0)",
+      "libraryId": "Ziqni",
+      "targetGraphs": [
+        ".NETFramework,Version=v4.5"
+      ]
+    }
+  ]
+}

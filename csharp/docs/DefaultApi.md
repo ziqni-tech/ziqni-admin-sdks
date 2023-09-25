@@ -87,7 +87,7 @@ void (empty response body)
 
 ## UnsubscribeFromEntityChanges
 
-> void UnsubscribeFromEntityChanges (string subscriptionId = null)
+> void UnsubscribeFromEntityChanges (string? subscriptionId = null)
 
 
 
@@ -111,7 +111,7 @@ namespace Example
             Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new DefaultApi(Configuration.Default);
-            var subscriptionId = subscriptionId_example;  // string |  (optional) 
+            var subscriptionId = subscriptionId_example;  // string? |  (optional) 
 
             try
             {
@@ -133,7 +133,7 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **subscriptionId** | **string**|  | [optional] 
+ **subscriptionId** | **string?**|  | [optional] 
 
 ### Return type
 

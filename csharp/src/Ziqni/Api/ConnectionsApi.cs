@@ -55,7 +55,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The unique identifiers of the resources (optional)</param>
         /// <returns>ApiResponse</returns>
-        ApiResponse DeleteConnections (List<string> id = default(List<string>));
+        ApiResponse DeleteConnections (List<string>? id = default(List<string>?));
 
         /// <summary>
         /// 
@@ -66,7 +66,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The unique identifiers of the resources (optional)</param>
         /// <returns>ApiResponse of ApiResponse</returns>
-        ApiResponse<ApiResponse> DeleteConnectionsWithHttpInfo (List<string> id = default(List<string>));
+        ApiResponse<ApiResponse> DeleteConnectionsWithHttpInfo (List<string>? id = default(List<string>?));
         /// <summary>
         /// 
         /// </summary>
@@ -76,7 +76,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Delete a RabbitMQ Connection or a list of RabbitMQ Connections from Ziqni by unique Connection ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <returns>ApiResponse</returns>
-        ApiResponse DeleteConnectionsByQuery (QueryRequest body = default(QueryRequest));
+        ApiResponse DeleteConnectionsByQuery (QueryRequest? body = default(QueryRequest?));
 
         /// <summary>
         /// 
@@ -87,7 +87,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Delete a RabbitMQ Connection or a list of RabbitMQ Connections from Ziqni by unique Connection ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <returns>ApiResponse of ApiResponse</returns>
-        ApiResponse<ApiResponse> DeleteConnectionsByQueryWithHttpInfo (QueryRequest body = default(QueryRequest));
+        ApiResponse<ApiResponse> DeleteConnectionsByQueryWithHttpInfo (QueryRequest? body = default(QueryRequest?));
         /// <summary>
         /// 
         /// </summary>
@@ -120,7 +120,7 @@ namespace Ziqni.Api
         /// <param name="limit">Limit the returned total records found (optional)</param>
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <returns>ConnectionResponse</returns>
-        ConnectionResponse GetConnections (List<string> id = default(List<string>), int? limit = default(int?), int? skip = default(int?));
+        ConnectionResponse GetConnections (List<string>? id = default(List<string>?), int? limit = default(int?), int? skip = default(int?));
 
         /// <summary>
         /// 
@@ -133,7 +133,7 @@ namespace Ziqni.Api
         /// <param name="limit">Limit the returned total records found (optional)</param>
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <returns>ApiResponse of ConnectionResponse</returns>
-        ApiResponse<ConnectionResponse> GetConnectionsWithHttpInfo (List<string> id = default(List<string>), int? limit = default(int?), int? skip = default(int?));
+        ApiResponse<ConnectionResponse> GetConnectionsWithHttpInfo (List<string>? id = default(List<string>?), int? limit = default(int?), int? skip = default(int?));
         /// <summary>
         /// 
         /// </summary>
@@ -143,7 +143,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Retrieve a RabbitMQ Connection or a list of RabbitMQ Connections from Ziqni by unique Connection ID&#39;s or any other Post body parameters using the POST method (optional)</param>
         /// <returns>ConnectionResponse</returns>
-        ConnectionResponse GetConnectionsByQuery (QueryRequest body = default(QueryRequest));
+        ConnectionResponse GetConnectionsByQuery (QueryRequest? body = default(QueryRequest?));
 
         /// <summary>
         /// 
@@ -154,7 +154,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Retrieve a RabbitMQ Connection or a list of RabbitMQ Connections from Ziqni by unique Connection ID&#39;s or any other Post body parameters using the POST method (optional)</param>
         /// <returns>ApiResponse of ConnectionResponse</returns>
-        ApiResponse<ConnectionResponse> GetConnectionsByQueryWithHttpInfo (QueryRequest body = default(QueryRequest));
+        ApiResponse<ConnectionResponse> GetConnectionsByQueryWithHttpInfo (QueryRequest? body = default(QueryRequest?));
         /// <summary>
         /// 
         /// </summary>
@@ -185,7 +185,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Update the state of a Consumer using the POST method (optional)</param>
         /// <returns>ApiResponse</returns>
-        ApiResponse UpdateConnectionsState (List<UpdateConnectionStateRequest> body = default(List<UpdateConnectionStateRequest>));
+        ApiResponse UpdateConnectionsState (List<UpdateConnectionStateRequest>? body = default(List<UpdateConnectionStateRequest>?));
 
         /// <summary>
         /// Update connection status
@@ -196,7 +196,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Update the state of a Consumer using the POST method (optional)</param>
         /// <returns>ApiResponse of ApiResponse</returns>
-        ApiResponse<ApiResponse> UpdateConnectionsStateWithHttpInfo (List<UpdateConnectionStateRequest> body = default(List<UpdateConnectionStateRequest>));
+        ApiResponse<ApiResponse> UpdateConnectionsStateWithHttpInfo (List<UpdateConnectionStateRequest>? body = default(List<UpdateConnectionStateRequest>?));
         #endregion Synchronous Operations
         #region Asynchronous Operations
         /// <summary>
@@ -232,7 +232,7 @@ namespace Ziqni.Api
         /// <param name="id">The unique identifiers of the resources (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse> DeleteConnectionsAsync (List<string> id = default(List<string>), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse> DeleteConnectionsAsync (List<string>? id = default(List<string>?), CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// 
@@ -244,7 +244,7 @@ namespace Ziqni.Api
         /// <param name="id">The unique identifiers of the resources (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (ApiResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<ApiResponse>> DeleteConnectionsWithHttpInfoAsync (List<string> id = default(List<string>), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<ApiResponse>> DeleteConnectionsWithHttpInfoAsync (List<string>? id = default(List<string>?), CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// 
         /// </summary>
@@ -255,7 +255,7 @@ namespace Ziqni.Api
         /// <param name="body">Delete a RabbitMQ Connection or a list of RabbitMQ Connections from Ziqni by unique Connection ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse> DeleteConnectionsByQueryAsync (QueryRequest body = default(QueryRequest), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse> DeleteConnectionsByQueryAsync (QueryRequest? body = default(QueryRequest?), CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// 
@@ -267,7 +267,7 @@ namespace Ziqni.Api
         /// <param name="body">Delete a RabbitMQ Connection or a list of RabbitMQ Connections from Ziqni by unique Connection ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (ApiResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<ApiResponse>> DeleteConnectionsByQueryWithHttpInfoAsync (QueryRequest body = default(QueryRequest), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<ApiResponse>> DeleteConnectionsByQueryWithHttpInfoAsync (QueryRequest? body = default(QueryRequest?), CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// 
         /// </summary>
@@ -303,7 +303,7 @@ namespace Ziqni.Api
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ConnectionResponse</returns>
-        System.Threading.Tasks.Task<ConnectionResponse> GetConnectionsAsync (List<string> id = default(List<string>), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<ConnectionResponse> GetConnectionsAsync (List<string>? id = default(List<string>?), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// 
@@ -317,7 +317,7 @@ namespace Ziqni.Api
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (ConnectionResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<ConnectionResponse>> GetConnectionsWithHttpInfoAsync (List<string> id = default(List<string>), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<ConnectionResponse>> GetConnectionsWithHttpInfoAsync (List<string>? id = default(List<string>?), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// 
         /// </summary>
@@ -328,7 +328,7 @@ namespace Ziqni.Api
         /// <param name="body">Retrieve a RabbitMQ Connection or a list of RabbitMQ Connections from Ziqni by unique Connection ID&#39;s or any other Post body parameters using the POST method (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ConnectionResponse</returns>
-        System.Threading.Tasks.Task<ConnectionResponse> GetConnectionsByQueryAsync (QueryRequest body = default(QueryRequest), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<ConnectionResponse> GetConnectionsByQueryAsync (QueryRequest? body = default(QueryRequest?), CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// 
@@ -340,7 +340,7 @@ namespace Ziqni.Api
         /// <param name="body">Retrieve a RabbitMQ Connection or a list of RabbitMQ Connections from Ziqni by unique Connection ID&#39;s or any other Post body parameters using the POST method (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (ConnectionResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<ConnectionResponse>> GetConnectionsByQueryWithHttpInfoAsync (QueryRequest body = default(QueryRequest), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<ConnectionResponse>> GetConnectionsByQueryWithHttpInfoAsync (QueryRequest? body = default(QueryRequest?), CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// 
         /// </summary>
@@ -374,7 +374,7 @@ namespace Ziqni.Api
         /// <param name="body">Update the state of a Consumer using the POST method (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse> UpdateConnectionsStateAsync (List<UpdateConnectionStateRequest> body = default(List<UpdateConnectionStateRequest>), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse> UpdateConnectionsStateAsync (List<UpdateConnectionStateRequest>? body = default(List<UpdateConnectionStateRequest>?), CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Update connection status
@@ -386,7 +386,7 @@ namespace Ziqni.Api
         /// <param name="body">Update the state of a Consumer using the POST method (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (ApiResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<ApiResponse>> UpdateConnectionsStateWithHttpInfoAsync (List<UpdateConnectionStateRequest> body = default(List<UpdateConnectionStateRequest>), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<ApiResponse>> UpdateConnectionsStateWithHttpInfoAsync (List<UpdateConnectionStateRequest>? body = default(List<UpdateConnectionStateRequest>?), CancellationToken cancellationToken = default(CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -667,7 +667,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The unique identifiers of the resources (optional)</param>
         /// <returns>ApiResponse</returns>
-        public ApiResponse DeleteConnections (List<string> id = default(List<string>))
+        public ApiResponse DeleteConnections (List<string>? id = default(List<string>?))
         {
              ApiResponse<ApiResponse> localVarResponse = DeleteConnectionsWithHttpInfo(id);
              return localVarResponse.Data;
@@ -679,7 +679,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The unique identifiers of the resources (optional)</param>
         /// <returns>ApiResponse of ApiResponse</returns>
-        public ApiResponse<ApiResponse> DeleteConnectionsWithHttpInfo (List<string> id = default(List<string>))
+        public ApiResponse<ApiResponse> DeleteConnectionsWithHttpInfo (List<string>? id = default(List<string>?))
         {
 
             var localVarPath = "/connections";
@@ -737,7 +737,7 @@ namespace Ziqni.Api
         /// <param name="id">The unique identifiers of the resources (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<ApiResponse> DeleteConnectionsAsync (List<string> id = default(List<string>), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<ApiResponse> DeleteConnectionsAsync (List<string>? id = default(List<string>?), CancellationToken cancellationToken = default(CancellationToken))
         {
              ApiResponse<ApiResponse> localVarResponse = await DeleteConnectionsWithHttpInfoAsync(id, cancellationToken);
              return localVarResponse.Data;
@@ -751,7 +751,7 @@ namespace Ziqni.Api
         /// <param name="id">The unique identifiers of the resources (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (ApiResponse)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<ApiResponse>> DeleteConnectionsWithHttpInfoAsync (List<string> id = default(List<string>), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<ApiResponse<ApiResponse>> DeleteConnectionsWithHttpInfoAsync (List<string>? id = default(List<string>?), CancellationToken cancellationToken = default(CancellationToken))
         {
 
             var localVarPath = "/connections";
@@ -808,7 +808,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Delete a RabbitMQ Connection or a list of RabbitMQ Connections from Ziqni by unique Connection ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <returns>ApiResponse</returns>
-        public ApiResponse DeleteConnectionsByQuery (QueryRequest body = default(QueryRequest))
+        public ApiResponse DeleteConnectionsByQuery (QueryRequest? body = default(QueryRequest?))
         {
              ApiResponse<ApiResponse> localVarResponse = DeleteConnectionsByQueryWithHttpInfo(body);
              return localVarResponse.Data;
@@ -820,7 +820,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Delete a RabbitMQ Connection or a list of RabbitMQ Connections from Ziqni by unique Connection ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <returns>ApiResponse of ApiResponse</returns>
-        public ApiResponse<ApiResponse> DeleteConnectionsByQueryWithHttpInfo (QueryRequest body = default(QueryRequest))
+        public ApiResponse<ApiResponse> DeleteConnectionsByQueryWithHttpInfo (QueryRequest? body = default(QueryRequest?))
         {
 
             var localVarPath = "/connections/delete";
@@ -886,7 +886,7 @@ namespace Ziqni.Api
         /// <param name="body">Delete a RabbitMQ Connection or a list of RabbitMQ Connections from Ziqni by unique Connection ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<ApiResponse> DeleteConnectionsByQueryAsync (QueryRequest body = default(QueryRequest), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<ApiResponse> DeleteConnectionsByQueryAsync (QueryRequest? body = default(QueryRequest?), CancellationToken cancellationToken = default(CancellationToken))
         {
              ApiResponse<ApiResponse> localVarResponse = await DeleteConnectionsByQueryWithHttpInfoAsync(body, cancellationToken);
              return localVarResponse.Data;
@@ -900,7 +900,7 @@ namespace Ziqni.Api
         /// <param name="body">Delete a RabbitMQ Connection or a list of RabbitMQ Connections from Ziqni by unique Connection ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (ApiResponse)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<ApiResponse>> DeleteConnectionsByQueryWithHttpInfoAsync (QueryRequest body = default(QueryRequest), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<ApiResponse<ApiResponse>> DeleteConnectionsByQueryWithHttpInfoAsync (QueryRequest? body = default(QueryRequest?), CancellationToken cancellationToken = default(CancellationToken))
         {
 
             var localVarPath = "/connections/delete";
@@ -1114,7 +1114,7 @@ namespace Ziqni.Api
         /// <param name="limit">Limit the returned total records found (optional)</param>
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <returns>ConnectionResponse</returns>
-        public ConnectionResponse GetConnections (List<string> id = default(List<string>), int? limit = default(int?), int? skip = default(int?))
+        public ConnectionResponse GetConnections (List<string>? id = default(List<string>?), int? limit = default(int?), int? skip = default(int?))
         {
              ApiResponse<ConnectionResponse> localVarResponse = GetConnectionsWithHttpInfo(id, limit, skip);
              return localVarResponse.Data;
@@ -1128,7 +1128,7 @@ namespace Ziqni.Api
         /// <param name="limit">Limit the returned total records found (optional)</param>
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <returns>ApiResponse of ConnectionResponse</returns>
-        public ApiResponse<ConnectionResponse> GetConnectionsWithHttpInfo (List<string> id = default(List<string>), int? limit = default(int?), int? skip = default(int?))
+        public ApiResponse<ConnectionResponse> GetConnectionsWithHttpInfo (List<string>? id = default(List<string>?), int? limit = default(int?), int? skip = default(int?))
         {
 
             var localVarPath = "/connections";
@@ -1190,7 +1190,7 @@ namespace Ziqni.Api
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ConnectionResponse</returns>
-        public async System.Threading.Tasks.Task<ConnectionResponse> GetConnectionsAsync (List<string> id = default(List<string>), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<ConnectionResponse> GetConnectionsAsync (List<string>? id = default(List<string>?), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken))
         {
              ApiResponse<ConnectionResponse> localVarResponse = await GetConnectionsWithHttpInfoAsync(id, limit, skip, cancellationToken);
              return localVarResponse.Data;
@@ -1206,7 +1206,7 @@ namespace Ziqni.Api
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (ConnectionResponse)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<ConnectionResponse>> GetConnectionsWithHttpInfoAsync (List<string> id = default(List<string>), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<ApiResponse<ConnectionResponse>> GetConnectionsWithHttpInfoAsync (List<string>? id = default(List<string>?), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken))
         {
 
             var localVarPath = "/connections";
@@ -1265,7 +1265,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Retrieve a RabbitMQ Connection or a list of RabbitMQ Connections from Ziqni by unique Connection ID&#39;s or any other Post body parameters using the POST method (optional)</param>
         /// <returns>ConnectionResponse</returns>
-        public ConnectionResponse GetConnectionsByQuery (QueryRequest body = default(QueryRequest))
+        public ConnectionResponse GetConnectionsByQuery (QueryRequest? body = default(QueryRequest?))
         {
              ApiResponse<ConnectionResponse> localVarResponse = GetConnectionsByQueryWithHttpInfo(body);
              return localVarResponse.Data;
@@ -1277,7 +1277,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Retrieve a RabbitMQ Connection or a list of RabbitMQ Connections from Ziqni by unique Connection ID&#39;s or any other Post body parameters using the POST method (optional)</param>
         /// <returns>ApiResponse of ConnectionResponse</returns>
-        public ApiResponse<ConnectionResponse> GetConnectionsByQueryWithHttpInfo (QueryRequest body = default(QueryRequest))
+        public ApiResponse<ConnectionResponse> GetConnectionsByQueryWithHttpInfo (QueryRequest? body = default(QueryRequest?))
         {
 
             var localVarPath = "/connections/query";
@@ -1343,7 +1343,7 @@ namespace Ziqni.Api
         /// <param name="body">Retrieve a RabbitMQ Connection or a list of RabbitMQ Connections from Ziqni by unique Connection ID&#39;s or any other Post body parameters using the POST method (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ConnectionResponse</returns>
-        public async System.Threading.Tasks.Task<ConnectionResponse> GetConnectionsByQueryAsync (QueryRequest body = default(QueryRequest), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<ConnectionResponse> GetConnectionsByQueryAsync (QueryRequest? body = default(QueryRequest?), CancellationToken cancellationToken = default(CancellationToken))
         {
              ApiResponse<ConnectionResponse> localVarResponse = await GetConnectionsByQueryWithHttpInfoAsync(body, cancellationToken);
              return localVarResponse.Data;
@@ -1357,7 +1357,7 @@ namespace Ziqni.Api
         /// <param name="body">Retrieve a RabbitMQ Connection or a list of RabbitMQ Connections from Ziqni by unique Connection ID&#39;s or any other Post body parameters using the POST method (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (ConnectionResponse)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<ConnectionResponse>> GetConnectionsByQueryWithHttpInfoAsync (QueryRequest body = default(QueryRequest), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<ApiResponse<ConnectionResponse>> GetConnectionsByQueryWithHttpInfoAsync (QueryRequest? body = default(QueryRequest?), CancellationToken cancellationToken = default(CancellationToken))
         {
 
             var localVarPath = "/connections/query";
@@ -1585,7 +1585,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Update the state of a Consumer using the POST method (optional)</param>
         /// <returns>ApiResponse</returns>
-        public ApiResponse UpdateConnectionsState (List<UpdateConnectionStateRequest> body = default(List<UpdateConnectionStateRequest>))
+        public ApiResponse UpdateConnectionsState (List<UpdateConnectionStateRequest>? body = default(List<UpdateConnectionStateRequest>?))
         {
              ApiResponse<ApiResponse> localVarResponse = UpdateConnectionsStateWithHttpInfo(body);
              return localVarResponse.Data;
@@ -1597,7 +1597,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Update the state of a Consumer using the POST method (optional)</param>
         /// <returns>ApiResponse of ApiResponse</returns>
-        public ApiResponse<ApiResponse> UpdateConnectionsStateWithHttpInfo (List<UpdateConnectionStateRequest> body = default(List<UpdateConnectionStateRequest>))
+        public ApiResponse<ApiResponse> UpdateConnectionsStateWithHttpInfo (List<UpdateConnectionStateRequest>? body = default(List<UpdateConnectionStateRequest>?))
         {
 
             var localVarPath = "/connections/state";
@@ -1663,7 +1663,7 @@ namespace Ziqni.Api
         /// <param name="body">Update the state of a Consumer using the POST method (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<ApiResponse> UpdateConnectionsStateAsync (List<UpdateConnectionStateRequest> body = default(List<UpdateConnectionStateRequest>), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<ApiResponse> UpdateConnectionsStateAsync (List<UpdateConnectionStateRequest>? body = default(List<UpdateConnectionStateRequest>?), CancellationToken cancellationToken = default(CancellationToken))
         {
              ApiResponse<ApiResponse> localVarResponse = await UpdateConnectionsStateWithHttpInfoAsync(body, cancellationToken);
              return localVarResponse.Data;
@@ -1677,7 +1677,7 @@ namespace Ziqni.Api
         /// <param name="body">Update the state of a Consumer using the POST method (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (ApiResponse)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<ApiResponse>> UpdateConnectionsStateWithHttpInfoAsync (List<UpdateConnectionStateRequest> body = default(List<UpdateConnectionStateRequest>), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<ApiResponse<ApiResponse>> UpdateConnectionsStateWithHttpInfoAsync (List<UpdateConnectionStateRequest>? body = default(List<UpdateConnectionStateRequest>?), CancellationToken cancellationToken = default(CancellationToken))
         {
 
             var localVarPath = "/connections/state";

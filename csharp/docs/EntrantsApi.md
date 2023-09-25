@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 ## ExportEntrantsByQuery
 
-> EntrantCountResponse ExportEntrantsByQuery (QueryRequest queryRequest = null)
+> EntrantCountResponse ExportEntrantsByQuery (QueryRequest? queryRequest = null)
 
 Get entrants by query
 
@@ -38,7 +38,7 @@ namespace Example
             Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new EntrantsApi(Configuration.Default);
-            var queryRequest = new QueryRequest(); // QueryRequest |  (optional) 
+            var queryRequest = new QueryRequest?(); // QueryRequest? |  (optional) 
 
             try
             {
@@ -62,7 +62,7 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **queryRequest** | [**QueryRequest**](QueryRequest.md)|  | [optional] 
+ **queryRequest** | [**QueryRequest?**](QueryRequest?.md)|  | [optional] 
 
 ### Return type
 
@@ -99,7 +99,7 @@ Name | Type | Description  | Notes
 
 ## GetEntrantsByQuery
 
-> EntrantResponse GetEntrantsByQuery (QueryRequest queryRequest = null)
+> EntrantResponse GetEntrantsByQuery (QueryRequest? queryRequest = null)
 
 Get entrants by query
 
@@ -125,7 +125,7 @@ namespace Example
             Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new EntrantsApi(Configuration.Default);
-            var queryRequest = new QueryRequest(); // QueryRequest |  (optional) 
+            var queryRequest = new QueryRequest?(); // QueryRequest? |  (optional) 
 
             try
             {
@@ -149,7 +149,7 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **queryRequest** | [**QueryRequest**](QueryRequest.md)|  | [optional] 
+ **queryRequest** | [**QueryRequest?**](QueryRequest?.md)|  | [optional] 
 
 ### Return type
 
@@ -186,7 +186,7 @@ Name | Type | Description  | Notes
 
 ## UpdateEntrants
 
-> ApiResponse UpdateEntrants (UpdateEntrantRequest body = null)
+> ApiResponse UpdateEntrants (UpdateEntrantRequest? body = null)
 
 
 
@@ -212,7 +212,7 @@ namespace Example
             Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new EntrantsApi(Configuration.Default);
-            var body = new UpdateEntrantRequest(); // UpdateEntrantRequest | Updates the status of the Entrants (optional) 
+            var body = new UpdateEntrantRequest?(); // UpdateEntrantRequest? | Updates the status of the Entrants (optional) 
 
             try
             {
@@ -235,7 +235,7 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**UpdateEntrantRequest**](UpdateEntrantRequest.md)| Updates the status of the Entrants | [optional] 
+ **body** | [**UpdateEntrantRequest?**](UpdateEntrantRequest?.md)| Updates the status of the Entrants | [optional] 
 
 ### Return type
 

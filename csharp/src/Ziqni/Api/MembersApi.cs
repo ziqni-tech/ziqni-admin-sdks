@@ -55,7 +55,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The unique identifiers of the resources (optional)</param>
         /// <returns>ApiResponse</returns>
-        ApiResponse DeleteMembers (List<string> id = default(List<string>));
+        ApiResponse DeleteMembers (List<string>? id = default(List<string>?));
 
         /// <summary>
         /// Delete members
@@ -66,7 +66,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The unique identifiers of the resources (optional)</param>
         /// <returns>ApiResponse of ApiResponse</returns>
-        ApiResponse<ApiResponse> DeleteMembersWithHttpInfo (List<string> id = default(List<string>));
+        ApiResponse<ApiResponse> DeleteMembersWithHttpInfo (List<string>? id = default(List<string>?));
         /// <summary>
         /// Delete members by query
         /// </summary>
@@ -76,7 +76,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Delete Members from Ziqni database by unique Members ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <returns>ApiResponse</returns>
-        ApiResponse DeleteMembersByQuery (QueryRequest body = default(QueryRequest));
+        ApiResponse DeleteMembersByQuery (QueryRequest? body = default(QueryRequest?));
 
         /// <summary>
         /// Delete members by query
@@ -87,7 +87,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Delete Members from Ziqni database by unique Members ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <returns>ApiResponse of ApiResponse</returns>
-        ApiResponse<ApiResponse> DeleteMembersByQueryWithHttpInfo (QueryRequest body = default(QueryRequest));
+        ApiResponse<ApiResponse> DeleteMembersByQueryWithHttpInfo (QueryRequest? body = default(QueryRequest?));
         /// <summary>
         /// Get members
         /// </summary>
@@ -99,7 +99,7 @@ namespace Ziqni.Api
         /// <param name="limit">Limit the returned total records found (optional)</param>
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <returns>MemberResponse</returns>
-        MemberResponse GetMembers (List<string> id = default(List<string>), int? limit = default(int?), int? skip = default(int?));
+        MemberResponse GetMembers (List<string>? id = default(List<string>?), int? limit = default(int?), int? skip = default(int?));
 
         /// <summary>
         /// Get members
@@ -112,7 +112,7 @@ namespace Ziqni.Api
         /// <param name="limit">Limit the returned total records found (optional)</param>
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <returns>ApiResponse of MemberResponse</returns>
-        ApiResponse<MemberResponse> GetMembersWithHttpInfo (List<string> id = default(List<string>), int? limit = default(int?), int? skip = default(int?));
+        ApiResponse<MemberResponse> GetMembersWithHttpInfo (List<string>? id = default(List<string>?), int? limit = default(int?), int? skip = default(int?));
         /// <summary>
         /// Get members by query
         /// </summary>
@@ -122,7 +122,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Retrieve Products from Ziqni database by unique Product ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <returns>MemberResponse</returns>
-        MemberResponse GetMembersByQuery (QueryRequest body = default(QueryRequest));
+        MemberResponse GetMembersByQuery (QueryRequest? body = default(QueryRequest?));
 
         /// <summary>
         /// Get members by query
@@ -133,7 +133,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Retrieve Products from Ziqni database by unique Product ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <returns>ApiResponse of MemberResponse</returns>
-        ApiResponse<MemberResponse> GetMembersByQueryWithHttpInfo (QueryRequest body = default(QueryRequest));
+        ApiResponse<MemberResponse> GetMembersByQueryWithHttpInfo (QueryRequest? body = default(QueryRequest?));
         /// <summary>
         /// Get members by reference ids
         /// </summary>
@@ -145,7 +145,7 @@ namespace Ziqni.Api
         /// <param name="limit">Limit the returned total records found (optional)</param>
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <returns>MemberResponse</returns>
-        MemberResponse GetMembersByRefId (List<string> refIds = default(List<string>), int? limit = default(int?), int? skip = default(int?));
+        MemberResponse GetMembersByRefId (List<string>? refIds = default(List<string>?), int? limit = default(int?), int? skip = default(int?));
 
         /// <summary>
         /// Get members by reference ids
@@ -158,7 +158,7 @@ namespace Ziqni.Api
         /// <param name="limit">Limit the returned total records found (optional)</param>
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <returns>ApiResponse of MemberResponse</returns>
-        ApiResponse<MemberResponse> GetMembersByRefIdWithHttpInfo (List<string> refIds = default(List<string>), int? limit = default(int?), int? skip = default(int?));
+        ApiResponse<MemberResponse> GetMembersByRefIdWithHttpInfo (List<string>? refIds = default(List<string>?), int? limit = default(int?), int? skip = default(int?));
         /// <summary>
         /// Update members
         /// </summary>
@@ -215,7 +215,7 @@ namespace Ziqni.Api
         /// <param name="id">The unique identifiers of the resources (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse> DeleteMembersAsync (List<string> id = default(List<string>), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse> DeleteMembersAsync (List<string>? id = default(List<string>?), CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Delete members
@@ -227,7 +227,7 @@ namespace Ziqni.Api
         /// <param name="id">The unique identifiers of the resources (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (ApiResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<ApiResponse>> DeleteMembersWithHttpInfoAsync (List<string> id = default(List<string>), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<ApiResponse>> DeleteMembersWithHttpInfoAsync (List<string>? id = default(List<string>?), CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Delete members by query
         /// </summary>
@@ -238,7 +238,7 @@ namespace Ziqni.Api
         /// <param name="body">Delete Members from Ziqni database by unique Members ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse> DeleteMembersByQueryAsync (QueryRequest body = default(QueryRequest), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse> DeleteMembersByQueryAsync (QueryRequest? body = default(QueryRequest?), CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Delete members by query
@@ -250,7 +250,7 @@ namespace Ziqni.Api
         /// <param name="body">Delete Members from Ziqni database by unique Members ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (ApiResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<ApiResponse>> DeleteMembersByQueryWithHttpInfoAsync (QueryRequest body = default(QueryRequest), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<ApiResponse>> DeleteMembersByQueryWithHttpInfoAsync (QueryRequest? body = default(QueryRequest?), CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Get members
         /// </summary>
@@ -263,7 +263,7 @@ namespace Ziqni.Api
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of MemberResponse</returns>
-        System.Threading.Tasks.Task<MemberResponse> GetMembersAsync (List<string> id = default(List<string>), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<MemberResponse> GetMembersAsync (List<string>? id = default(List<string>?), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Get members
@@ -277,7 +277,7 @@ namespace Ziqni.Api
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (MemberResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<MemberResponse>> GetMembersWithHttpInfoAsync (List<string> id = default(List<string>), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<MemberResponse>> GetMembersWithHttpInfoAsync (List<string>? id = default(List<string>?), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Get members by query
         /// </summary>
@@ -288,7 +288,7 @@ namespace Ziqni.Api
         /// <param name="body">Retrieve Products from Ziqni database by unique Product ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of MemberResponse</returns>
-        System.Threading.Tasks.Task<MemberResponse> GetMembersByQueryAsync (QueryRequest body = default(QueryRequest), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<MemberResponse> GetMembersByQueryAsync (QueryRequest? body = default(QueryRequest?), CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Get members by query
@@ -300,7 +300,7 @@ namespace Ziqni.Api
         /// <param name="body">Retrieve Products from Ziqni database by unique Product ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (MemberResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<MemberResponse>> GetMembersByQueryWithHttpInfoAsync (QueryRequest body = default(QueryRequest), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<MemberResponse>> GetMembersByQueryWithHttpInfoAsync (QueryRequest? body = default(QueryRequest?), CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Get members by reference ids
         /// </summary>
@@ -313,7 +313,7 @@ namespace Ziqni.Api
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of MemberResponse</returns>
-        System.Threading.Tasks.Task<MemberResponse> GetMembersByRefIdAsync (List<string> refIds = default(List<string>), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<MemberResponse> GetMembersByRefIdAsync (List<string>? refIds = default(List<string>?), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Get members by reference ids
@@ -327,7 +327,7 @@ namespace Ziqni.Api
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (MemberResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<MemberResponse>> GetMembersByRefIdWithHttpInfoAsync (List<string> refIds = default(List<string>), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<MemberResponse>> GetMembersByRefIdWithHttpInfoAsync (List<string>? refIds = default(List<string>?), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Update members
         /// </summary>
@@ -633,7 +633,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The unique identifiers of the resources (optional)</param>
         /// <returns>ApiResponse</returns>
-        public ApiResponse DeleteMembers (List<string> id = default(List<string>))
+        public ApiResponse DeleteMembers (List<string>? id = default(List<string>?))
         {
              ApiResponse<ApiResponse> localVarResponse = DeleteMembersWithHttpInfo(id);
              return localVarResponse.Data;
@@ -645,7 +645,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The unique identifiers of the resources (optional)</param>
         /// <returns>ApiResponse of ApiResponse</returns>
-        public ApiResponse<ApiResponse> DeleteMembersWithHttpInfo (List<string> id = default(List<string>))
+        public ApiResponse<ApiResponse> DeleteMembersWithHttpInfo (List<string>? id = default(List<string>?))
         {
 
             var localVarPath = "/members";
@@ -703,7 +703,7 @@ namespace Ziqni.Api
         /// <param name="id">The unique identifiers of the resources (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<ApiResponse> DeleteMembersAsync (List<string> id = default(List<string>), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<ApiResponse> DeleteMembersAsync (List<string>? id = default(List<string>?), CancellationToken cancellationToken = default(CancellationToken))
         {
              ApiResponse<ApiResponse> localVarResponse = await DeleteMembersWithHttpInfoAsync(id, cancellationToken);
              return localVarResponse.Data;
@@ -717,7 +717,7 @@ namespace Ziqni.Api
         /// <param name="id">The unique identifiers of the resources (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (ApiResponse)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<ApiResponse>> DeleteMembersWithHttpInfoAsync (List<string> id = default(List<string>), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<ApiResponse<ApiResponse>> DeleteMembersWithHttpInfoAsync (List<string>? id = default(List<string>?), CancellationToken cancellationToken = default(CancellationToken))
         {
 
             var localVarPath = "/members";
@@ -774,7 +774,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Delete Members from Ziqni database by unique Members ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <returns>ApiResponse</returns>
-        public ApiResponse DeleteMembersByQuery (QueryRequest body = default(QueryRequest))
+        public ApiResponse DeleteMembersByQuery (QueryRequest? body = default(QueryRequest?))
         {
              ApiResponse<ApiResponse> localVarResponse = DeleteMembersByQueryWithHttpInfo(body);
              return localVarResponse.Data;
@@ -786,7 +786,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Delete Members from Ziqni database by unique Members ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <returns>ApiResponse of ApiResponse</returns>
-        public ApiResponse<ApiResponse> DeleteMembersByQueryWithHttpInfo (QueryRequest body = default(QueryRequest))
+        public ApiResponse<ApiResponse> DeleteMembersByQueryWithHttpInfo (QueryRequest? body = default(QueryRequest?))
         {
 
             var localVarPath = "/members/delete";
@@ -852,7 +852,7 @@ namespace Ziqni.Api
         /// <param name="body">Delete Members from Ziqni database by unique Members ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<ApiResponse> DeleteMembersByQueryAsync (QueryRequest body = default(QueryRequest), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<ApiResponse> DeleteMembersByQueryAsync (QueryRequest? body = default(QueryRequest?), CancellationToken cancellationToken = default(CancellationToken))
         {
              ApiResponse<ApiResponse> localVarResponse = await DeleteMembersByQueryWithHttpInfoAsync(body, cancellationToken);
              return localVarResponse.Data;
@@ -866,7 +866,7 @@ namespace Ziqni.Api
         /// <param name="body">Delete Members from Ziqni database by unique Members ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (ApiResponse)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<ApiResponse>> DeleteMembersByQueryWithHttpInfoAsync (QueryRequest body = default(QueryRequest), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<ApiResponse<ApiResponse>> DeleteMembersByQueryWithHttpInfoAsync (QueryRequest? body = default(QueryRequest?), CancellationToken cancellationToken = default(CancellationToken))
         {
 
             var localVarPath = "/members/delete";
@@ -933,7 +933,7 @@ namespace Ziqni.Api
         /// <param name="limit">Limit the returned total records found (optional)</param>
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <returns>MemberResponse</returns>
-        public MemberResponse GetMembers (List<string> id = default(List<string>), int? limit = default(int?), int? skip = default(int?))
+        public MemberResponse GetMembers (List<string>? id = default(List<string>?), int? limit = default(int?), int? skip = default(int?))
         {
              ApiResponse<MemberResponse> localVarResponse = GetMembersWithHttpInfo(id, limit, skip);
              return localVarResponse.Data;
@@ -947,7 +947,7 @@ namespace Ziqni.Api
         /// <param name="limit">Limit the returned total records found (optional)</param>
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <returns>ApiResponse of MemberResponse</returns>
-        public ApiResponse<MemberResponse> GetMembersWithHttpInfo (List<string> id = default(List<string>), int? limit = default(int?), int? skip = default(int?))
+        public ApiResponse<MemberResponse> GetMembersWithHttpInfo (List<string>? id = default(List<string>?), int? limit = default(int?), int? skip = default(int?))
         {
 
             var localVarPath = "/members";
@@ -1009,7 +1009,7 @@ namespace Ziqni.Api
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of MemberResponse</returns>
-        public async System.Threading.Tasks.Task<MemberResponse> GetMembersAsync (List<string> id = default(List<string>), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<MemberResponse> GetMembersAsync (List<string>? id = default(List<string>?), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken))
         {
              ApiResponse<MemberResponse> localVarResponse = await GetMembersWithHttpInfoAsync(id, limit, skip, cancellationToken);
              return localVarResponse.Data;
@@ -1025,7 +1025,7 @@ namespace Ziqni.Api
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (MemberResponse)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<MemberResponse>> GetMembersWithHttpInfoAsync (List<string> id = default(List<string>), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<ApiResponse<MemberResponse>> GetMembersWithHttpInfoAsync (List<string>? id = default(List<string>?), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken))
         {
 
             var localVarPath = "/members";
@@ -1084,7 +1084,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Retrieve Products from Ziqni database by unique Product ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <returns>MemberResponse</returns>
-        public MemberResponse GetMembersByQuery (QueryRequest body = default(QueryRequest))
+        public MemberResponse GetMembersByQuery (QueryRequest? body = default(QueryRequest?))
         {
              ApiResponse<MemberResponse> localVarResponse = GetMembersByQueryWithHttpInfo(body);
              return localVarResponse.Data;
@@ -1096,7 +1096,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Retrieve Products from Ziqni database by unique Product ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <returns>ApiResponse of MemberResponse</returns>
-        public ApiResponse<MemberResponse> GetMembersByQueryWithHttpInfo (QueryRequest body = default(QueryRequest))
+        public ApiResponse<MemberResponse> GetMembersByQueryWithHttpInfo (QueryRequest? body = default(QueryRequest?))
         {
 
             var localVarPath = "/members/query";
@@ -1162,7 +1162,7 @@ namespace Ziqni.Api
         /// <param name="body">Retrieve Products from Ziqni database by unique Product ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of MemberResponse</returns>
-        public async System.Threading.Tasks.Task<MemberResponse> GetMembersByQueryAsync (QueryRequest body = default(QueryRequest), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<MemberResponse> GetMembersByQueryAsync (QueryRequest? body = default(QueryRequest?), CancellationToken cancellationToken = default(CancellationToken))
         {
              ApiResponse<MemberResponse> localVarResponse = await GetMembersByQueryWithHttpInfoAsync(body, cancellationToken);
              return localVarResponse.Data;
@@ -1176,7 +1176,7 @@ namespace Ziqni.Api
         /// <param name="body">Retrieve Products from Ziqni database by unique Product ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (MemberResponse)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<MemberResponse>> GetMembersByQueryWithHttpInfoAsync (QueryRequest body = default(QueryRequest), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<ApiResponse<MemberResponse>> GetMembersByQueryWithHttpInfoAsync (QueryRequest? body = default(QueryRequest?), CancellationToken cancellationToken = default(CancellationToken))
         {
 
             var localVarPath = "/members/query";
@@ -1243,7 +1243,7 @@ namespace Ziqni.Api
         /// <param name="limit">Limit the returned total records found (optional)</param>
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <returns>MemberResponse</returns>
-        public MemberResponse GetMembersByRefId (List<string> refIds = default(List<string>), int? limit = default(int?), int? skip = default(int?))
+        public MemberResponse GetMembersByRefId (List<string>? refIds = default(List<string>?), int? limit = default(int?), int? skip = default(int?))
         {
              ApiResponse<MemberResponse> localVarResponse = GetMembersByRefIdWithHttpInfo(refIds, limit, skip);
              return localVarResponse.Data;
@@ -1257,7 +1257,7 @@ namespace Ziqni.Api
         /// <param name="limit">Limit the returned total records found (optional)</param>
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <returns>ApiResponse of MemberResponse</returns>
-        public ApiResponse<MemberResponse> GetMembersByRefIdWithHttpInfo (List<string> refIds = default(List<string>), int? limit = default(int?), int? skip = default(int?))
+        public ApiResponse<MemberResponse> GetMembersByRefIdWithHttpInfo (List<string>? refIds = default(List<string>?), int? limit = default(int?), int? skip = default(int?))
         {
 
             var localVarPath = "/members/find-by-ref-identifiers";
@@ -1319,7 +1319,7 @@ namespace Ziqni.Api
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of MemberResponse</returns>
-        public async System.Threading.Tasks.Task<MemberResponse> GetMembersByRefIdAsync (List<string> refIds = default(List<string>), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<MemberResponse> GetMembersByRefIdAsync (List<string>? refIds = default(List<string>?), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken))
         {
              ApiResponse<MemberResponse> localVarResponse = await GetMembersByRefIdWithHttpInfoAsync(refIds, limit, skip, cancellationToken);
              return localVarResponse.Data;
@@ -1335,7 +1335,7 @@ namespace Ziqni.Api
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (MemberResponse)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<MemberResponse>> GetMembersByRefIdWithHttpInfoAsync (List<string> refIds = default(List<string>), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<ApiResponse<MemberResponse>> GetMembersByRefIdWithHttpInfoAsync (List<string>? refIds = default(List<string>?), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken))
         {
 
             var localVarPath = "/members/find-by-ref-identifiers";

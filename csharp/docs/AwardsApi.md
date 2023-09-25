@@ -99,7 +99,7 @@ Name | Type | Description  | Notes
 
 ## GetAwards
 
-> AwardResponse GetAwards (List<string> id = null, int? limit = null, int? skip = null)
+> AwardResponse GetAwards (List<string>? id = null, int? limit = null, int? skip = null)
 
 
 
@@ -125,7 +125,7 @@ namespace Example
             Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new AwardsApi(Configuration.Default);
-            var id = new List<string>(); // List<string> | The unique identifiers of the resources (optional) 
+            var id = new List<string>?(); // List<string>? | The unique identifiers of the resources (optional) 
             var limit = 56;  // int? | Limit the returned total records found (optional) 
             var skip = 56;  // int? | Skip the returned records found and return the next batch of records (optional) 
 
@@ -150,7 +150,7 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | [**List&lt;string&gt;**](string.md)| The unique identifiers of the resources | [optional] 
+ **id** | [**List&lt;string&gt;?**](string.md)| The unique identifiers of the resources | [optional] 
  **limit** | **int?**| Limit the returned total records found | [optional] 
  **skip** | **int?**| Skip the returned records found and return the next batch of records | [optional] 
 
@@ -189,7 +189,7 @@ Name | Type | Description  | Notes
 
 ## GetAwardsByQuery
 
-> AwardResponse GetAwardsByQuery (QueryRequest body = null)
+> AwardResponse GetAwardsByQuery (QueryRequest? body = null)
 
 
 
@@ -215,7 +215,7 @@ namespace Example
             Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new AwardsApi(Configuration.Default);
-            var body = new QueryRequest(); // QueryRequest | Retrieve Awards from Ziqni database by unique Awards ID's or any other POST body parameters using the POST method (optional) 
+            var body = new QueryRequest?(); // QueryRequest? | Retrieve Awards from Ziqni database by unique Awards ID's or any other POST body parameters using the POST method (optional) 
 
             try
             {
@@ -238,7 +238,7 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**QueryRequest**](QueryRequest.md)| Retrieve Awards from Ziqni database by unique Awards ID&#39;s or any other POST body parameters using the POST method | [optional] 
+ **body** | [**QueryRequest?**](QueryRequest?.md)| Retrieve Awards from Ziqni database by unique Awards ID&#39;s or any other POST body parameters using the POST method | [optional] 
 
 ### Return type
 

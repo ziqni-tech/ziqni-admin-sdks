@@ -100,7 +100,7 @@ Name | Type | Description  | Notes
 
 ## DeleteMemberMessages
 
-> ApiResponse DeleteMemberMessages (List<string> id = null)
+> ApiResponse DeleteMemberMessages (List<string>? id = null)
 
 
 
@@ -126,7 +126,7 @@ namespace Example
             Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new MemberMessagesApi(Configuration.Default);
-            var id = new List<string>(); // List<string> | The unique identifiers of the resources (optional) 
+            var id = new List<string>?(); // List<string>? | The unique identifiers of the resources (optional) 
 
             try
             {
@@ -149,7 +149,7 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | [**List&lt;string&gt;**](string.md)| The unique identifiers of the resources | [optional] 
+ **id** | [**List&lt;string&gt;?**](string.md)| The unique identifiers of the resources | [optional] 
 
 ### Return type
 
@@ -186,7 +186,7 @@ Name | Type | Description  | Notes
 
 ## DeleteMemberMessagesByQuery
 
-> ApiResponse DeleteMemberMessagesByQuery (QueryRequest body = null)
+> ApiResponse DeleteMemberMessagesByQuery (QueryRequest? body = null)
 
 
 
@@ -212,7 +212,7 @@ namespace Example
             Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new MemberMessagesApi(Configuration.Default);
-            var body = new QueryRequest(); // QueryRequest | Delete Member Messages from Ziqni database by unique message ID's or any other POST body parameters using the POST method (optional) 
+            var body = new QueryRequest?(); // QueryRequest? | Delete Member Messages from Ziqni database by unique message ID's or any other POST body parameters using the POST method (optional) 
 
             try
             {
@@ -235,7 +235,7 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**QueryRequest**](QueryRequest.md)| Delete Member Messages from Ziqni database by unique message ID&#39;s or any other POST body parameters using the POST method | [optional] 
+ **body** | [**QueryRequest?**](QueryRequest?.md)| Delete Member Messages from Ziqni database by unique message ID&#39;s or any other POST body parameters using the POST method | [optional] 
 
 ### Return type
 
@@ -272,7 +272,7 @@ Name | Type | Description  | Notes
 
 ## GetMemberMessages
 
-> MemberMessageResponse GetMemberMessages (List<string> id = null, int? limit = null, int? skip = null)
+> MemberMessageResponse GetMemberMessages (List<string>? id = null, int? limit = null, int? skip = null)
 
 
 
@@ -298,7 +298,7 @@ namespace Example
             Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new MemberMessagesApi(Configuration.Default);
-            var id = new List<string>(); // List<string> | The unique identifiers of the resources (optional) 
+            var id = new List<string>?(); // List<string>? | The unique identifiers of the resources (optional) 
             var limit = 56;  // int? | Limit the returned total records found (optional) 
             var skip = 56;  // int? | Skip the returned records found and return the next batch of records (optional) 
 
@@ -323,7 +323,7 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | [**List&lt;string&gt;**](string.md)| The unique identifiers of the resources | [optional] 
+ **id** | [**List&lt;string&gt;?**](string.md)| The unique identifiers of the resources | [optional] 
  **limit** | **int?**| Limit the returned total records found | [optional] 
  **skip** | **int?**| Skip the returned records found and return the next batch of records | [optional] 
 
@@ -362,7 +362,7 @@ Name | Type | Description  | Notes
 
 ## GetMemberMessagesByQuery
 
-> MemberMessageResponse GetMemberMessagesByQuery (QueryRequest body = null)
+> MemberMessageResponse GetMemberMessagesByQuery (QueryRequest? body = null)
 
 
 
@@ -388,7 +388,7 @@ namespace Example
             Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new MemberMessagesApi(Configuration.Default);
-            var body = new QueryRequest(); // QueryRequest | Retrieve Member Messages from Ziqni database by unique message ID's or any other POST body parameters using the POST method (optional) 
+            var body = new QueryRequest?(); // QueryRequest? | Retrieve Member Messages from Ziqni database by unique message ID's or any other POST body parameters using the POST method (optional) 
 
             try
             {
@@ -411,7 +411,7 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**QueryRequest**](QueryRequest.md)| Retrieve Member Messages from Ziqni database by unique message ID&#39;s or any other POST body parameters using the POST method | [optional] 
+ **body** | [**QueryRequest?**](QueryRequest?.md)| Retrieve Member Messages from Ziqni database by unique message ID&#39;s or any other POST body parameters using the POST method | [optional] 
 
 ### Return type
 

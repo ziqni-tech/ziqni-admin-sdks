@@ -56,7 +56,7 @@ namespace Ziqni.Api
         /// <param name="id">The unique identifiers of the resources (optional)</param>
         /// <param name="permanent">Permanently delete the file object. Default is false (optional)</param>
         /// <returns>ApiResponse</returns>
-        ApiResponse DeleteFileRepositories (List<string> id = default(List<string>), bool? permanent = default(bool?));
+        ApiResponse DeleteFileRepositories (List<string>? id = default(List<string>?), bool? permanent = default(bool?));
 
         /// <summary>
         /// 
@@ -68,7 +68,7 @@ namespace Ziqni.Api
         /// <param name="id">The unique identifiers of the resources (optional)</param>
         /// <param name="permanent">Permanently delete the file object. Default is false (optional)</param>
         /// <returns>ApiResponse of ApiResponse</returns>
-        ApiResponse<ApiResponse> DeleteFileRepositoriesWithHttpInfo (List<string> id = default(List<string>), bool? permanent = default(bool?));
+        ApiResponse<ApiResponse> DeleteFileRepositoriesWithHttpInfo (List<string>? id = default(List<string>?), bool? permanent = default(bool?));
         /// <summary>
         /// 
         /// </summary>
@@ -78,7 +78,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Delete repositories from a Ziqni space by unique repository ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <returns>ApiResponse</returns>
-        ApiResponse DeleteFileRepositoriesByQuery (QueryRequest body = default(QueryRequest));
+        ApiResponse DeleteFileRepositoriesByQuery (QueryRequest? body = default(QueryRequest?));
 
         /// <summary>
         /// 
@@ -89,7 +89,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Delete repositories from a Ziqni space by unique repository ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <returns>ApiResponse of ApiResponse</returns>
-        ApiResponse<ApiResponse> DeleteFileRepositoriesByQueryWithHttpInfo (QueryRequest body = default(QueryRequest));
+        ApiResponse<ApiResponse> DeleteFileRepositoriesByQueryWithHttpInfo (QueryRequest? body = default(QueryRequest?));
         /// <summary>
         /// 
         /// </summary>
@@ -101,7 +101,7 @@ namespace Ziqni.Api
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <param name="id">The unique identifiers of the resources (optional)</param>
         /// <returns>RepositoryResponse</returns>
-        RepositoryResponse GetFileRepositories (int? limit = default(int?), int? skip = default(int?), List<string> id = default(List<string>));
+        RepositoryResponse GetFileRepositories (int? limit = default(int?), int? skip = default(int?), List<string>? id = default(List<string>?));
 
         /// <summary>
         /// 
@@ -114,7 +114,7 @@ namespace Ziqni.Api
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <param name="id">The unique identifiers of the resources (optional)</param>
         /// <returns>ApiResponse of RepositoryResponse</returns>
-        ApiResponse<RepositoryResponse> GetFileRepositoriesWithHttpInfo (int? limit = default(int?), int? skip = default(int?), List<string> id = default(List<string>));
+        ApiResponse<RepositoryResponse> GetFileRepositoriesWithHttpInfo (int? limit = default(int?), int? skip = default(int?), List<string>? id = default(List<string>?));
         /// <summary>
         /// 
         /// </summary>
@@ -124,7 +124,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Retrieve file object repositories from Ziqni by unique repository ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <returns>RepositoryResponse</returns>
-        RepositoryResponse GetFileRepositoriesByQuery (QueryRequest body = default(QueryRequest));
+        RepositoryResponse GetFileRepositoriesByQuery (QueryRequest? body = default(QueryRequest?));
 
         /// <summary>
         /// 
@@ -135,7 +135,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Retrieve file object repositories from Ziqni by unique repository ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <returns>ApiResponse of RepositoryResponse</returns>
-        ApiResponse<RepositoryResponse> GetFileRepositoriesByQueryWithHttpInfo (QueryRequest body = default(QueryRequest));
+        ApiResponse<RepositoryResponse> GetFileRepositoriesByQueryWithHttpInfo (QueryRequest? body = default(QueryRequest?));
         /// <summary>
         /// 
         /// </summary>
@@ -193,7 +193,7 @@ namespace Ziqni.Api
         /// <param name="permanent">Permanently delete the file object. Default is false (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse> DeleteFileRepositoriesAsync (List<string> id = default(List<string>), bool? permanent = default(bool?), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse> DeleteFileRepositoriesAsync (List<string>? id = default(List<string>?), bool? permanent = default(bool?), CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// 
@@ -206,7 +206,7 @@ namespace Ziqni.Api
         /// <param name="permanent">Permanently delete the file object. Default is false (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (ApiResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<ApiResponse>> DeleteFileRepositoriesWithHttpInfoAsync (List<string> id = default(List<string>), bool? permanent = default(bool?), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<ApiResponse>> DeleteFileRepositoriesWithHttpInfoAsync (List<string>? id = default(List<string>?), bool? permanent = default(bool?), CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// 
         /// </summary>
@@ -217,7 +217,7 @@ namespace Ziqni.Api
         /// <param name="body">Delete repositories from a Ziqni space by unique repository ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse> DeleteFileRepositoriesByQueryAsync (QueryRequest body = default(QueryRequest), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse> DeleteFileRepositoriesByQueryAsync (QueryRequest? body = default(QueryRequest?), CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// 
@@ -229,7 +229,7 @@ namespace Ziqni.Api
         /// <param name="body">Delete repositories from a Ziqni space by unique repository ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (ApiResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<ApiResponse>> DeleteFileRepositoriesByQueryWithHttpInfoAsync (QueryRequest body = default(QueryRequest), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<ApiResponse>> DeleteFileRepositoriesByQueryWithHttpInfoAsync (QueryRequest? body = default(QueryRequest?), CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// 
         /// </summary>
@@ -242,7 +242,7 @@ namespace Ziqni.Api
         /// <param name="id">The unique identifiers of the resources (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of RepositoryResponse</returns>
-        System.Threading.Tasks.Task<RepositoryResponse> GetFileRepositoriesAsync (int? limit = default(int?), int? skip = default(int?), List<string> id = default(List<string>), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<RepositoryResponse> GetFileRepositoriesAsync (int? limit = default(int?), int? skip = default(int?), List<string>? id = default(List<string>?), CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// 
@@ -256,7 +256,7 @@ namespace Ziqni.Api
         /// <param name="id">The unique identifiers of the resources (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (RepositoryResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<RepositoryResponse>> GetFileRepositoriesWithHttpInfoAsync (int? limit = default(int?), int? skip = default(int?), List<string> id = default(List<string>), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<RepositoryResponse>> GetFileRepositoriesWithHttpInfoAsync (int? limit = default(int?), int? skip = default(int?), List<string>? id = default(List<string>?), CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// 
         /// </summary>
@@ -267,7 +267,7 @@ namespace Ziqni.Api
         /// <param name="body">Retrieve file object repositories from Ziqni by unique repository ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of RepositoryResponse</returns>
-        System.Threading.Tasks.Task<RepositoryResponse> GetFileRepositoriesByQueryAsync (QueryRequest body = default(QueryRequest), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<RepositoryResponse> GetFileRepositoriesByQueryAsync (QueryRequest? body = default(QueryRequest?), CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// 
@@ -279,7 +279,7 @@ namespace Ziqni.Api
         /// <param name="body">Retrieve file object repositories from Ziqni by unique repository ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (RepositoryResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<RepositoryResponse>> GetFileRepositoriesByQueryWithHttpInfoAsync (QueryRequest body = default(QueryRequest), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<RepositoryResponse>> GetFileRepositoriesByQueryWithHttpInfoAsync (QueryRequest? body = default(QueryRequest?), CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// 
         /// </summary>
@@ -584,7 +584,7 @@ namespace Ziqni.Api
         /// <param name="id">The unique identifiers of the resources (optional)</param>
         /// <param name="permanent">Permanently delete the file object. Default is false (optional)</param>
         /// <returns>ApiResponse</returns>
-        public ApiResponse DeleteFileRepositories (List<string> id = default(List<string>), bool? permanent = default(bool?))
+        public ApiResponse DeleteFileRepositories (List<string>? id = default(List<string>?), bool? permanent = default(bool?))
         {
              ApiResponse<ApiResponse> localVarResponse = DeleteFileRepositoriesWithHttpInfo(id, permanent);
              return localVarResponse.Data;
@@ -597,7 +597,7 @@ namespace Ziqni.Api
         /// <param name="id">The unique identifiers of the resources (optional)</param>
         /// <param name="permanent">Permanently delete the file object. Default is false (optional)</param>
         /// <returns>ApiResponse of ApiResponse</returns>
-        public ApiResponse<ApiResponse> DeleteFileRepositoriesWithHttpInfo (List<string> id = default(List<string>), bool? permanent = default(bool?))
+        public ApiResponse<ApiResponse> DeleteFileRepositoriesWithHttpInfo (List<string>? id = default(List<string>?), bool? permanent = default(bool?))
         {
 
             var localVarPath = "/file-repositories";
@@ -657,7 +657,7 @@ namespace Ziqni.Api
         /// <param name="permanent">Permanently delete the file object. Default is false (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<ApiResponse> DeleteFileRepositoriesAsync (List<string> id = default(List<string>), bool? permanent = default(bool?), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<ApiResponse> DeleteFileRepositoriesAsync (List<string>? id = default(List<string>?), bool? permanent = default(bool?), CancellationToken cancellationToken = default(CancellationToken))
         {
              ApiResponse<ApiResponse> localVarResponse = await DeleteFileRepositoriesWithHttpInfoAsync(id, permanent, cancellationToken);
              return localVarResponse.Data;
@@ -672,7 +672,7 @@ namespace Ziqni.Api
         /// <param name="permanent">Permanently delete the file object. Default is false (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (ApiResponse)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<ApiResponse>> DeleteFileRepositoriesWithHttpInfoAsync (List<string> id = default(List<string>), bool? permanent = default(bool?), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<ApiResponse<ApiResponse>> DeleteFileRepositoriesWithHttpInfoAsync (List<string>? id = default(List<string>?), bool? permanent = default(bool?), CancellationToken cancellationToken = default(CancellationToken))
         {
 
             var localVarPath = "/file-repositories";
@@ -730,7 +730,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Delete repositories from a Ziqni space by unique repository ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <returns>ApiResponse</returns>
-        public ApiResponse DeleteFileRepositoriesByQuery (QueryRequest body = default(QueryRequest))
+        public ApiResponse DeleteFileRepositoriesByQuery (QueryRequest? body = default(QueryRequest?))
         {
              ApiResponse<ApiResponse> localVarResponse = DeleteFileRepositoriesByQueryWithHttpInfo(body);
              return localVarResponse.Data;
@@ -742,7 +742,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Delete repositories from a Ziqni space by unique repository ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <returns>ApiResponse of ApiResponse</returns>
-        public ApiResponse<ApiResponse> DeleteFileRepositoriesByQueryWithHttpInfo (QueryRequest body = default(QueryRequest))
+        public ApiResponse<ApiResponse> DeleteFileRepositoriesByQueryWithHttpInfo (QueryRequest? body = default(QueryRequest?))
         {
 
             var localVarPath = "/file-repositories/delete";
@@ -808,7 +808,7 @@ namespace Ziqni.Api
         /// <param name="body">Delete repositories from a Ziqni space by unique repository ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<ApiResponse> DeleteFileRepositoriesByQueryAsync (QueryRequest body = default(QueryRequest), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<ApiResponse> DeleteFileRepositoriesByQueryAsync (QueryRequest? body = default(QueryRequest?), CancellationToken cancellationToken = default(CancellationToken))
         {
              ApiResponse<ApiResponse> localVarResponse = await DeleteFileRepositoriesByQueryWithHttpInfoAsync(body, cancellationToken);
              return localVarResponse.Data;
@@ -822,7 +822,7 @@ namespace Ziqni.Api
         /// <param name="body">Delete repositories from a Ziqni space by unique repository ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (ApiResponse)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<ApiResponse>> DeleteFileRepositoriesByQueryWithHttpInfoAsync (QueryRequest body = default(QueryRequest), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<ApiResponse<ApiResponse>> DeleteFileRepositoriesByQueryWithHttpInfoAsync (QueryRequest? body = default(QueryRequest?), CancellationToken cancellationToken = default(CancellationToken))
         {
 
             var localVarPath = "/file-repositories/delete";
@@ -889,7 +889,7 @@ namespace Ziqni.Api
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <param name="id">The unique identifiers of the resources (optional)</param>
         /// <returns>RepositoryResponse</returns>
-        public RepositoryResponse GetFileRepositories (int? limit = default(int?), int? skip = default(int?), List<string> id = default(List<string>))
+        public RepositoryResponse GetFileRepositories (int? limit = default(int?), int? skip = default(int?), List<string>? id = default(List<string>?))
         {
              ApiResponse<RepositoryResponse> localVarResponse = GetFileRepositoriesWithHttpInfo(limit, skip, id);
              return localVarResponse.Data;
@@ -903,7 +903,7 @@ namespace Ziqni.Api
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <param name="id">The unique identifiers of the resources (optional)</param>
         /// <returns>ApiResponse of RepositoryResponse</returns>
-        public ApiResponse<RepositoryResponse> GetFileRepositoriesWithHttpInfo (int? limit = default(int?), int? skip = default(int?), List<string> id = default(List<string>))
+        public ApiResponse<RepositoryResponse> GetFileRepositoriesWithHttpInfo (int? limit = default(int?), int? skip = default(int?), List<string>? id = default(List<string>?))
         {
 
             var localVarPath = "/file-repositories";
@@ -965,7 +965,7 @@ namespace Ziqni.Api
         /// <param name="id">The unique identifiers of the resources (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of RepositoryResponse</returns>
-        public async System.Threading.Tasks.Task<RepositoryResponse> GetFileRepositoriesAsync (int? limit = default(int?), int? skip = default(int?), List<string> id = default(List<string>), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<RepositoryResponse> GetFileRepositoriesAsync (int? limit = default(int?), int? skip = default(int?), List<string>? id = default(List<string>?), CancellationToken cancellationToken = default(CancellationToken))
         {
              ApiResponse<RepositoryResponse> localVarResponse = await GetFileRepositoriesWithHttpInfoAsync(limit, skip, id, cancellationToken);
              return localVarResponse.Data;
@@ -981,7 +981,7 @@ namespace Ziqni.Api
         /// <param name="id">The unique identifiers of the resources (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (RepositoryResponse)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<RepositoryResponse>> GetFileRepositoriesWithHttpInfoAsync (int? limit = default(int?), int? skip = default(int?), List<string> id = default(List<string>), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<ApiResponse<RepositoryResponse>> GetFileRepositoriesWithHttpInfoAsync (int? limit = default(int?), int? skip = default(int?), List<string>? id = default(List<string>?), CancellationToken cancellationToken = default(CancellationToken))
         {
 
             var localVarPath = "/file-repositories";
@@ -1040,7 +1040,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Retrieve file object repositories from Ziqni by unique repository ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <returns>RepositoryResponse</returns>
-        public RepositoryResponse GetFileRepositoriesByQuery (QueryRequest body = default(QueryRequest))
+        public RepositoryResponse GetFileRepositoriesByQuery (QueryRequest? body = default(QueryRequest?))
         {
              ApiResponse<RepositoryResponse> localVarResponse = GetFileRepositoriesByQueryWithHttpInfo(body);
              return localVarResponse.Data;
@@ -1052,7 +1052,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Retrieve file object repositories from Ziqni by unique repository ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <returns>ApiResponse of RepositoryResponse</returns>
-        public ApiResponse<RepositoryResponse> GetFileRepositoriesByQueryWithHttpInfo (QueryRequest body = default(QueryRequest))
+        public ApiResponse<RepositoryResponse> GetFileRepositoriesByQueryWithHttpInfo (QueryRequest? body = default(QueryRequest?))
         {
 
             var localVarPath = "/file-repositories/query";
@@ -1118,7 +1118,7 @@ namespace Ziqni.Api
         /// <param name="body">Retrieve file object repositories from Ziqni by unique repository ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of RepositoryResponse</returns>
-        public async System.Threading.Tasks.Task<RepositoryResponse> GetFileRepositoriesByQueryAsync (QueryRequest body = default(QueryRequest), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<RepositoryResponse> GetFileRepositoriesByQueryAsync (QueryRequest? body = default(QueryRequest?), CancellationToken cancellationToken = default(CancellationToken))
         {
              ApiResponse<RepositoryResponse> localVarResponse = await GetFileRepositoriesByQueryWithHttpInfoAsync(body, cancellationToken);
              return localVarResponse.Data;
@@ -1132,7 +1132,7 @@ namespace Ziqni.Api
         /// <param name="body">Retrieve file object repositories from Ziqni by unique repository ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (RepositoryResponse)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<RepositoryResponse>> GetFileRepositoriesByQueryWithHttpInfoAsync (QueryRequest body = default(QueryRequest), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<ApiResponse<RepositoryResponse>> GetFileRepositoriesByQueryWithHttpInfoAsync (QueryRequest? body = default(QueryRequest?), CancellationToken cancellationToken = default(CancellationToken))
         {
 
             var localVarPath = "/file-repositories/query";

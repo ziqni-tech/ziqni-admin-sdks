@@ -1,0 +1,154 @@
+{
+  "format": 1,
+  "restore": {
+    "/home/carel/IdeaProjects/ziqni-tech/ziqni-admin-sdks/csharp/src/Ziqni.Test/Ziqni.Test.csproj": {}
+  },
+  "projects": {
+    "/home/carel/IdeaProjects/ziqni-tech/ziqni-admin-sdks/csharp/src/Ziqni.Test/Ziqni.Test.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/carel/IdeaProjects/ziqni-tech/ziqni-admin-sdks/csharp/src/Ziqni.Test/Ziqni.Test.csproj",
+        "projectName": "Ziqni.Test",
+        "projectPath": "/home/carel/IdeaProjects/ziqni-tech/ziqni-admin-sdks/csharp/src/Ziqni.Test/Ziqni.Test.csproj",
+        "packagesPath": "/home/carel/.nuget/packages/",
+        "outputPath": "/home/carel/IdeaProjects/ziqni-tech/ziqni-admin-sdks/csharp/src/Ziqni.Test/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/carel/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net45"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net45": {
+            "targetAlias": "net45",
+            "projectReferences": {
+              "/home/carel/IdeaProjects/ziqni-tech/ziqni-admin-sdks/csharp/src/Ziqni/Ziqni.csproj": {
+                "projectPath": "/home/carel/IdeaProjects/ziqni-tech/ziqni-admin-sdks/csharp/src/Ziqni/Ziqni.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net45": {
+          "targetAlias": "net45",
+          "dependencies": {
+            "JsonSubTypes": {
+              "target": "Package",
+              "version": "[1.6.0, )"
+            },
+            "Microsoft.NETFramework.ReferenceAssemblies": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[1.0.3, )",
+              "autoReferenced": true
+            },
+            "NUnit": {
+              "target": "Package",
+              "version": "[2.6.4, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[12.0.3, )"
+            },
+            "RestSharp": {
+              "target": "Package",
+              "version": "[105.1.0, )"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/snap/dotnet-sdk/221/sdk/7.0.401/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/home/carel/IdeaProjects/ziqni-tech/ziqni-admin-sdks/csharp/src/Ziqni/Ziqni.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/carel/IdeaProjects/ziqni-tech/ziqni-admin-sdks/csharp/src/Ziqni/Ziqni.csproj",
+        "projectName": "Ziqni",
+        "projectPath": "/home/carel/IdeaProjects/ziqni-tech/ziqni-admin-sdks/csharp/src/Ziqni/Ziqni.csproj",
+        "packagesPath": "/home/carel/.nuget/packages/",
+        "outputPath": "/home/carel/IdeaProjects/ziqni-tech/ziqni-admin-sdks/csharp/src/Ziqni/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/carel/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "IdentityModel": {
+              "target": "Package",
+              "version": "[6.2.0, )"
+            },
+            "JsonSubTypes": {
+              "target": "Package",
+              "version": "[1.6.0, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[12.0.3, )"
+            },
+            "RestSharp": {
+              "target": "Package",
+              "version": "[105.1.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[6.0.22, 6.0.22]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[6.0.22, 6.0.22]"
+            }
+          ],
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/snap/dotnet-sdk/221/sdk/7.0.401/RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

@@ -102,7 +102,7 @@ Name | Type | Description  | Notes
 
 ## DeleteFileObjects
 
-> ApiResponse DeleteFileObjects (List<string> id = null, bool? permanent = null)
+> ApiResponse DeleteFileObjects (List<string>? id = null, bool? permanent = null)
 
 
 
@@ -126,7 +126,7 @@ namespace Example
             Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new FileObjectsApi(Configuration.Default);
-            var id = new List<string>(); // List<string> | The unique identifiers of the resources (optional) 
+            var id = new List<string>?(); // List<string>? | The unique identifiers of the resources (optional) 
             var permanent = true;  // bool? | Permanently delete the file object. Default is false (optional) 
 
             try
@@ -150,7 +150,7 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | [**List&lt;string&gt;**](string.md)| The unique identifiers of the resources | [optional] 
+ **id** | [**List&lt;string&gt;?**](string.md)| The unique identifiers of the resources | [optional] 
  **permanent** | **bool?**| Permanently delete the file object. Default is false | [optional] 
 
 ### Return type
@@ -188,7 +188,7 @@ Name | Type | Description  | Notes
 
 ## DeleteFileObjectsByQuery
 
-> ApiResponse DeleteFileObjectsByQuery (List<string> id = null, QueryRequest body = null)
+> ApiResponse DeleteFileObjectsByQuery (List<string>? id = null, QueryRequest? body = null)
 
 
 
@@ -214,8 +214,8 @@ namespace Example
             Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new FileObjectsApi(Configuration.Default);
-            var id = new List<string>(); // List<string> | The unique identifiers of the resources (optional) 
-            var body = new QueryRequest(); // QueryRequest | Delete file objects inside a repository from Ziqni by unique file by unique object ID's or any other POST body parameters using the POST method (optional) 
+            var id = new List<string>?(); // List<string>? | The unique identifiers of the resources (optional) 
+            var body = new QueryRequest?(); // QueryRequest? | Delete file objects inside a repository from Ziqni by unique file by unique object ID's or any other POST body parameters using the POST method (optional) 
 
             try
             {
@@ -238,8 +238,8 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | [**List&lt;string&gt;**](string.md)| The unique identifiers of the resources | [optional] 
- **body** | [**QueryRequest**](QueryRequest.md)| Delete file objects inside a repository from Ziqni by unique file by unique object ID&#39;s or any other POST body parameters using the POST method | [optional] 
+ **id** | [**List&lt;string&gt;?**](string.md)| The unique identifiers of the resources | [optional] 
+ **body** | [**QueryRequest?**](QueryRequest?.md)| Delete file objects inside a repository from Ziqni by unique file by unique object ID&#39;s or any other POST body parameters using the POST method | [optional] 
 
 ### Return type
 
@@ -276,7 +276,7 @@ Name | Type | Description  | Notes
 
 ## DownloadFileObjects
 
-> System.IO.Stream DownloadFileObjects (string path = null)
+> System.IO.Stream DownloadFileObjects (string? path = null)
 
 
 
@@ -302,7 +302,7 @@ namespace Example
             Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new FileObjectsApi(Configuration.Default);
-            var path = path_example;  // string | The canonical path of the file to download (optional) 
+            var path = path_example;  // string? | The canonical path of the file to download (optional) 
 
             try
             {
@@ -325,7 +325,7 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **path** | **string**| The canonical path of the file to download | [optional] 
+ **path** | **string?**| The canonical path of the file to download | [optional] 
 
 ### Return type
 
@@ -362,7 +362,7 @@ Name | Type | Description  | Notes
 
 ## GetFileObjects
 
-> FileObjectsResponse GetFileObjects (int? limit = null, int? skip = null, List<string> id = null, string download = null)
+> FileObjectsResponse GetFileObjects (int? limit = null, int? skip = null, List<string>? id = null, string? download = null)
 
 
 
@@ -390,8 +390,8 @@ namespace Example
             var apiInstance = new FileObjectsApi(Configuration.Default);
             var limit = 56;  // int? | Limit the returned total records found (optional) 
             var skip = 56;  // int? | Skip the returned records found and return the next batch of records (optional) 
-            var id = new List<string>(); // List<string> | The unique identifiers of the resources (optional) 
-            var download = download_example;  // string |  (optional) 
+            var id = new List<string>?(); // List<string>? | The unique identifiers of the resources (optional) 
+            var download = download_example;  // string? |  (optional) 
 
             try
             {
@@ -416,8 +416,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **limit** | **int?**| Limit the returned total records found | [optional] 
  **skip** | **int?**| Skip the returned records found and return the next batch of records | [optional] 
- **id** | [**List&lt;string&gt;**](string.md)| The unique identifiers of the resources | [optional] 
- **download** | **string**|  | [optional] 
+ **id** | [**List&lt;string&gt;?**](string.md)| The unique identifiers of the resources | [optional] 
+ **download** | **string?**|  | [optional] 
 
 ### Return type
 
@@ -454,7 +454,7 @@ Name | Type | Description  | Notes
 
 ## GetFileObjectsByQuery
 
-> FileObjectsResponse GetFileObjectsByQuery (List<string> id = null, QueryRequest body = null)
+> FileObjectsResponse GetFileObjectsByQuery (List<string>? id = null, QueryRequest? body = null)
 
 
 
@@ -480,8 +480,8 @@ namespace Example
             Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new FileObjectsApi(Configuration.Default);
-            var id = new List<string>(); // List<string> | The unique identifiers of the resources (optional) 
-            var body = new QueryRequest(); // QueryRequest | Retrieve file objects inside a repository from Ziqni by unique file object ID's or any other POST body parameters using the POST method (optional) 
+            var id = new List<string>?(); // List<string>? | The unique identifiers of the resources (optional) 
+            var body = new QueryRequest?(); // QueryRequest? | Retrieve file objects inside a repository from Ziqni by unique file object ID's or any other POST body parameters using the POST method (optional) 
 
             try
             {
@@ -504,8 +504,8 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | [**List&lt;string&gt;**](string.md)| The unique identifiers of the resources | [optional] 
- **body** | [**QueryRequest**](QueryRequest.md)| Retrieve file objects inside a repository from Ziqni by unique file object ID&#39;s or any other POST body parameters using the POST method | [optional] 
+ **id** | [**List&lt;string&gt;?**](string.md)| The unique identifiers of the resources | [optional] 
+ **body** | [**QueryRequest?**](QueryRequest?.md)| Retrieve file objects inside a repository from Ziqni by unique file object ID&#39;s or any other POST body parameters using the POST method | [optional] 
 
 ### Return type
 
@@ -542,7 +542,7 @@ Name | Type | Description  | Notes
 
 ## SaveTemplates
 
-> ApiResponse SaveTemplates (string parentFolderPath = null, string repositoryId = null, string templateToSave = null, string templateName = null, string tags = null)
+> ApiResponse SaveTemplates (string? parentFolderPath = null, string? repositoryId = null, string? templateToSave = null, string? templateName = null, string? tags = null)
 
 
 
@@ -568,11 +568,11 @@ namespace Example
             Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new FileObjectsApi(Configuration.Default);
-            var parentFolderPath = parentFolderPath_example;  // string | The folder to save these file in. (optional) 
-            var repositoryId = repositoryId_example;  // string |  (optional) 
-            var templateToSave = templateToSave_example;  // string |  (optional) 
-            var templateName = templateName_example;  // string |  (optional) 
-            var tags = tags_example;  // string |  (optional) 
+            var parentFolderPath = parentFolderPath_example;  // string? | The folder to save these file in. (optional) 
+            var repositoryId = repositoryId_example;  // string? |  (optional) 
+            var templateToSave = templateToSave_example;  // string? |  (optional) 
+            var templateName = templateName_example;  // string? |  (optional) 
+            var tags = tags_example;  // string? |  (optional) 
 
             try
             {
@@ -595,11 +595,11 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **parentFolderPath** | **string**| The folder to save these file in. | [optional] 
- **repositoryId** | **string**|  | [optional] 
- **templateToSave** | **string**|  | [optional] 
- **templateName** | **string**|  | [optional] 
- **tags** | **string**|  | [optional] 
+ **parentFolderPath** | **string?**| The folder to save these file in. | [optional] 
+ **repositoryId** | **string?**|  | [optional] 
+ **templateToSave** | **string?**|  | [optional] 
+ **templateName** | **string?**|  | [optional] 
+ **tags** | **string?**|  | [optional] 
 
 ### Return type
 
@@ -721,7 +721,7 @@ Name | Type | Description  | Notes
 
 ## UploadFileObjects
 
-> ApiResponse UploadFileObjects (string parentFolderPath = null, List<System.IO.Stream> files = null, string repositoryId = null, string tags = null)
+> ApiResponse UploadFileObjects (string? parentFolderPath = null, List<System.IO.Stream>? files = null, string? repositoryId = null, string? tags = null)
 
 
 
@@ -747,10 +747,10 @@ namespace Example
             Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new FileObjectsApi(Configuration.Default);
-            var parentFolderPath = parentFolderPath_example;  // string | The folder to save these file in. (optional) 
-            var files = new List<System.IO.Stream>(); // List<System.IO.Stream> | The files to upload (optional) 
-            var repositoryId = repositoryId_example;  // string |  (optional) 
-            var tags = tags_example;  // string |  (optional) 
+            var parentFolderPath = parentFolderPath_example;  // string? | The folder to save these file in. (optional) 
+            var files = new List<System.IO.Stream>?(); // List<System.IO.Stream>? | The files to upload (optional) 
+            var repositoryId = repositoryId_example;  // string? |  (optional) 
+            var tags = tags_example;  // string? |  (optional) 
 
             try
             {
@@ -773,10 +773,10 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **parentFolderPath** | **string**| The folder to save these file in. | [optional] 
- **files** | [**List&lt;System.IO.Stream&gt;**](System.IO.Stream.md)| The files to upload | [optional] 
- **repositoryId** | **string**|  | [optional] 
- **tags** | **string**|  | [optional] 
+ **parentFolderPath** | **string?**| The folder to save these file in. | [optional] 
+ **files** | [**List&lt;System.IO.Stream&gt;?**](System.IO.Stream.md)| The files to upload | [optional] 
+ **repositoryId** | **string?**|  | [optional] 
+ **tags** | **string?**|  | [optional] 
 
 ### Return type
 

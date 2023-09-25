@@ -107,7 +107,7 @@ Name | Type | Description  | Notes
 
 ## DeleteAchievements
 
-> ApiResponse DeleteAchievements (List<string> id = null)
+> ApiResponse DeleteAchievements (List<string>? id = null)
 
 Delete Achievements
 
@@ -133,7 +133,7 @@ namespace Example
             Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new AchievementsApi(Configuration.Default);
-            var id = new List<string>(); // List<string> | The unique identifiers of the resources (optional) 
+            var id = new List<string>?(); // List<string>? | The unique identifiers of the resources (optional) 
 
             try
             {
@@ -157,7 +157,7 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | [**List&lt;string&gt;**](string.md)| The unique identifiers of the resources | [optional] 
+ **id** | [**List&lt;string&gt;?**](string.md)| The unique identifiers of the resources | [optional] 
 
 ### Return type
 
@@ -194,7 +194,7 @@ Name | Type | Description  | Notes
 
 ## DeleteAchievementsByQuery
 
-> ApiResponse DeleteAchievementsByQuery (QueryRequest body = null)
+> ApiResponse DeleteAchievementsByQuery (QueryRequest? body = null)
 
 
 
@@ -220,7 +220,7 @@ namespace Example
             Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new AchievementsApi(Configuration.Default);
-            var body = new QueryRequest(); // QueryRequest | Delete Achievements from Ziqni database by unique Achievements ID's or any other Post body parameters using the POST method (optional) 
+            var body = new QueryRequest?(); // QueryRequest? | Delete Achievements from Ziqni database by unique Achievements ID's or any other Post body parameters using the POST method (optional) 
 
             try
             {
@@ -243,7 +243,7 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**QueryRequest**](QueryRequest.md)| Delete Achievements from Ziqni database by unique Achievements ID&#39;s or any other Post body parameters using the POST method | [optional] 
+ **body** | [**QueryRequest?**](QueryRequest?.md)| Delete Achievements from Ziqni database by unique Achievements ID&#39;s or any other Post body parameters using the POST method | [optional] 
 
 ### Return type
 
@@ -366,7 +366,7 @@ Name | Type | Description  | Notes
 
 ## GetAchievements
 
-> AchievementResponse GetAchievements (List<string> id = null, int? limit = null, int? skip = null)
+> AchievementResponse GetAchievements (List<string>? id = null, int? limit = null, int? skip = null)
 
 Get Achievements
 
@@ -392,7 +392,7 @@ namespace Example
             Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new AchievementsApi(Configuration.Default);
-            var id = new List<string>(); // List<string> | The unique identifiers of the resources (optional) 
+            var id = new List<string>?(); // List<string>? | The unique identifiers of the resources (optional) 
             var limit = 56;  // int? | Limit the returned total records found (optional) 
             var skip = 56;  // int? | Skip the returned records found and return the next batch of records (optional) 
 
@@ -418,7 +418,7 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | [**List&lt;string&gt;**](string.md)| The unique identifiers of the resources | [optional] 
+ **id** | [**List&lt;string&gt;?**](string.md)| The unique identifiers of the resources | [optional] 
  **limit** | **int?**| Limit the returned total records found | [optional] 
  **skip** | **int?**| Skip the returned records found and return the next batch of records | [optional] 
 
@@ -457,7 +457,7 @@ Name | Type | Description  | Notes
 
 ## GetAchievementsByQuery
 
-> AchievementResponse GetAchievementsByQuery (QueryRequest body = null)
+> AchievementResponse GetAchievementsByQuery (QueryRequest? body = null)
 
 
 
@@ -483,7 +483,7 @@ namespace Example
             Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new AchievementsApi(Configuration.Default);
-            var body = new QueryRequest(); // QueryRequest | Retrieve Achievements from Ziqni database by unique Achievements ID's or any other Post body parameters using the POST method (optional) 
+            var body = new QueryRequest?(); // QueryRequest? | Retrieve Achievements from Ziqni database by unique Achievements ID's or any other Post body parameters using the POST method (optional) 
 
             try
             {
@@ -506,7 +506,7 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**QueryRequest**](QueryRequest.md)| Retrieve Achievements from Ziqni database by unique Achievements ID&#39;s or any other Post body parameters using the POST method | [optional] 
+ **body** | [**QueryRequest?**](QueryRequest?.md)| Retrieve Achievements from Ziqni database by unique Achievements ID&#39;s or any other Post body parameters using the POST method | [optional] 
 
 ### Return type
 
@@ -720,7 +720,7 @@ Name | Type | Description  | Notes
 
 ## GetMembersAchievementsDetails
 
-> MemberAchievementIssuedResponse GetMembersAchievementsDetails (string id, string memberId = null, int? limit = null, int? skip = null)
+> MemberAchievementIssuedResponse GetMembersAchievementsDetails (string id, string? memberId = null, int? limit = null, int? skip = null)
 
 
 
@@ -747,7 +747,7 @@ namespace Example
 
             var apiInstance = new AchievementsApi(Configuration.Default);
             var id = id_example;  // string | Unique identifier of the resource
-            var memberId = memberId_example;  // string | Id of a member (optional) 
+            var memberId = memberId_example;  // string? | Id of a member (optional) 
             var limit = 56;  // int? | Limit the returned total records found (optional) 
             var skip = 56;  // int? | Skip the returned records found and return the next batch of records (optional) 
 
@@ -773,7 +773,7 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **string**| Unique identifier of the resource | 
- **memberId** | **string**| Id of a member | [optional] 
+ **memberId** | **string?**| Id of a member | [optional] 
  **limit** | **int?**| Limit the returned total records found | [optional] 
  **skip** | **int?**| Skip the returned records found and return the next batch of records | [optional] 
 
@@ -900,7 +900,7 @@ Name | Type | Description  | Notes
 
 ## UpdateAchievementsLiveStatus
 
-> ApiResponse UpdateAchievementsLiveStatus (List<AchievementLiveStatusRequest> body = null)
+> ApiResponse UpdateAchievementsLiveStatus (List<AchievementLiveStatusRequest>? body = null)
 
 
 
@@ -926,7 +926,7 @@ namespace Example
             Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new AchievementsApi(Configuration.Default);
-            var body = new List<AchievementLiveStatusRequest>(); // List<AchievementLiveStatusRequest> | Updates the state of the Achievement (optional) 
+            var body = new List<AchievementLiveStatusRequest>?(); // List<AchievementLiveStatusRequest>? | Updates the state of the Achievement (optional) 
 
             try
             {
@@ -949,7 +949,7 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**List&lt;AchievementLiveStatusRequest&gt;**](AchievementLiveStatusRequest.md)| Updates the state of the Achievement | [optional] 
+ **body** | [**List&lt;AchievementLiveStatusRequest&gt;?**](AchievementLiveStatusRequest.md)| Updates the state of the Achievement | [optional] 
 
 ### Return type
 

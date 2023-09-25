@@ -100,7 +100,7 @@ Name | Type | Description  | Notes
 
 ## DeleteCollaborators
 
-> ApiResponse DeleteCollaborators (List<string> emails = null)
+> ApiResponse DeleteCollaborators (List<string>? emails = null)
 
 
 
@@ -126,7 +126,7 @@ namespace Example
             Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new CollaboratorsApi(Configuration.Default);
-            var emails = new List<string>(); // List<string> | The list of user emails to search by (optional) 
+            var emails = new List<string>?(); // List<string>? | The list of user emails to search by (optional) 
 
             try
             {
@@ -149,7 +149,7 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **emails** | [**List&lt;string&gt;**](string.md)| The list of user emails to search by | [optional] 
+ **emails** | [**List&lt;string&gt;?**](string.md)| The list of user emails to search by | [optional] 
 
 ### Return type
 
@@ -268,7 +268,7 @@ This endpoint does not need any parameter.
 
 ## GetCollaborators
 
-> CollaboratorResponse GetCollaborators (List<string> emails = null, int? limit = null, int? skip = null)
+> CollaboratorResponse GetCollaborators (List<string>? emails = null, int? limit = null, int? skip = null)
 
 
 
@@ -294,7 +294,7 @@ namespace Example
             Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new CollaboratorsApi(Configuration.Default);
-            var emails = new List<string>(); // List<string> | The list of user emails to search by (optional) 
+            var emails = new List<string>?(); // List<string>? | The list of user emails to search by (optional) 
             var limit = 56;  // int? | Limit the returned total records found (optional) 
             var skip = 56;  // int? | Skip the returned records found and return the next batch of records (optional) 
 
@@ -319,7 +319,7 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **emails** | [**List&lt;string&gt;**](string.md)| The list of user emails to search by | [optional] 
+ **emails** | [**List&lt;string&gt;?**](string.md)| The list of user emails to search by | [optional] 
  **limit** | **int?**| Limit the returned total records found | [optional] 
  **skip** | **int?**| Skip the returned records found and return the next batch of records | [optional] 
 

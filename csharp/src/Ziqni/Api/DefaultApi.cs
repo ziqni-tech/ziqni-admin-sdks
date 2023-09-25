@@ -54,7 +54,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="subscriptionId"> (optional)</param>
         /// <returns></returns>
-        void UnsubscribeFromEntityChanges (string subscriptionId = default(string));
+        void UnsubscribeFromEntityChanges (string? subscriptionId = default(string?));
 
         /// <summary>
         /// 
@@ -65,7 +65,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="subscriptionId"> (optional)</param>
         /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> UnsubscribeFromEntityChangesWithHttpInfo (string subscriptionId = default(string));
+        ApiResponse<Object> UnsubscribeFromEntityChangesWithHttpInfo (string? subscriptionId = default(string?));
         #endregion Synchronous Operations
         #region Asynchronous Operations
         /// <summary>
@@ -101,7 +101,7 @@ namespace Ziqni.Api
         /// <param name="subscriptionId"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task UnsubscribeFromEntityChangesAsync (string subscriptionId = default(string), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task UnsubscribeFromEntityChangesAsync (string? subscriptionId = default(string?), CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// 
@@ -113,7 +113,7 @@ namespace Ziqni.Api
         /// <param name="subscriptionId"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> UnsubscribeFromEntityChangesWithHttpInfoAsync (string subscriptionId = default(string), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<Object>> UnsubscribeFromEntityChangesWithHttpInfoAsync (string? subscriptionId = default(string?), CancellationToken cancellationToken = default(CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -376,7 +376,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="subscriptionId"> (optional)</param>
         /// <returns></returns>
-        public void UnsubscribeFromEntityChanges (string subscriptionId = default(string))
+        public void UnsubscribeFromEntityChanges (string? subscriptionId = default(string?))
         {
              UnsubscribeFromEntityChangesWithHttpInfo(subscriptionId);
         }
@@ -387,7 +387,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="subscriptionId"> (optional)</param>
         /// <returns>ApiResponse of Object(void)</returns>
-        public ApiResponse<Object> UnsubscribeFromEntityChangesWithHttpInfo (string subscriptionId = default(string))
+        public ApiResponse<Object> UnsubscribeFromEntityChangesWithHttpInfo (string? subscriptionId = default(string?))
         {
 
             var localVarPath = "/entity-changes";
@@ -445,7 +445,7 @@ namespace Ziqni.Api
         /// <param name="subscriptionId"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task UnsubscribeFromEntityChangesAsync (string subscriptionId = default(string), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task UnsubscribeFromEntityChangesAsync (string? subscriptionId = default(string?), CancellationToken cancellationToken = default(CancellationToken))
         {
              await UnsubscribeFromEntityChangesWithHttpInfoAsync(subscriptionId, cancellationToken);
 
@@ -458,7 +458,7 @@ namespace Ziqni.Api
         /// <param name="subscriptionId"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<Object>> UnsubscribeFromEntityChangesWithHttpInfoAsync (string subscriptionId = default(string), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<ApiResponse<Object>> UnsubscribeFromEntityChangesWithHttpInfoAsync (string? subscriptionId = default(string?), CancellationToken cancellationToken = default(CancellationToken))
         {
 
             var localVarPath = "/entity-changes";

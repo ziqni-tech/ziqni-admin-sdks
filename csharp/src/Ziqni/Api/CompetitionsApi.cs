@@ -78,7 +78,7 @@ namespace Ziqni.Api
         /// <param name="limit">Limit the returned total records found (optional)</param>
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <returns>CompetitionResponse</returns>
-        CompetitionResponse GetCompetitions (List<string> id = default(List<string>), int? limit = default(int?), int? skip = default(int?));
+        CompetitionResponse GetCompetitions (List<string>? id = default(List<string>?), int? limit = default(int?), int? skip = default(int?));
 
         /// <summary>
         /// 
@@ -91,7 +91,7 @@ namespace Ziqni.Api
         /// <param name="limit">Limit the returned total records found (optional)</param>
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <returns>ApiResponse of CompetitionResponse</returns>
-        ApiResponse<CompetitionResponse> GetCompetitionsWithHttpInfo (List<string> id = default(List<string>), int? limit = default(int?), int? skip = default(int?));
+        ApiResponse<CompetitionResponse> GetCompetitionsWithHttpInfo (List<string>? id = default(List<string>?), int? limit = default(int?), int? skip = default(int?));
         /// <summary>
         /// 
         /// </summary>
@@ -101,7 +101,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Retrieve Competitions from Ziqni database by unique Competition ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <returns>CompetitionResponse</returns>
-        CompetitionResponse GetCompetitionsByQuery (QueryRequest body = default(QueryRequest));
+        CompetitionResponse GetCompetitionsByQuery (QueryRequest? body = default(QueryRequest?));
 
         /// <summary>
         /// 
@@ -112,7 +112,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Retrieve Competitions from Ziqni database by unique Competition ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <returns>ApiResponse of CompetitionResponse</returns>
-        ApiResponse<CompetitionResponse> GetCompetitionsByQueryWithHttpInfo (QueryRequest body = default(QueryRequest));
+        ApiResponse<CompetitionResponse> GetCompetitionsByQueryWithHttpInfo (QueryRequest? body = default(QueryRequest?));
         /// <summary>
         /// Get Competition To Clone
         /// </summary>
@@ -191,7 +191,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Updates the state of the Competition (optional)</param>
         /// <returns>ApiResponse</returns>
-        ApiResponse UpdateCompetitionsState (List<UpdateCompetitionStatusRequest> body = default(List<UpdateCompetitionStatusRequest>));
+        ApiResponse UpdateCompetitionsState (List<UpdateCompetitionStatusRequest>? body = default(List<UpdateCompetitionStatusRequest>?));
 
         /// <summary>
         /// 
@@ -202,7 +202,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Updates the state of the Competition (optional)</param>
         /// <returns>ApiResponse of ApiResponse</returns>
-        ApiResponse<ApiResponse> UpdateCompetitionsStateWithHttpInfo (List<UpdateCompetitionStatusRequest> body = default(List<UpdateCompetitionStatusRequest>));
+        ApiResponse<ApiResponse> UpdateCompetitionsStateWithHttpInfo (List<UpdateCompetitionStatusRequest>? body = default(List<UpdateCompetitionStatusRequest>?));
         #endregion Synchronous Operations
         #region Asynchronous Operations
         /// <summary>
@@ -263,7 +263,7 @@ namespace Ziqni.Api
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of CompetitionResponse</returns>
-        System.Threading.Tasks.Task<CompetitionResponse> GetCompetitionsAsync (List<string> id = default(List<string>), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<CompetitionResponse> GetCompetitionsAsync (List<string>? id = default(List<string>?), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// 
@@ -277,7 +277,7 @@ namespace Ziqni.Api
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (CompetitionResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<CompetitionResponse>> GetCompetitionsWithHttpInfoAsync (List<string> id = default(List<string>), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<CompetitionResponse>> GetCompetitionsWithHttpInfoAsync (List<string>? id = default(List<string>?), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// 
         /// </summary>
@@ -288,7 +288,7 @@ namespace Ziqni.Api
         /// <param name="body">Retrieve Competitions from Ziqni database by unique Competition ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of CompetitionResponse</returns>
-        System.Threading.Tasks.Task<CompetitionResponse> GetCompetitionsByQueryAsync (QueryRequest body = default(QueryRequest), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<CompetitionResponse> GetCompetitionsByQueryAsync (QueryRequest? body = default(QueryRequest?), CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// 
@@ -300,7 +300,7 @@ namespace Ziqni.Api
         /// <param name="body">Retrieve Competitions from Ziqni database by unique Competition ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (CompetitionResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<CompetitionResponse>> GetCompetitionsByQueryWithHttpInfoAsync (QueryRequest body = default(QueryRequest), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<CompetitionResponse>> GetCompetitionsByQueryWithHttpInfoAsync (QueryRequest? body = default(QueryRequest?), CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Get Competition To Clone
         /// </summary>
@@ -386,7 +386,7 @@ namespace Ziqni.Api
         /// <param name="body">Updates the state of the Competition (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse> UpdateCompetitionsStateAsync (List<UpdateCompetitionStatusRequest> body = default(List<UpdateCompetitionStatusRequest>), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse> UpdateCompetitionsStateAsync (List<UpdateCompetitionStatusRequest>? body = default(List<UpdateCompetitionStatusRequest>?), CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// 
@@ -398,7 +398,7 @@ namespace Ziqni.Api
         /// <param name="body">Updates the state of the Competition (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (ApiResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<ApiResponse>> UpdateCompetitionsStateWithHttpInfoAsync (List<UpdateCompetitionStatusRequest> body = default(List<UpdateCompetitionStatusRequest>), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<ApiResponse>> UpdateCompetitionsStateWithHttpInfoAsync (List<UpdateCompetitionStatusRequest>? body = default(List<UpdateCompetitionStatusRequest>?), CancellationToken cancellationToken = default(CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -844,7 +844,7 @@ namespace Ziqni.Api
         /// <param name="limit">Limit the returned total records found (optional)</param>
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <returns>CompetitionResponse</returns>
-        public CompetitionResponse GetCompetitions (List<string> id = default(List<string>), int? limit = default(int?), int? skip = default(int?))
+        public CompetitionResponse GetCompetitions (List<string>? id = default(List<string>?), int? limit = default(int?), int? skip = default(int?))
         {
              ApiResponse<CompetitionResponse> localVarResponse = GetCompetitionsWithHttpInfo(id, limit, skip);
              return localVarResponse.Data;
@@ -858,7 +858,7 @@ namespace Ziqni.Api
         /// <param name="limit">Limit the returned total records found (optional)</param>
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <returns>ApiResponse of CompetitionResponse</returns>
-        public ApiResponse<CompetitionResponse> GetCompetitionsWithHttpInfo (List<string> id = default(List<string>), int? limit = default(int?), int? skip = default(int?))
+        public ApiResponse<CompetitionResponse> GetCompetitionsWithHttpInfo (List<string>? id = default(List<string>?), int? limit = default(int?), int? skip = default(int?))
         {
 
             var localVarPath = "/competitions";
@@ -920,7 +920,7 @@ namespace Ziqni.Api
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of CompetitionResponse</returns>
-        public async System.Threading.Tasks.Task<CompetitionResponse> GetCompetitionsAsync (List<string> id = default(List<string>), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<CompetitionResponse> GetCompetitionsAsync (List<string>? id = default(List<string>?), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken))
         {
              ApiResponse<CompetitionResponse> localVarResponse = await GetCompetitionsWithHttpInfoAsync(id, limit, skip, cancellationToken);
              return localVarResponse.Data;
@@ -936,7 +936,7 @@ namespace Ziqni.Api
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (CompetitionResponse)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<CompetitionResponse>> GetCompetitionsWithHttpInfoAsync (List<string> id = default(List<string>), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<ApiResponse<CompetitionResponse>> GetCompetitionsWithHttpInfoAsync (List<string>? id = default(List<string>?), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken))
         {
 
             var localVarPath = "/competitions";
@@ -995,7 +995,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Retrieve Competitions from Ziqni database by unique Competition ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <returns>CompetitionResponse</returns>
-        public CompetitionResponse GetCompetitionsByQuery (QueryRequest body = default(QueryRequest))
+        public CompetitionResponse GetCompetitionsByQuery (QueryRequest? body = default(QueryRequest?))
         {
              ApiResponse<CompetitionResponse> localVarResponse = GetCompetitionsByQueryWithHttpInfo(body);
              return localVarResponse.Data;
@@ -1007,7 +1007,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Retrieve Competitions from Ziqni database by unique Competition ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <returns>ApiResponse of CompetitionResponse</returns>
-        public ApiResponse<CompetitionResponse> GetCompetitionsByQueryWithHttpInfo (QueryRequest body = default(QueryRequest))
+        public ApiResponse<CompetitionResponse> GetCompetitionsByQueryWithHttpInfo (QueryRequest? body = default(QueryRequest?))
         {
 
             var localVarPath = "/competitions/query";
@@ -1073,7 +1073,7 @@ namespace Ziqni.Api
         /// <param name="body">Retrieve Competitions from Ziqni database by unique Competition ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of CompetitionResponse</returns>
-        public async System.Threading.Tasks.Task<CompetitionResponse> GetCompetitionsByQueryAsync (QueryRequest body = default(QueryRequest), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<CompetitionResponse> GetCompetitionsByQueryAsync (QueryRequest? body = default(QueryRequest?), CancellationToken cancellationToken = default(CancellationToken))
         {
              ApiResponse<CompetitionResponse> localVarResponse = await GetCompetitionsByQueryWithHttpInfoAsync(body, cancellationToken);
              return localVarResponse.Data;
@@ -1087,7 +1087,7 @@ namespace Ziqni.Api
         /// <param name="body">Retrieve Competitions from Ziqni database by unique Competition ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (CompetitionResponse)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<CompetitionResponse>> GetCompetitionsByQueryWithHttpInfoAsync (QueryRequest body = default(QueryRequest), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<ApiResponse<CompetitionResponse>> GetCompetitionsByQueryWithHttpInfoAsync (QueryRequest? body = default(QueryRequest?), CancellationToken cancellationToken = default(CancellationToken))
         {
 
             var localVarPath = "/competitions/query";
@@ -1625,7 +1625,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Updates the state of the Competition (optional)</param>
         /// <returns>ApiResponse</returns>
-        public ApiResponse UpdateCompetitionsState (List<UpdateCompetitionStatusRequest> body = default(List<UpdateCompetitionStatusRequest>))
+        public ApiResponse UpdateCompetitionsState (List<UpdateCompetitionStatusRequest>? body = default(List<UpdateCompetitionStatusRequest>?))
         {
              ApiResponse<ApiResponse> localVarResponse = UpdateCompetitionsStateWithHttpInfo(body);
              return localVarResponse.Data;
@@ -1637,7 +1637,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Updates the state of the Competition (optional)</param>
         /// <returns>ApiResponse of ApiResponse</returns>
-        public ApiResponse<ApiResponse> UpdateCompetitionsStateWithHttpInfo (List<UpdateCompetitionStatusRequest> body = default(List<UpdateCompetitionStatusRequest>))
+        public ApiResponse<ApiResponse> UpdateCompetitionsStateWithHttpInfo (List<UpdateCompetitionStatusRequest>? body = default(List<UpdateCompetitionStatusRequest>?))
         {
 
             var localVarPath = "/competitions/state";
@@ -1703,7 +1703,7 @@ namespace Ziqni.Api
         /// <param name="body">Updates the state of the Competition (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<ApiResponse> UpdateCompetitionsStateAsync (List<UpdateCompetitionStatusRequest> body = default(List<UpdateCompetitionStatusRequest>), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<ApiResponse> UpdateCompetitionsStateAsync (List<UpdateCompetitionStatusRequest>? body = default(List<UpdateCompetitionStatusRequest>?), CancellationToken cancellationToken = default(CancellationToken))
         {
              ApiResponse<ApiResponse> localVarResponse = await UpdateCompetitionsStateWithHttpInfoAsync(body, cancellationToken);
              return localVarResponse.Data;
@@ -1717,7 +1717,7 @@ namespace Ziqni.Api
         /// <param name="body">Updates the state of the Competition (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (ApiResponse)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<ApiResponse>> UpdateCompetitionsStateWithHttpInfoAsync (List<UpdateCompetitionStatusRequest> body = default(List<UpdateCompetitionStatusRequest>), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<ApiResponse<ApiResponse>> UpdateCompetitionsStateWithHttpInfoAsync (List<UpdateCompetitionStatusRequest>? body = default(List<UpdateCompetitionStatusRequest>?), CancellationToken cancellationToken = default(CancellationToken))
         {
 
             var localVarPath = "/competitions/state";

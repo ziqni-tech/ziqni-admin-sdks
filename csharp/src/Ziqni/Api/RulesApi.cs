@@ -34,7 +34,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Delete Rules from Ziqni database by unique Rules ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <returns>ApiResponse</returns>
-        ApiResponse DeleteRulesByQuery (QueryRequest body = default(QueryRequest));
+        ApiResponse DeleteRulesByQuery (QueryRequest? body = default(QueryRequest?));
 
         /// <summary>
         /// 
@@ -45,7 +45,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Delete Rules from Ziqni database by unique Rules ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <returns>ApiResponse of ApiResponse</returns>
-        ApiResponse<ApiResponse> DeleteRulesByQueryWithHttpInfo (QueryRequest body = default(QueryRequest));
+        ApiResponse<ApiResponse> DeleteRulesByQueryWithHttpInfo (QueryRequest? body = default(QueryRequest?));
         /// <summary>
         /// 
         /// </summary>
@@ -78,7 +78,7 @@ namespace Ziqni.Api
         /// <param name="limit">Limit the returned total records found (optional)</param>
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <returns>RuleResponse</returns>
-        RuleResponse GetRules (List<string> id = default(List<string>), int? limit = default(int?), int? skip = default(int?));
+        RuleResponse GetRules (List<string>? id = default(List<string>?), int? limit = default(int?), int? skip = default(int?));
 
         /// <summary>
         /// 
@@ -91,7 +91,7 @@ namespace Ziqni.Api
         /// <param name="limit">Limit the returned total records found (optional)</param>
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <returns>ApiResponse of RuleResponse</returns>
-        ApiResponse<RuleResponse> GetRulesWithHttpInfo (List<string> id = default(List<string>), int? limit = default(int?), int? skip = default(int?));
+        ApiResponse<RuleResponse> GetRulesWithHttpInfo (List<string>? id = default(List<string>?), int? limit = default(int?), int? skip = default(int?));
         /// <summary>
         /// 
         /// </summary>
@@ -101,7 +101,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Retrieve Rules from Ziqni database by unique Rewards ID&#39;s or any other Post body parameters using the POST method (optional)</param>
         /// <returns>RuleResponse</returns>
-        RuleResponse GetRulesByQuery (QueryRequest body = default(QueryRequest));
+        RuleResponse GetRulesByQuery (QueryRequest? body = default(QueryRequest?));
 
         /// <summary>
         /// 
@@ -112,7 +112,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Retrieve Rules from Ziqni database by unique Rewards ID&#39;s or any other Post body parameters using the POST method (optional)</param>
         /// <returns>ApiResponse of RuleResponse</returns>
-        ApiResponse<RuleResponse> GetRulesByQueryWithHttpInfo (QueryRequest body = default(QueryRequest));
+        ApiResponse<RuleResponse> GetRulesByQueryWithHttpInfo (QueryRequest? body = default(QueryRequest?));
         /// <summary>
         /// 
         /// </summary>
@@ -188,7 +188,7 @@ namespace Ziqni.Api
         /// <param name="body">Delete Rules from Ziqni database by unique Rules ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse> DeleteRulesByQueryAsync (QueryRequest body = default(QueryRequest), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse> DeleteRulesByQueryAsync (QueryRequest? body = default(QueryRequest?), CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// 
@@ -200,7 +200,7 @@ namespace Ziqni.Api
         /// <param name="body">Delete Rules from Ziqni database by unique Rules ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (ApiResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<ApiResponse>> DeleteRulesByQueryWithHttpInfoAsync (QueryRequest body = default(QueryRequest), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<ApiResponse>> DeleteRulesByQueryWithHttpInfoAsync (QueryRequest? body = default(QueryRequest?), CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// 
         /// </summary>
@@ -236,7 +236,7 @@ namespace Ziqni.Api
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of RuleResponse</returns>
-        System.Threading.Tasks.Task<RuleResponse> GetRulesAsync (List<string> id = default(List<string>), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<RuleResponse> GetRulesAsync (List<string>? id = default(List<string>?), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// 
@@ -250,7 +250,7 @@ namespace Ziqni.Api
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (RuleResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<RuleResponse>> GetRulesWithHttpInfoAsync (List<string> id = default(List<string>), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<RuleResponse>> GetRulesWithHttpInfoAsync (List<string>? id = default(List<string>?), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// 
         /// </summary>
@@ -261,7 +261,7 @@ namespace Ziqni.Api
         /// <param name="body">Retrieve Rules from Ziqni database by unique Rewards ID&#39;s or any other Post body parameters using the POST method (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of RuleResponse</returns>
-        System.Threading.Tasks.Task<RuleResponse> GetRulesByQueryAsync (QueryRequest body = default(QueryRequest), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<RuleResponse> GetRulesByQueryAsync (QueryRequest? body = default(QueryRequest?), CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// 
@@ -273,7 +273,7 @@ namespace Ziqni.Api
         /// <param name="body">Retrieve Rules from Ziqni database by unique Rewards ID&#39;s or any other Post body parameters using the POST method (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (RuleResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<RuleResponse>> GetRulesByQueryWithHttpInfoAsync (QueryRequest body = default(QueryRequest), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<RuleResponse>> GetRulesByQueryWithHttpInfoAsync (QueryRequest? body = default(QueryRequest?), CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// 
         /// </summary>
@@ -460,7 +460,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Delete Rules from Ziqni database by unique Rules ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <returns>ApiResponse</returns>
-        public ApiResponse DeleteRulesByQuery (QueryRequest body = default(QueryRequest))
+        public ApiResponse DeleteRulesByQuery (QueryRequest? body = default(QueryRequest?))
         {
              ApiResponse<ApiResponse> localVarResponse = DeleteRulesByQueryWithHttpInfo(body);
              return localVarResponse.Data;
@@ -472,7 +472,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Delete Rules from Ziqni database by unique Rules ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <returns>ApiResponse of ApiResponse</returns>
-        public ApiResponse<ApiResponse> DeleteRulesByQueryWithHttpInfo (QueryRequest body = default(QueryRequest))
+        public ApiResponse<ApiResponse> DeleteRulesByQueryWithHttpInfo (QueryRequest? body = default(QueryRequest?))
         {
 
             var localVarPath = "/rules/delete";
@@ -538,7 +538,7 @@ namespace Ziqni.Api
         /// <param name="body">Delete Rules from Ziqni database by unique Rules ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<ApiResponse> DeleteRulesByQueryAsync (QueryRequest body = default(QueryRequest), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<ApiResponse> DeleteRulesByQueryAsync (QueryRequest? body = default(QueryRequest?), CancellationToken cancellationToken = default(CancellationToken))
         {
              ApiResponse<ApiResponse> localVarResponse = await DeleteRulesByQueryWithHttpInfoAsync(body, cancellationToken);
              return localVarResponse.Data;
@@ -552,7 +552,7 @@ namespace Ziqni.Api
         /// <param name="body">Delete Rules from Ziqni database by unique Rules ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (ApiResponse)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<ApiResponse>> DeleteRulesByQueryWithHttpInfoAsync (QueryRequest body = default(QueryRequest), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<ApiResponse<ApiResponse>> DeleteRulesByQueryWithHttpInfoAsync (QueryRequest? body = default(QueryRequest?), CancellationToken cancellationToken = default(CancellationToken))
         {
 
             var localVarPath = "/rules/delete";
@@ -766,7 +766,7 @@ namespace Ziqni.Api
         /// <param name="limit">Limit the returned total records found (optional)</param>
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <returns>RuleResponse</returns>
-        public RuleResponse GetRules (List<string> id = default(List<string>), int? limit = default(int?), int? skip = default(int?))
+        public RuleResponse GetRules (List<string>? id = default(List<string>?), int? limit = default(int?), int? skip = default(int?))
         {
              ApiResponse<RuleResponse> localVarResponse = GetRulesWithHttpInfo(id, limit, skip);
              return localVarResponse.Data;
@@ -780,7 +780,7 @@ namespace Ziqni.Api
         /// <param name="limit">Limit the returned total records found (optional)</param>
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <returns>ApiResponse of RuleResponse</returns>
-        public ApiResponse<RuleResponse> GetRulesWithHttpInfo (List<string> id = default(List<string>), int? limit = default(int?), int? skip = default(int?))
+        public ApiResponse<RuleResponse> GetRulesWithHttpInfo (List<string>? id = default(List<string>?), int? limit = default(int?), int? skip = default(int?))
         {
 
             var localVarPath = "/rules";
@@ -842,7 +842,7 @@ namespace Ziqni.Api
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of RuleResponse</returns>
-        public async System.Threading.Tasks.Task<RuleResponse> GetRulesAsync (List<string> id = default(List<string>), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<RuleResponse> GetRulesAsync (List<string>? id = default(List<string>?), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken))
         {
              ApiResponse<RuleResponse> localVarResponse = await GetRulesWithHttpInfoAsync(id, limit, skip, cancellationToken);
              return localVarResponse.Data;
@@ -858,7 +858,7 @@ namespace Ziqni.Api
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (RuleResponse)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<RuleResponse>> GetRulesWithHttpInfoAsync (List<string> id = default(List<string>), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<ApiResponse<RuleResponse>> GetRulesWithHttpInfoAsync (List<string>? id = default(List<string>?), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken))
         {
 
             var localVarPath = "/rules";
@@ -917,7 +917,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Retrieve Rules from Ziqni database by unique Rewards ID&#39;s or any other Post body parameters using the POST method (optional)</param>
         /// <returns>RuleResponse</returns>
-        public RuleResponse GetRulesByQuery (QueryRequest body = default(QueryRequest))
+        public RuleResponse GetRulesByQuery (QueryRequest? body = default(QueryRequest?))
         {
              ApiResponse<RuleResponse> localVarResponse = GetRulesByQueryWithHttpInfo(body);
              return localVarResponse.Data;
@@ -929,7 +929,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Retrieve Rules from Ziqni database by unique Rewards ID&#39;s or any other Post body parameters using the POST method (optional)</param>
         /// <returns>ApiResponse of RuleResponse</returns>
-        public ApiResponse<RuleResponse> GetRulesByQueryWithHttpInfo (QueryRequest body = default(QueryRequest))
+        public ApiResponse<RuleResponse> GetRulesByQueryWithHttpInfo (QueryRequest? body = default(QueryRequest?))
         {
 
             var localVarPath = "/rules/query";
@@ -995,7 +995,7 @@ namespace Ziqni.Api
         /// <param name="body">Retrieve Rules from Ziqni database by unique Rewards ID&#39;s or any other Post body parameters using the POST method (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of RuleResponse</returns>
-        public async System.Threading.Tasks.Task<RuleResponse> GetRulesByQueryAsync (QueryRequest body = default(QueryRequest), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<RuleResponse> GetRulesByQueryAsync (QueryRequest? body = default(QueryRequest?), CancellationToken cancellationToken = default(CancellationToken))
         {
              ApiResponse<RuleResponse> localVarResponse = await GetRulesByQueryWithHttpInfoAsync(body, cancellationToken);
              return localVarResponse.Data;
@@ -1009,7 +1009,7 @@ namespace Ziqni.Api
         /// <param name="body">Retrieve Rules from Ziqni database by unique Rewards ID&#39;s or any other Post body parameters using the POST method (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (RuleResponse)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<RuleResponse>> GetRulesByQueryWithHttpInfoAsync (QueryRequest body = default(QueryRequest), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<ApiResponse<RuleResponse>> GetRulesByQueryWithHttpInfoAsync (QueryRequest? body = default(QueryRequest?), CancellationToken cancellationToken = default(CancellationToken))
         {
 
             var localVarPath = "/rules/query";

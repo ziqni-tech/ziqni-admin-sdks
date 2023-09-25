@@ -57,7 +57,7 @@ namespace Ziqni.Api
         /// <param name="limit">Limit the returned total records found (optional)</param>
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <returns>AwardResponse</returns>
-        AwardResponse GetAwards (List<string> id = default(List<string>), int? limit = default(int?), int? skip = default(int?));
+        AwardResponse GetAwards (List<string>? id = default(List<string>?), int? limit = default(int?), int? skip = default(int?));
 
         /// <summary>
         /// 
@@ -70,7 +70,7 @@ namespace Ziqni.Api
         /// <param name="limit">Limit the returned total records found (optional)</param>
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <returns>ApiResponse of AwardResponse</returns>
-        ApiResponse<AwardResponse> GetAwardsWithHttpInfo (List<string> id = default(List<string>), int? limit = default(int?), int? skip = default(int?));
+        ApiResponse<AwardResponse> GetAwardsWithHttpInfo (List<string>? id = default(List<string>?), int? limit = default(int?), int? skip = default(int?));
         /// <summary>
         /// 
         /// </summary>
@@ -80,7 +80,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Retrieve Awards from Ziqni database by unique Awards ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <returns>AwardResponse</returns>
-        AwardResponse GetAwardsByQuery (QueryRequest body = default(QueryRequest));
+        AwardResponse GetAwardsByQuery (QueryRequest? body = default(QueryRequest?));
 
         /// <summary>
         /// 
@@ -91,7 +91,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Retrieve Awards from Ziqni database by unique Awards ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <returns>ApiResponse of AwardResponse</returns>
-        ApiResponse<AwardResponse> GetAwardsByQueryWithHttpInfo (QueryRequest body = default(QueryRequest));
+        ApiResponse<AwardResponse> GetAwardsByQueryWithHttpInfo (QueryRequest? body = default(QueryRequest?));
         #endregion Synchronous Operations
         #region Asynchronous Operations
         /// <summary>
@@ -129,7 +129,7 @@ namespace Ziqni.Api
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of AwardResponse</returns>
-        System.Threading.Tasks.Task<AwardResponse> GetAwardsAsync (List<string> id = default(List<string>), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<AwardResponse> GetAwardsAsync (List<string>? id = default(List<string>?), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// 
@@ -143,7 +143,7 @@ namespace Ziqni.Api
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (AwardResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<AwardResponse>> GetAwardsWithHttpInfoAsync (List<string> id = default(List<string>), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<AwardResponse>> GetAwardsWithHttpInfoAsync (List<string>? id = default(List<string>?), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// 
         /// </summary>
@@ -154,7 +154,7 @@ namespace Ziqni.Api
         /// <param name="body">Retrieve Awards from Ziqni database by unique Awards ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of AwardResponse</returns>
-        System.Threading.Tasks.Task<AwardResponse> GetAwardsByQueryAsync (QueryRequest body = default(QueryRequest), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<AwardResponse> GetAwardsByQueryAsync (QueryRequest? body = default(QueryRequest?), CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// 
@@ -166,7 +166,7 @@ namespace Ziqni.Api
         /// <param name="body">Retrieve Awards from Ziqni database by unique Awards ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (AwardResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<AwardResponse>> GetAwardsByQueryWithHttpInfoAsync (QueryRequest body = default(QueryRequest), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<AwardResponse>> GetAwardsByQueryWithHttpInfoAsync (QueryRequest? body = default(QueryRequest?), CancellationToken cancellationToken = default(CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -449,7 +449,7 @@ namespace Ziqni.Api
         /// <param name="limit">Limit the returned total records found (optional)</param>
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <returns>AwardResponse</returns>
-        public AwardResponse GetAwards (List<string> id = default(List<string>), int? limit = default(int?), int? skip = default(int?))
+        public AwardResponse GetAwards (List<string>? id = default(List<string>?), int? limit = default(int?), int? skip = default(int?))
         {
              ApiResponse<AwardResponse> localVarResponse = GetAwardsWithHttpInfo(id, limit, skip);
              return localVarResponse.Data;
@@ -463,7 +463,7 @@ namespace Ziqni.Api
         /// <param name="limit">Limit the returned total records found (optional)</param>
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <returns>ApiResponse of AwardResponse</returns>
-        public ApiResponse<AwardResponse> GetAwardsWithHttpInfo (List<string> id = default(List<string>), int? limit = default(int?), int? skip = default(int?))
+        public ApiResponse<AwardResponse> GetAwardsWithHttpInfo (List<string>? id = default(List<string>?), int? limit = default(int?), int? skip = default(int?))
         {
 
             var localVarPath = "/awards";
@@ -525,7 +525,7 @@ namespace Ziqni.Api
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of AwardResponse</returns>
-        public async System.Threading.Tasks.Task<AwardResponse> GetAwardsAsync (List<string> id = default(List<string>), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<AwardResponse> GetAwardsAsync (List<string>? id = default(List<string>?), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken))
         {
              ApiResponse<AwardResponse> localVarResponse = await GetAwardsWithHttpInfoAsync(id, limit, skip, cancellationToken);
              return localVarResponse.Data;
@@ -541,7 +541,7 @@ namespace Ziqni.Api
         /// <param name="skip">Skip the returned records found and return the next batch of records (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (AwardResponse)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<AwardResponse>> GetAwardsWithHttpInfoAsync (List<string> id = default(List<string>), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<ApiResponse<AwardResponse>> GetAwardsWithHttpInfoAsync (List<string>? id = default(List<string>?), int? limit = default(int?), int? skip = default(int?), CancellationToken cancellationToken = default(CancellationToken))
         {
 
             var localVarPath = "/awards";
@@ -600,7 +600,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Retrieve Awards from Ziqni database by unique Awards ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <returns>AwardResponse</returns>
-        public AwardResponse GetAwardsByQuery (QueryRequest body = default(QueryRequest))
+        public AwardResponse GetAwardsByQuery (QueryRequest? body = default(QueryRequest?))
         {
              ApiResponse<AwardResponse> localVarResponse = GetAwardsByQueryWithHttpInfo(body);
              return localVarResponse.Data;
@@ -612,7 +612,7 @@ namespace Ziqni.Api
         /// <exception cref="Ziqni.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Retrieve Awards from Ziqni database by unique Awards ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <returns>ApiResponse of AwardResponse</returns>
-        public ApiResponse<AwardResponse> GetAwardsByQueryWithHttpInfo (QueryRequest body = default(QueryRequest))
+        public ApiResponse<AwardResponse> GetAwardsByQueryWithHttpInfo (QueryRequest? body = default(QueryRequest?))
         {
 
             var localVarPath = "/awards/query";
@@ -678,7 +678,7 @@ namespace Ziqni.Api
         /// <param name="body">Retrieve Awards from Ziqni database by unique Awards ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of AwardResponse</returns>
-        public async System.Threading.Tasks.Task<AwardResponse> GetAwardsByQueryAsync (QueryRequest body = default(QueryRequest), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<AwardResponse> GetAwardsByQueryAsync (QueryRequest? body = default(QueryRequest?), CancellationToken cancellationToken = default(CancellationToken))
         {
              ApiResponse<AwardResponse> localVarResponse = await GetAwardsByQueryWithHttpInfoAsync(body, cancellationToken);
              return localVarResponse.Data;
@@ -692,7 +692,7 @@ namespace Ziqni.Api
         /// <param name="body">Retrieve Awards from Ziqni database by unique Awards ID&#39;s or any other POST body parameters using the POST method (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (AwardResponse)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<AwardResponse>> GetAwardsByQueryWithHttpInfoAsync (QueryRequest body = default(QueryRequest), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<ApiResponse<AwardResponse>> GetAwardsByQueryWithHttpInfoAsync (QueryRequest? body = default(QueryRequest?), CancellationToken cancellationToken = default(CancellationToken))
         {
 
             var localVarPath = "/awards/query";
