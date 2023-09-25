@@ -17,6 +17,9 @@ Name | Type | Description | Notes
 **description** | **String** | A name for the Achievement. Can be translated |  [optional]
 **termsAndConditions** | **String** | Terms and conditions of an achievement. Can be translated |  [optional]
 **icon** | **String** | An Icon id that has been pre uploaded to the system to display for Achievement | 
+**banner** | **String** | A banner id that has been pre uploaded to the system to display for Achievement |  [optional]
+**bannerLowResolution** | **String** | A bannerLowResolution id that has been pre uploaded to the system to display for Achievement |  [optional]
+**bannerHighResolution** | **String** | A bannerHighResolution id that has been pre uploaded to the system to display for Achievement |  [optional]
 **scheduling** | [**Scheduling**](Scheduling.md) |  |  [optional]
 **maxNumberOfIssues** | **Integer** | Maximum number of issued achievements |  [optional]
 **status** | **AchievementStatus** |  |  [optional]

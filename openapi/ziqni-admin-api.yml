@@ -11415,118 +11415,6 @@ components:
       example:
         entityId: some text
         countValue: 83
-    CreateContestForCompetitionRequest:
-      allOf:
-        -
-          $ref: '#/components/schemas/CreateOptParamModels'
-        -
-          required:
-            - competitionId
-            - row
-            - round
-            - roundType
-            - name
-            - ruleSets
-            - minNumberOfEntrants
-            - scheduledStartDate
-            - scheduledEndDate
-            - constraints
-            - strategies
-          type: object
-          properties:
-            competitionId:
-              description: A unique identifier of a Competition
-              type: string
-              example: Dc4swmQBVd51K6gPQqFx
-            row:
-              format: int32
-              description: The row number for displaying the Contest in a table
-              type: integer
-              example: '2'
-            round:
-              format: int32
-              description: To what round does the contest belong
-              type: integer
-              example: '2'
-            groupStage:
-              format: int32
-              description: >-
-                Is used for more complex Competitions e.g. multi round competitions where
-                round 1 group stage matched round 2
-              type: integer
-              example: '2'
-            groupStageLabel:
-              description: The name of the group stages
-              type: string
-              example: Semi-finals
-            entrantsFromContest:
-              description: >-
-                A list of Ziqni contest identifiers to allow contests chaining. When a
-                Progression competition is active and you have a 2 round competition the first
-                round has to reference the second round then this parameter becomes mandatory
-                instead of Optional.
-              type: array
-              items:
-                type: string
-              example: '- Dc4swmQBVd51K6gPQqFx - sc3jsrfLewVdt6KugPqFx'
-            name:
-              description: A name for the Contest. Can be translated
-              type: string
-              example: Fish and Chips
-            description:
-              description: A name for the Contest. Can be translated
-              type: string
-              example: Fish and Chips contest
-            termsAndConditions:
-              description: A name for the Contest. Can be translated
-              type: string
-              example: Buy 1 get 1 free
-            roundType:
-              $ref: '#/components/schemas/RoundType'
-            maxNumberOfEntrants:
-              format: int32
-              description: Maximum number of entrants for the contest
-              type: integer
-              example: '9999'
-            minNumberOfEntrants:
-              format: int32§
-              description: Minimum number of entrants for the contest
-              type: integer
-              example: '0'
-            rules:
-              type: array
-              items:
-                $ref: '#/components/schemas/Rule'
-            scheduledStartDate:
-              format: date-time
-              description: >-
-                ISO8601 timestamp for when a Contest should start. All records are stored in
-                UTC time zone
-              type: string
-              example: '2019-09-25T15:47:00.000+0000'
-            scheduledEndDate:
-              format: date-time
-              description: >-
-                ISO8601 timestamp for when a Contest should end. All records are stored in UTC
-                time zone
-              type: string
-              example: '2019-09-25T15:47:00.000+0000'
-            strategies:
-              $ref: '#/components/schemas/TournamentStrategies'
-            translations:
-              type: array
-              items:
-                $ref: '#/components/schemas/Translation'
-            rewards:
-              type: array
-              items:
-                $ref: '#/components/schemas/CreateRewardRequest'
-            constraints:
-              description: Additional constraints
-              type: array
-              items:
-                type: string
-              example: '- notifyMember - memberAcknowledgmentRequired - autoStart - auto Stop'
     CreateEntityRewardRequest:
       allOf:
         -
@@ -12245,62 +12133,6 @@ components:
           description: The time a member gets to the target points value
           type: number
           example: '1'
-    UpdateContestRequest:
-      allOf:
-        -
-          $ref: '#/components/schemas/UpdateModelDefault'
-        -
-          $ref: '#/components/schemas/UpdateOptParamModels'
-        -
-          required: []
-          type: object
-          properties:
-            name:
-              description: A name for the Contest. Can be translated
-              type: string
-              example: Fish and Chips
-            description:
-              description: A name for the Contest. Can be translated
-              type: string
-              example: Fish and Chips contest
-            termsAndConditions:
-              description: A name for the Contest. Can be translated
-              type: string
-              example: Buy 1 get 1 free
-            roundType:
-              $ref: '#/components/schemas/RoundType'
-            maxNumberOfEntrants:
-              format: int32
-              description: Maximum number of entrants for the contest
-              type: integer
-              example: '9999'
-            minNumberOfEntrants:
-              format: int32§
-              description: Minimum number of entrants for the contest
-              type: integer
-              example: '0'
-            scheduledStartDate:
-              format: date-time
-              description: >-
-                ISO8601 timestamp for when a Contest should start. All records are stored in
-                UTC time zone
-              type: string
-              example: '2019-09-25T15:47:00.000+0000'
-            scheduledEndDate:
-              format: date-time
-              description: >-
-                ISO8601 timestamp for when a Contest should end. All records are stored in UTC
-                time zone
-              type: string
-              example: '2019-09-25T15:47:00.000+0000'
-            strategies:
-              $ref: '#/components/schemas/TournamentStrategies'
-            constraints:
-              description: Additional constraints
-              type: array
-              items:
-                type: string
-              example: '- notifyMember - memberAcknowledgmentRequired - autoStart - auto Stop'
     UpdateEntityRewardRequest:
       allOf:
         -
@@ -14884,572 +14716,6 @@ components:
       x-vue-ops:
         - Create
         - Update
-    Competition:
-      allOf:
-        -
-          $ref: '#/components/schemas/ModelDefault'
-        -
-          $ref: '#/components/schemas/OptParamModels'
-        -
-          required:
-            - competitionType
-            - numberOfRounds
-            - name
-            - minNumberOfEntrants
-            - ruleSets
-            - scheduledStartDate
-            - scheduledEndDate
-            - status
-            - constraints
-            - products
-          type: object
-          properties:
-            competitionType:
-              $ref: '#/components/schemas/CompetitionType'
-            numberOfRounds:
-              format: int32
-              description: Number of rounds to be played in a competition
-              type: integer
-              example: '1'
-              x-vue-search-field: true
-              x-vue-disaply-order: 1006
-            numberOfGroupStages:
-              description: Number of group stages
-              type: integer
-              x-vue-search-field: true
-              x-vue-disaply-order: 1006
-            name:
-              description: A name or a name of a competition. Can be translated
-              type: string
-              example: Summer fest
-              x-vue-translatable: true
-              x-vue-search-all: true
-              x-vue-search-field: true
-              x-vue-disaply-order: 1001
-            description:
-              description: Description of the competition. Can be translated
-              type: string
-              example: A competition that is for 1 day
-              x-vue-translatable: true
-              x-vue-search-all: true
-              x-vue-search-field: true
-              x-vue-disaply-order: 1002
-              x-vue-form-type: TEXTAREA
-            termsAndConditions:
-              description: Terms and conditions of a competition. Can be translated
-              type: string
-              example: Participate to win
-              x-vue-translatable: true
-              x-vue-search-all: true
-              x-vue-search-field: true
-              x-vue-form-type: TEXTAREA
-              x-vue-disaply-order: 1003
-            maxNumberOfEntrants:
-              format: int32
-              description: Maximum number of partiipants allowed in a competition
-              type: integer
-              example: '9999'
-              x-vue-search-field: true
-              x-vue-disaply-order: 1006
-            minNumberOfEntrants:
-              format: int32
-              description: Maximum number of partiipants allowed in a competition
-              type: integer
-              example: '0'
-              x-vue-search-field: true
-              x-vue-disaply-order: 1006
-            entrantMemberType:
-              type: string
-              x-vue-disaply-order: 1005
-              x-vue-filter: true
-            scheduledStartDate:
-              format: date-time
-              description: >-
-                ISO8601 timestamp for when a Competition should start. All records are stored
-                in UTC time zone
-              type: string
-              example: '2019-09-25T15:47:00.000+0000'
-              x-vue-search-field: true
-              x-vue-disaply-order: 1006
-            scheduledEndDate:
-              format: date-time
-              description: >-
-                ISO8601 timestamp for when a Competition should end. All records are stored in
-                UTC time zone
-              type: string
-              example: '2019-09-25T15:47:00.000+0000'
-              x-vue-search-field: true
-              x-vue-disaply-order: 1006
-            actualStartDate:
-              format: date-time
-              description: >-
-                ISO8601 timestamp for when a Competition started. All records are stored in
-                UTC time zone
-              type: string
-              readOnly: true
-              example: '2019-09-25T15:47:00.000+0000'
-              x-vue-search-field: true
-              x-vue-disaply-order: 1006
-            actualEndDate:
-              format: date-time
-              description: >-
-                ISO8601 timestamp for when a Competition ended. All records are stored in UTC
-                time zone
-              type: string
-              readOnly: true
-              example: '2019-09-25T15:47:00.000+0000'
-              x-vue-search-field: true
-              x-vue-disaply-order: 1006
-            status:
-              $ref: '#/components/schemas/CompetitionStatus'
-              x-vue-disaply-order: 1006
-            statusCode:
-              description: The code of the competition
-              type: integer
-              readOnly: true
-              example: '3'
-              x-vue-search-field: true
-              x-vue-disaply-order: 1006
-            constraints:
-              description: Additional constraints
-              uniqueItems: true
-              type: array
-              items:
-                type: string
-              example: |-
-                - notifyMember
-                - memberAcknowledgmentRequired
-                - isPublic
-                - autoStart
-                - autoStop
-                - optinRequiredForEntrants
-              x-vue-constraint: true
-              x-vue-constraint-options:
-                - notifyMember
-                - memberAcknowledgmentRequired
-                - isPublic
-                - autoStart
-                - autoStop
-                - optinRequiredForEntrants
-              x-vue-disaply-order: 1006
-            products:
-              description: ''
-              type: array
-              items:
-                $ref: '#/components/schemas/ProductReduced'
-              x-vue-disaply-order: 1006
-            entrantMemberTagsFilter:
-              $ref: '#/components/schemas/DependantOn'
-              description: ''
-            productTagsFilter:
-              $ref: '#/components/schemas/DependantOn'
-              description: ''
-      x-vue-list: true
-      x-vue-show: true
-      x-vue-getter: competitions
-      x-vue-sort-by: name
-      x-vue-sort-order: Asc
-      x-vue-limit: 10
-      x-vue-ops:
-        - Create
-        - Update
-      x-vue-entity-links-from:
-        - Rules
-        - Reward
-        - Award
-        - Contest
-    CreateCompetitionRequest:
-      allOf:
-        -
-          $ref: '#/components/schemas/CreateOptParamModels'
-        -
-          required:
-            - competitionType
-            - numberOfRounds
-            - name
-            - minNumberOfEntrants
-            - ruleSets
-            - scheduledStartDate
-            - scheduledEndDate
-            - constraints
-            - productIds
-          type: object
-          properties:
-            competitionType:
-              $ref: '#/components/schemas/CompetitionType'
-            numberOfRounds:
-              format: int32
-              description: Number of rounds to be played in a competition
-              type: integer
-              example: '1'
-            numberOfGroupStages:
-              description: Number of group stages
-              type: integer
-            name:
-              description: A name or a name of a competition. Can be translated
-              type: string
-              example: Summer fest
-            description:
-              description: Description of the competition. Can be translated
-              type: string
-              example: A competition that is for 1 day
-            termsAndConditions:
-              description: Terms and conditions of a competition. Can be translated
-              type: string
-              example: Participate to win
-            entrantMemberType:
-              type: string
-            maxNumberOfEntrants:
-              format: int32
-              description: Maximum number of partiipants allowed in a competition
-              type: integer
-              example: '9999'
-            minNumberOfEntrants:
-              format: int32
-              description: Maximum number of partiipants allowed in a competition
-              type: integer
-              example: '0'
-            rules:
-              type: array
-              items:
-                $ref: '#/components/schemas/Rule'
-            scheduledStartDate:
-              format: date-time
-              description: >-
-                ISO8601 timestamp for when a Competition should start. All records are stored
-                in UTC time zone
-              type: string
-              example: '2019-09-25T15:47:00.000+0000'
-            scheduledEndDate:
-              format: date-time
-              description: >-
-                ISO8601 timestamp for when a Competition should end. All records are stored in
-                UTC time zone
-              type: string
-              example: '2019-09-25T15:47:00.000+0000'
-            translations:
-              type: array
-              items:
-                $ref: '#/components/schemas/Translation'
-            contests:
-              $ref: '#/components/schemas/CreateContestRequest'
-            rewards:
-              type: array
-              items:
-                $ref: '#/components/schemas/CreateRewardRequest'
-            constraints:
-              deprecated: true
-              description: Additional constraints
-              type: array
-              items:
-                type: string
-              example: >-
-                - notifyMember - memberAcknowledgmentRequired - isPublic - autoStart -
-                autoStop - optinRequiredForEntrants
-            addConstraints:
-              description: Additional constraints
-              type: array
-              items:
-                type: string
-              example: >-
-                - notifyMember - memberAcknowledgmentRequired - isPublic - autoStart -
-                autoStop - optinRequiredForEntrants
-            productIds:
-              description: ''
-              type: array
-              items:
-                type: string
-            entrantMemberTagsFilter:
-              $ref: '#/components/schemas/DependantOn'
-              description: ''
-            productTagsFilter:
-              $ref: '#/components/schemas/DependantOn'
-              description: ''
-    CreateContestRequest:
-      allOf:
-        -
-          $ref: '#/components/schemas/CreateOptParamModels'
-        -
-          required:
-            - name
-            - ruleSets
-            - roundType
-            - minNumberOfEntrants
-            - scheduledStartDate
-            - scheduledEndDate
-            - strategies
-            - constraints
-          type: object
-          properties:
-            row:
-              format: int32
-              description: The row number for displaying the Contest in a table
-              type: integer
-              example: '2'
-            round:
-              format: int32
-              description: To what round does the contest belong
-              type: integer
-              example: '2'
-            entrantsFromContest:
-              description: >-
-                A list of Ziqni contest identifiers to allow contests chaining. When a
-                Progression competition is active and you have a 2 round competition the first
-                round has to reference the second round then this parameter becomes mandatory
-                instead of Optional.
-              type: array
-              items:
-                type: string
-              example: '- Dc4swmQBVd51K6gPQqFx - sc3jsrfLewVdt6KugPqFx'
-            name:
-              description: A name for the Contest. Can be translated
-              type: string
-              example: Fish and Chips
-            description:
-              description: A name for the Contest. Can be translated
-              type: string
-              example: Fish and Chips contest
-            termsAndConditions:
-              description: A name for the Contest. Can be translated
-              type: string
-              example: Buy 1 get 1 free
-            roundType:
-              $ref: '#/components/schemas/RoundType'
-            maxNumberOfEntrants:
-              format: int32
-              description: Maximum number of entrants for the contest
-              type: integer
-              example: '9999'
-            minNumberOfEntrants:
-              format: int32§
-              description: Minimum number of entrants for the contest
-              type: integer
-              example: '0'
-            rules:
-              type: array
-              items:
-                $ref: '#/components/schemas/Rule'
-            scheduledStartDate:
-              format: date-time
-              description: >-
-                ISO8601 timestamp for when a Contest should start. All records are stored in
-                UTC time zone
-              type: string
-              example: '2019-09-25T15:47:00.000+0000'
-            scheduledEndDate:
-              format: date-time
-              description: >-
-                ISO8601 timestamp for when a Contest should end. All records are stored in UTC
-                time zone
-              type: string
-              example: '2019-09-25T15:47:00.000+0000'
-            strategies:
-              $ref: '#/components/schemas/TournamentStrategies'
-            constraints:
-              deprecated: true
-              description: Additional constraints
-              type: array
-              items:
-                type: string
-              example: '- notifyMember - memberAcknowledgmentRequired - autoStart - auto Stop'
-            addConstraints:
-              description: Additional constraints
-              type: array
-              items:
-                type: string
-              example: '- notifyMember - memberAcknowledgmentRequired - autoStart - auto Stop'
-            translations:
-              type: array
-              items:
-                $ref: '#/components/schemas/Translation'
-            rewards:
-              type: array
-              items:
-                $ref: '#/components/schemas/CreateRewardRequest'
-    UpdateCompetitionRequest:
-      allOf:
-        -
-          $ref: '#/components/schemas/UpdateModelDefault'
-        -
-          $ref: '#/components/schemas/UpdateOptParamModels'
-        -
-          required: []
-          type: object
-          properties:
-            competitionType:
-              $ref: '#/components/schemas/CompetitionType'
-            numberOfRounds:
-              format: int32
-              description: Number of rounds to be played in a competition
-              type: integer
-              example: '1'
-            numberOfGroupStages:
-              description: Number of group stages
-              type: integer
-            name:
-              description: A name or a name of a competition. Can be translated
-              type: string
-              example: Summer fest
-            description:
-              description: Description of the competition. Can be translated
-              type: string
-              example: A competition that is for 1 day
-            termsAndConditions:
-              description: Terms and conditions of a competition. Can be translated
-              type: string
-              example: Participate to win
-            entrantMemberType:
-              type: string
-            maxNumberOfEntrants:
-              format: int32
-              description: Maximum number of partiipants allowed in a competition
-              type: integer
-              example: '9999'
-            minNumberOfEntrants:
-              format: int32
-              description: Maximum number of partiipants allowed in a competition
-              type: integer
-              example: '0'
-            scheduledStartDate:
-              format: date-time
-              description: >-
-                ISO8601 timestamp for when a Competition should start. All records are stored
-                in UTC time zone
-              type: string
-              example: '2019-09-25T15:47:00.000+0000'
-            scheduledEndDate:
-              format: date-time
-              description: >-
-                ISO8601 timestamp for when a Competition should end. All records are stored in
-                UTC time zone
-              type: string
-              example: '2019-09-25T15:47:00.000+0000'
-            constraints:
-              deprecated: true
-              description: Additional constraints
-              type: array
-              items:
-                type: string
-              example: >-
-                - notifyMember - memberAcknowledgmentRequired - isPublic - autoStart -
-                autoStop - optinRequiredForEntrants
-            addConstraints:
-              description: Additional constraints
-              type: array
-              items:
-                type: string
-              example: '- memberAcknowledgmentRequired'
-            removeConstraints:
-              description: Additional constraints
-              type: array
-              items:
-                type: string
-              example: '- isPublic'
-            productIds:
-              description: ''
-              type: array
-              items:
-                type: string
-            createContests:
-              $ref: '#/components/schemas/CreateContestForCompetitionRequest'
-              description: ''
-            updateContests:
-              $ref: '#/components/schemas/UpdateContestRequest'
-              description: ''
-            entrantMemberTagsFilter:
-              $ref: '#/components/schemas/DependantOn'
-              description: ''
-            productTagsFilter:
-              $ref: '#/components/schemas/DependantOn'
-              description: ''
-    CreateSimpleCompetitionRequest:
-      allOf:
-        -
-          $ref: '#/components/schemas/CreateOptParamModels'
-        -
-          required:
-            - competitionType
-            - name
-            - minNumberOfEntrants
-            - ruleSets
-            - scheduledStartDate
-            - scheduledEndDate
-            - productIds
-          type: object
-          properties:
-            competitionType:
-              $ref: '#/components/schemas/CompetitionType'
-            name:
-              description: A name or a name of a competition. Can be translated
-              type: string
-              example: Summer fest
-            description:
-              description: Description of the competition. Can be translated
-              type: string
-              example: A competition that is for 1 day
-            termsAndConditions:
-              description: Terms and conditions of a competition. Can be translated
-              type: string
-              example: Participate to win
-            entrantMemberType:
-              type: string
-            maxNumberOfEntrants:
-              format: int32
-              description: Maximum number of partiipants allowed in a competition
-              type: integer
-              example: '9999'
-            minNumberOfEntrants:
-              format: int32
-              description: Maximum number of partiipants allowed in a competition
-              type: integer
-              example: '0'
-            rules:
-              type: array
-              items:
-                $ref: '#/components/schemas/Rule'
-            scheduledStartDate:
-              format: date-time
-              description: >-
-                ISO8601 timestamp for when a Competition should start. All records are stored
-                in UTC time zone
-              type: string
-              example: '2019-09-25T15:47:00.000+0000'
-            scheduledEndDate:
-              format: date-time
-              description: >-
-                ISO8601 timestamp for when a Competition should end. All records are stored in
-                UTC time zone
-              type: string
-              example: '2019-09-25T15:47:00.000+0000'
-            translations:
-              type: array
-              items:
-                $ref: '#/components/schemas/Translation'
-            rewards:
-              type: array
-              items:
-                $ref: '#/components/schemas/CreateRewardRequest'
-            addConstraints:
-              description: Additional constraints
-              type: array
-              items:
-                type: string
-              example: >-
-                - notifyMember - memberAcknowledgmentRequired - isPublic - autoStart -
-                autoStop - optinRequiredForEntrants
-            productIds:
-              description: ''
-              type: array
-              items:
-                type: string
-            entrantMemberTagsFilter:
-              $ref: '#/components/schemas/DependantOn'
-              description: ''
-            productTagsFilter:
-              $ref: '#/components/schemas/DependantOn'
-              description: ''
-            strategies:
-              $ref: '#/components/schemas/TournamentStrategies'
     CreateApiKeyRequest:
       allOf:
         -
@@ -15695,176 +14961,6 @@ components:
           - some text
         member: some text
         expires: 72
-    Contest:
-      allOf:
-        -
-          $ref: '#/components/schemas/ModelDefault'
-        -
-          $ref: '#/components/schemas/OptParamModels'
-        -
-          required:
-            - competitionId
-            - row
-            - name
-            - round
-            - roundType
-            - entrantsFromContest
-            - ruleSets
-            - minNumberOfEntrants
-            - scheduledStartDate
-            - scheduledEndDate
-            - status
-            - statusCode
-            - isPublic
-            - constraints
-          type: object
-          properties:
-            competitionId:
-              description: A unique identifier of a Competition
-              type: string
-              example: Dc4swmQBVd51K6gPQqFx
-              x-vue-links-to: Competition
-              x-vue-disaply-order: 1001
-            row:
-              format: int32
-              description: The row number for displaying the Contest in a table
-              type: integer
-              example: '2'
-              x-vue-search-field: true
-              x-vue-disaply-order: 1006
-            name:
-              description: A name for the Contest. Can be translated
-              type: string
-              example: Fish and Chips
-              x-vue-as-string: true
-              x-vue-translatable: true
-              x-vue-search-all: true
-              x-vue-search-field: true
-              x-vue-disaply-order: 1001
-            description:
-              description: Description of the contest
-              type: string
-              example: Fish and Chips contest
-              x-vue-translatable: true
-              x-vue-search-all: true
-              x-vue-search-field: true
-              x-vue-disaply-order: 1002
-              x-vue-form-type: TEXTAREA
-            termsAndConditions:
-              description: Terms and conditions for participating in the Contest. Can be translated
-              type: string
-              example: Buy 1 get 1 free
-              x-vue-translatable: true
-              x-vue-search-all: true
-              x-vue-search-field: true
-              x-vue-disaply-order: 1002
-              x-vue-form-type: TEXTAREA
-            round:
-              format: int32
-              description: To what round does the contest belong
-              type: integer
-              example: '2'
-              x-vue-search-field: true
-              x-vue-disaply-order: 1006
-            roundType:
-              $ref: '#/components/schemas/RoundType'
-              x-vue-search-field: true
-              x-vue-disaply-order: 1006
-            entrantsFromContest:
-              description: >-
-                A list of Ziqni contest identifiers to allow contests chaining. When a
-                Progression competition is active and you have a 2 round competition the first
-                round has to reference the second round then this parameter becomes mandatory
-                instead of Optional.
-              type: array
-              items:
-                type: string
-              example: '- Dc4swmQBVd51K6gPQqFx - sc3jsrfLewVdt6KugPqFx'
-              x-vue-links-to: Contest
-            maxNumberOfEntrants:
-              format: int32
-              description: Maximum number of entrants for the contest
-              type: integer
-              example: '9999'
-              x-vue-disaply-order: 1001
-            minNumberOfEntrants:
-              format: int32
-              description: Minimum number of entrants for the contest
-              type: integer
-              example: '0'
-              x-vue-search-field: true
-              x-vue-disaply-order: 2001
-            scheduledStartDate:
-              format: date-time
-              description: >-
-                ISO8601 timestamp for when a Contest should start. All records are stored in
-                UTC time zone
-              type: string
-              example: '2019-09-25T15:47:00.000+0000'
-              x-vue-search-field: true
-              x-vue-disaply-order: 1004
-            scheduledEndDate:
-              format: date-time
-              description: >-
-                ISO8601 timestamp for when a Contest should end. All records are stored in UTC
-                time zone
-              type: string
-              example: '2019-09-25T15:47:00.000+0000'
-              x-vue-search-field: true
-              x-vue-disaply-order: 1004
-            actualStartDate:
-              format: date-time
-              description: >-
-                ISO8601 timestamp for when a Competition started. All records are stored in
-                UTC time zone
-              type: string
-              readOnly: true
-              example: '2019-09-25T15:47:00.000+0000'
-              x-vue-search-field: true
-              x-vue-disaply-order: 1004
-            actualEndDate:
-              format: date-time
-              description: >-
-                ISO8601 timestamp for when a Competition ended. All records are stored in UTC
-                time zone
-              type: string
-              readOnly: true
-              example: '2019-09-25T15:47:00.000+0000'
-              x-vue-search-field: true
-              x-vue-disaply-order: 1004
-            strategies:
-              $ref: '#/components/schemas/TournamentStrategies'
-              x-vue-disaply-order: 1004
-            status:
-              $ref: '#/components/schemas/ContestStatus'
-              x-vue-disaply-order: 1004
-            statusCode:
-              description: The code of the contest
-              type: integer
-              readOnly: true
-              example: '3'
-              x-vue-search-field: true
-              x-vue-disaply-order: 1006
-            constraints:
-              description: Additional constraints
-              type: array
-              items:
-                type: string
-              example: '- isPublic - autoStart - auto Stop - memberAcknowledgmentRequired'
-              x-vue-constraint: true
-      x-vue-list: true
-      x-vue-show: true
-      x-vue-getter: contests
-      x-vue-sort-by: name
-      x-vue-sort-order: Asc
-      x-vue-limit: 10
-      x-vue-ops:
-        - Create
-        - Update
-      x-vue-enityty-links-from:
-        - Rules
-        - Rewards
-        - Awards
     Collaborator:
       allOf:
         -
@@ -17743,267 +16839,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Reward'
-    CreateAchievementRequest:
-      allOf:
-        -
-          $ref: '#/components/schemas/CreateOptParamModels'
-        -
-          required:
-            - name
-            - ruleSets
-            - scheduling
-            - constraints
-          type: object
-          properties:
-            name:
-              description: A name for the Achievement. Can be translated
-              type: string
-              example: Welcome badge
-            description:
-              description: A name for the Achievement. Can be translated
-              type: string
-              example: A Badge to welcome you on board
-            termsAndConditions:
-              description: Terms and conditions of an achievement. Can be translated
-              type: string
-              example: Participate to win
-            icon:
-              description: An Icon id that has been pre uploaded to the system to display for Achievement
-              type: string
-              example: Dc4swmQBVd51K6gPQqFx
-            rules:
-              type: array
-              items:
-                $ref: '#/components/schemas/Rule'
-            scheduling:
-              $ref: '#/components/schemas/Scheduling'
-            maxNumberOfIssues:
-              format: int32
-              description: Maximum number of issued achievements
-              type: integer
-              example: '9999'
-            translations:
-              type: array
-              items:
-                $ref: '#/components/schemas/Translation'
-            rewards:
-              type: array
-              items:
-                $ref: '#/components/schemas/CreateRewardRequest'
-            constraints:
-              deprecated: true
-              description: Additional constraints
-              type: array
-              items:
-                type: string
-              example: '- notifyMember - isHidden - deprecated - optinRequiredForEntrants'
-            achievementDependencies:
-              $ref: '#/components/schemas/DependantOn'
-            memberTagsFilter:
-              $ref: '#/components/schemas/DependantOn'
-              description: ''
-            productIds:
-              description: ''
-              type: array
-              items:
-                type: string
-            productTagsFilter:
-              $ref: '#/components/schemas/DependantOn'
-              description: ''
-            addConstraints:
-              description: ''
-              type: array
-              items:
-                type: string
-            strategies:
-              $ref: '#/components/schemas/AchievementStrategies'
-              description: The target to reach in order to receive this achievement
-      x-vue-create: achievement
-      x-vue-creator: achievements
-      x-vue-rules: true
-    UpdateAchievementRequest:
-      allOf:
-        -
-          $ref: '#/components/schemas/UpdateModelDefault'
-        -
-          $ref: '#/components/schemas/UpdateOptParamModels'
-        -
-          required: []
-          type: object
-          properties:
-            name:
-              description: A name for the Achievement. Can be translated
-              type: string
-              example: Welcome badge
-            description:
-              description: A name for the Achievement. Can be translated
-              type: string
-              example: A Badge to welcome you on board
-            termsAndConditions:
-              description: Terms and conditions of an achievement. Can be translated
-              type: string
-              example: Participate to win
-            icon:
-              description: An Icon id that has been pre uploaded to the system to display for Achievement
-              type: string
-              example: Dc4swmQBVd51K6gPQqFx
-            scheduling:
-              $ref: '#/components/schemas/Scheduling'
-            achievementLiveStatus:
-              $ref: '#/components/schemas/AchievementLiveStatus'
-            maxNumberOfIssues:
-              format: int32
-              description: Maximum number of issued achievements
-              type: integer
-              example: '9999'
-            constraints:
-              deprecated: true
-              description: Additional constraints
-              type: array
-              items:
-                type: string
-              example: '- notifyMember - isHidden - deprecated - optinRequiredForEntrants'
-            achievementDependencies:
-              $ref: '#/components/schemas/DependantOn'
-            memberTagsFilter:
-              $ref: '#/components/schemas/DependantOn'
-              description: ''
-            productIds:
-              description: ''
-              type: array
-              items:
-                type: string
-            productTagsFilter:
-              $ref: '#/components/schemas/DependantOn'
-              description: ''
-            addConstraints:
-              description: ''
-              type: array
-              items:
-                type: string
-            removeConstraints:
-              description: ''
-              type: array
-              items:
-                type: string
-            strategies:
-              $ref: '#/components/schemas/AchievementStrategies'
-              description: The target to reach in order to receive this achievement
-      x-vue-update: achievement
-      x-vue-updater: achievements
-      x-vue-object-type: achievement
-    Achievement:
-      allOf:
-        -
-          $ref: '#/components/schemas/ModelDefault'
-        -
-          $ref: '#/components/schemas/OptParamModels'
-        -
-          required:
-            - name
-            - icon
-            - ruleSets
-            - schedulings
-            - achievementLiveStatus
-            - constraints
-          type: object
-          properties:
-            name:
-              description: A name for the Achievement. Can be translated
-              type: string
-              x-vue-as-string: true
-              x-vue-translatable: true
-              x-vue-search-all: true
-              x-vue-search-field: true
-              x-vue-disaply-order: 1001
-            description:
-              description: A name for the Achievement. Can be translated
-              type: string
-              x-vue-translatable: true
-              x-vue-search-all: true
-              x-vue-search-field: true
-              x-vue-disaply-order: 1002
-              x-vue-form-type: TEXTAREA
-            termsAndConditions:
-              description: Terms and conditions of an achievement. Can be translated
-              type: string
-              x-vue-translatable: true
-              x-vue-search-all: true
-              x-vue-search-field: true
-              x-vue-disaply-order: 1003
-            icon:
-              description: An Icon id that has been pre uploaded to the system to display for Achievement
-              type: string
-              x-vue-hidden: true
-              x-vue-disaply-order: 1011
-            scheduling:
-              $ref: '#/components/schemas/Scheduling'
-              x-vue-search-field: true
-              x-vue-disaply-order: 1004
-            maxNumberOfIssues:
-              format: int32
-              description: Maximum number of issued achievements
-              type: integer
-              x-vue-search-field: true
-              x-vue-disaply-order: 1006
-            status:
-              $ref: '#/components/schemas/AchievementStatus'
-              x-vue-disaply-order: 1004
-            statusCode:
-              description: The code of the contest
-              type: integer
-              readOnly: true
-              example: '3'
-              x-vue-search-field: true
-              x-vue-disaply-order: 1006
-            constraints:
-              description: 'Additional constraints, if set means true'
-              type: array
-              items:
-                type: string
-              example: |-
-                - deprecated
-                - notifyMember
-                - isHidden
-                - optinRequiredForEntrants
-                - expired
-              x-vue-constraint: true
-              x-vue-search-field: true
-              x-vue-disaply-order: 1100
-            achievementDependencies:
-              $ref: '#/components/schemas/DependantOn'
-              x-vue-search-field: true
-              x-vue-disaply-order: 1003
-            memberTagsFilter:
-              $ref: '#/components/schemas/DependantOn'
-              description: ''
-            products:
-              description: ''
-              type: array
-              items:
-                $ref: '#/components/schemas/ProductReduced'
-              x-vue-disaply-order: 1006
-            productTagsFilter:
-              $ref: '#/components/schemas/DependantOn'
-              description: ''
-            strategies:
-              $ref: '#/components/schemas/AchievementStrategies'
-              description: The target to reach in order to receive this achievement
-      x-vue-table-show: 'All, Live, Draft, Archived'
-      x-vue-list: true
-      x-vue-show: true
-      x-vue-getter: achievements
-      x-vue-sort-by: name
-      x-vue-sort-order: Asc
-      x-vue-limit: 10
-      x-vue-ops:
-        - Create
-        - Update
-      x-vue-enity-links-from:
-        - Rules
-        - Rewards
-        - Awards
-        - Events
     EntityGraphEdgeType:
       description: The type of link
       enum:
@@ -18964,6 +17799,1344 @@ components:
           type: string
       x-vue-create: event
       x-vue-creator: events
+    Competition:
+      allOf:
+        -
+          $ref: '#/components/schemas/ModelDefault'
+        -
+          $ref: '#/components/schemas/OptParamModels'
+        -
+          required:
+            - competitionType
+            - numberOfRounds
+            - name
+            - minNumberOfEntrants
+            - ruleSets
+            - scheduledStartDate
+            - scheduledEndDate
+            - status
+            - constraints
+            - products
+          type: object
+          properties:
+            competitionType:
+              $ref: '#/components/schemas/CompetitionType'
+            numberOfRounds:
+              format: int32
+              description: Number of rounds to be played in a competition
+              type: integer
+              example: '1'
+              x-vue-search-field: true
+              x-vue-disaply-order: 1006
+            numberOfGroupStages:
+              description: Number of group stages
+              type: integer
+              x-vue-search-field: true
+              x-vue-disaply-order: 1006
+            name:
+              description: A name or a name of a competition. Can be translated
+              type: string
+              example: Summer fest
+              x-vue-translatable: true
+              x-vue-search-all: true
+              x-vue-search-field: true
+              x-vue-disaply-order: 1001
+            description:
+              description: Description of the competition. Can be translated
+              type: string
+              example: A competition that is for 1 day
+              x-vue-translatable: true
+              x-vue-search-all: true
+              x-vue-search-field: true
+              x-vue-disaply-order: 1002
+              x-vue-form-type: TEXTAREA
+            termsAndConditions:
+              description: Terms and conditions of a competition. Can be translated
+              type: string
+              example: Participate to win
+              x-vue-translatable: true
+              x-vue-search-all: true
+              x-vue-search-field: true
+              x-vue-form-type: TEXTAREA
+              x-vue-disaply-order: 1003
+            maxNumberOfEntrants:
+              format: int32
+              description: Maximum number of partiipants allowed in a competition
+              type: integer
+              example: '9999'
+              x-vue-search-field: true
+              x-vue-disaply-order: 1006
+            minNumberOfEntrants:
+              format: int32
+              description: Maximum number of partiipants allowed in a competition
+              type: integer
+              example: '0'
+              x-vue-search-field: true
+              x-vue-disaply-order: 1006
+            entrantMemberType:
+              type: string
+              x-vue-disaply-order: 1005
+              x-vue-filter: true
+            scheduledStartDate:
+              format: date-time
+              description: >-
+                ISO8601 timestamp for when a Competition should start. All records are stored
+                in UTC time zone
+              type: string
+              example: '2019-09-25T15:47:00.000+0000'
+              x-vue-search-field: true
+              x-vue-disaply-order: 1006
+            scheduledEndDate:
+              format: date-time
+              description: >-
+                ISO8601 timestamp for when a Competition should end. All records are stored in
+                UTC time zone
+              type: string
+              example: '2019-09-25T15:47:00.000+0000'
+              x-vue-search-field: true
+              x-vue-disaply-order: 1006
+            actualStartDate:
+              format: date-time
+              description: >-
+                ISO8601 timestamp for when a Competition started. All records are stored in
+                UTC time zone
+              type: string
+              readOnly: true
+              example: '2019-09-25T15:47:00.000+0000'
+              x-vue-search-field: true
+              x-vue-disaply-order: 1006
+            actualEndDate:
+              format: date-time
+              description: >-
+                ISO8601 timestamp for when a Competition ended. All records are stored in UTC
+                time zone
+              type: string
+              readOnly: true
+              example: '2019-09-25T15:47:00.000+0000'
+              x-vue-search-field: true
+              x-vue-disaply-order: 1006
+            status:
+              $ref: '#/components/schemas/CompetitionStatus'
+              x-vue-disaply-order: 1006
+            statusCode:
+              description: The code of the competition
+              type: integer
+              readOnly: true
+              example: '3'
+              x-vue-search-field: true
+              x-vue-disaply-order: 1006
+            constraints:
+              description: Additional constraints
+              uniqueItems: true
+              type: array
+              items:
+                type: string
+              example: |-
+                - notifyMember
+                - memberAcknowledgmentRequired
+                - isPublic
+                - autoStart
+                - autoStop
+                - optinRequiredForEntrants
+              x-vue-constraint: true
+              x-vue-constraint-options:
+                - notifyMember
+                - memberAcknowledgmentRequired
+                - isPublic
+                - autoStart
+                - autoStop
+                - optinRequiredForEntrants
+              x-vue-disaply-order: 1006
+            products:
+              description: ''
+              type: array
+              items:
+                $ref: '#/components/schemas/ProductReduced'
+              x-vue-disaply-order: 1006
+            entrantMemberTagsFilter:
+              $ref: '#/components/schemas/DependantOn'
+              description: ''
+            productTagsFilter:
+              $ref: '#/components/schemas/DependantOn'
+              description: ''
+            icon:
+              description: Link to the icon
+              type: string
+              example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
+            banner:
+              description: Link to the banner
+              type: string
+              example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
+            bannerLowResolution:
+              description: Link to the bannerLowResolution
+              type: string
+              example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
+            bannerHighResolution:
+              description: Link to the bannerHighResolution
+              type: string
+              example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
+      x-vue-list: true
+      x-vue-show: true
+      x-vue-getter: competitions
+      x-vue-sort-by: name
+      x-vue-sort-order: Asc
+      x-vue-limit: 10
+      x-vue-ops:
+        - Create
+        - Update
+      x-vue-entity-links-from:
+        - Rules
+        - Reward
+        - Award
+        - Contest
+    Contest:
+      allOf:
+        -
+          $ref: '#/components/schemas/ModelDefault'
+        -
+          $ref: '#/components/schemas/OptParamModels'
+        -
+          required:
+            - competitionId
+            - row
+            - name
+            - round
+            - roundType
+            - entrantsFromContest
+            - ruleSets
+            - minNumberOfEntrants
+            - scheduledStartDate
+            - scheduledEndDate
+            - status
+            - statusCode
+            - isPublic
+            - constraints
+          type: object
+          properties:
+            competitionId:
+              description: A unique identifier of a Competition
+              type: string
+              example: Dc4swmQBVd51K6gPQqFx
+              x-vue-links-to: Competition
+              x-vue-disaply-order: 1001
+            row:
+              format: int32
+              description: The row number for displaying the Contest in a table
+              type: integer
+              example: '2'
+              x-vue-search-field: true
+              x-vue-disaply-order: 1006
+            name:
+              description: A name for the Contest. Can be translated
+              type: string
+              example: Fish and Chips
+              x-vue-as-string: true
+              x-vue-translatable: true
+              x-vue-search-all: true
+              x-vue-search-field: true
+              x-vue-disaply-order: 1001
+            description:
+              description: Description of the contest
+              type: string
+              example: Fish and Chips contest
+              x-vue-translatable: true
+              x-vue-search-all: true
+              x-vue-search-field: true
+              x-vue-disaply-order: 1002
+              x-vue-form-type: TEXTAREA
+            termsAndConditions:
+              description: Terms and conditions for participating in the Contest. Can be translated
+              type: string
+              example: Buy 1 get 1 free
+              x-vue-translatable: true
+              x-vue-search-all: true
+              x-vue-search-field: true
+              x-vue-disaply-order: 1002
+              x-vue-form-type: TEXTAREA
+            round:
+              format: int32
+              description: To what round does the contest belong
+              type: integer
+              example: '2'
+              x-vue-search-field: true
+              x-vue-disaply-order: 1006
+            roundType:
+              $ref: '#/components/schemas/RoundType'
+              x-vue-search-field: true
+              x-vue-disaply-order: 1006
+            entrantsFromContest:
+              description: >-
+                A list of Ziqni contest identifiers to allow contests chaining. When a
+                Progression competition is active and you have a 2 round competition the first
+                round has to reference the second round then this parameter becomes mandatory
+                instead of Optional.
+              type: array
+              items:
+                type: string
+              example: '- Dc4swmQBVd51K6gPQqFx - sc3jsrfLewVdt6KugPqFx'
+              x-vue-links-to: Contest
+            maxNumberOfEntrants:
+              format: int32
+              description: Maximum number of entrants for the contest
+              type: integer
+              example: '9999'
+              x-vue-disaply-order: 1001
+            minNumberOfEntrants:
+              format: int32
+              description: Minimum number of entrants for the contest
+              type: integer
+              example: '0'
+              x-vue-search-field: true
+              x-vue-disaply-order: 2001
+            scheduledStartDate:
+              format: date-time
+              description: >-
+                ISO8601 timestamp for when a Contest should start. All records are stored in
+                UTC time zone
+              type: string
+              example: '2019-09-25T15:47:00.000+0000'
+              x-vue-search-field: true
+              x-vue-disaply-order: 1004
+            scheduledEndDate:
+              format: date-time
+              description: >-
+                ISO8601 timestamp for when a Contest should end. All records are stored in UTC
+                time zone
+              type: string
+              example: '2019-09-25T15:47:00.000+0000'
+              x-vue-search-field: true
+              x-vue-disaply-order: 1004
+            actualStartDate:
+              format: date-time
+              description: >-
+                ISO8601 timestamp for when a Competition started. All records are stored in
+                UTC time zone
+              type: string
+              readOnly: true
+              example: '2019-09-25T15:47:00.000+0000'
+              x-vue-search-field: true
+              x-vue-disaply-order: 1004
+            actualEndDate:
+              format: date-time
+              description: >-
+                ISO8601 timestamp for when a Competition ended. All records are stored in UTC
+                time zone
+              type: string
+              readOnly: true
+              example: '2019-09-25T15:47:00.000+0000'
+              x-vue-search-field: true
+              x-vue-disaply-order: 1004
+            strategies:
+              $ref: '#/components/schemas/TournamentStrategies'
+              x-vue-disaply-order: 1004
+            status:
+              $ref: '#/components/schemas/ContestStatus'
+              x-vue-disaply-order: 1004
+            statusCode:
+              description: The code of the contest
+              type: integer
+              readOnly: true
+              example: '3'
+              x-vue-search-field: true
+              x-vue-disaply-order: 1006
+            constraints:
+              description: Additional constraints
+              type: array
+              items:
+                type: string
+              example: '- isPublic - autoStart - auto Stop - memberAcknowledgmentRequired'
+              x-vue-constraint: true
+            icon:
+              description: Link to the icon
+              type: string
+              example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
+            banner:
+              description: Link to the banner
+              type: string
+              example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
+            bannerLowResolution:
+              description: Link to the bannerLowResolution
+              type: string
+              example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
+            bannerHighResolution:
+              description: Link to the bannerHighResolution
+              type: string
+              example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
+      x-vue-list: true
+      x-vue-show: true
+      x-vue-getter: contests
+      x-vue-sort-by: name
+      x-vue-sort-order: Asc
+      x-vue-limit: 10
+      x-vue-ops:
+        - Create
+        - Update
+      x-vue-enityty-links-from:
+        - Rules
+        - Rewards
+        - Awards
+    CreateCompetitionRequest:
+      allOf:
+        -
+          $ref: '#/components/schemas/CreateOptParamModels'
+        -
+          required:
+            - competitionType
+            - numberOfRounds
+            - name
+            - minNumberOfEntrants
+            - ruleSets
+            - scheduledStartDate
+            - scheduledEndDate
+            - constraints
+            - productIds
+          type: object
+          properties:
+            competitionType:
+              $ref: '#/components/schemas/CompetitionType'
+            numberOfRounds:
+              format: int32
+              description: Number of rounds to be played in a competition
+              type: integer
+              example: '1'
+            numberOfGroupStages:
+              description: Number of group stages
+              type: integer
+            name:
+              description: A name or a name of a competition. Can be translated
+              type: string
+              example: Summer fest
+            description:
+              description: Description of the competition. Can be translated
+              type: string
+              example: A competition that is for 1 day
+            termsAndConditions:
+              description: Terms and conditions of a competition. Can be translated
+              type: string
+              example: Participate to win
+            entrantMemberType:
+              type: string
+            maxNumberOfEntrants:
+              format: int32
+              description: Maximum number of partiipants allowed in a competition
+              type: integer
+              example: '9999'
+            minNumberOfEntrants:
+              format: int32
+              description: Maximum number of partiipants allowed in a competition
+              type: integer
+              example: '0'
+            rules:
+              type: array
+              items:
+                $ref: '#/components/schemas/Rule'
+            scheduledStartDate:
+              format: date-time
+              description: >-
+                ISO8601 timestamp for when a Competition should start. All records are stored
+                in UTC time zone
+              type: string
+              example: '2019-09-25T15:47:00.000+0000'
+            scheduledEndDate:
+              format: date-time
+              description: >-
+                ISO8601 timestamp for when a Competition should end. All records are stored in
+                UTC time zone
+              type: string
+              example: '2019-09-25T15:47:00.000+0000'
+            translations:
+              type: array
+              items:
+                $ref: '#/components/schemas/Translation'
+            contests:
+              $ref: '#/components/schemas/CreateContestRequest'
+            rewards:
+              type: array
+              items:
+                $ref: '#/components/schemas/CreateRewardRequest'
+            constraints:
+              deprecated: true
+              description: Additional constraints
+              type: array
+              items:
+                type: string
+              example: >-
+                - notifyMember - memberAcknowledgmentRequired - isPublic - autoStart -
+                autoStop - optinRequiredForEntrants
+            addConstraints:
+              description: Additional constraints
+              type: array
+              items:
+                type: string
+              example: >-
+                - notifyMember - memberAcknowledgmentRequired - isPublic - autoStart -
+                autoStop - optinRequiredForEntrants
+            productIds:
+              description: ''
+              type: array
+              items:
+                type: string
+            entrantMemberTagsFilter:
+              $ref: '#/components/schemas/DependantOn'
+              description: ''
+            productTagsFilter:
+              $ref: '#/components/schemas/DependantOn'
+              description: ''
+            icon:
+              description: Link to the icon
+              type: string
+              example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
+            banner:
+              description: Link to the banner
+              type: string
+              example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
+            bannerLowResolution:
+              description: Link to the bannerLowResolution
+              type: string
+              example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
+            bannerHighResolution:
+              description: Link to the bannerHighResolution
+              type: string
+              example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
+    CreateContestRequest:
+      allOf:
+        -
+          $ref: '#/components/schemas/CreateOptParamModels'
+        -
+          required:
+            - name
+            - ruleSets
+            - roundType
+            - minNumberOfEntrants
+            - scheduledStartDate
+            - scheduledEndDate
+            - strategies
+            - constraints
+          type: object
+          properties:
+            row:
+              format: int32
+              description: The row number for displaying the Contest in a table
+              type: integer
+              example: '2'
+            round:
+              format: int32
+              description: To what round does the contest belong
+              type: integer
+              example: '2'
+            entrantsFromContest:
+              description: >-
+                A list of Ziqni contest identifiers to allow contests chaining. When a
+                Progression competition is active and you have a 2 round competition the first
+                round has to reference the second round then this parameter becomes mandatory
+                instead of Optional.
+              type: array
+              items:
+                type: string
+              example: '- Dc4swmQBVd51K6gPQqFx - sc3jsrfLewVdt6KugPqFx'
+            name:
+              description: A name for the Contest. Can be translated
+              type: string
+              example: Fish and Chips
+            description:
+              description: A name for the Contest. Can be translated
+              type: string
+              example: Fish and Chips contest
+            termsAndConditions:
+              description: A name for the Contest. Can be translated
+              type: string
+              example: Buy 1 get 1 free
+            roundType:
+              $ref: '#/components/schemas/RoundType'
+            maxNumberOfEntrants:
+              format: int32
+              description: Maximum number of entrants for the contest
+              type: integer
+              example: '9999'
+            minNumberOfEntrants:
+              format: int32§
+              description: Minimum number of entrants for the contest
+              type: integer
+              example: '0'
+            rules:
+              type: array
+              items:
+                $ref: '#/components/schemas/Rule'
+            scheduledStartDate:
+              format: date-time
+              description: >-
+                ISO8601 timestamp for when a Contest should start. All records are stored in
+                UTC time zone
+              type: string
+              example: '2019-09-25T15:47:00.000+0000'
+            scheduledEndDate:
+              format: date-time
+              description: >-
+                ISO8601 timestamp for when a Contest should end. All records are stored in UTC
+                time zone
+              type: string
+              example: '2019-09-25T15:47:00.000+0000'
+            strategies:
+              $ref: '#/components/schemas/TournamentStrategies'
+            constraints:
+              deprecated: true
+              description: Additional constraints
+              type: array
+              items:
+                type: string
+              example: '- notifyMember - memberAcknowledgmentRequired - autoStart - auto Stop'
+            addConstraints:
+              description: Additional constraints
+              type: array
+              items:
+                type: string
+              example: '- notifyMember - memberAcknowledgmentRequired - autoStart - auto Stop'
+            translations:
+              type: array
+              items:
+                $ref: '#/components/schemas/Translation'
+            rewards:
+              type: array
+              items:
+                $ref: '#/components/schemas/CreateRewardRequest'
+            icon:
+              description: Link to the icon
+              type: string
+              example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
+            banner:
+              description: Link to the banner
+              type: string
+              example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
+            bannerLowResolution:
+              description: Link to the bannerLowResolution
+              type: string
+              example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
+            bannerHighResolution:
+              description: Link to the bannerHighResolution
+              type: string
+              example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
+    UpdateCompetitionRequest:
+      allOf:
+        -
+          $ref: '#/components/schemas/UpdateModelDefault'
+        -
+          $ref: '#/components/schemas/UpdateOptParamModels'
+        -
+          required: []
+          type: object
+          properties:
+            competitionType:
+              $ref: '#/components/schemas/CompetitionType'
+            numberOfRounds:
+              format: int32
+              description: Number of rounds to be played in a competition
+              type: integer
+              example: '1'
+            numberOfGroupStages:
+              description: Number of group stages
+              type: integer
+            name:
+              description: A name or a name of a competition. Can be translated
+              type: string
+              example: Summer fest
+            description:
+              description: Description of the competition. Can be translated
+              type: string
+              example: A competition that is for 1 day
+            termsAndConditions:
+              description: Terms and conditions of a competition. Can be translated
+              type: string
+              example: Participate to win
+            entrantMemberType:
+              type: string
+            maxNumberOfEntrants:
+              format: int32
+              description: Maximum number of partiipants allowed in a competition
+              type: integer
+              example: '9999'
+            minNumberOfEntrants:
+              format: int32
+              description: Maximum number of partiipants allowed in a competition
+              type: integer
+              example: '0'
+            scheduledStartDate:
+              format: date-time
+              description: >-
+                ISO8601 timestamp for when a Competition should start. All records are stored
+                in UTC time zone
+              type: string
+              example: '2019-09-25T15:47:00.000+0000'
+            scheduledEndDate:
+              format: date-time
+              description: >-
+                ISO8601 timestamp for when a Competition should end. All records are stored in
+                UTC time zone
+              type: string
+              example: '2019-09-25T15:47:00.000+0000'
+            constraints:
+              deprecated: true
+              description: Additional constraints
+              type: array
+              items:
+                type: string
+              example: >-
+                - notifyMember - memberAcknowledgmentRequired - isPublic - autoStart -
+                autoStop - optinRequiredForEntrants
+            addConstraints:
+              description: Additional constraints
+              type: array
+              items:
+                type: string
+              example: '- memberAcknowledgmentRequired'
+            removeConstraints:
+              description: Additional constraints
+              type: array
+              items:
+                type: string
+              example: '- isPublic'
+            productIds:
+              description: ''
+              type: array
+              items:
+                type: string
+            createContests:
+              $ref: '#/components/schemas/CreateContestForCompetitionRequest'
+              description: ''
+            updateContests:
+              $ref: '#/components/schemas/UpdateContestRequest'
+              description: ''
+            entrantMemberTagsFilter:
+              $ref: '#/components/schemas/DependantOn'
+              description: ''
+            productTagsFilter:
+              $ref: '#/components/schemas/DependantOn'
+              description: ''
+            icon:
+              description: Link to the icon
+              type: string
+              example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
+            banner:
+              description: Link to the banner
+              type: string
+              example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
+            bannerLowResolution:
+              description: Link to the bannerLowResolution
+              type: string
+              example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
+            bannerHighResolution:
+              description: Link to the bannerHighResolution
+              type: string
+              example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
+    UpdateContestRequest:
+      allOf:
+        -
+          $ref: '#/components/schemas/UpdateModelDefault'
+        -
+          $ref: '#/components/schemas/UpdateOptParamModels'
+        -
+          required: []
+          type: object
+          properties:
+            name:
+              description: A name for the Contest. Can be translated
+              type: string
+              example: Fish and Chips
+            description:
+              description: A name for the Contest. Can be translated
+              type: string
+              example: Fish and Chips contest
+            termsAndConditions:
+              description: A name for the Contest. Can be translated
+              type: string
+              example: Buy 1 get 1 free
+            roundType:
+              $ref: '#/components/schemas/RoundType'
+            maxNumberOfEntrants:
+              format: int32
+              description: Maximum number of entrants for the contest
+              type: integer
+              example: '9999'
+            minNumberOfEntrants:
+              format: int32§
+              description: Minimum number of entrants for the contest
+              type: integer
+              example: '0'
+            scheduledStartDate:
+              format: date-time
+              description: >-
+                ISO8601 timestamp for when a Contest should start. All records are stored in
+                UTC time zone
+              type: string
+              example: '2019-09-25T15:47:00.000+0000'
+            scheduledEndDate:
+              format: date-time
+              description: >-
+                ISO8601 timestamp for when a Contest should end. All records are stored in UTC
+                time zone
+              type: string
+              example: '2019-09-25T15:47:00.000+0000'
+            strategies:
+              $ref: '#/components/schemas/TournamentStrategies'
+            constraints:
+              description: Additional constraints
+              type: array
+              items:
+                type: string
+              example: '- notifyMember - memberAcknowledgmentRequired - autoStart - auto Stop'
+            icon:
+              description: Link to the icon
+              type: string
+              example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
+            banner:
+              description: Link to the banner
+              type: string
+              example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
+            bannerLowResolution:
+              description: Link to the bannerLowResolution
+              type: string
+              example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
+            bannerHighResolution:
+              description: Link to the bannerHighResolution
+              type: string
+              example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
+    CreateSimpleCompetitionRequest:
+      allOf:
+        -
+          $ref: '#/components/schemas/CreateOptParamModels'
+        -
+          required:
+            - competitionType
+            - name
+            - minNumberOfEntrants
+            - ruleSets
+            - scheduledStartDate
+            - scheduledEndDate
+            - productIds
+          type: object
+          properties:
+            competitionType:
+              $ref: '#/components/schemas/CompetitionType'
+            name:
+              description: A name or a name of a competition. Can be translated
+              type: string
+              example: Summer fest
+            description:
+              description: Description of the competition. Can be translated
+              type: string
+              example: A competition that is for 1 day
+            termsAndConditions:
+              description: Terms and conditions of a competition. Can be translated
+              type: string
+              example: Participate to win
+            entrantMemberType:
+              type: string
+            maxNumberOfEntrants:
+              format: int32
+              description: Maximum number of partiipants allowed in a competition
+              type: integer
+              example: '9999'
+            minNumberOfEntrants:
+              format: int32
+              description: Maximum number of partiipants allowed in a competition
+              type: integer
+              example: '0'
+            rules:
+              type: array
+              items:
+                $ref: '#/components/schemas/Rule'
+            scheduledStartDate:
+              format: date-time
+              description: >-
+                ISO8601 timestamp for when a Competition should start. All records are stored
+                in UTC time zone
+              type: string
+              example: '2019-09-25T15:47:00.000+0000'
+            scheduledEndDate:
+              format: date-time
+              description: >-
+                ISO8601 timestamp for when a Competition should end. All records are stored in
+                UTC time zone
+              type: string
+              example: '2019-09-25T15:47:00.000+0000'
+            translations:
+              type: array
+              items:
+                $ref: '#/components/schemas/Translation'
+            rewards:
+              type: array
+              items:
+                $ref: '#/components/schemas/CreateRewardRequest'
+            addConstraints:
+              description: Additional constraints
+              type: array
+              items:
+                type: string
+              example: >-
+                - notifyMember - memberAcknowledgmentRequired - isPublic - autoStart -
+                autoStop - optinRequiredForEntrants
+            productIds:
+              description: ''
+              type: array
+              items:
+                type: string
+            entrantMemberTagsFilter:
+              $ref: '#/components/schemas/DependantOn'
+              description: ''
+            productTagsFilter:
+              $ref: '#/components/schemas/DependantOn'
+              description: ''
+            strategies:
+              $ref: '#/components/schemas/TournamentStrategies'
+            icon:
+              description: Link to the icon
+              type: string
+              example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
+            banner:
+              description: Link to the banner
+              type: string
+              example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
+            bannerLowResolution:
+              description: Link to the bannerLowResolution
+              type: string
+              example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
+            bannerHighResolution:
+              description: Link to the bannerHighResolution
+              type: string
+              example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
+    CreateContestForCompetitionRequest:
+      allOf:
+        -
+          $ref: '#/components/schemas/CreateOptParamModels'
+        -
+          required:
+            - competitionId
+            - row
+            - round
+            - roundType
+            - name
+            - ruleSets
+            - minNumberOfEntrants
+            - scheduledStartDate
+            - scheduledEndDate
+            - constraints
+            - strategies
+          type: object
+          properties:
+            competitionId:
+              description: A unique identifier of a Competition
+              type: string
+              example: Dc4swmQBVd51K6gPQqFx
+            row:
+              format: int32
+              description: The row number for displaying the Contest in a table
+              type: integer
+              example: '2'
+            round:
+              format: int32
+              description: To what round does the contest belong
+              type: integer
+              example: '2'
+            groupStage:
+              format: int32
+              description: >-
+                Is used for more complex Competitions e.g. multi round competitions where
+                round 1 group stage matched round 2
+              type: integer
+              example: '2'
+            groupStageLabel:
+              description: The name of the group stages
+              type: string
+              example: Semi-finals
+            entrantsFromContest:
+              description: >-
+                A list of Ziqni contest identifiers to allow contests chaining. When a
+                Progression competition is active and you have a 2 round competition the first
+                round has to reference the second round then this parameter becomes mandatory
+                instead of Optional.
+              type: array
+              items:
+                type: string
+              example: '- Dc4swmQBVd51K6gPQqFx - sc3jsrfLewVdt6KugPqFx'
+            name:
+              description: A name for the Contest. Can be translated
+              type: string
+              example: Fish and Chips
+            description:
+              description: A name for the Contest. Can be translated
+              type: string
+              example: Fish and Chips contest
+            termsAndConditions:
+              description: A name for the Contest. Can be translated
+              type: string
+              example: Buy 1 get 1 free
+            roundType:
+              $ref: '#/components/schemas/RoundType'
+            maxNumberOfEntrants:
+              format: int32
+              description: Maximum number of entrants for the contest
+              type: integer
+              example: '9999'
+            minNumberOfEntrants:
+              format: int32§
+              description: Minimum number of entrants for the contest
+              type: integer
+              example: '0'
+            rules:
+              type: array
+              items:
+                $ref: '#/components/schemas/Rule'
+            scheduledStartDate:
+              format: date-time
+              description: >-
+                ISO8601 timestamp for when a Contest should start. All records are stored in
+                UTC time zone
+              type: string
+              example: '2019-09-25T15:47:00.000+0000'
+            scheduledEndDate:
+              format: date-time
+              description: >-
+                ISO8601 timestamp for when a Contest should end. All records are stored in UTC
+                time zone
+              type: string
+              example: '2019-09-25T15:47:00.000+0000'
+            strategies:
+              $ref: '#/components/schemas/TournamentStrategies'
+            translations:
+              type: array
+              items:
+                $ref: '#/components/schemas/Translation'
+            rewards:
+              type: array
+              items:
+                $ref: '#/components/schemas/CreateRewardRequest'
+            icon:
+              description: Link to the icon
+              type: string
+              example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
+            banner:
+              description: Link to the banner
+              type: string
+              example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
+            bannerLowResolution:
+              description: Link to the bannerLowResolution
+              type: string
+              example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
+            bannerHighResolution:
+              description: Link to the bannerHighResolution
+              type: string
+              example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
+            constraints:
+              description: Additional constraints
+              type: array
+              items:
+                type: string
+              example: '- notifyMember - memberAcknowledgmentRequired - autoStart - auto Stop'
+    Achievement:
+      allOf:
+        -
+          $ref: '#/components/schemas/ModelDefault'
+        -
+          $ref: '#/components/schemas/OptParamModels'
+        -
+          required:
+            - name
+            - icon
+            - ruleSets
+            - schedulings
+            - achievementLiveStatus
+            - constraints
+          type: object
+          properties:
+            name:
+              description: A name for the Achievement. Can be translated
+              type: string
+              x-vue-as-string: true
+              x-vue-translatable: true
+              x-vue-search-all: true
+              x-vue-search-field: true
+              x-vue-disaply-order: 1001
+            description:
+              description: A name for the Achievement. Can be translated
+              type: string
+              x-vue-translatable: true
+              x-vue-search-all: true
+              x-vue-search-field: true
+              x-vue-disaply-order: 1002
+              x-vue-form-type: TEXTAREA
+            termsAndConditions:
+              description: Terms and conditions of an achievement. Can be translated
+              type: string
+              x-vue-translatable: true
+              x-vue-search-all: true
+              x-vue-search-field: true
+              x-vue-disaply-order: 1003
+            icon:
+              description: An Icon id that has been pre uploaded to the system to display for Achievement
+              type: string
+              x-vue-hidden: true
+              x-vue-disaply-order: 1011
+            banner:
+              description: >-
+                A banner id that has been pre uploaded to the system to display for
+                Achievement
+              type: string
+            bannerLowResolution:
+              description: >-
+                A bannerLowResolution id that has been pre uploaded to the system to display
+                for Achievement
+              type: string
+            bannerHighResolution:
+              description: >-
+                A bannerHighResolution id that has been pre uploaded to the system to display
+                for Achievement
+              type: string
+            scheduling:
+              $ref: '#/components/schemas/Scheduling'
+              x-vue-search-field: true
+              x-vue-disaply-order: 1004
+            maxNumberOfIssues:
+              format: int32
+              description: Maximum number of issued achievements
+              type: integer
+              x-vue-search-field: true
+              x-vue-disaply-order: 1006
+            status:
+              $ref: '#/components/schemas/AchievementStatus'
+              x-vue-disaply-order: 1004
+            statusCode:
+              description: The code of the contest
+              type: integer
+              readOnly: true
+              example: '3'
+              x-vue-search-field: true
+              x-vue-disaply-order: 1006
+            constraints:
+              description: 'Additional constraints, if set means true'
+              type: array
+              items:
+                type: string
+              example: |-
+                - deprecated
+                - notifyMember
+                - isHidden
+                - optinRequiredForEntrants
+                - expired
+              x-vue-constraint: true
+              x-vue-search-field: true
+              x-vue-disaply-order: 1100
+            achievementDependencies:
+              $ref: '#/components/schemas/DependantOn'
+              x-vue-search-field: true
+              x-vue-disaply-order: 1003
+            memberTagsFilter:
+              $ref: '#/components/schemas/DependantOn'
+              description: ''
+            products:
+              description: ''
+              type: array
+              items:
+                $ref: '#/components/schemas/ProductReduced'
+              x-vue-disaply-order: 1006
+            productTagsFilter:
+              $ref: '#/components/schemas/DependantOn'
+              description: ''
+            strategies:
+              $ref: '#/components/schemas/AchievementStrategies'
+              description: The target to reach in order to receive this achievement
+      x-vue-table-show: 'All, Live, Draft, Archived'
+      x-vue-list: true
+      x-vue-show: true
+      x-vue-getter: achievements
+      x-vue-sort-by: name
+      x-vue-sort-order: Asc
+      x-vue-limit: 10
+      x-vue-ops:
+        - Create
+        - Update
+      x-vue-enity-links-from:
+        - Rules
+        - Rewards
+        - Awards
+        - Events
+    CreateAchievementRequest:
+      allOf:
+        -
+          $ref: '#/components/schemas/CreateOptParamModels'
+        -
+          required:
+            - name
+            - ruleSets
+            - scheduling
+            - constraints
+          type: object
+          properties:
+            name:
+              description: A name for the Achievement. Can be translated
+              type: string
+              example: Welcome badge
+            description:
+              description: A name for the Achievement. Can be translated
+              type: string
+              example: A Badge to welcome you on board
+            termsAndConditions:
+              description: Terms and conditions of an achievement. Can be translated
+              type: string
+              example: Participate to win
+            icon:
+              description: An Icon id that has been pre uploaded to the system to display for Achievement
+              type: string
+              example: Dc4swmQBVd51K6gPQqFx
+            banner:
+              description: >-
+                A banner id that has been pre uploaded to the system to display for
+                Achievement
+              type: string
+            bannerLowResolution:
+              description: >-
+                A bannerLowResolution id that has been pre uploaded to the system to display
+                for Achievement
+              type: string
+            bannerHighResolution:
+              description: >-
+                A bannerHighResolution id that has been pre uploaded to the system to display
+                for Achievement
+              type: string
+            rules:
+              type: array
+              items:
+                $ref: '#/components/schemas/Rule'
+            scheduling:
+              $ref: '#/components/schemas/Scheduling'
+            maxNumberOfIssues:
+              format: int32
+              description: Maximum number of issued achievements
+              type: integer
+              example: '9999'
+            translations:
+              type: array
+              items:
+                $ref: '#/components/schemas/Translation'
+            rewards:
+              type: array
+              items:
+                $ref: '#/components/schemas/CreateRewardRequest'
+            constraints:
+              deprecated: true
+              description: Additional constraints
+              type: array
+              items:
+                type: string
+              example: '- notifyMember - isHidden - deprecated - optinRequiredForEntrants'
+            achievementDependencies:
+              $ref: '#/components/schemas/DependantOn'
+            memberTagsFilter:
+              $ref: '#/components/schemas/DependantOn'
+              description: ''
+            productIds:
+              description: ''
+              type: array
+              items:
+                type: string
+            productTagsFilter:
+              $ref: '#/components/schemas/DependantOn'
+              description: ''
+            addConstraints:
+              description: ''
+              type: array
+              items:
+                type: string
+            strategies:
+              $ref: '#/components/schemas/AchievementStrategies'
+              description: The target to reach in order to receive this achievement
+      x-vue-create: achievement
+      x-vue-creator: achievements
+      x-vue-rules: true
+    UpdateAchievementRequest:
+      allOf:
+        -
+          $ref: '#/components/schemas/UpdateModelDefault'
+        -
+          $ref: '#/components/schemas/UpdateOptParamModels'
+        -
+          required: []
+          type: object
+          properties:
+            name:
+              description: A name for the Achievement. Can be translated
+              type: string
+              example: Welcome badge
+            description:
+              description: A name for the Achievement. Can be translated
+              type: string
+              example: A Badge to welcome you on board
+            termsAndConditions:
+              description: Terms and conditions of an achievement. Can be translated
+              type: string
+              example: Participate to win
+            icon:
+              description: An Icon id that has been pre uploaded to the system to display for Achievement
+              type: string
+              example: Dc4swmQBVd51K6gPQqFx
+            banner:
+              description: >-
+                A banner id that has been pre uploaded to the system to display for
+                Achievement
+              type: string
+            bannerLowResolution:
+              description: >-
+                A bannerLowResolution id that has been pre uploaded to the system to display
+                for Achievement
+              type: string
+            bannerHighResolution:
+              description: >-
+                A bannerHighResolution id that has been pre uploaded to the system to display
+                for Achievement
+              type: string
+            scheduling:
+              $ref: '#/components/schemas/Scheduling'
+            achievementLiveStatus:
+              $ref: '#/components/schemas/AchievementLiveStatus'
+            maxNumberOfIssues:
+              format: int32
+              description: Maximum number of issued achievements
+              type: integer
+              example: '9999'
+            constraints:
+              deprecated: true
+              description: Additional constraints
+              type: array
+              items:
+                type: string
+              example: '- notifyMember - isHidden - deprecated - optinRequiredForEntrants'
+            achievementDependencies:
+              $ref: '#/components/schemas/DependantOn'
+            memberTagsFilter:
+              $ref: '#/components/schemas/DependantOn'
+              description: ''
+            productIds:
+              description: ''
+              type: array
+              items:
+                type: string
+            productTagsFilter:
+              $ref: '#/components/schemas/DependantOn'
+              description: ''
+            addConstraints:
+              description: ''
+              type: array
+              items:
+                type: string
+            removeConstraints:
+              description: ''
+              type: array
+              items:
+                type: string
+            strategies:
+              $ref: '#/components/schemas/AchievementStrategies'
+              description: The target to reach in order to receive this achievement
+      x-vue-update: achievement
+      x-vue-updater: achievements
+      x-vue-object-type: achievement
   responses:
     ApiResponseBody:
       content:

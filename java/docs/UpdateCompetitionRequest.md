@@ -30,6 +30,10 @@ Name | Type | Description | Notes
 **updateContests** | [**UpdateContestRequest**](UpdateContestRequest.md) |  |  [optional]
 **entrantMemberTagsFilter** | [**DependantOn**](DependantOn.md) |  |  [optional]
 **productTagsFilter** | [**DependantOn**](DependantOn.md) |  |  [optional]
+**icon** | **String** | Link to the icon |  [optional]
+**banner** | **String** | Link to the banner |  [optional]
+**bannerLowResolution** | **String** | Link to the bannerLowResolution |  [optional]
+**bannerHighResolution** | **String** | Link to the bannerHighResolution |  [optional]
 
 
 
