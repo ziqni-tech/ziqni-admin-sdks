@@ -11,7 +11,7 @@
 
 using System;
 
-namespace Client
+namespace Ziqni.Client
 {
     /// <summary>
     /// A delegate to ExceptionFactory method

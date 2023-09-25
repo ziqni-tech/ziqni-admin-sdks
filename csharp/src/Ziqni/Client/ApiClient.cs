@@ -31,7 +31,7 @@ using RestSharp.Deserializers;
 using RestSharpMethod = RestSharp.Method;
 using Polly;
 
-namespace Client
+namespace Ziqni.Client
 {
     /// <summary>
     /// Allows RestSharp to Serialize/Deserialize JSON using our custom logic, but only when ContentType is JSON.

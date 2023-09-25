@@ -11,7 +11,7 @@
 
 using System;
 
-namespace Client
+namespace Ziqni.Client
 {
     /// <summary>
     /// Represents configuration aspects required to interact with the API endpoints.

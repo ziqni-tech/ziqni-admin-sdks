@@ -9,7 +9,7 @@
  */
 
 
-namespace Client
+namespace Ziqni.Client
 {
     /// <summary>
     /// Http methods supported by swagger

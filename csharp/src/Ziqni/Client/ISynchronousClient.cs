@@ -12,7 +12,7 @@
 using System;
 using System.IO;
 
-namespace Client
+namespace Ziqni.Client
 {
     /// <summary>
     /// Contract for Synchronous RESTful API interactions.

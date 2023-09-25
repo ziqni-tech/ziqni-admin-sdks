@@ -10,7 +10,7 @@
 
 using Newtonsoft.Json.Converters;
 
-namespace Client
+namespace Ziqni.Client
 {
     /// <summary>
     /// Formatter for 'date' openapi formats ss defined by full-date - RFC3339

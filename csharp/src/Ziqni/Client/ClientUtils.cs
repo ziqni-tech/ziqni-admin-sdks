@@ -17,7 +17,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace Client
+namespace Ziqni.Client
 {
     /// <summary>
     /// Utility functions providing some benefit to API client consumers.

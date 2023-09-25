@@ -12,7 +12,7 @@
 using System;
 using System.Threading.Tasks;
 
-namespace Client
+namespace Ziqni.Client
 {
     /// <summary>
     /// Contract for Asynchronous RESTful API interactions.

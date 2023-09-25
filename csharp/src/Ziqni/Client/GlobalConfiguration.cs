@@ -11,7 +11,7 @@
 
 using System.Collections.Generic;
 
-namespace Client
+namespace Ziqni.Client
 {
     /// <summary>
     /// <see cref="GlobalConfiguration"/> provides a compile-time extension point for globally configuring

@@ -13,7 +13,7 @@ using System;
 using System.Collections.Generic;
 using System.Net;
 
-namespace Client
+namespace Ziqni.Client
 {
     /// <summary>
     /// Provides a non-generic contract for the ApiResponse wrapper.

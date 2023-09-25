@@ -19,7 +19,7 @@ using System.Reflection;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 
-namespace Client
+namespace Ziqni.Client
 {
     /// <summary>
     /// Represents a set of configuration settings
