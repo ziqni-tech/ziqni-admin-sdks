@@ -1,10 +1,6 @@
-using System.Collections.Generic;
-using System.Diagnostics;
-using Ziqni.Api;
-using Ziqni.Model;
-
-namespace Ziqni.Client
+﻿namespace TestRun
 {
+    
     internal class Program
     {
         public static void Main(string[] args)
