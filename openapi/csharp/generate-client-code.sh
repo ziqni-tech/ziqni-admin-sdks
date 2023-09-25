@@ -26,7 +26,7 @@ else
 fi
 
 
-openapi-generator-cli  generate -g csharp-netcore -i $SPEC_FILE -c $CONF_FILE -o
+openapi-generator-cli  generate -g csharp-netcore -i $SPEC_FILE -c $CONF_FILE -o ./generated
 #openapi-generator-cli  generate -g csharp-netcore -i $SPEC_FILE -c $CONF_FILE -o ./generated -t ./templates
 
 # Copy the updated docs
