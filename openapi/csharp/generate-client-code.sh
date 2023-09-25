@@ -27,27 +27,13 @@ fi
 
 
 openapi-generator-cli  generate -g csharp -i $SPEC_FILE -c $CONF_FILE -o ./generated
-#openapi-generator-cli  generate -g csharp-netcore -i $SPEC_FILE -c $CONF_FILE -o ./generated -t ./templates
 
-# Copy the updated docs
-#rm -rf ../../java/docs
-#mkdir ../../java/docs
-#cp -v ./generated/docs/* ../../java/docs/
-
-#mkdir -p $GEN_DIR
-#mkdir -p $GEN_DIR/api
-#mkdir -p $GEN_DIR/model
-
-# Copy the new sources - openapi/java/generated/src/main/java/com/ziqni/admin/sdk/api
-#cp -rf ./generated/src/main/java/com/ziqni/admin/sdk/api/*Ws.java $GEN_DIR/api/
-
-# Copy the new sources - openapi/java/generated/src/main/java/com/ziqni/admin/sdk/model
-#cp -rf ./generated/src/main/java/com/ziqni/admin/sdk/model $GEN_DIR
-#
-#cp -rf ./generated/src/main/java/com/ziqni/admin/sdk/ZiqniAdminApiFactory.java $GEN_DIR
-#cp -rf ./generated/src/main/java/com/ziqni/admin/sdk/ApiException.java $GEN_DIR
-#cp -rf ./generated/src/main/java/com/ziqni/admin/sdk/JSON.java $GEN_DIR
-#cp -rf ./generated/src/main/java/com/ziqni/admin/sdk/RFC3339DateFormat.java $GEN_DIR
+echo "Deleting old files."
+rm -rf ../../csharp/*
+echo "Copying new files."
+cp -R -v ./generated/* ../../csharp/
+echo "Copied new files."
+cp -R -v ./man/ZiqniAuthOpenID.cs ../../csharp/src/Ziqni/Client/
 
 
 
