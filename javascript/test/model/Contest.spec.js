@@ -198,6 +198,30 @@
       //expect(instance).to.be();
     });
 
+    it('should have the property icon (base name: "icon")', function() {
+      // uncomment below and update the code to test the property icon
+      //var instance = new @ZiqniTechAdminApiClient.Contest();
+      //expect(instance).to.be();
+    });
+
+    it('should have the property banner (base name: "banner")', function() {
+      // uncomment below and update the code to test the property banner
+      //var instance = new @ZiqniTechAdminApiClient.Contest();
+      //expect(instance).to.be();
+    });
+
+    it('should have the property bannerLowResolution (base name: "bannerLowResolution")', function() {
+      // uncomment below and update the code to test the property bannerLowResolution
+      //var instance = new @ZiqniTechAdminApiClient.Contest();
+      //expect(instance).to.be();
+    });
+
+    it('should have the property bannerHighResolution (base name: "bannerHighResolution")', function() {
+      // uncomment below and update the code to test the property bannerHighResolution
+      //var instance = new @ZiqniTechAdminApiClient.Contest();
+      //expect(instance).to.be();
+    });
+
   });
 
 }));

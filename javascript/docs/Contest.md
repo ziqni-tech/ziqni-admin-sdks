@@ -28,5 +28,9 @@ Name | Type | Description | Notes
 **status** | [**ContestStatus**](ContestStatus.md) |  | 
 **statusCode** | **Number** | The code of the contest | [readonly] 
 **constraints** | **[String]** | Additional constraints | 
+**icon** | **String** | Link to the icon | [optional] 
+**banner** | **String** | Link to the banner | [optional] 
+**bannerLowResolution** | **String** | Link to the bannerLowResolution | [optional] 
+**bannerHighResolution** | **String** | Link to the bannerHighResolution | [optional] 
 
 

@@ -141,6 +141,18 @@ class CreateContestForCompetitionRequest {
             if (data.hasOwnProperty('rewards')) {
                 obj['rewards'] = ApiClient.convertToType(data['rewards'], [CreateRewardRequest]);
             }
+            if (data.hasOwnProperty('icon')) {
+                obj['icon'] = ApiClient.convertToType(data['icon'], 'String');
+            }
+            if (data.hasOwnProperty('banner')) {
+                obj['banner'] = ApiClient.convertToType(data['banner'], 'String');
+            }
+            if (data.hasOwnProperty('bannerLowResolution')) {
+                obj['bannerLowResolution'] = ApiClient.convertToType(data['bannerLowResolution'], 'String');
+            }
+            if (data.hasOwnProperty('bannerHighResolution')) {
+                obj['bannerHighResolution'] = ApiClient.convertToType(data['bannerHighResolution'], 'String');
+            }
             if (data.hasOwnProperty('constraints')) {
                 obj['constraints'] = ApiClient.convertToType(data['constraints'], ['String']);
             }
@@ -272,6 +284,30 @@ CreateContestForCompetitionRequest.prototype['translations'] = undefined;
 CreateContestForCompetitionRequest.prototype['rewards'] = undefined;
 
 /**
+ * Link to the icon
+ * @member {String} icon
+ */
+CreateContestForCompetitionRequest.prototype['icon'] = undefined;
+
+/**
+ * Link to the banner
+ * @member {String} banner
+ */
+CreateContestForCompetitionRequest.prototype['banner'] = undefined;
+
+/**
+ * Link to the bannerLowResolution
+ * @member {String} bannerLowResolution
+ */
+CreateContestForCompetitionRequest.prototype['bannerLowResolution'] = undefined;
+
+/**
+ * Link to the bannerHighResolution
+ * @member {String} bannerHighResolution
+ */
+CreateContestForCompetitionRequest.prototype['bannerHighResolution'] = undefined;
+
+/**
  * Additional constraints
  * @member {Array.<String>} constraints
  */
@@ -379,6 +415,26 @@ CreateContestForCompetitionRequestAllOf.prototype['translations'] = undefined;
  * @member {Array.<module:model/CreateRewardRequest>} rewards
  */
 CreateContestForCompetitionRequestAllOf.prototype['rewards'] = undefined;
+/**
+ * Link to the icon
+ * @member {String} icon
+ */
+CreateContestForCompetitionRequestAllOf.prototype['icon'] = undefined;
+/**
+ * Link to the banner
+ * @member {String} banner
+ */
+CreateContestForCompetitionRequestAllOf.prototype['banner'] = undefined;
+/**
+ * Link to the bannerLowResolution
+ * @member {String} bannerLowResolution
+ */
+CreateContestForCompetitionRequestAllOf.prototype['bannerLowResolution'] = undefined;
+/**
+ * Link to the bannerHighResolution
+ * @member {String} bannerHighResolution
+ */
+CreateContestForCompetitionRequestAllOf.prototype['bannerHighResolution'] = undefined;
 /**
  * Additional constraints
  * @member {Array.<String>} constraints
