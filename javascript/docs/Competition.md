@@ -29,5 +29,9 @@ Name | Type | Description | Notes
 **products** | [**[ProductReduced]**](ProductReduced.md) |  | 
 **entrantMemberTagsFilter** | [**DependantOn**](DependantOn.md) |  | [optional] 
 **productTagsFilter** | [**DependantOn**](DependantOn.md) |  | [optional] 
+**icon** | **String** | Link to the icon | [optional] 
+**banner** | **String** | Link to the banner | [optional] 
+**bannerLowResolution** | **String** | Link to the bannerLowResolution | [optional] 
+**bannerHighResolution** | **String** | Link to the bannerHighResolution | [optional] 
 
 

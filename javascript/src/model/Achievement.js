@@ -103,6 +103,15 @@ class Achievement {
             if (data.hasOwnProperty('icon')) {
                 obj['icon'] = ApiClient.convertToType(data['icon'], 'String');
             }
+            if (data.hasOwnProperty('banner')) {
+                obj['banner'] = ApiClient.convertToType(data['banner'], 'String');
+            }
+            if (data.hasOwnProperty('bannerLowResolution')) {
+                obj['bannerLowResolution'] = ApiClient.convertToType(data['bannerLowResolution'], 'String');
+            }
+            if (data.hasOwnProperty('bannerHighResolution')) {
+                obj['bannerHighResolution'] = ApiClient.convertToType(data['bannerHighResolution'], 'String');
+            }
             if (data.hasOwnProperty('scheduling')) {
                 obj['scheduling'] = Scheduling.constructFromObject(data['scheduling']);
             }
@@ -197,6 +206,24 @@ Achievement.prototype['termsAndConditions'] = undefined;
  * @member {String} icon
  */
 Achievement.prototype['icon'] = undefined;
+
+/**
+ * A banner id that has been pre uploaded to the system to display for Achievement
+ * @member {String} banner
+ */
+Achievement.prototype['banner'] = undefined;
+
+/**
+ * A bannerLowResolution id that has been pre uploaded to the system to display for Achievement
+ * @member {String} bannerLowResolution
+ */
+Achievement.prototype['bannerLowResolution'] = undefined;
+
+/**
+ * A bannerHighResolution id that has been pre uploaded to the system to display for Achievement
+ * @member {String} bannerHighResolution
+ */
+Achievement.prototype['bannerHighResolution'] = undefined;
 
 /**
  * @member {module:model/Scheduling} scheduling
@@ -304,6 +331,21 @@ AchievementAllOf.prototype['termsAndConditions'] = undefined;
  * @member {String} icon
  */
 AchievementAllOf.prototype['icon'] = undefined;
+/**
+ * A banner id that has been pre uploaded to the system to display for Achievement
+ * @member {String} banner
+ */
+AchievementAllOf.prototype['banner'] = undefined;
+/**
+ * A bannerLowResolution id that has been pre uploaded to the system to display for Achievement
+ * @member {String} bannerLowResolution
+ */
+AchievementAllOf.prototype['bannerLowResolution'] = undefined;
+/**
+ * A bannerHighResolution id that has been pre uploaded to the system to display for Achievement
+ * @member {String} bannerHighResolution
+ */
+AchievementAllOf.prototype['bannerHighResolution'] = undefined;
 /**
  * @member {module:model/Scheduling} scheduling
  */

@@ -24,5 +24,9 @@ Name | Type | Description | Notes
 **addConstraints** | **[String]** | Additional constraints | [optional] 
 **translations** | [**[Translation]**](Translation.md) |  | [optional] 
 **rewards** | [**[CreateRewardRequest]**](CreateRewardRequest.md) |  | [optional] 
+**icon** | **String** | Link to the icon | [optional] 
+**banner** | **String** | Link to the banner | [optional] 
+**bannerLowResolution** | **String** | Link to the bannerLowResolution | [optional] 
+**bannerHighResolution** | **String** | Link to the bannerHighResolution | [optional] 
 
 
