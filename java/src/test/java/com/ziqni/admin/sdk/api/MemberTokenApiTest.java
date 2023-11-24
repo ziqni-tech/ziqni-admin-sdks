@@ -37,7 +37,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class MemberTokenApiTest implements tests.utils.CompleteableFutureTestWrapper{
 
     private static final Logger logger = LoggerFactory.getLogger(CompetitionsApiTest.class);
-    public final static String AAPI_RESOURCE_NAME = "ziqni-aapi";
+    public final static String GAPI_RESOURCE_NAME = "ziqni-gapi";
     private static final String PUBLIC = "PUBLIC";
     private final MemberTokenApiWs api;
     private final LoadMemberTokenData loadTestData;
@@ -100,7 +100,7 @@ public class MemberTokenApiTest implements tests.utils.CompleteableFutureTestWra
     @Test
     @Order(1)
     public void getPublicSessionTokenTest() throws ApiException {
-        final var request = loadTestData.getMemberTokenRequest(PUBLIC, apiKey, AAPI_RESOURCE_NAME, false,60);
+        final var request = loadTestData.getMemberTokenRequest(PUBLIC, apiKey, GAPI_RESOURCE_NAME, false,999999999, "USD");
 
         var response = $(api.createMemberToken(request));
 
@@ -115,7 +115,7 @@ public class MemberTokenApiTest implements tests.utils.CompleteableFutureTestWra
     @Test
     @Order(2)
     public void getMemberSessionByMemberRefIdTokenTest() throws ApiException {
-        final var request = loadTestData.getMemberTokenRequest(memberRefId, apiKey, AAPI_RESOURCE_NAME, true,60);
+        final var request = loadTestData.getMemberTokenRequest(memberRefId, apiKey, GAPI_RESOURCE_NAME, true,60, "USD");
 
         var response = $(api.createMemberToken(request));
 
@@ -130,7 +130,7 @@ public class MemberTokenApiTest implements tests.utils.CompleteableFutureTestWra
     @Test
     @Order(2)
     public void getMemberSessionByMemberIdTokenTest() throws ApiException {
-        final var request = loadTestData.getMemberTokenRequest(memberId, apiKey, AAPI_RESOURCE_NAME, false,60);
+        final var request = loadTestData.getMemberTokenRequest(memberId, apiKey, GAPI_RESOURCE_NAME, false,60, "USD");
 
         var response = $(api.createMemberToken(request));
 
