@@ -129,6 +129,18 @@ class CreateCompetitionRequestAllOf {
             if (data.hasOwnProperty('productTagsFilter')) {
                 obj['productTagsFilter'] = DependantOn.constructFromObject(data['productTagsFilter']);
             }
+            if (data.hasOwnProperty('icon')) {
+                obj['icon'] = ApiClient.convertToType(data['icon'], 'String');
+            }
+            if (data.hasOwnProperty('banner')) {
+                obj['banner'] = ApiClient.convertToType(data['banner'], 'String');
+            }
+            if (data.hasOwnProperty('bannerLowResolution')) {
+                obj['bannerLowResolution'] = ApiClient.convertToType(data['bannerLowResolution'], 'String');
+            }
+            if (data.hasOwnProperty('bannerHighResolution')) {
+                obj['bannerHighResolution'] = ApiClient.convertToType(data['bannerHighResolution'], 'String');
+            }
         }
         return obj;
     }
@@ -247,6 +259,30 @@ CreateCompetitionRequestAllOf.prototype['entrantMemberTagsFilter'] = undefined;
  * @member {module:model/DependantOn} productTagsFilter
  */
 CreateCompetitionRequestAllOf.prototype['productTagsFilter'] = undefined;
+
+/**
+ * Link to the icon
+ * @member {String} icon
+ */
+CreateCompetitionRequestAllOf.prototype['icon'] = undefined;
+
+/**
+ * Link to the banner
+ * @member {String} banner
+ */
+CreateCompetitionRequestAllOf.prototype['banner'] = undefined;
+
+/**
+ * Link to the bannerLowResolution
+ * @member {String} bannerLowResolution
+ */
+CreateCompetitionRequestAllOf.prototype['bannerLowResolution'] = undefined;
+
+/**
+ * Link to the bannerHighResolution
+ * @member {String} bannerHighResolution
+ */
+CreateCompetitionRequestAllOf.prototype['bannerHighResolution'] = undefined;
 
 
 

@@ -25,6 +25,10 @@ Name | Type | Description | Notes
 **strategies** | [**TournamentStrategies**](TournamentStrategies.md) |  | 
 **translations** | [**[Translation]**](Translation.md) |  | [optional] 
 **rewards** | [**[CreateRewardRequest]**](CreateRewardRequest.md) |  | [optional] 
+**icon** | **String** | Link to the icon | [optional] 
+**banner** | **String** | Link to the banner | [optional] 
+**bannerLowResolution** | **String** | Link to the bannerLowResolution | [optional] 
+**bannerHighResolution** | **String** | Link to the bannerHighResolution | [optional] 
 **constraints** | **[String]** | Additional constraints | 
 
 

@@ -161,6 +161,18 @@ class Contest {
             if (data.hasOwnProperty('constraints')) {
                 obj['constraints'] = ApiClient.convertToType(data['constraints'], ['String']);
             }
+            if (data.hasOwnProperty('icon')) {
+                obj['icon'] = ApiClient.convertToType(data['icon'], 'String');
+            }
+            if (data.hasOwnProperty('banner')) {
+                obj['banner'] = ApiClient.convertToType(data['banner'], 'String');
+            }
+            if (data.hasOwnProperty('bannerLowResolution')) {
+                obj['bannerLowResolution'] = ApiClient.convertToType(data['bannerLowResolution'], 'String');
+            }
+            if (data.hasOwnProperty('bannerHighResolution')) {
+                obj['bannerHighResolution'] = ApiClient.convertToType(data['bannerHighResolution'], 'String');
+            }
         }
         return obj;
     }
@@ -307,6 +319,30 @@ Contest.prototype['statusCode'] = undefined;
  */
 Contest.prototype['constraints'] = undefined;
 
+/**
+ * Link to the icon
+ * @member {String} icon
+ */
+Contest.prototype['icon'] = undefined;
+
+/**
+ * Link to the banner
+ * @member {String} banner
+ */
+Contest.prototype['banner'] = undefined;
+
+/**
+ * Link to the bannerLowResolution
+ * @member {String} bannerLowResolution
+ */
+Contest.prototype['bannerLowResolution'] = undefined;
+
+/**
+ * Link to the bannerHighResolution
+ * @member {String} bannerHighResolution
+ */
+Contest.prototype['bannerHighResolution'] = undefined;
+
 
 // Implement ModelDefault interface:
 /**
@@ -426,6 +462,26 @@ ContestAllOf.prototype['statusCode'] = undefined;
  * @member {Array.<String>} constraints
  */
 ContestAllOf.prototype['constraints'] = undefined;
+/**
+ * Link to the icon
+ * @member {String} icon
+ */
+ContestAllOf.prototype['icon'] = undefined;
+/**
+ * Link to the banner
+ * @member {String} banner
+ */
+ContestAllOf.prototype['banner'] = undefined;
+/**
+ * Link to the bannerLowResolution
+ * @member {String} bannerLowResolution
+ */
+ContestAllOf.prototype['bannerLowResolution'] = undefined;
+/**
+ * Link to the bannerHighResolution
+ * @member {String} bannerHighResolution
+ */
+ContestAllOf.prototype['bannerHighResolution'] = undefined;
 
 
 

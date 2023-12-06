@@ -131,6 +131,18 @@ class CreateSimpleCompetitionRequest {
             if (data.hasOwnProperty('strategies')) {
                 obj['strategies'] = TournamentStrategies.constructFromObject(data['strategies']);
             }
+            if (data.hasOwnProperty('icon')) {
+                obj['icon'] = ApiClient.convertToType(data['icon'], 'String');
+            }
+            if (data.hasOwnProperty('banner')) {
+                obj['banner'] = ApiClient.convertToType(data['banner'], 'String');
+            }
+            if (data.hasOwnProperty('bannerLowResolution')) {
+                obj['bannerLowResolution'] = ApiClient.convertToType(data['bannerLowResolution'], 'String');
+            }
+            if (data.hasOwnProperty('bannerHighResolution')) {
+                obj['bannerHighResolution'] = ApiClient.convertToType(data['bannerHighResolution'], 'String');
+            }
         }
         return obj;
     }
@@ -249,6 +261,30 @@ CreateSimpleCompetitionRequest.prototype['productTagsFilter'] = undefined;
  */
 CreateSimpleCompetitionRequest.prototype['strategies'] = undefined;
 
+/**
+ * Link to the icon
+ * @member {String} icon
+ */
+CreateSimpleCompetitionRequest.prototype['icon'] = undefined;
+
+/**
+ * Link to the banner
+ * @member {String} banner
+ */
+CreateSimpleCompetitionRequest.prototype['banner'] = undefined;
+
+/**
+ * Link to the bannerLowResolution
+ * @member {String} bannerLowResolution
+ */
+CreateSimpleCompetitionRequest.prototype['bannerLowResolution'] = undefined;
+
+/**
+ * Link to the bannerHighResolution
+ * @member {String} bannerHighResolution
+ */
+CreateSimpleCompetitionRequest.prototype['bannerHighResolution'] = undefined;
+
 
 // Implement CreateOptParamModels interface:
 /**
@@ -343,6 +379,26 @@ CreateSimpleCompetitionRequestAllOf.prototype['productTagsFilter'] = undefined;
  * @member {module:model/TournamentStrategies} strategies
  */
 CreateSimpleCompetitionRequestAllOf.prototype['strategies'] = undefined;
+/**
+ * Link to the icon
+ * @member {String} icon
+ */
+CreateSimpleCompetitionRequestAllOf.prototype['icon'] = undefined;
+/**
+ * Link to the banner
+ * @member {String} banner
+ */
+CreateSimpleCompetitionRequestAllOf.prototype['banner'] = undefined;
+/**
+ * Link to the bannerLowResolution
+ * @member {String} bannerLowResolution
+ */
+CreateSimpleCompetitionRequestAllOf.prototype['bannerLowResolution'] = undefined;
+/**
+ * Link to the bannerHighResolution
+ * @member {String} bannerHighResolution
+ */
+CreateSimpleCompetitionRequestAllOf.prototype['bannerHighResolution'] = undefined;
 
 
 

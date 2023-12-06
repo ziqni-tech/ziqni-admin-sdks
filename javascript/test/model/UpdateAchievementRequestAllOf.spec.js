@@ -78,6 +78,24 @@
       //expect(instance).to.be();
     });
 
+    it('should have the property banner (base name: "banner")', function() {
+      // uncomment below and update the code to test the property banner
+      //var instance = new @ZiqniTechAdminApiClient.UpdateAchievementRequestAllOf();
+      //expect(instance).to.be();
+    });
+
+    it('should have the property bannerLowResolution (base name: "bannerLowResolution")', function() {
+      // uncomment below and update the code to test the property bannerLowResolution
+      //var instance = new @ZiqniTechAdminApiClient.UpdateAchievementRequestAllOf();
+      //expect(instance).to.be();
+    });
+
+    it('should have the property bannerHighResolution (base name: "bannerHighResolution")', function() {
+      // uncomment below and update the code to test the property bannerHighResolution
+      //var instance = new @ZiqniTechAdminApiClient.UpdateAchievementRequestAllOf();
+      //expect(instance).to.be();
+    });
+
     it('should have the property scheduling (base name: "scheduling")', function() {
       // uncomment below and update the code to test the property scheduling
       //var instance = new @ZiqniTechAdminApiClient.UpdateAchievementRequestAllOf();

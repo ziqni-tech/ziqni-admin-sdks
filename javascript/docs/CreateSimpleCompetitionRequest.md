@@ -24,5 +24,9 @@ Name | Type | Description | Notes
 **entrantMemberTagsFilter** | [**DependantOn**](DependantOn.md) |  | [optional] 
 **productTagsFilter** | [**DependantOn**](DependantOn.md) |  | [optional] 
 **strategies** | [**TournamentStrategies**](TournamentStrategies.md) |  | [optional] 
+**icon** | **String** | Link to the icon | [optional] 
+**banner** | **String** | Link to the banner | [optional] 
+**bannerLowResolution** | **String** | Link to the bannerLowResolution | [optional] 
+**bannerHighResolution** | **String** | Link to the bannerHighResolution | [optional] 
 
 
