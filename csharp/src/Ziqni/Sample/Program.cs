@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using Ziqni.Api;
+using Ziqni.Client;
 using Ziqni.Model;
 
 namespace Ziqni.Sample

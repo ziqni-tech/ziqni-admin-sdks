@@ -28,6 +28,7 @@ public abstract class AdminApiClientConfigBuilder {
         config.setAdminClientIdentityUser( ConfigurationLoader.getParameter("admin.client.auth.username").orElse("user-not-set") );
         config.setAdminClientIdentityPass( ConfigurationLoader.getParameter("admin.client.auth.password").orElse("password-not-set") );
         config.setAdminClientIdentityProjectUrl( ConfigurationLoader.getParameter("admin.client.auth.resource").orElse("resource-not-set") );
+        config.setAdminClientIdentityApiKey( ConfigurationLoader.getParameter("admin.client.auth.api.key").orElse("resource-not-set") );
 
         config.initIdentityClient();
 

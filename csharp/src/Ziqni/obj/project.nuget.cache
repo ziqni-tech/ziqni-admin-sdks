@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "naO5gewCrjVIqxoQ3faimzygLMqr0PHtRXZqpu4dUgiQIgRFnlZ7V4MaA+463uOjjYPBLKwy0SdCPQYYM9M9lA==",
+  "dgSpecHash": "q5r0Fe1OzMtG5BooHeM2NmGcEMGqLnnWjXFmH34oJBrC3KrhVysJE0duD9vPeG5wkKWmQjnqGXKAfsINmBzCOA==",
   "success": true,
   "projectFilePath": "/home/carel/IdeaProjects/ziqni-tech/ziqni-admin-sdks/csharp/src/Ziqni/Ziqni.csproj",
   "expectedPackageFiles": [
@@ -8,8 +8,8 @@
     "/home/carel/.nuget/packages/jsonsubtypes/1.6.0/jsonsubtypes.1.6.0.nupkg.sha512",
     "/home/carel/.nuget/packages/newtonsoft.json/12.0.3/newtonsoft.json.12.0.3.nupkg.sha512",
     "/home/carel/.nuget/packages/restsharp/105.1.0/restsharp.105.1.0.nupkg.sha512",
-    "/home/carel/.nuget/packages/microsoft.netcore.app.ref/6.0.22/microsoft.netcore.app.ref.6.0.22.nupkg.sha512",
-    "/home/carel/.nuget/packages/microsoft.aspnetcore.app.ref/6.0.22/microsoft.aspnetcore.app.ref.6.0.22.nupkg.sha512"
+    "/home/carel/.nuget/packages/microsoft.netcore.app.ref/6.0.23/microsoft.netcore.app.ref.6.0.23.nupkg.sha512",
+    "/home/carel/.nuget/packages/microsoft.aspnetcore.app.ref/6.0.23/microsoft.aspnetcore.app.ref.6.0.23.nupkg.sha512"
   ],
   "logs": [
     {

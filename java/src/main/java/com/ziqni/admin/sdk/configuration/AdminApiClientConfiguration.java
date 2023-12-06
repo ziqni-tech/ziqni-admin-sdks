@@ -24,6 +24,7 @@ public class AdminApiClientConfiguration {
     private String adminClientIdentityRealm;
     private String adminClientIdentityUser;
     private String adminClientIdentityPass;
+    private String adminClientIdentityApiKey;
     private String adminClientIdentityProjectUrl;
     private boolean isWebsocket;
 
@@ -54,6 +55,10 @@ public class AdminApiClientConfiguration {
 
     public String getAdminClientIdentityUser() {
         return adminClientIdentityUser;
+    }
+
+    public String getAdminClientIdentityApiKey() {
+        return adminClientIdentityApiKey;
     }
 
     public boolean isWebsocket() {
@@ -145,5 +150,9 @@ public class AdminApiClientConfiguration {
     @Override
     public int hashCode() {
         return Objects.hash(getAdminClientServerBasePath(), getAdminClientServerHost(), getAdminClientServerPort(), getAdminClientServerScheme(), adminClientIdentityEndpoint, adminClientIdentityRealm, getAdminClientIdentityUser(), adminClientIdentityPass, getAdminClientIdentityProjectUrl(), isWebsocket(), getIdentityClient());
+    }
+
+    public void setAdminClientIdentityApiKey(String key) {
+        this.adminClientIdentityApiKey = key;
     }
 }

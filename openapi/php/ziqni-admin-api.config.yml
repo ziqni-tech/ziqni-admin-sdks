@@ -1,0 +1,19 @@
+basePackage: com.ziqni.admin.sdk
+configPackage: com.ziqni.admin.sdk.config
+apiPackage: com.ziqni.admin.sdk.api
+modelPackage: com.ziqni.admin.sdk.model
+#files:
+#  ApiClientFactory.mustache:
+#    folder: src/main/java/com/ziqni/admin/sdk
+#    templateType: SupportingFiles
+#    destinationFilename: ApiClientFactory.java
+##  ws_api_delegate.mustache:
+##    templateType: API
+##    destinationFilename: Ws.java
+#  ZiqniAdminApiFactory.mustache:
+#    folder: src/main/java/com/ziqni/admin/sdk
+#    templateType: SupportingFiles
+#    destinationFilename: ZiqniAdminApiFactory.java
+#  ApiWs.mustache:
+#    templateType: API
+#    destinationFilename: Ws.java
