@@ -8,7 +8,7 @@ import com.github.benmanes.caffeine.cache.AsyncCache;
 import com.github.benmanes.caffeine.cache.Caffeine;
 import com.ziqni.admin.sdk.streaming.EventHandler;
 import com.ziqni.admin.sdk.streaming.Message;
-import com.ziqni.admin.sdk.streaming.OonRemovalListener;
+import com.ziqni.admin.sdk.streaming.OnRemovalListener;
 import com.ziqni.admin.sdk.util.ClassScanner;
 import org.checkerframework.checker.nullness.qual.NonNull;
 import org.slf4j.Logger;
@@ -31,7 +31,7 @@ public class RpcResultsEventHandler extends EventHandler<String> {
     public static final AsyncCache<String, RpcResultsResponse<?,?>> awaitingResponseCache = Caffeine.newBuilder()
             .maximumSize(250_000)
             .expireAfterWrite(5, TimeUnit.MINUTES)
-            .evictionListener(new OonRemovalListener(logger))
+            .evictionListener(new OnRemovalListener(logger))
             .buildAsync();
     private static final ExecutorService executorService = new ForkJoinPool(Runtime.getRuntime().availableProcessors()*4);
 
