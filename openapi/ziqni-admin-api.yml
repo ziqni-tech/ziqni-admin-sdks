@@ -1,7 +1,7 @@
 openapi: 3.0.2
 info:
   title: ZIQNI Admin API
-  version: 3.0.9
+  version: 3.0.11
   description: Ziqni Application Services are used to manage and configure spaces.
   contact:
     name: Support Team
@@ -9925,6 +9925,9 @@ components:
               description: The master account for this account
               type: string
               example: sc1samQmVr61KgaPQq7x
+            baseCurrencyUOM:
+              description: The base currency used by this accounts
+              type: string
     SpaceTokenRequest:
       required:
         - usersToken
@@ -10688,42 +10691,6 @@ components:
             rules:
               $ref: '#/components/schemas/Rule'
               description: ''
-    RuleOperandLookupRequest:
-      required:
-        - context
-        - context
-        - operand
-      type: object
-      properties:
-        context:
-          description: The object context to search within
-          type: string
-        searchText:
-          description: 'The text to search, at least 3 characters are required.'
-          type: string
-        id:
-          description: 'The identifier to retrieve, if this is set search text will be ignored'
-          type: array
-          items:
-            type: string
-        skip:
-          format: int32
-          description: 'How many response objects will be skipped for preview. Deafault is zero [0]'
-          type: integer
-          example: isCountQuery
-        limit:
-          description: >-
-            How many response objects will be returned. Deafult is zero [0] and the maximum is
-            fifty [50]
-          type: integer
-        constraints:
-          description: Additional constraints
-          type: array
-          items:
-            type: string
-        operand:
-          description: The operand like "product.tags" or "member.tags" or "event.product"
-          type: string
     ValueLookupResult:
       description: The result of a generic lookup query
       type: object
@@ -11525,35 +11492,6 @@ components:
             hostingOptions:
               $ref: '#/components/schemas/HostingOptions'
               description: Hosting options for this repository if set to public
-    CreateSpaceRequest:
-      required:
-        - name
-        - accountType
-      type: object
-      properties:
-        name:
-          description: The space name in the Ziqni system
-          type: string
-          example: Your_space_name
-        accountType:
-          description: Type of account; personal or company or vendor
-          type: string
-          example: company
-        masterSpace:
-          description: The master account for this account
-          type: string
-          example: sc1samQmVr61KgaPQq7x
-        unitsOfMeasure:
-          description: Foreign key to unit of measure id.
-          type: array
-          items:
-            type: string
-        constraints:
-          description: 'Additional constraints, if set means true'
-          type: array
-          items:
-            type: string
-          example: '- wysiwygEditor'
     DependantOn:
       type: object
       properties:
@@ -12327,29 +12265,6 @@ components:
       x-vue-ops:
         - Create
         - Update
-    UpdateSpaceRequest:
-      required: []
-      type: object
-      properties:
-        accountType:
-          description: Type of account; personal or company or vendor
-          type: string
-          example: company
-        masterSpace:
-          description: The master account for this account
-          type: string
-          example: sc1samQmVr61KgaPQq7x
-        unitsOfMeasure:
-          description: Foreign key to unit of measure id.
-          type: array
-          items:
-            type: string
-        constraints:
-          description: 'Additional constraints, if set means true'
-          type: array
-          items:
-            type: string
-          example: '- wysiwygEditor'
     User:
       allOf:
         -
@@ -12727,9 +12642,16 @@ components:
               type: string
               example: test
             headers:
+              description: The headers to add to the request
               type: object
               additionalProperties:
                 type: string
+            username:
+              description: Basic auth username
+              type: string
+            password:
+              description: Basic auth password
+              type: string
       x-vue-create: webhook
       x-vue-creator: webhooks
     Webhook:
@@ -16805,40 +16727,6 @@ components:
           type: integer
         downloadUrl:
           type: string
-    EntrantExport:
-      required:
-        - accountId
-        - bestScores
-        - goalReached
-        - markerTimeStamp
-        - participationId
-        - timestamp
-        - updateCount
-        - id
-      type: object
-      properties:
-        memberId:
-          type: string
-        memberRefId:
-          type: string
-        name:
-          type: string
-        points:
-          description: double
-          type: number
-        rank:
-          format: int32
-          description: integer
-          type: integer
-        groups:
-          type: array
-          items:
-            type: string
-        rewards:
-          description: Rewards
-          type: array
-          items:
-            $ref: '#/components/schemas/Reward'
     EntityGraphEdgeType:
       description: The type of link
       enum:
@@ -17728,77 +17616,6 @@ components:
           format: double
           description: ''
           type: number
-    CreateEventRequest:
-      required:
-        - action
-        - sourceValue
-        - transactionTimestamp
-        - entityRefId
-        - memberRefId
-        - eventRefId
-      type: object
-      properties:
-        memberRefId:
-          description: The reference to this member in external system
-          type: string
-          example: Player-1
-        action:
-          description: The identifier that describes the meaning of this event
-          type: string
-          example: win
-        batchId:
-          description: >-
-            The batch identifier is used to group related event stream data together. This could
-            be as simple as a UUID or your internal reference to that distinct player session
-            event
-          type: string
-          example: ecrsamQm23r61KgaPQq7x
-        entityRefId:
-          description: It is a reference to a game/product ID from external system
-          type: string
-          example: fruits
-        sourceValue:
-          format: double
-          description: The actual numerical value related to the event
-          type: number
-          example: '12.345'
-        transactionTimestamp:
-          format: date-time
-          description: >-
-            ISO8601 timestamp for when this event happened. All records are stored in UTC time
-            zone
-          type: string
-          example: '2019-09-25T15:47:00.000+0000'
-        tags:
-          description: A list of Strings of groups that the tag belongs to
-          type: array
-          items:
-            type: string
-          example:
-            - Dc4swmQBVd51K6gPQqFx
-            - Dc4swmQBVd51K6gPQqF2
-          x-vue-tags: true
-          x-vue-form-type: TAG
-        eventRefId:
-          description: ''
-          type: string
-        memberId:
-          description: ''
-          type: string
-        customFields:
-          description: A list of custom field entries
-          type: object
-          additionalProperties: true
-          x-vue-custom-fields: true
-          x-vue-form-type: CUSTOM
-        unitOfMeasure:
-          description: >-
-            The unit of measure is used to determine the type of the source value. It is used to
-            normalize points values for currency based calculations by normalizing the source
-            value.
-          type: string
-      x-vue-create: event
-      x-vue-creator: events
     Competition:
       allOf:
         -
@@ -19137,6 +18954,210 @@ components:
       x-vue-update: achievement
       x-vue-updater: achievements
       x-vue-object-type: achievement
+    EntrantExport:
+      required:
+        - accountId
+        - bestScores
+        - goalReached
+        - markerTimeStamp
+        - participationId
+        - timestamp
+        - updateCount
+        - id
+      type: object
+      properties:
+        created:
+          format: date-time
+          description: >-
+            ISO8601 timestamp for when a Model was created. All records are stored in UTC time
+            zone
+          type: string
+          readOnly: false
+          example: '2019-09-25T15:47:00.000+0000'
+        memberId:
+          type: string
+        memberRefId:
+          type: string
+        name:
+          type: string
+        points:
+          description: double
+          type: number
+        rank:
+          format: int32
+          description: integer
+          type: integer
+        groups:
+          type: array
+          items:
+            type: string
+        awards:
+          description: Rewards
+          type: array
+          items:
+            $ref: '#/components/schemas/Award'
+        rewards:
+          description: Rewards
+          type: array
+          items:
+            $ref: '#/components/schemas/Reward'
+    CreateEventRequest:
+      required:
+        - action
+        - sourceValue
+        - transactionTimestamp
+        - entityRefId
+        - memberRefId
+        - eventRefId
+      type: object
+      properties:
+        memberRefId:
+          description: The reference to this member in external system
+          type: string
+          example: Player-1
+        action:
+          description: The identifier that describes the meaning of this event
+          type: string
+          example: win
+        batchId:
+          description: >-
+            The batch identifier is used to group related event stream data together. This could
+            be as simple as a UUID or your internal reference to that distinct player session
+            event
+          type: string
+          example: ecrsamQm23r61KgaPQq7x
+        entityRefId:
+          description: It is a reference to a game/product ID from external system
+          type: string
+          example: fruits
+        sourceValue:
+          format: double
+          description: The actual numerical value related to the event
+          type: number
+          example: '12.345'
+        transactionTimestamp:
+          format: date-time
+          description: >-
+            ISO8601 timestamp for when this event happened. All records are stored in UTC time
+            zone
+          type: string
+          example: '2019-09-25T15:47:00.000+0000'
+        tags:
+          description: A list of Strings of groups that the tag belongs to
+          type: array
+          items:
+            type: string
+          example:
+            - Dc4swmQBVd51K6gPQqFx
+            - Dc4swmQBVd51K6gPQqF2
+          x-vue-tags: true
+          x-vue-form-type: TAG
+        eventRefId:
+          description: ''
+          type: string
+        memberId:
+          description: ''
+          type: string
+        customFields:
+          description: A list of custom field entries
+          type: object
+          additionalProperties: true
+          x-vue-custom-fields: true
+          x-vue-form-type: CUSTOM
+        unitOfMeasure:
+          description: >-
+            The unit of measure is used to determine the type of the source value. It is used to
+            normalize points values for currency based calculations by normalizing the source
+            value.
+          type: string
+      x-vue-create: event
+      x-vue-creator: events
+    UpdateSpaceRequest:
+      required: []
+      type: object
+      properties:
+        accountType:
+          description: Type of account; personal or company or vendor
+          type: string
+          example: company
+        masterSpace:
+          description: The master account for this account
+          type: string
+          example: sc1samQmVr61KgaPQq7x
+        baseCurrencyUOM:
+          description: Foreign key to unit of measure id.
+          type: string
+        constraints:
+          description: 'Additional constraints, if set means true'
+          type: array
+          items:
+            type: string
+          example: '- wysiwygEditor'
+    CreateSpaceRequest:
+      required:
+        - name
+        - accountType
+      type: object
+      properties:
+        name:
+          description: The space name in the Ziqni system
+          type: string
+          example: Your_space_name
+        accountType:
+          description: Type of account; personal or company or vendor
+          type: string
+          example: company
+        masterSpace:
+          description: The master account for this account
+          type: string
+          example: sc1samQmVr61KgaPQq7x
+        constraints:
+          description: 'Additional constraints, if set means true'
+          type: array
+          items:
+            type: string
+          example: '- wysiwygEditor'
+    RuleOperandLookupRequest:
+      required:
+        - context
+        - context
+        - operand
+      type: object
+      properties:
+        context:
+          description: The object context to search within
+          type: string
+        searchText:
+          description: 'The text to search, at least 3 characters are required.'
+          type: string
+        id:
+          description: 'The identifier to retrieve, if this is set search text will be ignored'
+          type: array
+          items:
+            type: string
+        skip:
+          format: int32
+          description: 'How many response objects will be skipped for preview. Deafault is zero [0]'
+          type: integer
+          example: isCountQuery
+        limit:
+          description: >-
+            How many response objects will be returned. Deafult is zero [0] and the maximum is
+            fifty [50]
+          type: integer
+        constraints:
+          description: Additional constraints
+          type: array
+          items:
+            type: string
+        operand:
+          description: The operand like "product.tags" or "member.tags" or "event.product"
+          type: string
+        sortBy:
+          description: ''
+          type: array
+          items:
+            $ref: '#/components/schemas/QuerySortBy'
   responses:
     ApiResponseBody:
       content:
