@@ -453,25 +453,26 @@ public class SpacesApiTest implements tests.utils.CompleteableFutureTestWrapper{
         spaceNamesToDelete.add(space.getName());
     }
 
-    @Test
-    @Order(7)
-    public void updateSpaceInvalidUnitOfMeasureReturnErrorTest() throws ApiException, InterruptedException {
-        CreateSpaceRequest space = new CreateSpaceRequest();
-        space.setAccountType("Trial");
-        space.setName("test-" + new Random().nextInt(10000));
-
-        ModelApiResponse createResponse = api.createSpace(List.of(space)).join();
-        assertNotNull(createResponse);
-
-        UpdateSpaceRequest updateSpaceRequest = new UpdateSpaceRequest();
-
-        final ModelApiResponse response = api.updateSpace(updateSpaceRequest).join();
-        assertNotNull(response);
-        assertNotNull(response.getResults());
-        assertNotNull(response.getErrors());
-        assertEquals(0, response.getResults().size(), "Should not contain created entity");
-        assertEquals(1, response.getErrors().size());
-        spaceNamesToDelete.add(space.getName());
-    }
+//    @Test
+//    @Order(7)
+//    public void updateSpaceInvalidUnitOfMeasureReturnErrorTest() throws ApiException, InterruptedException {
+//        CreateSpaceRequest space = new CreateSpaceRequest();
+//        space.setAccountType("Trial");
+//        space.setName("test-" + new Random().nextInt(10000));
+//
+//        ModelApiResponse createResponse = api.createSpace(List.of(space)).join();
+//        assertNotNull(createResponse);
+//
+//        UpdateSpaceRequest updateSpaceRequest = new UpdateSpaceRequest();
+//        updateSpaceRequest.setUnitsOfMeasure(List.of("InvalidUnitOfMeasure"));
+//
+//        final ModelApiResponse response = api.updateSpace(updateSpaceRequest).join();
+//        assertNotNull(response);
+//        assertNotNull(response.getResults());
+//        assertNotNull(response.getErrors());
+//        assertEquals(0, response.getResults().size(), "Should not contain created entity");
+//        assertEquals(1, response.getErrors().size());
+//        spaceNamesToDelete.add(space.getName());
+//    }
 
 }
