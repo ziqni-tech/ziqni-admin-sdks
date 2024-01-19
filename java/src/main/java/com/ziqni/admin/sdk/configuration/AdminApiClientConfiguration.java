@@ -15,6 +15,9 @@ public class AdminApiClientConfiguration {
 
     private final static Logger logger = LoggerFactory.getLogger(AdminApiClientConfiguration.class);
 
+    private final static String BEARER = "Bearer";
+    private final static String X_API_KEY = "x-api-key";
+
     private String adminClientServerBasePath;
     private String adminClientServerHost;
     private Integer adminClientServerPort;
@@ -27,6 +30,7 @@ public class AdminApiClientConfiguration {
     private String adminClientIdentityApiKey;
     private String adminClientIdentityProjectUrl;
     private boolean isWebsocket;
+    private boolean isApiKey;
 
     private Keycloak identityClient;
 
@@ -65,6 +69,10 @@ public class AdminApiClientConfiguration {
         return isWebsocket;
     }
 
+    public boolean isApiKey() {
+        return isApiKey;
+    }
+
     public Keycloak getIdentityClient() {
         if(identityClient == null)
             initIdentityClient();
@@ -72,6 +80,7 @@ public class AdminApiClientConfiguration {
     }
 
     public String getAccessTokenString() throws Exception {
+        if(isApiKey) return this.adminClientIdentityPass;
         return IdentityAuthorization.getAccessTokenString(getIdentityClient());
     }
 
@@ -110,8 +119,13 @@ public class AdminApiClientConfiguration {
     }
 
     public AdminApiClientConfiguration setAdminClientIdentityUser(String adminClientIdentityUser) {
+        this.isApiKey = adminClientIdentityUser.equalsIgnoreCase(X_API_KEY);
         this.adminClientIdentityUser = adminClientIdentityUser;
         return this;
+    }
+
+    public String getWsStompClientLogin(){
+        return this.isApiKey ? X_API_KEY : BEARER;
     }
 
     public AdminApiClientConfiguration setAdminClientIdentityPass(String adminClientIdentityPass) {
@@ -130,6 +144,7 @@ public class AdminApiClientConfiguration {
     }
 
     public void initIdentityClient() {
+        if(isApiKey) return;
         logger.debug("Identity client initialised with information realm: [{}] project url [{}] and username [{}]", adminClientIdentityRealm, adminClientIdentityProjectUrl, adminClientIdentityUser);
 
         identityClient = Keycloak.getInstance(adminClientIdentityEndpoint,
@@ -144,12 +159,12 @@ public class AdminApiClientConfiguration {
         if (this == o) return true;
         if (!(o instanceof AdminApiClientConfiguration)) return false;
         AdminApiClientConfiguration that = (AdminApiClientConfiguration) o;
-        return isWebsocket() == that.isWebsocket() && getAdminClientServerBasePath().equals(that.getAdminClientServerBasePath()) && getAdminClientServerHost().equals(that.getAdminClientServerHost()) && getAdminClientServerPort().equals(that.getAdminClientServerPort()) && getAdminClientServerScheme().equals(that.getAdminClientServerScheme()) && adminClientIdentityEndpoint.equals(that.adminClientIdentityEndpoint) && adminClientIdentityRealm.equals(that.adminClientIdentityRealm) && getAdminClientIdentityUser().equals(that.getAdminClientIdentityUser()) && adminClientIdentityPass.equals(that.adminClientIdentityPass) && getAdminClientIdentityProjectUrl().equals(that.getAdminClientIdentityProjectUrl()) && getIdentityClient().equals(that.getIdentityClient());
+        return isWebsocket() == that.isWebsocket() && getAdminClientServerBasePath().equals(that.getAdminClientServerBasePath()) && getAdminClientServerHost().equals(that.getAdminClientServerHost()) && getAdminClientServerPort().equals(that.getAdminClientServerPort()) && getAdminClientServerScheme().equals(that.getAdminClientServerScheme()) && adminClientIdentityEndpoint.equals(that.adminClientIdentityEndpoint) && adminClientIdentityRealm.equals(that.adminClientIdentityRealm) && getAdminClientIdentityUser().equals(that.getAdminClientIdentityUser()) && adminClientIdentityPass.equals(that.adminClientIdentityPass) && getAdminClientIdentityProjectUrl().equals(that.getAdminClientIdentityProjectUrl());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getAdminClientServerBasePath(), getAdminClientServerHost(), getAdminClientServerPort(), getAdminClientServerScheme(), adminClientIdentityEndpoint, adminClientIdentityRealm, getAdminClientIdentityUser(), adminClientIdentityPass, getAdminClientIdentityProjectUrl(), isWebsocket(), getIdentityClient());
+        return Objects.hash(getAdminClientServerBasePath(), getAdminClientServerHost(), getAdminClientServerPort(), getAdminClientServerScheme(), adminClientIdentityEndpoint, adminClientIdentityRealm, getAdminClientIdentityUser(), adminClientIdentityPass, getAdminClientIdentityProjectUrl(), isWebsocket());
     }
 
     public void setAdminClientIdentityApiKey(String key) {

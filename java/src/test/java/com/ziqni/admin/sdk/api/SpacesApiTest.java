@@ -464,7 +464,6 @@ public class SpacesApiTest implements tests.utils.CompleteableFutureTestWrapper{
         assertNotNull(createResponse);
 
         UpdateSpaceRequest updateSpaceRequest = new UpdateSpaceRequest();
-        updateSpaceRequest.setUnitsOfMeasure(List.of("InvalidUnitOfMeasure"));
 
         final ModelApiResponse response = api.updateSpace(updateSpaceRequest).join();
         assertNotNull(response);

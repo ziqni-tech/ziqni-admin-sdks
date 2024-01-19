@@ -119,7 +119,7 @@ public class WsClient extends WebSocketStompClient{
 
     private static void updateOauthToken(AdminApiClientConfiguration configuration, StompHeaders stompHeaders) throws Exception{
         String oauthToken = configuration.getAccessTokenString();
-        stompHeaders.setLogin("Bearer");
+        stompHeaders.setLogin(configuration.getWsStompClientLogin());
         stompHeaders.setPasscode(oauthToken);
     }
 

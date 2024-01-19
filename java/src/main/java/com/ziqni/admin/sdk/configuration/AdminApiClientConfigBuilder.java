@@ -30,7 +30,8 @@ public abstract class AdminApiClientConfigBuilder {
         config.setAdminClientIdentityProjectUrl( ConfigurationLoader.getParameter("admin.client.auth.resource").orElse("resource-not-set") );
         config.setAdminClientIdentityApiKey( ConfigurationLoader.getParameter("admin.client.auth.api.key").orElse("resource-not-set") );
 
-        config.initIdentityClient();
+        if(!config.isApiKey())
+            config.initIdentityClient();
 
         return config;
     }
