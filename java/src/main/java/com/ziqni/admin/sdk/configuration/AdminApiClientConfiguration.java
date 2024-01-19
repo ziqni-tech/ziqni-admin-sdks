@@ -3,11 +3,15 @@
  */
 package com.ziqni.admin.sdk.configuration;
 
+import com.auth0.jwt.JWT;
+import com.auth0.jwt.interfaces.DecodedJWT;
 import com.ziqni.admin.sdk.util.ConfigurationLoader;
 import org.keycloak.admin.client.Keycloak;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -15,8 +19,8 @@ public class AdminApiClientConfiguration {
 
     private final static Logger logger = LoggerFactory.getLogger(AdminApiClientConfiguration.class);
 
-    private final static String BEARER = "Bearer";
-    private final static String X_API_KEY = "x-api-key";
+    public final static String BEARER = "Bearer";
+    public final static String X_API_KEY = "x-api-key";
 
     private String adminClientServerBasePath;
     private String adminClientServerHost;
@@ -126,6 +130,28 @@ public class AdminApiClientConfiguration {
 
     public String getWsStompClientLogin(){
         return this.isApiKey ? X_API_KEY : BEARER;
+    }
+
+    public void verifyXApiKeyToken() throws Exception {
+        if(!this.isApiKey) return;
+
+        DecodedJWT jwt = JWT.decode(this.adminClientIdentityPass);
+        final var resource = jwt.getClaims().get("azp").asString();
+        final var expires = jwt.getClaims().get("exp").asDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
+        final var now = java.time.LocalDateTime.now();
+        if(!expires.isAfter(now.plusDays(30))){
+            logger.warn("Long lived api key expires soon " + expires);
+        }
+        else if(!expires.isAfter(now.plusHours(1))){
+            final var ex = new Exception("Expired api key - " + expires);
+            logger.error("API Key error",ex);
+            throw ex;
+        }
+        if(!resource.equals(this.getAdminClientIdentityProjectUrl())){
+            final var ex = new Exception("Invalid api key - resource do not match " + resource);
+            logger.error("API Key error",ex);
+            throw ex;
+        }
     }
 
     public AdminApiClientConfiguration setAdminClientIdentityPass(String adminClientIdentityPass) {

@@ -103,8 +103,7 @@ public class WsClient extends WebSocketStompClient{
         JettyWebSocketClient jettyWebSocketClient = new JettyWebSocketClient();
         List<Transport> transports = new ArrayList<>(2);
         transports.add(new WebSocketTransport(jettyWebSocketClient));
-        var sockJsClient = new SockJsClient(transports);
-        return sockJsClient;
+        return new SockJsClient(transports);
     }
 
     public void subscribe(EventHandler<?> handler) {
@@ -118,6 +117,7 @@ public class WsClient extends WebSocketStompClient{
     }
 
     private static void updateOauthToken(AdminApiClientConfiguration configuration, StompHeaders stompHeaders) throws Exception{
+        configuration.verifyXApiKeyToken();
         String oauthToken = configuration.getAccessTokenString();
         stompHeaders.setLogin(configuration.getWsStompClientLogin());
         stompHeaders.setPasscode(oauthToken);
