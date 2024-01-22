@@ -7,12 +7,12 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class AdminApiClientConfigurationTest {
 
-//    @Test
-//    void verifyXApiKeyToken() throws Exception {
-//        AdminApiClientConfiguration config = new AdminApiClientConfiguration();
-//        config.setAdminClientIdentityProjectUrl("first-staging.ziqni.app");
-//        config.setAdminClientIdentityUser(X_API_KEY);
-//        config.setAdminClientIdentityPass("");
+    @Test
+    void verifyXApiKeyToken() throws Exception {
+        AdminApiClientConfiguration config = new AdminApiClientConfiguration();
+        config.setAdminClientIdentityProjectUrl("first-staging.ziqni.app");
+        config.setAdminClientIdentityUser(X_API_KEY);
+        config.setAdminClientIdentityPass("");
 //        config.verifyXApiKeyToken();
-//    }
+    }
 }

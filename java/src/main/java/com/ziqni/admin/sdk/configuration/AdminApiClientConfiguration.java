@@ -66,7 +66,9 @@ public class AdminApiClientConfiguration {
     }
 
     public String getAdminClientIdentityApiKey() {
-        return adminClientIdentityApiKey;
+        return (Objects.isNull(adminClientIdentityApiKey) && isApiKey)
+        ? this.adminClientIdentityPass
+        : this.adminClientIdentityApiKey;
     }
 
     public boolean isWebsocket() {
@@ -84,7 +86,9 @@ public class AdminApiClientConfiguration {
     }
 
     public String getAccessTokenString() throws Exception {
-        if(isApiKey) return this.adminClientIdentityPass;
+        if(isApiKey)
+            return getAdminClientIdentityApiKey();
+
         return IdentityAuthorization.getAccessTokenString(getIdentityClient());
     }
 
@@ -135,7 +139,7 @@ public class AdminApiClientConfiguration {
     public void verifyXApiKeyToken() throws Exception {
         if(!this.isApiKey) return;
 
-        DecodedJWT jwt = JWT.decode(this.adminClientIdentityPass);
+        DecodedJWT jwt = JWT.decode(getAdminClientIdentityApiKey());
         final var resource = jwt.getClaims().get("azp").asString();
         final var expires = jwt.getClaims().get("exp").asDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
         final var now = java.time.LocalDateTime.now();
@@ -194,6 +198,7 @@ public class AdminApiClientConfiguration {
     }
 
     public void setAdminClientIdentityApiKey(String key) {
+        this.isApiKey = true;
         this.adminClientIdentityApiKey = key;
     }
 }
