@@ -34,11 +34,16 @@ public class AdminApiClientConfiguration {
     private String adminClientIdentityApiKey;
     private String adminClientIdentityProjectUrl;
     private boolean isWebsocket;
-    private boolean isApiKey;
+
+    private boolean isApiKey = false;
 
     private Keycloak identityClient;
 
     public AdminApiClientConfiguration() {
+    }
+
+    public void setApiKey(boolean apiKey) {
+        isApiKey = apiKey;
     }
 
     public String getAdminClientServerBasePath() {
@@ -127,7 +132,6 @@ public class AdminApiClientConfiguration {
     }
 
     public AdminApiClientConfiguration setAdminClientIdentityUser(String adminClientIdentityUser) {
-        this.isApiKey = adminClientIdentityUser.equalsIgnoreCase(X_API_KEY);
         this.adminClientIdentityUser = adminClientIdentityUser;
         return this;
     }
@@ -198,7 +202,6 @@ public class AdminApiClientConfiguration {
     }
 
     public void setAdminClientIdentityApiKey(String key) {
-        this.isApiKey = true;
         this.adminClientIdentityApiKey = key;
     }
 }

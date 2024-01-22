@@ -118,7 +118,6 @@ public class WsClient extends WebSocketStompClient{
 
     private static void updateOauthToken(AdminApiClientConfiguration configuration, StompHeaders stompHeaders) throws Exception{
         stompHeaders.setLogin(configuration.getWsStompClientLogin());
-
         configuration.verifyXApiKeyToken();
         stompHeaders.setPasscode(configuration.getAccessTokenString());
     }
