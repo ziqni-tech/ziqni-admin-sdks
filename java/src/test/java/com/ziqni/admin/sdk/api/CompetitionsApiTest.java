@@ -29,6 +29,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 import java.util.*;
 import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
@@ -264,6 +265,31 @@ public class CompetitionsApiTest implements tests.utils.CompleteableFutureTestWr
         queryRequest.addRangeItem(querySingle);
 
         final var response = $(api.getCompetitionsByQuery(queryRequest));
+        assertNotNull(response);
+        assertNotNull(response.getResults());
+        assertNotNull(response.getErrors());
+        assertNotNull(response.getResults().get(0).getId(), "Created entity should has id");
+
+    }
+
+    @Test
+    public void getCompetitionsScheduledDatesBetweenDatesReturnOkTest() throws ApiException {
+        final var queryRequest = new QueryRequest()
+                .skip(0)
+                .limit(20);
+
+        final var gtRangeQuery = new RangeQuery();
+        gtRangeQuery.setQueryField("options.scheduledDates.start");
+        gtRangeQuery.setGt(LocalDateTime.now().minusDays(1).toString());
+        queryRequest.addRangeItem(gtRangeQuery);
+
+        final var ltRangeQuery =new RangeQuery();
+        ltRangeQuery.setQueryField("options.scheduledDates.start");
+        ltRangeQuery.setLt(OffsetDateTime.now().plusDays(8).toString());
+        queryRequest.addRangeItem(ltRangeQuery);
+
+        final var response = $(api.getCompetitionsByQuery(queryRequest));
+
         assertNotNull(response);
         assertNotNull(response.getResults());
         assertNotNull(response.getErrors());
