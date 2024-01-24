@@ -78,34 +78,34 @@ public class CompetitionsApiTest implements tests.utils.CompleteableFutureTestWr
 
     @BeforeAll
     public void setUp() {
-        try {
-            tagKey = loadTagsData.getModel();
-            Thread.sleep(5000);
-
-            var productsReq = loadProductsData.getCreateRequest(null).tags(List.of(tagKey));
-            var productRes = loadProductsData.createTestData(List.of(productsReq));
-
-            Thread.sleep(5000);
-
-            productIdsToDelete.add(productRes.getResults().get(0).getId());
-            customFieldKey = loadCustomFieldsData.getModel(customFieldIdsToDelete, AppliesTo.COMPETITION);
-            tagIdsToDelete.add(tagKey);
-        } catch (ApiException | InterruptedException e) {
-            logger.error("error", e.getCause());
-        }
+//        try {
+//            tagKey = loadTagsData.getModel();
+//            Thread.sleep(5000);
+//
+//            var productsReq = loadProductsData.getCreateRequest(null).tags(List.of(tagKey));
+//            var productRes = loadProductsData.createTestData(List.of(productsReq));
+//
+//            Thread.sleep(5000);
+//
+//            productIdsToDelete.add(productRes.getResults().get(0).getId());
+//            customFieldKey = loadCustomFieldsData.getModel(customFieldIdsToDelete, AppliesTo.COMPETITION);
+//            tagIdsToDelete.add(tagKey);
+//        } catch (ApiException | InterruptedException e) {
+//            logger.error("error", e.getCause());
+//        }
     }
 
     // There is no Delete method exposed to achievements, competitions and contests, mark the states of these 3 resources as cancelled and clean them up later on.
     @AfterAll
     public void cleanUp() {
-        try {
-            Thread.sleep(5000);
-            loadProductsData.deleteTestData(productIdsToDelete);
-            loadTagsData.deleteTestData(tagIdsToDelete);
-            loadCustomFieldsData.deleteTestData(customFieldIdsToDelete);
-        } catch (ApiException | InterruptedException e) {
-            logger.error("error", e.getCause());
-        }
+//        try {
+//            Thread.sleep(5000);
+//            loadProductsData.deleteTestData(productIdsToDelete);
+//            loadTagsData.deleteTestData(tagIdsToDelete);
+//            loadCustomFieldsData.deleteTestData(customFieldIdsToDelete);
+//        } catch (ApiException | InterruptedException e) {
+//            logger.error("error", e.getCause());
+//        }
     }
 
     /**
@@ -278,15 +278,12 @@ public class CompetitionsApiTest implements tests.utils.CompleteableFutureTestWr
                 .skip(0)
                 .limit(20);
 
-        final var gtRangeQuery = new RangeQuery();
-        gtRangeQuery.setQueryField("options.scheduledDates.start");
-        gtRangeQuery.setGt(LocalDateTime.now().minusDays(1).toString());
-        queryRequest.addRangeItem(gtRangeQuery);
+        final var rangeQuery = new RangeQuery();
+        rangeQuery.setQueryField("options.scheduledDates.start");
+        rangeQuery.setGt(LocalDateTime.now().minusDays(1).toString());
+        rangeQuery.setLt(OffsetDateTime.now().plusDays(8).toString());
 
-        final var ltRangeQuery =new RangeQuery();
-        ltRangeQuery.setQueryField("options.scheduledDates.start");
-        ltRangeQuery.setLt(OffsetDateTime.now().plusDays(8).toString());
-        queryRequest.addRangeItem(ltRangeQuery);
+        queryRequest.addRangeItem(rangeQuery);
 
         final var response = $(api.getCompetitionsByQuery(queryRequest));
 
