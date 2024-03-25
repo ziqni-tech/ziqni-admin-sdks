@@ -32,6 +32,7 @@ import org.springframework.web.socket.sockjs.client.WebSocketTransport;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ScheduledFuture;
@@ -123,6 +124,8 @@ public class WsClient extends WebSocketStompClient{
     }
 
     public <T> MessageToSend<T> prepareMessageToSend(StompHeaders headers, T payload){
+        if(Objects.isNull(stompSession) || !stompSession.isConnected())
+            throw new IllegalStateException("The stomp session is not connected");
         return new MessageToSend<>(headers, payload, stompSession);
     }
 

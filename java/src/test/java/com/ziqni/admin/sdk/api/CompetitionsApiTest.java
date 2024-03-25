@@ -269,6 +269,15 @@ public class CompetitionsApiTest implements tests.utils.CompleteableFutureTestWr
         assertNotNull(response.getErrors());
         assertNotNull(response.getResults().get(0).getId(), "Created entity should has id");
 
+
+        final var queryRequest = new QueryRequest()
+                .skip(0)
+                .limit(20);
+
+        final var rangeQuery = new RangeQuery();
+        rangeQuery.setQueryField("options.scheduledDates.start");
+        rangeQuery.setGt(LocalDateTime.now().minusDays(1).toString());
+        rangeQuery.setLt(OffsetDateTime.now().plusDays(8).toString());
     }
 
     @Test

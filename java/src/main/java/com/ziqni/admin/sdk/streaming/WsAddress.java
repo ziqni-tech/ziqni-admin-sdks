@@ -22,7 +22,8 @@ public class WsAddress {
     }
 
     public WsAddress(String address){
-        assert address.startsWith("ws://") || address.startsWith("wss://"): "The websocket address must start with 'ws://' or 'wss://'";
+        if(address.startsWith("ws://") || address.startsWith("wss://"))
+            throw new RuntimeException( "The websocket address must start with 'ws://' or 'wss://', Invalid address [ " + address + " ]");
         this.address = address;
     }
 
