@@ -10,5 +10,6 @@ Name | Type | Description | Notes
 **reward** | [**CreateRewardRequest**](CreateRewardRequest.md) |  | [optional] 
 **location** | [**GridLocation**](GridLocation.md) |  | [optional] 
 **probability** | **Number** |  | 
+**background** | **String** |  | [optional] 
 
 
