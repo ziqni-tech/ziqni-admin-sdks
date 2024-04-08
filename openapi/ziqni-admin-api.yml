@@ -1,8 +1,13 @@
 openapi: 3.0.2
 info:
   title: ZIQNI Admin API
-  version: 3.0.11
-  description: Ziqni Application Services are used to manage and configure spaces.
+  version: 3.0.13
+  description: |-
+    Ziqni Application Services are used to manage and configure spaces.
+    
+    Change log:
+    
+    2024-02-27 Added rewards reduced to the LeaderboardEntry response
   contact:
     name: Support Team
     url: 'https://www.ziqni.com/'
@@ -887,6 +892,7 @@ paths:
           $ref: '#/components/responses/ApiResponseBody'
         '503':
           $ref: '#/components/responses/ApiResponseBody'
+      deprecated: true
       security:
         -
           OAuth2:
@@ -3262,6 +3268,7 @@ paths:
           $ref: '#/components/responses/ApiResponseBody'
         '503':
           $ref: '#/components/responses/ApiResponseBody'
+      deprecated: true
       security:
         -
           OAuth2:
@@ -8386,7 +8393,7 @@ components:
           type: object
           properties:
             status:
-              $ref: '#/components/schemas/CompetitionStatusActions'
+              $ref: '#/components/schemas/CompetitionStateActions'
     Bracket:
       required:
         - rounds
@@ -9861,6 +9868,7 @@ components:
         - Rule
         - APIKey
         - Connection
+        - InstantWin
       type: string
     EntrantAction:
       description: Entrant action
@@ -10755,7 +10763,7 @@ components:
           description: |+
             The key of the parameter that is being searched
           
-
+          
           type: string
         gt:
           description: Greater than value
@@ -11669,7 +11677,7 @@ components:
       type: object
       properties:
         rank:
-          description: The reank of the player
+          description: The rank of the player
           type: integer
           example: '1'
         score:
@@ -11691,6 +11699,11 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/LeaderboardMember'
+        rewards:
+          description: The rewards associated with this rank
+          type: array
+          items:
+            $ref: '#/components/schemas/RewardReduced'
     Leaderboard:
       allOf:
         -
@@ -13742,7 +13755,6 @@ components:
           required:
             - name
             - key
-            - unitOfMeasure
           type: object
           properties:
             name:
@@ -16100,17 +16112,6 @@ components:
         - Cancelled
       type: string
       readOnly: true
-    CompetitionStatusActions:
-      description: Available actions for competition status
-      enum:
-        - Deleted
-        - Ready
-        - Active
-        - Finished
-        - Finalised
-        - Cancelled
-      type: string
-      example: '"Deleted"'
     LeaderboardMember:
       required:
         - name
@@ -17365,46 +17366,6 @@ components:
                 errorCode: 56
                 message: some text
                 errorAt: 90
-    InstantWin:
-      description: ''
-      type: object
-      allOf:
-        -
-          required:
-            - instantWinType
-            - tiles
-          type: object
-          properties:
-            name:
-              type: string
-            description:
-              type: string
-            termsAndConditions:
-              type: string
-            constraints:
-              type: array
-              items:
-                type: string
-              example: hasRewards
-            statusCode:
-              format: int32
-              description: integer
-              type: integer
-            instantWinType:
-              description: integer
-              type: integer
-            tiles:
-              description: ''
-              type: array
-              items:
-                $ref: '#/components/schemas/InstantWinTile'
-            version:
-              format: int64
-              type: integer
-        -
-          $ref: '#/components/schemas/OptParamModels'
-        -
-          $ref: '#/components/schemas/ModelDefault'
     GridLocation:
       description: >-
         This struct contains two integer-valued fields, row and col . A GridLocation can be used to
@@ -17453,169 +17414,9 @@ components:
           format: double
           description: ''
           type: number
-    CreateInstantWinRequest:
-      description: This is a request for Instant win creation
-      allOf:
-        -
-          $ref: '#/components/schemas/CreateOptParamModels'
-        -
-          required:
-            - name
-            - gridLocation
-          type: object
-          properties:
-            name:
-              type: string
-            description:
-              type: string
-            termsAndConditions:
-              type: string
-            constraints:
-              type: array
-              items:
-                type: string
-              example: hasRewards
-            statusCode:
-              format: int32
-              description: integer
-              type: integer
-            instantWinType:
-              description: integer
-              type: integer
-            tiles:
-              description: ''
-              type: array
-              items:
-                $ref: '#/components/schemas/CreateInstantWinTile'
-            translations:
-              type: array
-              items:
-                $ref: '#/components/schemas/Translation'
-      x-vue-create: instantWin
-      x-vue-creator: instantWins
-    UpdateInstantWinRequest:
-      description: This is a request for Instant win update
-      allOf:
-        -
-          $ref: '#/components/schemas/UpdateModelDefault'
-        -
-          $ref: '#/components/schemas/UpdateOptParamModels'
-        -
-          required: []
-          type: object
-          properties:
-            name:
-              type: string
-            description:
-              type: string
-            termsAndConditions:
-              type: string
-            constraints:
-              type: array
-              items:
-                type: string
-              example: hasRewards
-            statusCode:
-              format: int32
-              description: integer
-              type: integer
-            instantWinType:
-              description: integer
-              type: integer
-            tiles:
-              description: ''
-              type: array
-              items:
-                $ref: '#/components/schemas/UpdateInstantWinTile'
-      example:
-        id: ziqniModelId
-        metadata:
-          key1: value1
-          key2: value
-        tags:
-          - tagId1
-          - tagId2
-        customFields:
-          customField1: customFieldValue1
-          customField2: customFieldValue2
-        name: name
-        description: description
-        adjustmentFactor: 28.55
-        actionTypeAdjustmentFactors:
-          -
-            adjustmentFactor: 67.71
-            actionTypeId: ziqniModelId
-          -
-            adjustmentFactor: 96.91
-            actionTypeId: ziqniModelId
-      x-vue-update: instantWin
-      x-vue-updater: instantWins
-    CreateInstantWinTile:
-      description: ''
-      required:
-        - orderNumber
-        - probability
-        - icon
-        - horizontalPosition
-        - verticalPosition
-        - probability
-      type: object
-      properties:
-        icon:
-          description: The id to the image file
-          type: string
-        text:
+        background:
           description: ''
           type: string
-        contraints:
-          description: 'hasPrizes, glow'
-          type: array
-          items:
-            type: string
-          example: hasPrizes
-        reward:
-          $ref: '#/components/schemas/CreateRewardRequest'
-          description: The reward associated with this tile
-        location:
-          $ref: '#/components/schemas/GridLocation'
-          description: ''
-        probability:
-          format: double
-          description: ''
-          type: number
-    UpdateInstantWinTile:
-      description: ''
-      required:
-        - orderNumber
-        - probability
-        - icon
-        - horizontalPosition
-        - verticalPosition
-        - probability
-      type: object
-      properties:
-        icon:
-          description: The id to the image file
-          type: string
-        text:
-          description: ''
-          type: string
-        contraints:
-          description: 'hasPrizes, glow'
-          type: array
-          items:
-            type: string
-          example: hasPrizes
-        reward:
-          $ref: '#/components/schemas/UpdateRewardRequest'
-          description: The reward associated with this tile
-        location:
-          $ref: '#/components/schemas/GridLocation'
-          description: ''
-        probability:
-          format: double
-          description: ''
-          type: number
     Competition:
       allOf:
         -
@@ -19158,6 +18959,280 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/QuerySortBy'
+    CreateInstantWinTile:
+      description: ''
+      required:
+        - orderNumber
+        - probability
+        - icon
+        - horizontalPosition
+        - verticalPosition
+        - probability
+      type: object
+      properties:
+        icon:
+          description: The id to the image file
+          type: string
+        text:
+          description: ''
+          type: string
+        contraints:
+          description: 'hasPrizes, glow'
+          type: array
+          items:
+            type: string
+          example: hasPrizes
+        reward:
+          $ref: '#/components/schemas/CreateRewardRequest'
+          description: The reward associated with this tile
+        location:
+          $ref: '#/components/schemas/GridLocation'
+          description: ''
+        probability:
+          format: double
+          description: ''
+          type: number
+        background:
+          description: ''
+          type: string
+    UpdateInstantWinTile:
+      description: ''
+      required:
+        - orderNumber
+        - probability
+        - icon
+        - horizontalPosition
+        - verticalPosition
+        - probability
+      type: object
+      properties:
+        icon:
+          description: The id to the image file
+          type: string
+        text:
+          description: ''
+          type: string
+        contraints:
+          description: 'hasPrizes, glow'
+          type: array
+          items:
+            type: string
+          example: hasPrizes
+        reward:
+          $ref: '#/components/schemas/UpdateRewardRequest'
+          description: The reward associated with this tile
+        location:
+          $ref: '#/components/schemas/GridLocation'
+          description: ''
+        probability:
+          format: double
+          description: ''
+          type: number
+        background:
+          description: ''
+          type: string
+    CompetitionStateActions:
+      description: Available actions for competition status
+      enum:
+        - Deleted
+        - Ready
+        - Active
+        - Finished
+        - Finalised
+        - Cancelled
+      type: string
+      example: '"Deleted"'
+    InstantWin:
+      description: ''
+      type: object
+      allOf:
+        -
+          required:
+            - instantWinType
+            - tiles
+          type: object
+          properties:
+            name:
+              type: string
+            description:
+              type: string
+            termsAndConditions:
+              type: string
+            constraints:
+              type: array
+              items:
+                type: string
+              example: hasRewards
+            statusCode:
+              format: int32
+              description: integer
+              type: integer
+            instantWinType:
+              description: integer
+              type: integer
+            icon:
+              description: Attachement id for the corresponding icon image.
+              type: string
+            banner:
+              description: Link to the banner
+              type: string
+              example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
+            bannerLowResolution:
+              description: Link to the bannerLowResolution
+              type: string
+              example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
+            bannerHighResolution:
+              description: Link to the bannerHighResolution
+              type: string
+              example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
+            tiles:
+              description: ''
+              type: array
+              items:
+                $ref: '#/components/schemas/InstantWinTile'
+            version:
+              format: int64
+              type: integer
+            style:
+              description: A link link to the cms entry for this objects style sheet
+              type: string
+        -
+          $ref: '#/components/schemas/OptParamModels'
+        -
+          $ref: '#/components/schemas/ModelDefault'
+    CreateInstantWinRequest:
+      description: This is a request for Instant win creation
+      allOf:
+        -
+          $ref: '#/components/schemas/CreateOptParamModels'
+        -
+          required:
+            - name
+            - gridLocation
+          type: object
+          properties:
+            name:
+              type: string
+            description:
+              type: string
+            termsAndConditions:
+              type: string
+            constraints:
+              type: array
+              items:
+                type: string
+              example: hasRewards
+            statusCode:
+              format: int32
+              description: integer
+              type: integer
+            instantWinType:
+              description: integer
+              type: integer
+            icon:
+              description: Attachement id for the corresponding icon image.
+              type: string
+            banner:
+              description: Link to the banner
+              type: string
+              example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
+            bannerLowResolution:
+              description: Link to the bannerLowResolution
+              type: string
+              example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
+            bannerHighResolution:
+              description: Link to the bannerHighResolution
+              type: string
+              example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
+            tiles:
+              description: ''
+              type: array
+              items:
+                $ref: '#/components/schemas/CreateInstantWinTile'
+            translations:
+              type: array
+              items:
+                $ref: '#/components/schemas/Translation'
+            style:
+              description: A link link to the cms entry for this objects style sheet
+              type: string
+      x-vue-create: instantWin
+      x-vue-creator: instantWins
+    UpdateInstantWinRequest:
+      description: This is a request for Instant win update
+      allOf:
+        -
+          $ref: '#/components/schemas/UpdateModelDefault'
+        -
+          $ref: '#/components/schemas/UpdateOptParamModels'
+        -
+          required: []
+          type: object
+          properties:
+            name:
+              type: string
+            description:
+              type: string
+            termsAndConditions:
+              type: string
+            constraints:
+              type: array
+              items:
+                type: string
+              example: hasRewards
+            statusCode:
+              format: int32
+              description: integer
+              type: integer
+            instantWinType:
+              description: integer
+              type: integer
+            icon:
+              description: Attachement id for the corresponding icon image.
+              type: string
+            banner:
+              description: Link to the banner
+              type: string
+              example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
+            bannerLowResolution:
+              description: Link to the bannerLowResolution
+              type: string
+              example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
+            bannerHighResolution:
+              description: Link to the bannerHighResolution
+              type: string
+              example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
+            tiles:
+              description: ''
+              type: array
+              items:
+                $ref: '#/components/schemas/UpdateInstantWinTile'
+            style:
+              description: A link link to the cms entry for this objects style sheet
+              type: string
+      example:
+        id: ziqniModelId
+        metadata:
+          key1: value1
+          key2: value
+        tags:
+          - tagId1
+          - tagId2
+        customFields:
+          customField1: customFieldValue1
+          customField2: customFieldValue2
+        name: name
+        description: description
+        adjustmentFactor: 28.55
+        actionTypeAdjustmentFactors:
+          -
+            adjustmentFactor: 67.71
+            actionTypeId: ziqniModelId
+          -
+            adjustmentFactor: 96.91
+            actionTypeId: ziqniModelId
+      x-vue-update: instantWin
+      x-vue-updater: instantWins
   responses:
     ApiResponseBody:
       content:
