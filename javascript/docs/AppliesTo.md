@@ -53,4 +53,6 @@
 
 * `Connection` (value: `"Connection"`)
 
+* `InstantWin` (value: `"InstantWin"`)
+
 

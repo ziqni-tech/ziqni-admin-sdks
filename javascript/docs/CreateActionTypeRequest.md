@@ -11,6 +11,6 @@ Name | Type | Description | Notes
 **key** | **String** | A unique key that represents an action helper | 
 **description** | **String** | The description of the rule action helper for your reference | [optional] 
 **addConstraints** | **[String]** | Additional constraints | [optional] 
-**unitOfMeasure** | **String** | The unit of measure id | 
+**unitOfMeasure** | **String** | The unit of measure id | [optional] 
 
 

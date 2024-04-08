@@ -4,6 +4,6 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**status** | [**CompetitionStatusActions**](CompetitionStatusActions.md) |  | 
+**status** | [**CompetitionStateActions**](CompetitionStateActions.md) |  | 
 
 
