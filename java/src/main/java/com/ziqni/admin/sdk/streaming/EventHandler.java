@@ -23,6 +23,7 @@ public abstract class EventHandler<T> implements StompFrameHandler {
 
     /**
      * Get the Topic name this handler should attach to
+     * @return the topic name
      */
     public abstract String getTopic();
 

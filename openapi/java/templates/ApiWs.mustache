@@ -64,7 +64,6 @@ import java.util.function.BiConsumer;
         {{#returnType}}
             * @return {{#asyncNative}}CompletableFuture&lt;{{/asyncNative}}{{returnType}}{{#asyncNative}}&gt;{{/asyncNative}}
         {{/returnType}}
-        * @throws ApiException if fails to make API call
         {{#isDeprecated}}
             * @deprecated
         {{/isDeprecated}}
@@ -88,7 +87,6 @@ import java.util.function.BiConsumer;
                 * {{notes}}
                 * @param apiRequest {@link API{{operationId}}Request}
                 * @return {{#asyncNative}}CompletableFuture&lt;{{/asyncNative}}ApiResponse&lt;{{#returnType}}{{returnType}}{{/returnType}}{{^returnType}}Void{{/returnType}}&gt;{{#asyncNative}}&gt;{{/asyncNative}}
-                * @throws ApiException if fails to make API call
             {{#isDeprecated}}
                     * @deprecated
             {{/isDeprecated}}
@@ -118,7 +116,6 @@ import java.util.function.BiConsumer;
         {{#returnType}}
                 * @return {{#asyncNative}}CompletableFuture&lt;{{/asyncNative}}{{returnType}}{{#asyncNative}}&gt;{{/asyncNative}}
         {{/returnType}}
-            * @throws ApiException if fails to make API call
         {{#isDeprecated}}
                 * @deprecated
         {{/isDeprecated}}

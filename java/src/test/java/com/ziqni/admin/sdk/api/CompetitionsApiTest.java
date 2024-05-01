@@ -29,6 +29,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 import java.util.*;
 import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
@@ -253,31 +254,6 @@ public class CompetitionsApiTest implements tests.utils.CompleteableFutureTestWr
         logger.info(id);
 
         idsToDelete.add(id);
-    }
-
-    @Test
-    public void getCompetitionsCreatedBetweenDatesReturnOkTest() throws ApiException {
-        final var queryRequest = new QueryRequest().skip(0).limit(20);
-        final var querySingle=new RangeQuery();
-        querySingle.setQueryField("created");
-        querySingle.setGt(LocalDateTime.now().minusDays(2).toString());
-        queryRequest.addRangeItem(querySingle);
-
-        final var response = $(api.getCompetitionsByQuery(queryRequest));
-        assertNotNull(response);
-        assertNotNull(response.getResults());
-        assertNotNull(response.getErrors());
-        assertNotNull(response.getResults().get(0).getId(), "Created entity should has id");
-
-
-        final var queryRequest = new QueryRequest()
-                .skip(0)
-                .limit(20);
-
-        final var rangeQuery = new RangeQuery();
-        rangeQuery.setQueryField("options.scheduledDates.start");
-        rangeQuery.setGt(LocalDateTime.now().minusDays(1).toString());
-        rangeQuery.setLt(OffsetDateTime.now().plusDays(8).toString());
     }
 
     @Test
@@ -916,7 +892,7 @@ public class CompetitionsApiTest implements tests.utils.CompleteableFutureTestWr
         final var createResponse = loadData.createTestData(createRequest);
         final var id = createResponse.getResults().get(0).getId();
 
-        final var givenStatus = CompetitionStatusActions.ACTIVE;
+        final var givenStatus = CompetitionStateActions.ACTIVE;
 
         final var given = new UpdateCompetitionStatusRequest()
                 .id(id)

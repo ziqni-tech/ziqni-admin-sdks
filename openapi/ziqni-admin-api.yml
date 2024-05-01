@@ -1,7 +1,7 @@
 openapi: 3.0.2
 info:
   title: ZIQNI Admin API
-  version: 3.0.13
+  version: 3.0.14
   description: |-
     Ziqni Application Services are used to manage and configure spaces.
     
@@ -10763,7 +10763,7 @@ components:
           description: |+
             The key of the parameter that is being searched
           
-          
+
           type: string
         gt:
           description: Greater than value
@@ -11390,86 +11390,6 @@ components:
       example:
         entityId: some text
         countValue: 83
-    CreateEntityRewardRequest:
-      allOf:
-        -
-          $ref: '#/components/schemas/CreateOptParamModels'
-        -
-          required:
-            - rewardRank
-            - name
-            - rewardValue
-            - rewardTypeId
-            - constraints
-            - entityType
-            - entityId
-          type: object
-          properties:
-            entityType:
-              $ref: '#/components/schemas/RewardEntityType'
-            entityId:
-              description: A unique identifier of an achievement or contest. Dependant on entityType
-              type: string
-              example: Dc4swmQBVd51K6gPQqFx
-            name:
-              description: The name of a reward
-              type: string
-              example: Welcome badge
-            description:
-              description: The description of a Reward
-              type: string
-              example: A badge to welcome a new player
-            rewardRank:
-              description: >-
-                If used in the context of contest this will associate with the rank of the
-                leaderboard
-              type: string
-              example: '1,2 3 ...10'
-            rewardValue:
-              format: double
-              description: Numerical value of the reward that will be issued based on the reward type
-              type: number
-              example: '1'
-            icon:
-              description: An Icon id that has been pre uploaded to the system to display for reward
-              type: string
-              example: Dc4swmQBVd51K6gPQqFx
-            issueLimit:
-              format: int32
-              description: how many of thsese rewards are
-              type: integer
-              example: '2'
-            delay:
-              format: int32
-              description: Delay of issuing a reward in minutes
-              type: integer
-              example: '2'
-            pointInTime:
-              format: date-time
-              description: >-
-                ISO8601 timestamp for when a Reward is available until a specific point in
-                time. All records are stored in UTC time zone
-              type: string
-              example: '2019-09-25T15:47:00.000+0000'
-            period:
-              format: int32
-              description: Reward available for a period of time from issuing in minutes
-              type: integer
-              example: '2'
-            translations:
-              type: array
-              items:
-                $ref: '#/components/schemas/Translation'
-            constraints:
-              description: Additional constraints
-              type: array
-              items:
-                type: string
-              example: '- notifyMember - isMemberAcknowledgmentRequired'
-            rewardTypeId:
-              description: A unique id of the Reward Type
-              type: string
-              example: Dc4swmQBVd51K6gPQqFx
     CreateRepositoryRequest:
       allOf:
         -
@@ -12084,89 +12004,6 @@ components:
           description: The time a member gets to the target points value
           type: number
           example: '1'
-    UpdateEntityRewardRequest:
-      allOf:
-        -
-          $ref: '#/components/schemas/UpdateModelDefault'
-        -
-          $ref: '#/components/schemas/UpdateOptParamModels'
-        -
-          required: []
-          type: object
-          properties:
-            entityType:
-              $ref: '#/components/schemas/RewardEntityType'
-            entityId:
-              description: A unique identifier of an achievement or contest. Dependant on entityType
-              type: string
-              example: Dc4swmQBVd51K6gPQqFx
-            name:
-              description: The name of a reward
-              type: string
-              example: Welcome badge
-            description:
-              description: The description of a Reward
-              type: string
-              example: A badge to welcome a new player
-            rewardRank:
-              description: >-
-                If used in the context of contest this will associate with the rank of the
-                leaderboard
-              type: string
-              example: '1,2 3 ...10'
-            rewardValue:
-              format: double
-              description: Numerical value of the reward that will be issued based on the reward type
-              type: number
-              example: '1'
-            icon:
-              description: An Icon id that has been pre uploaded to the system to display for reward
-              type: string
-              example: Dc4swmQBVd51K6gPQqFx
-            issueLimit:
-              format: int32
-              description: how many of thsese rewards are
-              type: integer
-              example: '2'
-            delay:
-              format: int32
-              description: Delay of issuing a reward in minutes
-              type: integer
-              example: '2'
-            pointInTime:
-              format: date-time
-              description: >-
-                ISO8601 timestamp for when a Reward is available until a specific point in
-                time. All records are stored in UTC time zone
-              type: string
-              example: '2019-09-25T15:47:00.000+0000'
-            period:
-              format: int32
-              description: Reward available for a period of time from issuing in minutes
-              type: integer
-              example: '2'
-            translations:
-              type: array
-              items:
-                $ref: '#/components/schemas/Translation'
-            addConstraints:
-              description: Additional constraints
-              type: array
-              items:
-                type: string
-              example: |-
-                - notifyMember 
-                - acknowledgementRequired
-            removeConstraints:
-              description: Additional constraints
-              type: array
-              items:
-                type: string
-              example: '- notifyMember - isMemberAcknowledgmentRequired'
-            rewardTypeId:
-              description: A unique id of the Reward Type
-              type: string
-              example: Dc4swmQBVd51K6gPQqFx
     UpdateRepositoryRequest:
       allOf:
         -
@@ -13872,191 +13709,6 @@ components:
           - system
       x-vue-create: rewardType
       x-vue-creator: rewardTypes
-    CreateRewardRequest:
-      allOf:
-        -
-          $ref: '#/components/schemas/CreateOptParamModels'
-        -
-          required:
-            - rewardRank
-            - name
-            - rewardValue
-            - rewardTypeId
-            - constraints
-            - delay
-          type: object
-          properties:
-            name:
-              description: The name of a reward
-              type: string
-              example: Welcome badge
-            description:
-              description: The description of a Reward
-              type: string
-              example: A badge to welcome a new player
-            rewardRank:
-              description: >-
-                If used in the context of contest this will associate with the rank of the
-                leaderboard
-              type: string
-              example: '1,2 3 ...10'
-              x-vue-form-type: TEXTAREA
-            rewardValue:
-              format: double
-              description: Numerical value of the reward that will be issued based on the reward type
-              type: number
-              example: '1'
-            icon:
-              description: An Icon id that has been pre uploaded to the system to display for reward
-              type: string
-              example: Dc4swmQBVd51K6gPQqFx
-            issueLimit:
-              format: int32
-              description: how many of thsese rewards are
-              type: integer
-              example: '2'
-            delay:
-              format: int32
-              description: Delay of issuing a reward in minutes
-              type: integer
-              example: '2'
-            pointInTime:
-              format: date-time
-              description: >-
-                ISO8601 timestamp for when a Reward is available until a specific point in
-                time. All records are stored in UTC time zone
-              type: string
-              example: '2019-09-25T15:47:00.000+0000'
-            period:
-              format: int32
-              description: Reward available for a period of time from issuing in minutes
-              type: integer
-              example: '2'
-            translations:
-              type: array
-              items:
-                $ref: '#/components/schemas/Translation'
-            addConstraints:
-              description: Additional constraints
-              type: array
-              items:
-                type: string
-              example: |-
-                - notifyMember 
-                - acknowledgementRequired
-            rewardTypeId:
-              description: A unique id of the Reward Type
-              type: string
-              example: Dc4swmQBVd51K6gPQqFx
-      example:
-        customFields:
-          test_cf_termd65bcccf-d37f-441a-a96d-d0da55a77719:
-            - 1
-            - 2
-        tags:
-          - Test_key-7563406f-6983-4308-9422-91838fd40fe7
-        metadata:
-          fea089d7-f751-432e-8646-838c7769ab1e: f2dfff99-b766-414f-8e33-4d77aebbdb5e
-        name: Test_name-b6f072c2-df68-4905-a4f6-c19246ff5dc8
-        key: Test_key-2148168c-3a6c-48ba-b005-68a67a10aebc
-        unitOfMeasureType: Other
-        translations:
-          -
-            languageKey: csb
-            translations:
-              -
-                fieldName: name
-                text: test1
-          -
-            languageKey: den
-            translations:
-              -
-                fieldName: name
-                text: test-temp
-          -
-            languageKey: kmb
-            translations:
-              -
-                fieldName: name
-                text: Level-Up
-        addConstraints:
-          - system
-      x-vue-create: reward
-      x-vue-creator: rewards
-    UpdateRewardRequest:
-      allOf:
-        -
-          $ref: '#/components/schemas/UpdateModelDefault'
-        -
-          $ref: '#/components/schemas/UpdateOptParamModels'
-        -
-          required:
-            - rewardType
-          type: object
-          properties:
-            name:
-              description: The name of a reward
-              type: string
-              example: Welcome badge
-            description:
-              description: The description of a Reward
-              type: string
-              example: A badge to welcome a new player
-            rewardRank:
-              description: >-
-                If used in the context of contest this will associate with the rank of the
-                leaderboard
-              type: string
-              example: '1,2 3 ...10'
-            rewardValue:
-              format: double
-              description: Numerical value of the reward that will be issued based on the reward type
-              type: number
-              example: '1'
-            rewardTypeId:
-              description: A unique id of the Reward Type
-              type: string
-              example: Dc4swmQBVd51K6gPQqFx
-            icon:
-              description: An Icon id that has been pre uploaded to the system to display for reward
-              type: string
-              example: Dc4swmQBVd51K6gPQqFx
-            issueLimit:
-              format: int32
-              description: how many of thsese rewards are
-              type: integer
-              example: '2'
-            delay:
-              format: int32
-              description: Delay of issuing a reward in minutes
-              type: integer
-              example: '2'
-            pointInTime:
-              format: date-time
-              description: >-
-                ISO8601 timestamp for when a Reward is available until a specific point in
-                time. All records are stored in UTC time zone
-              type: string
-              example: '2019-09-25T15:47:00.000+0000'
-            period:
-              format: int32
-              description: Reward available for a period of time from issuing in minutes
-              type: integer
-              example: '2'
-            addConstraints:
-              description: Additional constraints
-              type: array
-              items:
-                type: string
-              example: '- memberAcknowledgmentRequired'
-            removeConstraints:
-              description: Remove constraints
-              type: array
-              items:
-                type: string
-              example: '- memberAcknowledgmentRequired'
-      x-vue-update: reward
-      x-vue-updater: rewards
     UpdateRewardTypeRequest:
       allOf:
         -
@@ -15761,13 +15413,6 @@ components:
               example: testUser
       x-vue-route:
         - settings
-    ConnectionType:
-      description: Connection Types
-      enum:
-        - RabbitMq
-        - Kafka
-        - SQS
-      type: string
     ObjectParametersResponse:
       required:
         - meta
@@ -16146,120 +15791,6 @@ components:
           type: object
           additionalProperties:
             type: number
-    Reward:
-      allOf:
-        -
-          $ref: '#/components/schemas/ModelDefault'
-        -
-          $ref: '#/components/schemas/OptParamModels'
-        -
-          required:
-            - rewardRank
-            - rewardValue
-            - rewardType
-            - constraints
-          type: object
-          properties:
-            entityType:
-              $ref: '#/components/schemas/EntityType'
-            entityId:
-              description: A unique identifier of an achievement or contest. Dependant on entityType
-              type: string
-              example: Dc4swmQBVd51K6gPQqFx
-            name:
-              description: The name of a reward
-              type: string
-              example: Welcome badge
-              x-vue-as-string: true
-              x-vue-translatable: true
-              x-vue-search-all: true
-              x-vue-search-field: true
-              x-vue-disaply-order: 1001
-            description:
-              description: The description of a Reward
-              type: string
-              example: A badge to welcome a new player
-              x-vue-translatable: true
-              x-vue-hidden: true
-              x-vue-search-all: true
-              x-vue-search-field: true
-              x-vue-disaply-order: 1002
-            rewardRank:
-              description: >-
-                If used in the context of contest this will associate with the rank of the
-                leaderboard
-              type: string
-              example: '1,2 3 ...10'
-              x-vue-search-field: true
-              x-vue-sortable: true
-              x-vue-disaply-order: 1003
-            rewardValue:
-              format: double
-              description: Numerical value of the reward that will be issued based on the reward type
-              type: number
-              example: '1'
-              x-vue-search-field: true
-              x-vue-disaply-order: 1004
-            rewardType:
-              $ref: '#/components/schemas/RewardTypeReduced'
-              x-vue-search-all: true
-              x-vue-search-field: true
-              x-vue-disaply-order: 1005
-            icon:
-              description: An Icon id that has been pre uploaded to the system to display for reward
-              type: string
-              example: Dc4swmQBVd51K6gPQqFx
-              x-vue-hidden: true
-              x-vue-disaply-order: 1000
-              x-vue-form-type: IMAGE
-            issueLimit:
-              format: int32
-              description: how many of thsese rewards are
-              type: integer
-              example: '2'
-              x-vue-search-field: true
-              x-vue-disaply-order: 1005
-            delay:
-              format: int32
-              description: Delay of issuing a reward in minutes
-              type: integer
-              example: '2'
-              x-vue-search-field: true
-              x-vue-disaply-order: 1005
-            pointInTime:
-              format: date-time
-              description: >-
-                ISO8601 timestamp for when a Reward is available until a specific point in
-                time. All records are stored in UTC time zone
-              type: string
-              example: '2019-09-25T15:47:00.000+0000'
-              x-vue-search-field: true
-              x-vue-disaply-order: 1006
-            period:
-              format: int32
-              description: Reward available for a period of time from issuing in minutes
-              type: integer
-              example: '2'
-              x-vue-search-field: true
-              x-vue-disaply-order: 1007
-            constraints:
-              description: Additional constraints
-              type: array
-              items:
-                type: string
-              example: |-
-                - notifyMember 
-                - acknowledgementRequired
-              x-vue-constraint: true
-      x-vue-list: true
-      x-vue-show: true
-      x-vue-getter: rewards
-      x-vue-sort-by: name
-      x-vue-sort-order: Asc
-      x-vue-limit: 10
-      x-vue-ops:
-        - Create
-        - Update
     ExportResponse:
       required:
         - meta
@@ -16830,187 +16361,6 @@ components:
       x-vue-ops:
         - Create
         - Update
-    Product:
-      description: This is the Product model
-      allOf:
-        -
-          $ref: '#/components/schemas/ModelDefault'
-        -
-          $ref: '#/components/schemas/OptParamModels'
-        -
-          required:
-            - name
-            - adjustmentFactor
-            - productRefId
-          type: object
-          properties:
-            name:
-              description: The name of the product
-              type: string
-              example: Hockey madness
-              x-vue-as-string: true
-              x-vue-translatable: true
-              x-vue-sortable: true
-              x-vue-search-all: true
-              x-vue-search-field: true
-              x-vue-disaply-order: 1001
-            description:
-              description: The description of the product for your reference
-              type: string
-              example: Spin the hockey wheal
-              x-vue-form-type: TEXTAREA
-              x-vue-as-string: false
-              x-vue-translatable: true
-              x-vue-sortable: true
-              x-vue-hidden: true
-              x-vue-search-all: true
-              x-vue-search-field: true
-              x-vue-disaply-order: 1002
-            adjustmentFactor:
-              format: double
-              description: The multiplier to apply to source values received for this product events
-              type: number
-              example: '1'
-              x-vue-search-field: true
-              x-vue-sortable: true
-              x-vue-disaply-order: 1003
-            productRefId:
-              description: >-
-                The reference to this product in your system. The reference identifier can not
-                be changed after the product has been created
-              type: string
-              example: hockey-madness
-              x-vue-search-all: true
-              x-vue-search-field: true
-              x-vue-sortable: true
-              x-vue-disaply-order: 1000
-            productType:
-              description: The type to this product in your system.
-              type: string
-              example: hockey-madness
-              x-vue-search-all: true
-              x-vue-search-field: true
-              x-vue-sortable: true
-              x-vue-disaply-order: 1005
-            actionTypeAdjustmentFactors:
-              type: array
-              items:
-                $ref: '#/components/schemas/ActionTypeAdjustmentFactor'
-              x-vue-hidden: true
-              x-vue-disaply-order: 1004
-            icon:
-              description: An Icon id that has been pre uploaded to the system to display for Product
-              type: string
-              x-vue-hidden: true
-              x-vue-disaply-order: 1006
-      example:
-        id: someText
-        spaceName: someText
-        created: '2018-02-10T09:30Z'
-        productRefId: '10002'
-        name: test1
-        adjustmentFactor: '1'
-        actionTypeAdjustmentFactors:
-          -
-            adjustmentFactor: 67.71
-            actionTypeId: ziqniModelId
-          -
-            adjustmentFactor: 96.91
-            actionTypeId: ziqniModelId
-        customFields:
-          customField1: customFieldValue1
-          customField2: customFieldValue2
-        metadata:
-          key1: value1
-          key2: value
-        tags:
-          - tagId1
-          - tagId2
-        translations:
-          -
-            languageKey: csb
-            translations:
-              -
-                fieldName: name
-                text: test1
-          -
-            languageKey: den
-            translations:
-              -
-                fieldName: name
-                text: test-temp
-          -
-            languageKey: kmb
-            translations:
-              -
-                fieldName: name
-                text: Level-Up
-      x-vue-list: true
-      x-vue-show: true
-      x-vue-getter: products
-      x-vue-csv-supported: true
-      x-vue-sort-by: name
-      x-vue-sort-order: Asc
-      x-vue-limit: 10
-      x-vue-ops:
-        - Create
-        - Update
-    UpdateProductRequest:
-      description: This is a request for Product update
-      allOf:
-        -
-          $ref: '#/components/schemas/UpdateModelDefault'
-        -
-          $ref: '#/components/schemas/UpdateOptParamModels'
-        -
-          required: []
-          type: object
-          properties:
-            name:
-              description: The name of the product
-              type: string
-              example: Hockey madness
-            description:
-              description: The description of the product for your reference
-              type: string
-              example: Spin the hockey wheal
-              x-vue-form-type: TEXTAREA
-            icon:
-              description: An Icon id that has been pre uploaded to the system to display for Product
-              type: string
-              example: Dc4swmQBVd51K6gPQqFx
-            adjustmentFactor:
-              format: double
-              description: The multiplier to apply to source values received for this product events
-              type: number
-              example: '1'
-            actionTypeAdjustmentFactors:
-              type: array
-              items:
-                $ref: '#/components/schemas/ActionTypeAdjustmentFactor'
-      example:
-        id: ziqniModelId
-        metadata:
-          key1: value1
-          key2: value
-        tags:
-          - tagId1
-          - tagId2
-        customFields:
-          customField1: customFieldValue1
-          customField2: customFieldValue2
-        name: name
-        description: description
-        adjustmentFactor: 28.55
-        actionTypeAdjustmentFactors:
-          -
-            adjustmentFactor: 67.71
-            actionTypeId: ziqniModelId
-          -
-            adjustmentFactor: 96.91
-            actionTypeId: ziqniModelId
-      x-vue-update: product
-      x-vue-updater: products
     UpdateMemberRequest:
       description: This is a request for Member update
       allOf:
@@ -17134,96 +16484,6 @@ components:
           - ziqniTagId
       x-vue-create: member
       x-vue-creator: members
-    CreateProductRequest:
-      description: This is a request for Product creation
-      allOf:
-        -
-          $ref: '#/components/schemas/CreateOptParamModels'
-        -
-          required:
-            - name
-            - adjustmentFactor
-            - productRefId
-          type: object
-          properties:
-            name:
-              description: The name of the product
-              type: string
-              example: Hockey madness
-            description:
-              description: The description of the product for your reference
-              type: string
-              example: Spin the hockey wheal
-              x-vue-form-type: TEXTAREA
-            adjustmentFactor:
-              format: double
-              description: The multiplier to apply to source values received for this product events
-              type: number
-              example: '1'
-            icon:
-              description: An Icon id that has been pre uploaded to the system to display for Product
-              type: string
-              example: Dc4swmQBVd51K6gPQqFx
-            productRefId:
-              description: >-
-                The reference to this product in your system. The reference identifier can not
-                be changed after the product has been created
-              type: string
-              example: hockey-madness
-            productType:
-              description: The type to this product in your system.
-              type: string
-              example: hockey-madness
-            actionTypeAdjustmentFactors:
-              type: array
-              items:
-                $ref: '#/components/schemas/ActionTypeAdjustmentFactor'
-            translations:
-              type: array
-              items:
-                $ref: '#/components/schemas/Translation'
-      example:
-        productRefId: '10002'
-        name: test1
-        description: description
-        adjustmentFactor: '1'
-        actionTypeAdjustmentFactors:
-          -
-            adjustmentFactor: 67.71
-            actionTypeId: ziqniModelId
-          -
-            adjustmentFactor: 96.91
-            actionTypeId: ziqniModelId
-        customFields:
-          customField1: customFieldValue1
-          customField2: customFieldValue2
-        metadata:
-          key1: value1
-          key2: value
-        tags:
-          - tagId1
-          - tagId2
-        translations:
-          -
-            languageKey: csb
-            translations:
-              -
-                fieldName: name
-                text: test1
-          -
-            languageKey: den
-            translations:
-              -
-                fieldName: name
-                text: test-temp
-          -
-            languageKey: kmb
-            translations:
-              -
-                fieldName: name
-                text: Level-Up
-      x-vue-create: product
-      x-vue-creator: products
     InstantWinResponse:
       description: This is the Response for Instant win
       required:
@@ -18548,16 +17808,16 @@ components:
               x-vue-disaply-order: 1003
             memberTagsFilter:
               $ref: '#/components/schemas/DependantOn'
-              description: ''
+              description: Restrict which members this is available to using their tags
             products:
-              description: ''
+              description: Restrict this to specific products
               type: array
               items:
                 $ref: '#/components/schemas/ProductReduced'
               x-vue-disaply-order: 1006
             productTagsFilter:
               $ref: '#/components/schemas/DependantOn'
-              description: ''
+              description: Restrict which products this is available to using their tags
             strategies:
               $ref: '#/components/schemas/AchievementStrategies'
               description: The target to reach in order to receive this achievement
@@ -18649,15 +17909,15 @@ components:
               $ref: '#/components/schemas/DependantOn'
             memberTagsFilter:
               $ref: '#/components/schemas/DependantOn'
-              description: ''
+              description: Restrict which members this is available to using their tags
             productIds:
-              description: ''
+              description: Restrict this to specific products
               type: array
               items:
                 type: string
             productTagsFilter:
               $ref: '#/components/schemas/DependantOn'
-              description: ''
+              description: Restrict which products this is available to using their tags
             addConstraints:
               description: ''
               type: array
@@ -19233,6 +18493,810 @@ components:
             actionTypeId: ziqniModelId
       x-vue-update: instantWin
       x-vue-updater: instantWins
+    Product:
+      description: This is the Product model
+      allOf:
+        -
+          $ref: '#/components/schemas/ModelDefault'
+        -
+          $ref: '#/components/schemas/OptParamModels'
+        -
+          required:
+            - name
+            - adjustmentFactor
+            - productRefId
+          type: object
+          properties:
+            name:
+              description: The name of the product
+              type: string
+              example: Hockey madness
+              x-vue-as-string: true
+              x-vue-translatable: true
+              x-vue-sortable: true
+              x-vue-search-all: true
+              x-vue-search-field: true
+              x-vue-disaply-order: 1001
+            description:
+              description: The description of the product for your reference
+              type: string
+              example: Spin the hockey wheal
+              x-vue-form-type: TEXTAREA
+              x-vue-as-string: false
+              x-vue-translatable: true
+              x-vue-sortable: true
+              x-vue-hidden: true
+              x-vue-search-all: true
+              x-vue-search-field: true
+              x-vue-disaply-order: 1002
+            adjustmentFactor:
+              format: double
+              description: The multiplier to apply to source values received for this product events
+              type: number
+              example: '1'
+              x-vue-search-field: true
+              x-vue-sortable: true
+              x-vue-disaply-order: 1003
+            productRefId:
+              description: >-
+                The reference to this product in your system. The reference identifier can not
+                be changed after the product has been created
+              type: string
+              example: hockey-madness
+              x-vue-search-all: true
+              x-vue-search-field: true
+              x-vue-sortable: true
+              x-vue-disaply-order: 1000
+            productType:
+              description: The type to this product in your system.
+              type: string
+              example: hockey-madness
+              x-vue-search-all: true
+              x-vue-search-field: true
+              x-vue-sortable: true
+              x-vue-disaply-order: 1005
+            actionTypeAdjustmentFactors:
+              type: array
+              items:
+                $ref: '#/components/schemas/ActionTypeAdjustmentFactor'
+              x-vue-hidden: true
+              x-vue-disaply-order: 1004
+            icon:
+              description: An Icon id that has been pre uploaded to the system to display for Product
+              type: string
+              x-vue-hidden: true
+              x-vue-disaply-order: 1006
+            banner:
+              description: Link to the banner
+              type: string
+              example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
+            bannerLowResolution:
+              description: Link to the bannerLowResolution
+              type: string
+              example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
+            bannerHighResolution:
+              description: Link to the bannerHighResolution
+              type: string
+              example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
+      example:
+        id: someText
+        spaceName: someText
+        created: '2018-02-10T09:30Z'
+        productRefId: '10002'
+        name: test1
+        adjustmentFactor: '1'
+        actionTypeAdjustmentFactors:
+          -
+            adjustmentFactor: 67.71
+            actionTypeId: ziqniModelId
+          -
+            adjustmentFactor: 96.91
+            actionTypeId: ziqniModelId
+        customFields:
+          customField1: customFieldValue1
+          customField2: customFieldValue2
+        metadata:
+          key1: value1
+          key2: value
+        tags:
+          - tagId1
+          - tagId2
+        translations:
+          -
+            languageKey: csb
+            translations:
+              -
+                fieldName: name
+                text: test1
+          -
+            languageKey: den
+            translations:
+              -
+                fieldName: name
+                text: test-temp
+          -
+            languageKey: kmb
+            translations:
+              -
+                fieldName: name
+                text: Level-Up
+      x-vue-list: true
+      x-vue-show: true
+      x-vue-getter: products
+      x-vue-csv-supported: true
+      x-vue-sort-by: name
+      x-vue-sort-order: Asc
+      x-vue-limit: 10
+      x-vue-ops:
+        - Create
+        - Update
+    CreateProductRequest:
+      description: This is a request for Product creation
+      allOf:
+        -
+          $ref: '#/components/schemas/CreateOptParamModels'
+        -
+          required:
+            - name
+            - adjustmentFactor
+            - productRefId
+          type: object
+          properties:
+            name:
+              description: The name of the product
+              type: string
+              example: Hockey madness
+            description:
+              description: The description of the product for your reference
+              type: string
+              example: Spin the hockey wheal
+              x-vue-form-type: TEXTAREA
+            adjustmentFactor:
+              format: double
+              description: The multiplier to apply to source values received for this product events
+              type: number
+              example: '1'
+            icon:
+              description: An Icon id that has been pre uploaded to the system to display for Product
+              type: string
+              example: Dc4swmQBVd51K6gPQqFx
+            banner:
+              description: Link to the banner
+              type: string
+              example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
+            bannerLowResolution:
+              description: Link to the bannerLowResolution
+              type: string
+              example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
+            bannerHighResolution:
+              description: Link to the bannerHighResolution
+              type: string
+              example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
+            productRefId:
+              description: >-
+                The reference to this product in your system. The reference identifier can not
+                be changed after the product has been created
+              type: string
+              example: hockey-madness
+            productType:
+              description: The type to this product in your system.
+              type: string
+              example: hockey-madness
+            actionTypeAdjustmentFactors:
+              type: array
+              items:
+                $ref: '#/components/schemas/ActionTypeAdjustmentFactor'
+            translations:
+              type: array
+              items:
+                $ref: '#/components/schemas/Translation'
+      example:
+        productRefId: '10002'
+        name: test1
+        description: description
+        adjustmentFactor: '1'
+        actionTypeAdjustmentFactors:
+          -
+            adjustmentFactor: 67.71
+            actionTypeId: ziqniModelId
+          -
+            adjustmentFactor: 96.91
+            actionTypeId: ziqniModelId
+        customFields:
+          customField1: customFieldValue1
+          customField2: customFieldValue2
+        metadata:
+          key1: value1
+          key2: value
+        tags:
+          - tagId1
+          - tagId2
+        translations:
+          -
+            languageKey: csb
+            translations:
+              -
+                fieldName: name
+                text: test1
+          -
+            languageKey: den
+            translations:
+              -
+                fieldName: name
+                text: test-temp
+          -
+            languageKey: kmb
+            translations:
+              -
+                fieldName: name
+                text: Level-Up
+      x-vue-create: product
+      x-vue-creator: products
+    UpdateProductRequest:
+      description: This is a request for Product update
+      allOf:
+        -
+          $ref: '#/components/schemas/UpdateModelDefault'
+        -
+          $ref: '#/components/schemas/UpdateOptParamModels'
+        -
+          required: []
+          type: object
+          properties:
+            name:
+              description: The name of the product
+              type: string
+              example: Hockey madness
+            description:
+              description: The description of the product for your reference
+              type: string
+              example: Spin the hockey wheal
+              x-vue-form-type: TEXTAREA
+            icon:
+              description: An Icon id that has been pre uploaded to the system to display for Product
+              type: string
+              example: Dc4swmQBVd51K6gPQqFx
+            banner:
+              description: Link to the banner
+              type: string
+              example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
+            bannerLowResolution:
+              description: Link to the bannerLowResolution
+              type: string
+              example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
+            bannerHighResolution:
+              description: Link to the bannerHighResolution
+              type: string
+              example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
+            adjustmentFactor:
+              format: double
+              description: The multiplier to apply to source values received for this product events
+              type: number
+              example: '1'
+            actionTypeAdjustmentFactors:
+              type: array
+              items:
+                $ref: '#/components/schemas/ActionTypeAdjustmentFactor'
+      example:
+        id: ziqniModelId
+        metadata:
+          key1: value1
+          key2: value
+        tags:
+          - tagId1
+          - tagId2
+        customFields:
+          customField1: customFieldValue1
+          customField2: customFieldValue2
+        name: name
+        description: description
+        adjustmentFactor: 28.55
+        actionTypeAdjustmentFactors:
+          -
+            adjustmentFactor: 67.71
+            actionTypeId: ziqniModelId
+          -
+            adjustmentFactor: 96.91
+            actionTypeId: ziqniModelId
+      x-vue-update: product
+      x-vue-updater: products
+    ConnectionType:
+      description: Connection Types
+      enum:
+        - RabbitMq
+        - Kafka
+        - SQS
+        - Scheduled
+      type: string
+    Reward:
+      allOf:
+        -
+          $ref: '#/components/schemas/ModelDefault'
+        -
+          $ref: '#/components/schemas/OptParamModels'
+        -
+          required:
+            - rewardRank
+            - rewardValue
+            - rewardType
+            - constraints
+          type: object
+          properties:
+            entityType:
+              $ref: '#/components/schemas/EntityType'
+            entityId:
+              description: A unique identifier of an achievement or contest. Dependant on entityType
+              type: string
+              example: Dc4swmQBVd51K6gPQqFx
+            name:
+              description: The name of a reward
+              type: string
+              example: Welcome badge
+              x-vue-as-string: true
+              x-vue-translatable: true
+              x-vue-search-all: true
+              x-vue-search-field: true
+              x-vue-disaply-order: 1001
+            description:
+              description: The description of a Reward
+              type: string
+              example: A badge to welcome a new player
+              x-vue-translatable: true
+              x-vue-hidden: true
+              x-vue-search-all: true
+              x-vue-search-field: true
+              x-vue-disaply-order: 1002
+            rewardRank:
+              description: >-
+                If used in the context of contest this will associate with the rank of the
+                leaderboard
+              type: string
+              example: '1,2 3 ...10'
+              x-vue-search-field: true
+              x-vue-sortable: true
+              x-vue-disaply-order: 1003
+            rewardValue:
+              format: double
+              description: Numerical value of the reward that will be issued based on the reward type
+              type: number
+              example: '1'
+              x-vue-search-field: true
+              x-vue-disaply-order: 1004
+            rewardType:
+              $ref: '#/components/schemas/RewardTypeReduced'
+              x-vue-search-all: true
+              x-vue-search-field: true
+              x-vue-disaply-order: 1005
+            memberTagsFilter:
+              $ref: '#/components/schemas/DependantOn'
+              description: >-
+                This filter limits which member are eligible for this prize based on their
+                tags
+              x-vue-search-field: true
+              x-vue-disaply-order: 1005
+            icon:
+              description: An Icon id that has been pre uploaded to the system to display for reward
+              type: string
+              example: Dc4swmQBVd51K6gPQqFx
+              x-vue-hidden: true
+              x-vue-disaply-order: 1000
+              x-vue-form-type: IMAGE
+            issueLimit:
+              format: int32
+              description: how many of thsese rewards are
+              type: integer
+              example: '2'
+              x-vue-search-field: true
+              x-vue-disaply-order: 1005
+            delay:
+              format: int32
+              description: Delay of issuing a reward in minutes
+              type: integer
+              example: '2'
+              x-vue-search-field: true
+              x-vue-disaply-order: 1005
+            pointInTime:
+              format: date-time
+              description: >-
+                ISO8601 timestamp for when a Reward is available until a specific point in
+                time. All records are stored in UTC time zone
+              type: string
+              example: '2019-09-25T15:47:00.000+0000'
+              x-vue-search-field: true
+              x-vue-disaply-order: 1006
+            period:
+              format: int32
+              description: Reward available for a period of time from issuing in minutes
+              type: integer
+              example: '2'
+              x-vue-search-field: true
+              x-vue-disaply-order: 1007
+            constraints:
+              description: Additional constraints
+              type: array
+              items:
+                type: string
+              example: |-
+                - notifyMember 
+                - acknowledgementRequired
+              x-vue-constraint: true
+      x-vue-list: true
+      x-vue-show: true
+      x-vue-getter: rewards
+      x-vue-sort-by: name
+      x-vue-sort-order: Asc
+      x-vue-limit: 10
+      x-vue-ops:
+        - Create
+        - Update
+    CreateRewardRequest:
+      allOf:
+        -
+          $ref: '#/components/schemas/CreateOptParamModels'
+        -
+          required:
+            - rewardRank
+            - name
+            - rewardValue
+            - rewardTypeId
+            - constraints
+            - delay
+          type: object
+          properties:
+            name:
+              description: The name of a reward
+              type: string
+              example: Welcome badge
+            description:
+              description: The description of a Reward
+              type: string
+              example: A badge to welcome a new player
+            rewardRank:
+              description: >-
+                If used in the context of contest this will associate with the rank of the
+                leaderboard
+              type: string
+              example: '1,2 3 ...10'
+              x-vue-form-type: TEXTAREA
+            rewardValue:
+              format: double
+              description: Numerical value of the reward that will be issued based on the reward type
+              type: number
+              example: '1'
+            icon:
+              description: An Icon id that has been pre uploaded to the system to display for reward
+              type: string
+              example: Dc4swmQBVd51K6gPQqFx
+            issueLimit:
+              format: int32
+              description: how many of thsese rewards are
+              type: integer
+              example: '2'
+            memberTagsFilter:
+              $ref: '#/components/schemas/DependantOn'
+              description: >-
+                This filter limits which member are eligible for this prize based on their
+                tags
+            delay:
+              format: int32
+              description: Delay of issuing a reward in minutes
+              type: integer
+              example: '2'
+            pointInTime:
+              format: date-time
+              description: >-
+                ISO8601 timestamp for when a Reward is available until a specific point in
+                time. All records are stored in UTC time zone
+              type: string
+              example: '2019-09-25T15:47:00.000+0000'
+            period:
+              format: int32
+              description: Reward available for a period of time from issuing in minutes
+              type: integer
+              example: '2'
+            translations:
+              type: array
+              items:
+                $ref: '#/components/schemas/Translation'
+            addConstraints:
+              description: Additional constraints
+              type: array
+              items:
+                type: string
+              example: |-
+                - notifyMember 
+                - acknowledgementRequired
+            rewardTypeId:
+              description: A unique id of the Reward Type
+              type: string
+              example: Dc4swmQBVd51K6gPQqFx
+      example:
+        customFields:
+          test_cf_termd65bcccf-d37f-441a-a96d-d0da55a77719:
+            - 1
+            - 2
+        tags:
+          - Test_key-7563406f-6983-4308-9422-91838fd40fe7
+        metadata:
+          fea089d7-f751-432e-8646-838c7769ab1e: f2dfff99-b766-414f-8e33-4d77aebbdb5e
+        name: Test_name-b6f072c2-df68-4905-a4f6-c19246ff5dc8
+        key: Test_key-2148168c-3a6c-48ba-b005-68a67a10aebc
+        unitOfMeasureType: Other
+        translations:
+          -
+            languageKey: csb
+            translations:
+              -
+                fieldName: name
+                text: test1
+          -
+            languageKey: den
+            translations:
+              -
+                fieldName: name
+                text: test-temp
+          -
+            languageKey: kmb
+            translations:
+              -
+                fieldName: name
+                text: Level-Up
+        addConstraints:
+          - system
+      x-vue-create: reward
+      x-vue-creator: rewards
+    UpdateRewardRequest:
+      allOf:
+        -
+          $ref: '#/components/schemas/UpdateModelDefault'
+        -
+          $ref: '#/components/schemas/UpdateOptParamModels'
+        -
+          required:
+            - rewardType
+          type: object
+          properties:
+            name:
+              description: The name of a reward
+              type: string
+              example: Welcome badge
+            description:
+              description: The description of a Reward
+              type: string
+              example: A badge to welcome a new player
+            rewardRank:
+              description: >-
+                If used in the context of contest this will associate with the rank of the
+                leaderboard
+              type: string
+              example: '1,2 3 ...10'
+            rewardValue:
+              format: double
+              description: Numerical value of the reward that will be issued based on the reward type
+              type: number
+              example: '1'
+            rewardTypeId:
+              description: A unique id of the Reward Type
+              type: string
+              example: Dc4swmQBVd51K6gPQqFx
+            icon:
+              description: An Icon id that has been pre uploaded to the system to display for reward
+              type: string
+              example: Dc4swmQBVd51K6gPQqFx
+            issueLimit:
+              format: int32
+              description: how many of thsese rewards are
+              type: integer
+              example: '2'
+            memberTagsFilter:
+              $ref: '#/components/schemas/DependantOn'
+              description: >-
+                This filter limits which member are eligible for this prize based on their
+                tags
+            delay:
+              format: int32
+              description: Delay of issuing a reward in minutes
+              type: integer
+              example: '2'
+            pointInTime:
+              format: date-time
+              description: >-
+                ISO8601 timestamp for when a Reward is available until a specific point in
+                time. All records are stored in UTC time zone
+              type: string
+              example: '2019-09-25T15:47:00.000+0000'
+            period:
+              format: int32
+              description: Reward available for a period of time from issuing in minutes
+              type: integer
+              example: '2'
+            addConstraints:
+              description: Additional constraints
+              type: array
+              items:
+                type: string
+              example: '- memberAcknowledgmentRequired'
+            removeConstraints:
+              description: Remove constraints
+              type: array
+              items:
+                type: string
+              example: '- memberAcknowledgmentRequired'
+      x-vue-update: reward
+      x-vue-updater: rewards
+    CreateEntityRewardRequest:
+      allOf:
+        -
+          $ref: '#/components/schemas/CreateOptParamModels'
+        -
+          required:
+            - rewardRank
+            - name
+            - rewardValue
+            - rewardTypeId
+            - constraints
+            - entityType
+            - entityId
+          type: object
+          properties:
+            entityType:
+              $ref: '#/components/schemas/RewardEntityType'
+            entityId:
+              description: A unique identifier of an achievement or contest. Dependant on entityType
+              type: string
+              example: Dc4swmQBVd51K6gPQqFx
+            name:
+              description: The name of a reward
+              type: string
+              example: Welcome badge
+            description:
+              description: The description of a Reward
+              type: string
+              example: A badge to welcome a new player
+            rewardRank:
+              description: >-
+                If used in the context of contest this will associate with the rank of the
+                leaderboard
+              type: string
+              example: '1,2 3 ...10'
+            rewardValue:
+              format: double
+              description: Numerical value of the reward that will be issued based on the reward type
+              type: number
+              example: '1'
+            icon:
+              description: An Icon id that has been pre uploaded to the system to display for reward
+              type: string
+              example: Dc4swmQBVd51K6gPQqFx
+            issueLimit:
+              format: int32
+              description: how many of thsese rewards are
+              type: integer
+              example: '2'
+            delay:
+              format: int32
+              description: Delay of issuing a reward in minutes
+              type: integer
+              example: '2'
+            pointInTime:
+              format: date-time
+              description: >-
+                ISO8601 timestamp for when a Reward is available until a specific point in
+                time. All records are stored in UTC time zone
+              type: string
+              example: '2019-09-25T15:47:00.000+0000'
+            period:
+              format: int32
+              description: Reward available for a period of time from issuing in minutes
+              type: integer
+              example: '2'
+            memberTagsFilter:
+              $ref: '#/components/schemas/DependantOn'
+              description: >-
+                This filter limits which member are eligible for this prize based on their
+                tags
+            translations:
+              type: array
+              items:
+                $ref: '#/components/schemas/Translation'
+            constraints:
+              description: Additional constraints
+              type: array
+              items:
+                type: string
+              example: '- notifyMember - isMemberAcknowledgmentRequired'
+            rewardTypeId:
+              description: A unique id of the Reward Type
+              type: string
+              example: Dc4swmQBVd51K6gPQqFx
+    UpdateEntityRewardRequest:
+      allOf:
+        -
+          $ref: '#/components/schemas/UpdateModelDefault'
+        -
+          $ref: '#/components/schemas/UpdateOptParamModels'
+        -
+          required: []
+          type: object
+          properties:
+            entityType:
+              $ref: '#/components/schemas/RewardEntityType'
+            entityId:
+              description: A unique identifier of an achievement or contest. Dependant on entityType
+              type: string
+              example: Dc4swmQBVd51K6gPQqFx
+            name:
+              description: The name of a reward
+              type: string
+              example: Welcome badge
+            description:
+              description: The description of a Reward
+              type: string
+              example: A badge to welcome a new player
+            rewardRank:
+              description: >-
+                If used in the context of contest this will associate with the rank of the
+                leaderboard
+              type: string
+              example: '1,2 3 ...10'
+            rewardValue:
+              format: double
+              description: Numerical value of the reward that will be issued based on the reward type
+              type: number
+              example: '1'
+            icon:
+              description: An Icon id that has been pre uploaded to the system to display for reward
+              type: string
+              example: Dc4swmQBVd51K6gPQqFx
+            issueLimit:
+              format: int32
+              description: how many of thsese rewards are
+              type: integer
+              example: '2'
+            delay:
+              format: int32
+              description: Delay of issuing a reward in minutes
+              type: integer
+              example: '2'
+            pointInTime:
+              format: date-time
+              description: >-
+                ISO8601 timestamp for when a Reward is available until a specific point in
+                time. All records are stored in UTC time zone
+              type: string
+              example: '2019-09-25T15:47:00.000+0000'
+            period:
+              format: int32
+              description: Reward available for a period of time from issuing in minutes
+              type: integer
+              example: '2'
+            memberTagsFilter:
+              $ref: '#/components/schemas/DependantOn'
+              description: >-
+                This filter limits which member are eligible for this prize based on their
+                tags
+            translations:
+              type: array
+              items:
+                $ref: '#/components/schemas/Translation'
+            addConstraints:
+              description: Additional constraints
+              type: array
+              items:
+                type: string
+              example: |-
+                - notifyMember 
+                - acknowledgementRequired
+            removeConstraints:
+              description: Additional constraints
+              type: array
+              items:
+                type: string
+              example: '- notifyMember - isMemberAcknowledgmentRequired'
+            rewardTypeId:
+              description: A unique id of the Reward Type
+              type: string
+              example: Dc4swmQBVd51K6gPQqFx
   responses:
     ApiResponseBody:
       content:

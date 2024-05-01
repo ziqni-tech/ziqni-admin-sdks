@@ -247,8 +247,6 @@ public class StreamingClient {
         return callbackEventHandler;
     }
 
-    /** Helper methods **/
-
     public boolean isConnected() {
         return Objects.nonNull(wsClient) && wsClient.isConnected();
     }

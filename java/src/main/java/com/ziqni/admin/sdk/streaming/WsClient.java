@@ -131,7 +131,7 @@ public class WsClient extends WebSocketStompClient{
 
     /**
      * Add a listener to fire on successful WebSocket/Stomp connection
-     * @param listener
+     * @param listener the listener
      */
     public void addConnectListener(SuccessCallback<StompSession> listener) {
         connectListeners.add(listener);
@@ -139,7 +139,7 @@ public class WsClient extends WebSocketStompClient{
 
     /**
      * Add a listener which fires when the WebSocket/Stomp connection is broken (or fails to connect)
-     * @param listener
+     * @param listener the listener
      */
     public void addDisconnectListener(FailureCallback listener) {
         disconnectListeners.add(listener);

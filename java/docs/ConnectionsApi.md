@@ -580,7 +580,7 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **connectionType** | [**ConnectionType**](.md)| The connection type, RabbitMQ, Kafka, or SQS | [enum: RabbitMq, Kafka, SQS]
+ **connectionType** | [**ConnectionType**](.md)| The connection type, RabbitMQ, Kafka, or SQS | [enum: RabbitMq, Kafka, SQS, Scheduled]
 
 ### Return type
 
@@ -669,7 +669,7 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **connectionType** | [**ConnectionType**](.md)| The connection type, RabbitMQ, Kafka, or SQS | [enum: RabbitMq, Kafka, SQS]
+ **connectionType** | [**ConnectionType**](.md)| The connection type, RabbitMQ, Kafka, or SQS | [enum: RabbitMq, Kafka, SQS, Scheduled]
 
 ### Return type
 
