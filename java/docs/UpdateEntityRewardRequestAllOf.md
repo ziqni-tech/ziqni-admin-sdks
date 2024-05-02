@@ -18,6 +18,7 @@ Name | Type | Description | Notes
 **delay** | **Integer** | Delay of issuing a reward in minutes |  [optional]
 **pointInTime** | **OffsetDateTime** | ISO8601 timestamp for when a Reward is available until a specific point in time. All records are stored in UTC time zone |  [optional]
 **period** | **Integer** | Reward available for a period of time from issuing in minutes |  [optional]
+**memberTagsFilter** | [**DependantOn**](DependantOn.md) |  |  [optional]
 **translations** | [**List&lt;Translation&gt;**](Translation.md) |  |  [optional]
 **addConstraints** | **List&lt;String&gt;** | Additional constraints |  [optional]
 **removeConstraints** | **List&lt;String&gt;** | Additional constraints |  [optional]

@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **reward** | [**RewardReduced**](RewardReduced.md) |  |  [optional]
 **location** | [**GridLocation**](GridLocation.md) |  |  [optional]
 **probability** | **Double** |  | 
+**background** | **String** |  |  [optional]
 
 
 
