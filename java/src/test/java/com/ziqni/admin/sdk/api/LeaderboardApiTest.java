@@ -25,7 +25,7 @@ public class LeaderboardApiTest implements tests.utils.CompleteableFutureTestWra
     @Test
     @Order(2)
     public void getLeaderboardByIdReturnOkTest() throws ApiException {
-        final var competitionId = "ln8yUoQBSPM0WYwFnk04";
+        final var competitionId = "WRTJz40BH5uKPZ-bXqgE";
         final var limit = 50;
         final var skip = 0;
         final var response = $(api.getLeaderboardById(competitionId, limit, skip));

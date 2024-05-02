@@ -21,7 +21,7 @@ public class LoadApiKeysData implements CompleteableFutureTestWrapper {
 
     private ApiKeysApiWs api;
 
-    private Role role = Role.WEB;
+    private Role role = Role.ADMINISTRATOR;
     private List<String> constraints = List.of("active", "default");
 
     public LoadApiKeysData() throws Exception {

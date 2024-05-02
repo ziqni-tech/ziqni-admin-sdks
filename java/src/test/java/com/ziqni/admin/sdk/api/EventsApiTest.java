@@ -51,6 +51,7 @@ public class EventsApiTest implements tests.utils.CompleteableFutureTestWrapper{
     private String memberRefId;
     private String entityRefId;
     private String action;
+    private String unitOfMeasureId;
 
     public EventsApiTest() throws Exception {
         ApiClientFactoryUtil.initApiClientFactory(AdminApiClientConfigBuilder.build());
@@ -63,7 +64,7 @@ public class EventsApiTest implements tests.utils.CompleteableFutureTestWrapper{
     }
 
     @BeforeAll
-    public void setUp() {
+    public void setUp() throws InterruptedException {
         try {
             // Members set up
             var memberRequest = loadMembersData.getCreateRequest();
@@ -81,6 +82,7 @@ public class EventsApiTest implements tests.utils.CompleteableFutureTestWrapper{
             var unitOfMeasureResp = loadUnitsOfMeasureData.createTestData(loadUnitsOfMeasureData.getCreateRequestAsList(1));
             var unitOfMeasureId = unitOfMeasureResp.getResults().get(0).getId();
 
+            Thread.sleep(5000);
             // Actions
             var actionTypesRequest = loadActionTypesData.getCreateRequest().unitOfMeasure(unitOfMeasureId);
             var actionTypesResponse = loadActionTypesData.createTestData(loadActionTypesData.getCreateRequestAsList(actionTypesRequest));
@@ -118,13 +120,13 @@ public class EventsApiTest implements tests.utils.CompleteableFutureTestWrapper{
     public void createEventReturnOkTest() throws ApiException {
 
         var request = loadTestData.getCreateRequest(action, memberRefId, entityRefId);
-        request.setMemberRefId("1sbi99kcd0oehbgokupsxnom");
-        request.setAction("1win_multiplier12nom");
-
-        request.setSourceValue(4.0);
-        request.setBatchId(null);
-        request.setEntityRefId("1123mov2312nom");
-        request.setCustomFields(Map.of("11223344nom","12222222222222222"));
+//        request.setMemberRefId("1sbi99kcd0oehbgokupsxnom");
+//        request.setAction("1win_multiplier12nom");
+//
+//        request.setSourceValue(4.0);
+//        request.setBatchId(null);
+//        request.setEntityRefId("1123mov2312nom");
+//        request.setCustomFields(Map.of("11223344nom","12222222222222222"));
 
 
         var response = $(api.createEvents(loadTestData.getCreateRequestAsList(request)));
