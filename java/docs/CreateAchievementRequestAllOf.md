@@ -24,8 +24,8 @@ Name | Type | Description | Notes
 **memberTagsFilter** | [**DependantOn**](DependantOn.md) |  |  [optional]
 **productIds** | **List&lt;String&gt;** | Restrict this to specific products |  [optional]
 **productTagsFilter** | [**DependantOn**](DependantOn.md) |  |  [optional]
-**addConstraints** | **List&lt;String&gt;** |  |  [optional]
 **strategies** | [**AchievementStrategies**](AchievementStrategies.md) |  |  [optional]
+**addConstraints** | **List&lt;String&gt;** |  |  [optional]
 
 
 

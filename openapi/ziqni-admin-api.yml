@@ -8276,6 +8276,46 @@ paths:
       summary: Delete instant wins
       description: Delete Instant win for a given identifier specified
       x-codegen-request-body-name: body
+  /awards/manage-tags:
+    post:
+      requestBody:
+        description: >-
+          Retrieve Awards from Ziqni database by unique Awards ID's or any other POST body
+          parameters using the POST method
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ManageTagsRequest'
+      tags:
+        - awards
+      responses:
+        '200':
+          $ref: '#/components/responses/AwardResponseBody'
+        '400':
+          $ref: '#/components/responses/AwardResponseBody'
+        '401':
+          $ref: '#/components/responses/AwardResponseBody'
+        '403':
+          $ref: '#/components/responses/AwardResponseBody'
+        '404':
+          $ref: '#/components/responses/AwardResponseBody'
+        '413':
+          $ref: '#/components/responses/AwardResponseBody'
+        '500':
+          $ref: '#/components/responses/AwardResponseBody'
+        '501':
+          $ref: '#/components/responses/AwardResponseBody'
+        '503':
+          $ref: '#/components/responses/AwardResponseBody'
+      security:
+        -
+          OAuth2:
+            - ViewAwards
+      operationId: manageAwardTags
+      description: >-
+        Allows the operator to add or remove from tags. This can be used to mark awards as fullfilled
+        by the counter party or to asist in the organistion of the data on site.
+      x-codegen-request-body-name: body
 components:
   schemas:
     ProductReduced:
@@ -17918,14 +17958,14 @@ components:
             productTagsFilter:
               $ref: '#/components/schemas/DependantOn'
               description: Restrict which products this is available to using their tags
+            strategies:
+              $ref: '#/components/schemas/AchievementStrategies'
+              description: The target to reach in order to receive this achievement
             addConstraints:
               description: ''
               type: array
               items:
                 type: string
-            strategies:
-              $ref: '#/components/schemas/AchievementStrategies'
-              description: The target to reach in order to receive this achievement
       x-vue-create: achievement
       x-vue-creator: achievements
       x-vue-rules: true
@@ -19297,6 +19337,26 @@ components:
               description: A unique id of the Reward Type
               type: string
               example: Dc4swmQBVd51K6gPQqFx
+    ManageTagsRequest:
+      allOf:
+        -
+          $ref: '#/components/schemas/UpdateModelDefault'
+        -
+          required: []
+          type: object
+      properties:
+        newTags:
+          description: List of new tags to add
+          type: array
+          items:
+            type: string
+        removeTags:
+          description: List of tags to remove if present
+          type: array
+          items:
+            type: string
+      x-vue-update: awardTag
+      x-vue-updater: awardTags
   responses:
     ApiResponseBody:
       content:
