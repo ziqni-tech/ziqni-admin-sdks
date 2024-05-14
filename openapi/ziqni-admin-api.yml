@@ -5523,45 +5523,6 @@ paths:
       summary: Delete reward types
       description: Delete Reward types for a given identifier specified
       x-codegen-request-body-name: body
-  /awards:
-    get:
-      tags:
-        - awards
-      parameters:
-        -
-          $ref: '#/components/parameters/idQuery'
-        -
-          $ref: '#/components/parameters/limitResults'
-        -
-          $ref: '#/components/parameters/skipResults'
-      responses:
-        '200':
-          $ref: '#/components/responses/AwardResponseBody'
-        '400':
-          $ref: '#/components/responses/AwardResponseBody'
-        '401':
-          $ref: '#/components/responses/AwardResponseBody'
-        '403':
-          $ref: '#/components/responses/AwardResponseBody'
-        '404':
-          $ref: '#/components/responses/AwardResponseBody'
-        '413':
-          $ref: '#/components/responses/AwardResponseBody'
-        '500':
-          $ref: '#/components/responses/AwardResponseBody'
-        '501':
-          $ref: '#/components/responses/AwardResponseBody'
-        '503':
-          $ref: '#/components/responses/AwardResponseBody'
-      security:
-        -
-          OAuth2:
-            - ViewAwards
-      operationId: getAwards
-      description: Returns a list of Awards.
-      x-codegen-request-body-name: body
-      x-vue-item: Award
-      x-vue-list: Awards
   /awards/query:
     post:
       requestBody:
@@ -8276,18 +8237,17 @@ paths:
       summary: Delete instant wins
       description: Delete Instant win for a given identifier specified
       x-codegen-request-body-name: body
-  /awards/manage-tags:
-    post:
-      requestBody:
-        description: >-
-          Retrieve Awards from Ziqni database by unique Awards ID's or any other POST body
-          parameters using the POST method
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/ManageTagsRequest'
+  /awards:
+    get:
       tags:
         - awards
+      parameters:
+        -
+          $ref: '#/components/parameters/idQuery'
+        -
+          $ref: '#/components/parameters/limitResults'
+        -
+          $ref: '#/components/parameters/skipResults'
       responses:
         '200':
           $ref: '#/components/responses/AwardResponseBody'
@@ -8311,10 +8271,47 @@ paths:
         -
           OAuth2:
             - ViewAwards
-      operationId: manageAwardTags
-      description: >-
-        Allows the operator to add or remove from tags. This can be used to mark awards as fulfilled
-        by the counter party or to assist in the organisation of the data on site.
+      operationId: getAwards
+      description: Returns a list of Awards.
+      x-codegen-request-body-name: body
+      x-vue-item: Award
+      x-vue-list: Awards
+    put:
+      requestBody:
+        description: >-
+          Update awards in the Ziqni system. * Any Put body Parameters that are excluded in the
+          Request body field will be considered as empty and updated with an empty field
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/UpdateAwardRequest'
+        required: true
+      tags:
+        - api-keys
+      responses:
+        '200':
+          $ref: '#/components/responses/ApiResponseBody'
+        '400':
+          $ref: '#/components/responses/ApiResponseBody'
+        '401':
+          $ref: '#/components/responses/ApiResponseBody'
+        '403':
+          $ref: '#/components/responses/ApiResponseBody'
+        '404':
+          $ref: '#/components/responses/ApiResponseBody'
+        '500':
+          $ref: '#/components/responses/ApiResponseBody'
+        '501':
+          $ref: '#/components/responses/ApiResponseBody'
+      security:
+        -
+          OAuth2:
+            - AdminApi
+      operationId: updateAwards
+      summary: Update awards
+      description: Update an existing award in the Ziqni system
       x-codegen-request-body-name: body
 components:
   schemas:
@@ -19357,6 +19354,20 @@ components:
             type: string
       x-vue-update: awardTag
       x-vue-updater: awardTags
+    UpdateAwardRequest:
+      description: Request for tag update
+      allOf:
+        -
+          $ref: '#/components/schemas/UpdateModelDefault'
+        -
+          $ref: '#/components/schemas/UpdateOptParamModels'
+        -
+          required:
+            - entityType
+          type: object
+      example: {}
+      x-vue-update: tag
+      x-vue-updater: tags
   responses:
     ApiResponseBody:
       content:
