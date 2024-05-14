@@ -8289,7 +8289,7 @@ paths:
                 $ref: '#/components/schemas/UpdateAwardRequest'
         required: true
       tags:
-        - api-keys
+        - awards
       responses:
         '200':
           $ref: '#/components/responses/ApiResponseBody'
