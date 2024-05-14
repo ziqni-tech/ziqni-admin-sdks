@@ -8313,8 +8313,8 @@ paths:
             - ViewAwards
       operationId: manageAwardTags
       description: >-
-        Allows the operator to add or remove from tags. This can be used to mark awards as fullfilled
-        by the counter party or to asist in the organistion of the data on site.
+        Allows the operator to add or remove from tags. This can be used to mark awards as fulfilled
+        by the counter party or to assist in the organisation of the data on site.
       x-codegen-request-body-name: body
 components:
   schemas:
