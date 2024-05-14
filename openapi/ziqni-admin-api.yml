@@ -1212,6 +1212,7 @@ paths:
           OAuth2:
             - AdminClaim
       operationId: claimAwards
+      summary: Claim awards
       description: Claim Awards that need to be actioned at
       x-codegen-request-body-name: body
   /reward-types/query:
@@ -5559,6 +5560,7 @@ paths:
           OAuth2:
             - ViewAwards
       operationId: getAwardsByQuery
+      summary: Query Awards
       description: >-
         Retrieve Awards from Ziqni database by unique Awards ID's or any other POST body parameters
         using the POST method
@@ -8272,6 +8274,7 @@ paths:
           OAuth2:
             - ViewAwards
       operationId: getAwards
+      summary: Get awards
       description: Returns a list of Awards.
       x-codegen-request-body-name: body
       x-vue-item: Award
