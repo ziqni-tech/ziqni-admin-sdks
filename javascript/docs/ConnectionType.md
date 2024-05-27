@@ -9,4 +9,6 @@
 
 * `SQS` (value: `"SQS"`)
 
+* `Scheduled` (value: `"Scheduled"`)
+
 
