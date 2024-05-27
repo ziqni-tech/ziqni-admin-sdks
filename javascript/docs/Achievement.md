@@ -24,7 +24,7 @@ Name | Type | Description | Notes
 **constraints** | **[String]** | Additional constraints, if set means true | 
 **achievementDependencies** | [**DependantOn**](DependantOn.md) |  | [optional] 
 **memberTagsFilter** | [**DependantOn**](DependantOn.md) |  | [optional] 
-**products** | [**[ProductReduced]**](ProductReduced.md) |  | [optional] 
+**products** | [**[ProductReduced]**](ProductReduced.md) | Restrict this to specific products | [optional] 
 **productTagsFilter** | [**DependantOn**](DependantOn.md) |  | [optional] 
 **strategies** | [**AchievementStrategies**](AchievementStrategies.md) |  | [optional] 
 

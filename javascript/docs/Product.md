@@ -17,5 +17,8 @@ Name | Type | Description | Notes
 **productType** | **String** | The type to this product in your system. | [optional] 
 **actionTypeAdjustmentFactors** | [**[ActionTypeAdjustmentFactor]**](ActionTypeAdjustmentFactor.md) |  | [optional] 
 **icon** | **String** | An Icon id that has been pre uploaded to the system to display for Product | [optional] 
+**banner** | **String** | Link to the banner | [optional] 
+**bannerLowResolution** | **String** | Link to the bannerLowResolution | [optional] 
+**bannerHighResolution** | **String** | Link to the bannerHighResolution | [optional] 
 
 

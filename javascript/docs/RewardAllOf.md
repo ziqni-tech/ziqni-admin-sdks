@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **rewardRank** | **String** | If used in the context of contest this will associate with the rank of the leaderboard | 
 **rewardValue** | **Number** | Numerical value of the reward that will be issued based on the reward type | 
 **rewardType** | [**RewardTypeReduced**](RewardTypeReduced.md) |  | 
+**memberTagsFilter** | [**DependantOn**](DependantOn.md) |  | [optional] 
 **icon** | **String** | An Icon id that has been pre uploaded to the system to display for reward | [optional] 
 **issueLimit** | **Number** | how many of thsese rewards are | [optional] 
 **delay** | **Number** | Delay of issuing a reward in minutes | [optional] 
