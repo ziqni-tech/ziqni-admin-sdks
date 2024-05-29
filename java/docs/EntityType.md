@@ -13,6 +13,8 @@
 
 * `REPOSITORY` (value: `"Repository"`)
 
+* `INSTANTWIN` (value: `"InstantWin"`)
+
 * `FILEOBJECT` (value: `"FileObject"`)
 
 * `LANGUAGE` (value: `"Language"`)

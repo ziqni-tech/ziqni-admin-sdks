@@ -4,14 +4,14 @@ All URIs are relative to *https://api.ziqni.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**claimAwards**](AwardsApi.md#claimAwards) | **PUT** /awards/claim | 
-[**claimAwardsWithHttpInfo**](AwardsApi.md#claimAwardsWithHttpInfo) | **PUT** /awards/claim | 
-[**getAwards**](AwardsApi.md#getAwards) | **GET** /awards | 
-[**getAwardsWithHttpInfo**](AwardsApi.md#getAwardsWithHttpInfo) | **GET** /awards | 
-[**getAwardsByQuery**](AwardsApi.md#getAwardsByQuery) | **POST** /awards/query | 
-[**getAwardsByQueryWithHttpInfo**](AwardsApi.md#getAwardsByQueryWithHttpInfo) | **POST** /awards/query | 
-[**manageAwardTags**](AwardsApi.md#manageAwardTags) | **POST** /awards/manage-tags | 
-[**manageAwardTagsWithHttpInfo**](AwardsApi.md#manageAwardTagsWithHttpInfo) | **POST** /awards/manage-tags | 
+[**claimAwards**](AwardsApi.md#claimAwards) | **PUT** /awards/claim | Claim awards
+[**claimAwardsWithHttpInfo**](AwardsApi.md#claimAwardsWithHttpInfo) | **PUT** /awards/claim | Claim awards
+[**getAwards**](AwardsApi.md#getAwards) | **GET** /awards | Get awards
+[**getAwardsWithHttpInfo**](AwardsApi.md#getAwardsWithHttpInfo) | **GET** /awards | Get awards
+[**getAwardsByQuery**](AwardsApi.md#getAwardsByQuery) | **POST** /awards/query | Query Awards
+[**getAwardsByQueryWithHttpInfo**](AwardsApi.md#getAwardsByQueryWithHttpInfo) | **POST** /awards/query | Query Awards
+[**updateAwards**](AwardsApi.md#updateAwards) | **PUT** /awards | Update awards
+[**updateAwardsWithHttpInfo**](AwardsApi.md#updateAwardsWithHttpInfo) | **PUT** /awards | Update awards
 
 
 
@@ -19,7 +19,7 @@ Method | HTTP request | Description
 
 > CompletableFuture<ModelApiResponse> claimAwards(body)
 
-
+Claim awards
 
 Claim Awards that need to be actioned at
 
@@ -99,7 +99,7 @@ CompletableFuture<[**ModelApiResponse**](ModelApiResponse.md)>
 
 > CompletableFuture<ApiResponse<ModelApiResponse>> claimAwards claimAwardsWithHttpInfo(body)
 
-
+Claim awards
 
 Claim Awards that need to be actioned at
 
@@ -190,7 +190,7 @@ CompletableFuture<ApiResponse<[**ModelApiResponse**](ModelApiResponse.md)>>
 
 > CompletableFuture<AwardResponse> getAwards(id, limit, skip)
 
-
+Get awards
 
 Returns a list of Awards.
 
@@ -273,7 +273,7 @@ CompletableFuture<[**AwardResponse**](AwardResponse.md)>
 
 > CompletableFuture<ApiResponse<AwardResponse>> getAwards getAwardsWithHttpInfo(id, limit, skip)
 
-
+Get awards
 
 Returns a list of Awards.
 
@@ -367,7 +367,7 @@ CompletableFuture<ApiResponse<[**AwardResponse**](AwardResponse.md)>>
 
 > CompletableFuture<AwardResponse> getAwardsByQuery(body)
 
-
+Query Awards
 
 Retrieve Awards from Ziqni database by unique Awards ID&#39;s or any other POST body parameters using the POST method
 
@@ -446,7 +446,7 @@ CompletableFuture<[**AwardResponse**](AwardResponse.md)>
 
 > CompletableFuture<ApiResponse<AwardResponse>> getAwardsByQuery getAwardsByQueryWithHttpInfo(body)
 
-
+Query Awards
 
 Retrieve Awards from Ziqni database by unique Awards ID&#39;s or any other POST body parameters using the POST method
 
@@ -532,13 +532,13 @@ CompletableFuture<ApiResponse<[**AwardResponse**](AwardResponse.md)>>
 | **503** | A list of awards and/or errors |  -  |
 
 
-## manageAwardTags
+## updateAwards
 
-> CompletableFuture<AwardResponse> manageAwardTags(body)
+> CompletableFuture<ModelApiResponse> updateAwards(body)
 
+Update awards
 
-
-Allows the operator to add or remove from tags. This can be used to mark awards as fullfilled by the counter party or to asist in the organistion of the data on site.
+Update an existing award in the Ziqni system
 
 ### Example
 
@@ -562,12 +562,12 @@ public class Example {
         OAuth2.setAccessToken("YOUR ACCESS TOKEN");
 
         AwardsApi apiInstance = new AwardsApi(defaultClient);
-        ManageTagsRequest body = new ManageTagsRequest(); // ManageTagsRequest | Retrieve Awards from Ziqni database by unique Awards ID's or any other POST body parameters using the POST method
+        List<UpdateAwardRequest> body = Arrays.asList(); // List<UpdateAwardRequest> | Update awards in the Ziqni system. * Any Put body Parameters that are excluded in the Request body field will be considered as empty and updated with an empty field
         try {
-            CompletableFuture<AwardResponse> result = apiInstance.manageAwardTags(body);
+            CompletableFuture<ModelApiResponse> result = apiInstance.updateAwards(body);
             System.out.println(result.get());
         } catch (ApiException e) {
-            System.err.println("Exception when calling AwardsApi#manageAwardTags");
+            System.err.println("Exception when calling AwardsApi#updateAwards");
             System.err.println("Status code: " + e.getCode());
             System.err.println("Reason: " + e.getResponseBody());
             System.err.println("Response headers: " + e.getResponseHeaders());
@@ -582,11 +582,11 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**ManageTagsRequest**](ManageTagsRequest.md)| Retrieve Awards from Ziqni database by unique Awards ID&#39;s or any other POST body parameters using the POST method | [optional]
+ **body** | [**List&lt;UpdateAwardRequest&gt;**](UpdateAwardRequest.md)| Update awards in the Ziqni system. * Any Put body Parameters that are excluded in the Request body field will be considered as empty and updated with an empty field |
 
 ### Return type
 
-CompletableFuture<[**AwardResponse**](AwardResponse.md)>
+CompletableFuture<[**ModelApiResponse**](ModelApiResponse.md)>
 
 
 ### Authorization
@@ -601,23 +601,21 @@ CompletableFuture<[**AwardResponse**](AwardResponse.md)>
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | A list of awards and/or errors |  -  |
-| **400** | A list of awards and/or errors |  -  |
-| **401** | A list of awards and/or errors |  -  |
-| **403** | A list of awards and/or errors |  -  |
-| **404** | A list of awards and/or errors |  -  |
-| **413** | A list of awards and/or errors |  -  |
-| **500** | A list of awards and/or errors |  -  |
-| **501** | A list of awards and/or errors |  -  |
-| **503** | A list of awards and/or errors |  -  |
+| **200** | A list of outcomes and/or errors |  -  |
+| **400** | A list of outcomes and/or errors |  -  |
+| **401** | A list of outcomes and/or errors |  -  |
+| **403** | A list of outcomes and/or errors |  -  |
+| **404** | A list of outcomes and/or errors |  -  |
+| **500** | A list of outcomes and/or errors |  -  |
+| **501** | A list of outcomes and/or errors |  -  |
 
-## manageAwardTagsWithHttpInfo
+## updateAwardsWithHttpInfo
 
-> CompletableFuture<ApiResponse<AwardResponse>> manageAwardTags manageAwardTagsWithHttpInfo(body)
+> CompletableFuture<ApiResponse<ModelApiResponse>> updateAwards updateAwardsWithHttpInfo(body)
 
+Update awards
 
-
-Allows the operator to add or remove from tags. This can be used to mark awards as fullfilled by the counter party or to asist in the organistion of the data on site.
+Update an existing award in the Ziqni system
 
 ### Example
 
@@ -642,21 +640,21 @@ public class Example {
         OAuth2.setAccessToken("YOUR ACCESS TOKEN");
 
         AwardsApi apiInstance = new AwardsApi(defaultClient);
-        ManageTagsRequest body = new ManageTagsRequest(); // ManageTagsRequest | Retrieve Awards from Ziqni database by unique Awards ID's or any other POST body parameters using the POST method
+        List<UpdateAwardRequest> body = Arrays.asList(); // List<UpdateAwardRequest> | Update awards in the Ziqni system. * Any Put body Parameters that are excluded in the Request body field will be considered as empty and updated with an empty field
         try {
-            CompletableFuture<ApiResponse<AwardResponse>> response = apiInstance.manageAwardTagsWithHttpInfo(body);
+            CompletableFuture<ApiResponse<ModelApiResponse>> response = apiInstance.updateAwardsWithHttpInfo(body);
             System.out.println("Status code: " + response.get().getStatusCode());
             System.out.println("Response headers: " + response.get().getHeaders());
             System.out.println("Response body: " + response.get().getData());
         } catch (InterruptedException | ExecutionException e) {
             ApiException apiException = (ApiException)e.getCause();
-            System.err.println("Exception when calling AwardsApi#manageAwardTags");
+            System.err.println("Exception when calling AwardsApi#updateAwards");
             System.err.println("Status code: " + apiException.getCode());
             System.err.println("Response headers: " + apiException.getResponseHeaders());
             System.err.println("Reason: " + apiException.getResponseBody());
             e.printStackTrace();
         } catch (ApiException e) {
-            System.err.println("Exception when calling AwardsApi#manageAwardTags");
+            System.err.println("Exception when calling AwardsApi#updateAwards");
             System.err.println("Status code: " + e.getCode());
             System.err.println("Response headers: " + e.getResponseHeaders());
             System.err.println("Reason: " + e.getResponseBody());
@@ -671,11 +669,11 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**ManageTagsRequest**](ManageTagsRequest.md)| Retrieve Awards from Ziqni database by unique Awards ID&#39;s or any other POST body parameters using the POST method | [optional]
+ **body** | [**List&lt;UpdateAwardRequest&gt;**](UpdateAwardRequest.md)| Update awards in the Ziqni system. * Any Put body Parameters that are excluded in the Request body field will be considered as empty and updated with an empty field |
 
 ### Return type
 
-CompletableFuture<ApiResponse<[**AwardResponse**](AwardResponse.md)>>
+CompletableFuture<ApiResponse<[**ModelApiResponse**](ModelApiResponse.md)>>
 
 
 ### Authorization
@@ -690,13 +688,11 @@ CompletableFuture<ApiResponse<[**AwardResponse**](AwardResponse.md)>>
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | A list of awards and/or errors |  -  |
-| **400** | A list of awards and/or errors |  -  |
-| **401** | A list of awards and/or errors |  -  |
-| **403** | A list of awards and/or errors |  -  |
-| **404** | A list of awards and/or errors |  -  |
-| **413** | A list of awards and/or errors |  -  |
-| **500** | A list of awards and/or errors |  -  |
-| **501** | A list of awards and/or errors |  -  |
-| **503** | A list of awards and/or errors |  -  |
+| **200** | A list of outcomes and/or errors |  -  |
+| **400** | A list of outcomes and/or errors |  -  |
+| **401** | A list of outcomes and/or errors |  -  |
+| **403** | A list of outcomes and/or errors |  -  |
+| **404** | A list of outcomes and/or errors |  -  |
+| **500** | A list of outcomes and/or errors |  -  |
+| **501** | A list of outcomes and/or errors |  -  |
 

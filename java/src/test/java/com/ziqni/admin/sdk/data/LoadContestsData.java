@@ -52,7 +52,7 @@ public class LoadContestsData implements CompleteableFutureTestWrapper {
             scoringStrategy.setRecordTimeWhenSumReaches(300D);
             scoringStrategy.setSumBestXOf(100);
 
-            TournamentStrategies strategy = new TournamentStrategies();
+            Strategy strategy = new Strategy();
             strategy.setRankingStrategy(rankingStrategy);
             strategy.setScoringStrategy(scoringStrategy);
             strategy.setStrategyType(StrategyType.FIRSTTO);
@@ -98,7 +98,7 @@ public class LoadContestsData implements CompleteableFutureTestWrapper {
             request.setScheduledStartDate(DateUtil.now());
             request.setScheduledEndDate(DateUtil.nowPlusDays(1));
             request.setCompetitionId(competitionId);
-//            request.setStrategies(strategy);
+            //request.setStrategies(strategy);
 //            request.setRuleSets(ruleSets);
 
             final var givenConstraints = new ArrayList<String>();
