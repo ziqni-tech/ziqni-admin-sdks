@@ -83,7 +83,21 @@ public class AwardsApiTest implements tests.utils.CompleteableFutureTestWrapper{
         final String awardId = "E-cL1HoB1TE-AUdQSLeA";
 
         final AwardResponse response = $(api.getAwards(List.of(awardId), 1, 0));
+        assertNotNull(response);
+        assertNotNull(response.getResults());
+        assertNotNull(response.getErrors());
+        assertTrue(response.getErrors().isEmpty(), "Should have no errors");
+        assertTrue(response.getResults().size()>0,"Result size should be greater than zero");
 
+    }
+    @Test
+    public void updateAwards() throws ApiException {
+        //Create an Award on core and get the id which you will put here
+        final String awardId = "E-cL1HoB1TE-AUdQSLeA";
+        UpdateAwardRequest updateAwardRequest=new UpdateAwardRequest();
+        updateAwardRequest.id("jPIJpI8BPO-X0wqiYE0u").tags(List.of());
+
+        final var response = $(api.updateAwards(List.of(updateAwardRequest)));
         assertNotNull(response);
         assertNotNull(response.getResults());
         assertNotNull(response.getErrors());

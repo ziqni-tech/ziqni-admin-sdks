@@ -7,7 +7,7 @@
     <groupId>com.ziqni</groupId>
     <artifactId>ziqni-admin-sdk</artifactId>
     <name>ZIQNI Admin SDK Java Client</name>
-    <version>1.0.20</version>
+    <version>1.0.12</version>
     <packaging>jar</packaging>
     <url>https://github.com/ziqni-tech/ziqni-admin-sdks</url>
     <description>ZIQNI Admin SDK Java Client</description>
@@ -57,7 +57,7 @@
         <junit-version>5.4.0</junit-version>
         <spring-version>5.3.11</spring-version>
         <javax-version>1.1</javax-version>
-        <jetty-version>9.4.51.v20230217</jetty-version>
+        <jetty-version>9.4.49.v20220914</jetty-version>
         <junit-version>5.4.0</junit-version>
         <logback.version>1.2.11</logback.version>
         <keycloak.version>18.0.0</keycloak.version>
@@ -74,7 +74,6 @@
     </properties>
 
     <dependencies>
-
         <dependency>
             <groupId>com.github.ben-manes.caffeine</groupId>
             <artifactId>caffeine</artifactId>
@@ -178,6 +177,7 @@
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
             <version>2.11.0</version>
+            <scope>test</scope>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/commons-fileupload/commons-fileupload -->
@@ -201,6 +201,7 @@
             <groupId>com.auth0</groupId>
             <artifactId>java-jwt</artifactId>
             <version>3.8.3</version>
+            <scope>test</scope>
         </dependency>
 
         <dependency>
@@ -371,6 +372,7 @@
                     <failOnError>false</failOnError>
                 </configuration>
             </plugin>
+
 <!--            <plugin>-->
 <!--                <groupId>org.apache.maven.plugins</groupId>-->
 <!--                <artifactId>maven-gpg-plugin</artifactId>-->
@@ -386,7 +388,6 @@
 <!--                            <keyname>${gpg.keyname}</keyname>-->
 <!--                            <passphrase>${gpg.passphrase}</passphrase>-->
 <!--                        </configuration>-->
-
 <!--                    </execution>-->
 <!--                </executions>-->
 <!--            </plugin>-->

@@ -10251,6 +10251,7 @@ components:
         - Product
         - Achievement
         - Repository
+        - InstantWin
         - FileObject
         - Language
         - MemberMessage
