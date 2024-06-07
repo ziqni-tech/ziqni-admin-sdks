@@ -1,7 +1,7 @@
 openapi: 3.0.2
 info:
   title: ZIQNI Admin API
-  version: 3.0.14
+  version: 3.0.15
   description: |-
     Ziqni Application Services are used to manage and configure spaces.
     
@@ -677,7 +677,7 @@ paths:
             schema:
               type: array
               items:
-                $ref: '#/components/schemas/UpdateCompetitionStatusRequest'
+                $ref: '#/components/schemas/UpdateCompetitionStateRequest'
       tags:
         - competitions
       responses:
@@ -1172,48 +1172,6 @@ paths:
       description: >-
         Delete Rewards from Ziqni database by unique Rewards ID's or any other POST body parameters
         using the POST method
-      x-codegen-request-body-name: body
-  /awards/claim:
-    put:
-      requestBody:
-        description: Claim Awards
-        content:
-          application/json:
-            schema:
-              type: array
-              items:
-                $ref: '#/components/schemas/ClaimAwardRequest'
-        required: true
-      tags:
-        - awards
-      responses:
-        '201':
-          $ref: '#/components/responses/ApiResponseBody'
-        '202':
-          description: Accepted
-        '400':
-          $ref: '#/components/responses/ApiResponseBody'
-        '401':
-          $ref: '#/components/responses/ApiResponseBody'
-        '403':
-          $ref: '#/components/responses/ApiResponseBody'
-        '404':
-          $ref: '#/components/responses/ApiResponseBody'
-        '413':
-          $ref: '#/components/responses/ApiResponseBody'
-        '500':
-          $ref: '#/components/responses/ApiResponseBody'
-        '501':
-          $ref: '#/components/responses/ApiResponseBody'
-        '503':
-          $ref: '#/components/responses/ApiResponseBody'
-      security:
-        -
-          OAuth2:
-            - AdminClaim
-      operationId: claimAwards
-      summary: Claim awards
-      description: Claim Awards that need to be actioned at
       x-codegen-request-body-name: body
   /reward-types/query:
     summary: Get reward types by query
@@ -8316,6 +8274,48 @@ paths:
       summary: Update awards
       description: Update an existing award in the Ziqni system
       x-codegen-request-body-name: body
+  /awards/state:
+    put:
+      requestBody:
+        description: Claim Awards
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/UpdateAwardStateRequest'
+        required: true
+      tags:
+        - awards
+      responses:
+        '201':
+          $ref: '#/components/responses/ApiResponseBody'
+        '202':
+          description: Accepted
+        '400':
+          $ref: '#/components/responses/ApiResponseBody'
+        '401':
+          $ref: '#/components/responses/ApiResponseBody'
+        '403':
+          $ref: '#/components/responses/ApiResponseBody'
+        '404':
+          $ref: '#/components/responses/ApiResponseBody'
+        '413':
+          $ref: '#/components/responses/ApiResponseBody'
+        '500':
+          $ref: '#/components/responses/ApiResponseBody'
+        '501':
+          $ref: '#/components/responses/ApiResponseBody'
+        '503':
+          $ref: '#/components/responses/ApiResponseBody'
+      security:
+        -
+          OAuth2:
+            - AdminClaim
+      operationId: updateAwardsState
+      summary: Claim awards
+      description: Claim Awards that need to be actioned at
+      x-codegen-request-body-name: body
 components:
   schemas:
     ProductReduced:
@@ -8352,23 +8352,6 @@ components:
         tags:
           - tagId1
           - tagId2
-    ClaimAwardRequest:
-      required:
-        - id
-        - constraints
-      type: object
-      properties:
-        id:
-          description: Unique system identifier of an Award
-          type: string
-          example: Dc4swmQBVd51K6gPQqFx
-        constraints:
-          description: 'Additional constraints, if the value is present it means the'
-          type: array
-          items:
-            type: string
-          example:
-            - claimed
     UpdateMessageStatusRequest:
       allOf:
         -
@@ -8423,17 +8406,6 @@ components:
         created: '2018-02-10T09:30Z'
         fieldType: Text
         value: Sammple Text
-    UpdateCompetitionStatusRequest:
-      allOf:
-        -
-          $ref: '#/components/schemas/UpdateModelDefault'
-        -
-          required:
-            - status
-          type: object
-          properties:
-            status:
-              $ref: '#/components/schemas/CompetitionStateActions'
     Bracket:
       required:
         - rounds
@@ -12078,84 +12050,6 @@ components:
             hostingOptions:
               $ref: '#/components/schemas/HostingOptions'
               description: Hosting options for this repository if set to public
-    RewardType:
-      description: This is the Reward Type model
-      allOf:
-        -
-          $ref: '#/components/schemas/ModelDefault'
-        -
-          $ref: '#/components/schemas/OptParamModels'
-        -
-          required:
-            - name
-            - key
-            - unitOfMeasure
-            - constraints
-          type: object
-          properties:
-            name:
-              description: The name of the Reward type
-              type: string
-              example: Points
-              x-vue-as-string: true
-              x-vue-translatable: true
-              x-vue-search-all: true
-              x-vue-search-field: true
-              x-vue-disaply-order: 1001
-            description:
-              description: The description of a reward type
-              type: string
-              example: Free spins
-              x-vue-translatable: true
-              x-vue-search-all: true
-              x-vue-search-field: true
-              x-vue-disaply-order: 1002
-            key:
-              description: A unique key that represents the reward type
-              type: string
-              example: free-spin-reward
-              x-vue-search-all: true
-              x-vue-search-field: true
-              x-vue-disaply-order: 1000
-            constraints:
-              description: 'Additional constraints, if the value is present it means the'
-              type: array
-              items:
-                type: string
-              example: '- system'
-              x-vue-search-field: true
-              x-vue-disaply-order: 1003
-            unitOfMeasure:
-              type: string
-      example:
-        id: someText
-        spaceName: someText
-        created: '2018-02-10T09:30Z'
-        customFields:
-          customField1: customFieldValue1
-          customField2: customFieldValue2
-        metadata:
-          key1: value1
-          key2: value
-        tags:
-          - tagId1
-          - tagId2
-        unitOfMeasure: ziqniModelId
-        name: someText
-        description: someText
-        key: someText
-        constraints:
-          - system
-      x-vue-list: true
-      x-vue-show: true
-      x-vue-getter: rewardTypes
-      x-vue-section: settings
-      x-vue-sort-by: name
-      x-vue-sort-order: Asc
-      x-vue-limit: 10
-      x-vue-ops:
-        - Create
-        - Update
     User:
       allOf:
         -
@@ -12822,148 +12716,6 @@ components:
           properties:
             status:
               $ref: '#/components/schemas/NotificationStatus'
-    Award:
-      allOf:
-        -
-          $ref: '#/components/schemas/ModelDefault'
-        -
-          required:
-            - memberId
-            - rewardId
-            - rewardType
-            - rewardRank
-            - rewardValue
-            - entityType
-            - entityId
-            - constraints
-          type: object
-          properties:
-            memberId:
-              description: A unique identifier of a Member
-              type: string
-              example: Dc4swmQBVd51K6gPQqFx
-              x-vue-search-all: true
-              x-vue-search-field: true
-              x-vue-disaply-order: 1001
-              x-vue-links-to: Member
-            rewardId:
-              description: A unique identifier of a Reward
-              type: string
-              example: Dc4swmQBVd51K6gPQqFx
-              x-vue-search-field: true
-              x-vue-disaply-order: 1001
-              x-vue-links-to: Reward
-            rewardType:
-              $ref: '#/components/schemas/RewardTypeReduced'
-              x-vue-search-all: true
-              x-vue-search-field: true
-              x-vue-disaply-order: 1001
-            rewardRank:
-              description: >-
-                If used in the context of contest this will associate with the rank of the
-                leaderboard
-              type: string
-              example: '1'
-              x-vue-search-all: true
-              x-vue-search-field: true
-              x-vue-disaply-order: 1001
-            rewardValue:
-              format: double
-              description: Numerical value of the reward that will be issued based on the reward type
-              type: number
-              example: '1'
-              x-vue-search-all: true
-              x-vue-search-field: true
-              x-vue-disaply-order: 1001
-            delay:
-              format: int32
-              description: Delay of issuing a reward in minutes
-              type: integer
-              example: '2'
-              x-vue-search-field: true
-              x-vue-disaply-order: 1001
-            entityType:
-              $ref: '#/components/schemas/EntityType'
-              x-vue-search-all: true
-              x-vue-search-field: true
-              x-vue-disaply-order: 1001
-            entityId:
-              description: >-
-                The Id of the contest or achievement related to this Award. Dependant on
-                entityType
-              type: string
-              example: Dc4swmQBVd51K6gPQqFx
-              x-vue-search-all: true
-              x-vue-search-field: true
-              x-vue-disaply-order: 1001
-            pointInTime:
-              format: date-time
-              description: >-
-                ISO8601 timestamp for when an Award is available until a specific point in
-                time. All records are stored in UTC time zone. * There can only be one time
-                definition used for claim period either "pointInTime" or "period"
-              type: string
-              example: '2019-09-25T15:47:00.000+0000'
-              x-vue-search-all: true
-              x-vue-search-field: true
-              x-vue-disaply-order: 1001
-            period:
-              format: int32
-              description: >-
-                Claimable duration in minutes, this value will set the controls until when the
-                award is claimable. * There can only be one time definition used for claim
-                period either "pointInTime" or "period"
-              type: integer
-              example: '2'
-              x-vue-search-all: true
-              x-vue-search-field: true
-              x-vue-disaply-order: 1001
-            tags:
-              description: A list of Strings of groups that the reward belongs to.
-              type: array
-              items:
-                type: string
-              x-vue-search-all: true
-              x-vue-search-field: true
-              x-vue-disaply-order: 1001
-              x-vue-tags: true
-            metadata:
-              type: object
-              additionalProperties:
-                type: string
-              x-vue-search-field: true
-              x-vue-disaply-order: 1001
-              x-vue-metadata: true
-            constraints:
-              description: 'Additional constraints, if the value is present it means the'
-              type: array
-              items:
-                type: string
-              example: |-
-                - notifyMember 
-                - acknowledgementRequired
-                - claimed
-              x-vue-search-field: true
-              x-vue-disaply-order: 1001
-              x-vue-constraint: true
-            claimedTimestamp:
-              format: date-time
-              description: >-
-                ISO8601 timestamp for when an Award is claimed. All records are stored in UTC
-                time zone. *
-              type: string
-              example: '2019-09-25T15:47:00.000+0000'
-              x-vue-search-field: true
-              x-vue-disaply-order: 1001
-            memberRefId:
-              description: ''
-              type: string
-      x-vue-list: true
-      x-vue-show: true
-      x-vue-getter: awards
-      x-vue-sort-by: name
-      x-vue-sort-order: Asc
-      x-vue-limit: 10
     Translation:
       description: Translations to attach to the models.
       required:
@@ -13677,123 +13429,6 @@ components:
         metadata: {}
       x-vue-create: actionType
       x-vue-creator: actionTypes
-    CreateRewardTypeRequest:
-      description: This is a request for Reward Type creation
-      allOf:
-        -
-          $ref: '#/components/schemas/CreateOptParamModels'
-        -
-          required:
-            - name
-            - key
-            - unitOfMeasure
-          type: object
-          properties:
-            name:
-              description: The name of the Reward type
-              type: string
-              example: Points
-            description:
-              description: The description of a reward type
-              type: string
-              example: Free spins
-              x-vue-form-type: TEXTAREA
-            key:
-              description: A unique key that represents the reward type
-              type: string
-              example: free-spin-reward
-              x-vue-form-type: 'NAMEKEY, showKey: true'
-            translations:
-              type: array
-              items:
-                $ref: '#/components/schemas/Translation'
-            addConstraints:
-              description: Additional constraints
-              type: array
-              items:
-                type: string
-              example: '- system'
-            unitOfMeasure:
-              type: string
-      example:
-        customFields:
-          test_cf_termd65bcccf-d37f-441a-a96d-d0da55a77719:
-            - 1
-            - 2
-        tags:
-          - Test_key-7563406f-6983-4308-9422-91838fd40fe7
-        metadata:
-          fea089d7-f751-432e-8646-838c7769ab1e: f2dfff99-b766-414f-8e33-4d77aebbdb5e
-        name: Test_name-b6f072c2-df68-4905-a4f6-c19246ff5dc8
-        key: Test_key-2148168c-3a6c-48ba-b005-68a67a10aebc
-        unitOfMeasure: ziqniModelId
-        translations:
-          -
-            languageKey: csb
-            translations:
-              -
-                fieldName: name
-                text: test1
-          -
-            languageKey: den
-            translations:
-              -
-                fieldName: name
-                text: test-temp
-          -
-            languageKey: kmb
-            translations:
-              -
-                fieldName: name
-                text: Level-Up
-        addConstraints:
-          - system
-      x-vue-create: rewardType
-      x-vue-creator: rewardTypes
-    UpdateRewardTypeRequest:
-      allOf:
-        -
-          $ref: '#/components/schemas/UpdateModelDefault'
-        -
-          $ref: '#/components/schemas/UpdateOptParamModels'
-        -
-          required: []
-          type: object
-          properties:
-            name:
-              description: The name of the Reward type
-              type: string
-              example: Points
-              x-vue-as-string: true
-              x-vue-translatable: true
-              x-vue-search-all: true
-              x-vue-search-field: true
-              x-vue-disaply-order: 1001
-            description:
-              description: The description of a reward type
-              type: string
-              example: Free spins
-              x-vue-form-type: TEXTAREA
-              x-vue-translatable: true
-              x-vue-search-all: true
-              x-vue-search-field: true
-              x-vue-disaply-order: 1002
-            addConstraints:
-              description: Additional constraints
-              type: array
-              items:
-                type: string
-              example: '- system'
-            removeConstraints:
-              description: Remove constraints
-              type: array
-              items:
-                type: string
-              example: '- system'
-            unitOfMeasure:
-              type: string
-      x-vue-update: rewardType
-      x-vue-updater: rewardTypes
     CreateMemberMessageRequest:
       allOf:
         -
@@ -18849,6 +18484,183 @@ components:
         - SQS
         - Scheduled
       type: string
+    ManageTagsRequest:
+      allOf:
+        -
+          $ref: '#/components/schemas/UpdateModelDefault'
+        -
+          required: []
+          type: object
+      properties:
+        newTags:
+          description: List of new tags to add
+          type: array
+          items:
+            type: string
+        removeTags:
+          description: List of tags to remove if present
+          type: array
+          items:
+            type: string
+      x-vue-update: awardTag
+      x-vue-updater: awardTags
+    UpdateAwardRequest:
+      description: Request for tag update
+      allOf:
+        -
+          $ref: '#/components/schemas/UpdateModelDefault'
+        -
+          $ref: '#/components/schemas/UpdateOptParamModels'
+        -
+          required:
+            - entityType
+          type: object
+      example: {}
+      x-vue-update: tag
+      x-vue-updater: tags
+    UpdateAwardStateRequest:
+      description: ''
+      type: object
+      allOf:
+        -
+          required:
+            - action
+          type: object
+          properties:
+            constraints:
+              description: Additional system contraints if any
+              type: array
+              items:
+                type: string
+            action:
+              $ref: '#/components/schemas/AwardStateActions'
+              description: The state to change this award to
+            transactionReferenceId:
+              description: 'The transaction ID to correlate with this request, max 128 characters'
+              type: string
+            reasonForChange:
+              description: 'Up to 300 character reason why this change was made [optional]'
+              type: string
+        -
+          $ref: '#/components/schemas/UpdateModelDefault'
+    AwardStateActions:
+      description: |-
+        Available actions for award status
+        
+        1. Issued (Code 10)
+        2. Claimed (Code 20)
+        3. Processing (Code 30)
+        4. Delivered  (Code 40)
+        5. Expired  (Code 50)
+        6. Cancelled (Code 60)
+        7. Declined  (Code 70)
+      enum:
+        - Issued
+        - Claimed
+        - Processing
+        - Delivered
+        - Expired
+        - Cancelled
+        - Declined
+      type: string
+      example: '"Claimed"'
+    UpdateCompetitionStateRequest:
+      allOf:
+        -
+          $ref: '#/components/schemas/UpdateModelDefault'
+        -
+          required:
+            - status
+          type: object
+          properties:
+            status:
+              $ref: '#/components/schemas/CompetitionStateActions'
+    RewardType:
+      description: This is the Reward Type model
+      allOf:
+        -
+          $ref: '#/components/schemas/ModelDefault'
+        -
+          $ref: '#/components/schemas/OptParamModels'
+        -
+          required:
+            - name
+            - key
+            - unitOfMeasure
+            - constraints
+          type: object
+          properties:
+            name:
+              description: The name of the Reward type
+              type: string
+              example: Points
+              x-vue-as-string: true
+              x-vue-translatable: true
+              x-vue-search-all: true
+              x-vue-search-field: true
+              x-vue-disaply-order: 1001
+            description:
+              description: The description of a reward type
+              type: string
+              example: Free spins
+              x-vue-translatable: true
+              x-vue-search-all: true
+              x-vue-search-field: true
+              x-vue-disaply-order: 1002
+            key:
+              description: A unique key that represents the reward type
+              type: string
+              example: free-spin-reward
+              x-vue-search-all: true
+              x-vue-search-field: true
+              x-vue-disaply-order: 1000
+            constraints:
+              description: 'Additional constraints, if the value is present it means the'
+              type: array
+              items:
+                type: string
+              example: '- system'
+              x-vue-search-field: true
+              x-vue-disaply-order: 1003
+            unitOfMeasure:
+              description: The unit of measure to use when performing dynamic calculations like currency
+              type: string
+            scheduling:
+              description: >-
+                Set the default time based constraints using either an exact point in time or
+                duration to manage the life cycle of the award
+              type: array
+              items:
+                $ref: '#/components/schemas/AwardScheduling'
+      example:
+        id: someText
+        spaceName: someText
+        created: '2018-02-10T09:30Z'
+        customFields:
+          customField1: customFieldValue1
+          customField2: customFieldValue2
+        metadata:
+          key1: value1
+          key2: value
+        tags:
+          - tagId1
+          - tagId2
+        unitOfMeasure: ziqniModelId
+        name: someText
+        description: someText
+        key: someText
+        constraints:
+          - system
+      x-vue-list: true
+      x-vue-show: true
+      x-vue-getter: rewardTypes
+      x-vue-section: settings
+      x-vue-sort-by: name
+      x-vue-sort-order: Asc
+      x-vue-limit: 10
+      x-vue-ops:
+        - Create
+        - Update
     Reward:
       allOf:
         -
@@ -18865,6 +18677,7 @@ components:
           properties:
             entityType:
               $ref: '#/components/schemas/EntityType'
+              description: 'This can be Competition, Contest, Achievement'
             entityId:
               description: A unique identifier of an achievement or contest. Dependant on entityType
               type: string
@@ -18905,6 +18718,10 @@ components:
               x-vue-disaply-order: 1004
             rewardType:
               $ref: '#/components/schemas/RewardTypeReduced'
+              description: >-
+                The reward type creates a linkto the type of reward is being issued. The
+                reward type often links to clients internal bonus engines or reward payment
+                system
               x-vue-search-all: true
               x-vue-search-field: true
               x-vue-disaply-order: 1005
@@ -18924,14 +18741,16 @@ components:
               x-vue-form-type: IMAGE
             issueLimit:
               format: int32
-              description: how many of thsese rewards are
+              description: how many of thsese rewards are available in total to all members
               type: integer
               example: '2'
               x-vue-search-field: true
               x-vue-disaply-order: 1005
             delay:
               format: int32
-              description: Delay of issuing a reward in minutes
+              description: >-
+                Delay of issuing a reward in minutes *** deprecation candidate - use
+                scheduling ***
               type: integer
               example: '2'
               x-vue-search-field: true
@@ -18940,14 +18759,17 @@ components:
               format: date-time
               description: >-
                 ISO8601 timestamp for when a Reward is available until a specific point in
-                time. All records are stored in UTC time zone
+                time. All records are stored in UTC time zone *** deprecation candidate - use
+                scheduling ***
               type: string
               example: '2019-09-25T15:47:00.000+0000'
               x-vue-search-field: true
               x-vue-disaply-order: 1006
             period:
               format: int32
-              description: Reward available for a period of time from issuing in minutes
+              description: >-
+                Reward available for a period of time from issuing in minutes *** deprecation
+                candidate - use scheduling ***
               type: integer
               example: '2'
               x-vue-search-field: true
@@ -18961,6 +18783,17 @@ components:
                 - notifyMember 
                 - acknowledgementRequired
               x-vue-constraint: true
+            scheduling:
+              description: >-
+                Set time based constraints using either an exact point in time or duration to
+                manage the life cycle of the award
+              type: array
+              items:
+                $ref: '#/components/schemas/AwardScheduling'
+            order:
+              format: int32
+              description: The order the rewards are issued
+              type: integer
       x-vue-list: true
       x-vue-show: true
       x-vue-getter: rewards
@@ -18970,6 +18803,137 @@ components:
       x-vue-ops:
         - Create
         - Update
+    CreateRewardTypeRequest:
+      description: This is a request for Reward Type creation
+      allOf:
+        -
+          $ref: '#/components/schemas/CreateOptParamModels'
+        -
+          required:
+            - name
+            - key
+            - unitOfMeasure
+          type: object
+          properties:
+            name:
+              description: The name of the Reward type
+              type: string
+              example: Points
+            description:
+              description: The description of a reward type
+              type: string
+              example: Free spins
+              x-vue-form-type: TEXTAREA
+            key:
+              description: A unique key that represents the reward type
+              type: string
+              example: free-spin-reward
+              x-vue-form-type: 'NAMEKEY, showKey: true'
+            translations:
+              type: array
+              items:
+                $ref: '#/components/schemas/Translation'
+            addConstraints:
+              description: Additional constraints
+              type: array
+              items:
+                type: string
+              example: '- system'
+            unitOfMeasure:
+              type: string
+            scheduling:
+              description: >-
+                Set the default time based constraints using either an exact point in time or
+                duration to manage the life cycle of the award
+              type: array
+              items:
+                $ref: '#/components/schemas/AwardScheduling'
+      example:
+        customFields:
+          test_cf_termd65bcccf-d37f-441a-a96d-d0da55a77719:
+            - 1
+            - 2
+        tags:
+          - Test_key-7563406f-6983-4308-9422-91838fd40fe7
+        metadata:
+          fea089d7-f751-432e-8646-838c7769ab1e: f2dfff99-b766-414f-8e33-4d77aebbdb5e
+        name: Test_name-b6f072c2-df68-4905-a4f6-c19246ff5dc8
+        key: Test_key-2148168c-3a6c-48ba-b005-68a67a10aebc
+        unitOfMeasure: ziqniModelId
+        translations:
+          -
+            languageKey: csb
+            translations:
+              -
+                fieldName: name
+                text: test1
+          -
+            languageKey: den
+            translations:
+              -
+                fieldName: name
+                text: test-temp
+          -
+            languageKey: kmb
+            translations:
+              -
+                fieldName: name
+                text: Level-Up
+        addConstraints:
+          - system
+      x-vue-create: rewardType
+      x-vue-creator: rewardTypes
+    UpdateRewardTypeRequest:
+      allOf:
+        -
+          $ref: '#/components/schemas/UpdateModelDefault'
+        -
+          $ref: '#/components/schemas/UpdateOptParamModels'
+        -
+          required: []
+          type: object
+          properties:
+            name:
+              description: The name of the Reward type
+              type: string
+              example: Points
+              x-vue-as-string: true
+              x-vue-translatable: true
+              x-vue-search-all: true
+              x-vue-search-field: true
+              x-vue-disaply-order: 1001
+            description:
+              description: The description of a reward type
+              type: string
+              example: Free spins
+              x-vue-form-type: TEXTAREA
+              x-vue-translatable: true
+              x-vue-search-all: true
+              x-vue-search-field: true
+              x-vue-disaply-order: 1002
+            addConstraints:
+              description: Additional constraints
+              type: array
+              items:
+                type: string
+              example: '- system'
+            removeConstraints:
+              description: Remove constraints
+              type: array
+              items:
+                type: string
+              example: '- system'
+            unitOfMeasure:
+              type: string
+            scheduling:
+              description: >-
+                Set the default time based constraints using either an exact point in time or
+                duration to manage the life cycle of the award
+              type: array
+              items:
+                $ref: '#/components/schemas/AwardScheduling'
+      x-vue-update: rewardType
+      x-vue-updater: rewardTypes
     CreateRewardRequest:
       allOf:
         -
@@ -19051,6 +19015,13 @@ components:
               description: A unique id of the Reward Type
               type: string
               example: Dc4swmQBVd51K6gPQqFx
+            scheduling:
+              description: >-
+                Set the default time based constraints using either an exact point in time or
+                duration to manage the life cycle of the award
+              type: array
+              items:
+                $ref: '#/components/schemas/AwardScheduling'
       example:
         customFields:
           test_cf_termd65bcccf-d37f-441a-a96d-d0da55a77719:
@@ -19163,6 +19134,13 @@ components:
               items:
                 type: string
               example: '- memberAcknowledgmentRequired'
+            scheduling:
+              description: >-
+                Set the default time based constraints using either an exact point in time or
+                duration to manage the life cycle of the award
+              type: array
+              items:
+                $ref: '#/components/schemas/AwardScheduling'
       x-vue-update: reward
       x-vue-updater: rewards
     CreateEntityRewardRequest:
@@ -19250,6 +19228,13 @@ components:
               description: A unique id of the Reward Type
               type: string
               example: Dc4swmQBVd51K6gPQqFx
+            scheduling:
+              description: >-
+                Set the default time based constraints using either an exact point in time or
+                duration to manage the life cycle of the award
+              type: array
+              items:
+                $ref: '#/components/schemas/AwardScheduling'
     UpdateEntityRewardRequest:
       allOf:
         -
@@ -19338,40 +19323,207 @@ components:
               description: A unique id of the Reward Type
               type: string
               example: Dc4swmQBVd51K6gPQqFx
-    ManageTagsRequest:
+            scheduling:
+              description: >-
+                Set time based constraints using either an exact point in time or duration to
+                manage the life cycle of the award
+              type: array
+              items:
+                $ref: '#/components/schemas/AwardScheduling'
+    Award:
       allOf:
         -
-          $ref: '#/components/schemas/UpdateModelDefault'
-        -
-          required: []
-          type: object
-      properties:
-        newTags:
-          description: List of new tags to add
-          type: array
-          items:
-            type: string
-        removeTags:
-          description: List of tags to remove if present
-          type: array
-          items:
-            type: string
-      x-vue-update: awardTag
-      x-vue-updater: awardTags
-    UpdateAwardRequest:
-      description: Request for tag update
-      allOf:
-        -
-          $ref: '#/components/schemas/UpdateModelDefault'
-        -
-          $ref: '#/components/schemas/UpdateOptParamModels'
+          $ref: '#/components/schemas/ModelDefault'
         -
           required:
+            - memberId
+            - rewardId
+            - rewardType
+            - rewardRank
+            - rewardValue
             - entityType
+            - entityId
+            - constraints
           type: object
-      example: {}
-      x-vue-update: tag
-      x-vue-updater: tags
+          properties:
+            memberId:
+              description: A unique identifier of a Member
+              type: string
+              example: Dc4swmQBVd51K6gPQqFx
+              x-vue-search-all: true
+              x-vue-search-field: true
+              x-vue-disaply-order: 1001
+              x-vue-links-to: Member
+            rewardId:
+              description: A unique identifier of a Reward
+              type: string
+              example: Dc4swmQBVd51K6gPQqFx
+              x-vue-search-field: true
+              x-vue-disaply-order: 1001
+              x-vue-links-to: Reward
+            rewardType:
+              $ref: '#/components/schemas/RewardTypeReduced'
+              x-vue-search-all: true
+              x-vue-search-field: true
+              x-vue-disaply-order: 1001
+            rewardRank:
+              description: >-
+                If used in the context of contest this will associate with the rank of the
+                leaderboard
+              type: string
+              example: '1'
+              x-vue-search-all: true
+              x-vue-search-field: true
+              x-vue-disaply-order: 1001
+            rewardValue:
+              format: double
+              description: Numerical value of the reward that will be issued based on the reward type
+              type: number
+              example: '1'
+              x-vue-search-all: true
+              x-vue-search-field: true
+              x-vue-disaply-order: 1001
+            delay:
+              format: int32
+              description: Delay of issuing a reward in minutes
+              type: integer
+              example: '2'
+              x-vue-search-field: true
+              x-vue-disaply-order: 1001
+            entityType:
+              $ref: '#/components/schemas/EntityType'
+              x-vue-search-all: true
+              x-vue-search-field: true
+              x-vue-disaply-order: 1001
+            entityId:
+              description: >-
+                The Id of the contest or achievement related to this Award. Dependant on
+                entityType
+              type: string
+              example: Dc4swmQBVd51K6gPQqFx
+              x-vue-search-all: true
+              x-vue-search-field: true
+              x-vue-disaply-order: 1001
+            pointInTime:
+              format: date-time
+              description: >-
+                ISO8601 timestamp for when an Award is available until a specific point in
+                time. All records are stored in UTC time zone. * There can only be one time
+                definition used for claim period either "pointInTime" or "period"
+              type: string
+              example: '2019-09-25T15:47:00.000+0000'
+              x-vue-search-all: true
+              x-vue-search-field: true
+              x-vue-disaply-order: 1001
+            period:
+              format: int32
+              description: >-
+                Claimable duration in minutes, this value will set the controls until when the
+                award is claimable. * There can only be one time definition used for claim
+                period either "pointInTime" or "period"
+              type: integer
+              example: '2'
+              x-vue-search-all: true
+              x-vue-search-field: true
+              x-vue-disaply-order: 1001
+            tags:
+              description: A list of Strings of groups that the reward belongs to.
+              type: array
+              items:
+                type: string
+              x-vue-search-all: true
+              x-vue-search-field: true
+              x-vue-disaply-order: 1001
+              x-vue-tags: true
+            metadata:
+              type: object
+              additionalProperties:
+                type: string
+              x-vue-search-field: true
+              x-vue-disaply-order: 1001
+              x-vue-metadata: true
+            constraints:
+              description: 'Additional constraints, if the value is present it means the'
+              type: array
+              items:
+                type: string
+              example: |-
+                - notifyMember 
+                - acknowledgementRequired
+                - claimed
+              x-vue-search-field: true
+              x-vue-disaply-order: 1001
+              x-vue-constraint: true
+            claimedTimestamp:
+              format: date-time
+              description: >-
+                ISO8601 timestamp for when an Award is claimed. All records are stored in UTC
+                time zone. *
+              type: string
+              example: '2019-09-25T15:47:00.000+0000'
+              x-vue-search-field: true
+              x-vue-disaply-order: 1001
+            memberRefId:
+              description: ''
+              type: string
+            statusCode:
+              format: int32
+              description: |-
+                The current status of this award
+                
+                1. Available (Code 10)
+                2. Claimed (Code 20)
+                3. Processing (Code 30)
+                4. Delivered  (Code 40)
+                5. Expired  (Code 50)
+                6. Cancelled (Code 60)
+                7. Declined  (Code 70)
+              type: integer
+              x-vue-search-all: true
+              x-vue-search-field: true
+              x-vue-disaply-order: 1001
+            activeFrom:
+              format: date-time
+              description: This record is considered active up until this date time
+              type: string
+              x-vue-search-all: true
+              x-vue-search-field: true
+              x-vue-disaply-order: 1001
+            activeUntil:
+              format: date-time
+              description: This record is considered active up until this date time
+              type: string
+              x-vue-search-all: true
+              x-vue-search-field: true
+              x-vue-disaply-order: 1001
+      x-vue-list: true
+      x-vue-show: true
+      x-vue-getter: awards
+      x-vue-sort-by: name
+      x-vue-sort-order: Asc
+      x-vue-limit: 10
+    AwardScheduling:
+      description: Determines how the award release will be scheduled
+      required:
+        - onStatusChngeTo
+      type: object
+      properties:
+        thenAwardActiveFrom:
+          description: >-
+            This is either a ISO-8601 date string like 2024-06-06T08:00:00 for a specific point in
+            time. For duration: P3Y6M4DT12H30M5S (3 years, 6 months, 4 days, 12 hours, 30 minutes,
+            and 5 seconds)
+          type: string
+        thenAwardActiveUntil:
+          description: >-
+            This is either a ISO-8601 date string like 2024-06-06T08:00:00 for a specific point in
+            time. For duration: P3Y6M4DT12H30M5S (3 years, 6 months, 4 days, 12 hours, 30 minutes,
+            and 5 seconds)
+          type: string
+        onStatusChangeTo:
+          format: int32
+          description: When this award status is changed to the specified value
+          type: integer
   responses:
     ApiResponseBody:
       content:
