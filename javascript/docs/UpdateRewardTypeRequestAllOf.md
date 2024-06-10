@@ -9,5 +9,6 @@ Name | Type | Description | Notes
 **addConstraints** | **[String]** | Additional constraints | [optional] 
 **removeConstraints** | **[String]** | Remove constraints | [optional] 
 **unitOfMeasure** | **String** |  | [optional] 
+**scheduling** | [**[AwardScheduling]**](AwardScheduling.md) | Set the default time based constraints using either an exact point in time or duration to manage the life cycle of the award | [optional] 
 
 

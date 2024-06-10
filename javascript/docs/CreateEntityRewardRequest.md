@@ -15,12 +15,13 @@ Name | Type | Description | Notes
 **rewardValue** | **Number** | Numerical value of the reward that will be issued based on the reward type | 
 **icon** | **String** | An Icon id that has been pre uploaded to the system to display for reward | [optional] 
 **issueLimit** | **Number** | how many of thsese rewards are | [optional] 
-**delay** | **Number** | Delay of issuing a reward in minutes | [optional] 
-**pointInTime** | **Date** | ISO8601 timestamp for when a Reward is available until a specific point in time. All records are stored in UTC time zone | [optional] 
-**period** | **Number** | Reward available for a period of time from issuing in minutes | [optional] 
+**delay** | **Number** | ***DEPRECATED, use scheduling*** Delay of issuing a reward in minutes | [optional] 
+**pointInTime** | **Date** | ***DEPRECATED, use scheduling*** ISO8601 timestamp for when a Reward is available until a specific point in time. All records are stored in UTC time zone | [optional] 
+**period** | **Number** | ***DEPRECATED, use scheduling*** Reward available for a period of time from issuing in minutes | [optional] 
 **memberTagsFilter** | [**DependantOn**](DependantOn.md) |  | [optional] 
 **translations** | [**[Translation]**](Translation.md) |  | [optional] 
 **constraints** | **[String]** | Additional constraints | 
 **rewardTypeId** | **String** | A unique id of the Reward Type | 
+**scheduling** | [**[AwardScheduling]**](AwardScheduling.md) | Set the default time based constraints using either an exact point in time or duration to manage the life cycle of the award | [optional] 
 
 
