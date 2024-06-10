@@ -19528,6 +19528,7 @@ components:
       description: |-
         Available actions for award status
         Issued (Code 15)
+        Held (Code 25)
         Claimed (Code 35)
         Processing (Code 45)
         Delivered (Code 55)
