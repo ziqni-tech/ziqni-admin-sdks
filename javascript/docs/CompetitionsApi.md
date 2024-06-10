@@ -391,7 +391,7 @@ OAuth2.accessToken = 'YOUR ACCESS TOKEN';
 
 let apiInstance = new @ZiqniTechAdminApiClient.CompetitionsApi();
 let opts = {
-  'body': [new @ZiqniTechAdminApiClient.UpdateCompetitionStatusRequest()] // [UpdateCompetitionStatusRequest] | Updates the state of the Competition
+  'body': [new @ZiqniTechAdminApiClient.UpdateCompetitionStateRequest()] // [UpdateCompetitionStateRequest] | Updates the state of the Competition
 };
 apiInstance.updateCompetitionsState(opts, (error, data, response) => {
   if (error) {
@@ -407,7 +407,7 @@ apiInstance.updateCompetitionsState(opts, (error, data, response) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**[UpdateCompetitionStatusRequest]**](UpdateCompetitionStatusRequest.md)| Updates the state of the Competition | [optional] 
+ **body** | [**[UpdateCompetitionStateRequest]**](UpdateCompetitionStateRequest.md)| Updates the state of the Competition | [optional] 
 
 ### Return type
 

@@ -1,4 +1,4 @@
-# @ZiqniTechAdminApiClient.UpdateCompetitionStatusRequestAllOf
+# @ZiqniTechAdminApiClient.UpdateCompetitionStateRequestAllOf
 
 ## Properties
 
