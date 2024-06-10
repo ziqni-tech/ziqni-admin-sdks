@@ -19374,7 +19374,7 @@ components:
               x-vue-disaply-order: 1001
             delay:
               format: int32
-              description: Delay of issuing a reward in minutes
+              description: '***DEPRECATED, use scheduling*** Delay of issuing a reward in minutes'
               type: integer
               example: '2'
               x-vue-search-field: true
@@ -19396,9 +19396,10 @@ components:
             pointInTime:
               format: date-time
               description: >-
-                ISO8601 timestamp for when an Award is available until a specific point in
-                time. All records are stored in UTC time zone. * There can only be one time
-                definition used for claim period either "pointInTime" or "period"
+                ***DEPRECATED, use scheduling***ISO8601 timestamp for when an Award is
+                available until a specific point in time. All records are stored in UTC time
+                zone. * There can only be one time definition used for claim period either
+                "pointInTime" or "period"
               type: string
               example: '2019-09-25T15:47:00.000+0000'
               x-vue-search-all: true
@@ -19407,9 +19408,9 @@ components:
             period:
               format: int32
               description: >-
-                Claimable duration in minutes, this value will set the controls until when the
-                award is claimable. * There can only be one time definition used for claim
-                period either "pointInTime" or "period"
+                ***DEPRECATED, use scheduling*** Claimable duration in minutes, this value
+                will set the controls until when the award is claimable. * There can only be
+                one time definition used for claim period either "pointInTime" or "period"
               type: integer
               example: '2'
               x-vue-search-all: true
@@ -19485,6 +19486,16 @@ components:
               x-vue-search-all: true
               x-vue-search-field: true
               x-vue-disaply-order: 1001
+            status:
+              $ref: '#/components/schemas/AwardStateActions'
+              description: >-
+                The enum describin the state of this award, use status code for searching,
+                Issued (Code 15) [Ziqni System]
+                
+                Claimed (Code 35) [Ziqni System], Held (Code 25) [Ziqni System],Processing
+                (Code 45)  [Optional], Delivered (Code 55) [Optional], Completed (Code 65)
+                [Optional], Expired (Code 100) [Optional], Cancelled (Code 101) [Optional],
+                Declined (Code 102) << Forfeit >>
       x-vue-list: true
       x-vue-show: true
       x-vue-getter: awards
