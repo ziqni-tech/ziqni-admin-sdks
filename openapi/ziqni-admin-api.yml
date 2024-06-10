@@ -19544,6 +19544,7 @@ components:
         - Expired
         - Cancelled
         - Declined
+        - Completed
       type: string
       example: '"Claimed"'
   responses:
