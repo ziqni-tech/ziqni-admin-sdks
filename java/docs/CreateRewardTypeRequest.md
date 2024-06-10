@@ -17,6 +17,7 @@ Name | Type | Description | Notes
 **translations** | [**List&lt;Translation&gt;**](Translation.md) |  |  [optional]
 **addConstraints** | **List&lt;String&gt;** | Additional constraints |  [optional]
 **unitOfMeasure** | **String** |  | 
+**scheduling** | [**List&lt;AwardScheduling&gt;**](AwardScheduling.md) | Set the default time based constraints using either an exact point in time or duration to manage the life cycle of the award |  [optional]
 
 
 

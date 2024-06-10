@@ -3,11 +3,11 @@
  */
 package com.ziqni.admin.sdk.util;
 
-import com.amazonaws.regions.Regions;
-import com.amazonaws.services.simplesystemsmanagement.AWSSimpleSystemsManagement;
-import com.amazonaws.services.simplesystemsmanagement.AWSSimpleSystemsManagementClientBuilder;
-import com.amazonaws.services.simplesystemsmanagement.model.GetParametersByPathRequest;
-import com.amazonaws.services.simplesystemsmanagement.model.GetParametersByPathResult;
+import software.amazon.awssdk.regions.Region;
+import software.amazon.awssdk.services.ssm.SsmClient;
+import software.amazon.awssdk.services.ssm.model.GetParametersByPathRequest;
+import software.amazon.awssdk.services.ssm.model.GetParametersByPathResponse;
+import software.amazon.awssdk.services.ssm.model.Parameter;
 import org.apache.commons.configuration2.Configuration;
 import org.apache.commons.configuration2.FileBasedConfiguration;
 import org.apache.commons.configuration2.PropertiesConfiguration;
@@ -22,6 +22,8 @@ import java.util.Optional;
 
 public abstract class ConfigurationLoader {
 
+    private final static Logger logger = LoggerFactory.getLogger(ConfigurationLoader.class.getName());
+
     private static final String ziqniEnvironmentVariablePrefix = "ZIQNI_";
     public static String DefaultConfigFileName = "application.properties";
     private static String configFile = null;
@@ -32,28 +34,28 @@ public abstract class ConfigurationLoader {
 
     private static String instanceId = null;
 
-    private static final Logger logger = LoggerFactory.getLogger(ConfigurationLoader.class);
-
     public static void loadFromAws(Boolean onFailTryFile) {
-        logger.info("Ziqni environment set to [{}]", prefix);
+        logger.info("Ziqni environment set to [" + prefix + "]");
 
         initIntanceId();
 
-        try {
-            var c = AWSSimpleSystemsManagementClientBuilder.standard().withRegion(Regions.EU_WEST_1).build();
-            var request = new GetParametersByPathRequest()
-                    .withPath(prefix)
-                    .withRecursive(true)
-                    .withWithDecryption(true)
-                    .withMaxResults(10);
-            process(c.getParametersByPath(request), c, request);
-        } catch(Throwable t) {
-            logger.error("Could not load configuration from AWS", t);
+        try (SsmClient ssmClient = SsmClient.builder().region(Region.EU_WEST_1).build()) {
+            GetParametersByPathRequest request = GetParametersByPathRequest.builder()
+                    .path(prefix)
+                    .recursive(true)
+                    .withDecryption(true)
+                    .maxResults(10)
+                    .build();
 
-            if(onFailTryFile)
+            process(ssmClient.getParametersByPath(request), ssmClient, request);
+        } catch (Throwable t) {
+            logger.error("Failed to load configuration from AWS", t);
+
+            if (onFailTryFile) {
                 loadFromFile(false);
-            else
+            } else {
                 throw new RuntimeException(t);
+            }
         }
 
         loadFromFile(true);
@@ -62,20 +64,21 @@ public abstract class ConfigurationLoader {
         assert cache.size() > 0;
     }
 
-    private static void process(GetParametersByPathResult result, AWSSimpleSystemsManagement client, GetParametersByPathRequest request){
-        result.getParameters().forEach( parameter -> {
-            if(cache == null) ConfigurationLoader.cache = new HashMap<>();
-            var configKey = parameter.getName().substring(prefix.length()).replaceAll("/", ".");
-            var configVal = parameter.getValue();
-            ConfigurationLoader.cache.put(configKey, configVal);
-            logger.debug("Loaded parameter [{}] with value [{}] from AWS with path prefix [{}] ", configKey, configVal, prefix);
-        });
+    private static void process(GetParametersByPathResponse response, SsmClient ssmClient, GetParametersByPathRequest request) {
+        for (Parameter parameter : response.parameters()) {
+            if (cache == null) {
+                cache = new HashMap<>();
+            }
+            String configKey = parameter.name().substring(prefix.length()).replaceAll("/", ".");
+            String configVal = parameter.value();
+            cache.put(configKey, configVal);
+            logger.debug("Loaded parameter [{}] with value [{}]", configKey, configVal);
+        }
 
-        if(result.getNextToken() != null) {
-            process(client.getParametersByPath(request.withNextToken(result.getNextToken())), client, request);
+        if (response.nextToken() != null) {
+            process(ssmClient.getParametersByPath(request.toBuilder().nextToken(response.nextToken()).build()), ssmClient, request);
         }
     }
-
 
     public static void loadFromFile(Boolean doNotOverwrite) {
         Parameters params = new Parameters();

@@ -1254,7 +1254,7 @@ public class Example {
         OAuth2.setAccessToken("YOUR ACCESS TOKEN");
 
         CompetitionsApi apiInstance = new CompetitionsApi(defaultClient);
-        List<UpdateCompetitionStatusRequest> body = Arrays.asList(); // List<UpdateCompetitionStatusRequest> | Updates the state of the Competition
+        List<UpdateCompetitionStateRequest> body = Arrays.asList(); // List<UpdateCompetitionStateRequest> | Updates the state of the Competition
         try {
             CompletableFuture<ModelApiResponse> result = apiInstance.updateCompetitionsState(body);
             System.out.println(result.get());
@@ -1274,7 +1274,7 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**List&lt;UpdateCompetitionStatusRequest&gt;**](UpdateCompetitionStatusRequest.md)| Updates the state of the Competition | [optional]
+ **body** | [**List&lt;UpdateCompetitionStateRequest&gt;**](UpdateCompetitionStateRequest.md)| Updates the state of the Competition | [optional]
 
 ### Return type
 
@@ -1335,7 +1335,7 @@ public class Example {
         OAuth2.setAccessToken("YOUR ACCESS TOKEN");
 
         CompetitionsApi apiInstance = new CompetitionsApi(defaultClient);
-        List<UpdateCompetitionStatusRequest> body = Arrays.asList(); // List<UpdateCompetitionStatusRequest> | Updates the state of the Competition
+        List<UpdateCompetitionStateRequest> body = Arrays.asList(); // List<UpdateCompetitionStateRequest> | Updates the state of the Competition
         try {
             CompletableFuture<ApiResponse<ModelApiResponse>> response = apiInstance.updateCompetitionsStateWithHttpInfo(body);
             System.out.println("Status code: " + response.get().getStatusCode());
@@ -1364,7 +1364,7 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**List&lt;UpdateCompetitionStatusRequest&gt;**](UpdateCompetitionStatusRequest.md)| Updates the state of the Competition | [optional]
+ **body** | [**List&lt;UpdateCompetitionStateRequest&gt;**](UpdateCompetitionStateRequest.md)| Updates the state of the Competition | [optional]
 
 ### Return type
 

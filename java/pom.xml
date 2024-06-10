@@ -7,7 +7,7 @@
     <groupId>com.ziqni</groupId>
     <artifactId>ziqni-admin-sdk</artifactId>
     <name>ZIQNI Admin SDK Java Client</name>
-    <version>1.0.20</version>
+    <version>1.0.21</version>
     <packaging>jar</packaging>
     <url>https://github.com/ziqni-tech/ziqni-admin-sdks</url>
     <description>ZIQNI Admin SDK Java Client</description>
@@ -71,7 +71,20 @@
         <caffeine.version>3.1.1</caffeine.version>
         <maven.compiler.plugin.version>2.3.2</maven.compiler.plugin.version>
         <maven.shade.plugin.version>3.2.4</maven.shade.plugin.version>
+        <aws-java-sdk.version>2.25.67</aws-java-sdk.version>
     </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>software.amazon.awssdk</groupId>
+                <artifactId>bom</artifactId>
+                <version>${aws-java-sdk.version}</version> <!-- Use the latest stable version -->
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <dependencies>
         <dependency>
@@ -138,9 +151,9 @@
 
         <!-- https://mvnrepository.com/artifact/com.amazonaws/aws-java-sdk-ssm -->
         <dependency>
-            <groupId>com.amazonaws</groupId>
-            <artifactId>aws-java-sdk-ssm</artifactId>
-            <version>1.12.243</version>
+            <groupId>software.amazon.awssdk</groupId>
+            <artifactId>ssm</artifactId>
+            <version>${aws-java-sdk.version}</version>
         </dependency>
 
 
