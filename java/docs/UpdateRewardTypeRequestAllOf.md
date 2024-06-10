@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **addConstraints** | **List&lt;String&gt;** | Additional constraints |  [optional]
 **removeConstraints** | **List&lt;String&gt;** | Remove constraints |  [optional]
 **unitOfMeasure** | **String** |  |  [optional]
+**scheduling** | [**List&lt;AwardScheduling&gt;**](AwardScheduling.md) | Set the default time based constraints using either an exact point in time or duration to manage the life cycle of the award |  [optional]
 
 
 

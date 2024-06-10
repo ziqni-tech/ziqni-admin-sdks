@@ -82,7 +82,7 @@ public class AwardsApiTest implements tests.utils.CompleteableFutureTestWrapper{
         //Create an Award on core and get the id which you will put here
         final String awardId = "E-cL1HoB1TE-AUdQSLeA";
 
-        final AwardResponse response = $(api.getAwards(List.of(awardId), 1, 0));
+        final AwardResponse response = $(api.getAwards(List.of("O9Oe8o8B1KcQbzO459s8"), 1, 0));
         assertNotNull(response);
         assertNotNull(response.getResults());
         assertNotNull(response.getErrors());
@@ -105,5 +105,20 @@ public class AwardsApiTest implements tests.utils.CompleteableFutureTestWrapper{
         assertTrue(response.getResults().size()>0,"Result size should be greater than zero");
 
     }
+    @Test
+    public void updateAwardsState() throws ApiException {
+        //Create an Award on core and get the id which you will put here
+        final String awardId = "E-cL1HoB1TE-AUdQSLeA";
+        UpdateAwardStateRequest updateAwardRequest=new UpdateAwardStateRequest();
+        updateAwardRequest.id("O9Oe8o8B1KcQbzO459s8");
+        updateAwardRequest.setAction(AwardStateActions.DELIVERED);
 
+        final var response = $(api.updateAwardsState(List.of(updateAwardRequest)));
+        assertNotNull(response);
+        assertNotNull(response.getResults());
+        assertNotNull(response.getErrors());
+        assertTrue(response.getErrors().isEmpty(), "Should have no errors");
+        assertTrue(response.getResults().size()>0,"Result size should be greater than zero");
+
+    }
 }
