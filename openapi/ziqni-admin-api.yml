@@ -18543,27 +18543,6 @@ components:
               type: string
         -
           $ref: '#/components/schemas/UpdateModelDefault'
-    AwardStateActions:
-      description: |-
-        Available actions for award status
-        
-        1. Issued (Code 10)
-        2. Claimed (Code 20)
-        3. Processing (Code 30)
-        4. Delivered  (Code 40)
-        5. Expired  (Code 50)
-        6. Cancelled (Code 60)
-        7. Declined  (Code 70)
-      enum:
-        - Issued
-        - Claimed
-        - Processing
-        - Delivered
-        - Expired
-        - Cancelled
-        - Declined
-      type: string
-      example: '"Claimed"'
     UpdateCompetitionStateRequest:
       allOf:
         -
@@ -18748,9 +18727,7 @@ components:
               x-vue-disaply-order: 1005
             delay:
               format: int32
-              description: >-
-                Delay of issuing a reward in minutes *** deprecation candidate - use
-                scheduling ***
+              description: '***DEPRECATED, use scheduling*** Delay of issuing a reward in minutes'
               type: integer
               example: '2'
               x-vue-search-field: true
@@ -18758,9 +18735,9 @@ components:
             pointInTime:
               format: date-time
               description: >-
-                ISO8601 timestamp for when a Reward is available until a specific point in
-                time. All records are stored in UTC time zone *** deprecation candidate - use
-                scheduling ***
+                ***DEPRECATED, use scheduling*** ISO8601 timestamp for when a Reward is
+                available until a specific point in time. All records are stored in UTC time
+                zone *** deprecation candidate - use scheduling ***
               type: string
               example: '2019-09-25T15:47:00.000+0000'
               x-vue-search-field: true
@@ -18768,8 +18745,8 @@ components:
             period:
               format: int32
               description: >-
-                Reward available for a period of time from issuing in minutes *** deprecation
-                candidate - use scheduling ***
+                ***DEPRECATED, use scheduling*** Reward available for a period of time from
+                issuing in minutes
               type: integer
               example: '2'
               x-vue-search-field: true
@@ -18984,19 +18961,22 @@ components:
                 tags
             delay:
               format: int32
-              description: Delay of issuing a reward in minutes
+              description: '***DEPRECATED, use scheduling*** Delay of issuing a reward in minutes'
               type: integer
               example: '2'
             pointInTime:
               format: date-time
               description: >-
-                ISO8601 timestamp for when a Reward is available until a specific point in
-                time. All records are stored in UTC time zone
+                ***DEPRECATED, use scheduling*** ISO8601 timestamp for when a Reward is
+                available until a specific point in time. All records are stored in UTC time
+                zone
               type: string
               example: '2019-09-25T15:47:00.000+0000'
             period:
               format: int32
-              description: Reward available for a period of time from issuing in minutes
+              description: >-
+                ***DEPRECATED, use scheduling*** Reward available for a period of time from
+                issuing in minutes
               type: integer
               example: '2'
             translations:
@@ -19107,19 +19087,22 @@ components:
                 tags
             delay:
               format: int32
-              description: Delay of issuing a reward in minutes
+              description: '***DEPRECATED, use scheduling*** Delay of issuing a reward in minutes'
               type: integer
               example: '2'
             pointInTime:
               format: date-time
               description: >-
-                ISO8601 timestamp for when a Reward is available until a specific point in
-                time. All records are stored in UTC time zone
+                ***DEPRECATED, use scheduling*** ISO8601 timestamp for when a Reward is
+                available until a specific point in time. All records are stored in UTC time
+                zone
               type: string
               example: '2019-09-25T15:47:00.000+0000'
             period:
               format: int32
-              description: Reward available for a period of time from issuing in minutes
+              description: >-
+                ***DEPRECATED, use scheduling*** Reward available for a period of time from
+                issuing in minutes
               type: integer
               example: '2'
             addConstraints:
@@ -19194,19 +19177,22 @@ components:
               example: '2'
             delay:
               format: int32
-              description: Delay of issuing a reward in minutes
+              description: '***DEPRECATED, use scheduling*** Delay of issuing a reward in minutes'
               type: integer
               example: '2'
             pointInTime:
               format: date-time
               description: >-
-                ISO8601 timestamp for when a Reward is available until a specific point in
-                time. All records are stored in UTC time zone
+                ***DEPRECATED, use scheduling*** ISO8601 timestamp for when a Reward is
+                available until a specific point in time. All records are stored in UTC time
+                zone
               type: string
               example: '2019-09-25T15:47:00.000+0000'
             period:
               format: int32
-              description: Reward available for a period of time from issuing in minutes
+              description: >-
+                ***DEPRECATED, use scheduling*** Reward available for a period of time from
+                issuing in minutes
               type: integer
               example: '2'
             memberTagsFilter:
@@ -19281,19 +19267,22 @@ components:
               example: '2'
             delay:
               format: int32
-              description: Delay of issuing a reward in minutes
+              description: '***DEPRECATED, use scheduling*** Delay of issuing a reward in minutes'
               type: integer
               example: '2'
             pointInTime:
               format: date-time
               description: >-
-                ISO8601 timestamp for when a Reward is available until a specific point in
-                time. All records are stored in UTC time zone
+                ***DEPRECATED, use scheduling*** ISO8601 timestamp for when a Reward is
+                available until a specific point in time. All records are stored in UTC time
+                zone
               type: string
               example: '2019-09-25T15:47:00.000+0000'
             period:
               format: int32
-              description: Reward available for a period of time from issuing in minutes
+              description: >-
+                ***DEPRECATED, use scheduling*** Reward available for a period of time from
+                issuing in minutes
               type: integer
               example: '2'
             memberTagsFilter:
@@ -19506,6 +19495,7 @@ components:
       description: Determines how the award release will be scheduled
       required:
         - onStatusChngeTo
+        - onStatusChangeTo
       type: object
       properties:
         thenAwardActiveFrom:
@@ -19521,9 +19511,30 @@ components:
             and 5 seconds)
           type: string
         onStatusChangeTo:
-          format: int32
+          $ref: '#/components/schemas/AwardStateActions'
           description: When this award status is changed to the specified value
-          type: integer
+    AwardStateActions:
+      description: |-
+        Available actions for award status
+        Issued (Code 15)
+        Claimed (Code 35)
+        Processing (Code 45)
+        Delivered (Code 55)
+        Completed (Code 65)
+        Expired (Code 100)
+        Cancelled (Code 101)
+        Declined (Code 102)
+      enum:
+        - Issued
+        - Held
+        - Claimed
+        - Processing
+        - Delivered
+        - Expired
+        - Cancelled
+        - Declined
+      type: string
+      example: '"Claimed"'
   responses:
     ApiResponseBody:
       content:
