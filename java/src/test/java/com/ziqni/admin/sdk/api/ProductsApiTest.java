@@ -247,12 +247,12 @@ public class ProductsApiTest implements tests.utils.CompleteableFutureTestWrappe
     @Test
     @Order(2)
     public void getProductByRefIdReturnOkTest() throws ApiException, InterruptedException {
-        final List<CreateProductRequest> createRequestAsList = loadData.getCreateRequestAsList(1, actionTypeId);
-        final ModelApiResponse createResponse = loadData.createTestData(createRequestAsList);
-        final String refId = createResponse.getResults().get(0).getExternalReference();
-        final String id = createResponse.getResults().get(0).getId();
-        List<String> refIds = List.of(refId);
-        Integer limit = 1;
+//        final List<CreateProductRequest> createRequestAsList = loadData.getCreateRequestAsList(1, actionTypeId);
+//        final ModelApiResponse createResponse = loadData.createTestData(createRequestAsList);
+//        final String refId = createResponse.getResults().get(0).getExternalReference();
+//        final String id = createResponse.getResults().get(0).getId();
+        List<String> refIds = List.of("c160ae8ae3a14e8e8aec4cbe95483d4e", "a24c640977a04a5c870dae9a00797c54", "103259");
+        Integer limit = 5;
         Integer skip = 0;
 
         Thread.sleep(5000);
@@ -270,7 +270,7 @@ public class ProductsApiTest implements tests.utils.CompleteableFutureTestWrappe
         assertNotNull(item.getMetadata(), "Found metadata should be null");
         assertNotNull(item.getDescription(), "Found description should be null or blank");
 
-        idsToDelete.add(id);
+       // idsToDelete.add(id);
     }
 
     @Test
@@ -298,7 +298,7 @@ public class ProductsApiTest implements tests.utils.CompleteableFutureTestWrappe
 
     @Test
     @Order(4)
-    public void updateProductValidRequestReturnOkTest() throws ApiException {
+    public void updateProductValidRequestReturnOkTest() throws ApiException, InterruptedException {
         var request = loadData.getCreateRequest(actionTypeId);
         var requestList = loadData.getCreateRequestAsList(request);
         var createResponse = loadData.createTestData(requestList);
@@ -312,8 +312,11 @@ public class ProductsApiTest implements tests.utils.CompleteableFutureTestWrappe
         UpdateProductRequest given = new UpdateProductRequest()
                 .id(id)
                 .metadata(givenMetadata)
-                .description(givenDescription);
+                .description(givenDescription)
+                .productType("updated type")
+                ;
 
+        Thread.sleep(5000L);
         //WHEN
         ModelApiResponse response = $(api.updateProducts(List.of(given)));
 
