@@ -8,6 +8,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **name** | **String** | The name of the product |  [optional]
+**productType** | **String** | Product type |  [optional]
 **description** | **String** | The description of the product for your reference |  [optional]
 **icon** | **String** | An Icon id that has been pre uploaded to the system to display for Product |  [optional]
 **banner** | **String** | Link to the banner |  [optional]

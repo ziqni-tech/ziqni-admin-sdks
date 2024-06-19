@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **tags** | **List&lt;String&gt;** | A list of id&#39;s used to tag models |  [optional]
 **metadata** | **Map&lt;String, String&gt;** |  |  [optional]
 **name** | **String** | The name of the product |  [optional]
+**productType** | **String** | Product type |  [optional]
 **description** | **String** | The description of the product for your reference |  [optional]
 **icon** | **String** | An Icon id that has been pre uploaded to the system to display for Product |  [optional]
 **banner** | **String** | Link to the banner |  [optional]

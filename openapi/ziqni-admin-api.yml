@@ -18408,74 +18408,6 @@ components:
                 text: Level-Up
       x-vue-create: product
       x-vue-creator: products
-    UpdateProductRequest:
-      description: This is a request for Product update
-      allOf:
-        -
-          $ref: '#/components/schemas/UpdateModelDefault'
-        -
-          $ref: '#/components/schemas/UpdateOptParamModels'
-        -
-          required: []
-          type: object
-          properties:
-            name:
-              description: The name of the product
-              type: string
-              example: Hockey madness
-            description:
-              description: The description of the product for your reference
-              type: string
-              example: Spin the hockey wheal
-              x-vue-form-type: TEXTAREA
-            icon:
-              description: An Icon id that has been pre uploaded to the system to display for Product
-              type: string
-              example: Dc4swmQBVd51K6gPQqFx
-            banner:
-              description: Link to the banner
-              type: string
-              example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
-            bannerLowResolution:
-              description: Link to the bannerLowResolution
-              type: string
-              example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
-            bannerHighResolution:
-              description: Link to the bannerHighResolution
-              type: string
-              example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
-            adjustmentFactor:
-              format: double
-              description: The multiplier to apply to source values received for this product events
-              type: number
-              example: '1'
-            actionTypeAdjustmentFactors:
-              type: array
-              items:
-                $ref: '#/components/schemas/ActionTypeAdjustmentFactor'
-      example:
-        id: ziqniModelId
-        metadata:
-          key1: value1
-          key2: value
-        tags:
-          - tagId1
-          - tagId2
-        customFields:
-          customField1: customFieldValue1
-          customField2: customFieldValue2
-        name: name
-        description: description
-        adjustmentFactor: 28.55
-        actionTypeAdjustmentFactors:
-          -
-            adjustmentFactor: 67.71
-            actionTypeId: ziqniModelId
-          -
-            adjustmentFactor: 96.91
-            actionTypeId: ziqniModelId
-      x-vue-update: product
-      x-vue-updater: products
     ConnectionType:
       description: Connection Types
       enum:
@@ -19548,6 +19480,78 @@ components:
         - Completed
       type: string
       example: '"Claimed"'
+    UpdateProductRequest:
+      description: This is a request for Product update
+      allOf:
+        -
+          $ref: '#/components/schemas/UpdateModelDefault'
+        -
+          $ref: '#/components/schemas/UpdateOptParamModels'
+        -
+          required: []
+          type: object
+          properties:
+            name:
+              description: The name of the product
+              type: string
+              example: Hockey madness
+            productType:
+              description: Product type
+              type: string
+              example: product type
+            description:
+              description: The description of the product for your reference
+              type: string
+              example: Spin the hockey wheal
+              x-vue-form-type: TEXTAREA
+            icon:
+              description: An Icon id that has been pre uploaded to the system to display for Product
+              type: string
+              example: Dc4swmQBVd51K6gPQqFx
+            banner:
+              description: Link to the banner
+              type: string
+              example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
+            bannerLowResolution:
+              description: Link to the bannerLowResolution
+              type: string
+              example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
+            bannerHighResolution:
+              description: Link to the bannerHighResolution
+              type: string
+              example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
+            adjustmentFactor:
+              format: double
+              description: The multiplier to apply to source values received for this product events
+              type: number
+              example: '1'
+            actionTypeAdjustmentFactors:
+              type: array
+              items:
+                $ref: '#/components/schemas/ActionTypeAdjustmentFactor'
+      example:
+        id: ziqniModelId
+        metadata:
+          key1: value1
+          key2: value
+        tags:
+          - tagId1
+          - tagId2
+        customFields:
+          customField1: customFieldValue1
+          customField2: customFieldValue2
+        name: name
+        description: description
+        adjustmentFactor: 28.55
+        actionTypeAdjustmentFactors:
+          -
+            adjustmentFactor: 67.71
+            actionTypeId: ziqniModelId
+          -
+            adjustmentFactor: 96.91
+            actionTypeId: ziqniModelId
+      x-vue-update: product
+      x-vue-updater: products
   responses:
     ApiResponseBody:
       content:
