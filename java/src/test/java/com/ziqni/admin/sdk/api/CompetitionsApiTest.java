@@ -894,7 +894,7 @@ public class CompetitionsApiTest implements tests.utils.CompleteableFutureTestWr
 
         final var givenStatus = CompetitionStateActions.ACTIVE;
 
-        final var given = new UpdateCompetitionStatusRequest()
+        final var given = new UpdateCompetitionStateRequest()
                 .id(id);
                // .status(givenStatus);
 

@@ -1,7 +1,7 @@
 openapi: 3.0.2
 info:
   title: ZIQNI Admin API
-  version: 3.0.15
+  version: 3.0.17
   description: |-
     Ziqni Application Services are used to manage and configure spaces.
     
@@ -3958,6 +3958,8 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/ApiResponseBody'
+        '201':
+          description: On fast response
         '400':
           $ref: '#/components/responses/ApiResponseBody'
         '401':
@@ -6973,8 +6975,9 @@ paths:
       x-codegen-request-body-name: body
   /member-token:
     description: >-
-      The services returns a JWT token used to authorize requests to the other service end points. Use
-      this JWT as an auth header parameter for future requests: 
+      DEPRECATED, use the member api instead. The services returns a JWT token used to authorize
+      requests to the other service end points. Use this JWT as an auth header parameter for future
+      requests: 
       
       --header 'Authorization: Bearer <jwt-token-from-api>'
     post:
@@ -6993,6 +6996,7 @@ paths:
           $ref: '#/components/responses/TokenResponseBody'
         '500':
           $ref: '#/components/responses/TokenResponseBody'
+      deprecated: true
       security:
         -
           OAuth2: []
@@ -17738,77 +17742,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Reward'
-    CreateEventRequest:
-      required:
-        - action
-        - sourceValue
-        - transactionTimestamp
-        - entityRefId
-        - memberRefId
-        - eventRefId
-      type: object
-      properties:
-        memberRefId:
-          description: The reference to this member in external system
-          type: string
-          example: Player-1
-        action:
-          description: The identifier that describes the meaning of this event
-          type: string
-          example: win
-        batchId:
-          description: >-
-            The batch identifier is used to group related event stream data together. This could
-            be as simple as a UUID or your internal reference to that distinct player session
-            event
-          type: string
-          example: ecrsamQm23r61KgaPQq7x
-        entityRefId:
-          description: It is a reference to a game/product ID from external system
-          type: string
-          example: fruits
-        sourceValue:
-          format: double
-          description: The actual numerical value related to the event
-          type: number
-          example: '12.345'
-        transactionTimestamp:
-          format: date-time
-          description: >-
-            ISO8601 timestamp for when this event happened. All records are stored in UTC time
-            zone
-          type: string
-          example: '2019-09-25T15:47:00.000+0000'
-        tags:
-          description: A list of Strings of groups that the tag belongs to
-          type: array
-          items:
-            type: string
-          example:
-            - Dc4swmQBVd51K6gPQqFx
-            - Dc4swmQBVd51K6gPQqF2
-          x-vue-tags: true
-          x-vue-form-type: TAG
-        eventRefId:
-          description: ''
-          type: string
-        memberId:
-          description: ''
-          type: string
-        customFields:
-          description: A list of custom field entries
-          type: object
-          additionalProperties: true
-          x-vue-custom-fields: true
-          x-vue-form-type: CUSTOM
-        unitOfMeasure:
-          description: >-
-            The unit of measure is used to determine the type of the source value. It is used to
-            normalize points values for currency based calculations by normalizing the source
-            value.
-          type: string
-      x-vue-create: event
-      x-vue-creator: events
     UpdateSpaceRequest:
       required: []
       type: object
@@ -18408,74 +18341,6 @@ components:
                 text: Level-Up
       x-vue-create: product
       x-vue-creator: products
-    UpdateProductRequest:
-      description: This is a request for Product update
-      allOf:
-        -
-          $ref: '#/components/schemas/UpdateModelDefault'
-        -
-          $ref: '#/components/schemas/UpdateOptParamModels'
-        -
-          required: []
-          type: object
-          properties:
-            name:
-              description: The name of the product
-              type: string
-              example: Hockey madness
-            description:
-              description: The description of the product for your reference
-              type: string
-              example: Spin the hockey wheal
-              x-vue-form-type: TEXTAREA
-            icon:
-              description: An Icon id that has been pre uploaded to the system to display for Product
-              type: string
-              example: Dc4swmQBVd51K6gPQqFx
-            banner:
-              description: Link to the banner
-              type: string
-              example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
-            bannerLowResolution:
-              description: Link to the bannerLowResolution
-              type: string
-              example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
-            bannerHighResolution:
-              description: Link to the bannerHighResolution
-              type: string
-              example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
-            adjustmentFactor:
-              format: double
-              description: The multiplier to apply to source values received for this product events
-              type: number
-              example: '1'
-            actionTypeAdjustmentFactors:
-              type: array
-              items:
-                $ref: '#/components/schemas/ActionTypeAdjustmentFactor'
-      example:
-        id: ziqniModelId
-        metadata:
-          key1: value1
-          key2: value
-        tags:
-          - tagId1
-          - tagId2
-        customFields:
-          customField1: customFieldValue1
-          customField2: customFieldValue2
-        name: name
-        description: description
-        adjustmentFactor: 28.55
-        actionTypeAdjustmentFactors:
-          -
-            adjustmentFactor: 67.71
-            actionTypeId: ziqniModelId
-          -
-            adjustmentFactor: 96.91
-            actionTypeId: ziqniModelId
-      x-vue-update: product
-      x-vue-updater: products
     ConnectionType:
       description: Connection Types
       enum:
@@ -19524,6 +19389,78 @@ components:
         onStatusChangeTo:
           $ref: '#/components/schemas/AwardStateActions'
           description: When this award status is changed to the specified value
+    UpdateProductRequest:
+      description: This is a request for Product update
+      allOf:
+        -
+          $ref: '#/components/schemas/UpdateModelDefault'
+        -
+          $ref: '#/components/schemas/UpdateOptParamModels'
+        -
+          required: []
+          type: object
+          properties:
+            name:
+              description: The name of the product
+              type: string
+              example: Hockey madness
+            productType:
+              description: Product type
+              type: string
+              example: product type
+            description:
+              description: The description of the product for your reference
+              type: string
+              example: Spin the hockey wheal
+              x-vue-form-type: TEXTAREA
+            icon:
+              description: An Icon id that has been pre uploaded to the system to display for Product
+              type: string
+              example: Dc4swmQBVd51K6gPQqFx
+            banner:
+              description: Link to the banner
+              type: string
+              example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
+            bannerLowResolution:
+              description: Link to the bannerLowResolution
+              type: string
+              example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
+            bannerHighResolution:
+              description: Link to the bannerHighResolution
+              type: string
+              example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
+            adjustmentFactor:
+              format: double
+              description: The multiplier to apply to source values received for this product events
+              type: number
+              example: '1'
+            actionTypeAdjustmentFactors:
+              type: array
+              items:
+                $ref: '#/components/schemas/ActionTypeAdjustmentFactor'
+      example:
+        id: ziqniModelId
+        metadata:
+          key1: value1
+          key2: value
+        tags:
+          - tagId1
+          - tagId2
+        customFields:
+          customField1: customFieldValue1
+          customField2: customFieldValue2
+        name: name
+        description: description
+        adjustmentFactor: 28.55
+        actionTypeAdjustmentFactors:
+          -
+            adjustmentFactor: 67.71
+            actionTypeId: ziqniModelId
+          -
+            adjustmentFactor: 96.91
+            actionTypeId: ziqniModelId
+      x-vue-update: product
+      x-vue-updater: products
     AwardStateActions:
       description: |-
         Available actions for award status
@@ -19536,18 +19473,84 @@ components:
         Expired (Code 100)
         Cancelled (Code 101)
         Declined (Code 102)
-      enum:
-        - Issued
-        - Held
-        - Claimed
-        - Processing
-        - Delivered
-        - Expired
-        - Cancelled
-        - Declined
-        - Completed
       type: string
-      example: '"Claimed"'
+    CreateEventRequest:
+      required:
+        - action
+        - sourceValue
+        - transactionTimestamp
+        - entityRefId
+        - memberRefId
+        - eventRefId
+      type: object
+      properties:
+        constraints:
+          description: 'Additional constraints: - fastResponse [201], writeAsBatch [if one fails all fail]'
+          type: array
+          items:
+            type: string
+          example: ''
+        memberRefId:
+          description: The reference to this member in external system
+          type: string
+          example: Player-1
+        action:
+          description: The identifier that describes the meaning of this event
+          type: string
+          example: win
+        batchId:
+          description: >-
+            The batch identifier is used to group related event stream data together. This could
+            be as simple as a UUID or your internal reference to that distinct player session
+            event
+          type: string
+          example: ecrsamQm23r61KgaPQq7x
+        entityRefId:
+          description: It is a reference to a game/product ID from external system
+          type: string
+          example: fruits
+        sourceValue:
+          format: double
+          description: The actual numerical value related to the event
+          type: number
+          example: '12.345'
+        transactionTimestamp:
+          format: date-time
+          description: >-
+            ISO8601 timestamp for when this event happened. All records are stored in UTC time
+            zone
+          type: string
+          example: '2019-09-25T15:47:00.000+0000'
+        tags:
+          description: A list of Strings of groups that the tag belongs to
+          type: array
+          items:
+            type: string
+          example:
+            - Dc4swmQBVd51K6gPQqFx
+            - Dc4swmQBVd51K6gPQqF2
+          x-vue-tags: true
+          x-vue-form-type: TAG
+        eventRefId:
+          description: Your refence to this event
+          type: string
+        memberId:
+          description: The member id in the ZIQNI system
+          type: string
+        customFields:
+          description: A list of custom field entries
+          type: object
+          additionalProperties: true
+          x-vue-custom-fields: true
+          x-vue-form-type: CUSTOM
+        unitOfMeasure:
+          description: >-
+            The unit of measure is used to determine the type of the source value. It is used to
+            normalize points values for currency based calculations by normalizing the source
+            value.
+          type: string
+      x-vue-create: event
+      x-vue-creator: events
   responses:
     ApiResponseBody:
       content:
