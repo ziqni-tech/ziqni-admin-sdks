@@ -80,7 +80,7 @@ public class RewardsApiTest implements tests.utils.CompleteableFutureTestWrapper
         try {
             final var createRequest = loadRewardTypesData.getCreateRequest();
             final var createRequestAsList = loadRewardTypesData.getCreateRequestAsList(createRequest);
-            final var response = loadRewardTypesData.createTestData(createRequestAsList);
+           final var response = loadRewardTypesData.createTestData(createRequestAsList);
             this.rewardTypeId = response.getResults().get(0).getId();
             rewardTypeIdsToDelete.add(rewardTypeId);
 
@@ -132,7 +132,24 @@ public class RewardsApiTest implements tests.utils.CompleteableFutureTestWrapper
         assertEquals(1, response.getResults().size(), "Should contain created entity");
         assertNotNull(response.getResults().get(0).getId(), "Created entity should has id");
         logger.info(response.getResults().get(0).getId());
-        idsToDelete.add(response.getResults().get(0).getId());
+       // idsToDelete.add(response.getResults().get(0).getId());
+    }
+    @Test
+    @Order(1)
+    public void createRewardWithScheduleReturnOkTest() throws ApiException {
+
+        final var createRequest = loadData.getCreateRequest("dtwQ8o8BjDDsPIBaEscr", achievementId, rewardEntityType);
+        final var createRequestAsList = loadData.getCreateRequestAsList(createRequest);
+
+        ModelApiResponse response = api.createRewards(createRequestAsList).join();
+
+        assertNotNull(response);
+        assertNotNull(response.getResults());
+        assertNotNull(response.getErrors());
+        assertEquals(1, response.getResults().size(), "Should contain created entity");
+        assertNotNull(response.getResults().get(0).getId(), "Created entity should has id");
+        logger.info(response.getResults().get(0).getId());
+        // idsToDelete.add(response.getResults().get(0).getId());
     }
 
     @Test

@@ -4,9 +4,7 @@ import com.ziqni.admin.sdk.ZiqniAdminApiFactory;
 import com.ziqni.admin.sdk.ApiException;
 import com.ziqni.admin.sdk.api.RewardTypesApiWs;
 import com.ziqni.admin.sdk.configuration.AdminApiClientConfigBuilder;
-import com.ziqni.admin.sdk.model.CreateRewardTypeRequest;
-import com.ziqni.admin.sdk.model.ModelApiResponse;
-import com.ziqni.admin.sdk.model.UnitOfMeasureType;
+import com.ziqni.admin.sdk.model.*;
 import com.ziqni.admin.sdk.util.ApiClientFactoryUtil;
 import tests.utils.CompleteableFutureTestWrapper;
 
@@ -28,16 +26,41 @@ public class LoadRewardTypesData implements CompleteableFutureTestWrapper {
     public CreateRewardTypeRequest getCreateRequest() {
         String givenName = "Test_name-" + UUID.randomUUID().toString();
         String givenKey = "Test_key-" + UUID.randomUUID().toString();
-        UnitOfMeasureType unitOfMeasureType = UnitOfMeasureType.OTHER;
         List<String> constraints = new ArrayList<>();
         constraints.add("system");
 
         return new CreateRewardTypeRequest()
                 .name(givenName)
                 .key(givenKey)
-                .unitOfMeasure(unitOfMeasureType.getValue())
+                .unitOfMeasure("1TGcUn4BguiNwDWXZKu1")
                 .addConstraints(constraints)
                 .metadata(new LoadMetadata().getMetadataAsList());
+    }
+    public CreateRewardTypeRequest getCreateRequestWithSchedule() {
+        String givenName = "Test_name-" + UUID.randomUUID().toString();
+        String givenKey = "Test_key-" + UUID.randomUUID().toString();
+        var unitOfMeasure = "WmhI4o4B9NMw64nNXvxK";
+        List<String> constraints = new ArrayList<>();
+        constraints.add("system");
+        AwardScheduling awardSchedulingIssued=new AwardScheduling();
+        awardSchedulingIssued.setThenAwardActiveUntil("P1D");
+        awardSchedulingIssued.setOnStatusChangeTo(AwardStateActions.ISSUED);
+        AwardScheduling awardSchedulingClaimed=new AwardScheduling();
+        awardSchedulingClaimed.setThenAwardActiveUntil("P3D");
+        awardSchedulingClaimed.setOnStatusChangeTo(AwardStateActions.CLAIMED);
+        AwardScheduling awardSchedulingCompleted=new AwardScheduling();
+        awardSchedulingCompleted.setThenAwardActiveUntil("P3D");
+        awardSchedulingCompleted.setOnStatusChangeTo(AwardStateActions.COMPLETED);
+
+
+        return new CreateRewardTypeRequest()
+                .name(givenName)
+                .key(givenKey)
+                .unitOfMeasure(unitOfMeasure)
+                .addConstraints(constraints)
+                .metadata(new LoadMetadata().getMetadataAsList())
+                .scheduling(List.of(awardSchedulingIssued,awardSchedulingClaimed,awardSchedulingCompleted))
+                ;
     }
 
     public List<CreateRewardTypeRequest> getCreateRequestAsList(int numberOfItems) {

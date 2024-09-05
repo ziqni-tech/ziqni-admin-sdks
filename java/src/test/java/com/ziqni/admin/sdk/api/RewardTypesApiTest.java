@@ -111,6 +111,22 @@ public class RewardTypesApiTest implements tests.utils.CompleteableFutureTestWra
 
         idsToDelete.add(response.getResults().get(0).getId());
     }
+    @Test
+    @Order(1)
+    public void createRewardTypesWithScheduleReturnOkTest() throws ApiException {
+        final var createRequest = loadData.getCreateRequestWithSchedule();
+        final var createRequestAsList = loadData.getCreateRequestAsList(createRequest);
+
+        final var response = $(api.createRewardTypes(createRequestAsList));
+
+        assertNotNull(response);
+        assertNotNull(response.getResults());
+        assertNotNull(response.getErrors());
+        assertEquals(1, response.getResults().size(), "Should contain created entity");
+        assertNotNull(response.getResults().get(0).getId(), "Created entity should has id");
+
+      //  idsToDelete.add(response.getResults().get(0).getId());
+    }
 
     @Test
     @Order(2)
@@ -283,7 +299,8 @@ public class RewardTypesApiTest implements tests.utils.CompleteableFutureTestWra
         final var id = createResponse.getResults().get(0).getId();
 
         final var ids = List.of(id);
-        final var limit = 1;
+     final var limit = 1;
+
         final var skip = 0;
 
         final var response = $(api.getRewardTypes(ids, limit, skip));
@@ -300,7 +317,7 @@ public class RewardTypesApiTest implements tests.utils.CompleteableFutureTestWra
         Assertions.assertNotNull(actionType.getMetadata(), "Found metadata should not be null");
         Assertions.assertNotNull(actionType.getCustomFields(), "Found custom fields should not be null");
 
-        idsToDelete.addAll(ids);
+//        idsToDelete.addAll(ids);
     }
 
     @Test

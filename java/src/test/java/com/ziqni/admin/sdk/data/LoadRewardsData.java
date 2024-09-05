@@ -4,9 +4,7 @@ import com.ziqni.admin.sdk.ZiqniAdminApiFactory;
 import com.ziqni.admin.sdk.ApiException;
 import com.ziqni.admin.sdk.api.RewardsApiWs;
 import com.ziqni.admin.sdk.configuration.AdminApiClientConfigBuilder;
-import com.ziqni.admin.sdk.model.CreateEntityRewardRequest;
-import com.ziqni.admin.sdk.model.ModelApiResponse;
-import com.ziqni.admin.sdk.model.RewardEntityType;
+import com.ziqni.admin.sdk.model.*;
 import com.ziqni.admin.sdk.util.ApiClientFactoryUtil;
 import tests.utils.CompleteableFutureTestWrapper;
 
@@ -31,7 +29,10 @@ public class LoadRewardsData implements CompleteableFutureTestWrapper {
         final var givenRewardValue = new Random().nextDouble();
         final var constraints = new ArrayList<String>();
         constraints.add("memberAcknowledgmentRequired");
-
+        AwardScheduling awardScheduling=new AwardScheduling();
+        awardScheduling.setThenAwardActiveFrom("2024-06-07T08:00:00");
+        awardScheduling.setThenAwardActiveUntil("2024-06-08T08:00:00");
+        awardScheduling.setOnStatusChangeTo(AwardStateActions.CLAIMED);
         return new CreateEntityRewardRequest()
                 .name(givenName)
                 .rewardRank(givenRewardRank)
@@ -44,7 +45,9 @@ public class LoadRewardsData implements CompleteableFutureTestWrapper {
                 .entityId(entityId)
                 .description("Test_description")
                 .metadata(new LoadMetadata().getMetadataAsList())
-                .delay(100);
+                .delay(100)
+                .scheduling(List.of(awardScheduling))
+                ;
     }
 
     public List<CreateEntityRewardRequest> getCreateRequestAsList(int numberOfItems, String rewardTypeId, String entityId, String entityType) {
