@@ -1,7 +1,7 @@
 openapi: 3.0.2
 info:
   title: ZIQNI Admin API
-  version: 3.0.15
+  version: 3.0.16
   description: |-
     Ziqni Application Services are used to manage and configure spaces.
     
@@ -8316,6 +8316,45 @@ paths:
       summary: Update the state of an award
       description: Claim Awards that need to be actioned at
       x-codegen-request-body-name: body
+  /goal-metrics:
+    summary: Get active goal information
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GoalMetricsRequest'
+      tags:
+        - goals
+      responses:
+        '200':
+          $ref: '#/components/responses/GoalMetricsResponseBody'
+        '400':
+          $ref: '#/components/responses/GoalMetricsResponseBody'
+        '401':
+          $ref: '#/components/responses/GoalMetricsResponseBody'
+        '403':
+          $ref: '#/components/responses/GoalMetricsResponseBody'
+        '404':
+          $ref: '#/components/responses/GoalMetricsResponseBody'
+        '413':
+          $ref: '#/components/responses/GoalMetricsResponseBody'
+        '500':
+          $ref: '#/components/responses/GoalMetricsResponseBody'
+        '501':
+          $ref: '#/components/responses/GoalMetricsResponseBody'
+        '503':
+          $ref: '#/components/responses/GoalMetricsResponseBody'
+      security:
+        -
+          OAuth2:
+            - ViewGoalInformation
+      operationId: getGoalMetrics
+      summary: Get active goal metrics
+      description: Returns a list of metrics relating to the speciifed goals.
+      x-codegen-request-body-name: body
+      x-vue-item: GoalInfo
+      x-vue-list: GoalInfoList
 components:
   schemas:
     ProductReduced:
@@ -14516,12 +14555,6 @@ components:
           type: array
           items:
             type: string
-      example:
-        label: events_action_sourceValue_count (events_action_sourceValue_count)
-        labels: events_action
-        data:
-          - 1578
-          - 1578
     DataSets:
       description: >-
         This is a map of data sets. The keys for this map are the data set labels and values are
@@ -19534,6 +19567,98 @@ components:
             actionTypeId: ziqniModelId
       x-vue-update: product
       x-vue-updater: products
+    GoalMetricsResponse:
+      required:
+        - meta
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/MetaExtended'
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/GoalMetrics'
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
+    GoalMetricsRequest:
+      required: []
+      type: object
+      properties:
+        memberIds:
+          description: The member identifiers to use
+          type: array
+          items:
+            type: string
+        entityIds:
+          description: The entity identifiers to use
+          type: array
+          items:
+            type: string
+    GoalMetrics:
+      required:
+        - accountId
+      type: object
+      properties:
+        accountId:
+          description: The account identifier
+          type: string
+        memberId:
+          description: The member identifier
+          type: string
+        entityId:
+          description: The entity identifier
+          type: string
+        value:
+          description: The current value assigned to this goal
+          type: number
+        percentageComplete:
+          format: double
+          description: What percentage of this goal has been completed
+          type: number
+        mostSignificantScores:
+          description: The most significant scores
+          type: array
+          items:
+            format: double
+            type: number
+        timestamp:
+          format: int64
+          description: Internal timestamp associated with this goal
+          type: integer
+          x-es-type: Date
+        updateCount:
+          format: int64
+          description: A count of the total number of mutations this goal has undergone
+          type: integer
+          x-es-type: Long
+        entityType:
+          format: int32
+          description: The type of entity
+          type: integer
+          x-es-type: Integer
+        markerTimeStamp:
+          format: int64
+          description: A point in time marker
+          type: integer
+        goalReached:
+          description: Has the minimum requirements been met
+          type: boolean
+        statusCode:
+          format: int32
+          description: The system status code assigned to this goal
+          type: integer
+        position:
+          format: int32
+          description: The position of this record in a sorted index if relevant
+          type: integer
+        userDefinedValues:
+          description: The user defined values for this goal
+          type: object
+          additionalProperties:
+            format: double
+            type: number
   responses:
     ApiResponseBody:
       content:
@@ -20687,6 +20812,15 @@ components:
                         message: some text
                         errorAt: 92
       description: A list of Instant wins and/or errors
+    GoalMetricsResponseBody:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/GoalMetricsResponse'
+          examples:
+            Example:
+              $ref: '#/components/examples/GetErrorResponse'
+      description: A list of messages and/or errors
   parameters:
     spaceName:
       name: spaceName
