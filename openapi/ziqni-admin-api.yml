@@ -19644,9 +19644,9 @@ components:
         goalReached:
           description: Has the minimum requirements been met
           type: boolean
-        status:
+        statusCode:
           description: The system status assigned to this goal
-          type: string
+          type: integer
         position:
           format: int32
           description: The position of this record in a sorted index if relevant
