@@ -10,8 +10,8 @@ Method | HTTP request | Description
 [**getAwardsByQueryWithHttpInfo**](AwardsApi.md#getAwardsByQueryWithHttpInfo) | **POST** /awards/query | Query Awards
 [**updateAwards**](AwardsApi.md#updateAwards) | **PUT** /awards | Update awards
 [**updateAwardsWithHttpInfo**](AwardsApi.md#updateAwardsWithHttpInfo) | **PUT** /awards | Update awards
-[**updateAwardsState**](AwardsApi.md#updateAwardsState) | **PUT** /awards/state | Claim awards
-[**updateAwardsStateWithHttpInfo**](AwardsApi.md#updateAwardsStateWithHttpInfo) | **PUT** /awards/state | Claim awards
+[**updateAwardsState**](AwardsApi.md#updateAwardsState) | **PUT** /awards/state | Update the state of an award
+[**updateAwardsStateWithHttpInfo**](AwardsApi.md#updateAwardsStateWithHttpInfo) | **PUT** /awards/state | Update the state of an award
 
 
 
@@ -530,7 +530,7 @@ CompletableFuture<ApiResponse<[**ModelApiResponse**](ModelApiResponse.md)>>
 
 > CompletableFuture<ModelApiResponse> updateAwardsState(body)
 
-Claim awards
+Update the state of an award
 
 Claim Awards that need to be actioned at
 
@@ -610,7 +610,7 @@ CompletableFuture<[**ModelApiResponse**](ModelApiResponse.md)>
 
 > CompletableFuture<ApiResponse<ModelApiResponse>> updateAwardsState updateAwardsStateWithHttpInfo(body)
 
-Claim awards
+Update the state of an award
 
 Claim Awards that need to be actioned at
 
