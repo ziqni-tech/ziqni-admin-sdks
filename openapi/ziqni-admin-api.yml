@@ -1,7 +1,7 @@
 openapi: 3.0.2
 info:
   title: ZIQNI Admin API
-  version: 3.0.16
+  version: 3.0.17
   description: |-
     Ziqni Application Services are used to manage and configure spaces.
     
@@ -19634,9 +19634,8 @@ components:
           type: integer
           x-es-type: Long
         entityType:
-          format: int32
           description: The type of entity
-          type: integer
+          type: string
           x-es-type: Integer
         markerTimeStamp:
           format: int64
@@ -19645,10 +19644,9 @@ components:
         goalReached:
           description: Has the minimum requirements been met
           type: boolean
-        statusCode:
-          format: int32
-          description: The system status code assigned to this goal
-          type: integer
+        status:
+          description: The system status assigned to this goal
+          type: string
         position:
           format: int32
           description: The position of this record in a sorted index if relevant
