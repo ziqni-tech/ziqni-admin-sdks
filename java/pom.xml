@@ -7,7 +7,7 @@
     <groupId>com.ziqni</groupId>
     <artifactId>ziqni-admin-sdk</artifactId>
     <name>ZIQNI Admin SDK Java Client</name>
-    <version>1.0.20</version>
+    <version>1.0.21</version>
     <packaging>jar</packaging>
     <url>https://github.com/ziqni-tech/ziqni-admin-sdks</url>
     <description>ZIQNI Admin SDK Java Client</description>
@@ -46,8 +46,8 @@
     </distributionManagement>
 
     <properties>
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
 
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
@@ -55,6 +55,7 @@
         <javax-annotation-version>1.3.2</javax-annotation-version>
         <javax-ws-rs-api-version>2.1.1</javax-ws-rs-api-version>
         <junit-version>5.4.0</junit-version>
+        <spring-version>5.3.11</spring-version>
         <spring-version>5.3.11</spring-version>
         <javax-version>1.1</javax-version>
         <jetty-version>9.4.51.v20230217</jetty-version>
@@ -66,12 +67,24 @@
         <jackson-datatype-jsr310.version>2.12.3</jackson-datatype-jsr310.version>
         <jackson-databind-nullable>0.2.1</jackson-databind-nullable>
         <commons-configuration2.version>2.7</commons-configuration2.version>
-        <spring-version>5.3.11</spring-version>
         <jupiter.version>5.7.0</jupiter.version>
         <caffeine.version>3.1.1</caffeine.version>
         <maven.compiler.plugin.version>2.3.2</maven.compiler.plugin.version>
         <maven.shade.plugin.version>3.2.4</maven.shade.plugin.version>
+        <aws-java-sdk.version>2.25.67</aws-java-sdk.version>
     </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>software.amazon.awssdk</groupId>
+                <artifactId>bom</artifactId>
+                <version>${aws-java-sdk.version}</version> <!-- Use the latest stable version -->
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <dependencies>
         <dependency>
@@ -138,9 +151,9 @@
 
         <!-- https://mvnrepository.com/artifact/com.amazonaws/aws-java-sdk-ssm -->
         <dependency>
-            <groupId>com.amazonaws</groupId>
-            <artifactId>aws-java-sdk-ssm</artifactId>
-            <version>1.12.243</version>
+            <groupId>software.amazon.awssdk</groupId>
+            <artifactId>ssm</artifactId>
+            <version>${aws-java-sdk.version}</version>
         </dependency>
 
 
@@ -286,7 +299,7 @@
                                     <version>3</version>
                                 </requireMavenVersion>
                                 <requireJavaVersion>
-                                    <version>11</version>
+                                    <version>17</version>
                                 </requireJavaVersion>
                             </rules>
                         </configuration>
