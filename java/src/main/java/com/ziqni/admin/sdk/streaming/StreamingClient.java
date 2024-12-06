@@ -3,7 +3,6 @@
  */
 package com.ziqni.admin.sdk.streaming;
 
-import com.google.common.eventbus.Subscribe;
 import com.ziqni.admin.sdk.ZiqniAdminSDKEventBus;
 import com.ziqni.admin.sdk.configuration.AdminApiClientConfiguration;
 import com.ziqni.admin.sdk.context.WsClientTransportError;
@@ -64,7 +63,6 @@ public class StreamingClient {
         }));
     }
 
-    @Subscribe
     public void onWsClientTransportError(WsClientTransportError wsClientTransportError){
         this.stop(false).thenAccept(unused -> {
             if(Objects.nonNull(this.nextReconnect.get()))
@@ -150,7 +148,7 @@ public class StreamingClient {
                             if(Objects.nonNull(tPayload))
                                 this.wsClient.prepareMessageToSend(stompHeaders, tPayload).run();
                             else
-                                logger.warn("Message body is empty {}", stompHeaders);
+                                logger.warn("Message body is empty " + stompHeaders);
                         }
                 );
             }
