@@ -24,8 +24,9 @@ import org.springframework.util.concurrent.FailureCallback;
 import org.springframework.util.concurrent.ListenableFuture;
 import org.springframework.util.concurrent.SuccessCallback;
 import org.springframework.web.socket.WebSocketHttpHeaders;
-import org.springframework.web.socket.client.jetty.JettyWebSocketClient;
+import org.springframework.web.socket.client.standard.StandardWebSocketClient;
 import org.springframework.web.socket.messaging.WebSocketStompClient;
+import org.springframework.web.socket.sockjs.client.RestTemplateXhrTransport;
 import org.springframework.web.socket.sockjs.client.SockJsClient;
 import org.springframework.web.socket.sockjs.client.Transport;
 import org.springframework.web.socket.sockjs.client.WebSocketTransport;
@@ -101,9 +102,14 @@ public class WsClient extends WebSocketStompClient{
 
     private static SockJsClient makeSockJs(){
         // setup transports & socksjs
-        JettyWebSocketClient jettyWebSocketClient = new JettyWebSocketClient();
+        // Create a standard WebSocket client
+        StandardWebSocketClient webSocketClient = new StandardWebSocketClient();
+
+        // Setup transports for SockJS
         List<Transport> transports = new ArrayList<>(2);
-        transports.add(new WebSocketTransport(jettyWebSocketClient));
+        transports.add(new WebSocketTransport(webSocketClient));
+        transports.add(new RestTemplateXhrTransport());
+
         return new SockJsClient(transports);
     }
 

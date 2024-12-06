@@ -51,11 +51,11 @@ public class LoadContestsData implements CompleteableFutureTestWrapper {
             scoringStrategy.setLimitUpdatesTo(400);
             scoringStrategy.setRecordTimeWhenSumReaches(300D);
             scoringStrategy.setSumBestXOf(100);
-
-            Strategy strategy = new Strategy();
-            strategy.setRankingStrategy(rankingStrategy);
-            strategy.setScoringStrategy(scoringStrategy);
-            strategy.setStrategyType(StrategyType.FIRSTTO);
+//
+//            Strategy strategy = new Strategy();
+//            strategy.setRankingStrategy(rankingStrategy);
+//            strategy.setScoringStrategy(scoringStrategy);
+//            strategy.setStrategyType(StrategyType.FIRSTTO);
 
 //            SubRule subRule = new SubRule();
 //            subRule.setConstant(subRuleConstant);

@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.ConcurrentHashMap;
+
 public class LocalEventBus {
 
     private final ConcurrentHashMap<Class<?>, List<Object>> subscribers = new ConcurrentHashMap<>();
@@ -11,32 +15,38 @@ public class LocalEventBus {
     public LocalEventBus() {
     }
 
-    public void post(Object event) {
-        final var found  = subscribers.get(event.getClass());
 
-        if(found != null) {
-            found.forEach();
+    public void post(Object event) {
+        final List<Object> found = subscribers.get(event.getClass());
+        if (found != null) {
+            found.forEach(subscriber -> {
+                try {
+                    subscriber.getClass()
+                            .getMethod("handleEvent", event.getClass())
+                            .invoke(subscriber, event);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            });
         }
     }
 
-    public void register(Object object) {
-        this.subscribers.compute(object.getClass(), (k, v) -> {
-            if (v == null) {
-                v = new ArrayList<>();
-                v.add(object);
-            } else {
-                v.add(object);
+    // Register a subscriber for events of its class type
+    public void register(Object subscriber) {
+        subscribers.compute(subscriber.getClass(), (key, value) -> {
+            if (value == null) {
+                value = new ArrayList<>();
             }
-            return v;
+            value.add(subscriber);
+            return value;
         });
     }
 
-    public void unregister(Object object) {
-        this.subscribers.compute(object.getClass(), (k, v) -> {
-            if (v != null) {
-                v.remove(object);
-            }
-            return v;
+    // Unregister a subscriber
+    public void unregister(Object subscriber) {
+        subscribers.computeIfPresent(subscriber.getClass(), (key, value) -> {
+            value.remove(subscriber);
+            return value.isEmpty() ? null : value;
         });
     }
 }
