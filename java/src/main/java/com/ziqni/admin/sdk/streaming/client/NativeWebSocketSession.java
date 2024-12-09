@@ -15,12 +15,10 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 public class NativeWebSocketSession implements WebSocketSession {
 
     private final WebSocket webSocket;
-    private final URI uri;
     private final ConcurrentLinkedQueue<WebSocketMessage<?>> messageQueue = new ConcurrentLinkedQueue<>();
 
-    public NativeWebSocketSession(WebSocket webSocket, URI uri) {
+    public NativeWebSocketSession(WebSocket webSocket) {
         this.webSocket = webSocket;
-        this.uri = uri;
     }
 
     @Override

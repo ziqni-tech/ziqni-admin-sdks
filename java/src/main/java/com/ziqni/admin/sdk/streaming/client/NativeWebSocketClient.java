@@ -26,7 +26,7 @@ public class NativeWebSocketClient implements WebSocketClient {
         CompletableFuture<WebSocket> webSocketFuture = httpClient.newWebSocketBuilder()
                 .buildAsync(uri, new NativeWebSocketHandlerAdapter(webSocketHandler));
 
-        return webSocketFuture.thenApply(webSocket -> new NativeWebSocketSession(webSocket, uri));
+        return webSocketFuture.thenApply(NativeWebSocketSession::new);
     }
 
     @Override
