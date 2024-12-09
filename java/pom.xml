@@ -56,11 +56,12 @@
         <build-helper-maven-plugin.version>3.6.0</build-helper-maven-plugin.version>
 
         <jackson-databind-nullable-version>0.2.1</jackson-databind-nullable-version>
-        <javax-annotation-version>1.3.2</javax-annotation-version>
-        <javax-ws-rs-api-version>2.1.1</javax-ws-rs-api-version>
+        <jakarta-annotation-version>1.3.2</jakarta-annotation-version>
+        <jakarta-ws-rs-api-version>4.0.0</jakarta-ws-rs-api-version>
+        <jakarta-version>2.2.0</jakarta-version>
+
         <junit-version>5.4.0</junit-version>
         <spring-version>6.1.14</spring-version>
-        <javax-version>1.1</javax-version>
         <jetty-version>11.0.24</jetty-version>
         <junit-version>5.4.0</junit-version>
         <logback.version>1.5.12</logback.version>
@@ -113,17 +114,13 @@
             <artifactId>caffeine</artifactId>
             <version>${caffeine.version}</version>
         </dependency>
-<!--        <dependency>-->
-<!--            <groupId>com.google.guava</groupId>-->
-<!--            <artifactId>guava</artifactId>-->
-<!--            <version>30.1.1-jre</version>-->
-<!--        </dependency>-->
 
         <dependency>
             <groupId>com.fasterxml.jackson.datatype</groupId>
             <artifactId>jackson-datatype-jsr310</artifactId>
             <version>${jackson-datatype-jsr310.version}</version>
         </dependency>
+<!--        <dependency>-->
 <!--        <dependency>-->
 <!--            <groupId>io.projectreactor.netty</groupId>-->
 <!--            <artifactId>reactor-netty</artifactId>-->
@@ -172,9 +169,9 @@
         </dependency>
 
         <dependency>
-            <groupId>javax.ws.rs</groupId>
-            <artifactId>javax.ws.rs-api</artifactId>
-            <version>${javax-ws-rs-api-version}</version>
+            <groupId>jakarta.ws.rs</groupId>
+            <artifactId>jakarta.ws.rs-api</artifactId>
+            <version>${jakarta-ws-rs-api-version}</version>
         </dependency>
 
         <dependency>
@@ -204,14 +201,14 @@
         </dependency>
 
         <dependency>
-            <groupId>javax.websocket</groupId>
-            <artifactId>javax.websocket-api</artifactId>
-            <version>${javax-version}</version>
+            <groupId>jakarta.websocket</groupId>
+            <artifactId>jakarta.websocket-api</artifactId>
+            <version>${jakarta-version}</version>
         </dependency>
         <dependency>
-            <groupId>javax.websocket</groupId>
-            <artifactId>javax.websocket-client-api</artifactId>
-            <version>${javax-version}</version>
+            <groupId>jakarta.websocket</groupId>
+            <artifactId>jakarta.websocket-client-api</artifactId>
+            <version>${jakarta-version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
@@ -242,19 +239,18 @@
             <version>${commons-beanutils.version}</version>
         </dependency>
 
+        <dependency>
+            <groupId>com.auth0</groupId>
+            <artifactId>java-jwt</artifactId>
+            <version>3.8.3</version>
+        </dependency>
+
         <!-- TEST Dependencies -->
 
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
             <version>${jupiter.version}</version>
-            <scope>test</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>com.auth0</groupId>
-            <artifactId>java-jwt</artifactId>
-            <version>3.8.3</version>
             <scope>test</scope>
         </dependency>
 
