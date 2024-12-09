@@ -20,9 +20,6 @@ import org.springframework.messaging.simp.stomp.StompHeaders;
 import org.springframework.messaging.simp.stomp.StompSession;
 import org.springframework.scheduling.TaskScheduler;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
-import org.springframework.util.concurrent.FailureCallback;
-import org.springframework.util.concurrent.ListenableFuture;
-import org.springframework.util.concurrent.SuccessCallback;
 import org.springframework.web.socket.WebSocketHandler;
 import org.springframework.web.socket.WebSocketHttpHeaders;
 import org.springframework.web.socket.client.WebSocketClient;
@@ -61,9 +58,9 @@ public class WsClient extends WebSocketStompClient{
     private StompSession stompSession;
     private ZiqniSimpleEventBus eventBus;
 
-    private final List<SuccessCallback<StompSession>> connectListeners;
-
-    private final List<FailureCallback> disconnectListeners;
+//    private final List<SuccessCallback<StompSession>> connectListeners;
+//
+//    private final List<FailureCallback> disconnectListeners;
 
     public static final int SevereFailure = -1;
     public static final int NotConnected = 0;
@@ -87,8 +84,8 @@ public class WsClient extends WebSocketStompClient{
         this.wsUri = wsUri;
         this.taskScheduler = new ThreadPoolTaskScheduler();
         this.stompSessionHandler = new WsStompSessionHandler(eventBus);
-        this.connectListeners = new ArrayList<>();
-        this.disconnectListeners = new ArrayList<>();
+//        this.connectListeners = new ArrayList<>();
+//        this.disconnectListeners = new ArrayList<>();
         this.stompHeaders = stompHeaders;
         this.onStateChange = onStateChange;
         this.eventBus = eventBus;
@@ -137,21 +134,21 @@ public class WsClient extends WebSocketStompClient{
         return new MessageToSend<>(headers, payload, stompSession);
     }
 
-    /**
-     * Add a listener to fire on successful WebSocket/Stomp connection
-     * @param listener the listener
-     */
-    public void addConnectListener(SuccessCallback<StompSession> listener) {
-        connectListeners.add(listener);
-    }
-
-    /**
-     * Add a listener which fires when the WebSocket/Stomp connection is broken (or fails to connect)
-     * @param listener the listener
-     */
-    public void addDisconnectListener(FailureCallback listener) {
-        disconnectListeners.add(listener);
-    }
+//    /**
+//     * Add a listener to fire on successful WebSocket/Stomp connection
+//     * @param listener the listener
+//     */
+//    public void addConnectListener(SuccessCallback<StompSession> listener) {
+//        connectListeners.add(listener);
+//    }
+//
+//    /**
+//     * Add a listener which fires when the WebSocket/Stomp connection is broken (or fails to connect)
+//     * @param listener the listener
+//     */
+//    public void addDisconnectListener(FailureCallback listener) {
+//        disconnectListeners.add(listener);
+//    }
 
     private void setConnectionState(Integer state){
         this.connectionStateAtomic.set(state);
@@ -294,10 +291,9 @@ public class WsClient extends WebSocketStompClient{
         try {
             updateOauthToken(configuration,stompHeaders);
 
-            final ListenableFuture<StompSession> future = super.connect(wsUri, new WebSocketHttpHeaders(), stompHeaders, stompSessionHandler);
+            final var future = super.connectAsync(wsUri, new WebSocketHttpHeaders(), stompHeaders, stompSessionHandler);
 
-            future.completable()
-                    .thenApply(newStompSession -> {
+            future.thenApply(newStompSession -> {
                         stompSession = newStompSession;
                         logger.info("Connection established successfully with the server.");
                         this.stompSessionHandler.reconnectAllTopics(stompSession);
@@ -309,7 +305,8 @@ public class WsClient extends WebSocketStompClient{
                         return future;
                     });
 
-            return future.completable();
+            return future;
+
         } catch (Exception e) {
             var future = new CompletableFuture<StompSession>().toCompletableFuture();
             future.completeExceptionally(e);
@@ -320,15 +317,15 @@ public class WsClient extends WebSocketStompClient{
 
 
     private void notifyConnectListeners(StompSession session) {
-        for (SuccessCallback<StompSession> successCallback : connectListeners) {
-            successCallback.onSuccess(session);
-        }
+//        for (SuccessCallback<StompSession> successCallback : connectListeners) {
+//            successCallback.onSuccess(session);
+//        }
     }
 
     private void notifyDisconnectListeners(Throwable throwable) {
-        for (FailureCallback failCallback : disconnectListeners) {
-            failCallback.onFailure(throwable);
-        }
+//        for (FailureCallback failCallback : disconnectListeners) {
+//            failCallback.onFailure(throwable);
+//        }
     }
 
     private void setIsConnected() {

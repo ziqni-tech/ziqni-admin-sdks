@@ -3,74 +3,97 @@ package com.ziqni.admin.sdk.streaming.client;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.WebSocket;
-import java.time.Duration;
 import java.util.concurrent.CompletableFuture;
 
-public class NativeWebSocketClient {
+import org.springframework.messaging.converter.MappingJackson2MessageConverter;
+import org.springframework.messaging.simp.stomp.StompFrameHandler;
+import org.springframework.messaging.simp.stomp.StompHeaders;
+import org.springframework.messaging.simp.stomp.StompSession;
+import org.springframework.messaging.simp.stomp.StompSessionHandler;
+
+public class NativeWebSocketStompClient {
 
     private final String uri;
+    private final HttpClient httpClient;
     private WebSocket webSocket;
+    private StompSessionHandler stompSessionHandler;
 
-    public NativeWebSocketClient(String uri) {
+    public NativeWebSocketStompClient(String uri) {
         this.uri = uri;
+        this.httpClient = HttpClient.newHttpClient();
     }
 
     /**
-     * Connects to the WebSocket server.
-     */
-    public CompletableFuture<Void> connect() {
-        HttpClient client = HttpClient.newBuilder()
-                .connectTimeout(Duration.ofSeconds(10))
-                .build();
-
-        this.webSocket = client.newWebSocketBuilder()
-                .buildAsync(URI.create(uri), new SimpleWebSocketListener())
-                .join(); // Wait until the connection is established
-
-        System.out.println("Connected to WebSocket server: " + uri);
-        return CompletableFuture.completedFuture(null);
-    }
-
-    /**
-     * Sends a text message to the WebSocket server.
+     * Connects to the WebSocket server and initializes STOMP communication.
      *
-     * @param message the message to send
+     * @param sessionHandler the STOMP session handler to use
      */
-    public void sendMessage(String message) {
-        if (webSocket == null) {
-            throw new IllegalStateException("WebSocket is not connected");
-        }
-        webSocket.sendText(message, true);
+    public CompletableFuture<Void> connect(StompSessionHandler sessionHandler) {
+        this.stompSessionHandler = sessionHandler;
+
+        CompletableFuture<Void> connectionFuture = new CompletableFuture<>();
+
+        this.webSocket = httpClient.newWebSocketBuilder()
+                .buildAsync(URI.create(uri), new WebSocket.Listener() {
+
+                    @Override
+                    public void onOpen(WebSocket webSocket) {
+                        System.out.println("WebSocket connection established.");
+                        webSocket.request(1); // Start receiving messages
+                        stompSessionHandler.afterConnected(new StompSession() {
+                            // Implement the StompSession interface methods here
+                            @Override
+                            public String getSessionId() {
+                                return "native-session";
+                            }
+
+                            @Override
+                            public boolean isConnected() {
+                                return true;
+                            }
+
+                            @Override
+                            public void send(String destination, Object payload) {
+                                String stompFrame = buildSendFrame(destination, payload);
+                                webSocket.sendText(stompFrame, true);
+                            }
+
+                            // Other methods can be implemented as needed
+                        }, null);
+                        connectionFuture.complete(null);
+                    }
+
+                    @Override
+                    public CompletableFuture<?> onText(WebSocket webSocket, CharSequence data, boolean last) {
+                        // Parse and handle STOMP frames
+                        stompSessionHandler.handleFrame(null, data.toString());
+                        webSocket.request(1); // Request next message
+                        return null;
+                    }
+
+                    @Override
+                    public void onError(WebSocket webSocket, Throwable error) {
+                        stompSessionHandler.handleTransportError(null, error);
+                        connectionFuture.completeExceptionally(error);
+                    }
+
+                    @Override
+                    public CompletableFuture<?> onClose(WebSocket webSocket, int statusCode, String reason) {
+                        System.out.println("WebSocket closed. Code: " + statusCode + ", Reason: " + reason);
+                        return CompletableFuture.completedFuture(null);
+                    }
+                }).join();
+
+        return connectionFuture;
     }
 
-
-    public void sendStompFrame(String stompFrame) {
-        if (webSocket == null) {
-            throw new IllegalStateException("WebSocket is not connected");
-        }
-        webSocket.sendText(stompFrame, true);
+    private String buildSendFrame(String destination, Object payload) {
+        return "SEND\ndestination:" + destination + "\n\n" + payload + "\0";
     }
 
-    /**
-     * Disconnects from the WebSocket server.
-     */
     public void disconnect() {
         if (webSocket != null) {
-            webSocket.sendClose(WebSocket.NORMAL_CLOSURE, "Disconnecting").join();
-            System.out.println("Disconnected from WebSocket server.");
+            webSocket.sendClose(WebSocket.NORMAL_CLOSURE, "Goodbye").join();
         }
-    }
-
-    /**
-     * Checks if the WebSocket is connected.
-     *
-     * @return true if connected, false otherwise
-     */
-    public boolean isConnected() {
-        return webSocket != null;
-    }
-
-    public WebSocket getWebSocket() {
-        return webSocket;
     }
 }

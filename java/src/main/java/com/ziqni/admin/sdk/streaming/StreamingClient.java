@@ -10,14 +10,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.scheduling.TaskScheduler;
 import org.springframework.scheduling.concurrent.DefaultManagedTaskScheduler;
 
-import java.net.URI;
-import java.net.http.*;
 import java.time.OffsetDateTime;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.concurrent.*;
-import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.Consumer;
@@ -25,9 +22,11 @@ import java.util.function.Consumer;
 public class StreamingClient {
 
     private static final Logger logger = LoggerFactory.getLogger(StreamingClient.class);
+
     private static final TaskScheduler taskScheduler = new DefaultManagedTaskScheduler();
 
     private final ExecutorService websocketSendExecutor;
+
     public final LinkedBlockingDeque<Runnable> webSocketClientTasks;
     private final Map<String, Consumer<StreamingClient>> onStartHandlers = new HashMap<>();
     private final Map<String, Consumer<StreamingClient>> onStopHandlers = new HashMap<>();
@@ -35,14 +34,15 @@ public class StreamingClient {
     private final CallbackEventHandler callbackEventHandler;
     private final ZiqniSimpleEventBus eventBus;
     private final String URL;
+
     private final AtomicLong reconnectCount = new AtomicLong(0);
     private final AtomicReference<OffsetDateTime> nextReconnect = new AtomicReference<>();
-    private WebSocket webSocketClient;
-    private final AtomicBoolean isWebSocketClosed = new AtomicBoolean(true);  // Track WebSocket connection status
-    private final AtomicBoolean isFailed = new AtomicBoolean(false); // Track WebSocket failure status
+    private WsClient wsClient;
+
     private final AdminApiClientConfiguration configuration;
 
     public StreamingClient(AdminApiClientConfiguration configuration, String URL, ZiqniSimpleEventBus eventBus) throws Exception {
+
         this.configuration = configuration;
         this.URL = URL;
         this.eventBus = eventBus;
@@ -51,60 +51,70 @@ public class StreamingClient {
         this.rpcResultsEventHandler = RpcResultsEventHandler.create();
         this.callbackEventHandler = CallbackEventHandler.create();
 
-        // Implement shutdown hook
-        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+        // implement shutdown hook
+        Runtime.getRuntime().addShutdownHook(new Thread( () -> {
             this.reconnectCount.set(-1);
             this.stop(true);
         }));
     }
 
-    public void onWsClientTransportError(WsClientTransportError wsClientTransportError) {
+    public void onWsClientTransportError(WsClientTransportError wsClientTransportError){
         this.stop(false).thenAccept(unused -> {
-            if (Objects.nonNull(this.nextReconnect.get()))
+            if(Objects.nonNull(this.nextReconnect.get()))
                 return;
+
             scheduleReconnect();
         });
     }
 
-    private void scheduleReconnect() {
-        if (this.reconnectCount.get() < 0) // Shutdown in progress
+    private void scheduleReconnect(){
+        if(this.reconnectCount.get() < 0) // Shutdown in progress
             return;
 
-        // Exponential backoff: retry after 2, 4, 8 seconds, and so on.
-        long backoffDelay = Math.min(60, (1L << reconnectCount.get()) * 5);
         this.reconnectCount.incrementAndGet();
-        this.nextReconnect.set(OffsetDateTime.now().plusSeconds(backoffDelay));
+        this.nextReconnect.set(OffsetDateTime.now().plusSeconds(10));
 
-        taskScheduler.schedule(this::attemptReconnect, this.nextReconnect.get().toInstant());
+        taskScheduler.schedule(
+                this::attemptReconnect,
+                this.nextReconnect.get().toInstant()
+        );
     }
 
-    private void attemptReconnect() {
+    private void attemptReconnect(){
         try {
-            start(connected -> {
-                if (connected) {
-                    reconnectCount.set(0);
-                    nextReconnect.set(null);
-                } else {
+            if(this.reconnectCount.get() < 0) // Shutdown in progress
+                return;
+
+            this.start( connected -> {
+                try {
+                    if (connected) {
+                        this.reconnectCount.set(0);
+                        this.nextReconnect.set(null);
+                    } else {
+                        scheduleReconnect();
+                    }
+                } catch (Throwable throwable) {
                     scheduleReconnect();
+                    logger.error("Reconnect failed", throwable);
                 }
             }).exceptionally(throwable -> {
-                logger.warn("Reconnect attempt failed: {}", throwable.getMessage());
+                logger.warn("Reconnect failed with: {}", throwable.getMessage());
                 scheduleReconnect();
                 return null;
             });
         } catch (Throwable throwable) {
-            logger.error("Error during reconnect attempt", throwable);
             scheduleReconnect();
+            logger.error("Reconnect failed", throwable);
         }
     }
 
-    public CompletableFuture<Void> asyncWebSocketClient(Consumer<WebSocket> consumer) {
+    public CompletableFuture<Void> asyncWebSocketClient(Consumer<WsClient> consumer) {
         final CompletableFuture<Void> result = new CompletableFuture<>();
         this.websocketSendExecutor.submit(() -> {
             try {
-                consumer.accept(this.webSocketClient);
+                consumer.accept(this.wsClient);
                 result.complete(null);
-            } catch (Throwable throwable) {
+            }catch (Throwable throwable){
                 result.completeExceptionally(throwable);
             }
         });
@@ -112,28 +122,43 @@ public class StreamingClient {
         return result;
     }
 
-    public <TOUT, TIN> CompletableFuture<TOUT> sendWithApiCallback(String destination, TIN payload) {
+    public <TOUT, TIN> CompletableFuture<TOUT> sendWithApiCallback(String destination, TIN payload){
         final var completableFuture = new CompletableFuture<TOUT>();
 
-        if (Objects.isNull(this.webSocketClient) || isWebSocketClosed.get()) {
-            completableFuture.completeExceptionally(new IllegalStateException("WebSocket is not connected"));
+        if(Objects.isNull(this.wsClient)
+                || this.wsClient.isNotConnected()
+                || this. websocketSendExecutor.isTerminated()
+                || this. websocketSendExecutor.isShutdown()) {
+            completableFuture.completeExceptionally(new IllegalStateException("The session is not connected"));
             return completableFuture;
         }
 
         this.websocketSendExecutor.submit(() -> {
             try {
-                sendWebSocketMessage(destination, payload);
-            } catch (Throwable t) {
+                RpcResultsEventHandler.submit(
+                        destination,
+                        payload,
+                        completableFuture,
+                        (stompHeaders, tPayload) -> {
+                            if(Objects.nonNull(tPayload))
+                                this.wsClient.prepareMessageToSend(stompHeaders, tPayload).run();
+                            else
+                                logger.warn("Message body is empty " + stompHeaders);
+                        }
+                );
+            }
+            catch (IllegalStateException t){
+                if(wsClient.isConnected())
+                    logger.error("Broadcast failed",t);
+
+                completableFuture.completeExceptionally(t);
+            }
+            catch (Throwable t) {
                 completableFuture.completeExceptionally(t);
             }
         });
 
         return completableFuture;
-    }
-
-    private void sendWebSocketMessage(String destination, Object payload) {
-        // Placeholder logic to send a message via WebSocket
-        this.webSocketClient.sendText(payload.toString(), true);
     }
 
     public CompletableFuture<Void> stop() {
@@ -142,32 +167,17 @@ public class StreamingClient {
 
     public CompletableFuture<Void> stop(boolean executorShutdown) {
         final var out = new CompletableFuture<Void>();
-        if (this.webSocketClient != null) {
+        if(this.wsClient!=null)
             this.websocketSendExecutor.submit(() -> {
-                try {
-                    this.webSocketClient.sendClose(WebSocket.NORMAL_CLOSURE, "Closing");
-                } catch (Exception e) {
-                    logger.error("Error closing WebSocket", e);
-                }
+                this.wsClient.shutdown();
+                this.wsClient=null;
                 out.complete(null);
             });
-        }
 
-        if (executorShutdown)
-            shutdownExecutor();
+        if(executorShutdown)
+            this.websocketSendExecutor.shutdown();
 
         return out;
-    }
-
-    private void shutdownExecutor() {
-        try {
-            if (!this.websocketSendExecutor.awaitTermination(60, TimeUnit.SECONDS)) {
-                this.websocketSendExecutor.shutdownNow();
-            }
-        } catch (InterruptedException e) {
-            this.websocketSendExecutor.shutdownNow();
-            Thread.currentThread().interrupt(); // Restore interrupted status
-        }
     }
 
     public CompletableFuture<Boolean> start() throws Exception {
@@ -175,84 +185,78 @@ public class StreamingClient {
     }
 
     public CompletableFuture<Boolean> start(Consumer<Boolean> onComplete) throws Exception {
-        if (this.websocketSendExecutor.isShutdown() || this.websocketSendExecutor.isTerminated())
+        if(this.websocketSendExecutor.isShutdown() || this.websocketSendExecutor.isTerminated())
             throw new IllegalStateException("The websocket send executor has been terminated");
 
-        if (this.reconnectCount.get() < 0) // Shutdown in progress
+        if(this.reconnectCount.get() < 0) // Shutdown in progress
             throw new IllegalStateException("The client is shutting down");
 
-        if (this.webSocketClient == null) {
-            // Initialize WebSocket client if it's null
-            HttpClient client = HttpClient.newHttpClient();
-            WebSocket.Builder webSocketBuilder = client.newWebSocketBuilder();
-
-            // Add access token as authorization header if it's set
-            configuration.verifyXApiKeyToken();
-            var accessTokenString = configuration.getAccessTokenString();
-            if ( accessTokenString != null && ! accessTokenString.isEmpty()) {
-                webSocketBuilder.header("Authorization", "Bearer " + accessTokenString);
-            }
-
-            // Now, build the WebSocket connection and pass in the listener
-            this.webSocketClient = webSocketBuilder
-                    .buildAsync(URI.create(this.URL), new WebSocket.Listener() {
-
-                        @Override
-                        public void onOpen(WebSocket webSocket) {
-                            logger.info("WebSocket Opened");
-                            webSocket.sendText("Hello, WebSocket!", true);
-                            isWebSocketClosed.set(false); // Mark WebSocket as open
-                        }
-
-                        @Override
-                        public CompletionStage<?> onText(WebSocket webSocket, CharSequence data, boolean last) {
-                            logger.info("Received message: {}", data);
-                            return WebSocket.Listener.super.onText(webSocket, data, last);
-                        }
-
-                        @Override
-                        public void onError(WebSocket webSocket, Throwable error) {
-                            logger.error("WebSocket error: ", error);
-                            isFailed.set(true); // Mark WebSocket as failed
-                            WebSocket.Listener.super.onError(webSocket, error);
-                        }
-
-                        @Override
-                        public CompletionStage<?> onClose(WebSocket webSocket, int statusCode, String reason) {
-                            logger.info("WebSocket Closed. Status: {}, Reason: {}", statusCode, reason);
-                            isWebSocketClosed.set(true); // Mark WebSocket as closed
-                            return WebSocket.Listener.super.onClose(webSocket, statusCode, reason);
-                        }
-                    }).join(); // Block until WebSocket is connected
+        if(this.wsClient==null) {
+            this.wsClient = new WsClient(configuration, URL, (integer) -> {}, eventBus);
+            this.wsClient.setTaskScheduler(taskScheduler);
+            this.wsClient.setDefaultHeartbeat(new long[] {1000, 1000});
         }
 
         final var result = new CompletableFuture<Boolean>();
-        this.websocketSendExecutor.submit(() -> {
-            boolean connected = this.webSocketClient != null && !isWebSocketClosed.get();
-            result.complete(connected);
-            onComplete.accept(connected);
+        this.websocketSendExecutor.submit( () -> {
+            this.wsClient.startClient(result).thenApply(isConnected -> {
+                if(isConnected()) {
+                    this.wsClient.subscribe( this.rpcResultsEventHandler);
+                    this.wsClient.subscribe( this.callbackEventHandler );
+                    executeOnStartHandlers();
+                }
+                onComplete.accept(isConnected);
+                return isConnected;
+            });
         });
-
         return result;
     }
 
+    public void subscribe(EventHandler<?> handler) {
+        this.wsClient.subscribe(handler);
+    }
+
+    public void addOnStopHandler(String key, Consumer<StreamingClient> consumer){
+        this.onStopHandlers.compute( key, (k,v) -> consumer);
+    }
+
+    public void addOnStartHandler(String key, Consumer<StreamingClient> consumer){
+        this.onStartHandlers.compute( key, (k,v) -> consumer);
+    }
+
+    public void executeOnStopHandlers() {
+        this.onStopHandlers.forEach((k, v) ->
+                v.accept(this)
+        );
+    }
+
+    public void executeOnStartHandlers() {
+        this.onStartHandlers.forEach((k, v) ->
+                v.accept(this)
+        );
+    }
+
+    public CallbackEventHandler getCallbackEventHandler() {
+        return callbackEventHandler;
+    }
+
     public boolean isConnected() {
-        return this.webSocketClient != null && !isWebSocketClosed.get();
+        return Objects.nonNull(wsClient) && wsClient.isConnected();
     }
 
     public boolean isNotConnected() {
-        return this.webSocketClient == null || isWebSocketClosed.get();
+        return Objects.isNull(wsClient) || wsClient.isNotConnected();
     }
 
     public boolean isConnecting() {
-        return this.webSocketClient != null && isWebSocketClosed.get();
+        return Objects.nonNull(wsClient) && wsClient.isConnecting();
     }
 
     public boolean isDisconnecting() {
-        return this.webSocketClient != null && isWebSocketClosed.get();
+        return Objects.nonNull(wsClient) && wsClient.isDisconnecting();
     }
 
     public boolean isFailure() {
-        return this.isFailed.get();
+        return Objects.nonNull(wsClient) && wsClient.isFailure();
     }
 }
