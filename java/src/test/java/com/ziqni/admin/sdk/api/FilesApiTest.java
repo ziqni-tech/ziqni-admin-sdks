@@ -24,7 +24,7 @@ import org.apache.commons.fileupload.disk.DiskFileItem;
 import org.junit.jupiter.api.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.web.multipart.commons.CommonsMultipartFile;
+//import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import java.io.File;
 import java.net.URISyntaxException;
@@ -1522,17 +1522,17 @@ givenMetadata.put(UUID.randomUUID().toString(),"a".repeat(101));
     }
 
 
-    @Test
-    void uploadFileObjectWithArtefacts() throws ApiException {
-        var f = new File("/home/rpatadia/Desktop/zq-downloads/image-2021-12-10-09-18-19-588.png");
-        var d = new DiskFileItem("files", "application/octet-stream", true, "image-2021-12-10-09-18-19-588.png", 100000, f);
-        var x = new CommonsMultipartFile(d);
-
-//        var response = $(api.uploadFileObjects(Collections.emptyList(), "", List.of(x), repositoryId));
-//        Assertions.assertTrue(Objects.nonNull(response));
-//        Assertions.assertEquals(1, response.getMeta().getResultCount());
-//        Assertions.assertEquals(0, response.getMeta().getErrorCount());
-    }
+//    @Test
+//    void uploadFileObjectWithArtefacts() throws ApiException {
+//        var f = new File("/home/rpatadia/Desktop/zq-downloads/image-2021-12-10-09-18-19-588.png");
+//        var d = new DiskFileItem("files", "application/octet-stream", true, "image-2021-12-10-09-18-19-588.png", 100000, f);
+//        var x = new CommonsMultipartFile(d);
+//
+////        var response = $(api.uploadFileObjects(Collections.emptyList(), "", List.of(x), repositoryId));
+////        Assertions.assertTrue(Objects.nonNull(response));
+////        Assertions.assertEquals(1, response.getMeta().getResultCount());
+////        Assertions.assertEquals(0, response.getMeta().getErrorCount());
+//    }
 
 
 
