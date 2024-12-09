@@ -14,9 +14,6 @@ files:
     folder: src/main/java/com/ziqni/admin/sdk
     templateType: SupportingFiles
     destinationFilename: ApiClientFactory.java
-#  ws_api_delegate.mustache:
-#    templateType: API
-#    destinationFilename: Ws.java
   ZiqniAdminApiFactory.mustache:
     folder: src/main/java/com/ziqni/admin/sdk
     templateType: SupportingFiles

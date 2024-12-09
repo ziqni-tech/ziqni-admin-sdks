@@ -1,9 +1,9 @@
 package com.ziqni.admin.sdk.streaming;
 
-import com.ziqni.admin.sdk.ZiqniAdminSDKEventBus;
 import com.ziqni.admin.sdk.context.WSClientConnected;
 import com.ziqni.admin.sdk.context.WSClientSevereFailure;
 import com.ziqni.admin.sdk.context.WsClientTransportError;
+import com.ziqni.admin.sdk.eventbus.ZiqniSimpleEventBus;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.messaging.simp.stomp.StompCommand;
@@ -19,13 +19,13 @@ public class WsStompSessionHandler extends StompSessionHandlerAdapter {
     private static final Logger logger = LoggerFactory.getLogger(WsStompSessionHandler.class);
 
     private final Map<String, List<EventHandler<?>>> topicHandlers;
-    private final ZiqniAdminSDKEventBus eventBus;
+    private final ZiqniSimpleEventBus eventBus;
 
-    public WsStompSessionHandler(ZiqniAdminSDKEventBus eventBus) {
+    public WsStompSessionHandler(ZiqniSimpleEventBus eventBus) {
         this(eventBus, new LinkedHashMap<>());
     }
 
-    public WsStompSessionHandler(ZiqniAdminSDKEventBus eventBus, Map<String, List<EventHandler<?>>> topicHandlers) {
+    public WsStompSessionHandler(ZiqniSimpleEventBus eventBus, Map<String, List<EventHandler<?>>> topicHandlers) {
         this.topicHandlers = topicHandlers;
         this.eventBus = eventBus;
     }
