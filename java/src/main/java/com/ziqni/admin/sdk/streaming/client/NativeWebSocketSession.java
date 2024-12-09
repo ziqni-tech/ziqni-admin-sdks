@@ -15,53 +15,63 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 public class NativeWebSocketSession implements WebSocketSession {
 
     private final WebSocket webSocket;
+    private final URI uri;
+    private final String id = java.util.UUID.randomUUID().toString();
+    private volatile boolean open = true;
     private final ConcurrentLinkedQueue<WebSocketMessage<?>> messageQueue = new ConcurrentLinkedQueue<>();
 
-    public NativeWebSocketSession(WebSocket webSocket) {
+    private int textMessageSizeLimit = 64 * 1024; // Default 64 KB
+    private int binaryMessageSizeLimit = 64 * 1024; // Default 64 KB
+
+    public NativeWebSocketSession(WebSocket webSocket, URI uri) {
         this.webSocket = webSocket;
+        this.uri = uri;
     }
 
     @Override
     public void sendMessage(WebSocketMessage<?> message) {
-        if (message instanceof TextMessage) {
-            webSocket.sendText(((TextMessage) message).getPayload(), true);
-        } else if (message instanceof PingMessage) {
-            webSocket.sendPing(java.nio.ByteBuffer.wrap(((PingMessage) message).getPayload().array()));
-        } else {
-            throw new UnsupportedOperationException("Unsupported message type");
+        try {
+            if (message instanceof TextMessage) {
+                webSocket.sendText(((TextMessage) message).getPayload(), true).join();
+            } else if (message instanceof PingMessage) {
+                webSocket.sendPing(java.nio.ByteBuffer.wrap(((PingMessage) message).getPayload().array())).join();
+            } else {
+                throw new UnsupportedOperationException("Unsupported message type");
+            }
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to send message: " + e.getMessage(), e);
         }
     }
 
     @Override
     public boolean isOpen() {
-        return false;
+        return open;
     }
 
     @Override
     public void close() throws IOException {
-
+        this.close(CloseStatus.NORMAL);
     }
 
     @Override
     public void close(CloseStatus closeStatus) {
         webSocket.sendClose(closeStatus.getCode(), closeStatus.getReason());
+        open = false;
     }
-
-    // Implement remaining methods of WebSocketSession as needed
 
     @Override
     public String getId() {
-        return "";
+        return id;
     }
 
     @Override
     public URI getUri() {
-        return null;
+        return uri;
     }
 
     @Override
     public HttpHeaders getHandshakeHeaders() {
-        return null;
+        return new HttpHeaders(); // Return empty headers by default
     }
 
     @Override
@@ -71,7 +81,7 @@ public class NativeWebSocketSession implements WebSocketSession {
 
     @Override
     public Principal getPrincipal() {
-        return null;
+        return null; // Return null for unauthenticated sessions
     }
 
     @Override
@@ -91,26 +101,26 @@ public class NativeWebSocketSession implements WebSocketSession {
 
     @Override
     public void setTextMessageSizeLimit(int messageSizeLimit) {
-
+        this.textMessageSizeLimit = messageSizeLimit;
     }
 
     @Override
     public int getTextMessageSizeLimit() {
-        return 0;
+        return textMessageSizeLimit;
     }
 
     @Override
     public void setBinaryMessageSizeLimit(int messageSizeLimit) {
-
+        this.binaryMessageSizeLimit = messageSizeLimit;
     }
 
     @Override
     public int getBinaryMessageSizeLimit() {
-        return 0;
+        return binaryMessageSizeLimit;
     }
 
     @Override
     public List<WebSocketExtension> getExtensions() {
-        return List.of();
+        return List.of(); // Return empty list for no extensions
     }
 }

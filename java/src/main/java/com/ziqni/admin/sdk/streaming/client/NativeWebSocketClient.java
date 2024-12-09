@@ -13,6 +13,7 @@ import java.util.concurrent.CompletableFuture;
 public class NativeWebSocketClient implements WebSocketClient {
 
     private final HttpClient httpClient;
+    private URI websocketUri;
 
     public NativeWebSocketClient() {
         this.httpClient = HttpClient.newHttpClient();
@@ -20,22 +21,30 @@ public class NativeWebSocketClient implements WebSocketClient {
 
     @Override
     public CompletableFuture<WebSocketSession> execute(WebSocketHandler webSocketHandler, String uriTemplate, Object... uriVariables) {
-        URI uri = URI.create(uriTemplate);
-        // Connect the WebSocket and wrap it into a session
-        CompletableFuture<WebSocket> webSocketFuture = httpClient
-                .newWebSocketBuilder()
-                .buildAsync(uri, new NativeWebSocketHandlerAdapter(webSocketHandler));
-
-        return webSocketFuture.thenApply(NativeWebSocketSession::new);
+        this.websocketUri = URI.create(uriTemplate);
+        return connectWebSocket(webSocketHandler, websocketUri);
     }
 
     @Override
     public CompletableFuture<WebSocketSession> execute(WebSocketHandler webSocketHandler, WebSocketHttpHeaders headers, URI uri) {
-        // Connect the WebSocket and wrap it into a session
+        return connectWebSocket(webSocketHandler, uri);
+    }
+
+    private CompletableFuture<WebSocketSession> connectWebSocket(WebSocketHandler webSocketHandler, URI uri) {
         CompletableFuture<WebSocket> webSocketFuture = httpClient
                 .newWebSocketBuilder()
-                .buildAsync(uri, new NativeWebSocketHandlerAdapter(webSocketHandler));
+                .buildAsync(uri, new NativeWebSocketHandlerAdapter(webSocketHandler,websocketUri));
 
-        return webSocketFuture.thenApply(NativeWebSocketSession::new);
+
+
+        // Ensure completion on success or failure
+        return webSocketFuture.thenApply(f -> {
+                    WebSocketSession  webSocketSession = new NativeWebSocketSession(f,websocketUri);
+                    return webSocketSession;
+                })
+                .exceptionally(ex -> {
+                    System.err.println("WebSocket connection failed: " + ex.getMessage());
+                    throw new RuntimeException("Failed to connect WebSocket", ex);
+                });
     }
 }
