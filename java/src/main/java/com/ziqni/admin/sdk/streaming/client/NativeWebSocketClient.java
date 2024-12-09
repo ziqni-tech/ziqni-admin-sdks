@@ -31,6 +31,11 @@ public class NativeWebSocketClient implements WebSocketClient {
 
     @Override
     public CompletableFuture<WebSocketSession> execute(WebSocketHandler webSocketHandler, WebSocketHttpHeaders headers, URI uri) {
-        return null;
+
+        // Connect the WebSocket and wrap it into a session
+        CompletableFuture<WebSocket> webSocketFuture = httpClient.newWebSocketBuilder()
+                .buildAsync(uri, new NativeWebSocketHandlerAdapter(webSocketHandler));
+
+        return webSocketFuture.thenApply(NativeWebSocketSession::new);
     }
 }
