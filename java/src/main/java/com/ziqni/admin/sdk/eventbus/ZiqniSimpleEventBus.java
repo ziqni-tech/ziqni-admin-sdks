@@ -20,6 +20,13 @@ public class ZiqniSimpleEventBus {
 
 
     public void post(Object message) {
+        if(message == null) {
+            throw new IllegalArgumentException("Message cannot be null");
+        }
+
+        if(subscribers.isEmpty()) {
+            return;
+        }
 
         final MessageConsumers<?> found = subscribers.get(message.getClass());
 
@@ -32,7 +39,7 @@ public class ZiqniSimpleEventBus {
     public <T> void register(Class<T> type, Consumer<T> consumer) {
         subscribers.compute(type, (key, value) -> {
             if (value == null) {
-                value = new MessageConsumers<>(type);
+                value = new MessageConsumers<>(type, executor);
             }
             value.add(consumer);
             return value;
@@ -54,14 +61,20 @@ public class ZiqniSimpleEventBus {
 
         final Class<T> type;
         final Set<Consumer<T>> consumers = new HashSet<>();
+        private final ExecutorService ex;
 
-        public MessageConsumers(Class<T> type) {
+        public MessageConsumers(Class<T> type, ExecutorService ex) {
+            this.ex = ex;
             this.type = type;
         }
 
         public void notifyAll(Object event) {
             if (type.isInstance(event)) {
-                consumers.forEach(subscriber -> subscriber.accept(type.cast(event)));
+                consumers.forEach(subscriber ->
+                        ex.submit( () ->
+                            subscriber.accept(type.cast(event))
+                    )
+                );
             } else {
                 throw new IllegalArgumentException(
                         "Invalid event type. Expected: " + type.getName() + ", but got: " + event.getClass().getName());
