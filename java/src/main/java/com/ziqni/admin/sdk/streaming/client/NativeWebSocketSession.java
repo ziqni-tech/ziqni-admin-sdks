@@ -17,15 +17,16 @@ public class NativeWebSocketSession implements WebSocketSession {
     private final WebSocket webSocket;
     private final URI uri;
     private final String id = java.util.UUID.randomUUID().toString();
-    private volatile boolean open = true;
+    private volatile boolean open;
     private final ConcurrentLinkedQueue<WebSocketMessage<?>> messageQueue = new ConcurrentLinkedQueue<>();
 
-    private int textMessageSizeLimit = 64 * 1024; // Default 64 KB
-    private int binaryMessageSizeLimit = 64 * 1024; // Default 64 KB
+    private int textMessageSizeLimit = 64 * 1024 * 1_000; // Default 64,000 KB
+    private int binaryMessageSizeLimit = 64 * 1024 * 1_000; // Default 64,000 KB
 
     public NativeWebSocketSession(WebSocket webSocket, URI uri) {
         this.webSocket = webSocket;
         this.uri = uri;
+        this.open = true;
     }
 
     @Override
