@@ -21,7 +21,6 @@ public class NativeWebSocketClient implements WebSocketClient {
     @Override
     public CompletableFuture<WebSocketSession> execute(WebSocketHandler webSocketHandler, String uriTemplate, Object... uriVariables) {
         URI uri = URI.create(uriTemplate);
-
         // Connect the WebSocket and wrap it into a session
         CompletableFuture<WebSocket> webSocketFuture = httpClient
                 .newWebSocketBuilder()
@@ -32,7 +31,6 @@ public class NativeWebSocketClient implements WebSocketClient {
 
     @Override
     public CompletableFuture<WebSocketSession> execute(WebSocketHandler webSocketHandler, WebSocketHttpHeaders headers, URI uri) {
-
         // Connect the WebSocket and wrap it into a session
         CompletableFuture<WebSocket> webSocketFuture = httpClient
                 .newWebSocketBuilder()

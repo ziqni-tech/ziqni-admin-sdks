@@ -13,7 +13,6 @@ import com.ziqni.admin.sdk.streaming.client.NativeWebSocketClient;
 import com.ziqni.admin.sdk.streaming.runnables.MessageToSend;
 import com.ziqni.admin.sdk.util.Common;
 import com.ziqni.admin.sdk.util.ZiqniClientObjectMapper;
-import org.eclipse.jetty.websocket.api.WebSocketListener;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.messaging.converter.MappingJackson2MessageConverter;
@@ -22,27 +21,12 @@ import org.springframework.messaging.simp.stomp.StompHeaders;
 import org.springframework.messaging.simp.stomp.StompSession;
 import org.springframework.scheduling.TaskScheduler;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
-import org.springframework.web.socket.WebSocketHandler;
 import org.springframework.web.socket.WebSocketHttpHeaders;
-import org.springframework.web.socket.client.WebSocketClient;
-import org.springframework.web.socket.client.standard.StandardWebSocketClient;
 import org.springframework.web.socket.messaging.WebSocketStompClient;
-import org.springframework.web.socket.sockjs.client.RestTemplateXhrTransport;
-import org.springframework.web.socket.sockjs.client.SockJsClient;
-import org.springframework.web.socket.sockjs.client.Transport;
-import org.springframework.web.socket.sockjs.client.WebSocketTransport;
 
-
-import java.net.URI;
-import java.net.http.HttpClient;
-import java.net.http.WebSocket;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.CompletionStage;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ScheduledFuture;
+import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Consumer;
 
@@ -62,14 +46,12 @@ public class WsClient extends WebSocketStompClient{
 
     private StompSession stompSession;
     private ZiqniSimpleEventBus eventBus;
+    private final List<Consumer<StompSession>> connectListeners;
+    private final List<Consumer<Throwable>> disconnectListeners;
 
-//    private final List<SuccessCallback<StompSession>> connectListeners;
-//
-//    private final List<FailureCallback> disconnectListeners;
 
     public static final int SevereFailure = -1;
     public static final int NotConnected = 0;
-
     public static final int Connecting = 1;
     public static final int Connected = 2;
     public static final int Disconnecting = 3;
@@ -89,8 +71,8 @@ public class WsClient extends WebSocketStompClient{
         this.wsUri = wsUri;
         this.taskScheduler = new ThreadPoolTaskScheduler();
         this.stompSessionHandler = new WsStompSessionHandler(eventBus);
-//        this.connectListeners = new ArrayList<>();
-//        this.disconnectListeners = new ArrayList<>();
+        this.connectListeners  = new CopyOnWriteArrayList<>();
+        this.disconnectListeners  = new CopyOnWriteArrayList<>();
         this.stompHeaders = stompHeaders;
         this.onStateChange = onStateChange;
         this.eventBus = eventBus;
@@ -104,16 +86,6 @@ public class WsClient extends WebSocketStompClient{
         super.setMessageConverter(mappingJackson2MessageConverter);
         super.setDefaultHeartbeat(new long[]{10000L, 10000L});
     }
-
-//    private static SockJsClient makeSockJs(WebSocket ws){
-//        // setup transports & socksjs
-//        List<Transport> transports = new ArrayList<>(2);
-//        transports.add(new WebSocketTransport(ws));
-//        return new SockJsClient(transports);
-//    }
-
-
-
 
     public void subscribe(EventHandler<?> handler) {
         stompSessionHandler.subscribe(stompSession,handler);
@@ -137,21 +109,24 @@ public class WsClient extends WebSocketStompClient{
         return new MessageToSend<>(headers, payload, stompSession);
     }
 
-//    /**
-//     * Add a listener to fire on successful WebSocket/Stomp connection
-//     * @param listener the listener
-//     */
-//    public void addConnectListener(SuccessCallback<StompSession> listener) {
-//        connectListeners.add(listener);
-//    }
-//
-//    /**
-//     * Add a listener which fires when the WebSocket/Stomp connection is broken (or fails to connect)
-//     * @param listener the listener
-//     */
-//    public void addDisconnectListener(FailureCallback listener) {
-//        disconnectListeners.add(listener);
-//    }
+    /**
+     * Adds a listener to be invoked on a successful WebSocket/STOMP connection.
+     *
+     * @param listener the listener to invoke on successful connection
+     */
+    public void addConnectListener(Consumer<StompSession> listener) {
+        connectListeners.add(listener);
+    }
+
+    /**
+     * Adds a listener to be invoked when the WebSocket/STOMP connection is disconnected
+     * or if the connection attempt fails.
+     *
+     * @param listener the listener to invoke on disconnection or failure
+     */
+    public void addDisconnectListener(Consumer<Throwable> listener) {
+        disconnectListeners.add(listener);
+    }
 
     private void setConnectionState(Integer state){
         this.connectionStateAtomic.set(state);
@@ -317,18 +292,16 @@ public class WsClient extends WebSocketStompClient{
         }
     }
 
-
-
     private void notifyConnectListeners(StompSession session) {
-//        for (SuccessCallback<StompSession> successCallback : connectListeners) {
-//            successCallback.onSuccess(session);
-//        }
+        for (Consumer<StompSession> successCallback : connectListeners) {
+            successCallback.accept(session);
+        }
     }
 
     private void notifyDisconnectListeners(Throwable throwable) {
-//        for (FailureCallback failCallback : disconnectListeners) {
-//            failCallback.onFailure(throwable);
-//        }
+        for (Consumer<Throwable> failCallback : disconnectListeners) {
+            failCallback.accept(throwable);
+        }
     }
 
     private void setIsConnected() {
