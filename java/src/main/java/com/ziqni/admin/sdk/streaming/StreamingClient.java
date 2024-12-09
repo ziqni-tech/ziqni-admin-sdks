@@ -1,11 +1,8 @@
-/*
- * Copyright (c) 2022. ZIQNI LTD registered in England and Wales, company registration number-09693684
- */
 package com.ziqni.admin.sdk.streaming;
 
 import com.ziqni.admin.sdk.configuration.AdminApiClientConfiguration;
 import com.ziqni.admin.sdk.context.WsClientTransportError;
-import com.ziqni.admin.sdk.eventbus.ZiqniSimpleEventBus;
+import com.ziqni.admin.sdk.ZiqniAdminSDKEventBus;
 import com.ziqni.admin.sdk.streaming.handlers.RpcResultsEventHandler;
 import com.ziqni.admin.sdk.streaming.handlers.CallbackEventHandler;
 import org.slf4j.Logger;
@@ -13,11 +10,14 @@ import org.slf4j.LoggerFactory;
 import org.springframework.scheduling.TaskScheduler;
 import org.springframework.scheduling.concurrent.DefaultManagedTaskScheduler;
 
+import java.net.URI;
+import java.net.http.*;
 import java.time.OffsetDateTime;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.concurrent.*;
+import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.Consumer;
@@ -25,27 +25,24 @@ import java.util.function.Consumer;
 public class StreamingClient {
 
     private static final Logger logger = LoggerFactory.getLogger(StreamingClient.class);
-
     private static final TaskScheduler taskScheduler = new DefaultManagedTaskScheduler();
 
     private final ExecutorService websocketSendExecutor;
-
     public final LinkedBlockingDeque<Runnable> webSocketClientTasks;
     private final Map<String, Consumer<StreamingClient>> onStartHandlers = new HashMap<>();
     private final Map<String, Consumer<StreamingClient>> onStopHandlers = new HashMap<>();
     private final RpcResultsEventHandler rpcResultsEventHandler;
     private final CallbackEventHandler callbackEventHandler;
-    private final ZiqniSimpleEventBus eventBus;
+    private final ZiqniAdminSDKEventBus eventBus;
     private final String URL;
-
     private final AtomicLong reconnectCount = new AtomicLong(0);
     private final AtomicReference<OffsetDateTime> nextReconnect = new AtomicReference<>();
-    private WsClient wsClient;
-
+    private WebSocket webSocketClient;
+    private final AtomicBoolean isWebSocketClosed = new AtomicBoolean(true);  // Track WebSocket connection status
+    private final AtomicBoolean isFailed = new AtomicBoolean(false); // Track WebSocket failure status
     private final AdminApiClientConfiguration configuration;
 
-    public StreamingClient(AdminApiClientConfiguration configuration, String URL, ZiqniSimpleEventBus eventBus) throws Exception {
-
+    public StreamingClient(AdminApiClientConfiguration configuration, String URL, ZiqniAdminSDKEventBus eventBus) throws Exception {
         this.configuration = configuration;
         this.URL = URL;
         this.eventBus = eventBus;
@@ -54,70 +51,62 @@ public class StreamingClient {
         this.rpcResultsEventHandler = RpcResultsEventHandler.create();
         this.callbackEventHandler = CallbackEventHandler.create();
 
-        // implement shutdown hook
-        Runtime.getRuntime().addShutdownHook(new Thread( () -> {
+
+        this.eventBus.register(this);
+        // Implement shutdown hook
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
             this.reconnectCount.set(-1);
             this.stop(true);
         }));
     }
 
-    public void onWsClientTransportError(WsClientTransportError wsClientTransportError){
+    public void onWsClientTransportError(WsClientTransportError wsClientTransportError) {
         this.stop(false).thenAccept(unused -> {
-            if(Objects.nonNull(this.nextReconnect.get()))
+            if (Objects.nonNull(this.nextReconnect.get()))
                 return;
-
             scheduleReconnect();
         });
     }
 
-    private void scheduleReconnect(){
-        if(this.reconnectCount.get() < 0) // Shutdown in progress
+    private void scheduleReconnect() {
+        if (this.reconnectCount.get() < 0) // Shutdown in progress
             return;
 
+        // Exponential backoff: retry after 2, 4, 8 seconds, and so on.
+        long backoffDelay = Math.min(60, (1L << reconnectCount.get()) * 5);
         this.reconnectCount.incrementAndGet();
-        this.nextReconnect.set(OffsetDateTime.now().plusSeconds(10));
+        this.nextReconnect.set(OffsetDateTime.now().plusSeconds(backoffDelay));
 
-        taskScheduler.schedule(
-                this::attemptReconnect,
-                this.nextReconnect.get().toInstant()
-        );
+        taskScheduler.schedule(this::attemptReconnect, this.nextReconnect.get().toInstant());
     }
 
-    private void attemptReconnect(){
+    private void attemptReconnect() {
         try {
-            if(this.reconnectCount.get() < 0) // Shutdown in progress
-                return;
-
-            this.start( connected -> {
-                try {
-                    if (connected) {
-                        this.reconnectCount.set(0);
-                        this.nextReconnect.set(null);
-                    } else {
-                        scheduleReconnect();
-                    }
-                } catch (Throwable throwable) {
+            start(connected -> {
+                if (connected) {
+                    reconnectCount.set(0);
+                    nextReconnect.set(null);
+                } else {
                     scheduleReconnect();
-                    logger.error("Reconnect failed", throwable);
                 }
             }).exceptionally(throwable -> {
-                logger.warn("Reconnect failed with: {}", throwable.getMessage());
+                logger.warn("Reconnect attempt failed: {}", throwable.getMessage());
                 scheduleReconnect();
                 return null;
             });
         } catch (Throwable throwable) {
+            logger.error("Error during reconnect attempt", throwable);
             scheduleReconnect();
-            logger.error("Reconnect failed", throwable);
         }
     }
 
-    public CompletableFuture<Void> asyncWebSocketClient(Consumer<WsClient> consumer) {
+    public CompletableFuture<Void> asyncWebSocketClient(Consumer<WebSocket> consumer) {
         final CompletableFuture<Void> result = new CompletableFuture<>();
         this.websocketSendExecutor.submit(() -> {
             try {
-                consumer.accept(this.wsClient);
+                consumer.accept(this.webSocketClient);
                 result.complete(null);
-            }catch (Throwable throwable){
+            } catch (Throwable throwable) {
                 result.completeExceptionally(throwable);
             }
         });
@@ -125,43 +114,28 @@ public class StreamingClient {
         return result;
     }
 
-    public <TOUT, TIN> CompletableFuture<TOUT> sendWithApiCallback(String destination, TIN payload){
+    public <TOUT, TIN> CompletableFuture<TOUT> sendWithApiCallback(String destination, TIN payload) {
         final var completableFuture = new CompletableFuture<TOUT>();
 
-        if(Objects.isNull(this.wsClient)
-                || this.wsClient.isNotConnected()
-                || this. websocketSendExecutor.isTerminated()
-                || this. websocketSendExecutor.isShutdown()) {
-            completableFuture.completeExceptionally(new IllegalStateException("The session is not connected"));
+        if (Objects.isNull(this.webSocketClient) || isWebSocketClosed.get()) {
+            completableFuture.completeExceptionally(new IllegalStateException("WebSocket is not connected"));
             return completableFuture;
         }
 
         this.websocketSendExecutor.submit(() -> {
             try {
-                RpcResultsEventHandler.submit(
-                        destination,
-                        payload,
-                        completableFuture,
-                        (stompHeaders, tPayload) -> {
-                            if(Objects.nonNull(tPayload))
-                                this.wsClient.prepareMessageToSend(stompHeaders, tPayload).run();
-                            else
-                                logger.warn("Message body is empty " + stompHeaders);
-                        }
-                );
-            }
-            catch (IllegalStateException t){
-                if(wsClient.isConnected())
-                    logger.error("Broadcast failed",t);
-
-                completableFuture.completeExceptionally(t);
-            }
-            catch (Throwable t) {
+                sendWebSocketMessage(destination, payload);
+            } catch (Throwable t) {
                 completableFuture.completeExceptionally(t);
             }
         });
 
         return completableFuture;
+    }
+
+    private void sendWebSocketMessage(String destination, Object payload) {
+        // Placeholder logic to send a message via WebSocket
+        this.webSocketClient.sendText(payload.toString(), true);
     }
 
     public CompletableFuture<Void> stop() {
@@ -170,17 +144,32 @@ public class StreamingClient {
 
     public CompletableFuture<Void> stop(boolean executorShutdown) {
         final var out = new CompletableFuture<Void>();
-        if(this.wsClient!=null)
+        if (this.webSocketClient != null) {
             this.websocketSendExecutor.submit(() -> {
-                this.wsClient.shutdown();
-                this.wsClient=null;
+                try {
+                    this.webSocketClient.sendClose(WebSocket.NORMAL_CLOSURE, "Closing");
+                } catch (Exception e) {
+                    logger.error("Error closing WebSocket", e);
+                }
                 out.complete(null);
             });
+        }
 
-        if(executorShutdown)
-            this.websocketSendExecutor.shutdown();
+        if (executorShutdown)
+            shutdownExecutor();
 
         return out;
+    }
+
+    private void shutdownExecutor() {
+        try {
+            if (!this.websocketSendExecutor.awaitTermination(60, TimeUnit.SECONDS)) {
+                this.websocketSendExecutor.shutdownNow();
+            }
+        } catch (InterruptedException e) {
+            this.websocketSendExecutor.shutdownNow();
+            Thread.currentThread().interrupt(); // Restore interrupted status
+        }
     }
 
     public CompletableFuture<Boolean> start() throws Exception {
@@ -188,78 +177,84 @@ public class StreamingClient {
     }
 
     public CompletableFuture<Boolean> start(Consumer<Boolean> onComplete) throws Exception {
-        if(this.websocketSendExecutor.isShutdown() || this.websocketSendExecutor.isTerminated())
+        if (this.websocketSendExecutor.isShutdown() || this.websocketSendExecutor.isTerminated())
             throw new IllegalStateException("The websocket send executor has been terminated");
 
-        if(this.reconnectCount.get() < 0) // Shutdown in progress
+        if (this.reconnectCount.get() < 0) // Shutdown in progress
             throw new IllegalStateException("The client is shutting down");
 
-        if(this.wsClient==null) {
-            this.wsClient = new WsClient(configuration, URL, (integer) -> {}, eventBus);
-            this.wsClient.setTaskScheduler(taskScheduler);
-            this.wsClient.setDefaultHeartbeat(new long[] {1000, 1000});
+        if (this.webSocketClient == null) {
+            // Initialize WebSocket client if it's null
+            HttpClient client = HttpClient.newHttpClient();
+            WebSocket.Builder webSocketBuilder = client.newWebSocketBuilder();
+
+            // Add access token as authorization header if it's set
+            configuration.verifyXApiKeyToken();
+            var accessTokenString = configuration.getAccessTokenString();
+            if ( accessTokenString != null && ! accessTokenString.isEmpty()) {
+                webSocketBuilder.header("Authorization", "Bearer " + accessTokenString);
+            }
+
+            // Now, build the WebSocket connection and pass in the listener
+            this.webSocketClient = webSocketBuilder
+                    .buildAsync(URI.create(this.URL), new WebSocket.Listener() {
+
+                        @Override
+                        public void onOpen(WebSocket webSocket) {
+                            logger.info("WebSocket Opened");
+                            webSocket.sendText("Hello, WebSocket!", true);
+                            isWebSocketClosed.set(false); // Mark WebSocket as open
+                        }
+
+                        @Override
+                        public CompletionStage<?> onText(WebSocket webSocket, CharSequence data, boolean last) {
+                            logger.info("Received message: {}", data);
+                            return WebSocket.Listener.super.onText(webSocket, data, last);
+                        }
+
+                        @Override
+                        public void onError(WebSocket webSocket, Throwable error) {
+                            logger.error("WebSocket error: ", error);
+                            isFailed.set(true); // Mark WebSocket as failed
+                            WebSocket.Listener.super.onError(webSocket, error);
+                        }
+
+                        @Override
+                        public CompletionStage<?> onClose(WebSocket webSocket, int statusCode, String reason) {
+                            logger.info("WebSocket Closed. Status: {}, Reason: {}", statusCode, reason);
+                            isWebSocketClosed.set(true); // Mark WebSocket as closed
+                            return WebSocket.Listener.super.onClose(webSocket, statusCode, reason);
+                        }
+                    }).join(); // Block until WebSocket is connected
         }
 
         final var result = new CompletableFuture<Boolean>();
-        this.websocketSendExecutor.submit( () -> {
-            this.wsClient.startClient(result).thenApply(isConnected -> {
-                if(isConnected()) {
-                    this.wsClient.subscribe( this.rpcResultsEventHandler);
-                    this.wsClient.subscribe( this.callbackEventHandler );
-                    executeOnStartHandlers();
-                }
-                onComplete.accept(isConnected);
-                return isConnected;
-            });
+        this.websocketSendExecutor.submit(() -> {
+            boolean connected = this.webSocketClient != null && !isWebSocketClosed.get();
+            result.complete(connected);
+            onComplete.accept(connected);
         });
+
         return result;
     }
 
-    public void subscribe(EventHandler<?> handler) {
-        this.wsClient.subscribe(handler);
-    }
-
-    public void addOnStopHandler(String key, Consumer<StreamingClient> consumer){
-        this.onStopHandlers.compute( key, (k,v) -> consumer);
-    }
-
-    public void addOnStartHandler(String key, Consumer<StreamingClient> consumer){
-        this.onStartHandlers.compute( key, (k,v) -> consumer);
-    }
-
-    public void executeOnStopHandlers() {
-        this.onStopHandlers.forEach((k, v) ->
-                v.accept(this)
-        );
-    }
-
-    public void executeOnStartHandlers() {
-        this.onStartHandlers.forEach((k, v) ->
-                v.accept(this)
-        );
-    }
-
-    public CallbackEventHandler getCallbackEventHandler() {
-        return callbackEventHandler;
-    }
-
     public boolean isConnected() {
-        return Objects.nonNull(wsClient) && wsClient.isConnected();
+        return this.webSocketClient != null && !isWebSocketClosed.get();
     }
 
     public boolean isNotConnected() {
-        return Objects.isNull(wsClient) || wsClient.isNotConnected();
+        return this.webSocketClient == null || isWebSocketClosed.get();
     }
 
     public boolean isConnecting() {
-        return Objects.nonNull(wsClient) && wsClient.isConnecting();
+        return this.webSocketClient != null && isWebSocketClosed.get();
     }
 
     public boolean isDisconnecting() {
-        return Objects.nonNull(wsClient) && wsClient.isDisconnecting();
+        return this.webSocketClient != null && isWebSocketClosed.get();
     }
 
     public boolean isFailure() {
-        return Objects.nonNull(wsClient) && wsClient.isFailure();
+        return this.isFailed.get();
     }
 }
