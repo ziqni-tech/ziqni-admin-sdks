@@ -2,7 +2,7 @@ package com.ziqni.admin.sdk.streaming;
 
 import com.ziqni.admin.sdk.configuration.AdminApiClientConfiguration;
 import com.ziqni.admin.sdk.context.WsClientTransportError;
-import com.ziqni.admin.sdk.ZiqniAdminSDKEventBus;
+import com.ziqni.admin.sdk.eventbus.ZiqniSimpleEventBus;
 import com.ziqni.admin.sdk.streaming.handlers.RpcResultsEventHandler;
 import com.ziqni.admin.sdk.streaming.handlers.CallbackEventHandler;
 import org.slf4j.Logger;
@@ -33,7 +33,7 @@ public class StreamingClient {
     private final Map<String, Consumer<StreamingClient>> onStopHandlers = new HashMap<>();
     private final RpcResultsEventHandler rpcResultsEventHandler;
     private final CallbackEventHandler callbackEventHandler;
-    private final ZiqniAdminSDKEventBus eventBus;
+    private final ZiqniSimpleEventBus eventBus;
     private final String URL;
     private final AtomicLong reconnectCount = new AtomicLong(0);
     private final AtomicReference<OffsetDateTime> nextReconnect = new AtomicReference<>();
@@ -42,7 +42,7 @@ public class StreamingClient {
     private final AtomicBoolean isFailed = new AtomicBoolean(false); // Track WebSocket failure status
     private final AdminApiClientConfiguration configuration;
 
-    public StreamingClient(AdminApiClientConfiguration configuration, String URL, ZiqniAdminSDKEventBus eventBus) throws Exception {
+    public StreamingClient(AdminApiClientConfiguration configuration, String URL, ZiqniSimpleEventBus eventBus) throws Exception {
         this.configuration = configuration;
         this.URL = URL;
         this.eventBus = eventBus;
@@ -51,8 +51,6 @@ public class StreamingClient {
         this.rpcResultsEventHandler = RpcResultsEventHandler.create();
         this.callbackEventHandler = CallbackEventHandler.create();
 
-
-        this.eventBus.register(this);
         // Implement shutdown hook
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
             this.reconnectCount.set(-1);

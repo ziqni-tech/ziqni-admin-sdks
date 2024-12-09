@@ -17,7 +17,7 @@ public class ZiqniSimpleEventBus {
     public ZiqniSimpleEventBus() {
         this.subscribers = new ConcurrentHashMap<>();
         this.tasks = new LinkedBlockingDeque<>();
-        this.executor = new ThreadPoolExecutor(2, 4, 0L, TimeUnit.MILLISECONDS, tasks);
+        this.executor = new ThreadPoolExecutor(1, 4, 0L, TimeUnit.MILLISECONDS, tasks);
     }
 
 
