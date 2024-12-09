@@ -23,7 +23,11 @@ public class NativeWebSocketClient implements WebSocketClient {
         URI uri = URI.create(uriTemplate);
 
         // Connect the WebSocket and wrap it into a session
-        CompletableFuture<WebSocket> webSocketFuture = httpClient.newWebSocketBuilder()
+        CompletableFuture<WebSocket> webSocketFuture = httpClient
+                .newWebSocketBuilder()
+//                .header("Sec-WebSocket-Protocol", "v10.stomp") // Ensure this matches the server
+                .header("Sec-WebSocket-Version", "13") // WebSocket version
+                .header("Sec-WebSocket-Extensions", "permessage-deflate") // Optional extensions
                 .buildAsync(uri, new NativeWebSocketHandlerAdapter(webSocketHandler));
 
         return webSocketFuture.thenApply(NativeWebSocketSession::new);
@@ -33,7 +37,11 @@ public class NativeWebSocketClient implements WebSocketClient {
     public CompletableFuture<WebSocketSession> execute(WebSocketHandler webSocketHandler, WebSocketHttpHeaders headers, URI uri) {
 
         // Connect the WebSocket and wrap it into a session
-        CompletableFuture<WebSocket> webSocketFuture = httpClient.newWebSocketBuilder()
+        CompletableFuture<WebSocket> webSocketFuture = httpClient
+                .newWebSocketBuilder()
+//                .header("Sec-WebSocket-Protocol", "v10.stomp") // Ensure this matches the server
+                .header("Sec-WebSocket-Version", "13") // WebSocket version
+                .header("Sec-WebSocket-Extensions", "permessage-deflate") // Optional extensions
                 .buildAsync(uri, new NativeWebSocketHandlerAdapter(webSocketHandler));
 
         return webSocketFuture.thenApply(NativeWebSocketSession::new);
