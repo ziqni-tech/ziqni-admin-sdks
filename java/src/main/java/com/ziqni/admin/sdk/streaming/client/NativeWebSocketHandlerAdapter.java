@@ -1,9 +1,10 @@
 package com.ziqni.admin.sdk.streaming.client;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.WebSocketHandler;
+import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.TextMessage;
 
 import java.net.URI;
@@ -12,56 +13,57 @@ import java.util.concurrent.CompletionStage;
 
 public class NativeWebSocketHandlerAdapter implements WebSocket.Listener {
 
-    private static final Logger logger = LoggerFactory.getLogger(NativeWebSocketHandlerAdapter.class);
+    private static final Log logger = LogFactory.getLog(NativeWebSocketHandlerAdapter.class);
 
     private final WebSocketHandler delegate;
-    private final URI websocketUri;
+    private final URI uri;
+    private WebSocketSession webSocketSession;
 
-    public NativeWebSocketHandlerAdapter(WebSocketHandler delegate, URI websocketUri) {
+    public NativeWebSocketHandlerAdapter(WebSocketHandler delegate, URI uri) {
         this.delegate = delegate;
-        this.websocketUri = websocketUri;
+        this.uri = uri;
     }
 
     @Override
     public void onOpen(WebSocket webSocket) {
-        logger.info("WebSocket connection established");
-        // Notify Spring's handler that the connection is established
+        logger.debug("WebSocket connection established to: " + uri);
+        this.webSocketSession = new NativeWebSocketSession(webSocket, uri);
         try {
-            delegate.afterConnectionEstablished(new NativeWebSocketSession(webSocket,websocketUri));
+            delegate.afterConnectionEstablished(webSocketSession);
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException("Error in afterConnectionEstablished: " + e.getMessage(), e);
         }
     }
 
     @Override
     public CompletionStage<?> onText(WebSocket webSocket, CharSequence data, boolean last) {
-        logger.debug("Received message: " + data);
+        logger.debug("Received text message: " + data);
         try {
-            delegate.handleMessage(new NativeWebSocketSession(webSocket,websocketUri), new TextMessage(data.toString()));
+            delegate.handleMessage(webSocketSession, new TextMessage(data.toString()));
         } catch (Exception e) {
-            System.err.println("Error handling message: " + e.getMessage());
+            logger.error("Error in handleMessage: " + e.getMessage(), e);
         }
         return null;
     }
 
     @Override
     public CompletionStage<?> onClose(WebSocket webSocket, int statusCode, String reason) {
-        logger.info("WebSocket connection closed: " + statusCode + " " + reason);
+        logger.debug("WebSocket connection closed with status code: " + statusCode + ", reason: " + reason);
         try {
-            delegate.afterConnectionClosed(new NativeWebSocketSession(webSocket,websocketUri), new CloseStatus(statusCode, reason));
+            delegate.afterConnectionClosed(webSocketSession, new CloseStatus(statusCode, reason));
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            logger.error("Error in afterConnectionClosed: " + e.getMessage(), e);
         }
         return null;
     }
 
     @Override
     public void onError(WebSocket webSocket, Throwable error) {
-        logger.error("WebSocket connection error: " + error.getMessage());
+        logger.error("WebSocket connection error: " + error.getMessage(), error);
         try {
-            delegate.handleTransportError(new NativeWebSocketSession(webSocket,websocketUri), error);
+            delegate.handleTransportError(webSocketSession, error);
         } catch (Exception e) {
-            logger.error("Error handling transport error: " + e.getMessage());
+            logger.error("Error in handleTransportError: " + e.getMessage(), e);
         }
     }
 }

@@ -1,5 +1,7 @@
 package com.ziqni.admin.sdk.streaming.client;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.web.socket.WebSocketHttpHeaders;
 import org.springframework.web.socket.client.WebSocketClient;
 import org.springframework.web.socket.WebSocketHandler;
@@ -11,6 +13,8 @@ import java.net.http.WebSocket;
 import java.util.concurrent.CompletableFuture;
 
 public class NativeWebSocketClient implements WebSocketClient {
+
+    private static final Log logger = LogFactory.getLog(NativeWebSocketClient.class);
 
     private final HttpClient httpClient;
     private URI websocketUri;
@@ -38,17 +42,13 @@ public class NativeWebSocketClient implements WebSocketClient {
 
 
         // Ensure completion on success or failure
-        return webSocketFuture.thenApply(f -> {
+        return webSocketFuture
+                .thenApply(f -> {
                     WebSocketSession  webSocketSession = new NativeWebSocketSession(f,websocketUri);
-                    try {
-                        webSocketHandler.afterConnectionEstablished(webSocketSession);
-                    } catch (Exception e) {
-                        throw new RuntimeException(e);
-                    }
                     return webSocketSession;
                 })
                 .exceptionally(ex -> {
-                    System.err.println("WebSocket connection failed: " + ex.getMessage());
+                    logger.error("Failed to connect WebSocket", ex);
                     throw new RuntimeException("Failed to connect WebSocket", ex);
                 });
     }

@@ -31,7 +31,7 @@
 		</triggeringPolicy>
 	</appender>
 
-	<root level="INFO" additivity="false">
+	<root level="DEBUG" additivity="false">
 		<appender-ref ref="SAVE-TO-FILE" />
 		<appender-ref ref="STDOUT" />
 	</root>
