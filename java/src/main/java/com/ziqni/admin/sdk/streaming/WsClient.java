@@ -9,9 +9,11 @@ import com.ziqni.admin.sdk.context.WSClientConnecting;
 import com.ziqni.admin.sdk.context.WSClientDisconnected;
 import com.ziqni.admin.sdk.context.WSClientSevereFailure;
 import com.ziqni.admin.sdk.eventbus.ZiqniSimpleEventBus;
+import com.ziqni.admin.sdk.streaming.client.NativeWebSocketClient;
 import com.ziqni.admin.sdk.streaming.runnables.MessageToSend;
 import com.ziqni.admin.sdk.util.Common;
 import com.ziqni.admin.sdk.util.ZiqniClientObjectMapper;
+import org.eclipse.jetty.websocket.api.WebSocketListener;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.messaging.converter.MappingJackson2MessageConverter;
@@ -31,6 +33,9 @@ import org.springframework.web.socket.sockjs.client.Transport;
 import org.springframework.web.socket.sockjs.client.WebSocketTransport;
 
 
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.WebSocket;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -80,7 +85,7 @@ public class WsClient extends WebSocketStompClient{
     }
 
     protected WsClient(final AdminApiClientConfiguration configuration, final String wsUri, final StompHeaders stompHeaders, final Consumer<Integer> onStateChange, ZiqniSimpleEventBus eventBus) {
-        super(makeSockJs());
+        super(new NativeWebSocketClient());
         this.wsUri = wsUri;
         this.taskScheduler = new ThreadPoolTaskScheduler();
         this.stompSessionHandler = new WsStompSessionHandler(eventBus);
@@ -91,7 +96,6 @@ public class WsClient extends WebSocketStompClient{
         this.eventBus = eventBus;
         this.configuration = configuration;
 
-
         // create stomp client
         super.setTaskScheduler(taskScheduler);
 
@@ -101,13 +105,12 @@ public class WsClient extends WebSocketStompClient{
         super.setDefaultHeartbeat(new long[]{10000L, 10000L});
     }
 
-    private static SockJsClient makeSockJs(){
-        // setup transports & socksjs
-        StandardWebSocketClient jettyWebSocketClient = new StandardWebSocketClient();
-        List<Transport> transports = new ArrayList<>(2);
-        transports.add(new WebSocketTransport(jettyWebSocketClient));
-        return new SockJsClient(transports);
-    }
+//    private static SockJsClient makeSockJs(WebSocket ws){
+//        // setup transports & socksjs
+//        List<Transport> transports = new ArrayList<>(2);
+//        transports.add(new WebSocketTransport(ws));
+//        return new SockJsClient(transports);
+//    }
 
 
 
