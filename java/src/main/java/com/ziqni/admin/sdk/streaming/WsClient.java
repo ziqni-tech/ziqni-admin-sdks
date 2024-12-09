@@ -3,12 +3,12 @@
  */
 package com.ziqni.admin.sdk.streaming;
 
-import com.ziqni.admin.sdk.ZiqniAdminSDKEventBus;
 import com.ziqni.admin.sdk.configuration.AdminApiClientConfiguration;
 import com.ziqni.admin.sdk.context.WSClientConnected;
 import com.ziqni.admin.sdk.context.WSClientConnecting;
 import com.ziqni.admin.sdk.context.WSClientDisconnected;
 import com.ziqni.admin.sdk.context.WSClientSevereFailure;
+import com.ziqni.admin.sdk.eventbus.ZiqniSimpleEventBus;
 import com.ziqni.admin.sdk.streaming.runnables.MessageToSend;
 import com.ziqni.admin.sdk.util.Common;
 import com.ziqni.admin.sdk.util.ZiqniClientObjectMapper;
@@ -59,7 +59,7 @@ public class WsClient extends WebSocketStompClient{
     private final StompHeaders stompHeaders;
 
     private StompSession stompSession;
-    private ZiqniAdminSDKEventBus eventBus;
+    private ZiqniSimpleEventBus eventBus;
 
     private final List<SuccessCallback<StompSession>> connectListeners;
 
@@ -78,11 +78,11 @@ public class WsClient extends WebSocketStompClient{
     private final Consumer<Integer> onStateChange;
     private final AdminApiClientConfiguration configuration;
 
-    public WsClient(final AdminApiClientConfiguration configuration, final String wsUri, final Consumer<Integer> onStateChange, ZiqniAdminSDKEventBus eventBus) throws Exception {
+    public WsClient(final AdminApiClientConfiguration configuration, final String wsUri, final Consumer<Integer> onStateChange, ZiqniSimpleEventBus eventBus) throws Exception {
         this(configuration, wsUri, makeAuthHeader(configuration), onStateChange, eventBus);
     }
 
-    protected WsClient(final AdminApiClientConfiguration configuration, final String wsUri, final StompHeaders stompHeaders, final Consumer<Integer> onStateChange, ZiqniAdminSDKEventBus eventBus) {
+    protected WsClient(final AdminApiClientConfiguration configuration, final String wsUri, final StompHeaders stompHeaders, final Consumer<Integer> onStateChange, ZiqniSimpleEventBus eventBus) {
         super(makeSockJs());
         this.wsUri = wsUri;
         this.taskScheduler = new ThreadPoolTaskScheduler();

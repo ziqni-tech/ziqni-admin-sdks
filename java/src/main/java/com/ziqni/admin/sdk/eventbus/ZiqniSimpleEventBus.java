@@ -1,5 +1,7 @@
 package com.ziqni.admin.sdk.eventbus;
 
+import com.ziqni.admin.sdk.context.*;
+
 import java.util.HashSet;
 import java.util.Set;
 import java.util.concurrent.*;
@@ -51,6 +53,26 @@ public class ZiqniSimpleEventBus {
         subscribers.values().forEach(messageConsumers ->
                 messageConsumers.consumers.remove(consumer)
         );
+    }
+
+    public void onWSClientConnected(Consumer<WSClientConnected> consumer){
+        this.register(WSClientConnected.class, consumer);
+    }
+
+    public void onWSClientConnecting(Consumer<WSClientConnecting> consumer){
+        this.register(WSClientConnecting.class, consumer);
+    }
+
+    public void onWSClientDisconnected(Consumer<WSClientDisconnected> consumer){
+        this.register(WSClientDisconnected.class, consumer);
+    }
+
+    public void onWSClientSevereFailure(Consumer<WSClientSevereFailure> consumer){
+        this.register(WSClientSevereFailure.class, consumer);
+    }
+
+    public void onWsClientTransportError(Consumer<WsClientTransportError> consumer){
+        this.register(WsClientTransportError.class, consumer);
     }
 
     /**
