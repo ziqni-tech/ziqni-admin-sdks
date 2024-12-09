@@ -40,6 +40,11 @@ public class NativeWebSocketClient implements WebSocketClient {
         // Ensure completion on success or failure
         return webSocketFuture.thenApply(f -> {
                     WebSocketSession  webSocketSession = new NativeWebSocketSession(f,websocketUri);
+                    try {
+                        webSocketHandler.afterConnectionEstablished(webSocketSession);
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
                     return webSocketSession;
                 })
                 .exceptionally(ex -> {
