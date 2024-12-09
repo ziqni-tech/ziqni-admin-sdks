@@ -54,8 +54,6 @@ public class StreamingClient {
         this.rpcResultsEventHandler = RpcResultsEventHandler.create();
         this.callbackEventHandler = CallbackEventHandler.create();
 
-        this.eventBus.register(this);
-
         // implement shutdown hook
         Runtime.getRuntime().addShutdownHook(new Thread( () -> {
             this.reconnectCount.set(-1);

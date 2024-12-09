@@ -117,13 +117,13 @@ public class WsClient extends WebSocketStompClient{
         stompSessionHandler.subscribe(stompSession,handler);
     }
 
-    private static StompHeaders makeAuthHeader(AdminApiClientConfiguration configuration) throws Exception{
+    private static StompHeaders makeAuthHeader(AdminApiClientConfiguration configuration) throws Exception {
         StompHeaders stompHeaders = new StompHeaders();
         updateOauthToken(configuration,stompHeaders);
         return stompHeaders;
     }
 
-    private static void updateOauthToken(AdminApiClientConfiguration configuration, StompHeaders stompHeaders) throws Exception{
+    private static void updateOauthToken(AdminApiClientConfiguration configuration, StompHeaders stompHeaders) throws Exception {
         stompHeaders.setLogin(configuration.getWsStompClientLogin());
         configuration.verifyXApiKeyToken();
         stompHeaders.setPasscode(configuration.getAccessTokenString());
