@@ -25,9 +25,6 @@ public class NativeWebSocketClient implements WebSocketClient {
         // Connect the WebSocket and wrap it into a session
         CompletableFuture<WebSocket> webSocketFuture = httpClient
                 .newWebSocketBuilder()
-//                .header("Sec-WebSocket-Protocol", "v10.stomp") // Ensure this matches the server
-                .header("Sec-WebSocket-Version", "13") // WebSocket version
-                .header("Sec-WebSocket-Extensions", "permessage-deflate") // Optional extensions
                 .buildAsync(uri, new NativeWebSocketHandlerAdapter(webSocketHandler));
 
         return webSocketFuture.thenApply(NativeWebSocketSession::new);
@@ -39,9 +36,6 @@ public class NativeWebSocketClient implements WebSocketClient {
         // Connect the WebSocket and wrap it into a session
         CompletableFuture<WebSocket> webSocketFuture = httpClient
                 .newWebSocketBuilder()
-//                .header("Sec-WebSocket-Protocol", "v10.stomp") // Ensure this matches the server
-                .header("Sec-WebSocket-Version", "13") // WebSocket version
-                .header("Sec-WebSocket-Extensions", "permessage-deflate") // Optional extensions
                 .buildAsync(uri, new NativeWebSocketHandlerAdapter(webSocketHandler));
 
         return webSocketFuture.thenApply(NativeWebSocketSession::new);

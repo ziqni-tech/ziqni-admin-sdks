@@ -4,8 +4,13 @@
 package com.ziqni.admin.sdk.streaming;
 
 import com.ziqni.admin.sdk.configuration.AdminApiClientConfiguration;
+import com.ziqni.admin.sdk.util.Common;
+
+import java.util.Random;
 
 public class WsAddress {
+
+    Random random = new Random();
 
     final String address;
 
@@ -16,7 +21,7 @@ public class WsAddress {
         sb.append(configuration.getAdminClientServerHost());
         if(configuration.getAdminClientServerPort() != null && !(configuration.getAdminClientServerPort() == 80 || configuration.getAdminClientServerPort() == 443))
             sb.append(":").append(configuration.getAdminClientServerPort());
-        sb.append("/ws");
+        sb.append("/ws/"+random.nextInt(200,10_000)+"/"+ Common.getNextId() +"/websocket");
 
         this.address = sb.toString();
     }
