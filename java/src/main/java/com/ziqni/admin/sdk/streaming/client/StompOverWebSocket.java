@@ -2,43 +2,59 @@ package com.ziqni.admin.sdk.streaming.client;
 
 import com.ziqni.admin.sdk.eventbus.ZiqniSimpleEventBus;
 import com.ziqni.admin.sdk.streaming.EventHandler;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.WebSocket;
+import java.util.Map;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.CompletionStage;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.atomic.AtomicInteger;
 
-public class StompOverWebSocket {
+public class StompOverWebSocket implements WebSocket.Listener {
+
+    private static final Logger logger = LoggerFactory.getLogger(StompOverWebSocket.class);
+
+    public static final int STATE_FAILURE = -2;
+    public static final int STATE_DISCONNECTING = -1;
+    public static final int STATE_NOT_CONNECTED = 0;
+    public static final int STATE_CONNECTING = 1;
+    public static final int STATE_CONNECTED = 2;
 
     private final String wsUri;
     private final String username;
     private final String passcode;
     private final ZiqniSimpleEventBus eventBus;
-    private final StompWebSocketListener stompWebSocketListener;
+
+    private final AtomicInteger connected = new AtomicInteger(0);
+    private final Map<String, EventHandler<?>> eventHandlers = new ConcurrentHashMap<>();
 
     private WebSocket webSocket;
-    private StompHeartbeatManager stompHeartbeatManager;
+    private StompHeartbeatManager heartbeatManager;
 
     public StompOverWebSocket(String wsUri, String username, String passcode, ZiqniSimpleEventBus eventBus) {
         this.wsUri = wsUri;
         this.username = username;
         this.passcode = passcode;
         this.eventBus = eventBus;
-        this.stompWebSocketListener = new StompWebSocketListener(() -> stompHeartbeatManager);
     }
 
     public CompletableFuture<Void> connect() {
         HttpClient client = HttpClient.newHttpClient();
         return client.newWebSocketBuilder()
-                .buildAsync(URI.create(wsUri), stompWebSocketListener)
+                .buildAsync(URI.create(wsUri), this)
                 .thenAccept(ws -> {
                     this.webSocket = ws;
-                    this.stompHeartbeatManager = new StompHeartbeatManager(webSocket, eventBus, 10000); // Client interval: 10 seconds
+                    this.heartbeatManager = new StompHeartbeatManager(webSocket, eventBus, 10000); // Client interval: 10 seconds
                     sendConnectFrame();
                 });
     }
 
     private void sendConnectFrame() {
+        connected.set(STATE_CONNECTING);
         StompHeaders connectHeaders = new StompHeaders();
         connectHeaders.setLogin(username);
         connectHeaders.setPasscode(passcode);
@@ -50,7 +66,8 @@ public class StompOverWebSocket {
         connectFrame.append("\n\0");
 
         webSocket.sendText(connectFrame.toString(), true);
-        System.out.println("CONNECT frame sent.");
+        logger.debug("CONNECT frame sent.");
+
     }
 
     public void subscribe(String destination) {
@@ -63,7 +80,7 @@ public class StompOverWebSocket {
         subscribeFrame.append("\n\0");
 
         webSocket.sendText(subscribeFrame.toString(), true);
-        System.out.println("SUBSCRIBE frame sent to: " + destination);
+        logger.debug("SUBSCRIBE frame sent to: " + destination);
     }
 
     public void sendMessage(String destination, String payload) {
@@ -75,45 +92,45 @@ public class StompOverWebSocket {
         sendFrame.append("\n").append(payload).append("\0");
 
         webSocket.sendText(sendFrame.toString(), true);
-        System.out.println("Message sent to " + destination);
+        logger.debug("SEND frame sent to: " + destination);
     }
 
     public void disconnect() {
-        if (stompHeartbeatManager != null) {
-            stompHeartbeatManager.stop();
+        if (heartbeatManager != null) {
+            heartbeatManager.stop();
         }
+        logger.debug("Sending DISCONNECT frame.");
         String disconnectFrame = "DISCONNECT\n\n\0";
         webSocket.sendText(disconnectFrame, true);
-        System.out.println("DISCONNECT frame sent.");
+        logger.debug("DISCONNECT frame sent.");
     }
 
 
     public void subscribe(EventHandler<?> handler) {
-        stompWebSocketListener.subscribe(handler);
+        eventHandlers.put(handler.getTopic(), handler);
         subscribe(handler.getTopic());
     }
 
-
     public boolean isConnected() {
-        return false;
+        return connected.get() == STATE_CONNECTED;
     }
 
-
     public boolean isNotConnected() {
-        return false;
+        return connected.get() != STATE_CONNECTED;
     }
 
     public boolean isConnecting() {
-        return false;
+        return connected.get() == STATE_CONNECTING;
     }
 
     public boolean isDisconnecting() {
-        return false;
+        return connected.get() == STATE_DISCONNECTING;
     }
 
     public boolean isFailure() {
-        return false;
+        return connected.get() == STATE_FAILURE;
     }
+
 
     public void shutdown() {
         webSocket.sendClose(WebSocket.NORMAL_CLOSURE, "Client shutdown");
@@ -121,5 +138,77 @@ public class StompOverWebSocket {
 
     public <TIN> Runnable prepareMessageToSend(StompHeaders stompHeaders, TIN tPayload) {
         return null;
+    }
+
+    /** Listener */
+
+    @Override
+    public void onOpen(WebSocket webSocket) {
+        logger.info("WebSocket connection opened.");
+        connected.set(STATE_CONNECTED);
+        webSocket.request(1);
+    }
+
+    @Override
+    public CompletionStage<?> onText(WebSocket webSocket, CharSequence data, boolean last) {
+        String message = data.toString().trim();
+
+        if (message.isEmpty()) {
+            // Handle server heartbeat
+            heartbeatManager.updateLastServerHeartbeatTime();
+        } else {
+            try {
+                // Parse the message into a StompFrame
+                StompFrame frame = StompFrame.parse(message);
+                System.out.println("Received STOMP frame: " + frame.getCommand());
+
+                // Handle specific frame types
+                switch (frame.getCommand()) {
+                    case CONNECTED -> {
+                        connected.set(STATE_CONNECTED);
+                        String heartBeatHeader = frame.getHeaders().get("heart-beat");
+                        if (heartBeatHeader != null) {
+                            String[] parts = heartBeatHeader.split(",");
+                            heartbeatManager.setServerHeartbeatInterval(Long.parseLong(parts[1])); // Server's desired interval
+                            heartbeatManager.start();
+                        }
+                    }
+                    case MESSAGE -> {
+                        // Further processing for MESSAGE frames
+                        eventHandlers.get(frame.getDestination()).handle(frame.getBody());
+                    }
+                    case ERROR -> {
+                        logger.error("Error frame received: " + frame.getBody());
+                    }
+                    default -> System.out.println("Unhandled command: " + frame.getCommand());
+                }
+            } catch (Exception e) {
+                logger.error("Failed to parse STOMP frame: " + e.getMessage());
+            }
+        }
+
+        webSocket.request(1);
+        return CompletableFuture.completedFuture(null);
+    }
+
+    @Override
+    public CompletionStage<?> onBinary(WebSocket webSocket, java.nio.ByteBuffer data, boolean last) {
+        logger.error("Unexpected binary data received.");
+        return CompletableFuture.completedFuture(null);
+    }
+
+    @Override
+    public CompletionStage<?> onClose(WebSocket webSocket, int statusCode, String reason) {
+        logger.info("WebSocket closed: " + reason);
+        connected.set(STATE_NOT_CONNECTED);
+        if (heartbeatManager != null) {
+            heartbeatManager.stop();
+        }
+        return CompletableFuture.completedFuture(null);
+    }
+
+    @Override
+    public void onError(WebSocket webSocket, Throwable error) {
+        logger.error("WebSocket error: " + error.getMessage());
     }
 }

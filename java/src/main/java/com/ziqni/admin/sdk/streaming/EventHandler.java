@@ -28,4 +28,8 @@ public abstract class EventHandler<T> {
     public Type getPayloadType(StompHeaders headers) {
         return String.class;
     }
+
+    public void handle(String body) {
+
+    }
 }
