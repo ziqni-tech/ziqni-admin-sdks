@@ -1,5 +1,7 @@
 package com.ziqni.admin.sdk.streaming.client;
 
+import org.apache.commons.configuration2.tree.ImmutableNode;
+
 import java.io.Serializable;
 import java.util.*;
 
@@ -24,6 +26,7 @@ public class StompHeaders implements Serializable {
     public static final String SUBSCRIPTION = "subscription";
     public static final String MESSAGE_ID = "message-id";
     public static final String RECEIPT_ID = "receipt-id";
+    private final static String OBJECT_TYPE_KEY = "objectType";
 
     private final Map<String, List<String>> headers = new LinkedHashMap<>();
 
@@ -186,5 +189,9 @@ public class StompHeaders implements Serializable {
 
     public String getHeartBeat() {
         return getFirst(HEARTBEAT);
+    }
+
+    public String getObjectType() {
+        return getFirst(OBJECT_TYPE_KEY);
     }
 }

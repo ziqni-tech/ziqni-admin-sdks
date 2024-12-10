@@ -3,6 +3,7 @@
  */
 package com.ziqni.admin.sdk.streaming.handlers;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JavaType;
 import com.github.benmanes.caffeine.cache.AsyncCache;
 import com.github.benmanes.caffeine.cache.Caffeine;
@@ -68,7 +69,7 @@ public class RpcResultsEventHandler extends EventHandler<String> {
         var messageId = headers.getMessageId();
 
         if(Objects.nonNull(messageId)){
-            handleWithMessageId(messageId, headers, payload);
+            handleWithMessageId(messageId, headers, unpack(headers,payload.toString()));
         }
         else {
             if(!payload.getClass().isInstance(Message.class))
@@ -98,6 +99,7 @@ public class RpcResultsEventHandler extends EventHandler<String> {
     }
 
     private static void handleWithMessageId(String messageId, StompHeaders headers, Object payload) {
+
         Optional.ofNullable(awaitingResponseCache.getIfPresent(messageId)).ifPresent( callback ->
                 callback.thenAccept(rpcResultsResponse ->
                                 executorService.submit(rpcResultsResponse.onCallBack(headers, payload))
@@ -107,5 +109,26 @@ public class RpcResultsEventHandler extends EventHandler<String> {
 
     public static RpcResultsEventHandler create(){
         return new RpcResultsEventHandler();
+    }
+
+    private Object unpack(StompHeaders headers, String payload){
+        // Retrieve the target Type from the classScanner using the object type from headers
+        final String objectType = headers.getObjectType(); // Ensure headers has getObjectType()
+        final Optional<Type> optionalType = classScanner.get(objectType);
+
+        if (optionalType.isPresent()) {
+            // Extract the Type
+            final Type t = optionalType.get();
+
+            // Deserialize the payload into an object of the extracted Type
+            final Object object;
+            try {
+                return  EventHandler.objectMapper.readValue(payload, EventHandler.objectMapper.constructType(t));
+            } catch (JsonProcessingException e) {
+                throw new RuntimeException(e);
+            }
+        } else {
+            throw new IllegalArgumentException("No Type found for objectType: " + objectType);
+        }
     }
 }

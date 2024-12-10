@@ -34,4 +34,5 @@ public abstract class EventHandler<T> {
     }
 
     public abstract void handleFrame(@NonNull StompHeaders headers, Object payload);
+
 }

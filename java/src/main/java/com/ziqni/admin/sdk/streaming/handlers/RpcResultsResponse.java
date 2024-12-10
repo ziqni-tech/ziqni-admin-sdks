@@ -12,7 +12,6 @@ import java.util.concurrent.CompletableFuture;
 
 public class RpcResultsResponse<TIN, TOUT> {
 
-    private final static String OBJECT_TYPE_KEY = "objectType";
     private final long sequenceNumber;
     private final TIN payload;
     private final CompletableFuture<TOUT> completableFuture;
@@ -41,11 +40,7 @@ public class RpcResultsResponse<TIN, TOUT> {
 
     public Runnable onCallBack(StompHeaders headers, Object response) {
         try {
-            var failed = headers.get(OBJECT_TYPE_KEY)
-                    .stream()
-                    .findFirst()
-                    .map(value -> value.equals(ApiException.class.getSimpleName()))
-                    .orElse(false);
+            var failed = headers.getObjectType().equals(ApiException.class.getSimpleName());
 
             if(failed)
                 return onApiExceptionCallBack(headers,response);
