@@ -21,7 +21,8 @@ public class WsAddress {
         sb.append(configuration.getAdminClientServerHost());
         if(configuration.getAdminClientServerPort() != null && !(configuration.getAdminClientServerPort() == 80 || configuration.getAdminClientServerPort() == 443))
             sb.append(":").append(configuration.getAdminClientServerPort());
-        sb.append("/ws/"+random.nextInt(200,10_000)+"/"+ Common.getNextId() +"/websocket");
+//        sb.append("/ws/"+random.nextInt(200,10_000)+"/"+ Common.getNextId() +"/websocket");
+        sb.append("/ws/websocket");
 
         this.address = sb.toString();
     }

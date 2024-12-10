@@ -22,6 +22,7 @@ import org.springframework.messaging.simp.stomp.StompSession;
 import org.springframework.scheduling.TaskScheduler;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
 import org.springframework.web.socket.WebSocketHttpHeaders;
+import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.messaging.WebSocketStompClient;
 
 import java.util.List;
@@ -269,21 +270,20 @@ public class WsClient extends WebSocketStompClient{
         try {
             updateOauthToken(configuration,stompHeaders);
 
-            final var future = super.connectAsync(wsUri, new WebSocketHttpHeaders(), stompHeaders, stompSessionHandler);
+            final CompletableFuture<StompSession> future = connectAsync(wsUri, new WebSocketHttpHeaders(), stompHeaders, stompSessionHandler);
 
-            future.thenApply(newStompSession -> {
-                        stompSession = newStompSession;
-                        logger.info("Connection established successfully with the server.");
-                        this.stompSessionHandler.reconnectAllTopics(stompSession);
-                        notifyConnectListeners(newStompSession);
-                        return future;
-                    }).exceptionally(throwable -> {
-                        logger.debug("Stomp client connection call back exception. [{}]", throwable.getMessage());
-                        notifyDisconnectListeners(throwable);
-                        return future;
-                    });
-
-            return future;
+            return future.handle((stompSession, throwable) -> {
+                if (throwable != null) {
+                    logger.error("Failed to connect WebSocket", throwable);
+                    setConnectionState(SevereFailure);
+                    return null;
+                } else {
+                    logger.info("Connection established successfully with the server.");
+                    this.stompSessionHandler.reconnectAllTopics(stompSession);
+                    notifyConnectListeners(stompSession);
+                    return stompSession;
+                }
+            });
 
         } catch (Exception e) {
             var future = new CompletableFuture<StompSession>().toCompletableFuture();

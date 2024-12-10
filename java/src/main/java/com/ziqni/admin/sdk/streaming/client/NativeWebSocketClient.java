@@ -37,19 +37,16 @@ public class NativeWebSocketClient implements WebSocketClient {
     private CompletableFuture<WebSocketSession> connectWebSocket(WebSocketHandler webSocketHandler, URI uri) {
         CompletableFuture<WebSocket> webSocketFuture = httpClient
                 .newWebSocketBuilder()
-                .buildAsync(uri, new NativeWebSocketHandlerAdapter(webSocketHandler,websocketUri));
+                .buildAsync(uri, new NativeWebSocketHandlerAdapter(webSocketHandler, websocketUri));
 
-
-
-        // Ensure completion on success or failure
-        return webSocketFuture
-                .thenApply(f -> {
-                    WebSocketSession  webSocketSession = new NativeWebSocketSession(f,websocketUri);
-                    return webSocketSession;
-                })
-                .exceptionally(ex -> {
-                    logger.error("Failed to connect WebSocket", ex);
-                    throw new RuntimeException("Failed to connect WebSocket", ex);
-                });
+        return webSocketFuture.handle((webSocket, throwable) -> {
+            if (throwable != null) {
+                logger.error("Failed to connect WebSocket", throwable);
+                throw new RuntimeException("Failed to connect WebSocket", throwable);
+            } else {
+                WebSocketSession webSocketSession = new NativeWebSocketSession(webSocket, websocketUri);
+                return webSocketSession;
+            }
+        });
     }
 }
