@@ -33,6 +33,6 @@ public abstract class EventHandler<T> {
     }
 
     public void handle(String body) {
-
+        System.out.println();
     }
 }
