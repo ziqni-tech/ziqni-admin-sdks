@@ -55,11 +55,6 @@ public class RpcResultsEventHandler extends EventHandler<String> {
     }
 
     @Override
-    public JavaType getValType(StompHeaders headers) {
-        return objectMapper.constructType(getPayloadType(headers));
-    }
-
-    @Override
     public Type getPayloadType(StompHeaders headers) {
         return this.classScanner.get(headers.getFirst("objectType")).orElse(Object.class);
     }

@@ -299,7 +299,7 @@ public class StompOverWebSocket implements WebSocket.Listener {
     private String serializeToJson(Object payload) {
         // Example using Jackson (ensure you add Jackson dependency in your project)
         try {
-            return EventHandler.objectMapper.writeValueAsString(payload);
+            return EventHandler.ziqniClientObjectMapper.serializingObjectMapper().writeValueAsString(payload);
         } catch (JsonProcessingException e) {
             throw new RuntimeException("Failed to serialize payload to JSON", e);
         }

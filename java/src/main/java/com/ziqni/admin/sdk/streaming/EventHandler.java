@@ -4,12 +4,9 @@
 package com.ziqni.admin.sdk.streaming;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.JavaType;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.ziqni.admin.sdk.streaming.client.StompHeaders;
 import com.ziqni.admin.sdk.util.ClassScanner;
+import com.ziqni.admin.sdk.util.ZiqniClientObjectMapper;
 import org.checkerframework.checker.nullness.qual.NonNull;
 
 import java.lang.reflect.Type;
@@ -17,20 +14,13 @@ import java.util.Optional;
 
 public abstract class EventHandler<T> {
 
-    public static final ObjectMapper objectMapper = new ObjectMapper()
-            .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
-            .registerModule(new JavaTimeModule()); // Register the JavaTimeModule
+    public static final ZiqniClientObjectMapper ziqniClientObjectMapper = new ZiqniClientObjectMapper();
 
     /**
      * Get the Topic name this handler should attach to
      * @return the topic name
      */
     public abstract String getTopic();
-
-    /**
-     * Jackson value type that is expected to be returned
-     */
-    public abstract JavaType getValType(StompHeaders headers);
 
     public Type getPayloadType(StompHeaders headers) {
         return String.class;
@@ -50,7 +40,7 @@ public abstract class EventHandler<T> {
             // Deserialize the payload into an object of the extracted Type
             final Object object;
             try {
-                return  EventHandler.objectMapper.readValue(payload, EventHandler.objectMapper.constructType(t));
+                return  EventHandler.ziqniClientObjectMapper.serializingObjectMapper().readValue(payload, EventHandler.ziqniClientObjectMapper.serializingObjectMapper().constructType(t));
             } catch (JsonProcessingException e) {
                 throw new RuntimeException(e);
             }

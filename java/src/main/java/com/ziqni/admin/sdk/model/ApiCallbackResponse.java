@@ -1,7 +1,7 @@
 /*
  * Copyright (c) 2022. ZIQNI LTD registered in England and Wales, company registration number-09693684
  */
-package com.ziqni.admin.sdk.streaming;
+package com.ziqni.admin.sdk.model;
 
 import com.ziqni.admin.sdk.streaming.client.StompHeaders;
 import org.slf4j.Logger;

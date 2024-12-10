@@ -48,11 +48,6 @@ public class CallbackEventHandler extends EventHandler<String> {
     }
 
     @Override
-    public JavaType getValType(StompHeaders headers) {
-        return objectMapper.constructType(getPayloadType(headers));
-    }
-
-    @Override
     public Type getPayloadType(StompHeaders headers) {
         return this.classScanner.get(headers.getObjectType()).orElse(Object.class);
     }
