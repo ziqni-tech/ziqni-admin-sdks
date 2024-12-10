@@ -10,13 +10,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.time.OffsetDateTime;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Objects;
 import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.concurrent.atomic.AtomicReference;
-import java.util.function.Consumer;
 
 public class StreamingClient {
 
@@ -25,8 +22,6 @@ public class StreamingClient {
     private final ExecutorService websocketSendExecutor;
 
     public final LinkedBlockingDeque<Runnable> webSocketClientTasks;
-    private final Map<String, Consumer<StreamingClient>> onStartHandlers = new HashMap<>();
-    private final Map<String, Consumer<StreamingClient>> onStopHandlers = new HashMap<>();
     private final RpcResultsEventHandler rpcResultsEventHandler;
     private final CallbackEventHandler callbackEventHandler;
     private final ZiqniSimpleEventBus eventBus;
@@ -53,9 +48,12 @@ public class StreamingClient {
             this.reconnectCount.set(-1);
             this.stop(true);
         }));
+
+        // Listen to the eventbus for transport errors
+        this.eventBus.onWsClientTransportError(this::onWsClientTransportError);
     }
 
-    public void onWsClientTransportError(WsClientTransportError wsClientTransportError){
+    private void onWsClientTransportError(WsClientTransportError wsClientTransportError){
         this.stop(false).thenAccept(unused -> {
             if(Objects.nonNull(this.nextReconnect.get()))
                 return;
@@ -71,6 +69,7 @@ public class StreamingClient {
         this.reconnectCount.incrementAndGet();
         this.nextReconnect.set(OffsetDateTime.now().plusSeconds(10));
 
+        // FIXME; MCD-100: Implement reconnect
 //        taskScheduler.schedule(
 //                this::attemptReconnect,
 //                this.nextReconnect.get().toInstant()
@@ -178,16 +177,8 @@ public class StreamingClient {
     }
 
     private void onConnected(StompOverWebSocket ws) {
-
         this.wsClient.subscribe( this.rpcResultsEventHandler);
         this.wsClient.subscribe( this.callbackEventHandler );
-        executeOnStartHandlers();
-    }
-
-    public void executeOnStartHandlers() {
-        this.onStartHandlers.forEach((k, v) ->
-                v.accept(this)
-        );
     }
 
     public CallbackEventHandler getCallbackEventHandler() {

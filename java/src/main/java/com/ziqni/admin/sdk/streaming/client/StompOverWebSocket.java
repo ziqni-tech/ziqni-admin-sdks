@@ -1,9 +1,8 @@
 package com.ziqni.admin.sdk.streaming.client;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ziqni.admin.sdk.eventbus.ZiqniSimpleEventBus;
-import com.ziqni.admin.sdk.streaming.EventHandler;
+import com.ziqni.admin.sdk.streaming.handlers.EventHandler;
 import com.ziqni.admin.sdk.streaming.runnables.MessageToSend;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

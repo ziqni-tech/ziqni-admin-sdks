@@ -5,13 +5,11 @@ import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ziqni.admin.sdk.ApiException;
 import com.ziqni.admin.sdk.JSON;
-import com.ziqni.admin.sdk.streaming.EventHandler;
 import com.ziqni.admin.sdk.streaming.client.StompHeaders;
 import com.ziqni.admin.sdk.util.ClassScanner;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.lang.reflect.Type;
 import java.nio.charset.StandardCharsets;
 import java.util.Map;
 import java.util.Optional;
@@ -19,7 +17,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public class CallbackEventHandler extends EventHandler<String> {
+public class CallbackEventHandler extends EventHandler {
     private static final Logger logger = LoggerFactory.getLogger(CallbackEventHandler.class);
 
     public final static String DEFAULT_TOPIC = "/user/queue/callbacks";
@@ -45,11 +43,6 @@ public class CallbackEventHandler extends EventHandler<String> {
     @Override
     public String getTopic() {
         return DEFAULT_TOPIC;
-    }
-
-    @Override
-    public Type getPayloadType(StompHeaders headers) {
-        return this.classScanner.get(headers.getObjectType()).orElse(Object.class);
     }
 
     public void handleFrame(StompHeaders headers, String payload) {

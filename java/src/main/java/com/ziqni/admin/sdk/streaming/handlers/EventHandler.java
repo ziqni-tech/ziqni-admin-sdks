@@ -1,7 +1,7 @@
 /*
  * Copyright (c) 2022. ZIQNI LTD registered in England and Wales, company registration number-09693684
  */
-package com.ziqni.admin.sdk.streaming;
+package com.ziqni.admin.sdk.streaming.handlers;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.ziqni.admin.sdk.streaming.client.StompHeaders;
@@ -12,7 +12,7 @@ import org.checkerframework.checker.nullness.qual.NonNull;
 import java.lang.reflect.Type;
 import java.util.Optional;
 
-public abstract class EventHandler<T> {
+public abstract class EventHandler {
 
     public static final ZiqniClientObjectMapper ziqniClientObjectMapper = new ZiqniClientObjectMapper();
 
@@ -22,13 +22,9 @@ public abstract class EventHandler<T> {
      */
     public abstract String getTopic();
 
-    public Type getPayloadType(StompHeaders headers) {
-        return String.class;
-    }
-
     public abstract void handleFrame(@NonNull StompHeaders headers, String payload);
 
-    protected Object unpack(ClassScanner classScanner, StompHeaders headers, String payload){
+    public Object unpack(ClassScanner classScanner, StompHeaders headers, String payload){
         // Retrieve the target Type from the classScanner using the object type from headers
         final String objectType = headers.getObjectType(); // Ensure headers has getObjectType()
         final Optional<Type> optionalType = classScanner.get(objectType);
