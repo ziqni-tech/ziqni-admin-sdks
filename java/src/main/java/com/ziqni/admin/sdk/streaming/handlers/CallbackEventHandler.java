@@ -54,7 +54,7 @@ public class CallbackEventHandler extends EventHandler<String> {
 
     @Override
     public Type getPayloadType(StompHeaders headers) {
-        return this.classScanner.get(headers.getFirst("objectType")).orElse(Object.class);
+        return this.classScanner.get(headers.getObjectType()).orElse(Object.class);
     }
 
     public void handleFrame(StompHeaders headers, String payload) {
