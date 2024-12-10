@@ -17,6 +17,7 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionStage;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.function.Consumer;
 
 public class StompOverWebSocket implements WebSocket.Listener {
 
@@ -32,6 +33,7 @@ public class StompOverWebSocket implements WebSocket.Listener {
     private final String username;
     private final String passcode;
     private final ZiqniSimpleEventBus eventBus;
+    private final Consumer<StompOverWebSocket> onConnect;
 
     private final AtomicInteger connected = new AtomicInteger(0);
     private final Map<String, EventHandler<?>> eventHandlers = new ConcurrentHashMap<>();
@@ -39,11 +41,12 @@ public class StompOverWebSocket implements WebSocket.Listener {
     private WebSocket webSocket;
     private StompHeartbeatManager heartbeatManager;
 
-    public StompOverWebSocket(String wsUri, String username, String passcode, ZiqniSimpleEventBus eventBus) {
+    public StompOverWebSocket(String wsUri, String username, String passcode, ZiqniSimpleEventBus eventBus, Consumer<StompOverWebSocket> onConnect) {
         this.wsUri = wsUri;
         this.username = username;
         this.passcode = passcode;
         this.eventBus = eventBus;
+        this.onConnect = onConnect;
     }
 
     public CompletableFuture<Void> connect() {
@@ -164,12 +167,12 @@ public class StompOverWebSocket implements WebSocket.Listener {
             try {
                 // Parse the message into a StompFrame
                 StompFrame frame = StompFrame.parse(message);
-                System.out.println("Received STOMP frame: " + frame.getCommand());
 
                 // Handle specific frame types
                 switch (frame.getCommand()) {
                     case CONNECTED -> {
                         connected.set(STATE_CONNECTED);
+                        onConnect.accept(this);
                         String heartBeatHeader = frame.getHeaders().get("heart-beat");
                         if (heartBeatHeader != null) {
                             String[] parts = heartBeatHeader.split(",");

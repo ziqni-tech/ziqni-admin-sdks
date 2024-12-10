@@ -175,19 +175,18 @@ public class StreamingClient {
             throw new IllegalStateException("The client is shutting down");
 
         if(this.wsClient==null) {
-            this.wsClient = new StompOverWebSocket(URL, "x-api-key", configuration.getAccessTokenString(), eventBus);
+            this.wsClient = new StompOverWebSocket(URL, "x-api-key", configuration.getAccessTokenString(), eventBus, this::onConnected);
         }
 
         return
-            this.wsClient.connect().thenApply(_void -> {
-                if(isConnected()) {
-                    this.wsClient.subscribe( this.rpcResultsEventHandler);
-                    this.wsClient.subscribe( this.callbackEventHandler );
-                    executeOnStartHandlers();
-                }
-                onComplete.accept(true);
-                return true;
-            });
+            this.wsClient.connect().thenApply(_void -> true);
+    }
+
+    private void onConnected(StompOverWebSocket ws) {
+
+        this.wsClient.subscribe( this.rpcResultsEventHandler);
+        this.wsClient.subscribe( this.callbackEventHandler );
+        executeOnStartHandlers();
     }
 
     public void executeOnStartHandlers() {
