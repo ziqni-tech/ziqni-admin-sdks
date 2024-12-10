@@ -57,12 +57,12 @@ public class CallbackEventHandler extends EventHandler<String> {
         return this.classScanner.get(headers.getFirst("objectType")).orElse(Object.class);
     }
 
-    public void handleFrame(StompHeaders headers, Object payload) {
+    public void handleFrame(StompHeaders headers, String payload) {
         var callbackName = getCallback(headers);
 
         if(callbackName.isPresent())
             executorService.submit( () ->
-                    onCallBack(callbackName.get(), headers, payload)
+                    onCallBack(callbackName.get(), headers, super.unpack(classScanner,headers,payload))
             );
         else {
             logger.error("No callback header in the message");

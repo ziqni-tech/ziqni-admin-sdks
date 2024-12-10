@@ -65,11 +65,11 @@ public class RpcResultsEventHandler extends EventHandler<String> {
     }
 
     @Override
-    public void handleFrame(@NonNull StompHeaders headers, Object payload) {
+    public void handleFrame(@NonNull StompHeaders headers, String payload) {
         var messageId = headers.getMessageId();
 
         if(Objects.nonNull(messageId)){
-            handleWithMessageId(messageId, headers, unpack(headers,payload.toString()));
+            handleWithMessageId(messageId, headers, super.unpack(classScanner,headers,payload));
         }
         else {
             if(!payload.getClass().isInstance(Message.class))
@@ -109,26 +109,5 @@ public class RpcResultsEventHandler extends EventHandler<String> {
 
     public static RpcResultsEventHandler create(){
         return new RpcResultsEventHandler();
-    }
-
-    private Object unpack(StompHeaders headers, String payload){
-        // Retrieve the target Type from the classScanner using the object type from headers
-        final String objectType = headers.getObjectType(); // Ensure headers has getObjectType()
-        final Optional<Type> optionalType = classScanner.get(objectType);
-
-        if (optionalType.isPresent()) {
-            // Extract the Type
-            final Type t = optionalType.get();
-
-            // Deserialize the payload into an object of the extracted Type
-            final Object object;
-            try {
-                return  EventHandler.objectMapper.readValue(payload, EventHandler.objectMapper.constructType(t));
-            } catch (JsonProcessingException e) {
-                throw new RuntimeException(e);
-            }
-        } else {
-            throw new IllegalArgumentException("No Type found for objectType: " + objectType);
-        }
     }
 }
