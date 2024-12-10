@@ -3,12 +3,11 @@ package com.ziqni.admin.sdk.streaming;
 import com.ziqni.admin.sdk.configuration.AdminApiClientConfiguration;
 import com.ziqni.admin.sdk.context.WsClientTransportError;
 import com.ziqni.admin.sdk.eventbus.ZiqniSimpleEventBus;
+import com.ziqni.admin.sdk.streaming.client.StompOverWebSocket;
 import com.ziqni.admin.sdk.streaming.handlers.RpcResultsEventHandler;
 import com.ziqni.admin.sdk.streaming.handlers.CallbackEventHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.scheduling.TaskScheduler;
-import org.springframework.scheduling.concurrent.DefaultManagedTaskScheduler;
 
 import java.time.OffsetDateTime;
 import java.util.HashMap;
@@ -23,8 +22,6 @@ public class StreamingClient {
 
     private static final Logger logger = LoggerFactory.getLogger(StreamingClient.class);
 
-    private static final TaskScheduler taskScheduler = new DefaultManagedTaskScheduler();
-
     private final ExecutorService websocketSendExecutor;
 
     public final LinkedBlockingDeque<Runnable> webSocketClientTasks;
@@ -37,7 +34,7 @@ public class StreamingClient {
 
     private final AtomicLong reconnectCount = new AtomicLong(0);
     private final AtomicReference<OffsetDateTime> nextReconnect = new AtomicReference<>();
-    private WsClient wsClient;
+    private StompOverWebSocket wsClient;
 
     private final AdminApiClientConfiguration configuration;
 
@@ -74,10 +71,10 @@ public class StreamingClient {
         this.reconnectCount.incrementAndGet();
         this.nextReconnect.set(OffsetDateTime.now().plusSeconds(10));
 
-        taskScheduler.schedule(
-                this::attemptReconnect,
-                this.nextReconnect.get().toInstant()
-        );
+//        taskScheduler.schedule(
+//                this::attemptReconnect,
+//                this.nextReconnect.get().toInstant()
+//        );
     }
 
     private void attemptReconnect(){
@@ -106,20 +103,6 @@ public class StreamingClient {
             scheduleReconnect();
             logger.error("Reconnect failed", throwable);
         }
-    }
-
-    public CompletableFuture<Void> asyncWebSocketClient(Consumer<WsClient> consumer) {
-        final CompletableFuture<Void> result = new CompletableFuture<>();
-        this.websocketSendExecutor.submit(() -> {
-            try {
-                consumer.accept(this.wsClient);
-                result.complete(null);
-            }catch (Throwable throwable){
-                result.completeExceptionally(throwable);
-            }
-        });
-
-        return result;
     }
 
     public <TOUT, TIN> CompletableFuture<TOUT> sendWithApiCallback(String destination, TIN payload){
@@ -192,42 +175,19 @@ public class StreamingClient {
             throw new IllegalStateException("The client is shutting down");
 
         if(this.wsClient==null) {
-            this.wsClient = new WsClient(configuration, URL, (integer) -> {}, eventBus);
-            this.wsClient.setTaskScheduler(taskScheduler);
-            this.wsClient.setDefaultHeartbeat(new long[] {1000, 1000});
+            this.wsClient = new StompOverWebSocket(URL, "x-api-key", configuration.getAccessTokenString(), eventBus);
         }
 
-        final var result = new CompletableFuture<Boolean>();
-        this.websocketSendExecutor.submit( () -> {
-            this.wsClient.startClient(result).thenApply(isConnected -> {
+        return
+            this.wsClient.connect().thenApply(_void -> {
                 if(isConnected()) {
                     this.wsClient.subscribe( this.rpcResultsEventHandler);
                     this.wsClient.subscribe( this.callbackEventHandler );
                     executeOnStartHandlers();
                 }
-                onComplete.accept(isConnected);
-                return isConnected;
+                onComplete.accept(true);
+                return true;
             });
-        });
-        return result;
-    }
-
-    public void subscribe(EventHandler<?> handler) {
-        this.wsClient.subscribe(handler);
-    }
-
-    public void addOnStopHandler(String key, Consumer<StreamingClient> consumer){
-        this.onStopHandlers.compute( key, (k,v) -> consumer);
-    }
-
-    public void addOnStartHandler(String key, Consumer<StreamingClient> consumer){
-        this.onStartHandlers.compute( key, (k,v) -> consumer);
-    }
-
-    public void executeOnStopHandlers() {
-        this.onStopHandlers.forEach((k, v) ->
-                v.accept(this)
-        );
     }
 
     public void executeOnStartHandlers() {

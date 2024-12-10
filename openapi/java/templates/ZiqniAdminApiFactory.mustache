@@ -1,9 +1,9 @@
 package {{invokerPackage}};
 
 import {{invokerPackage}}.api.*;
-import {{invokerPackage}}.streaming.WsAddress;
 import {{invokerPackage}}.streaming.StreamingClient;
 import {{invokerPackage}}.eventbus.ZiqniSimpleEventBus;
+import {{invokerPackage}}.configuration.WebSocketAddress;
 import {{invokerPackage}}.configuration.AdminApiClientConfiguration;
 
 import java.time.Duration;
@@ -32,7 +32,7 @@ public class ZiqniAdminApiFactory {
         if(initialised) return;
         this.initialised = true;
         this.ziqniAdminEventBus = new ZiqniSimpleEventBus();
-        this.streamingClient = new StreamingClient(this.configuration, new WsAddress(this.configuration).getAddress(), getZiqniAdminEventBus());
+        this.streamingClient = new StreamingClient(this.configuration, new WebSocketAddress(this.configuration).getAddress(), getZiqniAdminEventBus());
     }
 
     private void init() {

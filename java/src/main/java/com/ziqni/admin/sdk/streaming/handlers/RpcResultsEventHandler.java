@@ -9,11 +9,11 @@ import com.github.benmanes.caffeine.cache.Caffeine;
 import com.ziqni.admin.sdk.streaming.EventHandler;
 import com.ziqni.admin.sdk.streaming.Message;
 import com.ziqni.admin.sdk.streaming.OnRemovalListener;
+import com.ziqni.admin.sdk.streaming.client.StompHeaders;
 import com.ziqni.admin.sdk.util.ClassScanner;
 import org.checkerframework.checker.nullness.qual.NonNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.messaging.simp.stomp.StompHeaders;
 
 import java.lang.reflect.Type;
 import java.util.Optional;
@@ -62,7 +62,7 @@ public class RpcResultsEventHandler extends EventHandler<String> {
         return this.classScanner.get(headers.getFirst("objectType")).orElse(Object.class);
     }
 
-    @Override
+
     public void handleFrame(@NonNull StompHeaders headers, Object payload) {
         var messageId = getMessageId(headers);
 
@@ -84,8 +84,6 @@ public class RpcResultsEventHandler extends EventHandler<String> {
         StompHeaders headers = new StompHeaders();
         headers.setDestination(destination);
         headers.setMessageId(nextSeq);
-
-        logger.debug("WS sent request to destination [{}] with receipt id [{}] and payload [{}] and headers [{}] and callback []", destination, nextSeq, payload, headers.toSingleValueMap());
 
         doSend.accept(headers, payload);
         final var in = new CompletableFuture<RpcResultsResponse<TIN, TOUT>>();

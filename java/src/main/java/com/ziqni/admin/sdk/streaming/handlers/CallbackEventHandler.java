@@ -6,10 +6,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ziqni.admin.sdk.ApiException;
 import com.ziqni.admin.sdk.JSON;
 import com.ziqni.admin.sdk.streaming.EventHandler;
+import com.ziqni.admin.sdk.streaming.client.StompHeaders;
 import com.ziqni.admin.sdk.util.ClassScanner;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.messaging.simp.stomp.StompHeaders;
 
 import java.lang.reflect.Type;
 import java.nio.charset.StandardCharsets;
@@ -57,7 +57,6 @@ public class CallbackEventHandler extends EventHandler<String> {
         return this.classScanner.get(headers.getFirst("objectType")).orElse(Object.class);
     }
 
-    @Override
     public void handleFrame(StompHeaders headers, Object payload) {
         var callbackName = getCallback(headers);
 
