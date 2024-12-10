@@ -330,7 +330,7 @@ public class StompOverWebSocket implements WebSocket.Listener {
         }
 
         reconnectAttempts++;
-        logger.info("Attempting to reconnect (Attempt " + reconnectAttempts + " of " + MAX_RECONNECT_ATTEMPTS + ")...");
+        logger.info("Attempting to reconnect (Attempt {} of " + MAX_RECONNECT_ATTEMPTS + ")...", reconnectAttempts);
 
         scheduler.schedule(() -> {
             if (isNotConnected()) {
@@ -338,7 +338,7 @@ public class StompOverWebSocket implements WebSocket.Listener {
                     reconnectAttempts = 0;
                     logger.info("Reconnected successfully.");
                 }).exceptionally(e -> {
-                    logger.error("Reconnection attempt failed: " + e.getMessage());
+                    logger.error("Reconnection attempt failed: {}", e.getMessage());
                     attemptReconnect();
                     return null;
                 });
