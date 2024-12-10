@@ -37,7 +37,7 @@ public class StompOverWebSocket implements WebSocket.Listener {
     private final Consumer<StompOverWebSocket> onConnect;
 
     private final AtomicInteger connected = new AtomicInteger(0);
-    private final Map<String, EventHandler<?>> eventHandlers = new ConcurrentHashMap<>();
+    private final Map<String, EventHandler> eventHandlers = new ConcurrentHashMap<>();
 
     private WebSocket webSocket;
     private StompHeartbeatManager heartbeatManager;
@@ -114,7 +114,7 @@ public class StompOverWebSocket implements WebSocket.Listener {
     }
 
 
-    public void subscribe(EventHandler<?> handler) {
+    public void subscribe(EventHandler handler) {
         eventHandlers.put(handler.getTopic(), handler);
         subscribe(handler.getTopic());
     }
