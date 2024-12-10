@@ -270,7 +270,7 @@ public class WsClient extends WebSocketStompClient{
         try {
             updateOauthToken(configuration,stompHeaders);
 
-            final CompletableFuture<StompSession> future = connectAsync(wsUri, new WebSocketHttpHeaders(), stompHeaders, stompSessionHandler);
+            final CompletableFuture<StompSession> future = super.connectAsync(wsUri, new WebSocketHttpHeaders(), stompHeaders, stompSessionHandler);
 
             return future.handle((stompSession, throwable) -> {
                 if (throwable != null) {
