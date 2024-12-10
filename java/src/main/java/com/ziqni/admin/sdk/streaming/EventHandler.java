@@ -6,13 +6,16 @@ package com.ziqni.admin.sdk.streaming;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.ziqni.admin.sdk.streaming.client.StompHeaders;
 
 import java.lang.reflect.Type;
 
 public abstract class EventHandler<T> {
 
-    protected static final ObjectMapper objectMapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+    public static final ObjectMapper objectMapper = new ObjectMapper()
+            .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
+            .registerModule(new JavaTimeModule()); // Register the JavaTimeModule
 
     /**
      * Get the Topic name this handler should attach to

@@ -1,7 +1,10 @@
 package com.ziqni.admin.sdk.streaming.client;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ziqni.admin.sdk.eventbus.ZiqniSimpleEventBus;
 import com.ziqni.admin.sdk.streaming.EventHandler;
+import com.ziqni.admin.sdk.streaming.runnables.MessageToSend;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -9,6 +12,7 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.WebSocket;
 import java.util.Map;
+import java.util.Objects;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionStage;
 import java.util.concurrent.ConcurrentHashMap;
@@ -136,8 +140,8 @@ public class StompOverWebSocket implements WebSocket.Listener {
         webSocket.sendClose(WebSocket.NORMAL_CLOSURE, "Client shutdown");
     }
 
-    public <TIN> Runnable prepareMessageToSend(StompHeaders stompHeaders, TIN tPayload) {
-        return null;
+    public <T> MessageToSend<T> prepareMessageToSend(StompHeaders headers, T payload){
+        return new MessageToSend<>(headers, payload, this);
     }
 
     /** Listener */
@@ -211,4 +215,45 @@ public class StompOverWebSocket implements WebSocket.Listener {
     public void onError(WebSocket webSocket, Throwable error) {
         logger.error("WebSocket error: " + error.getMessage());
     }
+
+    public <T> void sendMessage(StompHeaders headers, T payload) {
+        // Ensure the destination header is set
+        if (headers.getDestination() == null || headers.getDestination().isEmpty()) {
+            throw new IllegalArgumentException("Destination header is required for sending a message.");
+        }
+
+        // Serialize the payload if it's not already a string
+        String body;
+        if (payload instanceof String) {
+            body = (String) payload;
+        } else {
+            // Use your favorite JSON library (e.g., Jackson, Gson) for serialization
+            body = serializeToJson(payload); // Assuming you have this utility method
+            headers.setContentType("application/json");
+        }
+
+        // Build the SEND frame
+        StringBuilder sendFrame = new StringBuilder("SEND\n");
+        headers.toMap().forEach((key, value) ->
+                sendFrame.append(key).append(":").append(String.join(",", value)).append("\n")
+        );
+        sendFrame.append("\n").append(body).append("\0");
+
+        // Send the frame over the WebSocket
+        webSocket.sendText(sendFrame.toString(), true);
+
+        // Log the action
+        logger.debug("SEND frame sent to: " + headers.getDestination() + ", payload: " + body);
+    }
+
+    private String serializeToJson(Object payload) {
+        // Example using Jackson (ensure you add Jackson dependency in your project)
+        try {
+            return EventHandler.objectMapper.writeValueAsString(payload);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException("Failed to serialize payload to JSON", e);
+        }
+    }
+
+
 }
