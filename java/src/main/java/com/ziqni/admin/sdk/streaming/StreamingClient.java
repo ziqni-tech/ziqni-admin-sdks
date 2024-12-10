@@ -77,33 +77,33 @@ public class StreamingClient {
 //        );
     }
 
-    private void attemptReconnect(){
-        try {
-            if(this.reconnectCount.get() < 0) // Shutdown in progress
-                return;
-
-            this.start( connected -> {
-                try {
-                    if (connected) {
-                        this.reconnectCount.set(0);
-                        this.nextReconnect.set(null);
-                    } else {
-                        scheduleReconnect();
-                    }
-                } catch (Throwable throwable) {
-                    scheduleReconnect();
-                    logger.error("Reconnect failed", throwable);
-                }
-            }).exceptionally(throwable -> {
-                logger.warn("Reconnect failed with: {}", throwable.getMessage());
-                scheduleReconnect();
-                return null;
-            });
-        } catch (Throwable throwable) {
-            scheduleReconnect();
-            logger.error("Reconnect failed", throwable);
-        }
-    }
+//    private void attemptReconnect(){
+//        try {
+//            if(this.reconnectCount.get() < 0) // Shutdown in progress
+//                return;
+//
+//            this.start( connected -> {
+//                try {
+//                    if (connected) {
+//                        this.reconnectCount.set(0);
+//                        this.nextReconnect.set(null);
+//                    } else {
+//                        scheduleReconnect();
+//                    }
+//                } catch (Throwable throwable) {
+//                    scheduleReconnect();
+//                    logger.error("Reconnect failed", throwable);
+//                }
+//            }).exceptionally(throwable -> {
+//                logger.warn("Reconnect failed with: {}", throwable.getMessage());
+//                scheduleReconnect();
+//                return null;
+//            });
+//        } catch (Throwable throwable) {
+//            scheduleReconnect();
+//            logger.error("Reconnect failed", throwable);
+//        }
+//    }
 
     public <TOUT, TIN> CompletableFuture<TOUT> sendWithApiCallback(String destination, TIN payload){
         final var completableFuture = new CompletableFuture<TOUT>();
@@ -163,11 +163,7 @@ public class StreamingClient {
         return out;
     }
 
-    public CompletableFuture<Boolean> start() throws Exception {
-        return start((started) -> {});
-    }
-
-    public CompletableFuture<Boolean> start(Consumer<Boolean> onComplete) throws Exception {
+    public CompletableFuture<Void> start() throws Exception {
         if(this.websocketSendExecutor.isShutdown() || this.websocketSendExecutor.isTerminated())
             throw new IllegalStateException("The websocket send executor has been terminated");
 
@@ -178,8 +174,7 @@ public class StreamingClient {
             this.wsClient = new StompOverWebSocket(URL, "x-api-key", configuration.getAccessTokenString(), eventBus, this::onConnected);
         }
 
-        return
-            this.wsClient.connect().thenApply(_void -> true);
+        return this.wsClient.connect();
     }
 
     private void onConnected(StompOverWebSocket ws) {
