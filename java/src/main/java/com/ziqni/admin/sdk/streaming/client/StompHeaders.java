@@ -27,6 +27,18 @@ public class StompHeaders implements Serializable {
 
     private final Map<String, List<String>> headers = new LinkedHashMap<>();
 
+    // Constructors
+
+    public StompHeaders() {
+        // Default constructor
+    }
+
+    public StompHeaders(Map<String, String> initialHeaders) {
+        initialHeaders.forEach((key, value) ->
+                headers.put(key, Collections.singletonList(value))
+        );
+    }
+
     // Setters for standard headers
 
     public void setContentType(String contentType) {
@@ -164,12 +176,15 @@ public class StompHeaders implements Serializable {
         return getFirst(MESSAGE_ID);
     }
 
-    public String getReceiptId(){
+    public String getReceiptId() {
         return getFirst(RECEIPT_ID);
     }
 
     public void setReceiptId(String receiptId) {
         set(RECEIPT_ID, receiptId);
     }
-}
 
+    public String getHeartBeat() {
+        return getFirst(HEARTBEAT);
+    }
+}

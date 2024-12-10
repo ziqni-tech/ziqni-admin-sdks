@@ -16,6 +16,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.lang.reflect.Type;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicLong;
@@ -62,12 +63,12 @@ public class RpcResultsEventHandler extends EventHandler<String> {
         return this.classScanner.get(headers.getFirst("objectType")).orElse(Object.class);
     }
 
-
+    @Override
     public void handleFrame(@NonNull StompHeaders headers, Object payload) {
-        var messageId = getMessageId(headers);
+        var messageId = headers.getMessageId();
 
-        if(messageId.isPresent()){
-            handleWithMessageId(messageId.get(), headers, payload);
+        if(Objects.nonNull(messageId)){
+            handleWithMessageId(messageId, headers, payload);
         }
         else {
             if(!payload.getClass().isInstance(Message.class))

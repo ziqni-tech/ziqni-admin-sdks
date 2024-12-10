@@ -8,6 +8,7 @@ import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.ziqni.admin.sdk.streaming.client.StompHeaders;
+import org.checkerframework.checker.nullness.qual.NonNull;
 
 import java.lang.reflect.Type;
 
@@ -32,7 +33,5 @@ public abstract class EventHandler<T> {
         return String.class;
     }
 
-    public void handle(String body) {
-        System.out.println();
-    }
+    public abstract void handleFrame(@NonNull StompHeaders headers, Object payload);
 }

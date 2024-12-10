@@ -12,7 +12,9 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.WebSocket;
 import java.util.Map;
-import java.util.Objects;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.util.zip.GZIPOutputStream;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionStage;
 import java.util.concurrent.ConcurrentHashMap;
@@ -173,7 +175,7 @@ public class StompOverWebSocket implements WebSocket.Listener {
                     case CONNECTED -> {
                         connected.set(STATE_CONNECTED);
                         onConnect.accept(this);
-                        String heartBeatHeader = frame.getHeaders().get("heart-beat");
+                        String heartBeatHeader = frame.getHeaders().getHeartBeat();
                         if (heartBeatHeader != null) {
                             String[] parts = heartBeatHeader.split(",");
                             heartbeatManager.setServerHeartbeatInterval(Long.parseLong(parts[1])); // Server's desired interval
@@ -182,7 +184,7 @@ public class StompOverWebSocket implements WebSocket.Listener {
                     }
                     case MESSAGE -> {
                         // Further processing for MESSAGE frames
-                        eventHandlers.get(frame.getDestination()).handle(frame.getBody());
+                        eventHandlers.get(frame.getDestination()).handleFrame(frame.getHeaders(),frame.getBody());
                     }
                     case ERROR -> {
                         logger.error("Error frame received: " + frame.getBody());
@@ -249,6 +251,51 @@ public class StompOverWebSocket implements WebSocket.Listener {
         logger.debug("SEND frame sent to: " + headers.getDestination() + ", payload: " + body);
     }
 
+
+    /**
+     * This requires server side tweaks to handle compressed payloads.
+     * @param headers
+     * @param payload
+     * @param <T>
+     */
+    public <T> void sendMessageCompressed(StompHeaders headers, T payload) {
+        // Ensure the destination header is set
+        if (headers.getDestination() == null || headers.getDestination().isEmpty()) {
+            throw new IllegalArgumentException("Destination header is required for sending a message.");
+        }
+
+        // Serialize and compress the payload
+        String serializedPayload = serializeToJson(payload);
+        String compressedPayload = compressPayload(serializedPayload);
+
+        // Add a header to indicate compression
+        headers.add("content-encoding", "gzip");
+
+        // Build the SEND frame
+        StringBuilder sendFrame = new StringBuilder("SEND\n");
+        headers.toMap().forEach((key, value) ->
+                sendFrame.append(key).append(":").append(String.join(",", value)).append("\n")
+        );
+        sendFrame.append("\n").append(compressedPayload).append("\0");
+
+        // Send the frame over the WebSocket
+        webSocket.sendText(sendFrame.toString(), true);
+
+        // Log the action
+        logger.debug("Compressed SEND frame sent to: " + headers.getDestination());
+    }
+
+    private String compressPayload(String payload) {
+        try (ByteArrayOutputStream byteStream = new ByteArrayOutputStream();
+             GZIPOutputStream gzipStream = new GZIPOutputStream(byteStream)) {
+            gzipStream.write(payload.getBytes());
+            gzipStream.finish();
+            return byteStream.toString("ISO-8859-1"); // Use a safe character encoding for WebSocket text
+        } catch (IOException e) {
+            throw new RuntimeException("Failed to compress payload", e);
+        }
+    }
+
     private String serializeToJson(Object payload) {
         // Example using Jackson (ensure you add Jackson dependency in your project)
         try {
@@ -257,6 +304,4 @@ public class StompOverWebSocket implements WebSocket.Listener {
             throw new RuntimeException("Failed to serialize payload to JSON", e);
         }
     }
-
-
 }

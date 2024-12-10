@@ -6,12 +6,12 @@ import java.util.Map;
 public class StompFrame {
 
     private final StompCommand command;
-    private final Map<String, String> headers;
+    private final StompHeaders headers;
     private final String body;
 
     public StompFrame(StompCommand command, Map<String, String> headers, String body) {
         this.command = command;
-        this.headers = headers;
+        this.headers = new StompHeaders(headers);
         this.body = body;
     }
 
@@ -19,7 +19,7 @@ public class StompFrame {
         return command;
     }
 
-    public Map<String, String> getHeaders() {
+    public StompHeaders getHeaders() {
         return headers;
     }
 
@@ -28,7 +28,7 @@ public class StompFrame {
     }
 
     public String getDestination() {
-        return headers.get("destination");
+        return headers.getDestination();
     }
 
     public static StompFrame parse(String frame) {
