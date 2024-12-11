@@ -37,7 +37,7 @@ public class StompOverWebSocket implements WebSocket.Listener {
     private final ZiqniSimpleEventBus eventBus;
     private final Consumer<StompOverWebSocket> onConnect;
 
-    private final AtomicInteger connected = new AtomicInteger(0);
+    public static final AtomicInteger connected = new AtomicInteger(0);
     private final Map<String, EventHandler> eventHandlers = new ConcurrentHashMap<>();
 
     private WebSocket webSocket;
