@@ -3,7 +3,7 @@ package com.ziqni.admin.sdk.streaming;
 import com.ziqni.admin.sdk.configuration.AdminApiClientConfiguration;
 import com.ziqni.admin.sdk.context.WsClientTransportError;
 import com.ziqni.admin.sdk.eventbus.ZiqniSimpleEventBus;
-import com.ziqni.admin.sdk.streaming.client.StompOverWebSocket;
+import com.ziqni.admin.sdk.streaming.stomp.StompOverWebSocket;
 import com.ziqni.admin.sdk.streaming.handlers.RpcResultsEventHandler;
 import com.ziqni.admin.sdk.streaming.handlers.CallbackEventHandler;
 import org.slf4j.Logger;

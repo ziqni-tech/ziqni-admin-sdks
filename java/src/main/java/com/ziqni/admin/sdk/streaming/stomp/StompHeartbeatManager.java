@@ -1,4 +1,4 @@
-package com.ziqni.admin.sdk.streaming.client;
+package com.ziqni.admin.sdk.streaming.stomp;
 
 import com.ziqni.admin.sdk.context.WSClientDisconnected;
 import com.ziqni.admin.sdk.eventbus.ZiqniSimpleEventBus;

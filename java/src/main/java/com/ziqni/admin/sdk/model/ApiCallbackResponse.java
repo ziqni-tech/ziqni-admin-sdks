@@ -3,7 +3,7 @@
  */
 package com.ziqni.admin.sdk.model;
 
-import com.ziqni.admin.sdk.streaming.client.StompHeaders;
+import com.ziqni.admin.sdk.streaming.stomp.StompHeaders;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

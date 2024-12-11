@@ -1,4 +1,4 @@
-package com.ziqni.admin.sdk.streaming.client;
+package com.ziqni.admin.sdk.streaming.stomp;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.ziqni.admin.sdk.eventbus.ZiqniSimpleEventBus;

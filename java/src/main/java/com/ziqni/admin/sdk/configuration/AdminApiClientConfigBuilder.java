@@ -3,8 +3,6 @@
  */
 package com.ziqni.admin.sdk.configuration;
 
-import com.ziqni.admin.sdk.util.ConfigurationLoader;
-
 public abstract class AdminApiClientConfigBuilder {
 
     public static AdminApiClientConfiguration build() {

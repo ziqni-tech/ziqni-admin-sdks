@@ -1,4 +1,4 @@
-package com.ziqni.admin.sdk.streaming.client;
+package com.ziqni.admin.sdk.streaming.stomp;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -4,7 +4,7 @@
 package com.ziqni.admin.sdk.streaming.handlers;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.ziqni.admin.sdk.streaming.client.StompHeaders;
+import com.ziqni.admin.sdk.streaming.stomp.StompHeaders;
 import com.ziqni.admin.sdk.util.ClassScanner;
 import com.ziqni.admin.sdk.util.ZiqniClientObjectMapper;
 import org.checkerframework.checker.nullness.qual.NonNull;
