@@ -84,7 +84,6 @@ public class StompOverWebSocket implements WebSocket.Listener {
         }
     }
 
-
     public CompletableFuture<Void> connect() {
         HttpClient client = HttpClient.newHttpClient();
         return client.newWebSocketBuilder()
