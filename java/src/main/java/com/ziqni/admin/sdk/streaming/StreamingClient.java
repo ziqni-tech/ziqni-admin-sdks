@@ -18,6 +18,8 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.concurrent.atomic.AtomicReference;
 
+import static com.ziqni.admin.sdk.streaming.stomp.StompOverWebSocket.STATE_DISCONNECTING;
+
 
 public class StreamingClient {
 
@@ -63,7 +65,10 @@ public class StreamingClient {
             if (Objects.nonNull(this.nextReconnect.get()))
                 return;
 
-            scheduleReconnect();
+            if (!stompOverWebSocket.isDisconnecting()) {
+                scheduleReconnect();
+            }
+
         });
     }
 
