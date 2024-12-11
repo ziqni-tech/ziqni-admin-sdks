@@ -115,10 +115,10 @@ public class StompOverWebSocket implements WebSocket.Listener {
         if (heartbeatManager != null) {
             heartbeatManager.stop();
         }
+        setState(STATE_DISCONNECTING);
         logger.debug("Sending DISCONNECT frame.");
         String disconnectFrame = "DISCONNECT\n\n\0";
         webSocket.sendText(disconnectFrame, true);
-        setState(STATE_DISCONNECTING);
         logger.debug("DISCONNECT frame sent.");
     }
 
