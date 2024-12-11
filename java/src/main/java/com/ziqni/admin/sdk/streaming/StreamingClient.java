@@ -3,12 +3,15 @@ package com.ziqni.admin.sdk.streaming;
 import com.ziqni.admin.sdk.configuration.AdminApiClientConfiguration;
 import com.ziqni.admin.sdk.context.WsClientTransportError;
 import com.ziqni.admin.sdk.eventbus.ZiqniSimpleEventBus;
+import com.ziqni.admin.sdk.streaming.handlers.EventHandler;
+import com.ziqni.admin.sdk.streaming.stomp.StompHeaders;
 import com.ziqni.admin.sdk.streaming.stomp.StompOverWebSocket;
 import com.ziqni.admin.sdk.streaming.handlers.RpcResultsEventHandler;
 import com.ziqni.admin.sdk.streaming.handlers.CallbackEventHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.net.http.WebSocket;
 import java.time.OffsetDateTime;
 import java.util.Objects;
 import java.util.concurrent.*;
@@ -162,6 +165,13 @@ public class StreamingClient {
         return out;
     }
 
+    public <T> CompletableFuture<Void> sendMessage(StompHeaders stompHeaders, T body){
+        return this.wsClient.sendMessage(stompHeaders, body).thenAccept(webSocket -> {
+            if(Objects.isNull(webSocket))
+                throw new IllegalStateException("The session is not connected");
+        });
+    }
+
     public CompletableFuture<Void> start() throws Exception {
         if(this.websocketSendExecutor.isShutdown() || this.websocketSendExecutor.isTerminated())
             throw new IllegalStateException("The websocket send executor has been terminated");
@@ -179,6 +189,10 @@ public class StreamingClient {
     private void onConnected(StompOverWebSocket ws) {
         this.wsClient.subscribe( this.rpcResultsEventHandler);
         this.wsClient.subscribe( this.callbackEventHandler );
+    }
+
+    public void subscribe(EventHandler handler) {
+        this.wsClient.subscribe(handler);
     }
 
     public CallbackEventHandler getCallbackEventHandler() {
@@ -203,5 +217,9 @@ public class StreamingClient {
 
     public boolean isFailure() {
         return Objects.nonNull(wsClient) && wsClient.isFailure();
+    }
+
+    public ZiqniSimpleEventBus getEventBus() {
+        return eventBus;
     }
 }

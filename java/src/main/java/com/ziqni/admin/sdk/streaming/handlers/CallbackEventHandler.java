@@ -43,6 +43,7 @@ public class CallbackEventHandler extends EventHandler {
         return DEFAULT_TOPIC;
     }
 
+    @Override
     public void handleFrame(StompHeaders headers, String payload) {
         var callbackName = getCallback(headers);
 

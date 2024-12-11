@@ -240,7 +240,7 @@ public class StompOverWebSocket implements WebSocket.Listener {
         attemptReconnect();
     }
 
-    public <T> void sendMessage(StompHeaders headers, T payload) {
+    public <T> CompletableFuture<WebSocket> sendMessage(StompHeaders headers, T payload) {
         if(isNotConnected()){
             throw new IllegalStateException("Client is disconnected from the server.");
         }
@@ -267,10 +267,10 @@ public class StompOverWebSocket implements WebSocket.Listener {
         sendFrame.append("\n").append(body).append("\0");
 
         // Send the frame over the WebSocket
-        webSocket.sendText(sendFrame.toString(), true);
-
         // Log the action
         logger.debug("SEND frame sent to: " + headers.getDestination() + ", payload: " + body);
+        return webSocket.sendText(sendFrame.toString(), true);
+
     }
 
 
