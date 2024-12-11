@@ -76,7 +76,7 @@ public class StompOverWebSocket implements WebSocket.Listener {
         connectHeaders.setLogin(username);
         connectHeaders.setPasscode(passcode);
         connectHeaders.setAcceptVersion("1.2");
-        connectHeaders.setHeartbeat(10000, 0);
+        connectHeaders.setHeartbeat(10000, 10000);
 
         StringBuilder connectFrame = new StringBuilder("CONNECT\n");
         connectHeaders.toMap().forEach((key, value) -> connectFrame.append(key).append(":").append(String.join(",", value)).append("\n"));
@@ -174,7 +174,8 @@ public class StompOverWebSocket implements WebSocket.Listener {
         String receivedData = data.toString();
 
         // Handle heartbeat directly
-        if (receivedData.trim().isEmpty()) {
+        // Handle heartbeat directly
+        if ("\n".contentEquals(receivedData)) {
             logger.debug("Received heartbeat from server.");
             if (heartbeatManager != null) {
                 heartbeatManager.updateLastServerHeartbeatTime();

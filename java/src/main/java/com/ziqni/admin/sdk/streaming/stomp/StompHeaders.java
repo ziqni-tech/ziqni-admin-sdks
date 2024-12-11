@@ -103,8 +103,12 @@ public class StompHeaders implements Serializable {
     }
 
     public void setHeartbeat(long send, long receive) {
-        set(HEARTBEAT, send + "," + receive);
+        if (send < 0 || receive < 0) {
+            throw new IllegalArgumentException("Heartbeat values must be non-negative.");
+        }
+        set(HEARTBEAT, String.format("%d,%d", send, receive));
     }
+
 
     public long[] getHeartbeat() {
         String value = getFirst(HEARTBEAT);

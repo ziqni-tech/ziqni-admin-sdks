@@ -17,8 +17,8 @@ public class StompHeartbeatManager {
 
     private final WebSocket webSocket;
     private final ZiqniSimpleEventBus eventBus;
-    private final long clientHeartbeatInterval;
-    private long serverHeartbeatInterval;
+    private final long clientHeartbeatInterval; // Interval in milliseconds for client-to-server heartbeat
+    private long serverHeartbeatInterval; // Server-provided interval for heartbeats
     private long lastServerHeartbeatTime;
     private Timer heartbeatTimer;
 
@@ -26,7 +26,7 @@ public class StompHeartbeatManager {
         this.webSocket = webSocket;
         this.eventBus = eventBus;
         this.clientHeartbeatInterval = clientHeartbeatInterval;
-        this.serverHeartbeatInterval = 0; // Will be set after receiving CONNECTED frame
+        this.serverHeartbeatInterval = 0; // Set after receiving the CONNECTED frame
         this.lastServerHeartbeatTime = System.currentTimeMillis();
     }
 
@@ -39,7 +39,7 @@ public class StompHeartbeatManager {
 
         this.heartbeatTimer = new Timer(true);
 
-        // Adjust client-to-server interval to prevent unnecessary disconnections
+        // Adjust client-to-server interval to avoid unnecessary disconnections
         long adjustedClientInterval = Math.max(clientHeartbeatInterval, serverHeartbeatInterval / 2);
 
         // Client-to-server heartbeats
@@ -47,12 +47,16 @@ public class StompHeartbeatManager {
             @Override
             public void run() {
                 try {
-                    if (webSocket != null) {
+                    if (webSocket != null && !webSocket.isOutputClosed()) {
                         webSocket.sendText("\n", true);
                         logger.debug("Heartbeat sent to server.");
+                    } else {
+                        logger.warn("WebSocket is not open. Stopping heartbeat.");
+                        stop();
                     }
                 } catch (Exception e) {
                     logger.error("Failed to send heartbeat to server: {}", e.getMessage(), e);
+                    stop();
                 }
             }
         }, adjustedClientInterval, adjustedClientInterval);
@@ -62,9 +66,10 @@ public class StompHeartbeatManager {
             @Override
             public void run() {
                 long now = System.currentTimeMillis();
-                if (serverHeartbeatInterval > 0 && (now - lastServerHeartbeatTime) > serverHeartbeatInterval * 4) {
+                if (serverHeartbeatInterval > 0 && (now - lastServerHeartbeatTime) > serverHeartbeatInterval * 1.5) {
                     logger.error("Server heartbeat missed! Connection might be lost.");
                     eventBus.post(new WSClientHeartBeatMissed());
+                    stop();
                 }
             }
         }, serverHeartbeatInterval, serverHeartbeatInterval);
@@ -73,6 +78,7 @@ public class StompHeartbeatManager {
     public void stop() {
         if (heartbeatTimer != null) {
             heartbeatTimer.cancel();
+            heartbeatTimer = null;
             logger.debug("Heartbeat stopped.");
         }
     }
