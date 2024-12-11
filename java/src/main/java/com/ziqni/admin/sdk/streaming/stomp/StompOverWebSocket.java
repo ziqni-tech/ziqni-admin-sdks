@@ -239,9 +239,7 @@ public class StompOverWebSocket implements WebSocket.Listener {
     @Override
     public void onError(WebSocket webSocket, Throwable error) {
         logger.error("WebSocket error: " + error.getMessage());
-        setState(STATE_FAILURE, null, null, error);
-
-        attemptReconnect();
+        eventBus.post(new WSClientTransportError(error));
     }
 
     public <T> CompletableFuture<WebSocket> sendMessage(StompHeaders headers, T payload) {

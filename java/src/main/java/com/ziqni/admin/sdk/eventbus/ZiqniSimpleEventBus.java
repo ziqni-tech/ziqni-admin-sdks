@@ -84,8 +84,8 @@ public class ZiqniSimpleEventBus {
         this.register(WSClientMessageError.class, consumer);
     }
 
-    public void onWsClientTransportError(Consumer<WsClientTransportError> consumer){
-        this.register(WsClientTransportError.class, consumer);
+    public void onWsClientTransportError(Consumer<WSClientTransportError> consumer){
+        this.register(WSClientTransportError.class, consumer);
     }
 
     public void onEntityChanged(Consumer<EntityChanged> consumer){

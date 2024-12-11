@@ -1,7 +1,7 @@
 package com.ziqni.admin.sdk.streaming;
 
 import com.ziqni.admin.sdk.configuration.AdminApiClientConfiguration;
-import com.ziqni.admin.sdk.context.WsClientTransportError;
+import com.ziqni.admin.sdk.context.WSClientTransportError;
 import com.ziqni.admin.sdk.eventbus.ZiqniSimpleEventBus;
 import com.ziqni.admin.sdk.streaming.handlers.EventHandler;
 import com.ziqni.admin.sdk.streaming.stomp.StompHeaders;
@@ -11,7 +11,6 @@ import com.ziqni.admin.sdk.streaming.handlers.CallbackEventHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.net.http.WebSocket;
 import java.time.OffsetDateTime;
 import java.util.Objects;
 import java.util.concurrent.*;
@@ -56,7 +55,7 @@ public class StreamingClient {
         this.eventBus.onWsClientTransportError(this::onWsClientTransportError);
     }
 
-    private void onWsClientTransportError(WsClientTransportError wsClientTransportError){
+    private void onWsClientTransportError(WSClientTransportError wsClientTransportError){
         this.stop(false).thenAccept(unused -> {
             if(Objects.nonNull(this.nextReconnect.get()))
                 return;

@@ -1,6 +1,6 @@
 package com.ziqni.admin.sdk.context;
 
-public class WsClientTransportError {
+public class WSClientTransportError {
 
     private final Throwable exception;
 
@@ -8,7 +8,7 @@ public class WsClientTransportError {
         return exception;
     }
 
-    public WsClientTransportError(Throwable exception) {;
+    public WSClientTransportError(Throwable exception) {;
         this.exception = exception;
     }
 }
