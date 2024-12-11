@@ -222,12 +222,16 @@ public class StompOverWebSocket implements WebSocket.Listener {
     @Override
     public CompletionStage<?> onClose(WebSocket webSocket, int statusCode, String reason) {
         logger.info("WebSocket closed: " + reason);
-        setState(STATE_NOT_CONNECTED);
 
         if (heartbeatManager != null) {
             heartbeatManager.stop();
         }
 
+        if(connected.get() != STATE_DISCONNECTING){
+            attemptReconnect();
+        }
+
+        setState(STATE_NOT_CONNECTED);
 
         return CompletableFuture.completedFuture(null);
     }
