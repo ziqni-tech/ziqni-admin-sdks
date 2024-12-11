@@ -2,7 +2,7 @@ package com.ziqni.admin.sdk.streaming.handlers;
 
 import com.fasterxml.jackson.databind.JavaType;
 import com.ziqni.admin.sdk.ApiException;
-import com.ziqni.admin.sdk.streaming.client.StompHeaders;
+import com.ziqni.admin.sdk.streaming.stomp.StompHeaders;
 
 import java.util.function.BiConsumer;
 
