@@ -62,9 +62,9 @@ public class StompHeartbeatManager {
             public void run() {
                 long now = System.currentTimeMillis();
                 if (serverHeartbeatInterval > 0 && (now - lastServerHeartbeatTime) > serverHeartbeatInterval * 2) {
-                    eventBus.post(new WSClientTransportError(new IllegalArgumentException("error")));
+//                    eventBus.post(new WSClientTransportError(new IllegalArgumentException("error")));
                     logger.error("Server heartbeat missed! Connection might be lost.");
-                    eventBus.post(new WSClientDisconnected());
+//                    eventBus.post(new WSClientDisconnected());
 
                     // Notify listeners about the lost connection
                 }
