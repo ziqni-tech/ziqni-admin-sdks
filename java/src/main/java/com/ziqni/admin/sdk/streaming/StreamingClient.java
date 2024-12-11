@@ -20,7 +20,6 @@ public class StreamingClient {
     private static final Logger logger = LoggerFactory.getLogger(StreamingClient.class);
 
     private final ExecutorService websocketSendExecutor;
-
     public final LinkedBlockingDeque<Runnable> webSocketClientTasks;
     private final RpcResultsEventHandler rpcResultsEventHandler;
     private final CallbackEventHandler callbackEventHandler;
@@ -43,74 +42,75 @@ public class StreamingClient {
         this.rpcResultsEventHandler = RpcResultsEventHandler.create();
         this.callbackEventHandler = CallbackEventHandler.create();
 
-        // implement shutdown hook
-        Runtime.getRuntime().addShutdownHook(new Thread( () -> {
+        // Implement shutdown hook
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
             this.reconnectCount.set(-1);
             this.stop(true);
         }));
 
-        // Listen to the eventbus for transport errors
+        // Listen to the event bus for transport errors
         this.eventBus.onWsClientTransportError(this::onWsClientTransportError);
     }
 
-    private void onWsClientTransportError(WsClientTransportError wsClientTransportError){
+    private void onWsClientTransportError(WsClientTransportError wsClientTransportError) {
         this.stop(false).thenAccept(unused -> {
-            if(Objects.nonNull(this.nextReconnect.get()))
+            if (Objects.nonNull(this.nextReconnect.get()))
                 return;
 
             scheduleReconnect();
         });
     }
 
-    private void scheduleReconnect(){
-        if(this.reconnectCount.get() < 0) // Shutdown in progress
+    private void scheduleReconnect() {
+        if (this.reconnectCount.get() < 0) // Shutdown in progress
             return;
 
         this.reconnectCount.incrementAndGet();
         this.nextReconnect.set(OffsetDateTime.now().plusSeconds(10));
 
-        // FIXME; MCD-100: Implement reconnect
-//        taskScheduler.schedule(
-//                this::attemptReconnect,
-//                this.nextReconnect.get().toInstant()
-//        );
+        CompletableFuture.runAsync(() -> {
+            try {
+                Thread.sleep(10_000); // Wait 10 seconds before attempting reconnect
+                attemptReconnect();
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+                logger.warn("Reconnect sleep interrupted", e);
+            }
+        });
     }
 
-//    private void attemptReconnect(){
-//        try {
-//            if(this.reconnectCount.get() < 0) // Shutdown in progress
-//                return;
-//
-//            this.start( connected -> {
-//                try {
-//                    if (connected) {
-//                        this.reconnectCount.set(0);
-//                        this.nextReconnect.set(null);
-//                    } else {
-//                        scheduleReconnect();
-//                    }
-//                } catch (Throwable throwable) {
-//                    scheduleReconnect();
-//                    logger.error("Reconnect failed", throwable);
-//                }
-//            }).exceptionally(throwable -> {
-//                logger.warn("Reconnect failed with: {}", throwable.getMessage());
-//                scheduleReconnect();
-//                return null;
-//            });
-//        } catch (Throwable throwable) {
-//            scheduleReconnect();
-//            logger.error("Reconnect failed", throwable);
-//        }
-//    }
+    private void attemptReconnect() {
+        try {
+            if (this.reconnectCount.get() < 0) // Shutdown in progress
+                return;
 
-    public <TOUT, TIN> CompletableFuture<TOUT> sendWithApiCallback(String destination, TIN payload){
+            this.start().thenAccept(connected -> {
+                if (connected) {
+                    this.reconnectCount.set(0);
+                    this.nextReconnect.set(null);
+                    logger.info("Reconnected successfully");
+                } else {
+                    scheduleReconnect();
+                    logger.warn("Reconnect failed; scheduling another attempt");
+                }
+            }).exceptionally(throwable -> {
+                logger.error("Reconnect attempt failed with error: {}", throwable.getMessage(), throwable);
+                scheduleReconnect();
+                return null;
+            });
+        } catch (Throwable throwable) {
+            logger.error("Critical error during reconnect attempt", throwable);
+            scheduleReconnect();
+        }
+    }
+
+    public <TOUT, TIN> CompletableFuture<TOUT> sendWithApiCallback(String destination, TIN payload) {
         final var completableFuture = new CompletableFuture<TOUT>();
 
-        if(Objects.isNull(this.wsClient)
+        if (Objects.isNull(this.wsClient)
                 || this.wsClient.isNotConnected()
-                || this. websocketSendExecutor.isTerminated()
-                || this. websocketSendExecutor.isShutdown()) {
+                || this.websocketSendExecutor.isTerminated()
+                || this.websocketSendExecutor.isShutdown()) {
             completableFuture.completeExceptionally(new IllegalStateException("The session is not connected"));
             return completableFuture;
         }
@@ -122,20 +122,18 @@ public class StreamingClient {
                         payload,
                         completableFuture,
                         (stompHeaders, tPayload) -> {
-                            if(Objects.nonNull(tPayload))
+                            if (Objects.nonNull(tPayload))
                                 this.wsClient.prepareMessageToSend(stompHeaders, tPayload).run();
                             else
                                 logger.warn("Message body is empty " + stompHeaders);
                         }
                 );
-            }
-            catch (IllegalStateException t){
-                if(wsClient.isConnected())
-                    logger.error("Broadcast failed",t);
+            } catch (IllegalStateException t) {
+                if (wsClient.isConnected())
+                    logger.error("Broadcast failed", t);
 
                 completableFuture.completeExceptionally(t);
-            }
-            catch (Throwable t) {
+            } catch (Throwable t) {
                 completableFuture.completeExceptionally(t);
             }
         });
@@ -149,36 +147,44 @@ public class StreamingClient {
 
     public CompletableFuture<Void> stop(boolean executorShutdown) {
         final var out = new CompletableFuture<Void>();
-        if(this.wsClient!=null)
+        if (this.wsClient != null)
             this.websocketSendExecutor.submit(() -> {
                 this.wsClient.shutdown();
-                this.wsClient=null;
+                this.wsClient = null;
                 out.complete(null);
             });
 
-        if(executorShutdown)
+        if (executorShutdown)
             this.websocketSendExecutor.shutdown();
 
         return out;
     }
 
-    public CompletableFuture<Void> start() throws Exception {
-        if(this.websocketSendExecutor.isShutdown() || this.websocketSendExecutor.isTerminated())
+    public CompletableFuture<Boolean> start() throws Exception{
+        if (this.websocketSendExecutor.isShutdown() || this.websocketSendExecutor.isTerminated())
             throw new IllegalStateException("The websocket send executor has been terminated");
 
-        if(this.reconnectCount.get() < 0) // Shutdown in progress
+        if (this.reconnectCount.get() < 0) // Shutdown in progress
             throw new IllegalStateException("The client is shutting down");
 
-        if(this.wsClient==null) {
+        if (this.wsClient == null) {
             this.wsClient = new StompOverWebSocket(URL, "x-api-key", configuration.getAccessTokenString(), eventBus, this::onConnected);
         }
 
-        return this.wsClient.connect();
+        return this.wsClient.connect()
+                .thenApply(unused -> {
+                    logger.info("Connection successful");
+                    return true;
+                })
+                .exceptionally(throwable -> {
+                    logger.error("Connection failed: {}", throwable.getMessage(), throwable);
+                    return false;
+                });
     }
 
     private void onConnected(StompOverWebSocket ws) {
-        this.wsClient.subscribe( this.rpcResultsEventHandler);
-        this.wsClient.subscribe( this.callbackEventHandler );
+        this.wsClient.subscribe(this.rpcResultsEventHandler);
+        this.wsClient.subscribe(this.callbackEventHandler);
     }
 
     public CallbackEventHandler getCallbackEventHandler() {
