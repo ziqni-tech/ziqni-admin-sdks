@@ -204,7 +204,10 @@ public class StompOverWebSocket implements WebSocket.Listener {
                         handler.handleFrame(frame.getHeaders(),frame.getBody());
                     }
                     case ERROR -> {
-                        logger.error("Error frame received: {}", frame);
+                        logger.error("Error frame received: {}", message);
+                    }
+                    case NOT_A_VALID_STOMP_COMMAND -> {
+                        logger.error("Not a valid STOMP command: {}", frame);
                     }
                     default -> {
                         logger.error("Unhandled command: {}", frame);

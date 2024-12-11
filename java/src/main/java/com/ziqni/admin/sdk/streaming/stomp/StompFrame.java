@@ -48,7 +48,6 @@ public class StompFrame {
             command = StompCommand.fromString(lines[0].trim());
         }
         catch (IllegalArgumentException e) {
-            logger.error("Invalid STOMP command, caused  by: {}",frame);
             command = StompCommand.NOT_A_VALID_STOMP_COMMAND;
             return new StompFrame(command, Map.of(), frame);
         }
