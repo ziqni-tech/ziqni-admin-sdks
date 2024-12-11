@@ -49,6 +49,7 @@ public class StompOverWebSocket implements WebSocket.Listener {
     private final ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
     private int reconnectAttempts = 0;
 
+    private final StringBuilder messageBuffer = new StringBuilder();
 
     public StompOverWebSocket(String wsUri, String username, String passcode, ZiqniSimpleEventBus eventBus, Consumer<StompOverWebSocket> onConnect) {
         this.wsUri = wsUri;
@@ -170,56 +171,61 @@ public class StompOverWebSocket implements WebSocket.Listener {
 
     @Override
     public CompletionStage<?> onText(WebSocket webSocket, CharSequence data, boolean last) {
-        String message = data.toString().trim();
+        messageBuffer.append(data);
 
-        if (message.isEmpty()) {
-            // Handle server heartbeat
-            heartbeatManager.updateLastServerHeartbeatTime();
-        } else {
-            // Parse the message into a StompFrame
-            StompFrame frame = StompFrame.parse(message);
+        if (last) {
+            String completeMessage = messageBuffer.toString().trim();
+            messageBuffer.setLength(0); // Clear the buffer
 
-            try {
-
-                // Handle specific frame types
-                switch (frame.getCommand()) {
-                    case CONNECTED -> {
-                        setState(STATE_CONNECTED);
-                        onConnect.accept(this);
-
-                        String heartBeatHeader = frame.getHeaders().getHeartBeat();
-                        if (heartBeatHeader != null) {
-                            String[] parts = heartBeatHeader.split(",");
-                            heartbeatManager.start(Long.parseLong(parts[1]));// Server's desired interval
-                        }
-                    }
-                    case MESSAGE -> {
-                        final var handler = eventHandlers.get(frame.getDestination());
-
-                        if(handler == null){
-                            logger.error("No handler found for destination: {}", frame.getDestination());
-                            return CompletableFuture.completedFuture(null);
-                        }
-
-                        handler.handleFrame(frame.getHeaders(),frame.getBody());
-                    }
-                    case ERROR -> {
-                        logger.error("Error frame received: {}", message);
-                    }
-                    case NOT_A_VALID_STOMP_COMMAND -> {
-                        logger.error("Not a valid STOMP command: {}", frame);
-                    }
-                    default -> {
-                        logger.error("Unhandled command: {}", frame);
-                    }
-                }
-            } catch (Exception e) {
-                logger.error("Failed to parse STOMP frame: {}, {}", e.getMessage(), message);
+            if (!completeMessage.isEmpty()) {
+                handleCompleteMessage(completeMessage);
             }
         }
 
         webSocket.request(1);
         return CompletableFuture.completedFuture(null);
+    }
+
+    private void handleCompleteMessage(String message) {
+        try {
+            // Parse the message into a StompFrame
+            StompFrame frame = StompFrame.parse(message);
+
+            // Handle specific frame types
+            switch (frame.getCommand()) {
+                case CONNECTED -> {
+                    setState(STATE_CONNECTED);
+                    onConnect.accept(this);
+
+                    String heartBeatHeader = frame.getHeaders().getHeartBeat();
+                    if (heartBeatHeader != null) {
+                        String[] parts = heartBeatHeader.split(",");
+                        heartbeatManager.start(Long.parseLong(parts[1])); // Server's desired interval
+                    }
+                }
+                case MESSAGE -> {
+                    final var handler = eventHandlers.get(frame.getDestination());
+
+                    if (handler == null) {
+                        logger.error("No handler found for destination: {}", frame.getDestination());
+                        return;
+                    }
+
+                    handler.handleFrame(frame.getHeaders(), frame.getBody());
+                }
+                case ERROR -> {
+                    logger.error("Error frame received: {}", message);
+                }
+                case NOT_A_VALID_STOMP_COMMAND -> {
+                    logger.error("Not a valid STOMP command: {}", frame);
+                }
+                default -> {
+                    logger.error("Unhandled command: {}", frame);
+                }
+            }
+        } catch (Exception e) {
+            logger.error("Failed to parse STOMP frame: {}, {}", e.getMessage(), message);
+        }
     }
 
     @Override
@@ -236,7 +242,7 @@ public class StompOverWebSocket implements WebSocket.Listener {
             heartbeatManager.stop();
         }
 
-        if(connected.get() != STATE_DISCONNECTING){
+        if (connected.get() != STATE_DISCONNECTING) {
             attemptReconnect();
         }
 
@@ -252,7 +258,7 @@ public class StompOverWebSocket implements WebSocket.Listener {
     }
 
     public <T> CompletableFuture<WebSocket> sendMessage(StompHeaders headers, T payload) {
-        if(isNotConnected()){
+        if (isNotConnected()) {
             throw new IllegalStateException("Client is disconnected from the server.");
         }
 
