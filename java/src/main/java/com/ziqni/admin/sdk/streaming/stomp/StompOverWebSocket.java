@@ -122,7 +122,6 @@ public class StompOverWebSocket implements WebSocket.Listener {
         logger.debug("DISCONNECT frame sent.");
     }
 
-
     public void subscribe(EventHandler handler) {
         eventHandlers.put(handler.getTopic(), handler);
         subscribe(handler.getTopic());
@@ -198,21 +197,21 @@ public class StompOverWebSocket implements WebSocket.Listener {
                         final var handler = eventHandlers.get(frame.getDestination());
 
                         if(handler == null){
-                            logger.error("No handler found for destination: " + frame.getDestination());
+                            logger.error("No handler found for destination: {}", frame.getDestination());
                             return CompletableFuture.completedFuture(null);
                         }
 
                         handler.handleFrame(frame.getHeaders(),frame.getBody());
                     }
                     case ERROR -> {
-                        logger.error("Error frame received: " + frame.getBody());
+                        logger.error("Error frame received: {}", frame);
                     }
                     default -> {
-                        logger.error("Unhandled command: " + frame.getCommand());
+                        logger.error("Unhandled command: {}", frame);
                     }
                 }
             } catch (Exception e) {
-                logger.error("Failed to parse STOMP frame: " + e.getMessage());
+                logger.error("Failed to parse STOMP frame: {}, {}", e.getMessage(), message);
             }
         }
 
@@ -228,7 +227,7 @@ public class StompOverWebSocket implements WebSocket.Listener {
 
     @Override
     public CompletionStage<?> onClose(WebSocket webSocket, int statusCode, String reason) {
-        logger.info("WebSocket closed: " + reason);
+        logger.info("WebSocket closed: {}", reason);
 
         if (heartbeatManager != null) {
             heartbeatManager.stop();

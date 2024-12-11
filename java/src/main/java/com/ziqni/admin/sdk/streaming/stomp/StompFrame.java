@@ -70,4 +70,13 @@ public class StompFrame {
 
         return new StompFrame(command, headers, body);
     }
+
+    @Override
+    public String toString() {
+        return "StompFrame{" +
+                "command=" + command +
+                ", headers=" + headers +
+                ", body='" + body + '\'' +
+                '}';
+    }
 }
