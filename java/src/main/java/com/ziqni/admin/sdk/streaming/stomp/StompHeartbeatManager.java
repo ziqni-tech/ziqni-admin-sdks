@@ -21,6 +21,9 @@ public class StompHeartbeatManager {
     private long serverHeartbeatInterval; // Server-provided interval for heartbeats
     private long lastServerHeartbeatTime;
     private Timer heartbeatTimer;
+    private int missedHeartbeatsCount; // Count consecutive missed heartbeats
+
+    private static final int MAX_MISSED_HEARTBEATS = 3; // Threshold for reconnection attempt
 
     public StompHeartbeatManager(WebSocket webSocket, ZiqniSimpleEventBus eventBus, long clientHeartbeatInterval) {
         this.webSocket = webSocket;
@@ -28,6 +31,7 @@ public class StompHeartbeatManager {
         this.clientHeartbeatInterval = clientHeartbeatInterval;
         this.serverHeartbeatInterval = 0; // Set after receiving the CONNECTED frame
         this.lastServerHeartbeatTime = System.currentTimeMillis();
+        this.missedHeartbeatsCount = 0;
     }
 
     public void start(long serverHeartbeatInterval) {
@@ -67,9 +71,14 @@ public class StompHeartbeatManager {
             public void run() {
                 long now = System.currentTimeMillis();
                 if (serverHeartbeatInterval > 0 && (now - lastServerHeartbeatTime) > serverHeartbeatInterval * 1.5) {
-                    logger.error("Server heartbeat missed! Connection might be lost.");
-                    eventBus.post(new WSClientHeartBeatMissed());
-                    stop();
+                    missedHeartbeatsCount++;
+                    logger.error("Server heartbeat missed! Missed {} heartbeats.", missedHeartbeatsCount);
+
+                    if (missedHeartbeatsCount >= MAX_MISSED_HEARTBEATS) {
+                        logger.error("Too many missed heartbeats. Connection is likely lost.");
+                        eventBus.post(new WSClientHeartBeatMissed());
+                        handleConnectionDrop();
+                    }
                 }
             }
         }, serverHeartbeatInterval, serverHeartbeatInterval);
@@ -86,6 +95,7 @@ public class StompHeartbeatManager {
     public void updateLastServerHeartbeatTime() {
         long now = System.currentTimeMillis();
         lastServerHeartbeatTime = now;
+        missedHeartbeatsCount = 0; // Reset missed heartbeat counter
         logger.debug("Server heartbeat time updated at: {}", now);
     }
 
@@ -98,5 +108,11 @@ public class StompHeartbeatManager {
         logger.info("Restarting heartbeat manager with new server interval: {} ms", newServerHeartbeatInterval);
         stop();
         start(newServerHeartbeatInterval);
+    }
+
+    private void handleConnectionDrop() {
+        logger.warn("Attempting to reconnect due to missed heartbeats.");
+        eventBus.post(new WSClientDisconnected());
+        eventBus.post(new WSClientTransportError(new IllegalArgumentException("connection lost")));
     }
 }
