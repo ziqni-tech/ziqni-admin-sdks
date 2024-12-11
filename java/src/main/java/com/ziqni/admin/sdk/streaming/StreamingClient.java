@@ -82,6 +82,7 @@ public class StreamingClient {
             }
         });
     }
+
     private void attemptReconnect() {
         try {
             if (this.reconnectCount.get() < 0) // Shutdown in progress
