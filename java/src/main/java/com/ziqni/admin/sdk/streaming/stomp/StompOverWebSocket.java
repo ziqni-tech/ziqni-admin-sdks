@@ -13,10 +13,9 @@ import java.net.http.WebSocket;
 import java.util.Map;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.util.Objects;
+import java.util.concurrent.*;
 import java.util.zip.GZIPOutputStream;
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.CompletionStage;
-import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Consumer;
 
@@ -41,6 +40,13 @@ public class StompOverWebSocket implements WebSocket.Listener {
 
     private WebSocket webSocket;
     private StompHeartbeatManager heartbeatManager;
+
+    private static final int MAX_RECONNECT_ATTEMPTS = 5;
+    private static final long RECONNECT_DELAY_SECONDS = 5;
+
+    private final ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
+    private int reconnectAttempts = 0;
+
 
     public StompOverWebSocket(String wsUri, String username, String passcode, ZiqniSimpleEventBus eventBus, Consumer<StompOverWebSocket> onConnect) {
         this.wsUri = wsUri;
@@ -141,7 +147,11 @@ public class StompOverWebSocket implements WebSocket.Listener {
 
 
     public void shutdown() {
-        webSocket.sendClose(WebSocket.NORMAL_CLOSURE, "Client shutdown");
+        scheduler.shutdown();
+
+        if (Objects.nonNull(webSocket)) {
+            webSocket.sendClose(WebSocket.NORMAL_CLOSURE, "Client shutdown");
+        }
     }
 
     public <T> MessageToSend<T> prepareMessageToSend(StompHeaders headers, T payload){
@@ -209,16 +219,26 @@ public class StompOverWebSocket implements WebSocket.Listener {
     public CompletionStage<?> onClose(WebSocket webSocket, int statusCode, String reason) {
         logger.info("WebSocket closed: " + reason);
         connected.set(STATE_NOT_CONNECTED);
+
         if (heartbeatManager != null) {
             heartbeatManager.stop();
         }
+
+        attemptReconnect();
+
         return CompletableFuture.completedFuture(null);
     }
 
     @Override
     public void onError(WebSocket webSocket, Throwable error) {
         logger.error("WebSocket error: " + error.getMessage());
+        connected.set(STATE_FAILURE);
+
+        attemptReconnect();
     }
+
+
+
 
     public <T> void sendMessage(StompHeaders headers, T payload) {
         // Ensure the destination header is set
@@ -302,5 +322,27 @@ public class StompOverWebSocket implements WebSocket.Listener {
         } catch (JsonProcessingException e) {
             throw new RuntimeException("Failed to serialize payload to JSON", e);
         }
+    }
+    private void attemptReconnect() {
+        if (reconnectAttempts >= MAX_RECONNECT_ATTEMPTS) {
+            logger.error("Max reconnection attempts reached. Giving up.");
+            return;
+        }
+
+        reconnectAttempts++;
+        logger.info("Attempting to reconnect (Attempt {} of " + MAX_RECONNECT_ATTEMPTS + ")...", reconnectAttempts);
+
+        scheduler.schedule(() -> {
+            if (isNotConnected()) {
+                connect().thenAccept(ws -> {
+                    reconnectAttempts = 0;
+                    logger.info("Reconnected successfully.");
+                }).exceptionally(e -> {
+                    logger.error("Reconnection attempt failed: {}", e.getMessage());
+                    attemptReconnect();
+                    return null;
+                });
+            }
+        }, RECONNECT_DELAY_SECONDS, TimeUnit.SECONDS);
     }
 }
