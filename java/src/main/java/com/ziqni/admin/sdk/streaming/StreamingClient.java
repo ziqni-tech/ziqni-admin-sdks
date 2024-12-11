@@ -1,6 +1,7 @@
 package com.ziqni.admin.sdk.streaming;
 
 import com.ziqni.admin.sdk.configuration.AdminApiClientConfiguration;
+import com.ziqni.admin.sdk.context.WSClientHeartBeatMissed;
 import com.ziqni.admin.sdk.context.WSClientTransportError;
 import com.ziqni.admin.sdk.eventbus.ZiqniSimpleEventBus;
 import com.ziqni.admin.sdk.streaming.handlers.EventHandler;
@@ -58,6 +59,13 @@ public class StreamingClient {
 
         // Listen to the eventbus for transport errors
         this.eventBus.onWsClientTransportError(this::onWsClientTransportError);
+        this.eventBus.onWSClientHeartBeatMissed(this::onWSClientHeartBeatMissed);
+    }
+
+    private void onWSClientHeartBeatMissed(WSClientHeartBeatMissed wsClientHeartBeatMissed) {
+        this.stompOverWebSocket.isConnected();
+        scheduleReconnect();
+        // make sure we are connected else attempt reconnect
     }
 
     private void onWsClientTransportError(WSClientTransportError wsClientTransportError) {
