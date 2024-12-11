@@ -1,8 +1,6 @@
 package com.ziqni.admin.sdk.eventbus;
 
 import com.ziqni.admin.sdk.context.*;
-import com.ziqni.admin.sdk.model.EntityChanged;
-import com.ziqni.admin.sdk.model.EntityStateChanged;
 import com.ziqni.admin.sdk.streaming.stomp.StompHeaders;
 
 import java.util.HashSet;
@@ -23,7 +21,6 @@ public class ZiqniSimpleEventBus {
         this.executor = new ThreadPoolExecutor(1, 4, 0L, TimeUnit.MILLISECONDS, tasks);
     }
 
-
     public void post(Object message) {
         if(message == null) {
             throw new IllegalArgumentException("Message cannot be null");
@@ -40,11 +37,9 @@ public class ZiqniSimpleEventBus {
         }
     }
 
-
     public void postWSClientMessageError(StompHeaders headers, String payload, Throwable error) {
         this.post(new WSClientMessageError(headers, payload, error));
     }
-
 
     // Register a subscriber for events of its class type
     public <T> void register(Class<T> type, Consumer<T> consumer) {
@@ -90,14 +85,6 @@ public class ZiqniSimpleEventBus {
 
     public void onWSClientHeartBeatMissed(Consumer<WSClientHeartBeatMissed> consumer){
         this.register(WSClientHeartBeatMissed.class, consumer);
-    }
-
-    public void onEntityChanged(Consumer<EntityChanged> consumer){
-        this.register(EntityChanged.class, consumer);
-    }
-
-    public void onEntityStateChanged(Consumer<EntityStateChanged> consumer){
-        this.register(EntityStateChanged.class, consumer);
     }
 
     /**
