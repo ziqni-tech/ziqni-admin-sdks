@@ -88,6 +88,10 @@ public class ZiqniSimpleEventBus {
         this.register(WSClientTransportError.class, consumer);
     }
 
+    public void onWSClientHeartBeatMissed(Consumer<WSClientHeartBeatMissed> consumer){
+        this.register(WSClientHeartBeatMissed.class, consumer);
+    }
+
     public void onEntityChanged(Consumer<EntityChanged> consumer){
         this.register(EntityChanged.class, consumer);
     }

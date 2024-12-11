@@ -1,6 +1,7 @@
 package com.ziqni.admin.sdk.streaming.stomp;
 
 import com.ziqni.admin.sdk.context.WSClientDisconnected;
+import com.ziqni.admin.sdk.context.WSClientHeartBeatMissed;
 import com.ziqni.admin.sdk.context.WSClientTransportError;
 import com.ziqni.admin.sdk.eventbus.ZiqniSimpleEventBus;
 import org.slf4j.Logger;
@@ -61,12 +62,9 @@ public class StompHeartbeatManager {
             @Override
             public void run() {
                 long now = System.currentTimeMillis();
-                if (serverHeartbeatInterval > 0 && (now - lastServerHeartbeatTime) > serverHeartbeatInterval * 2) {
-//                    eventBus.post(new WSClientTransportError(new IllegalArgumentException("error")));
+                if (serverHeartbeatInterval > 0 && (now - lastServerHeartbeatTime) > serverHeartbeatInterval * 4) {
                     logger.error("Server heartbeat missed! Connection might be lost.");
-//                    eventBus.post(new WSClientDisconnected());
-
-                    // Notify listeners about the lost connection
+                    eventBus.post(new WSClientHeartBeatMissed());
                 }
             }
         }, serverHeartbeatInterval, serverHeartbeatInterval);

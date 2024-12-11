@@ -187,6 +187,9 @@ public class StompOverWebSocket implements WebSocket.Listener {
         messageBuffer.append(receivedData);
 
         if (last) {
+            if (heartbeatManager != null) {
+                heartbeatManager.updateLastServerHeartbeatTime();
+            }
             String completeMessage = messageBuffer.toString().trim();
             messageBuffer.setLength(0); // Clear the buffer
 
