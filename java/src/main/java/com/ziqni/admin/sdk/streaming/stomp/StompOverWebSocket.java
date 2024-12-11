@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.WebSocket;
+import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
 import java.util.Map;
 import java.io.ByteArrayOutputStream;
@@ -61,8 +62,28 @@ public class StompOverWebSocket implements WebSocket.Listener {
     }
 
     private void onWSClientHeartBeatMissed(WSClientHeartBeatMissed wsClientHeartBeatMissed) {
-        // FINISH THIS: MAKE Sure the connection is actually closed, else just reset the heartbeat
+        try {
+            // Check if the WebSocket connection is still open
+            if (webSocket != null && webSocket.isOutputClosed()) {
+                logger.warn("WebSocket output is closed. Attempting to reconnect...");
+                attemptReconnect();
+            } else {
+                // Send a ping to verify the connection
+                logger.info("WebSocket seems active. Sending ping...");
+                webSocket.sendPing(java.nio.ByteBuffer.wrap("Ping".getBytes(StandardCharsets.UTF_8)))
+                        .thenRun(() -> logger.info("Ping sent successfully."))
+                        .exceptionally(ex -> {
+                            logger.error("Ping failed. Connection might be closed. Attempting to reconnect.", ex);
+                            attemptReconnect();
+                            return null;
+                        });
+            }
+        } catch (Exception e) {
+            logger.error("Error occurred during heartbeat missed handling. Attempting to reconnect.", e);
+            attemptReconnect();
+        }
     }
+
 
     public CompletableFuture<Void> connect() {
         HttpClient client = HttpClient.newHttpClient();
