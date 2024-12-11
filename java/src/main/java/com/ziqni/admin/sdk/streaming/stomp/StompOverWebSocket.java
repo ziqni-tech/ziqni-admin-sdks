@@ -195,7 +195,14 @@ public class StompOverWebSocket implements WebSocket.Listener {
                         }
                     }
                     case MESSAGE -> {
-                        eventHandlers.get(frame.getDestination()).handleFrame(frame.getHeaders(),frame.getBody());
+                        final var handler = eventHandlers.get(frame.getDestination());
+
+                        if(handler == null){
+                            logger.error("No handler found for destination: " + frame.getDestination());
+                            return CompletableFuture.completedFuture(null);
+                        }
+
+                        handler.handleFrame(frame.getHeaders(),frame.getBody());
                     }
                     case ERROR -> {
                         logger.error("Error frame received: " + frame.getBody());
