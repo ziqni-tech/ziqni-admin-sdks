@@ -47,6 +47,8 @@ public class StompOverWebSocket implements WebSocket.Listener {
     private static final int MAX_RECONNECT_ATTEMPTS = 5;
     private static final long RECONNECT_DELAY_SECONDS = 5;
 
+    private static ByteBuffer PING_MESSAGE = java.nio.ByteBuffer.wrap("Ping".getBytes(StandardCharsets.UTF_8));
+
     private final ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
     private int reconnectAttempts = 0;
 
@@ -70,7 +72,7 @@ public class StompOverWebSocket implements WebSocket.Listener {
             } else {
                 // Send a ping to verify the connection
                 logger.info("WebSocket seems active. Sending ping...");
-                webSocket.sendPing(java.nio.ByteBuffer.wrap("Ping".getBytes(StandardCharsets.UTF_8)))
+                webSocket.sendPing(PING_MESSAGE)
                         .thenRun(() -> logger.info("Ping sent successfully."))
                         .exceptionally(ex -> {
                             logger.error("Ping failed. Connection might be closed. Attempting to reconnect.", ex);
