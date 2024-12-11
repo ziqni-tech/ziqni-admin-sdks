@@ -1,9 +1,14 @@
 package com.ziqni.admin.sdk.streaming.stomp;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.HashMap;
 import java.util.Map;
 
 public class StompFrame {
+
+    private static final Logger logger = LoggerFactory.getLogger(StompFrame.class);
 
     private final StompCommand command;
     private final StompHeaders headers;
@@ -38,7 +43,14 @@ public class StompFrame {
         }
 
         // First line is the command
-        StompCommand command = StompCommand.fromString(lines[0].trim());
+        StompCommand command = null;
+        try {
+            command = StompCommand.fromString(lines[0].trim());
+        }
+        catch (IllegalArgumentException e) {
+            command = StompCommand.NOT_A_VALID_STOMP_COMMAND;
+            return new StompFrame(command, Map.of(), frame);
+        }
 
         // Parse headers
         Map<String, String> headers = new HashMap<>();

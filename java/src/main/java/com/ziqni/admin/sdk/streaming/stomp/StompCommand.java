@@ -14,7 +14,8 @@ public enum StompCommand {
     DISCONNECT,
     MESSAGE,
     RECEIPT,
-    ERROR;
+    ERROR,
+    NOT_A_VALID_STOMP_COMMAND; // This is a special command used to indicate that the command is not a valid STOMP command
 
     public static StompCommand fromString(String command) {
         try {
