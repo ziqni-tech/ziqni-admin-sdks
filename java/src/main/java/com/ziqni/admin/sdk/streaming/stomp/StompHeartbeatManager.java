@@ -77,7 +77,6 @@ public class StompHeartbeatManager {
                     if (missedHeartbeatsCount >= MAX_MISSED_HEARTBEATS) {
                         logger.error("Too many missed heartbeats. Connection is likely lost.");
                         eventBus.post(new WSClientHeartBeatMissed());
-                        handleConnectionDrop();
                     }
                 }
             }
@@ -108,11 +107,5 @@ public class StompHeartbeatManager {
         logger.info("Restarting heartbeat manager with new server interval: {} ms", newServerHeartbeatInterval);
         stop();
         start(newServerHeartbeatInterval);
-    }
-
-    private void handleConnectionDrop() {
-        logger.warn("Attempting to reconnect due to missed heartbeats.");
-        eventBus.post(new WSClientDisconnected());
-        eventBus.post(new WSClientTransportError(new IllegalArgumentException("connection lost")));
     }
 }
