@@ -1,7 +1,6 @@
 package com.ziqni.admin.sdk.streaming.handlers;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ziqni.admin.sdk.ApiException;
 import com.ziqni.admin.sdk.JSON;
@@ -29,7 +28,6 @@ public class CallbackEventHandler extends EventHandler {
 
     protected static final ObjectMapper objectMapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 
-    public final static JavaType OBJECT_JAVA_TYPE = objectMapper.constructType(Object.class);
     public final Map<String,CallbackConsumer<?>> callbackConsumerMap = new ConcurrentHashMap<>();
 
     public CallbackEventHandler() {

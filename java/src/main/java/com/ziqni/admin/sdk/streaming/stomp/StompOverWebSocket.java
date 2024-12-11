@@ -240,6 +240,10 @@ public class StompOverWebSocket implements WebSocket.Listener {
     }
 
     public <T> void sendMessage(StompHeaders headers, T payload) {
+        if(isNotConnected()){
+            throw new IllegalStateException("Client is disconnected from the server.");
+        }
+
         // Ensure the destination header is set
         if (headers.getDestination() == null || headers.getDestination().isEmpty()) {
             throw new IllegalArgumentException("Destination header is required for sending a message.");
