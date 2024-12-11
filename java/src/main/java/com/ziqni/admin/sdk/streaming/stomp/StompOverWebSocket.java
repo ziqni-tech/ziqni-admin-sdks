@@ -61,7 +61,7 @@ public class StompOverWebSocket implements WebSocket.Listener {
     }
 
     private void onWSClientHeartBeatMissed(WSClientHeartBeatMissed wsClientHeartBeatMissed) {
-        // FINISH THIS
+        // FINISH THIS: MAKE Sure the connection is actually closed, else just reset the heartbeat
     }
 
     public CompletableFuture<Void> connect() {
