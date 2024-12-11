@@ -5,7 +5,7 @@ package com.ziqni.admin.sdk.streaming.handlers;
 
 import com.ziqni.admin.sdk.ApiException;
 import com.ziqni.admin.sdk.JSON;
-import com.ziqni.admin.sdk.streaming.client.StompHeaders;
+import com.ziqni.admin.sdk.streaming.stomp.StompHeaders;
 
 import java.nio.charset.StandardCharsets;
 import java.util.concurrent.CompletableFuture;

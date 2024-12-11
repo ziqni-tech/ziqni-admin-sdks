@@ -1,4 +1,4 @@
-package com.ziqni.admin.sdk.streaming.client;
+package com.ziqni.admin.sdk.streaming.stomp;
 
 import java.io.Serializable;
 import java.util.*;

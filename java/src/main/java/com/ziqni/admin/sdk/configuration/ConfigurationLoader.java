@@ -1,13 +1,8 @@
 /*
  * Copyright (c) 2022. ZIQNI LTD registered in England and Wales, company registration number-09693684
  */
-package com.ziqni.admin.sdk.util;
+package com.ziqni.admin.sdk.configuration;
 
-import software.amazon.awssdk.regions.Region;
-import software.amazon.awssdk.services.ssm.SsmClient;
-import software.amazon.awssdk.services.ssm.model.GetParametersByPathRequest;
-import software.amazon.awssdk.services.ssm.model.GetParametersByPathResponse;
-import software.amazon.awssdk.services.ssm.model.Parameter;
 import org.apache.commons.configuration2.Configuration;
 import org.apache.commons.configuration2.FileBasedConfiguration;
 import org.apache.commons.configuration2.PropertiesConfiguration;
@@ -28,57 +23,6 @@ public abstract class ConfigurationLoader {
     public static String DefaultConfigFileName = "application.properties";
     private static String configFile = null;
     private static Map<String, String> cache;
-    private static final String prefix = Optional.ofNullable( System.getenv("ZIQNI_ENV")).orElse(
-            Optional.ofNullable( System.getProperty("ZIQNI_ENV")).orElse("/local_dev/client/")
-    );
-
-    private static String instanceId = null;
-
-    public static void loadFromAws(Boolean onFailTryFile) {
-        logger.info("Ziqni environment set to [" + prefix + "]");
-
-        initIntanceId();
-
-        try (SsmClient ssmClient = SsmClient.builder().region(Region.EU_WEST_1).build()) {
-            GetParametersByPathRequest request = GetParametersByPathRequest.builder()
-                    .path(prefix)
-                    .recursive(true)
-                    .withDecryption(true)
-                    .maxResults(10)
-                    .build();
-
-            process(ssmClient.getParametersByPath(request), ssmClient, request);
-        } catch (Throwable t) {
-            logger.error("Failed to load configuration from AWS", t);
-
-            if (onFailTryFile) {
-                loadFromFile(false);
-            } else {
-                throw new RuntimeException(t);
-            }
-        }
-
-        loadFromFile(true);
-
-        assert cache != null;
-        assert cache.size() > 0;
-    }
-
-    private static void process(GetParametersByPathResponse response, SsmClient ssmClient, GetParametersByPathRequest request) {
-        for (Parameter parameter : response.parameters()) {
-            if (cache == null) {
-                cache = new HashMap<>();
-            }
-            String configKey = parameter.name().substring(prefix.length()).replaceAll("/", ".");
-            String configVal = parameter.value();
-            cache.put(configKey, configVal);
-            logger.debug("Loaded parameter [{}] with value [{}]", configKey, configVal);
-        }
-
-        if (response.nextToken() != null) {
-            process(ssmClient.getParametersByPath(request.toBuilder().nextToken(response.nextToken()).build()), ssmClient, request);
-        }
-    }
 
     public static void loadFromFile(Boolean doNotOverwrite) {
         Parameters params = new Parameters();
@@ -119,7 +63,7 @@ public abstract class ConfigurationLoader {
         }
 
         assert cache != null;
-        assert cache.size() > 0;
+        assert !cache.isEmpty();
     }
 
     public static void setConfigFile(String configFile) {
@@ -132,8 +76,8 @@ public abstract class ConfigurationLoader {
 
     public static Map<String, String> Parameters() {
         if(ConfigurationLoader.cache == null) {
-            loadFromAws(true);
-            assert ConfigurationLoader.cache.size() > 0;
+            loadFromFile(true);
+            assert !ConfigurationLoader.cache.isEmpty();
         }
 
         return ConfigurationLoader.cache;
@@ -161,29 +105,5 @@ public abstract class ConfigurationLoader {
         logger.info("Parameter [{}] value retrieved from ENVIRONMENT variables [TRUE]", variableToCheck);
         return envVariableValue;
 
-    }
-
-    public static String getInstanceId() {
-        if(ConfigurationLoader.cache == null) {
-            loadFromAws(true);
-            assert ConfigurationLoader.cache.size() > 0;
-        }
-
-        if(instanceId == null)
-            initIntanceId();
-
-        return instanceId;
-    }
-
-    private static void initIntanceId() {
-        var instanceIdFromEnv = System.getenv(ziqniEnvironmentVariablePrefix + "INSTANCE_ID");
-
-        if(instanceIdFromEnv != null) {
-            instanceId = instanceIdFromEnv;
-        } else {
-            instanceId = Common.getNextId();
-        }
-
-        logger.info("Instance id set to [{}]", instanceId);
     }
 }

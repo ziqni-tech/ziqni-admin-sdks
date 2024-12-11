@@ -1,7 +1,7 @@
 package com.ziqni.admin.sdk.streaming.runnables;
 
-import com.ziqni.admin.sdk.streaming.client.StompHeaders;
-import com.ziqni.admin.sdk.streaming.client.StompOverWebSocket;
+import com.ziqni.admin.sdk.streaming.stomp.StompHeaders;
+import com.ziqni.admin.sdk.streaming.stomp.StompOverWebSocket;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

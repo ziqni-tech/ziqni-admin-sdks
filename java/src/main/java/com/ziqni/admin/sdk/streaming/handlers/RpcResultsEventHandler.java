@@ -5,7 +5,7 @@ package com.ziqni.admin.sdk.streaming.handlers;
 
 import com.github.benmanes.caffeine.cache.AsyncCache;
 import com.github.benmanes.caffeine.cache.Caffeine;
-import com.ziqni.admin.sdk.streaming.client.StompHeaders;
+import com.ziqni.admin.sdk.streaming.stomp.StompHeaders;
 import com.ziqni.admin.sdk.util.ClassScanner;
 import org.checkerframework.checker.nullness.qual.NonNull;
 import org.slf4j.Logger;

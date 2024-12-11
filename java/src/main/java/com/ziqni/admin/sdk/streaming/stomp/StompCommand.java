@@ -1,4 +1,4 @@
-package com.ziqni.admin.sdk.streaming.client;
+package com.ziqni.admin.sdk.streaming.stomp;
 
 public enum StompCommand {
     CONNECT,
