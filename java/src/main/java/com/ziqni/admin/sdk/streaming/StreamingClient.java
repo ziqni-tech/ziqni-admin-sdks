@@ -11,6 +11,7 @@ import com.ziqni.admin.sdk.streaming.handlers.CallbackEventHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.net.http.WebSocket;
 import java.time.OffsetDateTime;
 import java.util.Objects;
 import java.util.concurrent.*;
@@ -64,47 +65,48 @@ public class StreamingClient {
         });
     }
 
-    private void scheduleReconnect(){
-        if(this.reconnectCount.get() < 0) // Shutdown in progress
+    private void scheduleReconnect() {
+        if (this.reconnectCount.get() < 0) // Shutdown in progress
             return;
 
         this.reconnectCount.incrementAndGet();
         this.nextReconnect.set(OffsetDateTime.now().plusSeconds(10));
 
-        // FIXME; MCD-100: Implement reconnect
-//        taskScheduler.schedule(
-//                this::attemptReconnect,
-//                this.nextReconnect.get().toInstant()
-//        );
+        CompletableFuture.runAsync(() -> {
+            try {
+                Thread.sleep(10_000); // Wait 10 seconds before attempting reconnect
+                attemptReconnect();
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+                logger.warn("Reconnect sleep interrupted", e);
+            }
+        });
+    }
+    private void attemptReconnect() {
+        try {
+            if (this.reconnectCount.get() < 0) // Shutdown in progress
+                return;
+
+            this.start().thenAccept(connected -> {
+                if (connected) {
+                    this.reconnectCount.set(0);
+                    this.nextReconnect.set(null);
+                    logger.info("Reconnected successfully");
+                } else {
+                    scheduleReconnect();
+                    logger.warn("Reconnect failed; scheduling another attempt");
+                }
+            }).exceptionally(throwable -> {
+                logger.error("Reconnect attempt failed with error: {}", throwable.getMessage(), throwable);
+                scheduleReconnect();
+                return null;
+            });
+        } catch (Throwable throwable) {
+            logger.error("Critical error during reconnect attempt", throwable);
+            scheduleReconnect();
+        }
     }
 
-//    private void attemptReconnect(){
-//        try {
-//            if(this.reconnectCount.get() < 0) // Shutdown in progress
-//                return;
-//
-//            this.start( connected -> {
-//                try {
-//                    if (connected) {
-//                        this.reconnectCount.set(0);
-//                        this.nextReconnect.set(null);
-//                    } else {
-//                        scheduleReconnect();
-//                    }
-//                } catch (Throwable throwable) {
-//                    scheduleReconnect();
-//                    logger.error("Reconnect failed", throwable);
-//                }
-//            }).exceptionally(throwable -> {
-//                logger.warn("Reconnect failed with: {}", throwable.getMessage());
-//                scheduleReconnect();
-//                return null;
-//            });
-//        } catch (Throwable throwable) {
-//            scheduleReconnect();
-//            logger.error("Reconnect failed", throwable);
-//        }
-//    }
 
     public <TOUT, TIN> CompletableFuture<TOUT> sendWithApiCallback(String destination, TIN payload){
         final var completableFuture = new CompletableFuture<TOUT>();
@@ -171,19 +173,31 @@ public class StreamingClient {
         });
     }
 
-    public CompletableFuture<Void> start() throws Exception {
-        if(this.websocketSendExecutor.isShutdown() || this.websocketSendExecutor.isTerminated())
+    public CompletableFuture<Boolean> start()  throws Exception{
+        if (this.websocketSendExecutor.isShutdown() || this.websocketSendExecutor.isTerminated())
             throw new IllegalStateException("The websocket send executor has been terminated");
 
-        if(this.reconnectCount.get() < 0) // Shutdown in progress
+        if (this.reconnectCount.get() < 0) // Shutdown in progress
             throw new IllegalStateException("The client is shutting down");
 
         if(this.stompOverWebSocket ==null) {
             this.stompOverWebSocket = new StompOverWebSocket(URL, "x-api-key", configuration.getAccessTokenString(), eventBus, this::onConnected);
+        if (this.wsClient == null) {
+            this.wsClient = new StompOverWebSocket(URL, "x-api-key", configuration.getAccessTokenString(), eventBus, this::onConnected);
         }
 
         return this.stompOverWebSocket.connect();
+        return this.wsClient.connect()
+                .thenApply(unused -> {
+                    logger.info("Connection successful");
+                    return true;
+                })
+                .exceptionally(throwable -> {
+                    logger.error("Connection failed: {}", throwable.getMessage(), throwable);
+                    return false;
+                });
     }
+
 
     private void onConnected(StompOverWebSocket ws) {
         this.stompOverWebSocket.subscribe( this.rpcResultsEventHandler);

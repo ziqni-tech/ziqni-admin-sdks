@@ -228,7 +228,6 @@ public class StompOverWebSocket implements WebSocket.Listener {
             heartbeatManager.stop();
         }
 
-        attemptReconnect();
 
         return CompletableFuture.completedFuture(null);
     }
