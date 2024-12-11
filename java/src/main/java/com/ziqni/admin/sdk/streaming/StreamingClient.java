@@ -182,12 +182,9 @@ public class StreamingClient {
 
         if(this.stompOverWebSocket ==null) {
             this.stompOverWebSocket = new StompOverWebSocket(URL, "x-api-key", configuration.getAccessTokenString(), eventBus, this::onConnected);
-        if (this.wsClient == null) {
-            this.wsClient = new StompOverWebSocket(URL, "x-api-key", configuration.getAccessTokenString(), eventBus, this::onConnected);
         }
 
-        return this.stompOverWebSocket.connect();
-        return this.wsClient.connect()
+        return this.stompOverWebSocket.connect()
                 .thenApply(unused -> {
                     logger.info("Connection successful");
                     return true;
