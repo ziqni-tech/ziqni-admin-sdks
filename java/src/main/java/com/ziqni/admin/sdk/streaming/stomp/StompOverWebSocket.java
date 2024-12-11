@@ -57,6 +57,11 @@ public class StompOverWebSocket implements WebSocket.Listener {
         this.passcode = passcode;
         this.eventBus = eventBus;
         this.onConnect = onConnect;
+        this.eventBus.onWSClientHeartBeatMissed(this::onWSClientHeartBeatMissed);
+    }
+
+    private void onWSClientHeartBeatMissed(WSClientHeartBeatMissed wsClientHeartBeatMissed) {
+        // FINISH THIS
     }
 
     public CompletableFuture<Void> connect() {
