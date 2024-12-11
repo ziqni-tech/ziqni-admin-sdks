@@ -157,7 +157,7 @@ public class StompOverWebSocket implements WebSocket.Listener {
         }
     }
 
-    public <T> MessageToSend<T> prepareMessageToSend(StompHeaders headers, T payload){
+    public <T> MessageToSend<T> prepareMessageToSend(StompHeaders headers, T payload) {
         return new MessageToSend<>(headers, payload, this);
     }
 
@@ -166,7 +166,6 @@ public class StompOverWebSocket implements WebSocket.Listener {
     @Override
     public void onOpen(WebSocket webSocket) {
         logger.info("WebSocket connection opened.");
-        setState(STATE_CONNECTED);
         webSocket.request(1);
     }
 

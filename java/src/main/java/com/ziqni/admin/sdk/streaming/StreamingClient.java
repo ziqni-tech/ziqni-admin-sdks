@@ -11,7 +11,6 @@ import com.ziqni.admin.sdk.streaming.handlers.CallbackEventHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.net.http.WebSocket;
 import java.time.OffsetDateTime;
 import java.util.Objects;
 import java.util.concurrent.*;
@@ -32,7 +31,7 @@ public class StreamingClient {
 
     private final AtomicLong reconnectCount = new AtomicLong(0);
     private final AtomicReference<OffsetDateTime> nextReconnect = new AtomicReference<>();
-    private StompOverWebSocket wsClient;
+    private StompOverWebSocket stompOverWebSocket;
 
     private final AdminApiClientConfiguration configuration;
 
@@ -44,7 +43,7 @@ public class StreamingClient {
         this.webSocketClientTasks = new LinkedBlockingDeque<>();
         this.websocketSendExecutor = new ThreadPoolExecutor(1, 1, 0L, TimeUnit.MILLISECONDS, webSocketClientTasks);
         this.rpcResultsEventHandler = RpcResultsEventHandler.create();
-        this.callbackEventHandler = CallbackEventHandler.create();
+        this.callbackEventHandler = CallbackEventHandler.create(eventBus);
 
         // implement shutdown hook
         Runtime.getRuntime().addShutdownHook(new Thread( () -> {
@@ -110,8 +109,8 @@ public class StreamingClient {
     public <TOUT, TIN> CompletableFuture<TOUT> sendWithApiCallback(String destination, TIN payload){
         final var completableFuture = new CompletableFuture<TOUT>();
 
-        if(Objects.isNull(this.wsClient)
-                || this.wsClient.isNotConnected()
+        if(Objects.isNull(this.stompOverWebSocket)
+                || this.stompOverWebSocket.isNotConnected()
                 || this. websocketSendExecutor.isTerminated()
                 || this. websocketSendExecutor.isShutdown()) {
             completableFuture.completeExceptionally(new IllegalStateException("The session is not connected"));
@@ -126,14 +125,14 @@ public class StreamingClient {
                         completableFuture,
                         (stompHeaders, tPayload) -> {
                             if(Objects.nonNull(tPayload))
-                                this.wsClient.prepareMessageToSend(stompHeaders, tPayload).run();
+                                this.stompOverWebSocket.prepareMessageToSend(stompHeaders, tPayload).run();
                             else
                                 logger.warn("Message body is empty " + stompHeaders);
                         }
                 );
             }
             catch (IllegalStateException t){
-                if(wsClient.isConnected())
+                if(stompOverWebSocket.isConnected())
                     logger.error("Broadcast failed",t);
 
                 completableFuture.completeExceptionally(t);
@@ -152,10 +151,10 @@ public class StreamingClient {
 
     public CompletableFuture<Void> stop(boolean executorShutdown) {
         final var out = new CompletableFuture<Void>();
-        if(this.wsClient!=null)
+        if(this.stompOverWebSocket !=null)
             this.websocketSendExecutor.submit(() -> {
-                this.wsClient.shutdown();
-                this.wsClient=null;
+                this.stompOverWebSocket.shutdown();
+                this.stompOverWebSocket =null;
                 out.complete(null);
             });
 
@@ -166,7 +165,7 @@ public class StreamingClient {
     }
 
     public <T> CompletableFuture<Void> sendMessage(StompHeaders stompHeaders, T body){
-        return this.wsClient.sendMessage(stompHeaders, body).thenAccept(webSocket -> {
+        return this.stompOverWebSocket.sendMessage(stompHeaders, body).thenAccept(webSocket -> {
             if(Objects.isNull(webSocket))
                 throw new IllegalStateException("The session is not connected");
         });
@@ -179,20 +178,20 @@ public class StreamingClient {
         if(this.reconnectCount.get() < 0) // Shutdown in progress
             throw new IllegalStateException("The client is shutting down");
 
-        if(this.wsClient==null) {
-            this.wsClient = new StompOverWebSocket(URL, "x-api-key", configuration.getAccessTokenString(), eventBus, this::onConnected);
+        if(this.stompOverWebSocket ==null) {
+            this.stompOverWebSocket = new StompOverWebSocket(URL, "x-api-key", configuration.getAccessTokenString(), eventBus, this::onConnected);
         }
 
-        return this.wsClient.connect();
+        return this.stompOverWebSocket.connect();
     }
 
     private void onConnected(StompOverWebSocket ws) {
-        this.wsClient.subscribe( this.rpcResultsEventHandler);
-        this.wsClient.subscribe( this.callbackEventHandler );
+        this.stompOverWebSocket.subscribe( this.rpcResultsEventHandler);
+        this.stompOverWebSocket.subscribe( this.callbackEventHandler );
     }
 
     public void subscribe(EventHandler handler) {
-        this.wsClient.subscribe(handler);
+        this.stompOverWebSocket.subscribe(handler);
     }
 
     public CallbackEventHandler getCallbackEventHandler() {
@@ -200,23 +199,23 @@ public class StreamingClient {
     }
 
     public boolean isConnected() {
-        return Objects.nonNull(wsClient) && wsClient.isConnected();
+        return Objects.nonNull(stompOverWebSocket) && stompOverWebSocket.isConnected();
     }
 
     public boolean isNotConnected() {
-        return Objects.isNull(wsClient) || wsClient.isNotConnected();
+        return Objects.isNull(stompOverWebSocket) || stompOverWebSocket.isNotConnected();
     }
 
     public boolean isConnecting() {
-        return Objects.nonNull(wsClient) && wsClient.isConnecting();
+        return Objects.nonNull(stompOverWebSocket) && stompOverWebSocket.isConnecting();
     }
 
     public boolean isDisconnecting() {
-        return Objects.nonNull(wsClient) && wsClient.isDisconnecting();
+        return Objects.nonNull(stompOverWebSocket) && stompOverWebSocket.isDisconnecting();
     }
 
     public boolean isFailure() {
-        return Objects.nonNull(wsClient) && wsClient.isFailure();
+        return Objects.nonNull(stompOverWebSocket) && stompOverWebSocket.isFailure();
     }
 
     public ZiqniSimpleEventBus getEventBus() {

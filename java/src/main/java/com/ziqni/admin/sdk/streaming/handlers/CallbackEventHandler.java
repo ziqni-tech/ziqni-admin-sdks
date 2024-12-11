@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ziqni.admin.sdk.ApiException;
 import com.ziqni.admin.sdk.JSON;
+import com.ziqni.admin.sdk.eventbus.ZiqniSimpleEventBus;
 import com.ziqni.admin.sdk.streaming.stomp.StompHeaders;
 import com.ziqni.admin.sdk.util.ClassScanner;
 import org.slf4j.Logger;
@@ -29,8 +30,10 @@ public class CallbackEventHandler extends EventHandler {
     protected static final ObjectMapper objectMapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 
     public final Map<String,CallbackConsumer<?>> callbackConsumerMap = new ConcurrentHashMap<>();
+    private final ZiqniSimpleEventBus eventBus;
 
-    public CallbackEventHandler() {
+    public CallbackEventHandler(ZiqniSimpleEventBus eventBus) {
+        this.eventBus = eventBus;
         this.classScanner = new ClassScanner(CLASS_TO_SCAN_FOR_PAYLOAD_TYPE);
     }
 
@@ -73,12 +76,15 @@ public class CallbackEventHandler extends EventHandler {
             if(consumer.isEmpty()){
                 logger.error(" ++++ ERROR ERROR ERROR No callback consumer registered for {}", callback);
             }
-            else if(failed)
-                onApiExceptionCallBack(headers,response, consumer);
-            else
+            else if(failed) {
+                onApiExceptionCallBack(headers, response, consumer);
+            }
+            else {
                 consumer.ifPresent(callbackConsumer ->
-                        callbackConsumer.consumeCallback(headers,response)
+                        callbackConsumer.consumeCallback(headers, response)
                 );
+                eventBus.post(response);
+            }
         }
         catch (Throwable throwable){
             logger.error("No callback header in the message", throwable);
@@ -93,7 +99,7 @@ public class CallbackEventHandler extends EventHandler {
         );
     }
 
-    public static CallbackEventHandler create(){
-        return new CallbackEventHandler();
+    public static CallbackEventHandler create(ZiqniSimpleEventBus eventBus){
+        return new CallbackEventHandler(eventBus);
     }
 }
