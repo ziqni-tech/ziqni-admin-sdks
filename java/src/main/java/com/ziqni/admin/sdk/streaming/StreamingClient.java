@@ -62,6 +62,7 @@ public class StreamingClient {
 
     private void onWSClientHeartBeatMissed(WSClientHeartBeatMissed wsClientHeartBeatMissed) {
         this.stompOverWebSocket.isConnected();
+        scheduleReconnect();
         // make sure we are connected else attempt reconnect
     }
 
