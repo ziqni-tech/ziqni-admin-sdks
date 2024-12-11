@@ -3,6 +3,7 @@ package com.ziqni.admin.sdk.eventbus;
 import com.ziqni.admin.sdk.context.*;
 import com.ziqni.admin.sdk.model.EntityChanged;
 import com.ziqni.admin.sdk.model.EntityStateChanged;
+import com.ziqni.admin.sdk.streaming.stomp.StompHeaders;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -39,6 +40,12 @@ public class ZiqniSimpleEventBus {
         }
     }
 
+
+    public void postWSClientMessageError(StompHeaders headers, String payload, Throwable error) {
+        this.post(new WSClientMessageError(headers, payload, error));
+    }
+
+
     // Register a subscriber for events of its class type
     public <T> void register(Class<T> type, Consumer<T> consumer) {
         subscribers.compute(type, (key, value) -> {
@@ -71,6 +78,10 @@ public class ZiqniSimpleEventBus {
 
     public void onWSClientSevereFailure(Consumer<WSClientSevereFailure> consumer){
         this.register(WSClientSevereFailure.class, consumer);
+    }
+
+    public void onWSClientMessageError(Consumer<WSClientMessageError> consumer){
+        this.register(WSClientMessageError.class, consumer);
     }
 
     public void onWsClientTransportError(Consumer<WsClientTransportError> consumer){

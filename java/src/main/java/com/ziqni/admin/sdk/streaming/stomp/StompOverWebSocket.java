@@ -1,6 +1,7 @@
 package com.ziqni.admin.sdk.streaming.stomp;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.ziqni.admin.sdk.context.*;
 import com.ziqni.admin.sdk.eventbus.ZiqniSimpleEventBus;
 import com.ziqni.admin.sdk.streaming.handlers.EventHandler;
 import com.ziqni.admin.sdk.streaming.runnables.MessageToSend;
@@ -69,7 +70,7 @@ public class StompOverWebSocket implements WebSocket.Listener {
     }
 
     private void sendConnectFrame() {
-        connected.set(STATE_CONNECTING);
+        setState(STATE_CONNECTING);
         StompHeaders connectHeaders = new StompHeaders();
         connectHeaders.setLogin(username);
         connectHeaders.setPasscode(passcode);
@@ -117,7 +118,7 @@ public class StompOverWebSocket implements WebSocket.Listener {
         logger.debug("Sending DISCONNECT frame.");
         String disconnectFrame = "DISCONNECT\n\n\0";
         webSocket.sendText(disconnectFrame, true);
-        connected.set(STATE_DISCONNECTING);
+        setState(STATE_DISCONNECTING);
         logger.debug("DISCONNECT frame sent.");
     }
 
@@ -165,7 +166,7 @@ public class StompOverWebSocket implements WebSocket.Listener {
     @Override
     public void onOpen(WebSocket webSocket) {
         logger.info("WebSocket connection opened.");
-        connected.set(STATE_CONNECTED);
+        setState(STATE_CONNECTED);
         webSocket.request(1);
     }
 
@@ -177,14 +178,15 @@ public class StompOverWebSocket implements WebSocket.Listener {
             // Handle server heartbeat
             heartbeatManager.updateLastServerHeartbeatTime();
         } else {
+            // Parse the message into a StompFrame
+            StompFrame frame = StompFrame.parse(message);
+
             try {
-                // Parse the message into a StompFrame
-                StompFrame frame = StompFrame.parse(message);
 
                 // Handle specific frame types
                 switch (frame.getCommand()) {
                     case CONNECTED -> {
-                        connected.set(STATE_CONNECTED);
+                        setState(STATE_CONNECTED);
                         onConnect.accept(this);
 
                         String heartBeatHeader = frame.getHeaders().getHeartBeat();
@@ -221,7 +223,7 @@ public class StompOverWebSocket implements WebSocket.Listener {
     @Override
     public CompletionStage<?> onClose(WebSocket webSocket, int statusCode, String reason) {
         logger.info("WebSocket closed: " + reason);
-        connected.set(STATE_NOT_CONNECTED);
+        setState(STATE_NOT_CONNECTED);
 
         if (heartbeatManager != null) {
             heartbeatManager.stop();
@@ -235,7 +237,7 @@ public class StompOverWebSocket implements WebSocket.Listener {
     @Override
     public void onError(WebSocket webSocket, Throwable error) {
         logger.error("WebSocket error: " + error.getMessage());
-        connected.set(STATE_FAILURE);
+        setState(STATE_FAILURE, null, null, error);
 
         attemptReconnect();
     }
@@ -346,5 +348,31 @@ public class StompOverWebSocket implements WebSocket.Listener {
                 });
             }
         }, RECONNECT_DELAY_SECONDS, TimeUnit.SECONDS);
+    }
+
+
+    private void setState(int state) {
+        setState(state, null, null, null);
+    }
+
+    private void setState(int state, StompHeaders headers, String payload, Throwable error) {
+        connected.set(state);
+
+        if (state == STATE_FAILURE) {
+            eventBus.post(new WSClientSevereFailure(headers, payload, error));
+        }
+        else if (state == STATE_DISCONNECTING) {
+            eventBus.post(new WSClientDisconnecting());
+        }
+        else if (state == STATE_NOT_CONNECTED) {
+            eventBus.post(new WSClientDisconnected());
+        }
+        else if (state == STATE_CONNECTING) {
+            eventBus.post(new WSClientConnecting());
+        }
+        else if (state == STATE_CONNECTED) {
+            eventBus.post(new WSClientConnected());
+        }
+
     }
 }
