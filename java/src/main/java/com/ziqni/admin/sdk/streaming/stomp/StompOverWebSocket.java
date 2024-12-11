@@ -186,21 +186,22 @@ public class StompOverWebSocket implements WebSocket.Listener {
                     case CONNECTED -> {
                         connected.set(STATE_CONNECTED);
                         onConnect.accept(this);
+
                         String heartBeatHeader = frame.getHeaders().getHeartBeat();
                         if (heartBeatHeader != null) {
                             String[] parts = heartBeatHeader.split(",");
-                            heartbeatManager.setServerHeartbeatInterval(Long.parseLong(parts[1])); // Server's desired interval
-                            heartbeatManager.start();
+                            heartbeatManager.start(Long.parseLong(parts[1]));// Server's desired interval
                         }
                     }
                     case MESSAGE -> {
-                        // Further processing for MESSAGE frames
                         eventHandlers.get(frame.getDestination()).handleFrame(frame.getHeaders(),frame.getBody());
                     }
                     case ERROR -> {
                         logger.error("Error frame received: " + frame.getBody());
                     }
-                    default -> System.out.println("Unhandled command: " + frame.getCommand());
+                    default -> {
+                        logger.error("Unhandled command: " + frame.getCommand());
+                    }
                 }
             } catch (Exception e) {
                 logger.error("Failed to parse STOMP frame: " + e.getMessage());

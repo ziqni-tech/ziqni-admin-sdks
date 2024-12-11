@@ -28,11 +28,17 @@ public class StompHeartbeatManager {
         this.lastServerHeartbeatTime = System.currentTimeMillis();
     }
 
-    public void start() {
-        heartbeatTimer = new Timer(true);
+    public void start(long serverHeartbeatInterval) {
+        this.serverHeartbeatInterval = serverHeartbeatInterval;
+
+        if(this.heartbeatTimer != null) {
+            this.heartbeatTimer.cancel();
+        }
+
+        this.heartbeatTimer = new Timer(true);
 
         // Client-to-server heartbeats
-        heartbeatTimer.scheduleAtFixedRate(new TimerTask() {
+        this.heartbeatTimer.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
                 if (webSocket != null) {
@@ -43,7 +49,7 @@ public class StompHeartbeatManager {
         }, clientHeartbeatInterval, clientHeartbeatInterval);
 
         // Server-to-client heartbeat monitoring
-        heartbeatTimer.scheduleAtFixedRate(new TimerTask() {
+        this.heartbeatTimer.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
                 long now = System.currentTimeMillis();
