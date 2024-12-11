@@ -171,7 +171,20 @@ public class StompOverWebSocket implements WebSocket.Listener {
 
     @Override
     public CompletionStage<?> onText(WebSocket webSocket, CharSequence data, boolean last) {
-        messageBuffer.append(data);
+        String receivedData = data.toString();
+
+        // Handle heartbeat directly
+        if (receivedData.trim().isEmpty()) {
+            logger.debug("Received heartbeat from server.");
+            if (heartbeatManager != null) {
+                heartbeatManager.updateLastServerHeartbeatTime();
+            }
+            webSocket.request(1); // Request the next message
+            return CompletableFuture.completedFuture(null);
+        }
+
+        // Append data to message buffer for non-heartbeat messages
+        messageBuffer.append(receivedData);
 
         if (last) {
             String completeMessage = messageBuffer.toString().trim();
@@ -182,9 +195,10 @@ public class StompOverWebSocket implements WebSocket.Listener {
             }
         }
 
-        webSocket.request(1);
+        webSocket.request(1); // Request the next message
         return CompletableFuture.completedFuture(null);
     }
+
 
     private void handleCompleteMessage(String message) {
         try {
