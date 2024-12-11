@@ -270,9 +270,7 @@ public class StompOverWebSocket implements WebSocket.Listener {
         // Log the action
         logger.debug("SEND frame sent to: " + headers.getDestination() + ", payload: " + body);
         return webSocket.sendText(sendFrame.toString(), true);
-
     }
-
 
     /**
      * This requires server side tweaks to handle compressed payloads.
