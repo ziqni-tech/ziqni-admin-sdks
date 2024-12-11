@@ -2,12 +2,16 @@ package com.ziqni.admin.sdk.streaming.stomp;
 
 import com.ziqni.admin.sdk.context.WSClientDisconnected;
 import com.ziqni.admin.sdk.eventbus.ZiqniSimpleEventBus;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.net.http.WebSocket;
 import java.util.Timer;
 import java.util.TimerTask;
 
 public class StompHeartbeatManager {
+
+    private static final Logger logger = LoggerFactory.getLogger(StompHeartbeatManager.class);
 
     private final WebSocket webSocket;
     private final ZiqniSimpleEventBus eventBus;
@@ -33,7 +37,7 @@ public class StompHeartbeatManager {
             public void run() {
                 if (webSocket != null) {
                     webSocket.sendText("\n", true);
-                    System.out.println("Heartbeat sent to server.");
+                    logger.debug("Heartbeat sent to server.");
                 }
             }
         }, clientHeartbeatInterval, clientHeartbeatInterval);
@@ -44,7 +48,7 @@ public class StompHeartbeatManager {
             public void run() {
                 long now = System.currentTimeMillis();
                 if (serverHeartbeatInterval > 0 && (now - lastServerHeartbeatTime) > serverHeartbeatInterval * 2) {
-                    System.err.println("Server heartbeat missed! Connection might be lost.");
+                    logger.error("Server heartbeat missed! Connection might be lost.");
                     eventBus.post(new WSClientDisconnected()); // Notify listeners about the lost connection
                 }
             }
@@ -54,17 +58,17 @@ public class StompHeartbeatManager {
     public void stop() {
         if (heartbeatTimer != null) {
             heartbeatTimer.cancel();
-            System.out.println("Heartbeat stopped.");
+            logger.debug("Heartbeat stopped.");
         }
     }
 
     public void updateLastServerHeartbeatTime() {
         lastServerHeartbeatTime = System.currentTimeMillis();
-        System.out.println("Heartbeat received from server.");
+        logger.debug("Server heartbeat time updated.");
     }
 
     public void setServerHeartbeatInterval(long interval) {
         this.serverHeartbeatInterval = interval;
-        System.out.println("Server heartbeat interval set to: " + serverHeartbeatInterval + " ms");
+        logger.debug("Server heartbeat interval set to: " + serverHeartbeatInterval + " ms");
     }
 }

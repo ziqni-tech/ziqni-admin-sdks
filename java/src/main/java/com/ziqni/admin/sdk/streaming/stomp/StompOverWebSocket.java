@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.WebSocket;
+import java.nio.charset.StandardCharsets;
 import java.util.Map;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -237,9 +238,6 @@ public class StompOverWebSocket implements WebSocket.Listener {
         attemptReconnect();
     }
 
-
-
-
     public <T> void sendMessage(StompHeaders headers, T payload) {
         // Ensure the destination header is set
         if (headers.getDestination() == null || headers.getDestination().isEmpty()) {
@@ -251,8 +249,7 @@ public class StompOverWebSocket implements WebSocket.Listener {
         if (payload instanceof String) {
             body = (String) payload;
         } else {
-            // Use your favorite JSON library (e.g., Jackson, Gson) for serialization
-            body = serializeToJson(payload); // Assuming you have this utility method
+            body = serializeToJson(payload);
             headers.setContentType("application/json");
         }
 
@@ -309,14 +306,13 @@ public class StompOverWebSocket implements WebSocket.Listener {
              GZIPOutputStream gzipStream = new GZIPOutputStream(byteStream)) {
             gzipStream.write(payload.getBytes());
             gzipStream.finish();
-            return byteStream.toString("ISO-8859-1"); // Use a safe character encoding for WebSocket text
+            return byteStream.toString(StandardCharsets.ISO_8859_1); // Use a safe character encoding for WebSocket text
         } catch (IOException e) {
             throw new RuntimeException("Failed to compress payload", e);
         }
     }
 
     private String serializeToJson(Object payload) {
-        // Example using Jackson (ensure you add Jackson dependency in your project)
         try {
             return EventHandler.ziqniClientObjectMapper.serializingObjectMapper().writeValueAsString(payload);
         } catch (JsonProcessingException e) {
