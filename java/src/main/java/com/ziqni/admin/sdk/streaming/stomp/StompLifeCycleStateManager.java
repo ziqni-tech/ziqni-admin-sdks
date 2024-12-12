@@ -2,70 +2,63 @@ package com.ziqni.admin.sdk.streaming.stomp;
 
 import com.ziqni.admin.sdk.eventbus.ZiqniSimpleEventBus;
 
-import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class StompLifeCycleStateManager {
 
-    public static final int STATE_FAILURE = -2;
-    public static final int STATE_DISCONNECTING = -1;
-    public static final int STATE_NOT_CONNECTED = 0;
-    public static final int STATE_CONNECTING = 1;
-    public static final int STATE_CONNECTED = 2;
+    public enum State {
+        FAILURE,
+        DISCONNECTING,
+        NOT_CONNECTED,
+        CONNECTING,
+        CONNECTED
+    }
 
-    private final AtomicInteger connected = new AtomicInteger(0);
+    private final AtomicReference<State> currentState = new AtomicReference<>(State.NOT_CONNECTED);
     private final ZiqniSimpleEventBus eventBus;
 
     public StompLifeCycleStateManager(ZiqniSimpleEventBus eventBus) {
         this.eventBus = eventBus;
     }
 
-    public void setState(int state) {
+    public void setState(State state) {
         setState(state, null, null, null);
     }
 
-    public void setState(int state, StompHeaders headers, String payload, Throwable error) {
-        connected.set(state);
+    public void setState(State state, StompHeaders headers, String payload, Throwable error) {
+        currentState.set(state);
 
-        if (state == STATE_FAILURE) {
-            eventBus.post(new WSClientSevereFailure(headers, payload, error));
-        }
-        else if (state == STATE_DISCONNECTING) {
-            eventBus.post(new WSClientDisconnecting());
-        }
-        else if (state == STATE_NOT_CONNECTED) {
-            eventBus.post(new WSClientDisconnected());
-        }
-        else if (state == STATE_CONNECTING) {
-            eventBus.post(new WSClientConnecting());
-        }
-        else if (state == STATE_CONNECTED) {
-            eventBus.post(new WSClientConnected());
-        }
-        else {
-            throw new IllegalArgumentException("Invalid state: " + state);
+        switch (state) {
+            case FAILURE -> eventBus.post(new WSClientSevereFailure(headers, payload, error));
+            case DISCONNECTING -> eventBus.post(new WSClientDisconnecting());
+            case NOT_CONNECTED -> eventBus.post(new WSClientDisconnected());
+            case CONNECTING -> eventBus.post(new WSClientConnecting());
+            case CONNECTED -> eventBus.post(new WSClientConnected());
+            default -> throw new IllegalArgumentException("Unknown state: " + state);
         }
     }
 
     public boolean isConnected() {
-        return connected.get() == STATE_CONNECTED;
+        return currentState.get() == State.CONNECTED;
     }
 
     public boolean isNotConnected() {
-        return connected.get() != STATE_CONNECTED;
+        return currentState.get() == State.NOT_CONNECTED;
     }
 
     public boolean isConnecting() {
-        return connected.get() == STATE_CONNECTING;
+        return currentState.get() == State.CONNECTING;
     }
 
     public boolean isDisconnecting() {
-        return connected.get() == STATE_DISCONNECTING;
+        return currentState.get() == State.DISCONNECTING;
     }
 
     public boolean isFailure() {
-        return connected.get() == STATE_FAILURE;
+        return currentState.get() == State.FAILURE;
     }
 
+    // Event Records
     public record WSClientConnected() { }
 
     public record WSClientConnecting() { }
@@ -76,9 +69,9 @@ public class StompLifeCycleStateManager {
 
     public record WSClientHeartBeatMissed() { }
 
-    public record WSClientMessageError(com.ziqni.admin.sdk.streaming.stomp.StompHeaders headers, String payload, Throwable error) { }
+    public record WSClientMessageError(StompHeaders headers, String payload, Throwable error) { }
 
-    public record WSClientSevereFailure(com.ziqni.admin.sdk.streaming.stomp.StompHeaders headers, String payload, Throwable error) { }
+    public record WSClientSevereFailure(StompHeaders headers, String payload, Throwable error) { }
 
     public record WSClientTransportError(Throwable exception) { }
 }

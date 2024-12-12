@@ -87,7 +87,7 @@ public class StompOverWebSocketListener implements WebSocket.Listener {
             // Handle specific frame types
             switch (frame.getCommand()) {
                 case CONNECTED -> {
-                    lifeCycleStateManager.setState(STATE_CONNECTED);
+                    lifeCycleStateManager.setState(State.CONNECTED);
                     onConnect.accept(this);
 
                     String heartBeatHeader = frame.getHeaders().getHeartBeat();
@@ -139,7 +139,7 @@ public class StompOverWebSocketListener implements WebSocket.Listener {
             reconnect.accept(this);
         }
 
-        lifeCycleStateManager.setState(STATE_NOT_CONNECTED);
+        lifeCycleStateManager.setState(State.NOT_CONNECTED);
 
         return CompletableFuture.completedFuture(null);
     }

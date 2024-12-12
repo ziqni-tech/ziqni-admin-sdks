@@ -25,8 +25,6 @@ import java.util.concurrent.*;
 import java.util.function.Consumer;
 import java.util.zip.GZIPOutputStream;
 
-import static com.ziqni.admin.sdk.streaming.stomp.StompLifeCycleStateManager.STATE_CONNECTING;
-import static com.ziqni.admin.sdk.streaming.stomp.StompLifeCycleStateManager.STATE_DISCONNECTING;
 
 /**
  * This class is responsible for managing a STOMP connection over a WebSocket.
@@ -73,7 +71,7 @@ public class StompOverWebSocket { //implements WebSocket.Listener {
         heartbeatManager.stop();
 
         if (Objects.nonNull(webSocket)) {
-            lifeCycleStateManager.setState(STATE_DISCONNECTING);
+            lifeCycleStateManager.setState(State.DISCONNECTING);
             webSocket.sendClose(WebSocket.NORMAL_CLOSURE, "Client shutdown");
         }
     }
@@ -126,7 +124,7 @@ public class StompOverWebSocket { //implements WebSocket.Listener {
             heartbeatManager.stop();
         }
 
-        lifeCycleStateManager.setState(STATE_DISCONNECTING);
+        lifeCycleStateManager.setState(State.DISCONNECTING);
         logger.debug("Sending DISCONNECT frame.");
         String disconnectFrame = "DISCONNECT\n\n\0";
         webSocket.sendText(disconnectFrame, true);
@@ -134,7 +132,7 @@ public class StompOverWebSocket { //implements WebSocket.Listener {
     }
 
     private void sendConnectFrame() {
-        lifeCycleStateManager.setState(STATE_CONNECTING);
+        lifeCycleStateManager.setState(State.CONNECTING);
         StompHeaders connectHeaders = new StompHeaders();
         connectHeaders.setLogin(username);
         connectHeaders.setPasscode(passcode);
