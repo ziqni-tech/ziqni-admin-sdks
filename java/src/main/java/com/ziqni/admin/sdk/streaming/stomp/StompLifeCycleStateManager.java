@@ -41,6 +41,9 @@ public class StompLifeCycleStateManager {
         else if (state == STATE_CONNECTED) {
             eventBus.post(new WSClientConnected());
         }
+        else {
+            throw new IllegalArgumentException("Invalid state: " + state);
+        }
     }
 
     public boolean isConnected() {
