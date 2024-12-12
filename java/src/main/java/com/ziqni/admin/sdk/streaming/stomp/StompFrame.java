@@ -3,16 +3,16 @@ package com.ziqni.admin.sdk.streaming.stomp;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.HashMap;
 import java.util.Map;
+import java.util.HashMap;
 
 public class StompFrame {
 
     private static final Logger logger = LoggerFactory.getLogger(StompFrame.class);
 
+    private final String body;
     private final StompCommand command;
     private final StompHeaders headers;
-    private final String body;
 
     public StompFrame(StompCommand command, Map<String, String> headers, String body) {
         this.command = command;

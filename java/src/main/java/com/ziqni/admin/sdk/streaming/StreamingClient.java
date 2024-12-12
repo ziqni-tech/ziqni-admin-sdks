@@ -1,7 +1,6 @@
 package com.ziqni.admin.sdk.streaming;
 
 import com.ziqni.admin.sdk.eventbus.ZiqniSimpleEventBus;
-import com.ziqni.admin.sdk.context.WSClientTransportError;
 import com.ziqni.admin.sdk.streaming.stomp.StompOverWebSocket;
 import com.ziqni.admin.sdk.configuration.AdminApiClientConfiguration;
 
@@ -12,13 +11,9 @@ import com.ziqni.admin.sdk.streaming.handlers.RpcResultsEventHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.time.OffsetDateTime;
-
 import java.util.Objects;
 import java.util.concurrent.*;
-import java.util.concurrent.atomic.AtomicLong;
 import java.util.concurrent.atomic.AtomicBoolean;
-import java.util.concurrent.atomic.AtomicReference;
 
 /**
  * StreamingClient is a client for connecting to the Ziqni Admin API using WebSockets.
@@ -29,7 +24,6 @@ public class StreamingClient {
 
     // Executors and Task Queues
     private final ExecutorService websocketSendExecutor;
-    private final LinkedBlockingDeque<Runnable> webSocketClientTasks;
     private final LinkedBlockingQueue<Runnable> queuedTasks = new LinkedBlockingQueue<>();
 
     // Event Handlers
@@ -42,8 +36,8 @@ public class StreamingClient {
     private final String URL;
 
     // State Management
-    private final AtomicLong reconnectCount = new AtomicLong(0);
-    private final AtomicReference<OffsetDateTime> nextReconnect = new AtomicReference<>();
+
+
     private final AtomicBoolean isPaused = new AtomicBoolean(false);
     private StompOverWebSocket stompOverWebSocket;
 
@@ -52,81 +46,20 @@ public class StreamingClient {
         this.configuration = configuration;
         this.URL = URL;
         this.eventBus = eventBus;
-        this.webSocketClientTasks = new LinkedBlockingDeque<>();
-        this.websocketSendExecutor = new ThreadPoolExecutor(1, 1, 0L, TimeUnit.MILLISECONDS, webSocketClientTasks);
         this.rpcResultsEventHandler = RpcResultsEventHandler.create();
         this.callbackEventHandler = CallbackEventHandler.create(eventBus);
+        this.websocketSendExecutor = new ThreadPoolExecutor(1, 1, 0L, TimeUnit.MILLISECONDS, new LinkedBlockingDeque<>());
 
         setupShutdownHook();
-        setupEventBusListeners();
     }
 
     // Setup Methods
     private void setupShutdownHook() {
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
-            this.reconnectCount.set(-1);
             this.stop(true);
         }));
     }
 
-    private void setupEventBusListeners() {
-        this.eventBus.onWsClientTransportError(this::onWsClientTransportError);
-    }
-
-    // Connection Handlers
-    private void onWsClientTransportError(WSClientTransportError wsClientTransportError) {
-        this.stop(false).thenAccept(unused -> {
-            if (Objects.nonNull(this.nextReconnect.get())) return;
-
-            if (!stompOverWebSocket.isDisconnecting()) {
-                scheduleReconnect();
-            }
-        });
-    }
-
-    private void scheduleReconnect() {
-        if (this.reconnectCount.get() < 0) return; // Shutdown in progress
-
-        this.reconnectCount.incrementAndGet();
-        this.nextReconnect.set(OffsetDateTime.now().plusSeconds(10));
-
-        CompletableFuture.runAsync(() -> {
-            try {
-                Thread.sleep(10_000); // Wait 10 seconds
-                attemptReconnect();
-            } catch (Throwable e) {
-                Thread.currentThread().interrupt();
-                logger.warn("Reconnect sleep interrupted", e);
-            }
-        });
-    }
-
-    private void attemptReconnect() throws Exception {
-        if (this.reconnectCount.get() < 0) return; // Shutdown in progress
-
-        isPaused.set(true); // Pause operations during reconnection attempt
-
-        this.start().thenAccept(connected -> {
-            if (connected) {
-                reconnectSuccessful();
-            } else {
-                scheduleReconnect();
-                logger.warn("Reconnect failed; scheduling another attempt");
-            }
-        }).exceptionally(throwable -> {
-            logger.error("Reconnect attempt failed with error: {}", throwable.getMessage(), throwable);
-            scheduleReconnect();
-            return null;
-        });
-    }
-
-    private void reconnectSuccessful() {
-        this.reconnectCount.set(0);
-        this.nextReconnect.set(null);
-        isPaused.set(false); // Resume operations
-        flushQueuedTasks();
-        logger.info("Reconnected successfully");
-    }
 
     // Task Management
     private void flushQueuedTasks() {
@@ -188,10 +121,10 @@ public class StreamingClient {
     }
 
     private void validateStateForStart() throws Exception {
-        if (websocketSendExecutor.isShutdown()) throw new IllegalStateException("Websocket executor is terminated");
-        if (reconnectCount.get() < 0) throw new IllegalStateException("Client is shutting down");
-
-        if (stompOverWebSocket == null) {
+        if (websocketSendExecutor.isShutdown()) {
+            throw new IllegalStateException("Websocket executor is terminated");
+        }
+        else if (stompOverWebSocket == null) {
             stompOverWebSocket = new StompOverWebSocket(URL, "x-api-key", configuration.getAccessTokenString(), eventBus, this::onConnected);
         }
     }

@@ -1,6 +1,6 @@
 package com.ziqni.admin.sdk.streaming.stomp;
 
-import com.ziqni.admin.sdk.context.*;
+import com.ziqni.admin.sdk.streaming.stomp.StompLifeCycleStateManager.*;
 import com.ziqni.admin.sdk.eventbus.ZiqniSimpleEventBus;
 import com.ziqni.admin.sdk.streaming.handlers.EventHandler;
 import com.ziqni.admin.sdk.streaming.runnables.MessageToSend;
@@ -20,12 +20,14 @@ import java.nio.charset.StandardCharsets;
 import java.io.IOException;
 import java.io.ByteArrayOutputStream;
 
-import java.util.Map;
 import java.util.Objects;
 import java.util.concurrent.*;
 import java.util.function.Consumer;
 import java.util.zip.GZIPOutputStream;
 import java.util.concurrent.atomic.AtomicInteger;
+
+import static com.ziqni.admin.sdk.streaming.stomp.StompLifeCycleStateManager.STATE_CONNECTING;
+import static com.ziqni.admin.sdk.streaming.stomp.StompLifeCycleStateManager.STATE_DISCONNECTING;
 
 /**
  * This class is responsible for managing a STOMP connection over a WebSocket.
@@ -36,27 +38,20 @@ public class StompOverWebSocket { //implements WebSocket.Listener {
 
     private static final Logger logger = LoggerFactory.getLogger(StompOverWebSocket.class);
 
-    public static final int STATE_FAILURE = -2;
-    public static final int STATE_DISCONNECTING = -1;
-    public static final int STATE_NOT_CONNECTED = 0;
-    public static final int STATE_CONNECTING = 1;
-    public static final int STATE_CONNECTED = 2;
 
     private static final int MAX_RECONNECT_ATTEMPTS = 30;
     private static final long RECONNECT_DELAY_SECONDS = 5;
+    private final StompLifeCycleStateManager stompLifeCycleStateManager;
     private static final ByteBuffer PING_MESSAGE = java.nio.ByteBuffer.wrap("Ping".getBytes(StandardCharsets.UTF_8));
 
     private final String wsUri;
     private final String username;
     private final String passcode;
     private final ZiqniSimpleEventBus eventBus;
-    private final Consumer<StompOverWebSocket> onConnect;
-
-    private final AtomicInteger connected = new AtomicInteger(0);
-
-    private final StompHeartbeatManager heartbeatManager;
-    private final ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
+    private final ScheduledExecutorService scheduler;
     private final StompOverWebSocketListener listener;
+    private final StompHeartbeatManager heartbeatManager;
+    private final Consumer<StompOverWebSocket> onConnect;
 
     private WebSocket webSocket;
     private int reconnectAttempts = 0;
@@ -67,59 +62,19 @@ public class StompOverWebSocket { //implements WebSocket.Listener {
         this.passcode = passcode;
         this.eventBus = eventBus;
         this.onConnect = onConnect;
+        this.scheduler = Executors.newSingleThreadScheduledExecutor();
         this.eventBus.onWSClientHeartBeatMissed(this::onWSClientHeartBeatMissed);
+        this.stompLifeCycleStateManager = new StompLifeCycleStateManager(eventBus);
         this.heartbeatManager = new StompHeartbeatManager(eventBus, 10000);
-        this.listener = new StompOverWebSocketListener(eventBus, heartbeatManager, this::onConnect, this::attemptReconnect, this::setState);
-    }
-
-    private void setState(int state) {
-        setState(state, null, null, null);
-    }
-
-    private void setState(int state, StompHeaders headers, String payload, Throwable error) {
-        connected.set(state);
-
-        if (state == STATE_FAILURE) {
-            eventBus.post(new WSClientSevereFailure(headers, payload, error));
-        }
-        else if (state == STATE_DISCONNECTING) {
-            eventBus.post(new WSClientDisconnecting());
-        }
-        else if (state == STATE_NOT_CONNECTED) {
-            eventBus.post(new WSClientDisconnected());
-        }
-        else if (state == STATE_CONNECTING) {
-            eventBus.post(new WSClientConnecting());
-        }
-        else if (state == STATE_CONNECTED) {
-            eventBus.post(new WSClientConnected());
-        }
-    }
-
-    public boolean isConnected() {
-        return connected.get() == STATE_CONNECTED;
-    }
-
-    public boolean isNotConnected() {
-        return connected.get() != STATE_CONNECTED;
-    }
-
-    public boolean isConnecting() {
-        return connected.get() == STATE_CONNECTING;
-    }
-
-    public boolean isDisconnecting() {
-        return connected.get() == STATE_DISCONNECTING;
-    }
-
-    public boolean isFailure() {
-        return connected.get() == STATE_FAILURE;
+        this.listener = new StompOverWebSocketListener(eventBus, heartbeatManager, stompLifeCycleStateManager, this::onConnect, this::attemptReconnect);
     }
 
     public void shutdown() {
         scheduler.shutdown();
+        heartbeatManager.stop();
 
         if (Objects.nonNull(webSocket)) {
+            stompLifeCycleStateManager.setState(STATE_DISCONNECTING);
             webSocket.sendClose(WebSocket.NORMAL_CLOSURE, "Client shutdown");
         }
     }
@@ -149,7 +104,7 @@ public class StompOverWebSocket { //implements WebSocket.Listener {
 
     public CompletableFuture<Void> connect() {
 
-        if(isConnected()){
+        if(stompLifeCycleStateManager.isConnected()){
             throw new IllegalStateException("Client is already connected to the server.");
         }
 
@@ -172,7 +127,7 @@ public class StompOverWebSocket { //implements WebSocket.Listener {
             heartbeatManager.stop();
         }
 
-        setState(STATE_DISCONNECTING);
+        stompLifeCycleStateManager.setState(STATE_DISCONNECTING);
         logger.debug("Sending DISCONNECT frame.");
         String disconnectFrame = "DISCONNECT\n\n\0";
         webSocket.sendText(disconnectFrame, true);
@@ -180,7 +135,7 @@ public class StompOverWebSocket { //implements WebSocket.Listener {
     }
 
     private void sendConnectFrame() {
-        setState(STATE_CONNECTING);
+        stompLifeCycleStateManager.setState(STATE_CONNECTING);
         StompHeaders connectHeaders = new StompHeaders();
         connectHeaders.setLogin(username);
         connectHeaders.setPasscode(passcode);
@@ -210,7 +165,7 @@ public class StompOverWebSocket { //implements WebSocket.Listener {
         subscribeFrame.append("\n\0");
 
         webSocket.sendText(subscribeFrame.toString(), true);
-        logger.debug("SUBSCRIBE frame sent to: " + destination);
+        logger.debug("SUBSCRIBE frame sent to: {}", destination);
     }
 
     public <T> MessageToSend<T> prepareMessageToSend(StompHeaders headers, T payload) {
@@ -230,7 +185,7 @@ public class StompOverWebSocket { //implements WebSocket.Listener {
     }
 
     public <T> CompletableFuture<WebSocket> sendMessage(StompHeaders headers, T payload) {
-        if (isNotConnected()) {
+        if (stompLifeCycleStateManager.isNotConnected()) {
             throw new IllegalStateException("Client is disconnected from the server.");
         }
 
@@ -291,10 +246,10 @@ public class StompOverWebSocket { //implements WebSocket.Listener {
         webSocket.sendText(sendFrame.toString(), true);
 
         // Log the action
-        logger.debug("Compressed SEND frame sent to: " + headers.getDestination());
+        logger.debug("Compressed SEND frame sent to: {}", headers.getDestination());
     }
 
-    private String compressPayload(String payload) {
+    private static String compressPayload(String payload) {
         try (ByteArrayOutputStream byteStream = new ByteArrayOutputStream();
              GZIPOutputStream gzipStream = new GZIPOutputStream(byteStream)) {
             gzipStream.write(payload.getBytes());
@@ -327,7 +282,7 @@ public class StompOverWebSocket { //implements WebSocket.Listener {
         logger.info("Attempting to reconnect (Attempt {} of " + MAX_RECONNECT_ATTEMPTS + ")...", reconnectAttempts);
 
         scheduler.schedule(() -> {
-            if (isNotConnected()) {
+            if (stompLifeCycleStateManager.isNotConnected()) {
                 connect().thenAccept(ws -> {
                     reconnectAttempts = 0;
                     logger.info("Reconnected successfully.");
@@ -338,5 +293,9 @@ public class StompOverWebSocket { //implements WebSocket.Listener {
                 });
             }
         }, RECONNECT_DELAY_SECONDS, TimeUnit.SECONDS);
+    }
+
+    public boolean isConnected() {
+        return stompLifeCycleStateManager.isConnected();
     }
 }

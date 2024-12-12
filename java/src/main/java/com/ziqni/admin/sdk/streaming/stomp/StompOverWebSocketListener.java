@@ -1,6 +1,5 @@
 package com.ziqni.admin.sdk.streaming.stomp;
 
-import com.ziqni.admin.sdk.context.*;
 import com.ziqni.admin.sdk.eventbus.ZiqniSimpleEventBus;
 import com.ziqni.admin.sdk.streaming.handlers.EventHandler;
 
@@ -8,15 +7,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.Map;
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.CompletionStage;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Consumer;
+import java.util.concurrent.CompletionStage;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ConcurrentHashMap;
 
 import java.net.http.WebSocket;
 
-import static com.ziqni.admin.sdk.streaming.stomp.StompOverWebSocket.*;
+import static com.ziqni.admin.sdk.streaming.stomp.StompLifeCycleStateManager.*;
 
 public class StompOverWebSocketListener implements WebSocket.Listener {
 
@@ -24,19 +22,18 @@ public class StompOverWebSocketListener implements WebSocket.Listener {
 
     private final ZiqniSimpleEventBus eventBus;
     private final StompHeartbeatManager heartbeatManager;
+    private final StompLifeCycleStateManager lifeCycleStateManager;
     private final Consumer<StompOverWebSocketListener> onConnect;
     private final Consumer<StompOverWebSocketListener> reconnect;
-    private final Consumer<Integer> setState;
     private final StringBuilder messageBuffer = new StringBuilder();
-    private final AtomicInteger connected = new AtomicInteger(0);
     private final Map<String, EventHandler> eventHandlers = new ConcurrentHashMap<>();
 
-    public StompOverWebSocketListener(ZiqniSimpleEventBus eventBus, StompHeartbeatManager heartbeatManager, Consumer<StompOverWebSocketListener> onConnect, Consumer<StompOverWebSocketListener> reconnect, Consumer<Integer> setState) {
+    public StompOverWebSocketListener(ZiqniSimpleEventBus eventBus, StompHeartbeatManager heartbeatManager, StompLifeCycleStateManager lifeCycleStateManager, Consumer<StompOverWebSocketListener> onConnect, Consumer<StompOverWebSocketListener> reconnect) {
         this.eventBus = eventBus;
         this.heartbeatManager = heartbeatManager;
+        this.lifeCycleStateManager = lifeCycleStateManager;
         this.onConnect = onConnect;
         this.reconnect = reconnect;
-        this.setState = setState;
     }
     public void registerHandler(EventHandler handler) {
         eventHandlers.put(handler.getTopic(), handler);
@@ -90,7 +87,7 @@ public class StompOverWebSocketListener implements WebSocket.Listener {
             // Handle specific frame types
             switch (frame.getCommand()) {
                 case CONNECTED -> {
-                    setState.accept(STATE_CONNECTED);
+                    lifeCycleStateManager.setState(STATE_CONNECTED);
                     onConnect.accept(this);
 
                     String heartBeatHeader = frame.getHeaders().getHeartBeat();
@@ -138,11 +135,11 @@ public class StompOverWebSocketListener implements WebSocket.Listener {
             heartbeatManager.stop();
         }
 
-        if (connected.get() != STATE_DISCONNECTING) {
+        if (!lifeCycleStateManager.isDisconnecting()) {
             reconnect.accept(this);
         }
 
-        setState.accept(STATE_NOT_CONNECTED);
+        lifeCycleStateManager.setState(STATE_NOT_CONNECTED);
 
         return CompletableFuture.completedFuture(null);
     }
