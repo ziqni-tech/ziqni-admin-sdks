@@ -38,6 +38,9 @@ public class StompOverWebSocketListener implements WebSocket.Listener {
         this.reconnect = reconnect;
         this.setState = setState;
     }
+    public void registerHandler(EventHandler handler) {
+        eventHandlers.put(handler.getTopic(), handler);
+    }
 
     @Override
     public void onOpen(WebSocket webSocket) {
