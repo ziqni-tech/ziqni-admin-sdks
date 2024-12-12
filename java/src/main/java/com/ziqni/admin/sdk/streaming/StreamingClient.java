@@ -1,6 +1,7 @@
 package com.ziqni.admin.sdk.streaming;
 
 import com.ziqni.admin.sdk.eventbus.ZiqniSimpleEventBus;
+import com.ziqni.admin.sdk.streaming.stomp.StompHeaders;
 import com.ziqni.admin.sdk.streaming.stomp.StompOverWebSocket;
 import com.ziqni.admin.sdk.configuration.AdminApiClientConfiguration;
 
@@ -127,6 +128,26 @@ public class StreamingClient {
         else if (stompOverWebSocket == null) {
             stompOverWebSocket = new StompOverWebSocket(URL, "x-api-key", configuration.getAccessTokenString(), eventBus, this::onConnected);
         }
+    }
+
+    public <T> CompletableFuture<Void> sendMessage(StompHeaders stompHeaders, T body) {
+        CompletableFuture<Void> result = new CompletableFuture<>();
+
+        if (isPaused.get() || isNotConnected()) {
+            logger.warn("Connection unavailable, queuing sendMessage task.");
+            queuedTasks.add(() -> {
+                sendMessage(stompHeaders, body).thenAccept(result::complete).exceptionally(throwable -> {
+                    result.completeExceptionally(throwable);
+                    return null;
+                });
+            });
+            return result;
+        }
+
+        return this.stompOverWebSocket.sendMessage(stompHeaders, body).thenAccept(webSocket -> {
+            if (Objects.isNull(webSocket))
+                throw new IllegalStateException("The session is not connected");
+        });
     }
 
     private void onConnectionSuccess() {
