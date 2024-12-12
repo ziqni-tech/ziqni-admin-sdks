@@ -32,7 +32,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  * this implementation use the native java.net.http.WebSocket to make it compatible with Java 11 and later.
  * The absolute goals was to use the least amount of external dependencies possible.
  */
-public class StompOverWebSocket implements WebSocket.Listener {
+public class StompOverWebSocket { //implements WebSocket.Listener {
 
     private static final Logger logger = LoggerFactory.getLogger(StompOverWebSocket.class);
 
@@ -71,6 +71,30 @@ public class StompOverWebSocket implements WebSocket.Listener {
         this.eventBus.onWSClientHeartBeatMissed(this::onWSClientHeartBeatMissed);
     }
 
+    private void setState(int state) {
+        setState(state, null, null, null);
+    }
+
+    private void setState(int state, StompHeaders headers, String payload, Throwable error) {
+        connected.set(state);
+
+        if (state == STATE_FAILURE) {
+            eventBus.post(new WSClientSevereFailure(headers, payload, error));
+        }
+        else if (state == STATE_DISCONNECTING) {
+            eventBus.post(new WSClientDisconnecting());
+        }
+        else if (state == STATE_NOT_CONNECTED) {
+            eventBus.post(new WSClientDisconnected());
+        }
+        else if (state == STATE_CONNECTING) {
+            eventBus.post(new WSClientConnecting());
+        }
+        else if (state == STATE_CONNECTED) {
+            eventBus.post(new WSClientConnected());
+        }
+    }
+
     private void onWSClientHeartBeatMissed(WSClientHeartBeatMissed wsClientHeartBeatMissed) {
         try {
             // Check if the WebSocket connection is still open
@@ -97,12 +121,27 @@ public class StompOverWebSocket implements WebSocket.Listener {
     public CompletableFuture<Void> connect() {
         HttpClient client = HttpClient.newHttpClient();
         return client.newWebSocketBuilder()
-                .buildAsync(URI.create(wsUri), this)
+                .buildAsync(URI.create(wsUri), new StompOverWebSocketListener(eventBus, new StompHeartbeatManager(eventBus, 10000), this::onConnect, this::attemptReconnect, this::setState))
                 .thenAccept(ws -> {
                     this.webSocket = ws;
-                    this.heartbeatManager = new StompHeartbeatManager(webSocket, eventBus, 10000); // Client interval: 10 seconds
+                    this.heartbeatManager = new StompHeartbeatManager(eventBus, 10000); // Client interval: 10 seconds
                     sendConnectFrame();
                 });
+    }
+
+    private void onConnect(StompOverWebSocketListener stompOverWebSocketListener) {
+        onConnect.accept(this);
+    }
+
+    public void disconnect() {
+        if (heartbeatManager != null) {
+            heartbeatManager.stop();
+        }
+        setState(STATE_DISCONNECTING);
+        logger.debug("Sending DISCONNECT frame.");
+        String disconnectFrame = "DISCONNECT\n\n\0";
+        webSocket.sendText(disconnectFrame, true);
+        logger.debug("DISCONNECT frame sent.");
     }
 
     private void sendConnectFrame() {
@@ -120,6 +159,11 @@ public class StompOverWebSocket implements WebSocket.Listener {
         webSocket.sendText(connectFrame.toString(), true);
         logger.debug("CONNECT frame sent.");
 
+    }
+
+    public void subscribe(EventHandler handler) {
+        eventHandlers.put(handler.getTopic(), handler);
+        subscribe(handler.getTopic());
     }
 
     public void subscribe(String destination) {
@@ -145,22 +189,6 @@ public class StompOverWebSocket implements WebSocket.Listener {
 
         webSocket.sendText(sendFrame.toString(), true);
         logger.debug("SEND frame sent to: " + destination);
-    }
-
-    public void disconnect() {
-        if (heartbeatManager != null) {
-            heartbeatManager.stop();
-        }
-        setState(STATE_DISCONNECTING);
-        logger.debug("Sending DISCONNECT frame.");
-        String disconnectFrame = "DISCONNECT\n\n\0";
-        webSocket.sendText(disconnectFrame, true);
-        logger.debug("DISCONNECT frame sent.");
-    }
-
-    public void subscribe(EventHandler handler) {
-        eventHandlers.put(handler.getTopic(), handler);
-        subscribe(handler.getTopic());
     }
 
     public boolean isConnected() {
@@ -194,120 +222,6 @@ public class StompOverWebSocket implements WebSocket.Listener {
 
     public <T> MessageToSend<T> prepareMessageToSend(StompHeaders headers, T payload) {
         return new MessageToSend<>(headers, payload, this);
-    }
-
-    /** Listener */
-
-    @Override
-    public void onOpen(WebSocket webSocket) {
-        logger.info("WebSocket connection opened.");
-        webSocket.request(1);
-    }
-
-    @Override
-    public CompletionStage<?> onText(WebSocket webSocket, CharSequence data, boolean last) {
-        String receivedData = data.toString();
-
-        // Handle heartbeat directly
-        // Handle heartbeat directly
-        if ("\n".contentEquals(receivedData)) {
-            logger.debug("Received heartbeat from server.");
-            if (heartbeatManager != null) {
-                heartbeatManager.updateLastServerHeartbeatTime();
-            }
-            webSocket.request(1); // Request the next message
-            return CompletableFuture.completedFuture(null);
-        }
-
-        // Append data to message buffer for non-heartbeat messages
-        messageBuffer.append(receivedData);
-
-        if (last) {
-            if (heartbeatManager != null) {
-                heartbeatManager.updateLastServerHeartbeatTime(); //Overkill but gets the job done
-            }
-            String completeMessage = messageBuffer.toString().trim();
-            messageBuffer.setLength(0); // Clear the buffer
-
-            if (!completeMessage.isEmpty()) {
-                handleCompleteMessage(completeMessage);
-            }
-        }
-
-        webSocket.request(1); // Request the next message
-        return CompletableFuture.completedFuture(null);
-    }
-
-
-    private void handleCompleteMessage(String message) {
-        try {
-            // Parse the message into a StompFrame
-            StompFrame frame = StompFrame.parse(message);
-
-            // Handle specific frame types
-            switch (frame.getCommand()) {
-                case CONNECTED -> {
-                    setState(STATE_CONNECTED);
-                    onConnect.accept(this);
-
-                    String heartBeatHeader = frame.getHeaders().getHeartBeat();
-                    if (heartBeatHeader != null) {
-                        String[] parts = heartBeatHeader.split(",");
-                        heartbeatManager.start(Long.parseLong(parts[1])); // Server's desired interval
-                    }
-                }
-                case MESSAGE -> {
-                    final var handler = eventHandlers.get(frame.getDestination());
-
-                    if (handler == null) {
-                        logger.error("No handler found for destination: {}", frame.getDestination());
-                        return;
-                    }
-
-                    handler.handleFrame(frame.getHeaders(), frame.getBody());
-                }
-                case ERROR -> {
-                    logger.error("Error frame received: {}", message);
-                }
-                case NOT_A_VALID_STOMP_COMMAND -> {
-                    logger.error("Not a valid STOMP command: {}", frame);
-                }
-                default -> {
-                    logger.error("Unhandled command: {}", frame);
-                }
-            }
-        } catch (Exception e) {
-            logger.error("Failed to parse STOMP frame: {}, {}", e.getMessage(), message);
-        }
-    }
-
-    @Override
-    public CompletionStage<?> onBinary(WebSocket webSocket, java.nio.ByteBuffer data, boolean last) {
-        logger.error("Unexpected binary data received.");
-        return CompletableFuture.completedFuture(null);
-    }
-
-    @Override
-    public CompletionStage<?> onClose(WebSocket webSocket, int statusCode, String reason) {
-        logger.info("WebSocket closed: {}", reason);
-
-        if (heartbeatManager != null) {
-            heartbeatManager.stop();
-        }
-
-        if (connected.get() != STATE_DISCONNECTING) {
-            attemptReconnect();
-        }
-
-        setState(STATE_NOT_CONNECTED);
-
-        return CompletableFuture.completedFuture(null);
-    }
-
-    @Override
-    public void onError(WebSocket webSocket, Throwable error) {
-        logger.error("WebSocket error: " + error.getMessage());
-        eventBus.post(new WSClientTransportError(error));
     }
 
     public <T> CompletableFuture<WebSocket> sendMessage(StompHeaders headers, T payload) {
@@ -344,9 +258,9 @@ public class StompOverWebSocket implements WebSocket.Listener {
 
     /**
      * This requires server side tweaks to handle compressed payloads.
-     * @param headers
-     * @param payload
-     * @param <T>
+     * @param headers StompHeaders
+     * @param payload T
+     * @param <T> T
      */
     public <T> void sendMessageCompressed(StompHeaders headers, T payload) {
         // Ensure the destination header is set
@@ -393,6 +307,11 @@ public class StompOverWebSocket implements WebSocket.Listener {
             throw new RuntimeException("Failed to serialize payload to JSON", e);
         }
     }
+
+    private void attemptReconnect(StompOverWebSocketListener listener) {
+        this.attemptReconnect();
+    }
+
     private void attemptReconnect() {
         if (reconnectAttempts >= MAX_RECONNECT_ATTEMPTS) {
             logger.error("Max reconnection attempts reached. Giving up.");
@@ -414,31 +333,5 @@ public class StompOverWebSocket implements WebSocket.Listener {
                 });
             }
         }, RECONNECT_DELAY_SECONDS, TimeUnit.SECONDS);
-    }
-
-
-    private void setState(int state) {
-        setState(state, null, null, null);
-    }
-
-    private void setState(int state, StompHeaders headers, String payload, Throwable error) {
-        connected.set(state);
-
-        if (state == STATE_FAILURE) {
-            eventBus.post(new WSClientSevereFailure(headers, payload, error));
-        }
-        else if (state == STATE_DISCONNECTING) {
-            eventBus.post(new WSClientDisconnecting());
-        }
-        else if (state == STATE_NOT_CONNECTED) {
-            eventBus.post(new WSClientDisconnected());
-        }
-        else if (state == STATE_CONNECTING) {
-            eventBus.post(new WSClientConnecting());
-        }
-        else if (state == STATE_CONNECTED) {
-            eventBus.post(new WSClientConnected());
-        }
-
     }
 }

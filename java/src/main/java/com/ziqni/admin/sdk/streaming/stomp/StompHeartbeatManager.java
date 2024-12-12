@@ -1,30 +1,32 @@
 package com.ziqni.admin.sdk.streaming.stomp;
 
-import com.ziqni.admin.sdk.context.WSClientHeartBeatMissed;
 import com.ziqni.admin.sdk.eventbus.ZiqniSimpleEventBus;
+import com.ziqni.admin.sdk.context.WSClientHeartBeatMissed;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.net.http.WebSocket;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.net.http.WebSocket;
 
+/**
+ * StompHeartbeatManager manages heartbeats for a STOMP connection.
+ */
 public class StompHeartbeatManager {
 
     private static final Logger logger = LoggerFactory.getLogger(StompHeartbeatManager.class);
 
-    private final WebSocket webSocket;
-    private final ZiqniSimpleEventBus eventBus;
+    private final ZiqniSimpleEventBus eventBus; // Event bus for sending heartbeats
     private final long clientHeartbeatInterval; // Interval in milliseconds for client-to-server heartbeat
     private long serverHeartbeatInterval; // Server-provided interval for heartbeats
-    private long lastServerHeartbeatTime;
-    private Timer heartbeatTimer;
+    private long lastServerHeartbeatTime; // Time of last server heartbeat
+    private Timer heartbeatTimer; // Timer for sending heartbeats
     private int missedHeartbeatsCount; // Count consecutive missed heartbeats
 
     private static final int MAX_MISSED_HEARTBEATS = 3; // Threshold for reconnection attempt
 
-    public StompHeartbeatManager(WebSocket webSocket, ZiqniSimpleEventBus eventBus, long clientHeartbeatInterval) {
-        this.webSocket = webSocket;
+    public StompHeartbeatManager(ZiqniSimpleEventBus eventBus, long clientHeartbeatInterval) {
         this.eventBus = eventBus;
         this.clientHeartbeatInterval = clientHeartbeatInterval;
         this.serverHeartbeatInterval = 0; // Set after receiving the CONNECTED frame
@@ -32,7 +34,8 @@ public class StompHeartbeatManager {
         this.missedHeartbeatsCount = 0;
     }
 
-    public void start(long serverHeartbeatInterval) {
+    public void start(WebSocket webSocket, long serverHeartbeatInterval) {
+
         this.serverHeartbeatInterval = serverHeartbeatInterval;
 
         if (this.heartbeatTimer != null) {
@@ -101,9 +104,9 @@ public class StompHeartbeatManager {
         logger.debug("Server heartbeat interval set to: {} ms", serverHeartbeatInterval);
     }
 
-    public void restart(long newServerHeartbeatInterval) {
+    public void restart(WebSocket webSocket, long newServerHeartbeatInterval) {
         logger.info("Restarting heartbeat manager with new server interval: {} ms", newServerHeartbeatInterval);
         stop();
-        start(newServerHeartbeatInterval);
+        start(webSocket, newServerHeartbeatInterval);
     }
 }
