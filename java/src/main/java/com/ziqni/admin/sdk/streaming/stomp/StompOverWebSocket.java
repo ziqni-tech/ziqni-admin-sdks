@@ -44,7 +44,7 @@ public class StompOverWebSocket implements WebSocket.Listener {
     private WebSocket webSocket;
     private StompHeartbeatManager heartbeatManager;
 
-    private static final int MAX_RECONNECT_ATTEMPTS = 5;
+    private static final int MAX_RECONNECT_ATTEMPTS = 30;
     private static final long RECONNECT_DELAY_SECONDS = 5;
 
     private static ByteBuffer PING_MESSAGE = java.nio.ByteBuffer.wrap("Ping".getBytes(StandardCharsets.UTF_8));
