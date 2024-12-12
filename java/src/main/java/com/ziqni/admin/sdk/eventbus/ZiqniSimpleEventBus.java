@@ -8,19 +8,29 @@ import java.util.Set;
 import java.util.concurrent.*;
 import java.util.function.Consumer;
 
+/**
+ * A simple event bus implementation
+ */
 public class ZiqniSimpleEventBus {
 
-    private final ExecutorService executor;
     public final LinkedBlockingDeque<Runnable> tasks;
 
+    private final ExecutorService executor;
     private final ConcurrentHashMap<Class<?>, MessageConsumers<?>> subscribers;
 
+    /**
+     * Create a new ZiqniSimpleEventBus
+     */
     public ZiqniSimpleEventBus() {
         this.subscribers = new ConcurrentHashMap<>();
         this.tasks = new LinkedBlockingDeque<>();
         this.executor = new ThreadPoolExecutor(1, 4, 0L, TimeUnit.MILLISECONDS, tasks);
     }
 
+    /**
+     * Post a message to all subscribers
+     * @param message the message to post
+     */
     public void post(Object message) {
         if(message == null) {
             throw new IllegalArgumentException("Message cannot be null");
@@ -37,11 +47,12 @@ public class ZiqniSimpleEventBus {
         }
     }
 
-    public void postWSClientMessageError(StompHeaders headers, String payload, Throwable error) {
-        this.post(new WSClientMessageError(headers, payload, error));
-    }
-
-    // Register a subscriber for events of its class type
+    /**
+     * Register a subscriber for events of its class type
+     * @param type the event type
+     * @param consumer the subscriber
+     * @param <T> the event type
+     */
     public <T> void register(Class<T> type, Consumer<T> consumer) {
         subscribers.compute(type, (key, value) -> {
             if (value == null) {
@@ -52,39 +63,15 @@ public class ZiqniSimpleEventBus {
         });
     }
 
-    // Unregister a subscriber
+    /**
+     * Unregister a subscriber
+     * @param consumer the subscriber to unregister
+     * @param <T> the event type
+     */
     public <T> void unregister(Consumer<T> consumer) {
         subscribers.values().forEach(messageConsumers ->
                 messageConsumers.consumers.remove(consumer)
         );
-    }
-
-    public void onWSClientConnected(Consumer<WSClientConnected> consumer){
-        this.register(WSClientConnected.class, consumer);
-    }
-
-    public void onWSClientConnecting(Consumer<WSClientConnecting> consumer){
-        this.register(WSClientConnecting.class, consumer);
-    }
-
-    public void onWSClientDisconnected(Consumer<WSClientDisconnected> consumer){
-        this.register(WSClientDisconnected.class, consumer);
-    }
-
-    public void onWSClientSevereFailure(Consumer<WSClientSevereFailure> consumer){
-        this.register(WSClientSevereFailure.class, consumer);
-    }
-
-    public void onWSClientMessageError(Consumer<WSClientMessageError> consumer){
-        this.register(WSClientMessageError.class, consumer);
-    }
-
-    public void onWsClientTransportError(Consumer<WSClientTransportError> consumer){
-        this.register(WSClientTransportError.class, consumer);
-    }
-
-    public void onWSClientHeartBeatMissed(Consumer<WSClientHeartBeatMissed> consumer){
-        this.register(WSClientHeartBeatMissed.class, consumer);
     }
 
     /**
@@ -124,5 +111,39 @@ public class ZiqniSimpleEventBus {
                 throw new IllegalArgumentException("Subscriber must be of type Consumer<?>");
             }
         }
+    }
+
+    /// Convenience methods to register consumers for specific events ///
+
+    public void postWSClientMessageError(StompHeaders headers, String payload, Throwable error) {
+        this.post(new WSClientMessageError(headers, payload, error));
+    }
+
+    public void onWSClientConnected(Consumer<WSClientConnected> consumer){
+        this.register(WSClientConnected.class, consumer);
+    }
+
+    public void onWSClientConnecting(Consumer<WSClientConnecting> consumer){
+        this.register(WSClientConnecting.class, consumer);
+    }
+
+    public void onWSClientDisconnected(Consumer<WSClientDisconnected> consumer){
+        this.register(WSClientDisconnected.class, consumer);
+    }
+
+    public void onWSClientSevereFailure(Consumer<WSClientSevereFailure> consumer){
+        this.register(WSClientSevereFailure.class, consumer);
+    }
+
+    public void onWSClientMessageError(Consumer<WSClientMessageError> consumer){
+        this.register(WSClientMessageError.class, consumer);
+    }
+
+    public void onWsClientTransportError(Consumer<WSClientTransportError> consumer){
+        this.register(WSClientTransportError.class, consumer);
+    }
+
+    public void onWSClientHeartBeatMissed(Consumer<WSClientHeartBeatMissed> consumer){
+        this.register(WSClientHeartBeatMissed.class, consumer);
     }
 }
