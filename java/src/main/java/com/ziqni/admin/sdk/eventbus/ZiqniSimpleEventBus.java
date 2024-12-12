@@ -1,6 +1,6 @@
 package com.ziqni.admin.sdk.eventbus;
 
-import com.ziqni.admin.sdk.streaming.stomp.StompLifeCycleStateManager.*;
+import com.ziqni.admin.sdk.streaming.stomp.StompOverWebSocketLifeCycle.*;
 import com.ziqni.admin.sdk.streaming.stomp.StompHeaders;
 
 import java.util.HashSet;

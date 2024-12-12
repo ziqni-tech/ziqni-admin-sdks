@@ -1,6 +1,6 @@
 package com.ziqni.admin.sdk.streaming.stomp;
 
-import com.ziqni.admin.sdk.streaming.stomp.StompLifeCycleStateManager.*;
+import com.ziqni.admin.sdk.streaming.stomp.StompOverWebSocketLifeCycle.*;
 import com.ziqni.admin.sdk.eventbus.ZiqniSimpleEventBus;
 import com.ziqni.admin.sdk.streaming.handlers.EventHandler;
 import com.ziqni.admin.sdk.streaming.runnables.MessageToSend;
@@ -38,7 +38,7 @@ public class StompOverWebSocket { //implements WebSocket.Listener {
 
     private static final int MAX_RECONNECT_ATTEMPTS = 30;
     private static final long RECONNECT_DELAY_SECONDS = 5;
-    private final StompLifeCycleStateManager lifeCycleStateManager;
+    private final StompOverWebSocketLifeCycle lifeCycleStateManager;
     private static final ByteBuffer PING_MESSAGE = java.nio.ByteBuffer.wrap("Ping".getBytes(StandardCharsets.UTF_8));
 
     private final String wsUri;
@@ -62,7 +62,7 @@ public class StompOverWebSocket { //implements WebSocket.Listener {
         this.scheduler = Executors.newSingleThreadScheduledExecutor();
         this.eventBus.onWSClientHeartBeatMissed(this::onWSClientHeartBeatMissed);
         this.heartbeatManager = new StompHeartbeatManager(eventBus, 10000);
-        this.lifeCycleStateManager = new StompLifeCycleStateManager(eventBus);
+        this.lifeCycleStateManager = new StompOverWebSocketLifeCycle(eventBus);
         this.listener = new StompOverWebSocketListener(eventBus, heartbeatManager, lifeCycleStateManager, this::onConnect, this::attemptReconnect);
     }
 

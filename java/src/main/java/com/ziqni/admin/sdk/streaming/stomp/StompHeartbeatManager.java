@@ -1,7 +1,7 @@
 package com.ziqni.admin.sdk.streaming.stomp;
 
 import com.ziqni.admin.sdk.eventbus.ZiqniSimpleEventBus;
-import com.ziqni.admin.sdk.streaming.stomp.StompLifeCycleStateManager.WSClientHeartBeatMissed;
+import com.ziqni.admin.sdk.streaming.stomp.StompOverWebSocketLifeCycle.WSClientHeartBeatMissed;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

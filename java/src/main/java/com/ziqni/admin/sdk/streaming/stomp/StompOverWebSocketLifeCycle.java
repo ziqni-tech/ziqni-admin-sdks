@@ -4,7 +4,7 @@ import com.ziqni.admin.sdk.eventbus.ZiqniSimpleEventBus;
 
 import java.util.concurrent.atomic.AtomicReference;
 
-public class StompLifeCycleStateManager {
+public class StompOverWebSocketLifeCycle {
 
     public enum State {
         FAILURE,
@@ -17,7 +17,7 @@ public class StompLifeCycleStateManager {
     private final AtomicReference<State> currentState = new AtomicReference<>(State.NOT_CONNECTED);
     private final ZiqniSimpleEventBus eventBus;
 
-    public StompLifeCycleStateManager(ZiqniSimpleEventBus eventBus) {
+    public StompOverWebSocketLifeCycle(ZiqniSimpleEventBus eventBus) {
         this.eventBus = eventBus;
     }
 

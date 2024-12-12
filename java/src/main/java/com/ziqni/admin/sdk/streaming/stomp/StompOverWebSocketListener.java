@@ -14,7 +14,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import java.net.http.WebSocket;
 
-import static com.ziqni.admin.sdk.streaming.stomp.StompLifeCycleStateManager.*;
+import static com.ziqni.admin.sdk.streaming.stomp.StompOverWebSocketLifeCycle.*;
 
 public class StompOverWebSocketListener implements WebSocket.Listener {
 
@@ -22,13 +22,13 @@ public class StompOverWebSocketListener implements WebSocket.Listener {
 
     private final ZiqniSimpleEventBus eventBus;
     private final StompHeartbeatManager heartbeatManager;
-    private final StompLifeCycleStateManager lifeCycleStateManager;
+    private final StompOverWebSocketLifeCycle lifeCycleStateManager;
     private final Consumer<StompOverWebSocketListener> onConnect;
     private final Consumer<StompOverWebSocketListener> reconnect;
     private final StringBuilder messageBuffer = new StringBuilder();
     private final Map<String, EventHandler> eventHandlers = new ConcurrentHashMap<>();
 
-    public StompOverWebSocketListener(ZiqniSimpleEventBus eventBus, StompHeartbeatManager heartbeatManager, StompLifeCycleStateManager lifeCycleStateManager, Consumer<StompOverWebSocketListener> onConnect, Consumer<StompOverWebSocketListener> reconnect) {
+    public StompOverWebSocketListener(ZiqniSimpleEventBus eventBus, StompHeartbeatManager heartbeatManager, StompOverWebSocketLifeCycle lifeCycleStateManager, Consumer<StompOverWebSocketListener> onConnect, Consumer<StompOverWebSocketListener> reconnect) {
         this.eventBus = eventBus;
         this.heartbeatManager = heartbeatManager;
         this.lifeCycleStateManager = lifeCycleStateManager;
