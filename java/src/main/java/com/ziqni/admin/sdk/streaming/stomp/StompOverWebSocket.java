@@ -1,27 +1,37 @@
 package com.ziqni.admin.sdk.streaming.stomp;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.ziqni.admin.sdk.context.*;
 import com.ziqni.admin.sdk.eventbus.ZiqniSimpleEventBus;
 import com.ziqni.admin.sdk.streaming.handlers.EventHandler;
 import com.ziqni.admin.sdk.streaming.runnables.MessageToSend;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
 
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.WebSocket;
+
 import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
-import java.util.Map;
-import java.io.ByteArrayOutputStream;
+
 import java.io.IOException;
+import java.io.ByteArrayOutputStream;
+
+import java.util.Map;
 import java.util.Objects;
 import java.util.concurrent.*;
+import java.util.function.Consumer;
 import java.util.zip.GZIPOutputStream;
 import java.util.concurrent.atomic.AtomicInteger;
-import java.util.function.Consumer;
 
+/**
+ * This class is responsible for managing a STOMP connection over a WebSocket.
+ * this implementation use the native java.net.http.WebSocket to make it compatible with Java 11 and later.
+ * The absolute goals was to use the least amount of external dependencies possible.
+ */
 public class StompOverWebSocket implements WebSocket.Listener {
 
     private static final Logger logger = LoggerFactory.getLogger(StompOverWebSocket.class);
@@ -46,13 +56,11 @@ public class StompOverWebSocket implements WebSocket.Listener {
 
     private static final int MAX_RECONNECT_ATTEMPTS = 30;
     private static final long RECONNECT_DELAY_SECONDS = 5;
+    private static final ByteBuffer PING_MESSAGE = java.nio.ByteBuffer.wrap("Ping".getBytes(StandardCharsets.UTF_8));
 
-    private static ByteBuffer PING_MESSAGE = java.nio.ByteBuffer.wrap("Ping".getBytes(StandardCharsets.UTF_8));
-
-    private final ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
     private int reconnectAttempts = 0;
-
     private final StringBuilder messageBuffer = new StringBuilder();
+    private final ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
 
     public StompOverWebSocket(String wsUri, String username, String passcode, ZiqniSimpleEventBus eventBus, Consumer<StompOverWebSocket> onConnect) {
         this.wsUri = wsUri;
