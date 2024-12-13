@@ -14,7 +14,6 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Objects;
 import java.util.concurrent.*;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
  * StreamingClient is a client for connecting to the Ziqni Admin API using WebSockets.
@@ -36,10 +35,7 @@ public class StreamingClient {
     private final ZiqniSimpleEventBus eventBus;
     private final String URL;
 
-    // State Management
-
-
-    private final AtomicBoolean isPaused = new AtomicBoolean(false);
+    // Stomp Over WebSocket
     private StompOverWebSocket stompOverWebSocket;
 
     // Constructor
@@ -54,17 +50,14 @@ public class StreamingClient {
         this.websocketSendExecutor = new ThreadPoolExecutor(1, 1, 0L, TimeUnit.MILLISECONDS, new LinkedBlockingDeque<>());
 
         this.eventBus = eventBus;
-        this.eventBus.onWSClientConnected(unused -> this.onConnected(this.stompOverWebSocket));
-        this.eventBus.onWSClientDisconnected(unused -> this.isPaused.set(true));
+        this.eventBus.onWSClientConnected(unused -> this.onConnected());
 
         setupShutdownHook();
     }
 
     // Setup Methods
     private void setupShutdownHook() {
-        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
-            this.stop(true);
-        }));
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> this.stop(true)));
     }
 
 
@@ -80,7 +73,7 @@ public class StreamingClient {
     public <TOUT, TIN> CompletableFuture<TOUT> sendWithApiCallback(String destination, TIN payload) {
         final var completableFuture = new CompletableFuture<TOUT>();
 
-        if (isPaused.get() || isNotConnected()) {
+        if (isNotConnected()) {
             queueTask(() -> sendWithApiCallback(destination, payload).exceptionally(throwable -> {
                 completableFuture.completeExceptionally(throwable);
                 return null;
@@ -114,8 +107,6 @@ public class StreamingClient {
     public CompletableFuture<Boolean> start() throws Exception {
         validateStateForStart();
 
-        isPaused.set(true); // Pause operations during connection attempt
-
         return stompOverWebSocket.connect()
                 .thenApply(unused -> {
                     onConnectionSuccess();
@@ -139,14 +130,14 @@ public class StreamingClient {
     public <T> CompletableFuture<Void> sendMessage(StompHeaders stompHeaders, T body) {
         CompletableFuture<Void> result = new CompletableFuture<>();
 
-        if (isPaused.get() || isNotConnected()) {
+        if (isNotConnected()) {
             logger.warn("Connection unavailable, queuing sendMessage task.");
-            queuedTasks.add(() -> {
-                sendMessage(stompHeaders, body).thenAccept(result::complete).exceptionally(throwable -> {
-                    result.completeExceptionally(throwable);
-                    return null;
-                });
-            });
+            queuedTasks.add(() ->
+                    sendMessage(stompHeaders, body).thenAccept(result::complete).exceptionally(throwable -> {
+                        result.completeExceptionally(throwable);
+                        return null;
+                    })
+            );
             return result;
         }
         else {
@@ -158,7 +149,6 @@ public class StreamingClient {
     }
 
     private void onConnectionSuccess() {
-        isPaused.set(false); // Resume operations
         flushQueuedTasks();
         logger.info("Connection successful");
     }
@@ -202,8 +192,7 @@ public class StreamingClient {
     }
 
     // Connection Handlers
-    private void onConnected(StompOverWebSocket ws) {
-        this.isPaused.set(false);
+    private void onConnected() {
         stompOverWebSocket.subscribe(rpcResultsEventHandler);
         stompOverWebSocket.subscribe(callbackEventHandler);
     }
