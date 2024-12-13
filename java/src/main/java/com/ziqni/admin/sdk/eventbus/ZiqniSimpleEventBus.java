@@ -6,6 +6,8 @@ package com.ziqni.admin.sdk.eventbus;
 
 import com.ziqni.admin.sdk.streaming.stomp.StompHeaders;
 import com.ziqni.admin.sdk.streaming.stomp.StompOverWebSocketLifeCycle.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -16,6 +18,8 @@ import java.util.function.Consumer;
  * A simple event bus implementation
  */
 public class ZiqniSimpleEventBus {
+
+    private static final Logger logger = LoggerFactory.getLogger(ZiqniSimpleEventBus.class);
 
     public final LinkedBlockingDeque<Runnable> tasks;
 
@@ -96,13 +100,20 @@ public class ZiqniSimpleEventBus {
         public void notifyAll(Object event) {
             if (type.isInstance(event)) {
                 consumers.forEach(subscriber ->
-                        ex.submit( () ->
-                            subscriber.accept(type.cast(event))
-                    )
+                        ex.submit( () -> handle(subscriber,type.cast(event)) )
                 );
             } else {
                 throw new IllegalArgumentException(
                         "Invalid event type. Expected: " + type.getName() + ", but got: " + event.getClass().getName());
+            }
+        }
+
+        private void handle(Consumer<T> subscriber, T event) {
+            try {
+                subscriber.accept(event);
+            }
+            catch (Throwable t) {
+                logger.error("Error handling event", t);
             }
         }
 
