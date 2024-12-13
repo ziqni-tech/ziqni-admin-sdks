@@ -3,6 +3,9 @@ package com.ziqni.admin.sdk.streaming.stomp;
 import com.ziqni.admin.sdk.eventbus.ZiqniSimpleEventBus;
 
 import java.util.concurrent.atomic.AtomicReference;
+/*
+ * Copyright (c) 2024. ZIQNI LTD registered in England and Wales, company registration number-09693684
+ */
 
 public class StompOverWebSocketLifeCycle {
 

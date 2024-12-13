@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2024. ZIQNI LTD registered in England and Wales, company registration number-09693684
+ */
+
 package com.ziqni.admin.sdk.streaming.stomp;
 
 import com.ziqni.admin.sdk.eventbus.ZiqniSimpleEventBus;
@@ -7,7 +11,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.Map;
-import java.util.function.Consumer;
 import java.util.concurrent.CompletionStage;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ConcurrentHashMap;
