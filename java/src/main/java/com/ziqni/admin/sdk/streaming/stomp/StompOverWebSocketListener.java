@@ -23,17 +23,13 @@ public class StompOverWebSocketListener implements WebSocket.Listener {
     private final ZiqniSimpleEventBus eventBus;
     private final StompHeartbeatManager heartbeatManager;
     private final StompOverWebSocketLifeCycle lifeCycleStateManager;
-    private final Consumer<StompOverWebSocketListener> onConnect;
-    private final Consumer<StompOverWebSocketListener> reconnect;
     private final StringBuilder messageBuffer = new StringBuilder();
     private final Map<String, EventHandler> eventHandlers = new ConcurrentHashMap<>();
 
-    public StompOverWebSocketListener(ZiqniSimpleEventBus eventBus, StompHeartbeatManager heartbeatManager, StompOverWebSocketLifeCycle lifeCycleStateManager, Consumer<StompOverWebSocketListener> onConnect, Consumer<StompOverWebSocketListener> reconnect) {
+    public StompOverWebSocketListener(ZiqniSimpleEventBus eventBus, StompHeartbeatManager heartbeatManager, StompOverWebSocketLifeCycle lifeCycleStateManager) {
         this.eventBus = eventBus;
         this.heartbeatManager = heartbeatManager;
         this.lifeCycleStateManager = lifeCycleStateManager;
-        this.onConnect = onConnect;
-        this.reconnect = reconnect;
     }
     public void registerHandler(EventHandler handler) {
         eventHandlers.put(handler.getTopic(), handler);
@@ -88,7 +84,6 @@ public class StompOverWebSocketListener implements WebSocket.Listener {
             switch (frame.getCommand()) {
                 case CONNECTED -> {
                     lifeCycleStateManager.setState(State.CONNECTED);
-                    onConnect.accept(this);
 
                     String heartBeatHeader = frame.getHeaders().getHeartBeat();
                     if (heartBeatHeader != null) {
@@ -127,10 +122,6 @@ public class StompOverWebSocketListener implements WebSocket.Listener {
 
         if (heartbeatManager != null) {
             heartbeatManager.stop();
-        }
-
-        if (!lifeCycleStateManager.isDisconnecting()) {
-            reconnect.accept(this);
         }
 
         lifeCycleStateManager.setState(State.NOT_CONNECTED);

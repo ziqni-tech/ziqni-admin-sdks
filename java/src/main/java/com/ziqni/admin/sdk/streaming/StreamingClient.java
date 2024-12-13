@@ -46,10 +46,13 @@ public class StreamingClient {
     public StreamingClient(AdminApiClientConfiguration configuration, String URL, ZiqniSimpleEventBus eventBus) throws Exception {
         this.configuration = configuration;
         this.URL = URL;
-        this.eventBus = eventBus;
+
         this.rpcResultsEventHandler = RpcResultsEventHandler.create();
         this.callbackEventHandler = CallbackEventHandler.create(eventBus);
         this.websocketSendExecutor = new ThreadPoolExecutor(1, 1, 0L, TimeUnit.MILLISECONDS, new LinkedBlockingDeque<>());
+
+        this.eventBus = eventBus;
+        this.eventBus.onWSClientConnected(unused -> this.onConnected(this.stompOverWebSocket));
 
         setupShutdownHook();
     }
@@ -126,7 +129,7 @@ public class StreamingClient {
             throw new IllegalStateException("Websocket executor is terminated");
         }
         else if (stompOverWebSocket == null) {
-            stompOverWebSocket = new StompOverWebSocket(URL, "x-api-key", configuration.getAccessTokenString(), eventBus, this::onConnected);
+            stompOverWebSocket = new StompOverWebSocket(URL, "x-api-key", configuration.getAccessTokenString(), eventBus);
         }
     }
 

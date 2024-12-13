@@ -36,6 +36,10 @@ public class StompHeaders implements Serializable {
         // Default constructor
     }
 
+    public StompHeaders(String destination) {
+        setDestination(destination);
+    }
+
     public StompHeaders(Map<String, String> initialHeaders) {
         initialHeaders.forEach((key, value) ->
                 headers.put(key, Collections.singletonList(value))
@@ -121,8 +125,9 @@ public class StompHeaders implements Serializable {
         return new long[]{0, 0};
     }
 
-    public void setDestination(String destination) {
+    public StompHeaders setDestination(String destination) {
         set(DESTINATION, destination);
+        return this;
     }
 
     public String getDestination() {
@@ -171,7 +176,7 @@ public class StompHeaders implements Serializable {
 
     public static StompHeaders fromMap(Map<String, List<String>> source) {
         StompHeaders headers = new StompHeaders();
-        source.forEach(headers.headers::put);
+        headers.headers.putAll(source);
         return headers;
     }
 

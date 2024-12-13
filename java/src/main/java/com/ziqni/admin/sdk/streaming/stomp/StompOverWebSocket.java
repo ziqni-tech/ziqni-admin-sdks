@@ -22,8 +22,8 @@ import java.io.ByteArrayOutputStream;
 
 import java.util.Objects;
 import java.util.concurrent.*;
-import java.util.function.Consumer;
 import java.util.zip.GZIPOutputStream;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 
 /**
@@ -44,26 +44,27 @@ public class StompOverWebSocket { //implements WebSocket.Listener {
     private final String wsUri;
     private final String username;
     private final String passcode;
-    private final ZiqniSimpleEventBus eventBus;
     private final ScheduledExecutorService scheduler;
     private final StompOverWebSocketListener listener;
     private final StompHeartbeatManager heartbeatManager;
-    private final Consumer<StompOverWebSocket> onConnect;
+    private final AtomicBoolean reconnectOnDisconnect = new AtomicBoolean(false);
 
     private WebSocket webSocket;
     private int reconnectAttempts = 0;
 
-    public StompOverWebSocket(String wsUri, String username, String passcode, ZiqniSimpleEventBus eventBus, Consumer<StompOverWebSocket> onConnect) {
+    public StompOverWebSocket(String wsUri, String username, String passcode, ZiqniSimpleEventBus eventBus) {
+
         this.wsUri = wsUri;
         this.username = username;
         this.passcode = passcode;
-        this.eventBus = eventBus;
-        this.onConnect = onConnect;
         this.scheduler = Executors.newSingleThreadScheduledExecutor();
-        this.eventBus.onWSClientHeartBeatMissed(this::onWSClientHeartBeatMissed);
+
         this.heartbeatManager = new StompHeartbeatManager(eventBus, 10000);
         this.lifeCycleStateManager = new StompOverWebSocketLifeCycle(eventBus);
-        this.listener = new StompOverWebSocketListener(eventBus, heartbeatManager, lifeCycleStateManager, this::onConnect, this::attemptReconnect);
+        this.listener = new StompOverWebSocketListener(eventBus, heartbeatManager, lifeCycleStateManager);
+
+        eventBus.onWSClientHeartBeatMissed(this::onWSClientHeartBeatMissed);
+        eventBus.onWSClientDisconnected(unused -> this.attemptReconnect());
     }
 
     public void shutdown() {
@@ -112,16 +113,14 @@ public class StompOverWebSocket { //implements WebSocket.Listener {
                 .thenAccept(ws -> {
                     this.webSocket = ws;
                     sendConnectFrame();
+                    this.reconnectOnDisconnect.set(true);
                 });
-    }
-
-    private void onConnect(StompOverWebSocketListener stompOverWebSocketListener) {
-        onConnect.accept(this);
     }
 
     public void disconnect() {
         if (heartbeatManager != null) {
-            heartbeatManager.stop();
+            this.heartbeatManager.stop();
+            this.reconnectOnDisconnect.set(false);
         }
 
         lifeCycleStateManager.setState(State.DISCONNECTING);
@@ -133,6 +132,7 @@ public class StompOverWebSocket { //implements WebSocket.Listener {
 
     private void sendConnectFrame() {
         lifeCycleStateManager.setState(State.CONNECTING);
+
         StompHeaders connectHeaders = new StompHeaders();
         connectHeaders.setLogin(username);
         connectHeaders.setPasscode(passcode);
@@ -170,10 +170,10 @@ public class StompOverWebSocket { //implements WebSocket.Listener {
     }
 
     public void sendMessage(String destination, String payload) {
-        StompHeaders sendHeaders = new StompHeaders();
-        sendHeaders.setDestination(destination);
 
+        StompHeaders sendHeaders = new StompHeaders(destination);
         StringBuilder sendFrame = new StringBuilder("SEND\n");
+
         sendHeaders.toMap().forEach((key, value) -> sendFrame.append(key).append(":").append(String.join(",", value)).append("\n"));
         sendFrame.append("\n").append(payload).append("\0");
 
@@ -265,11 +265,11 @@ public class StompOverWebSocket { //implements WebSocket.Listener {
         }
     }
 
-    private void attemptReconnect(StompOverWebSocketListener listener) {
-        this.attemptReconnect();
-    }
-
     private void attemptReconnect() {
+        if(!this.reconnectOnDisconnect.get()){
+            return;
+        }
+
         if (reconnectAttempts >= MAX_RECONNECT_ATTEMPTS) {
             logger.error("Max reconnection attempts reached. Giving up.");
             return;
