@@ -1,10 +1,12 @@
 package com.ziqni.admin.sdk.streaming.stomp;
 
-import java.io.Serializable;
+import java.io.Serial;
 import java.util.*;
+import java.io.Serializable;
 
 public class StompHeaders implements Serializable {
 
+    @Serial
     private static final long serialVersionUID = 7514642206528452544L;
 
     // Standard headers (as defined in the STOMP specification)

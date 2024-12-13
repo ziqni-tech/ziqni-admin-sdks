@@ -1,6 +1,7 @@
 package com.ziqni.admin.sdk.streaming.stomp;
 
 public enum StompCommand {
+
     CONNECT,
     CONNECTED,
     SEND,

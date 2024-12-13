@@ -106,15 +106,9 @@ public class StompOverWebSocketListener implements WebSocket.Listener {
 
                     handler.handleFrame(frame.getHeaders(), frame.getBody());
                 }
-                case ERROR -> {
-                    logger.error("Error frame received: {}", message);
-                }
-                case NOT_A_VALID_STOMP_COMMAND -> {
-                    logger.error("Not a valid STOMP command: {}", frame);
-                }
-                default -> {
-                    logger.error("Unhandled command: {}", frame);
-                }
+                case ERROR -> logger.error("Error frame received: {}", message);
+                case NOT_A_VALID_STOMP_COMMAND -> logger.error("Not a valid STOMP command: {}", frame);
+                default -> logger.error("Unhandled command: {}", frame);
             }
         } catch (Exception e) {
             logger.error("Failed to parse STOMP frame: {}, {}", e.getMessage(), message);
@@ -146,7 +140,7 @@ public class StompOverWebSocketListener implements WebSocket.Listener {
 
     @Override
     public void onError(WebSocket webSocket, Throwable error) {
-        logger.error("WebSocket error: " + error.getMessage());
+        logger.error("WebSocket error: {}", error.getMessage());
         eventBus.post(new WSClientTransportError(error));
     }
 }
