@@ -25,7 +25,7 @@ public class StreamingClient {
 
     // Executors and Task Queues
     private final ExecutorService websocketSendExecutor;
-    private final LinkedBlockingQueue<Runnable> queuedTasks = new LinkedBlockingQueue<>();
+    private final LinkedBlockingQueue<Runnable> queuedTasks;
 
     // Event Handlers
     private final RpcResultsEventHandler rpcResultsEventHandler;
@@ -44,15 +44,18 @@ public class StreamingClient {
 
     // Constructor
     public StreamingClient(AdminApiClientConfiguration configuration, String URL, ZiqniSimpleEventBus eventBus) throws Exception {
+
         this.configuration = configuration;
         this.URL = URL;
 
+        this.queuedTasks = new LinkedBlockingQueue<>();
         this.rpcResultsEventHandler = RpcResultsEventHandler.create();
         this.callbackEventHandler = CallbackEventHandler.create(eventBus);
         this.websocketSendExecutor = new ThreadPoolExecutor(1, 1, 0L, TimeUnit.MILLISECONDS, new LinkedBlockingDeque<>());
 
         this.eventBus = eventBus;
         this.eventBus.onWSClientConnected(unused -> this.onConnected(this.stompOverWebSocket));
+        this.eventBus.onWSClientDisconnected(unused -> this.isPaused.set(true));
 
         setupShutdownHook();
     }
@@ -146,11 +149,12 @@ public class StreamingClient {
             });
             return result;
         }
-
-        return this.stompOverWebSocket.sendMessage(stompHeaders, body).thenAccept(webSocket -> {
-            if (Objects.isNull(webSocket))
-                throw new IllegalStateException("The session is not connected");
-        });
+        else {
+            return this.stompOverWebSocket.sendMessage(stompHeaders, body).thenAccept(webSocket -> {
+                if (Objects.isNull(webSocket))
+                    throw new IllegalStateException("The session is not connected");
+            });
+        }
     }
 
     private void onConnectionSuccess() {
@@ -199,6 +203,7 @@ public class StreamingClient {
 
     // Connection Handlers
     private void onConnected(StompOverWebSocket ws) {
+        this.isPaused.set(false);
         stompOverWebSocket.subscribe(rpcResultsEventHandler);
         stompOverWebSocket.subscribe(callbackEventHandler);
     }
