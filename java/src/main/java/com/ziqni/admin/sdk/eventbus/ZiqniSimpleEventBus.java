@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 import java.util.concurrent.*;
 import java.util.function.Consumer;
@@ -130,7 +131,7 @@ public class ZiqniSimpleEventBus {
         @SuppressWarnings("unchecked")
         public void add(Consumer<?> subscriber) {
             // Wrap the unchecked cast with a type check
-            if (subscriber instanceof Consumer<?>) {
+            if (Objects.nonNull(subscriber)) {
                 consumers.add(event -> ((Consumer<Object>) subscriber).accept(event));
             } else {
                 throw new IllegalArgumentException("Subscriber must be of type Consumer<?>");
