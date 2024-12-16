@@ -8,6 +8,7 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.util.Objects;
 import java.util.concurrent.CompletableFuture;
 
 /**
@@ -25,6 +26,19 @@ public abstract class MemberTokenApi {
      * @throws Exception If the request fails
      */
     public static CompletableFuture<MemberTokenResponse> getMemberToken(MemberTokenRequest requestBody) throws Exception {
+        return getMemberToken(requestBody, "https://member-api.ziqni.com/member-token");
+    }
+
+    /**
+     * Get Member Token
+     * @param requestBody The request body
+     * @return The response body
+     * @throws Exception If the request fails
+     */
+    public static CompletableFuture<MemberTokenResponse> getMemberToken(MemberTokenRequest requestBody, String uri) throws Exception {
+
+        assert Objects.nonNull(requestBody) : "The requestBody parameter is required";
+        assert !requestBody.getApiKey().isEmpty() : "The requestBody apiKey parameter";
 
         // Serialize the request body to JSON
         String requestJson = EventHandler.ziqniClientObjectMapper.serializingObjectMapper().writeValueAsString(requestBody);
@@ -34,7 +48,7 @@ public abstract class MemberTokenApi {
 
         // Build the HTTP request
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create("https://member-api.ziqni.com/member-token")) // Replace with the actual URL
+                .uri(URI.create(uri)) // Replace with the actual URL
                 .header("Content-Type", "application/json")
                 .POST(HttpRequest.BodyPublishers.ofString(requestJson))
                 .build();
