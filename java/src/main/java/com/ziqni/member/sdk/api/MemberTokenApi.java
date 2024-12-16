@@ -8,6 +8,7 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.util.concurrent.CompletableFuture;
 
 /**
  * The Member Token Api is used to generate tokens for member to use with the member API
@@ -23,7 +24,7 @@ public abstract class MemberTokenApi {
      * @return The response body
      * @throws Exception If the request fails
      */
-    public static MemberTokenResponse getMemberToken(MemberTokenRequest requestBody) throws Exception {
+    public static CompletableFuture<MemberTokenResponse> getMemberToken(MemberTokenRequest requestBody) throws Exception {
 
         // Serialize the request body to JSON
         String requestJson = EventHandler.ziqniClientObjectMapper.serializingObjectMapper().writeValueAsString(requestBody);
@@ -39,9 +40,15 @@ public abstract class MemberTokenApi {
                 .build();
 
         // Send the HTTP request
-        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-
-        // Deserialize the response JSON
-        return EventHandler.ziqniClientObjectMapper.serializingObjectMapper().readValue(response.body(), MemberTokenResponse.class);
+        return client
+                .sendAsync(request, HttpResponse.BodyHandlers.ofString())
+                .thenApply(response -> {
+                    try {
+                        // Deserialize the response JSON
+                        return EventHandler.ziqniClientObjectMapper.serializingObjectMapper().readValue(response.body(), MemberTokenResponse.class);
+                    } catch (Exception e) {
+                        throw new RuntimeException("Failed to deserialize response JSON", e);
+                    }
+                });
     }
 }
