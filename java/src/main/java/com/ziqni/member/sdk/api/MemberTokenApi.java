@@ -13,12 +13,19 @@ import java.net.http.HttpResponse;
  * The Member Token Api is used to generate tokens for member to use with the member API
  * The service included in the admin API is being deprecated as it makes more sense to keep
  * member based services on the same compute clusters as the member data.
+ * <a href="https://documentation.ziqni.com/member-api/#tag/member-token">Member API</a> *
  */
 public abstract class MemberTokenApi {
 
+    /**
+     * Get Member Token
+     * @param requestBody The request body
+     * @return The response body
+     * @throws Exception If the request fails
+     */
     public static MemberTokenResponse getMemberToken(MemberTokenRequest requestBody) throws Exception {
-        // Serialize the request body to JSON
 
+        // Serialize the request body to JSON
         String requestJson = EventHandler.ziqniClientObjectMapper.serializingObjectMapper().writeValueAsString(requestBody);
 
         // Create HTTP client
