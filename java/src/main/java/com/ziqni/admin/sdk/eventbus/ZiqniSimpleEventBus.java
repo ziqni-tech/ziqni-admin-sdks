@@ -21,9 +21,19 @@ public class ZiqniSimpleEventBus {
 
     private static final Logger logger = LoggerFactory.getLogger(ZiqniSimpleEventBus.class);
 
+    /**
+     * The task queue to ensure events are processed in order
+     */
     public final LinkedBlockingDeque<Runnable> tasks;
 
+    /**
+     * The executor service to process events
+     */
     private final ExecutorService executor;
+
+    /**
+     * The map of event type to subscribers
+     */
     private final ConcurrentHashMap<Class<?>, MessageConsumers<?>> subscribers;
 
     /**
@@ -134,30 +144,58 @@ public class ZiqniSimpleEventBus {
         this.post(new WSClientMessageError(headers, payload, error));
     }
 
+    /**
+     * Register a consumer for websocket client connected events
+     * @param consumer the consumer
+     */
     public void onWSClientConnected(Consumer<WSClientConnected> consumer){
         this.register(WSClientConnected.class, consumer);
     }
 
+    /**
+     * Register a consumer for websocket client connecting events
+     * @param consumer the consumer
+     */
     public void onWSClientConnecting(Consumer<WSClientConnecting> consumer){
         this.register(WSClientConnecting.class, consumer);
     }
 
+    /**
+     * Register a consumer for websocket client disconnected events
+     * @param consumer the consumer
+     */
     public void onWSClientDisconnected(Consumer<WSClientDisconnected> consumer){
         this.register(WSClientDisconnected.class, consumer);
     }
 
+    /**
+     * Register a consumer for websocket client disconnecting events
+     * @param consumer the consumer
+     */
     public void onWSClientSevereFailure(Consumer<WSClientSevereFailure> consumer){
         this.register(WSClientSevereFailure.class, consumer);
     }
 
+    /**
+     * Register a consumer for websocket client message events
+     * @param consumer the consumer
+     */
     public void onWSClientMessageError(Consumer<WSClientMessageError> consumer){
         this.register(WSClientMessageError.class, consumer);
     }
 
+    /**
+     * Register a consumer for websocket client transport error events
+     * @param consumer the consumer
+     */
     public void onWsClientTransportError(Consumer<WSClientTransportError> consumer){
         this.register(WSClientTransportError.class, consumer);
     }
 
+    /**
+     * Register a consumer for websocket client heart beat missed events
+     * @param consumer the consumer
+     */
     public void onWSClientHeartBeatMissed(Consumer<WSClientHeartBeatMissed> consumer){
         this.register(WSClientHeartBeatMissed.class, consumer);
     }
