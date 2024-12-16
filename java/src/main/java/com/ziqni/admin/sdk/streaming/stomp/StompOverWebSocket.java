@@ -40,7 +40,7 @@ public class StompOverWebSocket { //implements WebSocket.Listener {
     private static final Logger logger = LoggerFactory.getLogger(StompOverWebSocket.class);
 
 
-    private static final int MAX_RECONNECT_ATTEMPTS = 30;
+    private static final int MAX_RECONNECT_ATTEMPTS = 3_000;
     private static final long RECONNECT_DELAY_SECONDS = 5;
     private final StompOverWebSocketLifeCycle lifeCycleStateManager;
     private static final ByteBuffer PING_MESSAGE = java.nio.ByteBuffer.wrap("Ping".getBytes(StandardCharsets.UTF_8));
