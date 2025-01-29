@@ -39,6 +39,13 @@ public class AdminApiClientConfiguration {
     private Keycloak identityClient;
 
     public AdminApiClientConfiguration() {
+        ConfigurationLoader.setConfigFile("application.properties");
+        ConfigurationLoader.loadFromFile(true);
+    }
+
+    public AdminApiClientConfiguration(String filePath) {
+        ConfigurationLoader.setConfigFile(filePath);
+        ConfigurationLoader.loadFromFile(true);
     }
 
     public void setApiKey(boolean apiKey) {

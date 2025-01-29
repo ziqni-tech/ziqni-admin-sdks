@@ -24,9 +24,7 @@ public class AdminApiSampleApp {
     private final static AdminApiClientConfiguration config;
 
     static {
-        config = AdminApiClientConfigBuilder.build();
-        config.setApiKey(true);
-        config.setAdminClientIdentityApiKey("your-api-key");
+        config = AdminApiClientConfigBuilder.build("test-application.properties");
         factory = new ZiqniAdminApiFactory(config);
     }
 
@@ -40,30 +38,20 @@ public class AdminApiSampleApp {
         logger.info("Press any key to exit");
         final var in = System.in.read();
         logger.info("Shutting down {} ", in);
+
+        factory.getStreamingClient().stop().handle((aVoid, throwable) -> {
+            if (throwable != null) {
+                logger.error("Failed to stop the streaming client", throwable);
+            } else {
+                logger.info("Stopped the streaming client");
+            }
+            return null;
+        }).join();
+
+        System.exit(0);
     }
 
     public AdminApiSampleApp() throws Exception {
-
-        // Initialise the Ziqni Admin API
-        factory.initialise(() -> {
-            try {
-                return factory.getStreamingClient().start();
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
-        })
-        .exceptionally(throwable -> {
-            logger.error("Failed to connect", throwable);
-            return null;
-        })
-        .thenAccept(started -> {
-            logger.error("Connection is {}", started == null || !started ? "NOT_STARTED" : "RUNNING");
-        });
-
-        while (factory.getStreamingClient().isConnected()) {
-            Thread.sleep(500);
-            logger.info("+++ Waiting for the streaming client to start");
-        }
 
         // Register event handlers
         factory.getStreamingClient().getEventBus().onWSClientConnected(this::onWSClientConnected);
@@ -71,14 +59,38 @@ public class AdminApiSampleApp {
         factory.getStreamingClient().getEventBus().onWSClientDisconnected(this::onWSClientDisconnected);
         factory.getStreamingClient().getEventBus().onWSClientSevereFailure(this::onWSClientSevereFailure);
 
+        // Start the streaming client
+        factory.getStreamingClient().start();
+
+        while (factory.getStreamingClient().isConnected()) {
+            Thread.sleep(500);
+            logger.info("+++ Waiting for the streaming client to start");
+        }
+
         // Register entity change handlers
         factory.getEntityChangesApi().entityChangedHandler(this::onEntityChanged, this::onEntityChangedException);
         factory.getEntityChangesApi().entityStateChangedHandler(this::onEntityStateChanged, this::onEntityStateChangedException);
-        subscribeToEntityChanges();
+
     }
 
     private void onWSClientConnected(StompOverWebSocketLifeCycle.WSClientConnected wsClientConnected) {
         logger.info("Connected to the Ziqni Admin API");
+
+        // Get members
+        factory.getMembersApi().getMembers(List.of(),0,10).thenAccept(members -> {
+            logger.info("Members: {}", members);
+        });
+
+        // Subscribe to entity changes
+        subscribeToEntityChanges(Transformer.class);
+        subscribeToEntityChanges(Connection.class);
+        subscribeToEntityChanges(Member.class);
+        subscribeToEntityChanges(Reward.class);
+        subscribeToEntityChanges(Achievement.class);
+        subscribeToEntityChanges(Competition.class);
+        subscribeToEntityChanges(Contest.class);
+        subscribeToEntityChanges(Award.class);
+        subscribeToEntityChanges(Product.class);
     }
 
     private void onWSClientSevereFailure(StompOverWebSocketLifeCycle.WSClientSevereFailure wsClientSevereFailure) {
@@ -96,18 +108,19 @@ public class AdminApiSampleApp {
     /**
      * Subscribe to entity changes
      */
-    private void subscribeToEntityChanges(){
-
-        // Entities to monitor for changes
-        final var entitiesToMonitor = List.of(Member.class, Reward.class, Achievement.class, Competition.class, Contest.class, Award.class, Product.class);
-
-        // Subscribe to entity changes
-        for (Class<?> clazz : entitiesToMonitor) {
-            factory.getEntityChangesApi().manageEntityChangeSubscription(new EntityChangeSubscriptionRequest()
-                    .entityType(clazz.getSimpleName())
-                    .action(EntityChangeSubscriptionRequest.ActionEnum.SUBSCRIBE)
-            );
-        }
+    private void subscribeToEntityChanges(Class<?> clazz) {
+        factory.getEntityChangesApi().manageEntityChangeSubscription(new EntityChangeSubscriptionRequest()
+                .entityType(clazz.getSimpleName())
+                .action(EntityChangeSubscriptionRequest.ActionEnum.SUBSCRIBE)
+                .constraints(List.of())
+        ).handle((aVoid, throwable) -> {
+            if (throwable != null) {
+                logger.error("Failed to subscribe to {}", clazz.getSimpleName(), throwable);
+            } else {
+                logger.info("Subscribed to {}", clazz.getSimpleName());
+            }
+            return null;
+        });
     }
 
     /**
