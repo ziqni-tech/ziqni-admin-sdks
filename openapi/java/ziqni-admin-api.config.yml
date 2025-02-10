@@ -5,15 +5,15 @@ modelPackage: com.ziqni.admin.sdk.model
 groupId: com.ziqni
 artifactId: ziqni-admin-sdk
 dateLibrary: java8
+library: native
 hideGenerationTimestamp: true
+additionalProperties:
+  useJakartaEe: true
 files:
   ApiClientFactory.mustache:
     folder: src/main/java/com/ziqni/admin/sdk
     templateType: SupportingFiles
     destinationFilename: ApiClientFactory.java
-#  ws_api_delegate.mustache:
-#    templateType: API
-#    destinationFilename: Ws.java
   ZiqniAdminApiFactory.mustache:
     folder: src/main/java/com/ziqni/admin/sdk
     templateType: SupportingFiles

@@ -1,12 +1,13 @@
+/*
+ * Copyright (c) 2024. ZIQNI LTD registered in England and Wales, company registration number-09693684
+ */
+
 package com.ziqni.admin.sdk.streaming.handlers;
 
 import com.fasterxml.jackson.databind.JavaType;
 import com.ziqni.admin.sdk.ApiException;
-import com.ziqni.admin.sdk.streaming.ApiCallbackResponse;
-import org.checkerframework.checker.nullness.qual.NonNull;
-import org.springframework.messaging.simp.stomp.StompHeaders;
+import com.ziqni.admin.sdk.streaming.stomp.StompHeaders;
 
-import java.util.concurrent.CompletableFuture;
 import java.util.function.BiConsumer;
 
 public class CallbackConsumer<T> {

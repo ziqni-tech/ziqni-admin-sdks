@@ -1,14 +1,17 @@
 /*
- * Copyright (c) 2022. ZIQNI LTD registered in England and Wales, company registration number-09693684
+ * Copyright (c) 2024. ZIQNI LTD registered in England and Wales, company registration number-09693684
  */
-package com.ziqni.admin.sdk.configuration;
 
-import com.ziqni.admin.sdk.util.ConfigurationLoader;
+package com.ziqni.admin.sdk.configuration;
 
 public abstract class AdminApiClientConfigBuilder {
 
     public static AdminApiClientConfiguration build() {
-        final var config = new AdminApiClientConfiguration();
+        return build("application.properties");
+    }
+
+    public static AdminApiClientConfiguration build(String filePath) {
+        final var config = new AdminApiClientConfiguration(filePath);
 
         config.setAdminClientServerBasePath( ConfigurationLoader.getParameter("admin.client.base.path").orElse("") );
         config.setAdminClientServerHost( ConfigurationLoader.getParameter("admin.client.server.host").orElse("api.ziqni.com") );

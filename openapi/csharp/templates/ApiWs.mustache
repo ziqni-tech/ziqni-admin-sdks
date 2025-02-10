@@ -1,6 +1,6 @@
 {{>licenseInfo}}
 package {{package}};
-import javax.ws.rs.core.GenericType;
+
 import {{invokerPackage}}.streaming.StreamingClient;
 import {{invokerPackage}}.streaming.EventHandler;
 import {{invokerPackage}}.streaming.handlers.CallbackConsumer;
@@ -29,7 +29,7 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.time.Duration;
 import java.util.function.BiConsumer;
-{{>generatedAnnotation}}
+
 {{#operations}}
     public class {{classname}}Ws {
 

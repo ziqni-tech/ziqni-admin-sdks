@@ -1,16 +1,15 @@
 /*
- * Copyright (c) 2022. ZIQNI LTD registered in England and Wales, company registration number-09693684
+ * Copyright (c) 2024. ZIQNI LTD registered in England and Wales, company registration number-09693684
  */
+
 package com.ziqni.admin.sdk.configuration;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.interfaces.DecodedJWT;
-import com.ziqni.admin.sdk.util.ConfigurationLoader;
 import org.keycloak.admin.client.Keycloak;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Objects;
 import java.util.Optional;
@@ -40,6 +39,13 @@ public class AdminApiClientConfiguration {
     private Keycloak identityClient;
 
     public AdminApiClientConfiguration() {
+        ConfigurationLoader.setConfigFile("application.properties");
+        ConfigurationLoader.loadFromFile(true);
+    }
+
+    public AdminApiClientConfiguration(String filePath) {
+        ConfigurationLoader.setConfigFile(filePath);
+        ConfigurationLoader.loadFromFile(true);
     }
 
     public void setApiKey(boolean apiKey) {

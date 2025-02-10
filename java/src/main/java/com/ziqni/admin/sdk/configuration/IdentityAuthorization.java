@@ -1,6 +1,7 @@
 /*
- * Copyright (c) 2022. ZIQNI LTD registered in England and Wales, company registration number-09693684
+ * Copyright (c) 2024. ZIQNI LTD registered in England and Wales, company registration number-09693684
  */
+
 package com.ziqni.admin.sdk.configuration;
 
 import org.keycloak.admin.client.Keycloak;

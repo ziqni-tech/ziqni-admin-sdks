@@ -1,13 +1,9 @@
 /*
- * Copyright (c) 2022. ZIQNI LTD registered in England and Wales, company registration number-09693684
+ * Copyright (c) 2024. ZIQNI LTD registered in England and Wales, company registration number-09693684
  */
-package com.ziqni.admin.sdk.util;
 
-import com.amazonaws.regions.Regions;
-import com.amazonaws.services.simplesystemsmanagement.AWSSimpleSystemsManagement;
-import com.amazonaws.services.simplesystemsmanagement.AWSSimpleSystemsManagementClientBuilder;
-import com.amazonaws.services.simplesystemsmanagement.model.GetParametersByPathRequest;
-import com.amazonaws.services.simplesystemsmanagement.model.GetParametersByPathResult;
+package com.ziqni.admin.sdk.configuration;
+
 import org.apache.commons.configuration2.Configuration;
 import org.apache.commons.configuration2.FileBasedConfiguration;
 import org.apache.commons.configuration2.PropertiesConfiguration;
@@ -22,60 +18,12 @@ import java.util.Optional;
 
 public abstract class ConfigurationLoader {
 
+    private final static Logger logger = LoggerFactory.getLogger(ConfigurationLoader.class.getName());
+
     private static final String ziqniEnvironmentVariablePrefix = "ZIQNI_";
     public static String DefaultConfigFileName = "application.properties";
     private static String configFile = null;
     private static Map<String, String> cache;
-    private static final String prefix = Optional.ofNullable( System.getenv("ZIQNI_ENV")).orElse(
-            Optional.ofNullable( System.getProperty("ZIQNI_ENV")).orElse("/local_dev/client/")
-    );
-
-    private static String instanceId = null;
-
-    private static final Logger logger = LoggerFactory.getLogger(ConfigurationLoader.class);
-
-    public static void loadFromAws(Boolean onFailTryFile) {
-        logger.info("Ziqni environment set to [{}]", prefix);
-
-        initIntanceId();
-
-        try {
-            var c = AWSSimpleSystemsManagementClientBuilder.standard().withRegion(Regions.EU_WEST_1).build();
-            var request = new GetParametersByPathRequest()
-                    .withPath(prefix)
-                    .withRecursive(true)
-                    .withWithDecryption(true)
-                    .withMaxResults(10);
-            process(c.getParametersByPath(request), c, request);
-        } catch(Throwable t) {
-            logger.error("Could not load configuration from AWS", t);
-
-            if(onFailTryFile)
-                loadFromFile(false);
-            else
-                throw new RuntimeException(t);
-        }
-
-        loadFromFile(true);
-
-        assert cache != null;
-        assert cache.size() > 0;
-    }
-
-    private static void process(GetParametersByPathResult result, AWSSimpleSystemsManagement client, GetParametersByPathRequest request){
-        result.getParameters().forEach( parameter -> {
-            if(cache == null) ConfigurationLoader.cache = new HashMap<>();
-            var configKey = parameter.getName().substring(prefix.length()).replaceAll("/", ".");
-            var configVal = parameter.getValue();
-            ConfigurationLoader.cache.put(configKey, configVal);
-            logger.debug("Loaded parameter [{}] with value [{}] from AWS with path prefix [{}] ", configKey, configVal, prefix);
-        });
-
-        if(result.getNextToken() != null) {
-            process(client.getParametersByPath(request.withNextToken(result.getNextToken())), client, request);
-        }
-    }
-
 
     public static void loadFromFile(Boolean doNotOverwrite) {
         Parameters params = new Parameters();
@@ -116,7 +64,7 @@ public abstract class ConfigurationLoader {
         }
 
         assert cache != null;
-        assert cache.size() > 0;
+        assert !cache.isEmpty();
     }
 
     public static void setConfigFile(String configFile) {
@@ -129,8 +77,8 @@ public abstract class ConfigurationLoader {
 
     public static Map<String, String> Parameters() {
         if(ConfigurationLoader.cache == null) {
-            loadFromAws(true);
-            assert ConfigurationLoader.cache.size() > 0;
+            loadFromFile(true);
+            assert !ConfigurationLoader.cache.isEmpty();
         }
 
         return ConfigurationLoader.cache;
@@ -158,29 +106,5 @@ public abstract class ConfigurationLoader {
         logger.info("Parameter [{}] value retrieved from ENVIRONMENT variables [TRUE]", variableToCheck);
         return envVariableValue;
 
-    }
-
-    public static String getInstanceId() {
-        if(ConfigurationLoader.cache == null) {
-            loadFromAws(true);
-            assert ConfigurationLoader.cache.size() > 0;
-        }
-
-        if(instanceId == null)
-            initIntanceId();
-
-        return instanceId;
-    }
-
-    private static void initIntanceId() {
-        var instanceIdFromEnv = System.getenv(ziqniEnvironmentVariablePrefix + "INSTANCE_ID");
-
-        if(instanceIdFromEnv != null) {
-            instanceId = instanceIdFromEnv;
-        } else {
-            instanceId = Common.getNextId();
-        }
-
-        logger.info("Instance id set to [{}]", instanceId);
     }
 }

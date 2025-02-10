@@ -1,171 +1,160 @@
 /*
- * Copyright (c) 2022. ZIQNI LTD registered in England and Wales, company registration number-09693684
+ * Copyright (c) 2024. ZIQNI LTD registered in England and Wales, company registration number-09693684
  */
+
 package com.ziqni.admin.sdk.streaming;
 
-import com.google.common.eventbus.Subscribe;
-import com.ziqni.admin.sdk.ZiqniAdminSDKEventBus;
+import com.ziqni.admin.sdk.eventbus.ZiqniSimpleEventBus;
+import com.ziqni.admin.sdk.streaming.stomp.StompHeaders;
+import com.ziqni.admin.sdk.streaming.stomp.StompOverWebSocket;
 import com.ziqni.admin.sdk.configuration.AdminApiClientConfiguration;
-import com.ziqni.admin.sdk.context.WsClientTransportError;
-import com.ziqni.admin.sdk.streaming.handlers.RpcResultsEventHandler;
+
+import com.ziqni.admin.sdk.streaming.handlers.EventHandler;
 import com.ziqni.admin.sdk.streaming.handlers.CallbackEventHandler;
+import com.ziqni.admin.sdk.streaming.handlers.RpcResultsEventHandler;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.scheduling.TaskScheduler;
-import org.springframework.scheduling.concurrent.DefaultManagedTaskScheduler;
 
-import java.time.OffsetDateTime;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Objects;
 import java.util.concurrent.*;
-import java.util.concurrent.atomic.AtomicLong;
-import java.util.concurrent.atomic.AtomicReference;
-import java.util.function.Consumer;
 
+/**
+ * StreamingClient is a client for connecting to the Ziqni Admin API using WebSockets.
+ */
 public class StreamingClient {
 
     private static final Logger logger = LoggerFactory.getLogger(StreamingClient.class);
 
-    private static final TaskScheduler taskScheduler = new DefaultManagedTaskScheduler();
-
+    // Executors and Task Queues
     private final ExecutorService websocketSendExecutor;
+    private final LinkedBlockingQueue<Runnable> queuedTasks;
 
-    public final LinkedBlockingDeque<Runnable> webSocketClientTasks;
-    private final Map<String, Consumer<StreamingClient>> onStartHandlers = new HashMap<>();
-    private final Map<String, Consumer<StreamingClient>> onStopHandlers = new HashMap<>();
+    // Event Handlers
     private final RpcResultsEventHandler rpcResultsEventHandler;
     private final CallbackEventHandler callbackEventHandler;
-    private final ZiqniAdminSDKEventBus eventBus;
+
+    // Configuration and Resources
+    private final AdminApiClientConfiguration configuration;
+    private final ZiqniSimpleEventBus eventBus;
     private final String URL;
 
-    private final AtomicLong reconnectCount = new AtomicLong(0);
-    private final AtomicReference<OffsetDateTime> nextReconnect = new AtomicReference<>();
-    private WsClient wsClient;
+    // Stomp Over WebSocket
+    private StompOverWebSocket stompOverWebSocket;
 
-    private final AdminApiClientConfiguration configuration;
-
-    public StreamingClient(AdminApiClientConfiguration configuration, String URL, ZiqniAdminSDKEventBus eventBus) throws Exception {
+    // Constructor
+    public StreamingClient(AdminApiClientConfiguration configuration, String URL, ZiqniSimpleEventBus eventBus) throws Exception {
 
         this.configuration = configuration;
         this.URL = URL;
-        this.eventBus = eventBus;
-        this.webSocketClientTasks = new LinkedBlockingDeque<>();
-        this.websocketSendExecutor = new ThreadPoolExecutor(1, 1, 0L, TimeUnit.MILLISECONDS, webSocketClientTasks);
+
+        this.queuedTasks = new LinkedBlockingQueue<>();
         this.rpcResultsEventHandler = RpcResultsEventHandler.create();
-        this.callbackEventHandler = CallbackEventHandler.create();
+        this.callbackEventHandler = CallbackEventHandler.create(eventBus);
+        this.websocketSendExecutor = new ThreadPoolExecutor(1, 1, 0L, TimeUnit.MILLISECONDS, new LinkedBlockingDeque<>());
 
-        this.eventBus.register(this);
+        this.eventBus = eventBus;
+        this.eventBus.onWSClientConnected(unused -> this.onConnected());
 
-        // implement shutdown hook
-        Runtime.getRuntime().addShutdownHook(new Thread( () -> {
-            this.reconnectCount.set(-1);
-            this.stop(true);
-        }));
+        setupShutdownHook();
     }
 
-    @Subscribe
-    public void onWsClientTransportError(WsClientTransportError wsClientTransportError){
-        this.stop(false).thenAccept(unused -> {
-            if(Objects.nonNull(this.nextReconnect.get()))
-                return;
-
-            scheduleReconnect();
-        });
+    // Setup Methods
+    private void setupShutdownHook() {
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> this.stop(true)));
     }
 
-    private void scheduleReconnect(){
-        if(this.reconnectCount.get() < 0) // Shutdown in progress
-            return;
 
-        this.reconnectCount.incrementAndGet();
-        this.nextReconnect.set(OffsetDateTime.now().plusSeconds(10));
-
-        taskScheduler.schedule(
-                this::attemptReconnect,
-                this.nextReconnect.get().toInstant()
-        );
-    }
-
-    private void attemptReconnect(){
-        try {
-            if(this.reconnectCount.get() < 0) // Shutdown in progress
-                return;
-
-            this.start( connected -> {
-                try {
-                    if (connected) {
-                        this.reconnectCount.set(0);
-                        this.nextReconnect.set(null);
-                    } else {
-                        scheduleReconnect();
-                    }
-                } catch (Throwable throwable) {
-                    scheduleReconnect();
-                    logger.error("Reconnect failed", throwable);
-                }
-            }).exceptionally(throwable -> {
-                logger.warn("Reconnect failed with: {}", throwable.getMessage());
-                scheduleReconnect();
-                return null;
-            });
-        } catch (Throwable throwable) {
-            scheduleReconnect();
-            logger.error("Reconnect failed", throwable);
+    // Task Management
+    private void flushQueuedTasks() {
+        Runnable task;
+        while ((task = queuedTasks.poll()) != null) {
+            websocketSendExecutor.submit(task);
         }
+        logger.info("Flushed queued tasks after reconnection.");
     }
 
-    public CompletableFuture<Void> asyncWebSocketClient(Consumer<WsClient> consumer) {
-        final CompletableFuture<Void> result = new CompletableFuture<>();
-        this.websocketSendExecutor.submit(() -> {
-            try {
-                consumer.accept(this.wsClient);
-                result.complete(null);
-            }catch (Throwable throwable){
-                result.completeExceptionally(throwable);
-            }
-        });
-
-        return result;
-    }
-
-    public <TOUT, TIN> CompletableFuture<TOUT> sendWithApiCallback(String destination, TIN payload){
+    public <TOUT, TIN> CompletableFuture<TOUT> sendWithApiCallback(String destination, TIN payload) {
         final var completableFuture = new CompletableFuture<TOUT>();
 
-        if(Objects.isNull(this.wsClient)
-                || this.wsClient.isNotConnected()
-                || this. websocketSendExecutor.isTerminated()
-                || this. websocketSendExecutor.isShutdown()) {
-            completableFuture.completeExceptionally(new IllegalStateException("The session is not connected"));
+        if (isNotConnected()) {
+            queueTask(() -> sendWithApiCallback(destination, payload).exceptionally(throwable -> {
+                completableFuture.completeExceptionally(throwable);
+                return null;
+            }));
             return completableFuture;
         }
 
-        this.websocketSendExecutor.submit(() -> {
+        websocketSendExecutor.submit(() -> {
             try {
-                RpcResultsEventHandler.submit(
-                        destination,
-                        payload,
-                        completableFuture,
-                        (stompHeaders, tPayload) -> {
-                            if(Objects.nonNull(tPayload))
-                                this.wsClient.prepareMessageToSend(stompHeaders, tPayload).run();
-                            else
-                                logger.warn("Message body is empty {}", stompHeaders);
-                        }
-                );
-            }
-            catch (IllegalStateException t){
-                if(wsClient.isConnected())
-                    logger.error("Broadcast failed",t);
-
-                completableFuture.completeExceptionally(t);
-            }
-            catch (Throwable t) {
+                RpcResultsEventHandler.submit(destination, payload, completableFuture, (stompHeaders, tPayload) -> {
+                    if (Objects.nonNull(tPayload)) {
+                        stompOverWebSocket.prepareMessageToSend(stompHeaders, tPayload).run();
+                    } else {
+                        logger.warn("Message body is empty " + stompHeaders);
+                    }
+                });
+            } catch (Throwable t) {
                 completableFuture.completeExceptionally(t);
             }
         });
 
         return completableFuture;
+    }
+
+    private void queueTask(Runnable task) {
+        logger.warn("Connection unavailable, queuing task.");
+        queuedTasks.add(task);
+    }
+
+    // Lifecycle Methods
+    public CompletableFuture<Boolean> start() throws Exception {
+        validateStateForStart();
+
+        return stompOverWebSocket.connect()
+                .thenApply(unused -> {
+                    onConnectionSuccess();
+                    return true;
+                })
+                .exceptionally(throwable -> {
+                    logger.error("Connection failed: {}", throwable.getMessage(), throwable);
+                    return false;
+                });
+    }
+
+    private void validateStateForStart() throws Exception {
+        if (websocketSendExecutor.isShutdown()) {
+            throw new IllegalStateException("Websocket executor is terminated");
+        }
+        else if (stompOverWebSocket == null) {
+            stompOverWebSocket = new StompOverWebSocket(URL, "x-api-key", configuration.getAccessTokenString(), eventBus);
+        }
+    }
+
+    public <T> CompletableFuture<Void> sendMessage(StompHeaders stompHeaders, T body) {
+        CompletableFuture<Void> result = new CompletableFuture<>();
+
+        if (isNotConnected()) {
+            logger.warn("Connection unavailable, queuing sendMessage task.");
+            queuedTasks.add(() ->
+                    sendMessage(stompHeaders, body).thenAccept(result::complete).exceptionally(throwable -> {
+                        result.completeExceptionally(throwable);
+                        return null;
+                    })
+            );
+            return result;
+        }
+        else {
+            return this.stompOverWebSocket.sendMessage(stompHeaders, body).thenAccept(webSocket -> {
+                if (Objects.isNull(webSocket))
+                    throw new IllegalStateException("The session is not connected");
+            });
+        }
+    }
+
+    private void onConnectionSuccess() {
+        flushQueuedTasks();
+        logger.info("Connection successful");
     }
 
     public CompletableFuture<Void> stop() {
@@ -174,96 +163,45 @@ public class StreamingClient {
 
     public CompletableFuture<Void> stop(boolean executorShutdown) {
         final var out = new CompletableFuture<Void>();
-        if(this.wsClient!=null)
-            this.websocketSendExecutor.submit(() -> {
-                this.wsClient.shutdown();
-                this.wsClient=null;
+
+        if (stompOverWebSocket != null) {
+            websocketSendExecutor.submit(() -> {
+                stompOverWebSocket.shutdown();
+                stompOverWebSocket = null;
                 out.complete(null);
             });
+        }
 
-        if(executorShutdown)
-            this.websocketSendExecutor.shutdown();
+        if (executorShutdown) websocketSendExecutor.shutdown();
 
         return out;
     }
 
-    public CompletableFuture<Boolean> start() throws Exception {
-        return start((started) -> {});
+    // WebSocket State Queries
+    public boolean isConnected() {
+        return Objects.nonNull(stompOverWebSocket) && stompOverWebSocket.isConnected();
     }
 
-    public CompletableFuture<Boolean> start(Consumer<Boolean> onComplete) throws Exception {
-        if(this.websocketSendExecutor.isShutdown() || this.websocketSendExecutor.isTerminated())
-            throw new IllegalStateException("The websocket send executor has been terminated");
-
-        if(this.reconnectCount.get() < 0) // Shutdown in progress
-            throw new IllegalStateException("The client is shutting down");
-
-        if(this.wsClient==null) {
-            this.wsClient = new WsClient(configuration, URL, (integer) -> {}, eventBus);
-            this.wsClient.setTaskScheduler(taskScheduler);
-            this.wsClient.setDefaultHeartbeat(new long[] {1000, 1000});
-        }
-
-        final var result = new CompletableFuture<Boolean>();
-        this.websocketSendExecutor.submit( () -> {
-            this.wsClient.startClient(result).thenApply(isConnected -> {
-                if(isConnected()) {
-                    this.wsClient.subscribe( this.rpcResultsEventHandler);
-                    this.wsClient.subscribe( this.callbackEventHandler );
-                    executeOnStartHandlers();
-                }
-                onComplete.accept(isConnected);
-                return isConnected;
-            });
-        });
-        return result;
+    public boolean isNotConnected() {
+        return !isConnected();
     }
 
-    public void subscribe(EventHandler<?> handler) {
-        this.wsClient.subscribe(handler);
-    }
-
-    public void addOnStopHandler(String key, Consumer<StreamingClient> consumer){
-        this.onStopHandlers.compute( key, (k,v) -> consumer);
-    }
-
-    public void addOnStartHandler(String key, Consumer<StreamingClient> consumer){
-        this.onStartHandlers.compute( key, (k,v) -> consumer);
-    }
-
-    public void executeOnStopHandlers() {
-        this.onStopHandlers.forEach((k, v) ->
-                v.accept(this)
-        );
-    }
-
-    public void executeOnStartHandlers() {
-        this.onStartHandlers.forEach((k, v) ->
-                v.accept(this)
-        );
-    }
-
+    // Accessors
     public CallbackEventHandler getCallbackEventHandler() {
         return callbackEventHandler;
     }
 
-    public boolean isConnected() {
-        return Objects.nonNull(wsClient) && wsClient.isConnected();
+    public ZiqniSimpleEventBus getEventBus() {
+        return eventBus;
     }
 
-    public boolean isNotConnected() {
-        return Objects.isNull(wsClient) || wsClient.isNotConnected();
+    // Connection Handlers
+    private void onConnected() {
+        stompOverWebSocket.subscribe(rpcResultsEventHandler);
+        stompOverWebSocket.subscribe(callbackEventHandler);
     }
 
-    public boolean isConnecting() {
-        return Objects.nonNull(wsClient) && wsClient.isConnecting();
-    }
-
-    public boolean isDisconnecting() {
-        return Objects.nonNull(wsClient) && wsClient.isDisconnecting();
-    }
-
-    public boolean isFailure() {
-        return Objects.nonNull(wsClient) && wsClient.isFailure();
+    public void subscribe(EventHandler handler) {
+        stompOverWebSocket.subscribe(handler);
     }
 }

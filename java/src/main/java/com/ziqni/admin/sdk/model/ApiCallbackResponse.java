@@ -1,11 +1,11 @@
 /*
- * Copyright (c) 2022. ZIQNI LTD registered in England and Wales, company registration number-09693684
+ * Copyright (c) 2024. ZIQNI LTD registered in England and Wales, company registration number-09693684
  */
-package com.ziqni.admin.sdk.streaming;
+package com.ziqni.admin.sdk.model;
 
+import com.ziqni.admin.sdk.streaming.stomp.StompHeaders;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.messaging.simp.stomp.StompHeaders;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -44,7 +44,6 @@ public class ApiCallbackResponse<TIN, TOUT> {
     public Runnable onCallBack(StompHeaders headers, Object response) {
         assert !isEvictable();
         this.evictable = true;
-        logger.debug("handle callback response for sequence [{}] receipt id [{}] headers [{}] and response []", getSequenceNumberAsString(), headers.getReceiptId(), headers.toSingleValueMap());
         return () ->
                 getCompletableFuture().complete((TOUT)response);
     }

@@ -27,7 +27,7 @@ public class ApiClientFactoryUtil {
             final var started = ApiClientFactoryUtil.factory.getStreamingClient().start();
             while (!ApiClientFactoryUtil.factory.getStreamingClient().isConnected()) {
                 Thread.sleep(500);
-                logger.info("Waiting for the streaming client start");
+                logger.info("Waiting for the streaming client to start");
             }
         }
     }

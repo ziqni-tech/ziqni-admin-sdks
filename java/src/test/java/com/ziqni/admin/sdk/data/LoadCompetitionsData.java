@@ -100,10 +100,10 @@ public class LoadCompetitionsData implements CompleteableFutureTestWrapper {
              scoringStrategy.setRecordTimeWhenSumReaches(300D);
              scoringStrategy.setSumBestXOf(100);
 
-             Strategy strategy = new Strategy();
-             strategy.setRankingStrategy(rankingStrategy);
-             strategy.setScoringStrategy(scoringStrategy);
-             strategy.setStrategyType(StrategyType.FIRSTTO);
+//             Strategy strategy = new Strategy();
+//             strategy.setRankingStrategy(rankingStrategy);
+//             strategy.setScoringStrategy(scoringStrategy);
+//             strategy.setStrategyType(StrategyType.FIRSTTO);
 
              CreateContestRequest createContestRequest=new CreateContestRequest();
              createContestRequest.setName("Contest 1");
@@ -189,10 +189,10 @@ public class LoadCompetitionsData implements CompleteableFutureTestWrapper {
             scoringStrategy.setRecordTimeWhenSumReaches(300D);
             scoringStrategy.setSumBestXOf(100);
 
-            Strategy strategy = new Strategy();
-            strategy.setRankingStrategy(rankingStrategy);
-            strategy.setScoringStrategy(scoringStrategy);
-            strategy.setStrategyType(StrategyType.FIRSTTO);
+//            Strategy strategy = new Strategy();
+//            strategy.setRankingStrategy(rankingStrategy);
+//            strategy.setScoringStrategy(scoringStrategy);
+//            strategy.setStrategyType(StrategyType.FIRSTTO);
 
           //  request.setStrategies(strategy);
         }catch (ApiException ex)

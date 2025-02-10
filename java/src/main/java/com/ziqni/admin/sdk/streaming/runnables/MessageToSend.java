@@ -1,9 +1,13 @@
+/*
+ * Copyright (c) 2024. ZIQNI LTD registered in England and Wales, company registration number-09693684
+ */
+
 package com.ziqni.admin.sdk.streaming.runnables;
 
+import com.ziqni.admin.sdk.streaming.stomp.StompHeaders;
+import com.ziqni.admin.sdk.streaming.stomp.StompOverWebSocket;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.messaging.simp.stomp.StompHeaders;
-import org.springframework.messaging.simp.stomp.StompSession;
 
 public final class MessageToSend <T> implements Runnable {
 
@@ -11,18 +15,18 @@ public final class MessageToSend <T> implements Runnable {
 
     private final StompHeaders headers;
     private final T payload;
-    private final StompSession stompSession;
+    private final StompOverWebSocket stomp;
 
-    public MessageToSend(StompHeaders headers, T payload, StompSession stompSession) {
+    public MessageToSend(StompHeaders headers, T payload, StompOverWebSocket stomp) {
         this.headers = headers;
         this.payload = payload;
-        this.stompSession = stompSession;
+        this.stomp = stomp;
     }
 
     @Override
     public void run() {
         try {
-            this.stompSession.send(this.headers, this.payload);
+            this.stomp.sendMessage(this.headers, this.payload);
         }
         catch (IllegalStateException i){
             logger.error("Client is disconnected from the server. {}", i.getMessage());

@@ -29,3 +29,6 @@
 /csharp/.idea/
 /csharp/Ziqni.sln.DotSettings.user
 /openapi/php/generated/
+/java/src/main/java/com/ziqni/admin/sdk/streaming/WsClientOld.java
+/java/src/test/resources/application.properties
+/java/src/main/resources/test-application.properties
