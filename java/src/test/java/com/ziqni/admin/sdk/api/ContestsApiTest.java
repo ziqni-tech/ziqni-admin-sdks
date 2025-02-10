@@ -531,7 +531,7 @@ public class ContestsApiTest implements tests.utils.CompleteableFutureTestWrappe
         final var createResponse = loadData.createTestData(createRequest);
         final var id = createResponse.getResults().get(0).getId();
 
-        final var givenStatus = ContestStateOperations.ACTIVE;
+        final var givenStatus = ContestStateActions.ACTIVE.ACTIVE;
 
         final var given = new UpdateContestStateRequest()
                 .contestId(id)

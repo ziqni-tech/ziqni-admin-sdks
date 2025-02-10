@@ -1,6 +1,6 @@
 
 
-# CompetitionStateActions
+# ContestStateActions
 
 ## Enum
 

@@ -19,7 +19,7 @@ Name | Type | Description | Notes
 **bannerLowResolution** | **String** | A bannerLowResolution id that has been pre uploaded to the system to display for Achievement |  [optional]
 **bannerHighResolution** | **String** | A bannerHighResolution id that has been pre uploaded to the system to display for Achievement |  [optional]
 **scheduling** | [**Scheduling**](Scheduling.md) |  |  [optional]
-**achievementLiveStatus** | **AchievementLiveStatus** |  |  [optional]
+**achievementLiveStatus** | **AchievementStateActions** |  |  [optional]
 **maxNumberOfIssues** | **Integer** | Maximum number of issued achievements |  [optional]
 **constraints** | **List&lt;String&gt;** | Additional constraints |  [optional]
 **achievementDependencies** | [**DependantOn**](DependantOn.md) |  |  [optional]

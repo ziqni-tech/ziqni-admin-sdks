@@ -1,6 +1,6 @@
 
 
-# CompetitionStateActions
+# AchievementStateActions
 
 ## Enum
 
@@ -11,9 +11,9 @@
 
 * `ACTIVE` (value: `"Active"`)
 
-* `PAUSED` (value: `"Paused"`)
-
 * `FINISHED` (value: `"Finished"`)
+
+* `PAUSED` (value: `"Paused"`)
 
 * `FINALISED` (value: `"Finalised"`)
 

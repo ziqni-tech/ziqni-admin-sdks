@@ -24,8 +24,10 @@ Method | HTTP request | Description
 [**getMembersAchievementsDetailsWithHttpInfo**](AchievementsApi.md#getMembersAchievementsDetailsWithHttpInfo) | **GET** /achievements/{id}/members | 
 [**updateAchievements**](AchievementsApi.md#updateAchievements) | **PUT** /achievements | Update Achievements
 [**updateAchievementsWithHttpInfo**](AchievementsApi.md#updateAchievementsWithHttpInfo) | **PUT** /achievements | Update Achievements
-[**updateAchievementsLiveStatus**](AchievementsApi.md#updateAchievementsLiveStatus) | **PUT** /achievements/state | 
-[**updateAchievementsLiveStatusWithHttpInfo**](AchievementsApi.md#updateAchievementsLiveStatusWithHttpInfo) | **PUT** /achievements/state | 
+[**updateAchievementsState**](AchievementsApi.md#updateAchievementsState) | **PUT** /achievements/state | 
+[**updateAchievementsStateWithHttpInfo**](AchievementsApi.md#updateAchievementsStateWithHttpInfo) | **PUT** /achievements/state | 
+[**updateInstantWinsStatus**](AchievementsApi.md#updateInstantWinsStatus) | **PUT** /instant-wins/state | 
+[**updateInstantWinsStatusWithHttpInfo**](AchievementsApi.md#updateInstantWinsStatusWithHttpInfo) | **PUT** /instant-wins/state | 
 
 
 
@@ -1749,9 +1751,9 @@ CompletableFuture<ApiResponse<[**ModelApiResponse**](ModelApiResponse.md)>>
 | **503** | A list of outcomes and/or errors |  -  |
 
 
-## updateAchievementsLiveStatus
+## updateAchievementsState
 
-> CompletableFuture<ModelApiResponse> updateAchievementsLiveStatus(body)
+> CompletableFuture<ModelApiResponse> updateAchievementsState(body)
 
 
 
@@ -1779,12 +1781,12 @@ public class Example {
         OAuth2.setAccessToken("YOUR ACCESS TOKEN");
 
         AchievementsApi apiInstance = new AchievementsApi(defaultClient);
-        List<AchievementLiveStatusRequest> body = Arrays.asList(); // List<AchievementLiveStatusRequest> | Updates the state of the Achievement
+        List<UpdateAchievementStateRequest> body = Arrays.asList(); // List<UpdateAchievementStateRequest> | Updates the state of the Achievement
         try {
-            CompletableFuture<ModelApiResponse> result = apiInstance.updateAchievementsLiveStatus(body);
+            CompletableFuture<ModelApiResponse> result = apiInstance.updateAchievementsState(body);
             System.out.println(result.get());
         } catch (ApiException e) {
-            System.err.println("Exception when calling AchievementsApi#updateAchievementsLiveStatus");
+            System.err.println("Exception when calling AchievementsApi#updateAchievementsState");
             System.err.println("Status code: " + e.getCode());
             System.err.println("Reason: " + e.getResponseBody());
             System.err.println("Response headers: " + e.getResponseHeaders());
@@ -1799,7 +1801,7 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**List&lt;AchievementLiveStatusRequest&gt;**](AchievementLiveStatusRequest.md)| Updates the state of the Achievement | [optional]
+ **body** | [**List&lt;UpdateAchievementStateRequest&gt;**](UpdateAchievementStateRequest.md)| Updates the state of the Achievement | [optional]
 
 ### Return type
 
@@ -1829,9 +1831,9 @@ CompletableFuture<[**ModelApiResponse**](ModelApiResponse.md)>
 | **501** | A list of outcomes and/or errors |  -  |
 | **503** | A list of outcomes and/or errors |  -  |
 
-## updateAchievementsLiveStatusWithHttpInfo
+## updateAchievementsStateWithHttpInfo
 
-> CompletableFuture<ApiResponse<ModelApiResponse>> updateAchievementsLiveStatus updateAchievementsLiveStatusWithHttpInfo(body)
+> CompletableFuture<ApiResponse<ModelApiResponse>> updateAchievementsState updateAchievementsStateWithHttpInfo(body)
 
 
 
@@ -1860,21 +1862,21 @@ public class Example {
         OAuth2.setAccessToken("YOUR ACCESS TOKEN");
 
         AchievementsApi apiInstance = new AchievementsApi(defaultClient);
-        List<AchievementLiveStatusRequest> body = Arrays.asList(); // List<AchievementLiveStatusRequest> | Updates the state of the Achievement
+        List<UpdateAchievementStateRequest> body = Arrays.asList(); // List<UpdateAchievementStateRequest> | Updates the state of the Achievement
         try {
-            CompletableFuture<ApiResponse<ModelApiResponse>> response = apiInstance.updateAchievementsLiveStatusWithHttpInfo(body);
+            CompletableFuture<ApiResponse<ModelApiResponse>> response = apiInstance.updateAchievementsStateWithHttpInfo(body);
             System.out.println("Status code: " + response.get().getStatusCode());
             System.out.println("Response headers: " + response.get().getHeaders());
             System.out.println("Response body: " + response.get().getData());
         } catch (InterruptedException | ExecutionException e) {
             ApiException apiException = (ApiException)e.getCause();
-            System.err.println("Exception when calling AchievementsApi#updateAchievementsLiveStatus");
+            System.err.println("Exception when calling AchievementsApi#updateAchievementsState");
             System.err.println("Status code: " + apiException.getCode());
             System.err.println("Response headers: " + apiException.getResponseHeaders());
             System.err.println("Reason: " + apiException.getResponseBody());
             e.printStackTrace();
         } catch (ApiException e) {
-            System.err.println("Exception when calling AchievementsApi#updateAchievementsLiveStatus");
+            System.err.println("Exception when calling AchievementsApi#updateAchievementsState");
             System.err.println("Status code: " + e.getCode());
             System.err.println("Response headers: " + e.getResponseHeaders());
             System.err.println("Reason: " + e.getResponseBody());
@@ -1889,7 +1891,178 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**List&lt;AchievementLiveStatusRequest&gt;**](AchievementLiveStatusRequest.md)| Updates the state of the Achievement | [optional]
+ **body** | [**List&lt;UpdateAchievementStateRequest&gt;**](UpdateAchievementStateRequest.md)| Updates the state of the Achievement | [optional]
+
+### Return type
+
+CompletableFuture<ApiResponse<[**ModelApiResponse**](ModelApiResponse.md)>>
+
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | A list of outcomes and/or errors |  -  |
+| **202** | Accepted |  -  |
+| **400** | A list of outcomes and/or errors |  -  |
+| **401** | A list of outcomes and/or errors |  -  |
+| **403** | A list of outcomes and/or errors |  -  |
+| **404** | A list of outcomes and/or errors |  -  |
+| **413** | A list of outcomes and/or errors |  -  |
+| **500** | A list of outcomes and/or errors |  -  |
+| **501** | A list of outcomes and/or errors |  -  |
+| **503** | A list of outcomes and/or errors |  -  |
+
+
+## updateInstantWinsStatus
+
+> CompletableFuture<ModelApiResponse> updateInstantWinsStatus(body)
+
+
+
+Manage the state of achievement - Draft, Live, Archived
+
+### Example
+
+```java
+// Import classes:
+import com.ziqni.admin.sdk.ApiClient;
+import com.ziqni.admin.sdk.ApiException;
+import com.ziqni.admin.sdk.Configuration;
+import com.ziqni.admin.sdk.auth.*;
+import com.ziqni.admin.sdk.models.*;
+import com.ziqni.admin.sdk.api.AchievementsApi;
+import java.util.concurrent.CompletableFuture;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://api.ziqni.com");
+        
+        // Configure OAuth2 access token for authorization: OAuth2
+        OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
+        OAuth2.setAccessToken("YOUR ACCESS TOKEN");
+
+        AchievementsApi apiInstance = new AchievementsApi(defaultClient);
+        List<InstantWinStatusRequest> body = Arrays.asList(); // List<InstantWinStatusRequest> | Updates the state of the Achievement
+        try {
+            CompletableFuture<ModelApiResponse> result = apiInstance.updateInstantWinsStatus(body);
+            System.out.println(result.get());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AchievementsApi#updateInstantWinsStatus");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | [**List&lt;InstantWinStatusRequest&gt;**](InstantWinStatusRequest.md)| Updates the state of the Achievement | [optional]
+
+### Return type
+
+CompletableFuture<[**ModelApiResponse**](ModelApiResponse.md)>
+
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | A list of outcomes and/or errors |  -  |
+| **202** | Accepted |  -  |
+| **400** | A list of outcomes and/or errors |  -  |
+| **401** | A list of outcomes and/or errors |  -  |
+| **403** | A list of outcomes and/or errors |  -  |
+| **404** | A list of outcomes and/or errors |  -  |
+| **413** | A list of outcomes and/or errors |  -  |
+| **500** | A list of outcomes and/or errors |  -  |
+| **501** | A list of outcomes and/or errors |  -  |
+| **503** | A list of outcomes and/or errors |  -  |
+
+## updateInstantWinsStatusWithHttpInfo
+
+> CompletableFuture<ApiResponse<ModelApiResponse>> updateInstantWinsStatus updateInstantWinsStatusWithHttpInfo(body)
+
+
+
+Manage the state of achievement - Draft, Live, Archived
+
+### Example
+
+```java
+// Import classes:
+import com.ziqni.admin.sdk.ApiClient;
+import com.ziqni.admin.sdk.ApiException;
+import com.ziqni.admin.sdk.ApiResponse;
+import com.ziqni.admin.sdk.Configuration;
+import com.ziqni.admin.sdk.auth.*;
+import com.ziqni.admin.sdk.models.*;
+import com.ziqni.admin.sdk.api.AchievementsApi;
+import java.util.concurrent.CompletableFuture;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://api.ziqni.com");
+        
+        // Configure OAuth2 access token for authorization: OAuth2
+        OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
+        OAuth2.setAccessToken("YOUR ACCESS TOKEN");
+
+        AchievementsApi apiInstance = new AchievementsApi(defaultClient);
+        List<InstantWinStatusRequest> body = Arrays.asList(); // List<InstantWinStatusRequest> | Updates the state of the Achievement
+        try {
+            CompletableFuture<ApiResponse<ModelApiResponse>> response = apiInstance.updateInstantWinsStatusWithHttpInfo(body);
+            System.out.println("Status code: " + response.get().getStatusCode());
+            System.out.println("Response headers: " + response.get().getHeaders());
+            System.out.println("Response body: " + response.get().getData());
+        } catch (InterruptedException | ExecutionException e) {
+            ApiException apiException = (ApiException)e.getCause();
+            System.err.println("Exception when calling AchievementsApi#updateInstantWinsStatus");
+            System.err.println("Status code: " + apiException.getCode());
+            System.err.println("Response headers: " + apiException.getResponseHeaders());
+            System.err.println("Reason: " + apiException.getResponseBody());
+            e.printStackTrace();
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AchievementsApi#updateInstantWinsStatus");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | [**List&lt;InstantWinStatusRequest&gt;**](InstantWinStatusRequest.md)| Updates the state of the Achievement | [optional]
 
 ### Return type
 

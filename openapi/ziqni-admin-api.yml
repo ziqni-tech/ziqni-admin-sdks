@@ -1,7 +1,7 @@
 openapi: 3.0.2
 info:
   title: ZIQNI Admin API
-  version: 3.0.17
+  version: 3.0.18
   description: |-
     Ziqni Application Services are used to manage and configure spaces.
     
@@ -1062,7 +1062,7 @@ paths:
             schema:
               type: array
               items:
-                $ref: '#/components/schemas/AchievementLiveStatusRequest'
+                $ref: '#/components/schemas/UpdateAchievementStateRequest'
       tags:
         - achievements
       responses:
@@ -1090,7 +1090,7 @@ paths:
         -
           OAuth2:
             - ManageAchievements
-      operationId: updateAchievementsLiveStatus
+      operationId: updateAchievementsState
       description: 'Manage the state of achievement - Draft, Live, Archived'
       x-codegen-request-body-name: body
   /rewards/query:
@@ -8355,6 +8355,436 @@ paths:
       x-codegen-request-body-name: body
       x-vue-item: GoalInfo
       x-vue-list: GoalInfoList
+  /instant-wins/state:
+    put:
+      requestBody:
+        description: Updates the state of the Achievement
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/InstantWinStatusRequest'
+      tags:
+        - achievements
+      responses:
+        '201':
+          $ref: '#/components/responses/ApiResponseBody'
+        '202':
+          description: Accepted
+        '400':
+          $ref: '#/components/responses/ApiResponseBody'
+        '401':
+          $ref: '#/components/responses/ApiResponseBody'
+        '403':
+          $ref: '#/components/responses/ApiResponseBody'
+        '404':
+          $ref: '#/components/responses/ApiResponseBody'
+        '413':
+          $ref: '#/components/responses/ApiResponseBody'
+        '500':
+          $ref: '#/components/responses/ApiResponseBody'
+        '501':
+          $ref: '#/components/responses/ApiResponseBody'
+        '503':
+          $ref: '#/components/responses/ApiResponseBody'
+      security:
+        -
+          OAuth2:
+            - ManageAchievements
+      operationId: updateInstantWinsStatus
+      description: 'Manage the state of achievement - Draft, Live, Archived'
+      x-codegen-request-body-name: body
+  /compute-engines/state:
+    put:
+      requestBody:
+        description: Updates the state of the Competition
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/UpdateComputeEngineStateRequest'
+      tags:
+        - compute-engine
+      responses:
+        '201':
+          $ref: '#/components/responses/ApiResponseBody'
+        '202':
+          description: Accepted
+        '400':
+          $ref: '#/components/responses/ApiResponseBody'
+        '401':
+          $ref: '#/components/responses/ApiResponseBody'
+        '403':
+          $ref: '#/components/responses/ApiResponseBody'
+        '404':
+          $ref: '#/components/responses/ApiResponseBody'
+        '413':
+          $ref: '#/components/responses/ApiResponseBody'
+        '500':
+          $ref: '#/components/responses/ApiResponseBody'
+        '501':
+          $ref: '#/components/responses/ApiResponseBody'
+        '503':
+          $ref: '#/components/responses/ApiResponseBody'
+      security:
+        -
+          OAuth2:
+            - ManageCompetition
+      operationId: updateComputeEnginesState
+      description: Manages the Compute Engines state
+      x-codegen-request-body-name: body
+  /wallets:
+    summary: Manage wallets
+    description: These operations allow you to manage wallets in your project.
+    get:
+      tags:
+        - wallets
+      parameters:
+        -
+          $ref: '#/components/parameters/idQuery'
+        -
+          $ref: '#/components/parameters/limitResults'
+        -
+          $ref: '#/components/parameters/skipResults'
+      responses:
+        '200':
+          $ref: '#/components/responses/WalletResponseBody'
+        '400':
+          $ref: '#/components/responses/WalletResponseBody'
+        '401':
+          $ref: '#/components/responses/WalletResponseBody'
+        '403':
+          $ref: '#/components/responses/WalletResponseBody'
+        '404':
+          $ref: '#/components/responses/WalletResponseBody'
+        '500':
+          $ref: '#/components/responses/WalletResponseBody'
+        '501':
+          $ref: '#/components/responses/WalletResponseBody'
+      security:
+        -
+          OAuth2:
+            - ViewActions
+      operationId: getWallets
+      summary: Get wallets
+      description: >-
+        Returns a list of Wallets. This assumes that wallets  have first been uploaded via a POST
+        request or web console
+      x-codegen-request-body-name: body
+      x-vue-item: Wallet
+      x-vue-list: Wallets
+    put:
+      requestBody:
+        description: Update Wallets in the Ziqni database.
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/UpdateWalletRequest'
+        required: true
+      tags:
+        - wallets
+      responses:
+        '200':
+          $ref: '#/components/responses/ApiResponseBody'
+        '400':
+          $ref: '#/components/responses/ApiResponseBody'
+        '401':
+          $ref: '#/components/responses/ApiResponseBody'
+        '403':
+          $ref: '#/components/responses/ApiResponseBody'
+        '404':
+          $ref: '#/components/responses/ApiResponseBody'
+        '500':
+          $ref: '#/components/responses/ApiResponseBody'
+        '501':
+          $ref: '#/components/responses/ApiResponseBody'
+      security:
+        -
+          OAuth2:
+            - AdminActions
+      operationId: updateWallets
+      summary: Update wallets
+      description: Update existing Wallets in the Ziqni database
+      x-codegen-request-body-name: body
+    post:
+      requestBody:
+        description: Create Wallets in the Ziqni database
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/CreateWalletRequest'
+        required: true
+      tags:
+        - wallets
+      responses:
+        '200':
+          $ref: '#/components/responses/ApiResponseBody'
+        '400':
+          $ref: '#/components/responses/ApiResponseBody'
+        '401':
+          $ref: '#/components/responses/ApiResponseBody'
+        '403':
+          $ref: '#/components/responses/ApiResponseBody'
+        '404':
+          $ref: '#/components/responses/ApiResponseBody'
+        '500':
+          $ref: '#/components/responses/ApiResponseBody'
+        '501':
+          $ref: '#/components/responses/ApiResponseBody'
+      security:
+        -
+          OAuth2:
+            - AdminActions
+      operationId: createWallets
+      summary: Create wallets
+      description: Create new Wallets in the Ziqni database
+      x-codegen-request-body-name: body
+    delete:
+      tags:
+        - wallets
+      parameters:
+        -
+          $ref: '#/components/parameters/idQuery'
+      responses:
+        '200':
+          $ref: '#/components/responses/ApiResponseBody'
+        '400':
+          $ref: '#/components/responses/ApiResponseBody'
+        '401':
+          $ref: '#/components/responses/ApiResponseBody'
+        '403':
+          $ref: '#/components/responses/ApiResponseBody'
+        '404':
+          $ref: '#/components/responses/ApiResponseBody'
+        '500':
+          $ref: '#/components/responses/ApiResponseBody'
+        '501':
+          $ref: '#/components/responses/ApiResponseBody'
+      security:
+        -
+          OAuth2:
+            - AdminActions
+      operationId: deleteWallets
+      summary: Delete wallets
+      description: Delete Wallets for a given identifier specified
+      x-codegen-request-body-name: body
+  /wallet-types:
+    summary: Manage wallet types
+    description: These operations allow you to manage wallet types in your project.
+    get:
+      tags:
+        - wallet-types
+      parameters:
+        -
+          $ref: '#/components/parameters/idQuery'
+        -
+          $ref: '#/components/parameters/limitResults'
+        -
+          $ref: '#/components/parameters/skipResults'
+      responses:
+        '200':
+          $ref: '#/components/responses/WalletTypeResponseBody'
+        '400':
+          $ref: '#/components/responses/WalletTypeResponseBody'
+        '401':
+          $ref: '#/components/responses/WalletTypeResponseBody'
+        '403':
+          $ref: '#/components/responses/WalletTypeResponseBody'
+        '404':
+          $ref: '#/components/responses/WalletTypeResponseBody'
+        '500':
+          $ref: '#/components/responses/WalletTypeResponseBody'
+        '501':
+          $ref: '#/components/responses/WalletTypeResponseBody'
+      security:
+        -
+          OAuth2:
+            - ViewActions
+      operationId: getWalletTypes
+      summary: Get wallet types
+      description: >-
+        Returns a list of Wallet Types. This assumes that wallet types have first been uploaded via a
+        POST request or web console
+      x-codegen-request-body-name: body
+      x-vue-item: WalletType
+      x-vue-list: WalletTypes
+    put:
+      requestBody:
+        description: Update Wallet types in the Ziqni database.
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/UpdateWalletTypeRequest'
+        required: true
+      tags:
+        - wallet-types
+      responses:
+        '200':
+          $ref: '#/components/responses/ApiResponseBody'
+        '400':
+          $ref: '#/components/responses/ApiResponseBody'
+        '401':
+          $ref: '#/components/responses/ApiResponseBody'
+        '403':
+          $ref: '#/components/responses/ApiResponseBody'
+        '404':
+          $ref: '#/components/responses/ApiResponseBody'
+        '500':
+          $ref: '#/components/responses/ApiResponseBody'
+        '501':
+          $ref: '#/components/responses/ApiResponseBody'
+      security:
+        -
+          OAuth2:
+            - AdminActions
+      operationId: updateWalletTypes
+      summary: Update wallet types
+      description: Update existing Wallet types in the Ziqni database
+      x-codegen-request-body-name: body
+    post:
+      requestBody:
+        description: Create Wallet Types in the Ziqni database
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/CreateWalletTypeRequest'
+        required: true
+      tags:
+        - wallet-types
+      responses:
+        '200':
+          $ref: '#/components/responses/ApiResponseBody'
+        '400':
+          $ref: '#/components/responses/ApiResponseBody'
+        '401':
+          $ref: '#/components/responses/ApiResponseBody'
+        '403':
+          $ref: '#/components/responses/ApiResponseBody'
+        '404':
+          $ref: '#/components/responses/ApiResponseBody'
+        '500':
+          $ref: '#/components/responses/ApiResponseBody'
+        '501':
+          $ref: '#/components/responses/ApiResponseBody'
+      security:
+        -
+          OAuth2:
+            - AdminActions
+      operationId: createWalletTypes
+      summary: Create wallet types
+      description: Create new Wallet types in the Ziqni database
+      x-codegen-request-body-name: body
+    delete:
+      tags:
+        - wallet-types
+      parameters:
+        -
+          $ref: '#/components/parameters/idQuery'
+      responses:
+        '200':
+          $ref: '#/components/responses/ApiResponseBody'
+        '400':
+          $ref: '#/components/responses/ApiResponseBody'
+        '401':
+          $ref: '#/components/responses/ApiResponseBody'
+        '403':
+          $ref: '#/components/responses/ApiResponseBody'
+        '404':
+          $ref: '#/components/responses/ApiResponseBody'
+        '500':
+          $ref: '#/components/responses/ApiResponseBody'
+        '501':
+          $ref: '#/components/responses/ApiResponseBody'
+      security:
+        -
+          OAuth2:
+            - AdminActions
+      operationId: deleteWalletTypes
+      summary: Delete wallet types
+      description: Delete Wallet types for a given identifier specified
+      x-codegen-request-body-name: body
+  /wallets/transaction:
+    post:
+      requestBody:
+        description: Manage wallet tranctions  from Ziqni by unique Wallet ID's  using the POST method
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WalletTransactionRequest'
+      tags:
+        - wallets
+      responses:
+        '200':
+          $ref: '#/components/responses/WalletResponseBody'
+        '400':
+          $ref: '#/components/responses/WalletResponseBody'
+        '401':
+          $ref: '#/components/responses/WalletResponseBody'
+        '403':
+          $ref: '#/components/responses/WalletResponseBody'
+        '404':
+          $ref: '#/components/responses/WalletResponseBody'
+        '413':
+          $ref: '#/components/responses/WalletResponseBody'
+        '500':
+          $ref: '#/components/responses/WalletResponseBody'
+        '501':
+          $ref: '#/components/responses/WalletResponseBody'
+        '503':
+          $ref: '#/components/responses/WalletResponseBody'
+      security:
+        -
+          OAuth2:
+            - AdminTransformers
+      operationId: manageWalletTransaction
+      description: ' credit, debit, and transfer transactions from a wallet '
+      x-codegen-request-body-name: body
+  /instant-wins/entrants-info:
+    summary: Get instant wins by query
+    description: This operation allows you to get instant wins in your project using a query.
+    get:
+      tags:
+        - instant-wins
+      parameters:
+        -
+          $ref: '#/components/parameters/idQuery'
+        -
+          $ref: '#/components/parameters/limitResults'
+        -
+          $ref: '#/components/parameters/skipResults'
+      responses:
+        '200':
+          $ref: '#/components/responses/InstantWinMemberResponseBody'
+        '400':
+          $ref: '#/components/responses/InstantWinMemberResponseBody'
+        '401':
+          $ref: '#/components/responses/InstantWinMemberResponseBody'
+        '403':
+          $ref: '#/components/responses/InstantWinMemberResponseBody'
+        '404':
+          $ref: '#/components/responses/InstantWinMemberResponseBody'
+        '500':
+          $ref: '#/components/responses/InstantWinMemberResponseBody'
+        '501':
+          $ref: '#/components/responses/InstantWinMemberResponseBody'
+      security:
+        -
+          OAuth2:
+            - ViewInstantWins
+      operationId: getInstantWinEntrants
+      summary: Get all players eligible to play
+      description: 'Retrieve Instant wins members from Ziqni database by unique Instant win ID''s '
+      x-codegen-request-body-name: body
 components:
   schemas:
     ProductReduced:
@@ -8490,18 +8920,7 @@ components:
           type: string
           example: Dc4swmQBVd51K6gPQqFx
         status:
-          $ref: '#/components/schemas/ContestStateOperations'
-    AchievementLiveStatusRequest:
-      allOf:
-        -
-          $ref: '#/components/schemas/UpdateModelDefault'
-        -
-          required:
-            - status
-          type: object
-          properties:
-            status:
-              $ref: '#/components/schemas/AchievementLiveStatus'
+          $ref: '#/components/schemas/ContestStateActions'
     MemberAchievementCount:
       description: This is the Member Achievement Count model
       allOf:
@@ -9835,12 +10254,6 @@ components:
         - Weekly
         - Monthly
       type: string
-    AchievementLiveStatus:
-      description: A status of the Achievement
-      enum:
-        - Live
-        - Draft
-      type: string
     EventRefType:
       description: Defines an even type attached to the message
       enum:
@@ -10368,7 +10781,7 @@ components:
               type: string
               example: Welcome badge
             achievementLiveStatus:
-              $ref: '#/components/schemas/AchievementLiveStatus'
+              $ref: '#/components/schemas/AchievementStateActions'
             tagsId:
               description: Categorisation of the achievements
               type: array
@@ -15437,17 +15850,6 @@ components:
       x-vue-ops:
         - Create
         - Update
-    ContestStateOperations:
-      description: Operations supported by update contest state action.
-      enum:
-        - Deleted
-        - Ready
-        - Active
-        - Finished
-        - Finalised
-        - Cancelled
-      type: string
-      readOnly: true
     LeaderboardMember:
       required:
         - name
@@ -17664,7 +18066,7 @@ components:
             scheduling:
               $ref: '#/components/schemas/Scheduling'
             achievementLiveStatus:
-              $ref: '#/components/schemas/AchievementLiveStatus'
+              $ref: '#/components/schemas/AchievementStateActions'
             maxNumberOfIssues:
               format: int32
               description: Maximum number of issued achievements
@@ -17982,208 +18384,6 @@ components:
         background:
           description: ''
           type: string
-    CompetitionStateActions:
-      description: Available actions for competition status
-      enum:
-        - Deleted
-        - Ready
-        - Active
-        - Finished
-        - Finalised
-        - Cancelled
-      type: string
-      example: '"Deleted"'
-    InstantWin:
-      description: ''
-      type: object
-      allOf:
-        -
-          required:
-            - instantWinType
-            - tiles
-          type: object
-          properties:
-            name:
-              type: string
-            description:
-              type: string
-            termsAndConditions:
-              type: string
-            constraints:
-              type: array
-              items:
-                type: string
-              example: hasRewards
-            statusCode:
-              format: int32
-              description: integer
-              type: integer
-            instantWinType:
-              description: integer
-              type: integer
-            icon:
-              description: Attachement id for the corresponding icon image.
-              type: string
-            banner:
-              description: Link to the banner
-              type: string
-              example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
-            bannerLowResolution:
-              description: Link to the bannerLowResolution
-              type: string
-              example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
-            bannerHighResolution:
-              description: Link to the bannerHighResolution
-              type: string
-              example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
-            tiles:
-              description: ''
-              type: array
-              items:
-                $ref: '#/components/schemas/InstantWinTile'
-            version:
-              format: int64
-              type: integer
-            style:
-              description: A link link to the cms entry for this objects style sheet
-              type: string
-        -
-          $ref: '#/components/schemas/OptParamModels'
-        -
-          $ref: '#/components/schemas/ModelDefault'
-    CreateInstantWinRequest:
-      description: This is a request for Instant win creation
-      allOf:
-        -
-          $ref: '#/components/schemas/CreateOptParamModels'
-        -
-          required:
-            - name
-            - gridLocation
-          type: object
-          properties:
-            name:
-              type: string
-            description:
-              type: string
-            termsAndConditions:
-              type: string
-            constraints:
-              type: array
-              items:
-                type: string
-              example: hasRewards
-            statusCode:
-              format: int32
-              description: integer
-              type: integer
-            instantWinType:
-              description: integer
-              type: integer
-            icon:
-              description: Attachement id for the corresponding icon image.
-              type: string
-            banner:
-              description: Link to the banner
-              type: string
-              example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
-            bannerLowResolution:
-              description: Link to the bannerLowResolution
-              type: string
-              example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
-            bannerHighResolution:
-              description: Link to the bannerHighResolution
-              type: string
-              example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
-            tiles:
-              description: ''
-              type: array
-              items:
-                $ref: '#/components/schemas/CreateInstantWinTile'
-            translations:
-              type: array
-              items:
-                $ref: '#/components/schemas/Translation'
-            style:
-              description: A link link to the cms entry for this objects style sheet
-              type: string
-      x-vue-create: instantWin
-      x-vue-creator: instantWins
-    UpdateInstantWinRequest:
-      description: This is a request for Instant win update
-      allOf:
-        -
-          $ref: '#/components/schemas/UpdateModelDefault'
-        -
-          $ref: '#/components/schemas/UpdateOptParamModels'
-        -
-          required: []
-          type: object
-          properties:
-            name:
-              type: string
-            description:
-              type: string
-            termsAndConditions:
-              type: string
-            constraints:
-              type: array
-              items:
-                type: string
-              example: hasRewards
-            statusCode:
-              format: int32
-              description: integer
-              type: integer
-            instantWinType:
-              description: integer
-              type: integer
-            icon:
-              description: Attachement id for the corresponding icon image.
-              type: string
-            banner:
-              description: Link to the banner
-              type: string
-              example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
-            bannerLowResolution:
-              description: Link to the bannerLowResolution
-              type: string
-              example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
-            bannerHighResolution:
-              description: Link to the bannerHighResolution
-              type: string
-              example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
-            tiles:
-              description: ''
-              type: array
-              items:
-                $ref: '#/components/schemas/UpdateInstantWinTile'
-            style:
-              description: A link link to the cms entry for this objects style sheet
-              type: string
-      example:
-        id: ziqniModelId
-        metadata:
-          key1: value1
-          key2: value
-        tags:
-          - tagId1
-          - tagId2
-        customFields:
-          customField1: customFieldValue1
-          customField2: customFieldValue2
-        name: name
-        description: description
-        adjustmentFactor: 28.55
-        actionTypeAdjustmentFactors:
-          -
-            adjustmentFactor: 67.71
-            actionTypeId: ziqniModelId
-          -
-            adjustmentFactor: 96.91
-            actionTypeId: ziqniModelId
-      x-vue-update: instantWin
-      x-vue-updater: instantWins
     Product:
       description: This is the Product model
       allOf:
@@ -19657,6 +19857,867 @@ components:
           additionalProperties:
             format: double
             type: number
+    InstantWinStatus:
+      description: A status of the Achievement
+      enum:
+        - Live
+        - Draft
+      type: string
+    InstantWinStatusRequest:
+      allOf:
+        -
+          $ref: '#/components/schemas/UpdateModelDefault'
+        -
+          required:
+            - status
+          type: object
+          properties:
+            status:
+              $ref: '#/components/schemas/InstantWinStatus'
+    CreateInstantWinRequest:
+      description: This is a request for Instant win creation
+      allOf:
+        -
+          $ref: '#/components/schemas/CreateOptParamModels'
+        -
+          required:
+            - name
+            - gridLocation
+          type: object
+          properties:
+            name:
+              type: string
+            description:
+              type: string
+            termsAndConditions:
+              type: string
+            constraints:
+              type: array
+              items:
+                type: string
+              example: hasRewards
+            statusCode:
+              format: int32
+              description: integer
+              type: integer
+            instantWinType:
+              description: integer
+              type: integer
+            icon:
+              description: Attachement id for the corresponding icon image.
+              type: string
+            banner:
+              description: Link to the banner
+              type: string
+              example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
+            bannerLowResolution:
+              description: Link to the bannerLowResolution
+              type: string
+              example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
+            bannerHighResolution:
+              description: Link to the bannerHighResolution
+              type: string
+              example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
+            startDate:
+              format: date-time
+              description: The start date and time of a schedule. ISO8601 timestamp
+              type: string
+              example: '2019-09-25T15:47:00.000+0000'
+            endDate:
+              format: date-time
+              description: The end date and time of a schedule. ISO8601 timestamp
+              type: string
+              example: '2019-09-25T15:47:00.000+0000'
+            tiles:
+              description: ''
+              type: array
+              items:
+                $ref: '#/components/schemas/CreateInstantWinTile'
+            translations:
+              type: array
+              items:
+                $ref: '#/components/schemas/Translation'
+            style:
+              description: A link link to the cms entry for this objects style sheet
+              type: string
+      x-vue-create: instantWin
+      x-vue-creator: instantWins
+    UpdateInstantWinRequest:
+      description: This is a request for Instant win update
+      allOf:
+        -
+          $ref: '#/components/schemas/UpdateModelDefault'
+        -
+          $ref: '#/components/schemas/UpdateOptParamModels'
+        -
+          required: []
+          type: object
+          properties:
+            name:
+              type: string
+            description:
+              type: string
+            termsAndConditions:
+              type: string
+            constraints:
+              type: array
+              items:
+                type: string
+              example: hasRewards
+            statusCode:
+              format: int32
+              description: integer
+              type: integer
+            startDate:
+              format: date-time
+              description: The start date and time of a schedule. ISO8601 timestamp
+              type: string
+              example: '2019-09-25T15:47:00.000+0000'
+            endDate:
+              format: date-time
+              description: The end date and time of a schedule. ISO8601 timestamp
+              type: string
+              example: '2019-09-25T15:47:00.000+0000'
+            instantWinType:
+              description: integer
+              type: integer
+            icon:
+              description: Attachement id for the corresponding icon image.
+              type: string
+            banner:
+              description: Link to the banner
+              type: string
+              example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
+            bannerLowResolution:
+              description: Link to the bannerLowResolution
+              type: string
+              example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
+            bannerHighResolution:
+              description: Link to the bannerHighResolution
+              type: string
+              example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
+            tiles:
+              description: ''
+              type: array
+              items:
+                $ref: '#/components/schemas/UpdateInstantWinTile'
+            style:
+              description: A link link to the cms entry for this objects style sheet
+              type: string
+      example:
+        id: ziqniModelId
+        metadata:
+          key1: value1
+          key2: value
+        tags:
+          - tagId1
+          - tagId2
+        customFields:
+          customField1: customFieldValue1
+          customField2: customFieldValue2
+        name: name
+        description: description
+        adjustmentFactor: 28.55
+        actionTypeAdjustmentFactors:
+          -
+            adjustmentFactor: 67.71
+            actionTypeId: ziqniModelId
+          -
+            adjustmentFactor: 96.91
+            actionTypeId: ziqniModelId
+      x-vue-update: instantWin
+      x-vue-updater: instantWins
+    UpdateComputeEngineStateRequest:
+      allOf:
+        -
+          $ref: '#/components/schemas/UpdateModelDefault'
+        -
+          required:
+            - status
+          type: object
+          properties:
+            status:
+              $ref: '#/components/schemas/ComputeEngineStateActions'
+    ComputeEngineStateActions:
+      description: Available actions for compute engines status
+      enum:
+        - Create
+        - Creating
+        - Created
+        - Start
+        - Starting
+        - Started
+        - Update
+        - Updating
+        - Freeze
+        - Freezing
+        - Frozen
+        - Stop
+        - Stopping
+        - Stopped
+        - Delete
+        - Deleting
+        - Deleted
+      type: string
+      example: '"Deleted"'
+    UpdateAchievementStateRequest:
+      allOf:
+        -
+          $ref: '#/components/schemas/UpdateModelDefault'
+        -
+          required:
+            - status
+          type: object
+          properties:
+            status:
+              $ref: '#/components/schemas/AchievementStateActions'
+    AchievementStateActions:
+      description: Available actions for achievement status
+      enum:
+        - Deleted
+        - Ready
+        - Active
+        - Finished
+        - Paused
+        - Finalised
+        - Cancelled
+      type: string
+    CompetitionStateActions:
+      description: Available actions for competition status
+      enum:
+        - Deleted
+        - Ready
+        - Active
+        - Paused
+        - Finished
+        - Finalised
+        - Cancelled
+      type: string
+      example: '"Deleted"'
+    ContestStateActions:
+      description: Operations supported by update contest state action.
+      enum:
+        - Deleted
+        - Ready
+        - Active
+        - Paused
+        - Finished
+        - Finalised
+        - Cancelled
+      type: string
+      readOnly: true
+    WalletTypeResponse:
+      required:
+        - meta
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/MetaExtended'
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/WalletType'
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
+      example:
+        meta:
+          objectType: some text
+          totalRecords: 26
+          resultCount: 2
+          errorCount: 0
+          limit: 2
+          skip: 0
+        results:
+          -
+            id: ziqniModelId
+            spaceName: ziqniSpaceName
+            created: '2018-02-10T09:30Z'
+            constraints: []
+            description: ''
+            key: ''
+            name: ''
+            unitOfMeasure: ''
+            customFields: {}
+            tags:
+              - ziqniTag
+              - ziqniTag1
+            metadata: {}
+          -
+            id: ziqniModelId
+            spaceName: ziqniSpaceName
+            created: '2018-02-10T09:30Z'
+            constraints: []
+            description: ''
+            key: ''
+            name: ''
+            unitOfMeasure: ''
+            customFields: {}
+            tags:
+              - ziqniTag
+              - ziqniTag1
+            metadata: {}
+        errors:
+          -
+            modelId: some text
+            errorCode: 97
+            message: some text
+            errorAt: 79
+            detail:
+              -
+                modelId: some text
+                errorCode: 68
+                message: some text
+                errorAt: 46
+              -
+                modelId: some text
+                errorCode: 32
+                message: some text
+                errorAt: 87
+          -
+            modelId: some text
+            errorCode: 76
+            message: some text
+            errorAt: 21
+            detail:
+              -
+                modelId: some text
+                errorCode: 91
+                message: some text
+                errorAt: 86
+              -
+                modelId: some text
+                errorCode: 93
+                message: some text
+                errorAt: 48
+    WalletResponse:
+      required:
+        - meta
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/MetaExtended'
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Wallet'
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
+      example:
+        meta:
+          objectType: some text
+          totalRecords: 26
+          resultCount: 2
+          errorCount: 0
+          limit: 2
+          skip: 0
+        results:
+          -
+            id: ziqniModelId
+            spaceName: ziqniSpaceName
+            created: '2018-02-10T09:30Z'
+            constraints: []
+            description: ''
+            key: ''
+            name: ''
+            unitOfMeasure: ''
+            customFields: {}
+            tags:
+              - ziqniTag
+              - ziqniTag1
+            metadata: {}
+          -
+            id: ziqniModelId
+            spaceName: ziqniSpaceName
+            created: '2018-02-10T09:30Z'
+            constraints: []
+            description: ''
+            key: ''
+            name: ''
+            unitOfMeasure: ''
+            customFields: {}
+            tags:
+              - ziqniTag
+              - ziqniTag1
+            metadata: {}
+        errors:
+          -
+            modelId: some text
+            errorCode: 97
+            message: some text
+            errorAt: 79
+            detail:
+              -
+                modelId: some text
+                errorCode: 68
+                message: some text
+                errorAt: 46
+              -
+                modelId: some text
+                errorCode: 32
+                message: some text
+                errorAt: 87
+          -
+            modelId: some text
+            errorCode: 76
+            message: some text
+            errorAt: 21
+            detail:
+              -
+                modelId: some text
+                errorCode: 91
+                message: some text
+                errorAt: 86
+              -
+                modelId: some text
+                errorCode: 93
+                message: some text
+                errorAt: 48
+    CreateWalletRequest:
+      allOf:
+        -
+          $ref: '#/components/schemas/CreateOptParamModels'
+        -
+          required:
+            - name
+            - key
+          type: object
+          properties:
+            walletTypeId:
+              description: wallet type id
+              type: string
+            memberId:
+              description: member id
+              type: string
+              example: Dc4swmQBVd51K6gPQqFx
+            balance:
+              format: double
+              description: Numerical value of the balance that will be added to the wallet
+              type: number
+              example: '1'
+      example:
+        memberId: Test Description
+        walletTypeId: Test Name
+        balance: ziqniModelId
+        metadata: {}
+      x-vue-create: wallet
+      x-vue-creator: wallets
+    CreateWalletTypeRequest:
+      allOf:
+        -
+          $ref: '#/components/schemas/CreateOptParamModels'
+        -
+          required:
+            - name
+            - key
+          type: object
+          properties:
+            currencyCode:
+              description: Currency code example USD
+              type: string
+            currencySymbol:
+              description: Currency symbol example $
+              type: string
+      example:
+        currencyCode: USD
+        currencySymbol: $
+      x-vue-create: walletType
+      x-vue-creator: walletTypes
+    UpdateWalletTypeRequest:
+      allOf:
+        -
+          $ref: '#/components/schemas/UpdateModelDefault'
+        -
+          $ref: '#/components/schemas/UpdateOptParamModels'
+        -
+          required: []
+          type: object
+          properties:
+            id:
+              description: The unique tenant identifier
+              type: string
+            currencySymbol:
+              description: currency symbol example $
+              type: string
+            currencyCode:
+              description: currency code example USD
+              type: string
+      example: {}
+      x-vue-update: walletType
+      x-vue-updater: walletTypes
+    UpdateWalletRequest:
+      allOf:
+        -
+          $ref: '#/components/schemas/UpdateModelDefault'
+        -
+          $ref: '#/components/schemas/UpdateOptParamModels'
+        -
+          required: []
+          type: object
+          properties:
+            id:
+              description: The unique tenant identifier
+              type: string
+            balance:
+              description: balance
+              type: number
+            walletTypeId:
+              description: wallet type id
+              type: string
+            memberId:
+              description: player id
+              type: string
+      example: {}
+      x-vue-update: actionType
+      x-vue-updater: actionTypes
+    Wallet:
+      allOf:
+        -
+          $ref: '#/components/schemas/ModelDefault'
+        -
+          $ref: '#/components/schemas/OptParamModels'
+        -
+          required:
+            - walletTypeId
+            - playerId
+            - balance
+          type: object
+          properties:
+            walletTypeId:
+              description: wallet type id
+              type: string
+              x-vue-disaply-order: 1001
+              x-vue-search-all: true
+              x-vue-search-field: true
+              x-vue-as-string: true
+            memberId:
+              description: player id
+              type: string
+              x-vue-disaply-order: 1002
+              x-vue-search-all: true
+              x-vue-search-field: true
+              x-vue-as-string: true
+            balance:
+              description: balance
+              type: number
+      example:
+        id: ziqniModelId
+        spaceName: ziqniSpaceName
+        created: '2018-02-10T09:30Z'
+        constraints: []
+        description: Test Description
+        key: test_ziqni_key
+        name: Test name
+        unitOfMeasure: ziqniModelId
+        customFields: {}
+        tags:
+          - ziqniTag
+          - ziqniTag1
+        metadata: {}
+      x-vue-getter: wallets
+      x-vue-list: true
+      x-vue-show: true
+      x-vue-sort-by: name
+      x-vue-sort-order: Asc
+      x-vue-limit: 10
+      x-vue-ops:
+        - Create
+        - Update
+      x-vue-section: settings
+    WalletType:
+      allOf:
+        -
+          $ref: '#/components/schemas/ModelDefault'
+        -
+          $ref: '#/components/schemas/OptParamModels'
+        -
+          required:
+            - name
+            - key
+            - unitOfMeasure
+            - constraints
+          type: object
+          properties:
+            currencySymbol:
+              description: Currency symbol example $
+              type: string
+              x-vue-disaply-order: 1001
+              x-vue-search-all: true
+              x-vue-search-field: true
+              x-vue-as-string: true
+            currencyCode:
+              description: Currency code example USD
+              type: string
+              x-vue-disaply-order: 1002
+              x-vue-search-all: true
+              x-vue-search-field: true
+              x-vue-as-string: true
+      example: {}
+      x-vue-getter: walletTypes
+      x-vue-list: true
+      x-vue-show: true
+      x-vue-sort-by: name
+      x-vue-sort-order: Asc
+      x-vue-limit: 10
+      x-vue-ops:
+        - Create
+        - Update
+      x-vue-section: settings
+    WalletTransactionRequest:
+      description: ''
+      type: object
+      properties:
+        amount:
+          description: balance
+          type: number
+        transactionType:
+          description: trnsaction type
+          type: string
+        sourceWalletId:
+          description: The unique wallet identifier
+          type: string
+        targetWalletId:
+          description: The unique wallet identifier
+          type: string
+      example:
+        amount: 42.41
+        transactionType: some text
+        sourceWalletId: some text
+        targetWalletId: some text
+    InstantWinMemberResponse:
+      description: This is the Response for Instant win
+      required:
+        - meta
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/MetaExtended'
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/InstantWinMember'
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
+      example:
+        meta:
+          objectType: some text
+          totalRecords: 26
+          resultCount: 2
+          errorCount: 0
+          limit: 2
+          skip: 0
+        results:
+          -
+            id: ziqniModelId
+            spaceName: ziqniSpaceName
+            created: '2018-02-10T09:30Z'
+            productRefId: '10002'
+            name: test1
+            adjustmentFactor: '1'
+            actionTypeAdjustmentFactors:
+              -
+                adjustmentFactor: 67.71
+                actionTypeId: ziqniModelId
+              -
+                adjustmentFactor: 96.91
+                actionTypeId: ziqniModelId
+            customFields:
+              customField1: customFieldValue1
+              customField2: customFieldValue2
+            metadata:
+              key1: value1
+              key2: value
+            tags:
+              - tagId1
+              - tagId2
+            translations:
+              -
+                languageKey: csb
+                translations:
+                  -
+                    fieldName: name
+                    text: test1
+              -
+                languageKey: den
+                translations:
+                  -
+                    fieldName: name
+                    text: test-temp
+              -
+                languageKey: kmb
+                translations:
+                  -
+                    fieldName: name
+                    text: Level-Up
+          -
+            id: ziqniModelId
+            spaceName: ziqniSpaceName
+            created: '2018-02-10T09:30Z'
+            productRefId: '10002'
+            name: test1
+            adjustmentFactor: '1'
+            actionTypeAdjustmentFactors:
+              -
+                adjustmentFactor: 67.71
+                actionTypeId: ziqniModelId
+              -
+                adjustmentFactor: 96.91
+                actionTypeId: ziqniModelId
+            customFields:
+              customField1: customFieldValue1
+              customField2: customFieldValue2
+            metadata:
+              key1: value1
+              key2: value
+            tags:
+              - tagId1
+              - tagId2
+            translations:
+              -
+                languageKey: csb
+                translations:
+                  -
+                    fieldName: name
+                    text: test1
+              -
+                languageKey: den
+                translations:
+                  -
+                    fieldName: name
+                    text: test-temp
+              -
+                languageKey: kmb
+                translations:
+                  -
+                    fieldName: name
+                    text: Level-Up
+        errors:
+          -
+            modelId: some text
+            errorCode: 78
+            message: some text
+            errorAt: 90
+            detail:
+              -
+                modelId: some text
+                errorCode: 90
+                message: some text
+                errorAt: 24
+              -
+                modelId: some text
+                errorCode: 52
+                message: some text
+                errorAt: 45
+          -
+            modelId: some text
+            errorCode: 55
+            message: some text
+            errorAt: 64
+            detail:
+              -
+                modelId: some text
+                errorCode: 72
+                message: some text
+                errorAt: 56
+              -
+                modelId: some text
+                errorCode: 56
+                message: some text
+                errorAt: 90
+    InstantWinMember:
+      description: ''
+      type: object
+      allOf:
+        -
+          required:
+            - memberId
+          type: object
+          properties:
+            memberId:
+              description: member
+              type: string
+            spinsLeft:
+              description: spins left to play
+              type: integer
+    InstantWin:
+      description: ''
+      type: object
+      allOf:
+        -
+          required:
+            - instantWinType
+            - tiles
+          type: object
+          properties:
+            name:
+              type: string
+            description:
+              type: string
+            termsAndConditions:
+              type: string
+            constraints:
+              type: array
+              items:
+                type: string
+              example: hasRewards
+            statusCode:
+              format: int32
+              description: integer
+              type: integer
+            instantWinType:
+              description: integer
+              type: integer
+            playedCount:
+              description: integer
+              type: integer
+            active:
+              description: if instant win is active
+              type: boolean
+            icon:
+              description: Attachement id for the corresponding icon image.
+              type: string
+            banner:
+              description: Link to the banner
+              type: string
+              example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
+            bannerLowResolution:
+              description: Link to the bannerLowResolution
+              type: string
+              example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
+            bannerHighResolution:
+              description: Link to the bannerHighResolution
+              type: string
+              example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
+            tiles:
+              description: ''
+              type: array
+              items:
+                $ref: '#/components/schemas/InstantWinTile'
+            startDate:
+              format: date-time
+              description: The start date and time of a schedule. ISO8601 timestamp
+              type: string
+              example: '2019-09-25T15:47:00.000+0000'
+            endDate:
+              format: date-time
+              description: The end date and time of a schedule. ISO8601 timestamp
+              type: string
+              example: '2019-09-25T15:47:00.000+0000'
+            version:
+              format: int64
+              type: integer
+            style:
+              description: A link link to the cms entry for this objects style sheet
+              type: string
+        -
+          $ref: '#/components/schemas/OptParamModels'
+        -
+          $ref: '#/components/schemas/ModelDefault'
   responses:
     ApiResponseBody:
       content:
@@ -20819,6 +21880,208 @@ components:
             Example:
               $ref: '#/components/examples/GetErrorResponse'
       description: A list of messages and/or errors
+    WalletTypeResponseBody:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/WalletTypeResponse'
+          examples:
+            Example Response:
+              value:
+                meta:
+                  objectType: some text
+                  totalRecords: 26
+                  resultCount: 2
+                  errorCount: 0
+                  limit: 2
+                  skip: 0
+                results:
+                  -
+                    id: ziqniModelId
+                    spaceName: ziqniSpaceName
+                    created: '2018-02-10T09:30Z'
+                    constraints: []
+                    description: ''
+                    key: ''
+                    name: ''
+                    unitOfMeasure: ''
+                    customFields: {}
+                    tags:
+                      - ziqniTag
+                      - ziqniTag1
+                    metadata: {}
+                  -
+                    id: ziqniModelId
+                    spaceName: ziqniSpaceName
+                    created: '2018-02-10T09:30Z'
+                    constraints: []
+                    description: ''
+                    key: ''
+                    name: ''
+                    unitOfMeasure: ''
+                    customFields: {}
+                    tags:
+                      - ziqniTag
+                      - ziqniTag1
+                    metadata: {}
+                errors:
+                  -
+                    modelId: some text
+                    errorCode: 97
+                    message: some text
+                    errorAt: 79
+                    detail:
+                      -
+                        modelId: some text
+                        errorCode: 68
+                        message: some text
+                        errorAt: 46
+                      -
+                        modelId: some text
+                        errorCode: 32
+                        message: some text
+                        errorAt: 87
+                  -
+                    modelId: some text
+                    errorCode: 76
+                    message: some text
+                    errorAt: 21
+                    detail:
+                      -
+                        modelId: some text
+                        errorCode: 91
+                        message: some text
+                        errorAt: 86
+                      -
+                        modelId: some text
+                        errorCode: 93
+                        message: some text
+                        errorAt: 48
+      description: A list of action types and/or errors
+    WalletResponseBody:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/WalletResponse'
+          examples:
+            Example Response:
+              value:
+                meta:
+                  objectType: some text
+                  totalRecords: 26
+                  resultCount: 2
+                  errorCount: 0
+                  limit: 2
+                  skip: 0
+                results:
+                  -
+                    id: ziqniModelId
+                    spaceName: ziqniSpaceName
+                    created: '2018-02-10T09:30Z'
+                    constraints: []
+                    description: ''
+                    key: ''
+                    name: ''
+                    unitOfMeasure: ''
+                    customFields: {}
+                    tags:
+                      - ziqniTag
+                      - ziqniTag1
+                    metadata: {}
+                  -
+                    id: ziqniModelId
+                    spaceName: ziqniSpaceName
+                    created: '2018-02-10T09:30Z'
+                    constraints: []
+                    description: ''
+                    key: ''
+                    name: ''
+                    unitOfMeasure: ''
+                    customFields: {}
+                    tags:
+                      - ziqniTag
+                      - ziqniTag1
+                    metadata: {}
+                errors:
+                  -
+                    modelId: some text
+                    errorCode: 97
+                    message: some text
+                    errorAt: 79
+                    detail:
+                      -
+                        modelId: some text
+                        errorCode: 68
+                        message: some text
+                        errorAt: 46
+                      -
+                        modelId: some text
+                        errorCode: 32
+                        message: some text
+                        errorAt: 87
+                  -
+                    modelId: some text
+                    errorCode: 76
+                    message: some text
+                    errorAt: 21
+                    detail:
+                      -
+                        modelId: some text
+                        errorCode: 91
+                        message: some text
+                        errorAt: 86
+                      -
+                        modelId: some text
+                        errorCode: 93
+                        message: some text
+                        errorAt: 48
+      description: A list of action types and/or errors
+    InstantWinMemberResponseBody:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/InstantWinMemberResponse'
+          examples:
+            Example:
+              value:
+                meta: {}
+                results:
+                  - {}
+                  - {}
+                errors:
+                  -
+                    modelId: some text
+                    errorCode: 96
+                    message: some text
+                    errorAt: 98
+                    detail:
+                      -
+                        modelId: some text
+                        errorCode: 96
+                        message: some text
+                        errorAt: 89
+                      -
+                        modelId: some text
+                        errorCode: 34
+                        message: some text
+                        errorAt: 87
+                  -
+                    modelId: some text
+                    errorCode: 75
+                    message: some text
+                    errorAt: 39
+                    detail:
+                      -
+                        modelId: some text
+                        errorCode: 10
+                        message: some text
+                        errorAt: 98
+                      -
+                        modelId: some text
+                        errorCode: 56
+                        message: some text
+                        errorAt: 92
+      description: A list of Instant wins and/or errors
   parameters:
     spaceName:
       name: spaceName
@@ -21062,6 +22325,17 @@ tags:
   -
     name: compute-engine
     description: Perform operations on Compute Engine
+  -
+    name: wallet-types
+    description: Perform REST operations on Wallet Types
+  -
+    name: wallets
+    description: Perform REST operations on Wallets
+  -
+    name: instant-wins
+    description: |-
+      
+      Perform REST operations on instant win
 externalDocs:
   description: Find out more about Ziqni
   url: 'https://www.ziqni.com'
