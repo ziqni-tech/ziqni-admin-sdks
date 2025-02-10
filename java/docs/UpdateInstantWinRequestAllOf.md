@@ -12,6 +12,8 @@ Name | Type | Description | Notes
 **termsAndConditions** | **String** |  |  [optional]
 **constraints** | **List&lt;String&gt;** |  |  [optional]
 **statusCode** | **Integer** | integer |  [optional]
+**startDate** | **OffsetDateTime** | The start date and time of a schedule. ISO8601 timestamp |  [optional]
+**endDate** | **OffsetDateTime** | The end date and time of a schedule. ISO8601 timestamp |  [optional]
 **instantWinType** | **Integer** | integer |  [optional]
 **icon** | **String** | Attachement id for the corresponding icon image. |  [optional]
 **banner** | **String** | Link to the banner |  [optional]

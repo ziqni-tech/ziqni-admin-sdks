@@ -11,6 +11,8 @@
 
 * `ACTIVE` (value: `"Active"`)
 
+* `PAUSED` (value: `"Paused"`)
+
 * `FINISHED` (value: `"Finished"`)
 
 * `FINALISED` (value: `"Finalised"`)

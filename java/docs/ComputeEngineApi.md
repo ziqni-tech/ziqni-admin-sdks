@@ -18,6 +18,8 @@ Method | HTTP request | Description
 [**getComputeEnginesByQueryWithHttpInfo**](ComputeEngineApi.md#getComputeEnginesByQueryWithHttpInfo) | **POST** /compute-engines/query | 
 [**updateComputeEngines**](ComputeEngineApi.md#updateComputeEngines) | **PUT** /compute-engines | 
 [**updateComputeEnginesWithHttpInfo**](ComputeEngineApi.md#updateComputeEnginesWithHttpInfo) | **PUT** /compute-engines | 
+[**updateComputeEnginesState**](ComputeEngineApi.md#updateComputeEnginesState) | **PUT** /compute-engines/state | 
+[**updateComputeEnginesStateWithHttpInfo**](ComputeEngineApi.md#updateComputeEnginesStateWithHttpInfo) | **PUT** /compute-engines/state | 
 
 
 
@@ -1202,6 +1204,177 @@ CompletableFuture<ApiResponse<[**ModelApiResponse**](ModelApiResponse.md)>>
 |-------------|-------------|------------------|
 | **200** | A list of outcomes and/or errors |  -  |
 | **202** | A list of outcomes and/or errors |  -  |
+| **400** | A list of outcomes and/or errors |  -  |
+| **401** | A list of outcomes and/or errors |  -  |
+| **403** | A list of outcomes and/or errors |  -  |
+| **404** | A list of outcomes and/or errors |  -  |
+| **413** | A list of outcomes and/or errors |  -  |
+| **500** | A list of outcomes and/or errors |  -  |
+| **501** | A list of outcomes and/or errors |  -  |
+| **503** | A list of outcomes and/or errors |  -  |
+
+
+## updateComputeEnginesState
+
+> CompletableFuture<ModelApiResponse> updateComputeEnginesState(body)
+
+
+
+Manages the Compute Engines state
+
+### Example
+
+```java
+// Import classes:
+import com.ziqni.admin.sdk.ApiClient;
+import com.ziqni.admin.sdk.ApiException;
+import com.ziqni.admin.sdk.Configuration;
+import com.ziqni.admin.sdk.auth.*;
+import com.ziqni.admin.sdk.models.*;
+import com.ziqni.admin.sdk.api.ComputeEngineApi;
+import java.util.concurrent.CompletableFuture;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://api.ziqni.com");
+        
+        // Configure OAuth2 access token for authorization: OAuth2
+        OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
+        OAuth2.setAccessToken("YOUR ACCESS TOKEN");
+
+        ComputeEngineApi apiInstance = new ComputeEngineApi(defaultClient);
+        List<UpdateComputeEngineStateRequest> body = Arrays.asList(); // List<UpdateComputeEngineStateRequest> | Updates the state of the Competition
+        try {
+            CompletableFuture<ModelApiResponse> result = apiInstance.updateComputeEnginesState(body);
+            System.out.println(result.get());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ComputeEngineApi#updateComputeEnginesState");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | [**List&lt;UpdateComputeEngineStateRequest&gt;**](UpdateComputeEngineStateRequest.md)| Updates the state of the Competition | [optional]
+
+### Return type
+
+CompletableFuture<[**ModelApiResponse**](ModelApiResponse.md)>
+
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | A list of outcomes and/or errors |  -  |
+| **202** | Accepted |  -  |
+| **400** | A list of outcomes and/or errors |  -  |
+| **401** | A list of outcomes and/or errors |  -  |
+| **403** | A list of outcomes and/or errors |  -  |
+| **404** | A list of outcomes and/or errors |  -  |
+| **413** | A list of outcomes and/or errors |  -  |
+| **500** | A list of outcomes and/or errors |  -  |
+| **501** | A list of outcomes and/or errors |  -  |
+| **503** | A list of outcomes and/or errors |  -  |
+
+## updateComputeEnginesStateWithHttpInfo
+
+> CompletableFuture<ApiResponse<ModelApiResponse>> updateComputeEnginesState updateComputeEnginesStateWithHttpInfo(body)
+
+
+
+Manages the Compute Engines state
+
+### Example
+
+```java
+// Import classes:
+import com.ziqni.admin.sdk.ApiClient;
+import com.ziqni.admin.sdk.ApiException;
+import com.ziqni.admin.sdk.ApiResponse;
+import com.ziqni.admin.sdk.Configuration;
+import com.ziqni.admin.sdk.auth.*;
+import com.ziqni.admin.sdk.models.*;
+import com.ziqni.admin.sdk.api.ComputeEngineApi;
+import java.util.concurrent.CompletableFuture;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://api.ziqni.com");
+        
+        // Configure OAuth2 access token for authorization: OAuth2
+        OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
+        OAuth2.setAccessToken("YOUR ACCESS TOKEN");
+
+        ComputeEngineApi apiInstance = new ComputeEngineApi(defaultClient);
+        List<UpdateComputeEngineStateRequest> body = Arrays.asList(); // List<UpdateComputeEngineStateRequest> | Updates the state of the Competition
+        try {
+            CompletableFuture<ApiResponse<ModelApiResponse>> response = apiInstance.updateComputeEnginesStateWithHttpInfo(body);
+            System.out.println("Status code: " + response.get().getStatusCode());
+            System.out.println("Response headers: " + response.get().getHeaders());
+            System.out.println("Response body: " + response.get().getData());
+        } catch (InterruptedException | ExecutionException e) {
+            ApiException apiException = (ApiException)e.getCause();
+            System.err.println("Exception when calling ComputeEngineApi#updateComputeEnginesState");
+            System.err.println("Status code: " + apiException.getCode());
+            System.err.println("Response headers: " + apiException.getResponseHeaders());
+            System.err.println("Reason: " + apiException.getResponseBody());
+            e.printStackTrace();
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ComputeEngineApi#updateComputeEnginesState");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | [**List&lt;UpdateComputeEngineStateRequest&gt;**](UpdateComputeEngineStateRequest.md)| Updates the state of the Competition | [optional]
+
+### Return type
+
+CompletableFuture<ApiResponse<[**ModelApiResponse**](ModelApiResponse.md)>>
+
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | A list of outcomes and/or errors |  -  |
+| **202** | Accepted |  -  |
 | **400** | A list of outcomes and/or errors |  -  |
 | **401** | A list of outcomes and/or errors |  -  |
 | **403** | A list of outcomes and/or errors |  -  |
