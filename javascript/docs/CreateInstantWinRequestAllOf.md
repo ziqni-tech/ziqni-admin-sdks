@@ -14,6 +14,8 @@ Name | Type | Description | Notes
 **banner** | **String** | Link to the banner | [optional] 
 **bannerLowResolution** | **String** | Link to the bannerLowResolution | [optional] 
 **bannerHighResolution** | **String** | Link to the bannerHighResolution | [optional] 
+**startDate** | **Date** | The start date and time of a schedule. ISO8601 timestamp | [optional] 
+**endDate** | **Date** | The end date and time of a schedule. ISO8601 timestamp | [optional] 
 **tiles** | [**[CreateInstantWinTile]**](CreateInstantWinTile.md) |  | [optional] 
 **translations** | [**[Translation]**](Translation.md) |  | [optional] 
 **style** | **String** | A link link to the cms entry for this objects style sheet | [optional] 

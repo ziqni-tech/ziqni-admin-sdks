@@ -5,6 +5,6 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **contestId** | **String** | A unique identifier of a Contest | [optional] 
-**status** | [**ContestStateOperations**](ContestStateOperations.md) |  | [optional] 
+**status** | [**ContestStateActions**](ContestStateActions.md) |  | [optional] 
 
 
