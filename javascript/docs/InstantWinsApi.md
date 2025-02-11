@@ -7,6 +7,7 @@ Method | HTTP request | Description
 [**createInstantWins**](InstantWinsApi.md#createInstantWins) | **POST** /instant-wins | Create instant wins
 [**deleteInstantWins**](InstantWinsApi.md#deleteInstantWins) | **DELETE** /instant-wins | Delete instant wins
 [**deleteInstantWinsByQuery**](InstantWinsApi.md#deleteInstantWinsByQuery) | **POST** /instant-wins/delete | Delete instant-wins by query
+[**getInstantWinEntrants**](InstantWinsApi.md#getInstantWinEntrants) | **GET** /instant-wins/entrants-info | Get all players eligible to play
 [**getInstantWins**](InstantWinsApi.md#getInstantWins) | **GET** /instant-wins | Get instant wins
 [**getInstantWinsByQuery**](InstantWinsApi.md#getInstantWinsByQuery) | **POST** /instant-wins/query | Get instant wins by query
 [**updateInstantWins**](InstantWinsApi.md#updateInstantWins) | **PUT** /instant-wins | Update instant wins
@@ -161,6 +162,61 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json
+- **Accept**: application/json
+
+
+## getInstantWinEntrants
+
+> InstantWinMemberResponse getInstantWinEntrants(opts)
+
+Get all players eligible to play
+
+Retrieve Instant wins members from Ziqni database by unique Instant win ID&#39;s 
+
+### Example
+
+```javascript
+import @ZiqniTechAdminApiClient from '@ziqni-tech/admin-api-client';
+let defaultClient = @ZiqniTechAdminApiClient.ApiClient.instance;
+// Configure OAuth2 access token for authorization: OAuth2
+let OAuth2 = defaultClient.authentications['OAuth2'];
+OAuth2.accessToken = 'YOUR ACCESS TOKEN';
+
+let apiInstance = new @ZiqniTechAdminApiClient.InstantWinsApi();
+let opts = {
+  'id': ["null"], // [String] | The unique identifiers of the resources
+  'limit': 56, // Number | Limit the returned total records found
+  'skip': 56 // Number | Skip the returned records found and return the next batch of records
+};
+apiInstance.getInstantWinEntrants(opts, (error, data, response) => {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+});
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | [**[String]**](String.md)| The unique identifiers of the resources | [optional] 
+ **limit** | **Number**| Limit the returned total records found | [optional] 
+ **skip** | **Number**| Skip the returned records found and return the next batch of records | [optional] 
+
+### Return type
+
+[**InstantWinMemberResponse**](InstantWinMemberResponse.md)
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
 - **Accept**: application/json
 
 
