@@ -7,7 +7,9 @@
     <groupId>com.ziqni</groupId>
     <artifactId>ziqni-admin-sdk</artifactId>
     <name>ZIQNI Admin SDK Java Client</name>
-    <version>1.0.26</version>
+
+    <version>1.0.24</version>
+
     <packaging>jar</packaging>
     <url>https://github.com/ziqni-tech/ziqni-admin-sdks</url>
     <description>ZIQNI Admin SDK Java Client</description>
@@ -46,34 +48,46 @@
     </distributionManagement>
 
     <properties>
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
-
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <build-helper-maven-plugin.version>3.6.0</build-helper-maven-plugin.version>
 
-        <jackson-databind-nullable-version>0.2.1</jackson-databind-nullable-version>
-        <javax-annotation-version>1.3.2</javax-annotation-version>
-        <javax-ws-rs-api-version>2.1.1</javax-ws-rs-api-version>
-        <junit-version>5.4.0</junit-version>
-        <spring-version>5.3.11</spring-version>
-        <javax-version>1.1</javax-version>
-        <jetty-version>9.4.51.v20230217</jetty-version>
-        <junit-version>5.4.0</junit-version>
-        <logback.version>1.2.11</logback.version>
-        <keycloak.version>18.0.0</keycloak.version>
-        <swagger-annotations-version>1.5.22</swagger-annotations-version>
-        <jackson.version>2.12.4</jackson.version>
-        <jackson-datatype-jsr310.version>2.12.3</jackson-datatype-jsr310.version>
-        <jackson-databind-nullable>0.2.1</jackson-databind-nullable>
-        <commons-configuration2.version>2.7</commons-configuration2.version>
-        <spring-version>5.3.11</spring-version>
-        <jupiter.version>5.7.0</jupiter.version>
-        <caffeine.version>3.1.1</caffeine.version>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
         <maven.compiler.plugin.version>2.3.2</maven.compiler.plugin.version>
         <maven.shade.plugin.version>3.2.4</maven.shade.plugin.version>
+
+        <jakarta-annotation-version>1.3.2</jakarta-annotation-version>
+        <jakarta-ws-rs-api-version>4.0.0</jakarta-ws-rs-api-version>
+        <jakarta-version>2.2.0</jakarta-version>
+
+        <jackson-databind-nullable-version>0.2.1</jackson-databind-nullable-version>
+        <jackson.version>2.15.2</jackson.version>
+        <jackson-datatype-jsr310.version>2.12.3</jackson-datatype-jsr310.version>
+        <jackson-databind-nullable>0.2.1</jackson-databind-nullable>
+
+        <commons-configuration2.version>2.11.0</commons-configuration2.version>
+        <commons-fileupload.version>1.5</commons-fileupload.version>
+        <commons-beanutils.version>1.9.4</commons-beanutils.version>
+        <commons-io.version>2.17.0</commons-io.version>
+
+        <caffeine.version>3.1.8</caffeine.version>
+        <keycloak.version>26.0.2</keycloak.version>
+        <com.auth0.java-jwt.version>3.18.1</com.auth0.java-jwt.version>
+        <swagger-annotations-version>1.5.22</swagger-annotations-version>
+        <com.google.code.findbugs.jsr305.version>3.0.2</com.google.code.findbugs.jsr305.version>
+
+        <logback.version>1.5.12</logback.version>
+        <jupiter.version>5.7.0</jupiter.version>
     </properties>
 
     <dependencies>
+        <!-- https://mvnrepository.com/artifact/com.google.code.findbugs/jsr305 -->
+        <dependency>
+            <groupId>com.google.code.findbugs</groupId>
+            <artifactId>jsr305</artifactId>
+            <version>${com.google.code.findbugs.jsr305.version}</version>
+        </dependency>
+
         <dependency>
             <groupId>com.github.ben-manes.caffeine</groupId>
             <artifactId>caffeine</artifactId>
@@ -85,11 +99,24 @@
             <artifactId>jackson-datatype-jsr310</artifactId>
             <version>${jackson-datatype-jsr310.version}</version>
         </dependency>
+
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
-            <version>${jackson.version}</version>
+            <version>${jackson.version}</version> <!-- or a later stable version -->
         </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+            <version>${jackson.version}</version> <!-- or a later stable version -->
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+            <version>${jackson.version}</version> <!-- or a later stable version -->
+        </dependency>
+
+
         <dependency>
             <groupId>io.swagger</groupId>
             <artifactId>swagger-annotations</artifactId>
@@ -108,19 +135,10 @@
             <version>${logback.version}</version>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/javax.ws.rs/javax.ws.rs-api -->
         <dependency>
-            <groupId>javax.ws.rs</groupId>
-            <artifactId>javax.ws.rs-api</artifactId>
-            <version>${javax-ws-rs-api-version}</version>
-        </dependency>
-
-        <!-- Need to replace in com.ziqni.sdk.admin.streaming.WebSocketClient -->
-        <!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
-        <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
-            <version>30.1.1-jre</version>
+            <groupId>jakarta.ws.rs</groupId>
+            <artifactId>jakarta.ws.rs-api</artifactId>
+            <version>${jakarta-ws-rs-api-version}</version>
         </dependency>
 
         <dependency>
@@ -129,61 +147,45 @@
             <version>${jackson-databind-nullable-version}</version>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-configuration2 -->
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-configuration2</artifactId>
             <version>${commons-configuration2.version}</version>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/com.amazonaws/aws-java-sdk-ssm -->
         <dependency>
-            <groupId>com.amazonaws</groupId>
-            <artifactId>aws-java-sdk-ssm</artifactId>
-            <version>1.12.243</version>
+            <groupId>jakarta.websocket</groupId>
+            <artifactId>jakarta.websocket-api</artifactId>
+            <version>${jakarta-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.websocket</groupId>
+            <artifactId>jakarta.websocket-client-api</artifactId>
+            <version>${jakarta-version}</version>
         </dependency>
 
-
-        <!-- web sockets-->
-        <dependency>
-            <groupId>org.eclipse.jetty.websocket</groupId>
-            <artifactId>websocket-client</artifactId>
-            <version>${jetty-version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>javax.websocket</groupId>
-            <artifactId>javax.websocket-api</artifactId>
-            <version>${javax-version}</version>
-        </dependency>
-        <dependency>
-            <groupId>javax.websocket</groupId>
-            <artifactId>javax.websocket-client-api</artifactId>
-            <version>${javax-version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-messaging</artifactId>
-            <version>${spring-version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-websocket</artifactId>
-            <version>${spring-version}</version>
-        </dependency>
-
-        <!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
         <dependency>
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
-            <version>2.11.0</version>
+            <version>${commons-io.version}</version>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/commons-fileupload/commons-fileupload -->
         <dependency>
             <groupId>commons-fileupload</groupId>
             <artifactId>commons-fileupload</artifactId>
-            <version>1.2</version>
+            <version>${commons-fileupload.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>commons-beanutils</groupId>
+            <artifactId>commons-beanutils</artifactId>
+            <version>${commons-beanutils.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.auth0</groupId>
+            <artifactId>java-jwt</artifactId>
+            <version>${com.auth0.java-jwt.version}</version>
         </dependency>
 
         <!-- TEST Dependencies -->
@@ -192,38 +194,33 @@
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
             <version>${jupiter.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.auth0</groupId>
-            <artifactId>java-jwt</artifactId>
-            <version>3.8.3</version>
-        </dependency>
-
-        <dependency>
-            <groupId>commons-beanutils</groupId>
-            <artifactId>commons-beanutils</artifactId>
-            <version>1.9.3</version>
-        </dependency>
-
-        <!-- https://mvnrepository.com/artifact/commons-fileupload/commons-fileupload -->
-        <dependency>
-            <groupId>commons-fileupload</groupId>
-            <artifactId>commons-fileupload</artifactId>
-            <version>1.2</version>
-<!--            <scope>test</scope>-->
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.datatype</groupId>
-            <artifactId>jackson-datatype-jsr310</artifactId>
-            <version>2.17.1</version>
-            <scope>compile</scope>
+            <scope>test</scope>
         </dependency>
 
     </dependencies>
 
     <build>
         <plugins>
+
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <version>${build-helper-maven-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>add-source</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>add-source</goal>
+                        </goals>
+                        <configuration>
+                            <sources>
+                                <source>src/generated/java/</source>
+                            </sources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
             <plugin>
                 <groupId>org.sonatype.plugins</groupId>
                 <artifactId>nexus-staging-maven-plugin</artifactId>
@@ -292,7 +289,7 @@
                                     <version>3</version>
                                 </requireMavenVersion>
                                 <requireJavaVersion>
-                                    <version>11</version>
+                                    <version>17</version>
                                 </requireJavaVersion>
                             </rules>
                         </configuration>
@@ -388,7 +385,10 @@
                         </goals>
                         <configuration>
                             <keyname>${gpg.keyname}</keyname>
-                            <passphrase>${gpg.passphrase}</passphrase>
+                            <gpgArguments>
+                                <argument>--pinentry-mode</argument>
+                                <argument>loopback</argument>
+                            </gpgArguments>
                         </configuration>
                     </execution>
                 </executions>

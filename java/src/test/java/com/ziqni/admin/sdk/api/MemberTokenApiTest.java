@@ -20,6 +20,7 @@ import com.ziqni.admin.sdk.data.LoadMembersData;
 import com.ziqni.admin.sdk.util.ApiClientFactoryUtil;
 import com.ziqni.admin.sdk.configuration.AdminApiClientConfigBuilder;
 import com.ziqni.admin.sdk.ApiException;
+import com.ziqni.member.sdk.api.MemberTokenApi;
 import org.junit.jupiter.api.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -54,7 +55,7 @@ public class MemberTokenApiTest implements tests.utils.CompleteableFutureTestWra
 
     public MemberTokenApiTest() throws Exception {
         ApiClientFactoryUtil.initApiClientFactory(AdminApiClientConfigBuilder.build());
-        this.api = ApiClientFactoryUtil.factory.getMemberTokenApi();
+        this.api = ApiClientFactoryUtil.factory.getMemberTokenApi();;
         this.loadTestData = new LoadMemberTokenData();
         this.loadMembersData = new LoadMembersData();
         this.loadApiKeysData = new LoadApiKeysData();
@@ -115,7 +116,7 @@ public class MemberTokenApiTest implements tests.utils.CompleteableFutureTestWra
     @Test
     @Order(2)
     public void getMemberSessionByMemberRefIdTokenTest() throws ApiException {
-        final var request = loadTestData.getMemberTokenRequest(memberRefId, apiKey, GAPI_RESOURCE_NAME, true,60, "USD");
+        final var request = loadTestData.getMemberTokenRequest("test-ml-b9815e60-98e6-4267-8173-47596b2e38b9", apiKey, null, true,60, "USD");
 
         var response = $(api.createMemberToken(request));
 
@@ -142,5 +143,21 @@ public class MemberTokenApiTest implements tests.utils.CompleteableFutureTestWra
         assertEquals(memberId,jwt.getClaims().get("member_id").asString());
     }
 
+    public void getMemberSessionByMemberIdTokenUsingMemberSdkTest() throws Exception {
+        final var request = loadTestData.getMemberTokenRequest(memberId, apiKey, GAPI_RESOURCE_NAME, false,60, "USD");
 
+        var requestMemberSdk =new com.ziqni.member.sdk.model.MemberTokenRequest();
+        requestMemberSdk.apiKey(request.getApiKey());
+        requestMemberSdk.member(request.getMember());
+
+
+        var response = $(MemberTokenApi.getMemberToken(requestMemberSdk));
+
+        assertNotNull(response);
+        assertNotNull(response.getData());
+
+        DecodedJWT jwt = JWT.decode(response.getData().getJwtToken());
+        assertNotNull(jwt);
+        assertEquals(memberId,jwt.getClaims().get("member_id").asString());
+    }
 }
