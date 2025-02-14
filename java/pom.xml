@@ -377,7 +377,13 @@
                         </goals>
                         <configuration>
                             <keyname>${gpg.keyname}</keyname>
+
                             <passphrase>${gpg.passphrase}</passphrase>
+                            <gpgArguments>
+                                <argument>--pinentry-mode</argument>
+                                <argument>loopback</argument>
+                            </gpgArguments>
+
                         </configuration>
                     </execution>
                 </executions>
