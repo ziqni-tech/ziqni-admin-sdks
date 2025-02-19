@@ -53,11 +53,6 @@ public class TagsApiTest implements tests.utils.CompleteableFutureTestWrapper{
         this.loadData = new LoadTagsData();
     }
 
-    @BeforeAll
-    private void setUp() {
-        //
-    }
-
 
     @AfterAll
     public void cleanUp() {
@@ -590,7 +585,7 @@ public class TagsApiTest implements tests.utils.CompleteableFutureTestWrapper{
 
     @Test
     @Order(22)
-    public void getTagsByQueryWithSingleIdReturnOkTest() throws ApiException, InterruptedException {
+    public void getTagsByQueryWithSingleIdReturnOkTest() throws Exception {
         var request = loadData.getCreateRequest();
         var requestList = loadData.getCreateRequestAsList(request);
         var createResponse = loadData.createTestData(requestList);

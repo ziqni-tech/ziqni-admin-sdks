@@ -53,11 +53,6 @@ public class AdminApiSampleApp {
 
     public AdminApiSampleApp() throws Exception {
 
-        // Register event handlers
-        factory.getStreamingClient().getEventBus().onWSClientConnected(this::onWSClientConnected);
-        factory.getStreamingClient().getEventBus().onWSClientConnecting(this::onWSClientConnecting);
-        factory.getStreamingClient().getEventBus().onWSClientDisconnected(this::onWSClientDisconnected);
-        factory.getStreamingClient().getEventBus().onWSClientSevereFailure(this::onWSClientSevereFailure);
 
         // Start the streaming client
         factory.getStreamingClient().start();
@@ -66,6 +61,12 @@ public class AdminApiSampleApp {
             Thread.sleep(500);
             logger.info("+++ Waiting for the streaming client to start");
         }
+
+        // Register event handlers
+        factory.getStreamingClient().getEventBus().onWSClientConnected(this::onWSClientConnected);
+        factory.getStreamingClient().getEventBus().onWSClientConnecting(this::onWSClientConnecting);
+        factory.getStreamingClient().getEventBus().onWSClientDisconnected(this::onWSClientDisconnected);
+        factory.getStreamingClient().getEventBus().onWSClientSevereFailure(this::onWSClientSevereFailure);
 
         // Register entity change handlers
         factory.getEntityChangesApi().entityChangedHandler(this::onEntityChanged, this::onEntityChangedException);
