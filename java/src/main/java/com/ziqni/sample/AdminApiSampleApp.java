@@ -25,7 +25,7 @@ public class AdminApiSampleApp {
     private final static AdminApiClientConfiguration config;
 
     static {
-        config = AdminApiClientConfigBuilder.build("test-application.properties");
+        config = AdminApiClientConfigBuilder.build("application.properties");
         factory = new ZiqniAdminApiFactory(config);
     }
 
@@ -33,6 +33,7 @@ public class AdminApiSampleApp {
         logger.info("+++++++++++++++++++++++++++++++++");
         logger.info("  ZIQNI Admin API Sample App");
         logger.info("+++++++++++++++++++++++++++++++++");
+        factory.initialise();
 
         new AdminApiSampleApp();
 
