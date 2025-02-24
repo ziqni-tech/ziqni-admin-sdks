@@ -33,7 +33,6 @@ public class AdminApiSampleApp {
         logger.info("+++++++++++++++++++++++++++++++++");
         logger.info("  ZIQNI Admin API Sample App");
         logger.info("+++++++++++++++++++++++++++++++++");
-        factory.initialise();
 
         new AdminApiSampleApp();
 
