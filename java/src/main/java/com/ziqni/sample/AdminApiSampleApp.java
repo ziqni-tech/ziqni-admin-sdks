@@ -55,12 +55,8 @@ public class AdminApiSampleApp {
 
 
         // Start the streaming client
+        factory.initialise();
         factory.getStreamingClient().start();
-
-        while (factory.getStreamingClient().isConnected()) {
-            Thread.sleep(500);
-            logger.info("+++ Waiting for the streaming client to start");
-        }
 
         // Register event handlers
         factory.getStreamingClient().getEventBus().onWSClientConnected(this::onWSClientConnected);
@@ -72,6 +68,10 @@ public class AdminApiSampleApp {
         factory.getEntityChangesApi().entityChangedHandler(this::onEntityChanged, this::onEntityChangedException);
         factory.getEntityChangesApi().entityStateChangedHandler(this::onEntityStateChanged, this::onEntityStateChangedException);
 
+        while (factory.getStreamingClient().isConnected()) {
+            Thread.sleep(500);
+            logger.info("+++ Waiting for the streaming client to start");
+        }
     }
 
     private void onWSClientConnected(StompOverWebSocketLifeCycle.WSClientConnected wsClientConnected) {
