@@ -197,11 +197,12 @@ public class StreamingClient {
 
     // Connection Handlers
     private void onConnected() {
-        stompOverWebSocket.subscribe(callbackEventHandler);
         stompOverWebSocket.subscribe(rpcResultsEventHandler);
+        stompOverWebSocket.subscribe(callbackEventHandler);
+
     }
 
-    public void subscribe(EventHandler handler) {
-        stompOverWebSocket.subscribe(handler);
-    }
+//    public void subscribe(EventHandler handler) {
+//        stompOverWebSocket.subscribe(handler);
+//    }
 }
