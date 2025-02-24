@@ -12,6 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
 
 /**
  * This class is a sample application that demonstrates how to use the Ziqni Admin API.
@@ -58,6 +59,11 @@ public class AdminApiSampleApp {
         factory.initialise();
         factory.getStreamingClient().start();
 
+        while (factory.getStreamingClient().isConnected()) {
+            Thread.sleep(500);
+            logger.info("+++ Waiting for the streaming client to start");
+        }
+
         // Register event handlers
         factory.getStreamingClient().getEventBus().onWSClientConnected(this::onWSClientConnected);
         factory.getStreamingClient().getEventBus().onWSClientConnecting(this::onWSClientConnecting);
@@ -67,31 +73,47 @@ public class AdminApiSampleApp {
         // Register entity change handlers
         factory.getEntityChangesApi().entityChangedHandler(this::onEntityChanged, this::onEntityChangedException);
         factory.getEntityChangesApi().entityStateChangedHandler(this::onEntityStateChanged, this::onEntityStateChangedException);
-
-        while (factory.getStreamingClient().isConnected()) {
-            Thread.sleep(500);
-            logger.info("+++ Waiting for the streaming client to start");
-        }
     }
 
     private void onWSClientConnected(StompOverWebSocketLifeCycle.WSClientConnected wsClientConnected) {
         logger.info("Connected to the Ziqni Admin API");
+        CompletableFuture.runAsync(() -> {
+            try {
 
-        // Get members
-        factory.getMembersApi().getMembers(List.of(),0,10).thenAccept(members -> {
-            logger.info("Members: {}", members);
+                Thread.sleep(5_000);
+
+                // Get members
+                final var member = factory.getMembersApi().getMembersByQuery(new QueryRequest().addMustItem(new QueryMultiple().queryField(Member.JSON_PROPERTY_MEMBER_REF_ID).addQueryValuesItem("Player-1")))
+                        .thenCompose(memberResponse -> {
+                            logger.info("Member: {}", memberResponse);
+
+                            return factory.getMembersApi().getMembers(List.of(memberResponse.getResults().get(0).getId()),0,10);
+                        }).handle( (memberResponse, throwable ) -> {
+                            if(throwable != null) {
+                                logger.error("Failed to get members", throwable);
+                            }
+                            logger.info("Members: {}", memberResponse);
+                            return null;
+                        });
+
+
+                // Subscribe to entity changes
+                subscribeToEntityChanges(Transformer.class);
+                subscribeToEntityChanges(Connection.class);
+                subscribeToEntityChanges(Member.class);
+                subscribeToEntityChanges(Reward.class);
+                subscribeToEntityChanges(Achievement.class);
+                subscribeToEntityChanges(Competition.class);
+                subscribeToEntityChanges(Contest.class);
+                subscribeToEntityChanges(Award.class);
+                subscribeToEntityChanges(Product.class);
+
+            } catch (Exception e) {
+                logger.error("Failed to get members", e);
+                throw new RuntimeException(e);
+            }
+
         });
-
-        // Subscribe to entity changes
-        subscribeToEntityChanges(Transformer.class);
-        subscribeToEntityChanges(Connection.class);
-        subscribeToEntityChanges(Member.class);
-        subscribeToEntityChanges(Reward.class);
-        subscribeToEntityChanges(Achievement.class);
-        subscribeToEntityChanges(Competition.class);
-        subscribeToEntityChanges(Contest.class);
-        subscribeToEntityChanges(Award.class);
-        subscribeToEntityChanges(Product.class);
     }
 
     private void onWSClientSevereFailure(StompOverWebSocketLifeCycle.WSClientSevereFailure wsClientSevereFailure) {
