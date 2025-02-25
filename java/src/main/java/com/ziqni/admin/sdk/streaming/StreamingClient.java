@@ -197,19 +197,7 @@ public class StreamingClient {
 
     // Connection Handlers
     private void onConnected() {
-        if (stompOverWebSocket.isConnected()) {
-            stompOverWebSocket.subscribe(rpcResultsEventHandler);
-            stompOverWebSocket.subscribe(callbackEventHandler);
-        }
-        else {
-            CompletableFuture.runAsync(() -> {
-                try {
-                    Thread.sleep(500);
-                    stompOverWebSocket.connect().thenRun(this::onConnected);
-                } catch (InterruptedException e) {
-                    logger.error("Error waiting for connection", e);
-                }
-            });
-        }
+        stompOverWebSocket.subscribe(rpcResultsEventHandler);
+        stompOverWebSocket.subscribe(callbackEventHandler);
     }
 }
