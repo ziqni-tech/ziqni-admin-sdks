@@ -151,6 +151,11 @@ public class StompOverWebSocket { //implements WebSocket.Listener {
         logger.debug("CONNECT frame sent.");
     }
 
+    public void subscribe(EventHandler handler) {
+        listener.registerHandler(handler);
+        subscribe(handler.getTopic(), handler.getTopic());
+    }
+
     public void subscribe(EventHandler handler, String subscriptionId) {
         listener.registerHandler(handler);
         subscribe(handler.getTopic(), subscriptionId);
