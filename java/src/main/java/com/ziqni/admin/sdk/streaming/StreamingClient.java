@@ -212,4 +212,8 @@ public class StreamingClient {
             });
         }
     }
+
+    public void subscribe(EventHandler handler) {
+        stompOverWebSocket.subscribe(handler);
+    }
 }
