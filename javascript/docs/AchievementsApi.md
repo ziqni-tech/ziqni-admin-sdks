@@ -14,7 +14,8 @@ Method | HTTP request | Description
 [**getIssuedAchievementsCountById**](AchievementsApi.md#getIssuedAchievementsCountById) | **GET** /achievements/{id}/issued | 
 [**getMembersAchievementsDetails**](AchievementsApi.md#getMembersAchievementsDetails) | **GET** /achievements/{id}/members | 
 [**updateAchievements**](AchievementsApi.md#updateAchievements) | **PUT** /achievements | Update Achievements
-[**updateAchievementsLiveStatus**](AchievementsApi.md#updateAchievementsLiveStatus) | **PUT** /achievements/state | 
+[**updateAchievementsState**](AchievementsApi.md#updateAchievementsState) | **PUT** /achievements/state | 
+[**updateInstantWinsStatus**](AchievementsApi.md#updateInstantWinsStatus) | **PUT** /instant-wins/state | 
 
 
 
@@ -534,9 +535,9 @@ Name | Type | Description  | Notes
 - **Accept**: application/json
 
 
-## updateAchievementsLiveStatus
+## updateAchievementsState
 
-> ApiResponse updateAchievementsLiveStatus(opts)
+> ApiResponse updateAchievementsState(opts)
 
 
 
@@ -553,9 +554,9 @@ OAuth2.accessToken = 'YOUR ACCESS TOKEN';
 
 let apiInstance = new @ZiqniTechAdminApiClient.AchievementsApi();
 let opts = {
-  'body': [new @ZiqniTechAdminApiClient.AchievementLiveStatusRequest()] // [AchievementLiveStatusRequest] | Updates the state of the Achievement
+  'body': [new @ZiqniTechAdminApiClient.UpdateAchievementStateRequest()] // [UpdateAchievementStateRequest] | Updates the state of the Achievement
 };
-apiInstance.updateAchievementsLiveStatus(opts, (error, data, response) => {
+apiInstance.updateAchievementsState(opts, (error, data, response) => {
   if (error) {
     console.error(error);
   } else {
@@ -569,7 +570,58 @@ apiInstance.updateAchievementsLiveStatus(opts, (error, data, response) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**[AchievementLiveStatusRequest]**](AchievementLiveStatusRequest.md)| Updates the state of the Achievement | [optional] 
+ **body** | [**[UpdateAchievementStateRequest]**](UpdateAchievementStateRequest.md)| Updates the state of the Achievement | [optional] 
+
+### Return type
+
+[**ApiResponse**](ApiResponse.md)
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+
+## updateInstantWinsStatus
+
+> ApiResponse updateInstantWinsStatus(opts)
+
+
+
+Manage the state of achievement - Draft, Live, Archived
+
+### Example
+
+```javascript
+import @ZiqniTechAdminApiClient from '@ziqni-tech/admin-api-client';
+let defaultClient = @ZiqniTechAdminApiClient.ApiClient.instance;
+// Configure OAuth2 access token for authorization: OAuth2
+let OAuth2 = defaultClient.authentications['OAuth2'];
+OAuth2.accessToken = 'YOUR ACCESS TOKEN';
+
+let apiInstance = new @ZiqniTechAdminApiClient.AchievementsApi();
+let opts = {
+  'body': [new @ZiqniTechAdminApiClient.InstantWinStatusRequest()] // [InstantWinStatusRequest] | Updates the state of the Achievement
+};
+apiInstance.updateInstantWinsStatus(opts, (error, data, response) => {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+});
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | [**[InstantWinStatusRequest]**](InstantWinStatusRequest.md)| Updates the state of the Achievement | [optional] 
 
 ### Return type
 

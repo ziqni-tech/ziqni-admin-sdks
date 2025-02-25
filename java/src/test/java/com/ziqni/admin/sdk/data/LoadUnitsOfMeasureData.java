@@ -33,7 +33,7 @@ public class LoadUnitsOfMeasureData implements CompleteableFutureTestWrapper {
 
         return new CreateUnitOfMeasureRequest()
                 .name(givenName)
-                .metadata(Map.of("Competition","Labs"))
+                .metadata(Map.of("Ziqni","Rules"))
                 .key(givenKey)
                 .description("Test description")
                 .unitOfMeasureType(UnitOfMeasureType.OTHER)

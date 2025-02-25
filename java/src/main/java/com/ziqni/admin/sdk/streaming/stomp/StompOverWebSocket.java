@@ -153,13 +153,18 @@ public class StompOverWebSocket { //implements WebSocket.Listener {
 
     public void subscribe(EventHandler handler) {
         listener.registerHandler(handler);
-        subscribe(handler.getTopic());
+        subscribe(handler.getTopic(), handler.getTopic());
     }
 
-    private void subscribe(String destination) {
+    public void subscribe(EventHandler handler, String subscriptionId) {
+        listener.registerHandler(handler);
+        subscribe(handler.getTopic(), subscriptionId);
+    }
+
+    private void subscribe(String destination, String subscriptionId) {
         StompHeaders subscribeHeaders = new StompHeaders();
         subscribeHeaders.setDestination(destination);
-        subscribeHeaders.setId("sub-0");
+        subscribeHeaders.setId(subscriptionId);
 
         StringBuilder subscribeFrame = new StringBuilder("SUBSCRIBE\n");
         subscribeHeaders.toMap().forEach((key, value) -> subscribeFrame.append(key).append(":").append(String.join(",", value)).append("\n"));

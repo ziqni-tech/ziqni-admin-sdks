@@ -9,6 +9,8 @@ Name | Type | Description | Notes
 **termsAndConditions** | **String** |  | [optional] 
 **constraints** | **[String]** |  | [optional] 
 **statusCode** | **Number** | integer | [optional] 
+**startDate** | **Date** | The start date and time of a schedule. ISO8601 timestamp | [optional] 
+**endDate** | **Date** | The end date and time of a schedule. ISO8601 timestamp | [optional] 
 **instantWinType** | **Number** | integer | [optional] 
 **icon** | **String** | Attachement id for the corresponding icon image. | [optional] 
 **banner** | **String** | Link to the banner | [optional] 

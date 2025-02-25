@@ -11,6 +11,7 @@ Method | HTTP request | Description
 [**getComputeEnginesById**](ComputeEngineApi.md#getComputeEnginesById) | **GET** /compute-engines/{id} | 
 [**getComputeEnginesByQuery**](ComputeEngineApi.md#getComputeEnginesByQuery) | **POST** /compute-engines/query | 
 [**updateComputeEngines**](ComputeEngineApi.md#updateComputeEngines) | **PUT** /compute-engines | 
+[**updateComputeEnginesState**](ComputeEngineApi.md#updateComputeEnginesState) | **PUT** /compute-engines/state | 
 
 
 
@@ -352,6 +353,57 @@ apiInstance.updateComputeEngines(body, (error, data, response) => {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **body** | [**UpdateComputeEngineRequest**](UpdateComputeEngineRequest.md)| Update an Compute Engine in the Ziqni system. * Any Put body Parameters that are excluded in the Request body field will be considered as empty and updated with an empty field | 
+
+### Return type
+
+[**ApiResponse**](ApiResponse.md)
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+
+## updateComputeEnginesState
+
+> ApiResponse updateComputeEnginesState(opts)
+
+
+
+Manages the Compute Engines state
+
+### Example
+
+```javascript
+import @ZiqniTechAdminApiClient from '@ziqni-tech/admin-api-client';
+let defaultClient = @ZiqniTechAdminApiClient.ApiClient.instance;
+// Configure OAuth2 access token for authorization: OAuth2
+let OAuth2 = defaultClient.authentications['OAuth2'];
+OAuth2.accessToken = 'YOUR ACCESS TOKEN';
+
+let apiInstance = new @ZiqniTechAdminApiClient.ComputeEngineApi();
+let opts = {
+  'body': [new @ZiqniTechAdminApiClient.UpdateComputeEngineStateRequest()] // [UpdateComputeEngineStateRequest] | Updates the state of the Competition
+};
+apiInstance.updateComputeEnginesState(opts, (error, data, response) => {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+});
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | [**[UpdateComputeEngineStateRequest]**](UpdateComputeEngineStateRequest.md)| Updates the state of the Competition | [optional] 
 
 ### Return type
 
