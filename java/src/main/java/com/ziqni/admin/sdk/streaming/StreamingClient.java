@@ -198,18 +198,15 @@ public class StreamingClient {
     // Connection Handlers
     private void onConnected() {
         if (stompOverWebSocket.isConnected()) {
-            stompOverWebSocket.subscribe(rpcResultsEventHandler, "sub-0");
-            stompOverWebSocket.subscribe(callbackEventHandler, "sub-1");
-        } else {
+            stompOverWebSocket.subscribe(rpcResultsEventHandler, rpcResultsEventHandler.getTopic());
+            stompOverWebSocket.subscribe(callbackEventHandler, callbackEventHandler.getTopic());
+        }
+        else {
             stompOverWebSocket.connect().thenRun(() -> {
-                stompOverWebSocket.subscribe(rpcResultsEventHandler, "sub-0");
-                stompOverWebSocket.subscribe(callbackEventHandler, "sub-1");
+                stompOverWebSocket.subscribe(rpcResultsEventHandler, rpcResultsEventHandler.getTopic());
+                stompOverWebSocket.subscribe(callbackEventHandler, callbackEventHandler.getTopic());
             });
         }
 
     }
-
-//    public void subscribe(EventHandler handler) {
-//        stompOverWebSocket.subscribe(handler);
-//    }
 }
