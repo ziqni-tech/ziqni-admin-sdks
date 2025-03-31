@@ -34,7 +34,9 @@ public class LoadRewardTypesData implements CompleteableFutureTestWrapper {
                 .key(givenKey)
                 .unitOfMeasure("1TGcUn4BguiNwDWXZKu1")
                 .addConstraints(constraints)
-                .metadata(new LoadMetadata().getMetadataAsList());
+                .metadata(new LoadMetadata().getMetadataAsList())
+
+                ;
     }
     public CreateRewardTypeRequest getCreateRequestWithSchedule() {
         String givenName = "Test_name-" + UUID.randomUUID().toString();

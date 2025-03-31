@@ -7,8 +7,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**currencySymbol** | **String** | Currency symbol example $ |  [optional]
-**currencyCode** | **String** | Currency code example USD |  [optional]
+**name** | **String** | name of wallet type | 
+**description** | **String** | describe wallet type |  [optional]
+**unitOfMeasure** | **String** | unitOfMeasure id | 
 
 
 

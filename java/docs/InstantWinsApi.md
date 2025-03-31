@@ -12,6 +12,10 @@ Method | HTTP request | Description
 [**deleteInstantWinsByQueryWithHttpInfo**](InstantWinsApi.md#deleteInstantWinsByQueryWithHttpInfo) | **POST** /instant-wins/delete | Delete instant-wins by query
 [**getInstantWinEntrants**](InstantWinsApi.md#getInstantWinEntrants) | **GET** /instant-wins/entrants-info | Get all players eligible to play
 [**getInstantWinEntrantsWithHttpInfo**](InstantWinsApi.md#getInstantWinEntrantsWithHttpInfo) | **GET** /instant-wins/entrants-info | Get all players eligible to play
+[**getInstantWinLogs**](InstantWinsApi.md#getInstantWinLogs) | **GET** /instant-wins/logs | Get instant win logs
+[**getInstantWinLogsWithHttpInfo**](InstantWinsApi.md#getInstantWinLogsWithHttpInfo) | **GET** /instant-wins/logs | Get instant win logs
+[**getInstantWinStatistics**](InstantWinsApi.md#getInstantWinStatistics) | **GET** /instant-wins/statistics | Get instant win statistics
+[**getInstantWinStatisticsWithHttpInfo**](InstantWinsApi.md#getInstantWinStatisticsWithHttpInfo) | **GET** /instant-wins/statistics | Get instant win statistics
 [**getInstantWins**](InstantWinsApi.md#getInstantWins) | **GET** /instant-wins | Get instant wins
 [**getInstantWinsWithHttpInfo**](InstantWinsApi.md#getInstantWinsWithHttpInfo) | **GET** /instant-wins | Get instant wins
 [**getInstantWinsByQuery**](InstantWinsApi.md#getInstantWinsByQuery) | **POST** /instant-wins/query | Get instant wins by query
@@ -666,6 +670,344 @@ Name | Type | Description  | Notes
 ### Return type
 
 CompletableFuture<ApiResponse<[**InstantWinMemberResponse**](InstantWinMemberResponse.md)>>
+
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | A list of Instant wins and/or errors |  -  |
+| **400** | A list of Instant wins and/or errors |  -  |
+| **401** | A list of Instant wins and/or errors |  -  |
+| **403** | A list of Instant wins and/or errors |  -  |
+| **404** | A list of Instant wins and/or errors |  -  |
+| **500** | A list of Instant wins and/or errors |  -  |
+| **501** | A list of Instant wins and/or errors |  -  |
+
+
+## getInstantWinLogs
+
+> CompletableFuture<InstantWinLogResponse> getInstantWinLogs(instantWinId, limit, skip)
+
+Get instant win logs
+
+Retrieve Instant wins logs from Ziqni database by unique Instant win ID
+
+### Example
+
+```java
+// Import classes:
+import com.ziqni.admin.sdk.ApiClient;
+import com.ziqni.admin.sdk.ApiException;
+import com.ziqni.admin.sdk.Configuration;
+import com.ziqni.admin.sdk.auth.*;
+import com.ziqni.admin.sdk.models.*;
+import com.ziqni.admin.sdk.api.InstantWinsApi;
+import java.util.concurrent.CompletableFuture;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://api.ziqni.com");
+        
+        // Configure OAuth2 access token for authorization: OAuth2
+        OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
+        OAuth2.setAccessToken("YOUR ACCESS TOKEN");
+
+        InstantWinsApi apiInstance = new InstantWinsApi(defaultClient);
+        String instantWinId = "instantWinId_example"; // String | 
+        Integer limit = 56; // Integer | Limit the returned total records found
+        Integer skip = 56; // Integer | Skip the returned records found and return the next batch of records
+        try {
+            CompletableFuture<InstantWinLogResponse> result = apiInstance.getInstantWinLogs(instantWinId, limit, skip);
+            System.out.println(result.get());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling InstantWinsApi#getInstantWinLogs");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **instantWinId** | **String**|  |
+ **limit** | **Integer**| Limit the returned total records found | [optional]
+ **skip** | **Integer**| Skip the returned records found and return the next batch of records | [optional]
+
+### Return type
+
+CompletableFuture<[**InstantWinLogResponse**](InstantWinLogResponse.md)>
+
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | A list of Instant wins and/or errors |  -  |
+| **400** | A list of Instant wins and/or errors |  -  |
+| **401** | A list of Instant wins and/or errors |  -  |
+| **403** | A list of Instant wins and/or errors |  -  |
+| **404** | A list of Instant wins and/or errors |  -  |
+| **500** | A list of Instant wins and/or errors |  -  |
+| **501** | A list of Instant wins and/or errors |  -  |
+
+## getInstantWinLogsWithHttpInfo
+
+> CompletableFuture<ApiResponse<InstantWinLogResponse>> getInstantWinLogs getInstantWinLogsWithHttpInfo(instantWinId, limit, skip)
+
+Get instant win logs
+
+Retrieve Instant wins logs from Ziqni database by unique Instant win ID
+
+### Example
+
+```java
+// Import classes:
+import com.ziqni.admin.sdk.ApiClient;
+import com.ziqni.admin.sdk.ApiException;
+import com.ziqni.admin.sdk.ApiResponse;
+import com.ziqni.admin.sdk.Configuration;
+import com.ziqni.admin.sdk.auth.*;
+import com.ziqni.admin.sdk.models.*;
+import com.ziqni.admin.sdk.api.InstantWinsApi;
+import java.util.concurrent.CompletableFuture;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://api.ziqni.com");
+        
+        // Configure OAuth2 access token for authorization: OAuth2
+        OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
+        OAuth2.setAccessToken("YOUR ACCESS TOKEN");
+
+        InstantWinsApi apiInstance = new InstantWinsApi(defaultClient);
+        String instantWinId = "instantWinId_example"; // String | 
+        Integer limit = 56; // Integer | Limit the returned total records found
+        Integer skip = 56; // Integer | Skip the returned records found and return the next batch of records
+        try {
+            CompletableFuture<ApiResponse<InstantWinLogResponse>> response = apiInstance.getInstantWinLogsWithHttpInfo(instantWinId, limit, skip);
+            System.out.println("Status code: " + response.get().getStatusCode());
+            System.out.println("Response headers: " + response.get().getHeaders());
+            System.out.println("Response body: " + response.get().getData());
+        } catch (InterruptedException | ExecutionException e) {
+            ApiException apiException = (ApiException)e.getCause();
+            System.err.println("Exception when calling InstantWinsApi#getInstantWinLogs");
+            System.err.println("Status code: " + apiException.getCode());
+            System.err.println("Response headers: " + apiException.getResponseHeaders());
+            System.err.println("Reason: " + apiException.getResponseBody());
+            e.printStackTrace();
+        } catch (ApiException e) {
+            System.err.println("Exception when calling InstantWinsApi#getInstantWinLogs");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **instantWinId** | **String**|  |
+ **limit** | **Integer**| Limit the returned total records found | [optional]
+ **skip** | **Integer**| Skip the returned records found and return the next batch of records | [optional]
+
+### Return type
+
+CompletableFuture<ApiResponse<[**InstantWinLogResponse**](InstantWinLogResponse.md)>>
+
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | A list of Instant wins and/or errors |  -  |
+| **400** | A list of Instant wins and/or errors |  -  |
+| **401** | A list of Instant wins and/or errors |  -  |
+| **403** | A list of Instant wins and/or errors |  -  |
+| **404** | A list of Instant wins and/or errors |  -  |
+| **500** | A list of Instant wins and/or errors |  -  |
+| **501** | A list of Instant wins and/or errors |  -  |
+
+
+## getInstantWinStatistics
+
+> CompletableFuture<InstantWinStatisticsResponse> getInstantWinStatistics(instantWinId)
+
+Get instant win statistics
+
+Retrieve Instant wins statistics  from Ziqni database by unique Instant win ID 
+
+### Example
+
+```java
+// Import classes:
+import com.ziqni.admin.sdk.ApiClient;
+import com.ziqni.admin.sdk.ApiException;
+import com.ziqni.admin.sdk.Configuration;
+import com.ziqni.admin.sdk.auth.*;
+import com.ziqni.admin.sdk.models.*;
+import com.ziqni.admin.sdk.api.InstantWinsApi;
+import java.util.concurrent.CompletableFuture;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://api.ziqni.com");
+        
+        // Configure OAuth2 access token for authorization: OAuth2
+        OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
+        OAuth2.setAccessToken("YOUR ACCESS TOKEN");
+
+        InstantWinsApi apiInstance = new InstantWinsApi(defaultClient);
+        String instantWinId = "instantWinId_example"; // String | 
+        try {
+            CompletableFuture<InstantWinStatisticsResponse> result = apiInstance.getInstantWinStatistics(instantWinId);
+            System.out.println(result.get());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling InstantWinsApi#getInstantWinStatistics");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **instantWinId** | **String**|  |
+
+### Return type
+
+CompletableFuture<[**InstantWinStatisticsResponse**](InstantWinStatisticsResponse.md)>
+
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | A list of Instant wins and/or errors |  -  |
+| **400** | A list of Instant wins and/or errors |  -  |
+| **401** | A list of Instant wins and/or errors |  -  |
+| **403** | A list of Instant wins and/or errors |  -  |
+| **404** | A list of Instant wins and/or errors |  -  |
+| **500** | A list of Instant wins and/or errors |  -  |
+| **501** | A list of Instant wins and/or errors |  -  |
+
+## getInstantWinStatisticsWithHttpInfo
+
+> CompletableFuture<ApiResponse<InstantWinStatisticsResponse>> getInstantWinStatistics getInstantWinStatisticsWithHttpInfo(instantWinId)
+
+Get instant win statistics
+
+Retrieve Instant wins statistics  from Ziqni database by unique Instant win ID 
+
+### Example
+
+```java
+// Import classes:
+import com.ziqni.admin.sdk.ApiClient;
+import com.ziqni.admin.sdk.ApiException;
+import com.ziqni.admin.sdk.ApiResponse;
+import com.ziqni.admin.sdk.Configuration;
+import com.ziqni.admin.sdk.auth.*;
+import com.ziqni.admin.sdk.models.*;
+import com.ziqni.admin.sdk.api.InstantWinsApi;
+import java.util.concurrent.CompletableFuture;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://api.ziqni.com");
+        
+        // Configure OAuth2 access token for authorization: OAuth2
+        OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
+        OAuth2.setAccessToken("YOUR ACCESS TOKEN");
+
+        InstantWinsApi apiInstance = new InstantWinsApi(defaultClient);
+        String instantWinId = "instantWinId_example"; // String | 
+        try {
+            CompletableFuture<ApiResponse<InstantWinStatisticsResponse>> response = apiInstance.getInstantWinStatisticsWithHttpInfo(instantWinId);
+            System.out.println("Status code: " + response.get().getStatusCode());
+            System.out.println("Response headers: " + response.get().getHeaders());
+            System.out.println("Response body: " + response.get().getData());
+        } catch (InterruptedException | ExecutionException e) {
+            ApiException apiException = (ApiException)e.getCause();
+            System.err.println("Exception when calling InstantWinsApi#getInstantWinStatistics");
+            System.err.println("Status code: " + apiException.getCode());
+            System.err.println("Response headers: " + apiException.getResponseHeaders());
+            System.err.println("Reason: " + apiException.getResponseBody());
+            e.printStackTrace();
+        } catch (ApiException e) {
+            System.err.println("Exception when calling InstantWinsApi#getInstantWinStatistics");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **instantWinId** | **String**|  |
+
+### Return type
+
+CompletableFuture<ApiResponse<[**InstantWinStatisticsResponse**](InstantWinStatisticsResponse.md)>>
 
 
 ### Authorization

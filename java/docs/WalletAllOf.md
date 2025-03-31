@@ -8,7 +8,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **walletTypeId** | **String** | wallet type id | 
-**memberId** | **String** | player id |  [optional]
+**memberId** | **String** | player id | 
 **balance** | **BigDecimal** | balance | 
 
 

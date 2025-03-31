@@ -21,5 +21,7 @@
 
 * `DEPRECATED` (value: `"Deprecated"`)
 
+* `DELETED` (value: `"Deleted"`)
+
 
 

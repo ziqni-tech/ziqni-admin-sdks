@@ -1,10 +1,11 @@
 package com.ziqni.admin.sdk.data;
 
-import com.ziqni.admin.sdk.configuration.AdminApiClientConfigBuilder;
-import com.ziqni.admin.sdk.model.CreateUnitOfMeasureRequest;
-import com.ziqni.admin.sdk.ZiqniAdminApiFactory;
 import com.ziqni.admin.sdk.ApiException;
 import com.ziqni.admin.sdk.api.UnitsOfMeasureApiWs;
+import com.ziqni.admin.sdk.api.WalletTypesApiWs;
+import com.ziqni.admin.sdk.configuration.AdminApiClientConfigBuilder;
+import com.ziqni.admin.sdk.model.CreateUnitOfMeasureRequest;
+import com.ziqni.admin.sdk.model.CreateWalletTypeRequest;
 import com.ziqni.admin.sdk.model.ModelApiResponse;
 import com.ziqni.admin.sdk.model.UnitOfMeasureType;
 import com.ziqni.admin.sdk.util.ApiClientFactoryUtil;
@@ -16,48 +17,42 @@ import java.util.stream.IntStream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class LoadUnitsOfMeasureData implements CompleteableFutureTestWrapper {
+public class LoadWalletTypeData implements CompleteableFutureTestWrapper {
 
-    private UnitsOfMeasureApiWs api;
+    private WalletTypesApiWs api;
 
-    public LoadUnitsOfMeasureData() throws Exception {
+    public LoadWalletTypeData() throws Exception {
         ApiClientFactoryUtil.initApiClientFactory(AdminApiClientConfigBuilder.build());
-        this.api = ApiClientFactoryUtil.factory.getUnitsOfMeasureApi();
+        this.api = ApiClientFactoryUtil.factory.getWalletTypesApi();
     }
 
-    public CreateUnitOfMeasureRequest getCreateRequest() {
+    public CreateWalletTypeRequest getCreateRequest(String uom) {
 
         final String givenName = "Test_name-" + UUID.randomUUID();
-        final String givenKey = "Test_key-" + UUID.randomUUID();
+
         final Double givenMultiplier = new Random().nextDouble();
 
-        return new CreateUnitOfMeasureRequest()
-                .name(givenName)
+        return new CreateWalletTypeRequest()
+                .name("Name_ Test" )
                 .metadata(Map.of("Ziqni","Rules"))
-                .key(givenKey)
-                .subUnit("Cents")
-                .subUnitConversion(100)
-                .subUnitSymbol("C")
-                .isoCode("USD")
-                .symbol("$")
-                .description("Test description")
-                .unitOfMeasureType(UnitOfMeasureType.OTHER)
-                .multiplier(givenMultiplier);
+                .unitOfMeasure(uom)
+                .description("Wallet type description"+uom)
+                ;
 
     }
 
-    public List<CreateUnitOfMeasureRequest> getCreateRequestAsList(int numberOfItems) {
+    public List<CreateWalletTypeRequest> getCreateRequestAsList(int numberOfItems,String uom) {
         return IntStream.range(0, numberOfItems)
-                .mapToObj(i -> getCreateRequest())
+                .mapToObj(i -> getCreateRequest(uom))
                 .collect(Collectors.toList());
     }
 
-    public List<CreateUnitOfMeasureRequest> getCreateRequestAsList(CreateUnitOfMeasureRequest request) {
+    public List<CreateWalletTypeRequest> getCreateRequestAsList(CreateWalletTypeRequest request) {
         return List.of(request);
     }
 
-    public ModelApiResponse createTestData(List<CreateUnitOfMeasureRequest> request) throws ApiException {
-        var response = $(api.createUnitsOfMeasure(request));
+    public ModelApiResponse createTestData(List<CreateWalletTypeRequest> request) throws ApiException {
+        var response = $(api.createWalletTypes(request));
 
         assertNotNull(response);
         assertNotNull(response.getResults());
@@ -71,7 +66,7 @@ public class LoadUnitsOfMeasureData implements CompleteableFutureTestWrapper {
 
     public void deleteTestData(List<String> idsToDelete) throws ApiException {
         if(!idsToDelete.isEmpty()) {
-            var response = $(api.deleteUnitsOfMeasure(idsToDelete));
+            var response = $(api.deleteWalletTypes(idsToDelete));
 
             assertTrue(Objects.nonNull(response));
             assertEquals(idsToDelete.size(), response.getMeta().getResultCount(), "Failed to delete some unit of measure");

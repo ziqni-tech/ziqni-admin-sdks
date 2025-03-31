@@ -522,7 +522,7 @@ CompletableFuture<ApiResponse<[**WalletResponse**](WalletResponse.md)>>
 
 ## manageWalletTransaction
 
-> CompletableFuture<WalletResponse> manageWalletTransaction(body)
+> CompletableFuture<ModelApiResponse> manageWalletTransaction(body)
 
 
 
@@ -552,7 +552,7 @@ public class Example {
         WalletsApi apiInstance = new WalletsApi(defaultClient);
         WalletTransactionRequest body = new WalletTransactionRequest(); // WalletTransactionRequest | Manage wallet tranctions  from Ziqni by unique Wallet ID's  using the POST method
         try {
-            CompletableFuture<WalletResponse> result = apiInstance.manageWalletTransaction(body);
+            CompletableFuture<ModelApiResponse> result = apiInstance.manageWalletTransaction(body);
             System.out.println(result.get());
         } catch (ApiException e) {
             System.err.println("Exception when calling WalletsApi#manageWalletTransaction");
@@ -574,7 +574,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-CompletableFuture<[**WalletResponse**](WalletResponse.md)>
+CompletableFuture<[**ModelApiResponse**](ModelApiResponse.md)>
 
 
 ### Authorization
@@ -589,19 +589,17 @@ CompletableFuture<[**WalletResponse**](WalletResponse.md)>
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | A list of action types and/or errors |  -  |
-| **400** | A list of action types and/or errors |  -  |
-| **401** | A list of action types and/or errors |  -  |
-| **403** | A list of action types and/or errors |  -  |
-| **404** | A list of action types and/or errors |  -  |
-| **413** | A list of action types and/or errors |  -  |
-| **500** | A list of action types and/or errors |  -  |
-| **501** | A list of action types and/or errors |  -  |
-| **503** | A list of action types and/or errors |  -  |
+| **200** | A list of outcomes and/or errors |  -  |
+| **400** | A list of outcomes and/or errors |  -  |
+| **401** | A list of outcomes and/or errors |  -  |
+| **403** | A list of outcomes and/or errors |  -  |
+| **404** | A list of outcomes and/or errors |  -  |
+| **500** | A list of outcomes and/or errors |  -  |
+| **501** | A list of outcomes and/or errors |  -  |
 
 ## manageWalletTransactionWithHttpInfo
 
-> CompletableFuture<ApiResponse<WalletResponse>> manageWalletTransaction manageWalletTransactionWithHttpInfo(body)
+> CompletableFuture<ApiResponse<ModelApiResponse>> manageWalletTransaction manageWalletTransactionWithHttpInfo(body)
 
 
 
@@ -632,7 +630,7 @@ public class Example {
         WalletsApi apiInstance = new WalletsApi(defaultClient);
         WalletTransactionRequest body = new WalletTransactionRequest(); // WalletTransactionRequest | Manage wallet tranctions  from Ziqni by unique Wallet ID's  using the POST method
         try {
-            CompletableFuture<ApiResponse<WalletResponse>> response = apiInstance.manageWalletTransactionWithHttpInfo(body);
+            CompletableFuture<ApiResponse<ModelApiResponse>> response = apiInstance.manageWalletTransactionWithHttpInfo(body);
             System.out.println("Status code: " + response.get().getStatusCode());
             System.out.println("Response headers: " + response.get().getHeaders());
             System.out.println("Response body: " + response.get().getData());
@@ -663,7 +661,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-CompletableFuture<ApiResponse<[**WalletResponse**](WalletResponse.md)>>
+CompletableFuture<ApiResponse<[**ModelApiResponse**](ModelApiResponse.md)>>
 
 
 ### Authorization
@@ -678,15 +676,13 @@ CompletableFuture<ApiResponse<[**WalletResponse**](WalletResponse.md)>>
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | A list of action types and/or errors |  -  |
-| **400** | A list of action types and/or errors |  -  |
-| **401** | A list of action types and/or errors |  -  |
-| **403** | A list of action types and/or errors |  -  |
-| **404** | A list of action types and/or errors |  -  |
-| **413** | A list of action types and/or errors |  -  |
-| **500** | A list of action types and/or errors |  -  |
-| **501** | A list of action types and/or errors |  -  |
-| **503** | A list of action types and/or errors |  -  |
+| **200** | A list of outcomes and/or errors |  -  |
+| **400** | A list of outcomes and/or errors |  -  |
+| **401** | A list of outcomes and/or errors |  -  |
+| **403** | A list of outcomes and/or errors |  -  |
+| **404** | A list of outcomes and/or errors |  -  |
+| **500** | A list of outcomes and/or errors |  -  |
+| **501** | A list of outcomes and/or errors |  -  |
 
 
 ## updateWallets
