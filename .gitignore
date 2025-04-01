@@ -9,7 +9,6 @@
 /javascript/node_modules/
 /javascript/package-lock.json
 /javascript/dist/
-/javascript/src/.DS_Store
 /openapi/cs/generated/
 /openapi/obj-c/generated/
 /openapi/swift/generated/
@@ -36,4 +35,5 @@
 .DS_Store
 openapi/.DS_Store
 openapi/javascript/.DS_Store
-
+/javascript/src/.DS_Store
+/javascript/.DS_Store
