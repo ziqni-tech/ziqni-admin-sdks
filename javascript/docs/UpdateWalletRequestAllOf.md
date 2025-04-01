@@ -4,9 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **String** | The unique tenant identifier | [optional] 
-**balance** | **Number** | balance | [optional] 
+**id** | **String** | The unique identifier | [optional] 
 **walletTypeId** | **String** | wallet type id | [optional] 
-**memberId** | **String** | player id | [optional] 
+**memberId** | **String** | Member id | [optional] 
 
 

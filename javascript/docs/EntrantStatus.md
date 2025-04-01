@@ -17,6 +17,10 @@
 
 * `Completed` (value: `"Completed"`)
 
+* `Rejecting` (value: `"Rejecting"`)
+
+* `Rejected` (value: `"Rejected"`)
+
 * `Excluding` (value: `"Excluding"`)
 
 * `Excluded` (value: `"Excluded"`)
