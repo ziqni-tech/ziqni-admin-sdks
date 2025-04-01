@@ -169,7 +169,7 @@ Name | Type | Description  | Notes
 
 ## manageWalletTransaction
 
-> WalletResponse manageWalletTransaction(opts)
+> ApiResponse manageWalletTransaction(opts)
 
 
 
@@ -206,7 +206,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**WalletResponse**](WalletResponse.md)
+[**ApiResponse**](ApiResponse.md)
 
 ### Authorization
 

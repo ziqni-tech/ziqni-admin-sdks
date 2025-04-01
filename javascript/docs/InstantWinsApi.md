@@ -8,6 +8,8 @@ Method | HTTP request | Description
 [**deleteInstantWins**](InstantWinsApi.md#deleteInstantWins) | **DELETE** /instant-wins | Delete instant wins
 [**deleteInstantWinsByQuery**](InstantWinsApi.md#deleteInstantWinsByQuery) | **POST** /instant-wins/delete | Delete instant-wins by query
 [**getInstantWinEntrants**](InstantWinsApi.md#getInstantWinEntrants) | **GET** /instant-wins/entrants-info | Get all players eligible to play
+[**getInstantWinLogs**](InstantWinsApi.md#getInstantWinLogs) | **GET** /instant-wins/logs | Get instant win logs
+[**getInstantWinStatistics**](InstantWinsApi.md#getInstantWinStatistics) | **GET** /instant-wins/statistics | Get instant win statistics
 [**getInstantWins**](InstantWinsApi.md#getInstantWins) | **GET** /instant-wins | Get instant wins
 [**getInstantWinsByQuery**](InstantWinsApi.md#getInstantWinsByQuery) | **POST** /instant-wins/query | Get instant wins by query
 [**updateInstantWins**](InstantWinsApi.md#updateInstantWins) | **PUT** /instant-wins | Update instant wins
@@ -209,6 +211,110 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**InstantWinMemberResponse**](InstantWinMemberResponse.md)
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+## getInstantWinLogs
+
+> InstantWinLogResponse getInstantWinLogs(instantWinId, opts)
+
+Get instant win logs
+
+Retrieve Instant wins logs from Ziqni database by unique Instant win ID
+
+### Example
+
+```javascript
+import @ZiqniTechAdminApiClient from '@ziqni-tech/admin-api-client';
+let defaultClient = @ZiqniTechAdminApiClient.ApiClient.instance;
+// Configure OAuth2 access token for authorization: OAuth2
+let OAuth2 = defaultClient.authentications['OAuth2'];
+OAuth2.accessToken = 'YOUR ACCESS TOKEN';
+
+let apiInstance = new @ZiqniTechAdminApiClient.InstantWinsApi();
+let instantWinId = "instantWinId_example"; // String | 
+let opts = {
+  'limit': 56, // Number | Limit the returned total records found
+  'skip': 56 // Number | Skip the returned records found and return the next batch of records
+};
+apiInstance.getInstantWinLogs(instantWinId, opts, (error, data, response) => {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+});
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **instantWinId** | **String**|  | 
+ **limit** | **Number**| Limit the returned total records found | [optional] 
+ **skip** | **Number**| Skip the returned records found and return the next batch of records | [optional] 
+
+### Return type
+
+[**InstantWinLogResponse**](InstantWinLogResponse.md)
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+## getInstantWinStatistics
+
+> InstantWinStatisticsResponse getInstantWinStatistics(instantWinId)
+
+Get instant win statistics
+
+Retrieve Instant wins statistics  from Ziqni database by unique Instant win ID 
+
+### Example
+
+```javascript
+import @ZiqniTechAdminApiClient from '@ziqni-tech/admin-api-client';
+let defaultClient = @ZiqniTechAdminApiClient.ApiClient.instance;
+// Configure OAuth2 access token for authorization: OAuth2
+let OAuth2 = defaultClient.authentications['OAuth2'];
+OAuth2.accessToken = 'YOUR ACCESS TOKEN';
+
+let apiInstance = new @ZiqniTechAdminApiClient.InstantWinsApi();
+let instantWinId = "instantWinId_example"; // String | 
+apiInstance.getInstantWinStatistics(instantWinId, (error, data, response) => {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+});
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **instantWinId** | **String**|  | 
+
+### Return type
+
+[**InstantWinStatisticsResponse**](InstantWinStatisticsResponse.md)
 
 ### Authorization
 

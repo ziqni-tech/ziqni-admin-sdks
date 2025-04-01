@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **tags** | **[String]** | A list of id&#39;s used to tag models | [optional] 
 **metadata** | **{String: String}** |  | [optional] 
 **walletTypeId** | **String** | wallet type id | 
-**memberId** | **String** | player id | [optional] 
+**memberId** | **String** | player id | 
 **balance** | **Number** | balance | 
 
 
