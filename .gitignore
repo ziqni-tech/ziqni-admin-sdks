@@ -9,6 +9,7 @@
 /javascript/node_modules/
 /javascript/package-lock.json
 /javascript/dist/
+/javascript/src/.DS_Store
 /openapi/cs/generated/
 /openapi/obj-c/generated/
 /openapi/swift/generated/
@@ -32,3 +33,7 @@
 /java/src/main/java/com/ziqni/admin/sdk/streaming/WsClientOld.java
 /java/src/test/resources/application.properties
 /java/src/main/resources/test-application.properties
+.DS_Store
+openapi/.DS_Store
+openapi/javascript/.DS_Store
+
