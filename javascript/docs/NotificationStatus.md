@@ -19,4 +19,6 @@
 
 * `Deprecated` (value: `"Deprecated"`)
 
+* `Deleted` (value: `"Deleted"`)
+
 

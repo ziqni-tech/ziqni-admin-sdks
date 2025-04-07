@@ -10,7 +10,8 @@ Name | Type | Description | Notes
 **customFields** | **{String: Object}** |  | [optional] 
 **tags** | **[String]** | A list of id&#39;s used to tag models | [optional] 
 **metadata** | **{String: String}** |  | [optional] 
-**currencySymbol** | **String** | Currency symbol example $ | [optional] 
-**currencyCode** | **String** | Currency code example USD | [optional] 
+**name** | **String** | name of wallet type | 
+**description** | **String** | describe wallet type | [optional] 
+**unitOfMeasure** | **String** | unitOfMeasure id | 
 
 
