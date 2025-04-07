@@ -37,6 +37,7 @@ public class LoadWalletTypeData implements CompleteableFutureTestWrapper {
                 .metadata(Map.of("Ziqni","Rules"))
                 .unitOfMeasure(uom)
                 .description("Wallet type description"+uom)
+                .termsAndConditions("Terms and Conditions")
                 ;
 
     }

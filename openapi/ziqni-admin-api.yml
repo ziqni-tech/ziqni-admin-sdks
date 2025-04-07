@@ -2587,7 +2587,7 @@ paths:
     post:
       requestBody:
         description: >-
-          Retrieve Tags from Ziqni database by unique Tags ID's or any other POST body parameters
+          Retrieve Tags from Ziqni database by uniqueTags ID's or any other POST body parameters
           using the POST method
         content:
           application/json:
@@ -2615,10 +2615,10 @@ paths:
           OAuth2:
             - ViewTags
       operationId: getTagsByQuery
-      summary: Get tags by query
+      summary: Get wallet types by query
       description: >-
-        Retrieve Tags from Ziqni database by unique Tags ID's or any other POST body parameters using
-        the POST method
+        Retrieve WalletType from Ziqni database by unique WalletType ID's or any other POST body
+        parameters using the POST method
       x-codegen-request-body-name: body
   /account-messages/delete:
     post:
@@ -8860,6 +8860,45 @@ paths:
       operationId: manageWalletTransaction
       description: ' credit, debit, and transfer transactions from a wallet '
       x-codegen-request-body-name: body
+  /wallet-types/query:
+    summary: Get wallet types by query
+    description: This operation allows you to get wallet types by query
+    post:
+      requestBody:
+        description: >-
+          Retrieve Wallet types from Ziqni database by unique Wallet Types ID's or any other POST
+          body parameters using the POST method
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/QueryRequest'
+      tags:
+        - wallet-types
+      responses:
+        '200':
+          $ref: '#/components/responses/WalletTypeResponseBody'
+        '400':
+          $ref: '#/components/responses/WalletTypeResponseBody'
+        '401':
+          $ref: '#/components/responses/WalletTypeResponseBody'
+        '403':
+          $ref: '#/components/responses/WalletTypeResponseBody'
+        '404':
+          $ref: '#/components/responses/WalletTypeResponseBody'
+        '500':
+          $ref: '#/components/responses/WalletTypeResponseBody'
+        '501':
+          $ref: '#/components/responses/WalletTypeResponseBody'
+      security:
+        -
+          OAuth2:
+            - ViewTags
+      operationId: getWalletTypesByQuery
+      summary: Get wallet types by query
+      description: >-
+        Retrieve Wallet types from Ziqni database by unique Wallet Types ID's or any other POST body
+        parameters using the POST method
+      x-codegen-request-body-name: body
 components:
   schemas:
     ProductReduced:
@@ -14193,6 +14232,7 @@ components:
         - Cancelled
         - Deleting
         - Deleted
+        - Paused
       type: string
       readOnly: true
     UpdateTranslationRequest:
@@ -20117,28 +20157,6 @@ components:
         metadata: {}
       x-vue-create: wallet
       x-vue-creator: wallets
-    UpdateWalletTypeRequest:
-      allOf:
-        -
-          $ref: '#/components/schemas/UpdateModelDefault'
-        -
-          $ref: '#/components/schemas/UpdateOptParamModels'
-        -
-          required: []
-          type: object
-          properties:
-            id:
-              description: The unique tenant identifier
-              type: string
-            currencySymbol:
-              description: currency symbol example $
-              type: string
-            currencyCode:
-              description: currency code example USD
-              type: string
-      example: {}
-      x-vue-update: walletType
-      x-vue-updater: walletTypes
     UpdateWalletRequest:
       allOf:
         -
@@ -20774,75 +20792,6 @@ components:
           $ref: '#/components/schemas/OptParamModels'
         -
           $ref: '#/components/schemas/ModelDefault'
-    WalletType:
-      allOf:
-        -
-          $ref: '#/components/schemas/ModelDefault'
-        -
-          $ref: '#/components/schemas/OptParamModels'
-        -
-          required:
-            - name
-            - key
-            - unitOfMeasure
-            - constraints
-          type: object
-          properties:
-            name:
-              description: name of wallet type
-              type: string
-              x-vue-disaply-order: 1001
-              x-vue-search-all: true
-              x-vue-search-field: true
-              x-vue-as-string: true
-            description:
-              description: describe wallet type
-              type: string
-              x-vue-disaply-order: 1002
-              x-vue-search-all: true
-              x-vue-search-field: true
-              x-vue-as-string: true
-            unitOfMeasure:
-              description: unitOfMeasure id
-              type: string
-              x-vue-disaply-order: 1003
-              x-vue-search-all: true
-              x-vue-search-field: true
-              x-vue-as-string: true
-      example: {}
-      x-vue-getter: walletTypes
-      x-vue-list: true
-      x-vue-show: true
-      x-vue-sort-by: name
-      x-vue-sort-order: Asc
-      x-vue-limit: 10
-      x-vue-ops:
-        - Create
-        - Update
-      x-vue-section: settings
-    CreateWalletTypeRequest:
-      allOf:
-        -
-          $ref: '#/components/schemas/CreateOptParamModels'
-        -
-          required:
-            - name
-            - unitOfMeasure
-          type: object
-          properties:
-            name:
-              description: name of wallet type
-              type: string
-            description:
-              description: Currency symbol example £
-              type: string
-            unitOfMeasure:
-              description: unitOfMeasure id
-              type: string
-      example:
-        name: USD Dollar
-      x-vue-create: walletType
-      x-vue-creator: walletTypes
     UnitOfMeasure:
       allOf:
         -
@@ -21065,98 +21014,6 @@ components:
         - Excluding
         - Excluded
       type: string
-    RewardType:
-      description: This is the Reward Type model
-      allOf:
-        -
-          $ref: '#/components/schemas/ModelDefault'
-        -
-          $ref: '#/components/schemas/OptParamModels'
-        -
-          required:
-            - name
-            - key
-            - unitOfMeasure
-            - constraints
-          type: object
-          properties:
-            name:
-              description: The name of the Reward type
-              type: string
-              example: Points
-              x-vue-as-string: true
-              x-vue-translatable: true
-              x-vue-search-all: true
-              x-vue-search-field: true
-              x-vue-disaply-order: 1001
-            description:
-              description: The description of a reward type
-              type: string
-              example: Free spins
-              x-vue-translatable: true
-              x-vue-search-all: true
-              x-vue-search-field: true
-              x-vue-disaply-order: 1002
-            awardActions:
-              description: When the state changes the action is performed
-              type: array
-              items:
-                $ref: '#/components/schemas/AwardAction'
-              x-vue-disaply-order: 1009
-            key:
-              description: A unique key that represents the reward type
-              type: string
-              example: free-spin-reward
-              x-vue-search-all: true
-              x-vue-search-field: true
-              x-vue-disaply-order: 1000
-            constraints:
-              description: 'Additional constraints, if the value is present it means the'
-              type: array
-              items:
-                type: string
-              example: '- system'
-              x-vue-search-field: true
-              x-vue-disaply-order: 1003
-            unitOfMeasure:
-              description: The unit of measure to use when performing dynamic calculations like currency
-              type: string
-            scheduling:
-              description: >-
-                Set the default time based constraints using either an exact point in time or
-                duration to manage the life cycle of the award
-              type: array
-              items:
-                $ref: '#/components/schemas/AwardScheduling'
-      example:
-        id: someText
-        spaceName: someText
-        created: '2018-02-10T09:30Z'
-        customFields:
-          customField1: customFieldValue1
-          customField2: customFieldValue2
-        metadata:
-          key1: value1
-          key2: value
-        tags:
-          - tagId1
-          - tagId2
-        unitOfMeasure: ziqniModelId
-        name: someText
-        description: someText
-        key: someText
-        constraints:
-          - system
-      x-vue-list: true
-      x-vue-show: true
-      x-vue-getter: rewardTypes
-      x-vue-section: settings
-      x-vue-sort-by: name
-      x-vue-sort-order: Asc
-      x-vue-limit: 10
-      x-vue-ops:
-        - Create
-        - Update
     AwardAction:
       description: An action to perform
       type: object
@@ -21223,6 +21080,216 @@ components:
           - ziqniTag1
         metadata: {}
       x-vue-getter: wallets
+      x-vue-list: true
+      x-vue-show: true
+      x-vue-sort-by: name
+      x-vue-sort-order: Asc
+      x-vue-limit: 10
+      x-vue-ops:
+        - Create
+        - Update
+      x-vue-section: settings
+    RewardType:
+      description: This is the Reward Type model
+      allOf:
+        -
+          $ref: '#/components/schemas/ModelDefault'
+        -
+          $ref: '#/components/schemas/OptParamModels'
+        -
+          required:
+            - name
+            - key
+            - unitOfMeasure
+            - constraints
+          type: object
+          properties:
+            name:
+              description: The name of the Reward type
+              type: string
+              example: Points
+              x-vue-as-string: true
+              x-vue-translatable: true
+              x-vue-search-all: true
+              x-vue-search-field: true
+              x-vue-disaply-order: 1001
+            description:
+              description: The description of a reward type
+              type: string
+              example: Free spins
+              x-vue-translatable: true
+              x-vue-search-all: true
+              x-vue-search-field: true
+              x-vue-disaply-order: 1002
+            awardAction:
+              description: When the state changes the action is performed
+              type: array
+              items:
+                $ref: '#/components/schemas/AwardAction'
+              x-vue-disaply-order: 1009
+            key:
+              description: A unique key that represents the reward type
+              type: string
+              example: free-spin-reward
+              x-vue-search-all: true
+              x-vue-search-field: true
+              x-vue-disaply-order: 1000
+            constraints:
+              description: 'Additional constraints, if the value is present it means the'
+              type: array
+              items:
+                type: string
+              example: '- system'
+              x-vue-search-field: true
+              x-vue-disaply-order: 1003
+            unitOfMeasure:
+              description: The unit of measure to use when performing dynamic calculations like currency
+              type: string
+            scheduling:
+              description: >-
+                Set the default time based constraints using either an exact point in time or
+                duration to manage the life cycle of the award
+              type: array
+              items:
+                $ref: '#/components/schemas/AwardScheduling'
+      example:
+        id: someText
+        spaceName: someText
+        created: '2018-02-10T09:30Z'
+        customFields:
+          customField1: customFieldValue1
+          customField2: customFieldValue2
+        metadata:
+          key1: value1
+          key2: value
+        tags:
+          - tagId1
+          - tagId2
+        unitOfMeasure: ziqniModelId
+        name: someText
+        description: someText
+        key: someText
+        constraints:
+          - system
+      x-vue-list: true
+      x-vue-show: true
+      x-vue-getter: rewardTypes
+      x-vue-section: settings
+      x-vue-sort-by: name
+      x-vue-sort-order: Asc
+      x-vue-limit: 10
+      x-vue-ops:
+        - Create
+        - Update
+    UpdateWalletTypeRequest:
+      allOf:
+        -
+          $ref: '#/components/schemas/UpdateModelDefault'
+        -
+          $ref: '#/components/schemas/UpdateOptParamModels'
+        -
+          required: []
+          type: object
+          properties:
+            id:
+              description: The unique tenant identifier
+              type: string
+            name:
+              description: name of wallet type
+              type: string
+            description:
+              description: description of wallet type
+              type: string
+      example: {}
+      x-vue-update: walletType
+      x-vue-updater: walletTypes
+    CreateWalletTypeRequest:
+      allOf:
+        -
+          $ref: '#/components/schemas/CreateOptParamModels'
+        -
+          required:
+            - name
+            - unitOfMeasure
+          type: object
+          properties:
+            name:
+              description: name of wallet type
+              type: string
+            description:
+              description: Currency symbol example £
+              type: string
+            unitOfMeasure:
+              description: unitOfMeasure id
+              type: string
+            termsAndConditions:
+              description: Terms and conditions of a wallet type. Can be translated
+              type: string
+            translations:
+              type: array
+              items:
+                $ref: '#/components/schemas/Translation'
+            addConstraints:
+              description: Additional constraints
+              type: array
+              items:
+                type: string
+      example:
+        name: USD Dollar
+      x-vue-create: walletType
+      x-vue-creator: walletTypes
+    WalletType:
+      allOf:
+        -
+          $ref: '#/components/schemas/ModelDefault'
+        -
+          $ref: '#/components/schemas/OptParamModels'
+        -
+          required:
+            - name
+            - key
+            - unitOfMeasure
+            - constraints
+          type: object
+          properties:
+            name:
+              description: name of wallet type
+              type: string
+              x-vue-disaply-order: 1001
+              x-vue-search-all: true
+              x-vue-search-field: true
+              x-vue-as-string: true
+            description:
+              description: describe wallet type
+              type: string
+              x-vue-disaply-order: 1002
+              x-vue-search-all: true
+              x-vue-search-field: true
+              x-vue-as-string: true
+            unitOfMeasure:
+              description: unitOfMeasure id
+              type: string
+              x-vue-disaply-order: 1003
+              x-vue-search-all: true
+              x-vue-search-field: true
+              x-vue-as-string: true
+            termsAndConditions:
+              description: Terms and conditions of a competition. Can be translated
+              type: string
+              example: Participate to win
+              x-vue-translatable: true
+              x-vue-search-all: true
+              x-vue-search-field: true
+              x-vue-form-type: TEXTAREA
+              x-vue-disaply-order: 1003
+            constraints:
+              description: Additional constraints
+              uniqueItems: true
+              type: array
+              items:
+                type: string
+      example: {}
+      x-vue-getter: walletTypes
       x-vue-list: true
       x-vue-show: true
       x-vue-sort-by: name

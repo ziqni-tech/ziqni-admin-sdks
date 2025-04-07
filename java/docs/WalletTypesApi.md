@@ -10,6 +10,8 @@ Method | HTTP request | Description
 [**deleteWalletTypesWithHttpInfo**](WalletTypesApi.md#deleteWalletTypesWithHttpInfo) | **DELETE** /wallet-types | Delete wallet types
 [**getWalletTypes**](WalletTypesApi.md#getWalletTypes) | **GET** /wallet-types | Get wallet types
 [**getWalletTypesWithHttpInfo**](WalletTypesApi.md#getWalletTypesWithHttpInfo) | **GET** /wallet-types | Get wallet types
+[**getWalletTypesByQuery**](WalletTypesApi.md#getWalletTypesByQuery) | **POST** /wallet-types/query | Get wallet types by query
+[**getWalletTypesByQueryWithHttpInfo**](WalletTypesApi.md#getWalletTypesByQueryWithHttpInfo) | **POST** /wallet-types/query | Get wallet types by query
 [**updateWalletTypes**](WalletTypesApi.md#updateWalletTypes) | **PUT** /wallet-types | Update wallet types
 [**updateWalletTypesWithHttpInfo**](WalletTypesApi.md#updateWalletTypesWithHttpInfo) | **PUT** /wallet-types | Update wallet types
 
@@ -504,6 +506,171 @@ CompletableFuture<ApiResponse<[**WalletTypeResponse**](WalletTypeResponse.md)>>
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | A list of action types and/or errors |  -  |
+| **400** | A list of action types and/or errors |  -  |
+| **401** | A list of action types and/or errors |  -  |
+| **403** | A list of action types and/or errors |  -  |
+| **404** | A list of action types and/or errors |  -  |
+| **500** | A list of action types and/or errors |  -  |
+| **501** | A list of action types and/or errors |  -  |
+
+
+## getWalletTypesByQuery
+
+> CompletableFuture<WalletTypeResponse> getWalletTypesByQuery(body)
+
+Get wallet types by query
+
+Retrieve Wallet types from Ziqni database by unique Wallet Types ID&#39;s or any other POST body parameters using the POST method
+
+### Example
+
+```java
+// Import classes:
+import com.ziqni.admin.sdk.ApiClient;
+import com.ziqni.admin.sdk.ApiException;
+import com.ziqni.admin.sdk.Configuration;
+import com.ziqni.admin.sdk.auth.*;
+import com.ziqni.admin.sdk.models.*;
+import com.ziqni.admin.sdk.api.WalletTypesApi;
+import java.util.concurrent.CompletableFuture;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://api.ziqni.com");
+        
+        // Configure OAuth2 access token for authorization: OAuth2
+        OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
+        OAuth2.setAccessToken("YOUR ACCESS TOKEN");
+
+        WalletTypesApi apiInstance = new WalletTypesApi(defaultClient);
+        QueryRequest body = new QueryRequest(); // QueryRequest | Retrieve Wallet types from Ziqni database by unique Wallet Types ID's or any other POST body parameters using the POST method
+        try {
+            CompletableFuture<WalletTypeResponse> result = apiInstance.getWalletTypesByQuery(body);
+            System.out.println(result.get());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WalletTypesApi#getWalletTypesByQuery");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | [**QueryRequest**](QueryRequest.md)| Retrieve Wallet types from Ziqni database by unique Wallet Types ID&#39;s or any other POST body parameters using the POST method | [optional]
+
+### Return type
+
+CompletableFuture<[**WalletTypeResponse**](WalletTypeResponse.md)>
+
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | A list of action types and/or errors |  -  |
+| **400** | A list of action types and/or errors |  -  |
+| **401** | A list of action types and/or errors |  -  |
+| **403** | A list of action types and/or errors |  -  |
+| **404** | A list of action types and/or errors |  -  |
+| **500** | A list of action types and/or errors |  -  |
+| **501** | A list of action types and/or errors |  -  |
+
+## getWalletTypesByQueryWithHttpInfo
+
+> CompletableFuture<ApiResponse<WalletTypeResponse>> getWalletTypesByQuery getWalletTypesByQueryWithHttpInfo(body)
+
+Get wallet types by query
+
+Retrieve Wallet types from Ziqni database by unique Wallet Types ID&#39;s or any other POST body parameters using the POST method
+
+### Example
+
+```java
+// Import classes:
+import com.ziqni.admin.sdk.ApiClient;
+import com.ziqni.admin.sdk.ApiException;
+import com.ziqni.admin.sdk.ApiResponse;
+import com.ziqni.admin.sdk.Configuration;
+import com.ziqni.admin.sdk.auth.*;
+import com.ziqni.admin.sdk.models.*;
+import com.ziqni.admin.sdk.api.WalletTypesApi;
+import java.util.concurrent.CompletableFuture;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://api.ziqni.com");
+        
+        // Configure OAuth2 access token for authorization: OAuth2
+        OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
+        OAuth2.setAccessToken("YOUR ACCESS TOKEN");
+
+        WalletTypesApi apiInstance = new WalletTypesApi(defaultClient);
+        QueryRequest body = new QueryRequest(); // QueryRequest | Retrieve Wallet types from Ziqni database by unique Wallet Types ID's or any other POST body parameters using the POST method
+        try {
+            CompletableFuture<ApiResponse<WalletTypeResponse>> response = apiInstance.getWalletTypesByQueryWithHttpInfo(body);
+            System.out.println("Status code: " + response.get().getStatusCode());
+            System.out.println("Response headers: " + response.get().getHeaders());
+            System.out.println("Response body: " + response.get().getData());
+        } catch (InterruptedException | ExecutionException e) {
+            ApiException apiException = (ApiException)e.getCause();
+            System.err.println("Exception when calling WalletTypesApi#getWalletTypesByQuery");
+            System.err.println("Status code: " + apiException.getCode());
+            System.err.println("Response headers: " + apiException.getResponseHeaders());
+            System.err.println("Reason: " + apiException.getResponseBody());
+            e.printStackTrace();
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WalletTypesApi#getWalletTypesByQuery");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | [**QueryRequest**](QueryRequest.md)| Retrieve Wallet types from Ziqni database by unique Wallet Types ID&#39;s or any other POST body parameters using the POST method | [optional]
+
+### Return type
+
+CompletableFuture<ApiResponse<[**WalletTypeResponse**](WalletTypeResponse.md)>>
+
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
 - **Accept**: application/json
 
 ### HTTP response details

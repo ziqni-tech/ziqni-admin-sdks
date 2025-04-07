@@ -38,34 +38,34 @@ public class WalletTypesApiTest implements tests.utils.CompleteableFutureTestWra
 
     private static final Logger logger = LoggerFactory.getLogger(WalletTypesApiTest.class);
 
-    private WalletTypesApiWs api;
+    private final WalletTypesApiWs api;
 
-    private LoadWalletTypeData loadTestData;
-    private final LoadTagsData loadTagsData;
-    private final LoadCustomFieldsData loadCustomFieldsData;
+    private final LoadWalletTypeData loadTestData;
+    private final LoadUnitsOfMeasureData loadUnitsOfMeasureData;
 
-    private String tagKey;
+
+    private String unitOfMeasureId;
     private String customFieldKey;
 
     private List<String> idsToDelete = new ArrayList<>();
-    private List<String> tagIdsToDelete = new ArrayList<>();
-    private List<String> customFieldIdsToDelete = new ArrayList<>();
+    private List<String> unitOfMeasureIdsToDelete = new ArrayList<>();
+
 
     public WalletTypesApiTest() throws Exception {
         ApiClientFactoryUtil.initApiClientFactory(AdminApiClientConfigBuilder.build());
         this.api = ApiClientFactoryUtil.factory.getWalletTypesApi();
         this.loadTestData = new LoadWalletTypeData();
-        this.loadCustomFieldsData = new LoadCustomFieldsData();
-        this.loadTagsData = new LoadTagsData();
+        this.loadUnitsOfMeasureData = new LoadUnitsOfMeasureData();
     }
 
 
     @BeforeAll
     public void setUp() throws ApiException {
-        tagKey = loadTagsData.getModel();
-        customFieldKey = loadCustomFieldsData.getModel(customFieldIdsToDelete, AppliesTo.UNITOFMEASURE);
+         unitOfMeasureId = loadUnitsOfMeasureData.createTestData(loadUnitsOfMeasureData.
+                getCreateRequestAsList(1)).getResults().get(0).getId();
 
-        tagIdsToDelete.add(tagKey);
+
+        unitOfMeasureIdsToDelete.add(unitOfMeasureId);
     }
 
     @AfterAll
@@ -75,8 +75,8 @@ public class WalletTypesApiTest implements tests.utils.CompleteableFutureTestWra
             Thread.sleep(5000);
 
             loadTestData.deleteTestData(idsToDelete);
-            loadTagsData.deleteTestData(tagIdsToDelete);
-            loadCustomFieldsData.deleteTestData(customFieldIdsToDelete);
+            loadUnitsOfMeasureData.deleteTestData(unitOfMeasureIdsToDelete);
+
         } catch (ApiException | InterruptedException e) {
             logger.error("error", e.getCause());
         }
@@ -87,7 +87,7 @@ public class WalletTypesApiTest implements tests.utils.CompleteableFutureTestWra
     @Order(1)
     public void createWalletTypeReturnOkTest() throws ApiException {
 
-        final var createRequest = loadTestData.getCreateRequest("UeY-5pUBjhDu8JmkYkxI");
+        final var createRequest = loadTestData.getCreateRequest(unitOfMeasureId);
         ModelApiResponse response = $(api.createWalletTypes(loadTestData.getCreateRequestAsList(createRequest)));
 
         assertNotNull(response);
@@ -96,20 +96,20 @@ public class WalletTypesApiTest implements tests.utils.CompleteableFutureTestWra
         assertEquals(1, response.getResults().size(), "Should contain created entity");
         assertNotNull(response.getResults().get(0).getId(), "Created entity should has id");
         logger.info(response.getResults().get(0).getId());
-     //   idsToDelete.add(response.getResults().get(0).getId());
+       idsToDelete.add(response.getResults().get(0).getId());
     }
 
     @Test
-    @Order(20)
+    @Order(2)
     public void getWalletTypeSingleIdReturnOkTest() throws ApiException, InterruptedException {
-
-
+        final var createRequest = loadTestData.getCreateRequest(unitOfMeasureId);
+        var walletTypeId = loadTestData.createTestData(List.of(createRequest)).getResults().get(0).getId();
         Integer limit = 1;
         Integer skip = 0;
 
         Thread.sleep(5000);
 
-        var response = $(api.getWalletTypes(List.of("UeY-5pUBjhDu8JmkYkxI"), limit, skip));
+        var response = $(api.getWalletTypes(List.of(walletTypeId), limit, skip));
 
 
         assertNotNull(response);
@@ -119,14 +119,25 @@ public class WalletTypesApiTest implements tests.utils.CompleteableFutureTestWra
         assertEquals(limit, response.getResults().size(), "Should has single result");
 
         var item = response.getResults().get(0);
-//
-//        assertEquals(id, item.getId(), "Found id should be equal to requested");
-//        Assertions.assertEquals(request.getName(), item.getName(), "Found name should be equal to created previously");
-//        Assertions.assertEquals(request.getKey(), item.getKey(), "Found key should be equal to created previously");
-//        Assertions.assertEquals(request.getUnitOfMeasureType(), item.getUnitOfMeasureType(), "Found unit of measure should be " + request.getUnitOfMeasureType());
-//        Assertions.assertEquals(request.getMultiplier(), item.getMultiplier(), "Found multiplier of constraints should be equal " + request.getMultiplier());
-//
-//        idsToDelete.add(id);
+
+        idsToDelete.add(item.getId());
+    }
+    @Test
+    @Order(2)
+    public void deleteWalletTypeSingleIdReturnOkTest() throws ApiException, InterruptedException {
+        final var createRequest = loadTestData.getCreateRequest(unitOfMeasureId);
+        var walletTypeId = loadTestData.createTestData(List.of(createRequest)).getResults().get(0).getId();
+        Thread.sleep(5000);
+        var response = $(api.deleteWalletTypes(List.of(walletTypeId)));
+
+
+        assertNotNull(response);
+
+        assertNotNull(response.getErrors());
+        assertEquals(1, response.getMeta().getResultCount(), "Results should contain entry");
+        assertTrue(response.getErrors().isEmpty(), "Should have no errors");
+
+
     }
 
 
