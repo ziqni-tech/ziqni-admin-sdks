@@ -215,10 +215,10 @@ export default class TagsApi {
      */
 
     /**
-     * Get tags by query
-     * Retrieve Tags from Ziqni database by unique Tags ID's or any other POST body parameters using the POST method
+     * Get wallet types by query
+     * Retrieve WalletType from Ziqni database by unique WalletType ID's or any other POST body parameters using the POST method
      * @param {Object} opts Optional parameters
-     * @param {module:model/QueryRequest} opts.body Retrieve Tags from Ziqni database by unique Tags ID's or any other POST body parameters using the POST method
+     * @param {module:model/QueryRequest} opts.body Retrieve Tags from Ziqni database by uniqueTags ID's or any other POST body parameters using the POST method
      * @param {module:api/TagsApi~getTagsByQueryCallback} callback The callback function, accepting three arguments: error, data, response
      * data is of type: {@link module:model/TagResponse}
      */

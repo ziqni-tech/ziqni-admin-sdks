@@ -66,8 +66,8 @@
       //expect(instance).to.be();
     });
 
-    it('should have the property awardActions (base name: "awardActions")', function() {
-      // uncomment below and update the code to test the property awardActions
+    it('should have the property awardAction (base name: "awardAction")', function() {
+      // uncomment below and update the code to test the property awardAction
       //var instance = new @ZiqniTechAdminApiClient.RewardTypeAllOf();
       //expect(instance).to.be();
     });

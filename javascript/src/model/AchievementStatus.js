@@ -110,6 +110,13 @@ export default class AchievementStatus {
         "Deleted" = "Deleted";
 
     
+        /**
+         * value: "Paused"
+         * @const
+         */
+        "Paused" = "Paused";
+
+    
 
     /**
     * Returns a <code>AchievementStatus</code> enum value from a Javascript object name.
