@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **metadata** | **{String: String}** |  | [optional] 
 **name** | **String** | The name of the Reward type | 
 **description** | **String** | The description of a reward type | [optional] 
-**awardActions** | [**[AwardAction]**](AwardAction.md) | When the state changes the action is performed | [optional] 
+**awardAction** | [**[AwardAction]**](AwardAction.md) | When the state changes the action is performed | [optional] 
 **key** | **String** | A unique key that represents the reward type | 
 **constraints** | **[String]** | Additional constraints, if the value is present it means the | 
 **unitOfMeasure** | **String** | The unit of measure to use when performing dynamic calculations like currency | 

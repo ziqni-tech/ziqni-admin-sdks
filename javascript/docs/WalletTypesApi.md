@@ -7,6 +7,7 @@ Method | HTTP request | Description
 [**createWalletTypes**](WalletTypesApi.md#createWalletTypes) | **POST** /wallet-types | Create wallet types
 [**deleteWalletTypes**](WalletTypesApi.md#deleteWalletTypes) | **DELETE** /wallet-types | Delete wallet types
 [**getWalletTypes**](WalletTypesApi.md#getWalletTypes) | **GET** /wallet-types | Get wallet types
+[**getWalletTypesByQuery**](WalletTypesApi.md#getWalletTypesByQuery) | **POST** /wallet-types/query | Get wallet types by query
 [**updateWalletTypes**](WalletTypesApi.md#updateWalletTypes) | **PUT** /wallet-types | Update wallet types
 
 
@@ -163,6 +164,57 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+## getWalletTypesByQuery
+
+> WalletTypeResponse getWalletTypesByQuery(opts)
+
+Get wallet types by query
+
+Retrieve Wallet types from Ziqni database by unique Wallet Types ID&#39;s or any other POST body parameters using the POST method
+
+### Example
+
+```javascript
+import @ZiqniTechAdminApiClient from '@ziqni-tech/admin-api-client';
+let defaultClient = @ZiqniTechAdminApiClient.ApiClient.instance;
+// Configure OAuth2 access token for authorization: OAuth2
+let OAuth2 = defaultClient.authentications['OAuth2'];
+OAuth2.accessToken = 'YOUR ACCESS TOKEN';
+
+let apiInstance = new @ZiqniTechAdminApiClient.WalletTypesApi();
+let opts = {
+  'body': new @ZiqniTechAdminApiClient.QueryRequest() // QueryRequest | Retrieve Wallet types from Ziqni database by unique Wallet Types ID's or any other POST body parameters using the POST method
+};
+apiInstance.getWalletTypesByQuery(opts, (error, data, response) => {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+});
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | [**QueryRequest**](QueryRequest.md)| Retrieve Wallet types from Ziqni database by unique Wallet Types ID&#39;s or any other POST body parameters using the POST method | [optional] 
+
+### Return type
+
+[**WalletTypeResponse**](WalletTypeResponse.md)
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
 - **Accept**: application/json
 
 

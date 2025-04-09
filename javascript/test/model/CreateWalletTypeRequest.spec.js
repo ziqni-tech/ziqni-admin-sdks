@@ -90,6 +90,24 @@
       //expect(instance).to.be();
     });
 
+    it('should have the property termsAndConditions (base name: "termsAndConditions")', function() {
+      // uncomment below and update the code to test the property termsAndConditions
+      //var instance = new @ZiqniTechAdminApiClient.CreateWalletTypeRequest();
+      //expect(instance).to.be();
+    });
+
+    it('should have the property translations (base name: "translations")', function() {
+      // uncomment below and update the code to test the property translations
+      //var instance = new @ZiqniTechAdminApiClient.CreateWalletTypeRequest();
+      //expect(instance).to.be();
+    });
+
+    it('should have the property addConstraints (base name: "addConstraints")', function() {
+      // uncomment below and update the code to test the property addConstraints
+      //var instance = new @ZiqniTechAdminApiClient.CreateWalletTypeRequest();
+      //expect(instance).to.be();
+    });
+
   });
 
 }));

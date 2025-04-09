@@ -8,7 +8,7 @@ Method | HTTP request | Description
 [**deleteTags**](TagsApi.md#deleteTags) | **DELETE** /tags | Delete tags
 [**deleteTagsByQuery**](TagsApi.md#deleteTagsByQuery) | **POST** /tags/delete | Delete tags by query
 [**getTags**](TagsApi.md#getTags) | **GET** /tags | Get tags
-[**getTagsByQuery**](TagsApi.md#getTagsByQuery) | **POST** /tags/query | Get tags by query
+[**getTagsByQuery**](TagsApi.md#getTagsByQuery) | **POST** /tags/query | Get wallet types by query
 [**updateTags**](TagsApi.md#updateTags) | **PUT** /tags | Update tags
 
 
@@ -223,9 +223,9 @@ Name | Type | Description  | Notes
 
 > TagResponse getTagsByQuery(opts)
 
-Get tags by query
+Get wallet types by query
 
-Retrieve Tags from Ziqni database by unique Tags ID&#39;s or any other POST body parameters using the POST method
+Retrieve WalletType from Ziqni database by unique WalletType ID&#39;s or any other POST body parameters using the POST method
 
 ### Example
 
@@ -238,7 +238,7 @@ OAuth2.accessToken = 'YOUR ACCESS TOKEN';
 
 let apiInstance = new @ZiqniTechAdminApiClient.TagsApi();
 let opts = {
-  'body': new @ZiqniTechAdminApiClient.QueryRequest() // QueryRequest | Retrieve Tags from Ziqni database by unique Tags ID's or any other POST body parameters using the POST method
+  'body': new @ZiqniTechAdminApiClient.QueryRequest() // QueryRequest | Retrieve Tags from Ziqni database by uniqueTags ID's or any other POST body parameters using the POST method
 };
 apiInstance.getTagsByQuery(opts, (error, data, response) => {
   if (error) {
@@ -254,7 +254,7 @@ apiInstance.getTagsByQuery(opts, (error, data, response) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**QueryRequest**](QueryRequest.md)| Retrieve Tags from Ziqni database by unique Tags ID&#39;s or any other POST body parameters using the POST method | [optional] 
+ **body** | [**QueryRequest**](QueryRequest.md)| Retrieve Tags from Ziqni database by uniqueTags ID&#39;s or any other POST body parameters using the POST method | [optional] 
 
 ### Return type
 

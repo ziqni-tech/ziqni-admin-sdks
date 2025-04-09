@@ -14,6 +14,7 @@
 import ApiClient from '../ApiClient';
 import CreateOptParamModels from './CreateOptParamModels';
 import CreateWalletTypeRequestAllOf from './CreateWalletTypeRequestAllOf';
+import Translation from './Translation';
 
 /**
  * The CreateWalletTypeRequest model module.
@@ -75,6 +76,15 @@ class CreateWalletTypeRequest {
             if (data.hasOwnProperty('unitOfMeasure')) {
                 obj['unitOfMeasure'] = ApiClient.convertToType(data['unitOfMeasure'], 'String');
             }
+            if (data.hasOwnProperty('termsAndConditions')) {
+                obj['termsAndConditions'] = ApiClient.convertToType(data['termsAndConditions'], 'String');
+            }
+            if (data.hasOwnProperty('translations')) {
+                obj['translations'] = ApiClient.convertToType(data['translations'], [Translation]);
+            }
+            if (data.hasOwnProperty('addConstraints')) {
+                obj['addConstraints'] = ApiClient.convertToType(data['addConstraints'], ['String']);
+            }
         }
         return obj;
     }
@@ -117,6 +127,23 @@ CreateWalletTypeRequest.prototype['description'] = undefined;
  */
 CreateWalletTypeRequest.prototype['unitOfMeasure'] = undefined;
 
+/**
+ * Terms and conditions of a wallet type. Can be translated
+ * @member {String} termsAndConditions
+ */
+CreateWalletTypeRequest.prototype['termsAndConditions'] = undefined;
+
+/**
+ * @member {Array.<module:model/Translation>} translations
+ */
+CreateWalletTypeRequest.prototype['translations'] = undefined;
+
+/**
+ * Additional constraints
+ * @member {Array.<String>} addConstraints
+ */
+CreateWalletTypeRequest.prototype['addConstraints'] = undefined;
+
 
 // Implement CreateOptParamModels interface:
 /**
@@ -149,6 +176,20 @@ CreateWalletTypeRequestAllOf.prototype['description'] = undefined;
  * @member {String} unitOfMeasure
  */
 CreateWalletTypeRequestAllOf.prototype['unitOfMeasure'] = undefined;
+/**
+ * Terms and conditions of a wallet type. Can be translated
+ * @member {String} termsAndConditions
+ */
+CreateWalletTypeRequestAllOf.prototype['termsAndConditions'] = undefined;
+/**
+ * @member {Array.<module:model/Translation>} translations
+ */
+CreateWalletTypeRequestAllOf.prototype['translations'] = undefined;
+/**
+ * Additional constraints
+ * @member {Array.<String>} addConstraints
+ */
+CreateWalletTypeRequestAllOf.prototype['addConstraints'] = undefined;
 
 
 
