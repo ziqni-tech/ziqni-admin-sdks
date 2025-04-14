@@ -144,9 +144,9 @@ public class WalletsApiTest implements tests.utils.CompleteableFutureTestWrapper
     @Order(2)
     public void deleteWalletSingleIdReturnOkTest() throws ApiException, InterruptedException {
         final var createRequest = loadTestData.getCreateRequest(memberId,walletTypeId);
-        var walletTypeId = loadTestData.createTestData(List.of(createRequest)).getResults().get(0).getId();
+        var walletId = loadTestData.createTestData(List.of(createRequest)).getResults().get(0).getId();
         Thread.sleep(10000);
-        var response = $(api.deleteWallets(List.of(walletTypeId)));
+        var response = $(api.deleteWallets(List.of(walletId)));
 
 
         assertNotNull(response);
