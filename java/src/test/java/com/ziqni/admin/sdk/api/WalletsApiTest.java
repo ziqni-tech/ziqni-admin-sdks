@@ -20,11 +20,13 @@ import com.ziqni.admin.sdk.data.LoadUnitsOfMeasureData;
 import com.ziqni.admin.sdk.data.LoadWalletData;
 import com.ziqni.admin.sdk.data.LoadWalletTypeData;
 import com.ziqni.admin.sdk.model.ModelApiResponse;
+import com.ziqni.admin.sdk.model.WalletTransactionRequest;
 import com.ziqni.admin.sdk.util.ApiClientFactoryUtil;
 import org.junit.jupiter.api.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -121,13 +123,13 @@ public class WalletsApiTest implements tests.utils.CompleteableFutureTestWrapper
     @Order(2)
     public void getWalletSingleIdReturnOkTest() throws ApiException, InterruptedException {
         final var createRequest = loadTestData.getCreateRequest(memberId,walletTypeId);
-        var walletTypeId = loadTestData.createTestData(List.of(createRequest)).getResults().get(0).getId();
+        var walletId = loadTestData.createTestData(List.of(createRequest)).getResults().get(0).getId();
         Integer limit = 1;
         Integer skip = 0;
 
         Thread.sleep(5000);
 
-        var response = $(api.getWallets(List.of(walletTypeId), limit, skip));
+        var response = $(api.getWallets(List.of(walletId), limit, skip));
 
 
         assertNotNull(response);
@@ -141,7 +143,7 @@ public class WalletsApiTest implements tests.utils.CompleteableFutureTestWrapper
         idsToDelete.add(item.getId());
     }
     @Test
-    @Order(2)
+    @Order(3)
     public void deleteWalletSingleIdReturnOkTest() throws ApiException, InterruptedException {
         final var createRequest = loadTestData.getCreateRequest(memberId,walletTypeId);
         var walletId = loadTestData.createTestData(List.of(createRequest)).getResults().get(0).getId();
@@ -157,6 +159,118 @@ public class WalletsApiTest implements tests.utils.CompleteableFutureTestWrapper
 
 
     }
+    @Test
+    @Order(2)
+    public void manageWalletCreditReturnOkTest() throws ApiException, InterruptedException {
+        final var createRequest = loadTestData.getCreateRequest(memberId, walletTypeId);
+        var walletId = loadTestData.createTestData(List.of(createRequest)).getResults().get(0).getId();
+
+        BigDecimal amount = BigDecimal.valueOf(100);
+        WalletTransactionRequest request = new WalletTransactionRequest()
+                .amount(amount)
+                .transactionType("credit")
+                .sourceWalletId(walletId);
+
+        Thread.sleep(5000);
+        var response = $(api.manageWalletTransaction(request));
+
+        assertNotNull(response);
+        assertTrue(response.getErrors().isEmpty());
+
+
+
+        var walletResponse = $(api.getWallets(List.of(walletId), 1, 0));
+        assertNotNull(walletResponse);
+        assertTrue(walletResponse.getErrors().isEmpty());
+
+        BigDecimal walletBalance = walletResponse.getResults().get(0).getBalance();
+        assertEquals(amount, walletBalance, "Wallet balance should match credited amount");
+        idsToDelete.add(walletId);
+    }
+
+    @Test
+    @Order(3)
+    public void manageWalletDebitReturnOkTest() throws ApiException, InterruptedException {
+        final var createRequest = loadTestData.getCreateRequest(memberId, walletTypeId);
+        var walletId = loadTestData.createTestData(List.of(createRequest)).getResults().get(0).getId();
+        Thread.sleep(3000);
+        BigDecimal initialAmount = BigDecimal.valueOf(100);
+        BigDecimal debitAmount = BigDecimal.valueOf(50);
+
+        // Pre-credit wallet
+        api.manageWalletTransaction(new WalletTransactionRequest()
+                .amount(initialAmount)
+                .transactionType("credit")
+                .sourceWalletId(walletId));
+
+
+
+        WalletTransactionRequest request = new WalletTransactionRequest()
+                .amount(debitAmount)
+                .transactionType("debit")
+                .sourceWalletId(walletId);
+
+        var response = $(api.manageWalletTransaction(request));
+
+        assertNotNull(response);
+        assertTrue(response.getErrors().isEmpty());
+
+
+        var walletResponse = $(api.getWallets(List.of(walletId), 1, 0));
+        assertNotNull(walletResponse);
+        assertTrue(walletResponse.getErrors().isEmpty());
+
+        BigDecimal walletBalance = walletResponse.getResults().get(0).getBalance();
+        assertEquals(initialAmount.subtract(debitAmount), walletBalance, "Wallet balance should reflect debit");
+        idsToDelete.add(walletId);
+    }
+
+    @Test
+    @Order(4)
+    public void manageWalletTransferReturnOkTest() throws ApiException, InterruptedException {
+        final var createRequest1 = loadTestData.getCreateRequest(memberId, walletTypeId);
+        final var createRequest2 = loadTestData.getCreateRequest(memberId, walletTypeId);
+
+        var wallets = loadTestData.createTestData(List.of(createRequest1, createRequest2)).getResults();
+        var sourceWalletId = wallets.get(0).getId();
+        var targetWalletId = wallets.get(1).getId();
+        Thread.sleep(10000);
+
+        BigDecimal creditAmount = BigDecimal.valueOf(100);
+        BigDecimal transferAmount = BigDecimal.valueOf(75);
+
+        // Pre-credit source wallet
+        api.manageWalletTransaction(new WalletTransactionRequest()
+                .amount(creditAmount)
+                .transactionType("credit")
+                .sourceWalletId(sourceWalletId));
+
+        Thread.sleep(1000);
+
+        WalletTransactionRequest transferRequest = new WalletTransactionRequest()
+                .amount(transferAmount)
+                .transactionType("transfer")
+                .sourceWalletId(sourceWalletId)
+                .targetWalletId(targetWalletId);
+
+
+        var response = $(api.manageWalletTransaction(transferRequest));
+        Thread.sleep(1000);
+        assertNotNull(response);
+        assertTrue(response.getErrors().isEmpty());
+        var item = response.getResults().get(0);
+
+
+        var sourceWallet = $(api.getWallets(List.of(sourceWalletId), 1, 0)).getResults().get(0);
+        var targetWallet = $(api.getWallets(List.of(targetWalletId), 1, 0)).getResults().get(0);
+
+        assertEquals(creditAmount.subtract(transferAmount), sourceWallet.getBalance(), "Source wallet balance should decrease");
+        assertEquals(transferAmount, targetWallet.getBalance(), "Target wallet balance should increase");
+        idsToDelete.add(sourceWallet.getId());
+        idsToDelete.add(targetWallet.getId());
+    }
+
+
 
 
 }
