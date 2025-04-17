@@ -24,10 +24,11 @@ class WalletTypeAllOf {
      * @alias module:model/WalletTypeAllOf
      * @param name {String} name of wallet type
      * @param unitOfMeasure {String} unitOfMeasure id
+     * @param constraints {Array.<String>} Additional constraints
      */
-    constructor(name, unitOfMeasure) { 
+    constructor(name, unitOfMeasure, constraints) { 
         
-        WalletTypeAllOf.initialize(this, name, unitOfMeasure);
+        WalletTypeAllOf.initialize(this, name, unitOfMeasure, constraints);
     }
 
     /**
@@ -35,9 +36,10 @@ class WalletTypeAllOf {
      * This method is used by the constructors of any subclasses, in order to implement multiple inheritance (mix-ins).
      * Only for internal use.
      */
-    static initialize(obj, name, unitOfMeasure) { 
+    static initialize(obj, name, unitOfMeasure, constraints) { 
         obj['name'] = name;
         obj['unitOfMeasure'] = unitOfMeasure;
+        obj['constraints'] = constraints;
     }
 
     /**
@@ -59,6 +61,12 @@ class WalletTypeAllOf {
             }
             if (data.hasOwnProperty('unitOfMeasure')) {
                 obj['unitOfMeasure'] = ApiClient.convertToType(data['unitOfMeasure'], 'String');
+            }
+            if (data.hasOwnProperty('termsAndConditions')) {
+                obj['termsAndConditions'] = ApiClient.convertToType(data['termsAndConditions'], 'String');
+            }
+            if (data.hasOwnProperty('constraints')) {
+                obj['constraints'] = ApiClient.convertToType(data['constraints'], ['String']);
             }
         }
         return obj;
@@ -84,6 +92,18 @@ WalletTypeAllOf.prototype['description'] = undefined;
  * @member {String} unitOfMeasure
  */
 WalletTypeAllOf.prototype['unitOfMeasure'] = undefined;
+
+/**
+ * Terms and conditions of a competition. Can be translated
+ * @member {String} termsAndConditions
+ */
+WalletTypeAllOf.prototype['termsAndConditions'] = undefined;
+
+/**
+ * Additional constraints
+ * @member {Array.<String>} constraints
+ */
+WalletTypeAllOf.prototype['constraints'] = undefined;
 
 
 

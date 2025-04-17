@@ -12,6 +12,7 @@
  */
 
 import ApiClient from '../ApiClient';
+import Translation from './Translation';
 
 /**
  * The CreateWalletTypeRequestAllOf model module.
@@ -60,6 +61,15 @@ class CreateWalletTypeRequestAllOf {
             if (data.hasOwnProperty('unitOfMeasure')) {
                 obj['unitOfMeasure'] = ApiClient.convertToType(data['unitOfMeasure'], 'String');
             }
+            if (data.hasOwnProperty('termsAndConditions')) {
+                obj['termsAndConditions'] = ApiClient.convertToType(data['termsAndConditions'], 'String');
+            }
+            if (data.hasOwnProperty('translations')) {
+                obj['translations'] = ApiClient.convertToType(data['translations'], [Translation]);
+            }
+            if (data.hasOwnProperty('addConstraints')) {
+                obj['addConstraints'] = ApiClient.convertToType(data['addConstraints'], ['String']);
+            }
         }
         return obj;
     }
@@ -84,6 +94,23 @@ CreateWalletTypeRequestAllOf.prototype['description'] = undefined;
  * @member {String} unitOfMeasure
  */
 CreateWalletTypeRequestAllOf.prototype['unitOfMeasure'] = undefined;
+
+/**
+ * Terms and conditions of a wallet type. Can be translated
+ * @member {String} termsAndConditions
+ */
+CreateWalletTypeRequestAllOf.prototype['termsAndConditions'] = undefined;
+
+/**
+ * @member {Array.<module:model/Translation>} translations
+ */
+CreateWalletTypeRequestAllOf.prototype['translations'] = undefined;
+
+/**
+ * Additional constraints
+ * @member {Array.<String>} addConstraints
+ */
+CreateWalletTypeRequestAllOf.prototype['addConstraints'] = undefined;
 
 
 
