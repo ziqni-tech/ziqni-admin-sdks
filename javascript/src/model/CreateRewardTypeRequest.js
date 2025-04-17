@@ -12,6 +12,7 @@
  */
 
 import ApiClient from '../ApiClient';
+import AwardAction from './AwardAction';
 import AwardScheduling from './AwardScheduling';
 import CreateOptParamModels from './CreateOptParamModels';
 import CreateRewardTypeRequestAllOf from './CreateRewardTypeRequestAllOf';
@@ -83,6 +84,9 @@ class CreateRewardTypeRequest {
             if (data.hasOwnProperty('translations')) {
                 obj['translations'] = ApiClient.convertToType(data['translations'], [Translation]);
             }
+            if (data.hasOwnProperty('awardActions')) {
+                obj['awardActions'] = ApiClient.convertToType(data['awardActions'], [AwardAction]);
+            }
             if (data.hasOwnProperty('addConstraints')) {
                 obj['addConstraints'] = ApiClient.convertToType(data['addConstraints'], ['String']);
             }
@@ -140,6 +144,12 @@ CreateRewardTypeRequest.prototype['key'] = undefined;
 CreateRewardTypeRequest.prototype['translations'] = undefined;
 
 /**
+ * When the state changes the action is performed
+ * @member {Array.<module:model/AwardAction>} awardActions
+ */
+CreateRewardTypeRequest.prototype['awardActions'] = undefined;
+
+/**
  * Additional constraints
  * @member {Array.<String>} addConstraints
  */
@@ -192,6 +202,11 @@ CreateRewardTypeRequestAllOf.prototype['key'] = undefined;
  * @member {Array.<module:model/Translation>} translations
  */
 CreateRewardTypeRequestAllOf.prototype['translations'] = undefined;
+/**
+ * When the state changes the action is performed
+ * @member {Array.<module:model/AwardAction>} awardActions
+ */
+CreateRewardTypeRequestAllOf.prototype['awardActions'] = undefined;
 /**
  * Additional constraints
  * @member {Array.<String>} addConstraints

@@ -304,7 +304,7 @@ Class | Method | HTTP request | Description
 *@ZiqniTechAdminApiClient.TagsApi* | [**deleteTags**](docs/TagsApi.md#deleteTags) | **DELETE** /tags | Delete tags
 *@ZiqniTechAdminApiClient.TagsApi* | [**deleteTagsByQuery**](docs/TagsApi.md#deleteTagsByQuery) | **POST** /tags/delete | Delete tags by query
 *@ZiqniTechAdminApiClient.TagsApi* | [**getTags**](docs/TagsApi.md#getTags) | **GET** /tags | Get tags
-*@ZiqniTechAdminApiClient.TagsApi* | [**getTagsByQuery**](docs/TagsApi.md#getTagsByQuery) | **POST** /tags/query | Get tags by query
+*@ZiqniTechAdminApiClient.TagsApi* | [**getTagsByQuery**](docs/TagsApi.md#getTagsByQuery) | **POST** /tags/query | Get wallet types by query
 *@ZiqniTechAdminApiClient.TagsApi* | [**updateTags**](docs/TagsApi.md#updateTags) | **PUT** /tags | Update tags
 *@ZiqniTechAdminApiClient.TransformersApi* | [**createTransformers**](docs/TransformersApi.md#createTransformers) | **POST** /transformers | 
 *@ZiqniTechAdminApiClient.TransformersApi* | [**deleteTransformers**](docs/TransformersApi.md#deleteTransformers) | **DELETE** /transformers | 
@@ -329,6 +329,7 @@ Class | Method | HTTP request | Description
 *@ZiqniTechAdminApiClient.WalletTypesApi* | [**createWalletTypes**](docs/WalletTypesApi.md#createWalletTypes) | **POST** /wallet-types | Create wallet types
 *@ZiqniTechAdminApiClient.WalletTypesApi* | [**deleteWalletTypes**](docs/WalletTypesApi.md#deleteWalletTypes) | **DELETE** /wallet-types | Delete wallet types
 *@ZiqniTechAdminApiClient.WalletTypesApi* | [**getWalletTypes**](docs/WalletTypesApi.md#getWalletTypes) | **GET** /wallet-types | Get wallet types
+*@ZiqniTechAdminApiClient.WalletTypesApi* | [**getWalletTypesByQuery**](docs/WalletTypesApi.md#getWalletTypesByQuery) | **POST** /wallet-types/query | Get wallet types by query
 *@ZiqniTechAdminApiClient.WalletTypesApi* | [**updateWalletTypes**](docs/WalletTypesApi.md#updateWalletTypes) | **PUT** /wallet-types | Update wallet types
 *@ZiqniTechAdminApiClient.WalletsApi* | [**createWallets**](docs/WalletsApi.md#createWallets) | **POST** /wallets | Create wallets
 *@ZiqniTechAdminApiClient.WalletsApi* | [**deleteWallets**](docs/WalletsApi.md#deleteWallets) | **DELETE** /wallets | Delete wallets
