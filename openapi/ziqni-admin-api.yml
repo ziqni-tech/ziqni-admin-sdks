@@ -6649,44 +6649,6 @@ paths:
       description: Retrieve file objects by query
       x-codegen-request-body-name: body
       x-ws-ignore: true
-  /file-objects/upload:
-    post:
-      requestBody:
-        description: Create or update file objects and binaries in your Ziqni space
-        content:
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/UpdateFileObjectFormRequest'
-        required: true
-      tags:
-        - file-objects
-      responses:
-        '200':
-          $ref: '#/components/responses/ApiResponseBody'
-        '400':
-          $ref: '#/components/responses/ApiResponseBody'
-        '401':
-          $ref: '#/components/responses/ApiResponseBody'
-        '403':
-          $ref: '#/components/responses/ApiResponseBody'
-        '404':
-          $ref: '#/components/responses/ApiResponseBody'
-        '413':
-          $ref: '#/components/responses/ApiResponseBody'
-        '500':
-          $ref: '#/components/responses/ApiResponseBody'
-        '501':
-          $ref: '#/components/responses/ApiResponseBody'
-        '503':
-          $ref: '#/components/responses/ApiResponseBody'
-      security:
-        -
-          OAuth2:
-            - ManageObjects
-      operationId: uploadFileObjects
-      description: Create or update file objects and binaries in your Ziqni space
-      x-codegen-request-body-name: body
-      x-ws-ignore: true
   /competitions/simple:
     post:
       requestBody:
@@ -8899,6 +8861,44 @@ paths:
         Retrieve Wallet types from Ziqni database by unique Wallet Types ID's or any other POST body
         parameters using the POST method
       x-codegen-request-body-name: body
+  /file-objects/upload:
+    post:
+      requestBody:
+        description: Create or update file objects and binaries in your Ziqni space
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/UpdateFileObjectFormRequest'
+        required: true
+      tags:
+        - file-objects
+      responses:
+        '200':
+          $ref: '#/components/responses/ApiResponseBody'
+        '400':
+          $ref: '#/components/responses/ApiResponseBody'
+        '401':
+          $ref: '#/components/responses/ApiResponseBody'
+        '403':
+          $ref: '#/components/responses/ApiResponseBody'
+        '404':
+          $ref: '#/components/responses/ApiResponseBody'
+        '413':
+          $ref: '#/components/responses/ApiResponseBody'
+        '500':
+          $ref: '#/components/responses/ApiResponseBody'
+        '501':
+          $ref: '#/components/responses/ApiResponseBody'
+        '503':
+          $ref: '#/components/responses/ApiResponseBody'
+      security:
+        -
+          OAuth2:
+            - ManageObjects
+      operationId: uploadFileObjects
+      description: Create or update file objects and binaries in your Ziqni space
+      x-codegen-request-body-name: body
+      x-ws-ignore: true
 components:
   schemas:
     ProductReduced:
@@ -18779,86 +18779,6 @@ components:
       x-vue-ops:
         - Create
         - Update
-    CreateRewardTypeRequest:
-      description: This is a request for Reward Type creation
-      allOf:
-        -
-          $ref: '#/components/schemas/CreateOptParamModels'
-        -
-          required:
-            - name
-            - key
-            - unitOfMeasure
-          type: object
-          properties:
-            name:
-              description: The name of the Reward type
-              type: string
-              example: Points
-            description:
-              description: The description of a reward type
-              type: string
-              example: Free spins
-              x-vue-form-type: TEXTAREA
-            key:
-              description: A unique key that represents the reward type
-              type: string
-              example: free-spin-reward
-              x-vue-form-type: 'NAMEKEY, showKey: true'
-            translations:
-              type: array
-              items:
-                $ref: '#/components/schemas/Translation'
-            addConstraints:
-              description: Additional constraints
-              type: array
-              items:
-                type: string
-              example: '- system'
-            unitOfMeasure:
-              type: string
-            scheduling:
-              description: >-
-                Set the default time based constraints using either an exact point in time or
-                duration to manage the life cycle of the award
-              type: array
-              items:
-                $ref: '#/components/schemas/AwardScheduling'
-      example:
-        customFields:
-          test_cf_termd65bcccf-d37f-441a-a96d-d0da55a77719:
-            - 1
-            - 2
-        tags:
-          - Test_key-7563406f-6983-4308-9422-91838fd40fe7
-        metadata:
-          fea089d7-f751-432e-8646-838c7769ab1e: f2dfff99-b766-414f-8e33-4d77aebbdb5e
-        name: Test_name-b6f072c2-df68-4905-a4f6-c19246ff5dc8
-        key: Test_key-2148168c-3a6c-48ba-b005-68a67a10aebc
-        unitOfMeasure: ziqniModelId
-        translations:
-          -
-            languageKey: csb
-            translations:
-              -
-                fieldName: name
-                text: test1
-          -
-            languageKey: den
-            translations:
-              -
-                fieldName: name
-                text: test-temp
-          -
-            languageKey: kmb
-            translations:
-              -
-                fieldName: name
-                text: Level-Up
-        addConstraints:
-          - system
-      x-vue-create: rewardType
-      x-vue-creator: rewardTypes
     UpdateRewardTypeRequest:
       allOf:
         -
@@ -21089,120 +21009,6 @@ components:
         - Create
         - Update
       x-vue-section: settings
-    RewardType:
-      description: This is the Reward Type model
-      allOf:
-        -
-          $ref: '#/components/schemas/ModelDefault'
-        -
-          $ref: '#/components/schemas/OptParamModels'
-        -
-          required:
-            - name
-            - key
-            - unitOfMeasure
-            - constraints
-          type: object
-          properties:
-            name:
-              description: The name of the Reward type
-              type: string
-              example: Points
-              x-vue-as-string: true
-              x-vue-translatable: true
-              x-vue-search-all: true
-              x-vue-search-field: true
-              x-vue-disaply-order: 1001
-            description:
-              description: The description of a reward type
-              type: string
-              example: Free spins
-              x-vue-translatable: true
-              x-vue-search-all: true
-              x-vue-search-field: true
-              x-vue-disaply-order: 1002
-            awardAction:
-              description: When the state changes the action is performed
-              type: array
-              items:
-                $ref: '#/components/schemas/AwardAction'
-              x-vue-disaply-order: 1009
-            key:
-              description: A unique key that represents the reward type
-              type: string
-              example: free-spin-reward
-              x-vue-search-all: true
-              x-vue-search-field: true
-              x-vue-disaply-order: 1000
-            constraints:
-              description: 'Additional constraints, if the value is present it means the'
-              type: array
-              items:
-                type: string
-              example: '- system'
-              x-vue-search-field: true
-              x-vue-disaply-order: 1003
-            unitOfMeasure:
-              description: The unit of measure to use when performing dynamic calculations like currency
-              type: string
-            scheduling:
-              description: >-
-                Set the default time based constraints using either an exact point in time or
-                duration to manage the life cycle of the award
-              type: array
-              items:
-                $ref: '#/components/schemas/AwardScheduling'
-      example:
-        id: someText
-        spaceName: someText
-        created: '2018-02-10T09:30Z'
-        customFields:
-          customField1: customFieldValue1
-          customField2: customFieldValue2
-        metadata:
-          key1: value1
-          key2: value
-        tags:
-          - tagId1
-          - tagId2
-        unitOfMeasure: ziqniModelId
-        name: someText
-        description: someText
-        key: someText
-        constraints:
-          - system
-      x-vue-list: true
-      x-vue-show: true
-      x-vue-getter: rewardTypes
-      x-vue-section: settings
-      x-vue-sort-by: name
-      x-vue-sort-order: Asc
-      x-vue-limit: 10
-      x-vue-ops:
-        - Create
-        - Update
-    UpdateWalletTypeRequest:
-      allOf:
-        -
-          $ref: '#/components/schemas/UpdateModelDefault'
-        -
-          $ref: '#/components/schemas/UpdateOptParamModels'
-        -
-          required: []
-          type: object
-          properties:
-            id:
-              description: The unique tenant identifier
-              type: string
-            name:
-              description: name of wallet type
-              type: string
-            description:
-              description: description of wallet type
-              type: string
-      example: {}
-      x-vue-update: walletType
-      x-vue-updater: walletTypes
     CreateWalletTypeRequest:
       allOf:
         -
@@ -21299,6 +21105,211 @@ components:
         - Create
         - Update
       x-vue-section: settings
+    UpdateWalletTypeRequest:
+      allOf:
+        -
+          $ref: '#/components/schemas/UpdateModelDefault'
+        -
+          $ref: '#/components/schemas/UpdateOptParamModels'
+        -
+          required: []
+          type: object
+          properties:
+            id:
+              description: The unique tenant identifier
+              type: string
+            name:
+              description: name of wallet type
+              type: string
+            description:
+              description: description of wallet type
+              type: string
+            termsAndCondition:
+              description: termsAndCondition
+              type: string
+            unitOfMeasure:
+              description: unitOfMeasure id
+              type: string
+      example: {}
+      x-vue-update: walletType
+      x-vue-updater: walletTypes
+    CreateRewardTypeRequest:
+      description: This is a request for Reward Type creation
+      allOf:
+        -
+          $ref: '#/components/schemas/CreateOptParamModels'
+        -
+          required:
+            - name
+            - key
+            - unitOfMeasure
+          type: object
+          properties:
+            name:
+              description: The name of the Reward type
+              type: string
+              example: Points
+            description:
+              description: The description of a reward type
+              type: string
+              example: Free spins
+              x-vue-form-type: TEXTAREA
+            key:
+              description: A unique key that represents the reward type
+              type: string
+              example: free-spin-reward
+              x-vue-form-type: 'NAMEKEY, showKey: true'
+            translations:
+              type: array
+              items:
+                $ref: '#/components/schemas/Translation'
+            awardActions:
+              description: When the state changes the action is performed
+              type: array
+              items:
+                $ref: '#/components/schemas/AwardAction'
+            addConstraints:
+              description: Additional constraints
+              type: array
+              items:
+                type: string
+              example: '- system'
+            unitOfMeasure:
+              type: string
+            scheduling:
+              description: >-
+                Set the default time based constraints using either an exact point in time or
+                duration to manage the life cycle of the award
+              type: array
+              items:
+                $ref: '#/components/schemas/AwardScheduling'
+      example:
+        customFields:
+          test_cf_termd65bcccf-d37f-441a-a96d-d0da55a77719:
+            - 1
+            - 2
+        tags:
+          - Test_key-7563406f-6983-4308-9422-91838fd40fe7
+        metadata:
+          fea089d7-f751-432e-8646-838c7769ab1e: f2dfff99-b766-414f-8e33-4d77aebbdb5e
+        name: Test_name-b6f072c2-df68-4905-a4f6-c19246ff5dc8
+        key: Test_key-2148168c-3a6c-48ba-b005-68a67a10aebc
+        unitOfMeasure: ziqniModelId
+        translations:
+          -
+            languageKey: csb
+            translations:
+              -
+                fieldName: name
+                text: test1
+          -
+            languageKey: den
+            translations:
+              -
+                fieldName: name
+                text: test-temp
+          -
+            languageKey: kmb
+            translations:
+              -
+                fieldName: name
+                text: Level-Up
+        addConstraints:
+          - system
+      x-vue-create: rewardType
+      x-vue-creator: rewardTypes
+    RewardType:
+      description: This is the Reward Type model
+      allOf:
+        -
+          $ref: '#/components/schemas/ModelDefault'
+        -
+          $ref: '#/components/schemas/OptParamModels'
+        -
+          required:
+            - name
+            - key
+            - unitOfMeasure
+            - constraints
+          type: object
+          properties:
+            name:
+              description: The name of the Reward type
+              type: string
+              example: Points
+              x-vue-as-string: true
+              x-vue-translatable: true
+              x-vue-search-all: true
+              x-vue-search-field: true
+              x-vue-disaply-order: 1001
+            description:
+              description: The description of a reward type
+              type: string
+              example: Free spins
+              x-vue-translatable: true
+              x-vue-search-all: true
+              x-vue-search-field: true
+              x-vue-disaply-order: 1002
+            awardActions:
+              description: When the state changes the action is performed
+              type: array
+              items:
+                $ref: '#/components/schemas/AwardAction'
+              x-vue-disaply-order: 1009
+            key:
+              description: A unique key that represents the reward type
+              type: string
+              example: free-spin-reward
+              x-vue-search-all: true
+              x-vue-search-field: true
+              x-vue-disaply-order: 1000
+            constraints:
+              description: 'Additional constraints, if the value is present it means the'
+              type: array
+              items:
+                type: string
+              example: '- system'
+              x-vue-search-field: true
+              x-vue-disaply-order: 1003
+            unitOfMeasure:
+              description: The unit of measure to use when performing dynamic calculations like currency
+              type: string
+            scheduling:
+              description: >-
+                Set the default time based constraints using either an exact point in time or
+                duration to manage the life cycle of the award
+              type: array
+              items:
+                $ref: '#/components/schemas/AwardScheduling'
+      example:
+        id: someText
+        spaceName: someText
+        created: '2018-02-10T09:30Z'
+        customFields:
+          customField1: customFieldValue1
+          customField2: customFieldValue2
+        metadata:
+          key1: value1
+          key2: value
+        tags:
+          - tagId1
+          - tagId2
+        unitOfMeasure: ziqniModelId
+        name: someText
+        description: someText
+        key: someText
+        constraints:
+          - system
+      x-vue-list: true
+      x-vue-show: true
+      x-vue-getter: rewardTypes
+      x-vue-section: settings
+      x-vue-sort-by: name
+      x-vue-sort-order: Asc
+      x-vue-limit: 10
+      x-vue-ops:
+        - Create
+        - Update
   responses:
     ApiResponseBody:
       content:
