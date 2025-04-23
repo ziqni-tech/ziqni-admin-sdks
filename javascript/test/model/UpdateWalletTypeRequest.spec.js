@@ -90,6 +90,18 @@
       //expect(instance).to.be();
     });
 
+    it('should have the property termsAndCondition (base name: "termsAndCondition")', function() {
+      // uncomment below and update the code to test the property termsAndCondition
+      //var instance = new @ZiqniTechAdminApiClient.UpdateWalletTypeRequest();
+      //expect(instance).to.be();
+    });
+
+    it('should have the property unitOfMeasure (base name: "unitOfMeasure")', function() {
+      // uncomment below and update the code to test the property unitOfMeasure
+      //var instance = new @ZiqniTechAdminApiClient.UpdateWalletTypeRequest();
+      //expect(instance).to.be();
+    });
+
   });
 
 }));

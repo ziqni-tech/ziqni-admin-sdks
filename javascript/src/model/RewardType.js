@@ -97,8 +97,8 @@ class RewardType {
             if (data.hasOwnProperty('description')) {
                 obj['description'] = ApiClient.convertToType(data['description'], 'String');
             }
-            if (data.hasOwnProperty('awardAction')) {
-                obj['awardAction'] = ApiClient.convertToType(data['awardAction'], [AwardAction]);
+            if (data.hasOwnProperty('awardActions')) {
+                obj['awardActions'] = ApiClient.convertToType(data['awardActions'], [AwardAction]);
             }
             if (data.hasOwnProperty('key')) {
                 obj['key'] = ApiClient.convertToType(data['key'], 'String');
@@ -167,9 +167,9 @@ RewardType.prototype['description'] = undefined;
 
 /**
  * When the state changes the action is performed
- * @member {Array.<module:model/AwardAction>} awardAction
+ * @member {Array.<module:model/AwardAction>} awardActions
  */
-RewardType.prototype['awardAction'] = undefined;
+RewardType.prototype['awardActions'] = undefined;
 
 /**
  * A unique key that represents the reward type
@@ -239,9 +239,9 @@ RewardTypeAllOf.prototype['name'] = undefined;
 RewardTypeAllOf.prototype['description'] = undefined;
 /**
  * When the state changes the action is performed
- * @member {Array.<module:model/AwardAction>} awardAction
+ * @member {Array.<module:model/AwardAction>} awardActions
  */
-RewardTypeAllOf.prototype['awardAction'] = undefined;
+RewardTypeAllOf.prototype['awardActions'] = undefined;
 /**
  * A unique key that represents the reward type
  * @member {String} key

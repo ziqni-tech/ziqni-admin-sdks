@@ -12,6 +12,7 @@
  */
 
 import ApiClient from '../ApiClient';
+import AwardAction from './AwardAction';
 import AwardScheduling from './AwardScheduling';
 import Translation from './Translation';
 
@@ -67,6 +68,9 @@ class CreateRewardTypeRequestAllOf {
             if (data.hasOwnProperty('translations')) {
                 obj['translations'] = ApiClient.convertToType(data['translations'], [Translation]);
             }
+            if (data.hasOwnProperty('awardActions')) {
+                obj['awardActions'] = ApiClient.convertToType(data['awardActions'], [AwardAction]);
+            }
             if (data.hasOwnProperty('addConstraints')) {
                 obj['addConstraints'] = ApiClient.convertToType(data['addConstraints'], ['String']);
             }
@@ -105,6 +109,12 @@ CreateRewardTypeRequestAllOf.prototype['key'] = undefined;
  * @member {Array.<module:model/Translation>} translations
  */
 CreateRewardTypeRequestAllOf.prototype['translations'] = undefined;
+
+/**
+ * When the state changes the action is performed
+ * @member {Array.<module:model/AwardAction>} awardActions
+ */
+CreateRewardTypeRequestAllOf.prototype['awardActions'] = undefined;
 
 /**
  * Additional constraints

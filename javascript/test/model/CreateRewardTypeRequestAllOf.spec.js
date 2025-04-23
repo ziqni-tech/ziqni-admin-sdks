@@ -78,6 +78,12 @@
       //expect(instance).to.be();
     });
 
+    it('should have the property awardActions (base name: "awardActions")', function() {
+      // uncomment below and update the code to test the property awardActions
+      //var instance = new @ZiqniTechAdminApiClient.CreateRewardTypeRequestAllOf();
+      //expect(instance).to.be();
+    });
+
     it('should have the property addConstraints (base name: "addConstraints")', function() {
       // uncomment below and update the code to test the property addConstraints
       //var instance = new @ZiqniTechAdminApiClient.CreateRewardTypeRequestAllOf();
