@@ -20,6 +20,7 @@ import com.ziqni.admin.sdk.data.LoadUnitsOfMeasureData;
 import com.ziqni.admin.sdk.data.LoadWalletData;
 import com.ziqni.admin.sdk.data.LoadWalletTypeData;
 import com.ziqni.admin.sdk.model.ModelApiResponse;
+import com.ziqni.admin.sdk.model.WalletTransaction;
 import com.ziqni.admin.sdk.model.WalletTransactionRequest;
 import com.ziqni.admin.sdk.util.ApiClientFactoryUtil;
 import org.junit.jupiter.api.*;
@@ -168,7 +169,7 @@ public class WalletsApiTest implements tests.utils.CompleteableFutureTestWrapper
         BigDecimal amount = BigDecimal.valueOf(100);
         WalletTransactionRequest request = new WalletTransactionRequest()
                 .amount(amount)
-                .transactionType("credit")
+                .transactionType("Credit")
                 .sourceWalletId(walletId);
 
         Thread.sleep(5000);
@@ -200,14 +201,14 @@ public class WalletsApiTest implements tests.utils.CompleteableFutureTestWrapper
         // Pre-credit wallet
         api.manageWalletTransaction(new WalletTransactionRequest()
                 .amount(initialAmount)
-                .transactionType("credit")
+                .transactionType("Credit")
                 .sourceWalletId(walletId));
 
 
 
         WalletTransactionRequest request = new WalletTransactionRequest()
                 .amount(debitAmount)
-                .transactionType("debit")
+                .transactionType("Debit")
                 .sourceWalletId(walletId);
 
         var response = $(api.manageWalletTransaction(request));
@@ -249,7 +250,7 @@ public class WalletsApiTest implements tests.utils.CompleteableFutureTestWrapper
 
         WalletTransactionRequest transferRequest = new WalletTransactionRequest()
                 .amount(transferAmount)
-                .transactionType("transfer")
+                .transactionType("Transfer")
                 .sourceWalletId(sourceWalletId)
                 .targetWalletId(targetWalletId);
 
@@ -270,6 +271,36 @@ public class WalletsApiTest implements tests.utils.CompleteableFutureTestWrapper
         idsToDelete.add(targetWallet.getId());
     }
 
+    @Test
+    @Order(2)
+    public void retrieveWalletTransactionsReturnOkTest() throws ApiException, InterruptedException {
+        final var createRequest = loadTestData.getCreateRequest(memberId, walletTypeId);
+        var walletId = loadTestData.createTestData(List.of(createRequest)).getResults().get(0).getId();
+
+        BigDecimal amount = BigDecimal.valueOf(100);
+        String transactionType = "Credit";
+        WalletTransactionRequest request = new WalletTransactionRequest()
+                .amount(amount)
+                .transactionType(transactionType)
+                .sourceWalletId(walletId);
+
+        Thread.sleep(5000);
+        var response = $(api.manageWalletTransaction(request));
+
+        assertNotNull(response);
+        assertTrue(response.getErrors().isEmpty());
+
+
+
+        var walletResponse = $(api.retrieveWalletTransactionsById(List.of(walletId), 1, 0));
+        assertNotNull(walletResponse);
+        assertTrue(walletResponse.getErrors().isEmpty());
+
+        BigDecimal walletBalance = walletResponse.getResults().get(0).getAmount();
+        assertEquals(amount, walletBalance, "Wallet balance should match transaction amount");
+        assertEquals(amount, walletBalance, "Wallet balance should match transaction amount");
+        idsToDelete.add(walletId);
+    }
 
 
 
