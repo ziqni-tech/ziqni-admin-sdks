@@ -8790,38 +8790,6 @@ paths:
           type: string
         in: query
         required: true
-  /wallets/transaction:
-    post:
-      requestBody:
-        description: Manage wallet tranctions  from Ziqni by unique Wallet ID's  using the POST method
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/WalletTransactionRequest'
-      tags:
-        - wallets
-      responses:
-        '200':
-          $ref: '#/components/responses/ApiResponseBody'
-        '400':
-          $ref: '#/components/responses/ApiResponseBody'
-        '401':
-          $ref: '#/components/responses/ApiResponseBody'
-        '403':
-          $ref: '#/components/responses/ApiResponseBody'
-        '404':
-          $ref: '#/components/responses/ApiResponseBody'
-        '500':
-          $ref: '#/components/responses/ApiResponseBody'
-        '501':
-          $ref: '#/components/responses/ApiResponseBody'
-      security:
-        -
-          OAuth2:
-            - AdminTransformers
-      operationId: manageWalletTransaction
-      description: ' credit, debit, and transfer transactions from a wallet '
-      x-codegen-request-body-name: body
   /wallet-types/query:
     summary: Get wallet types by query
     description: This operation allows you to get wallet types by query
@@ -8899,6 +8867,71 @@ paths:
       description: Create or update file objects and binaries in your Ziqni space
       x-codegen-request-body-name: body
       x-ws-ignore: true
+  /wallets/manage-transaction:
+    post:
+      requestBody:
+        description: Manage wallet tranctions  from Ziqni by unique Wallet ID's  using the POST method
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WalletTransactionRequest'
+      tags:
+        - wallets
+      responses:
+        '200':
+          $ref: '#/components/responses/ApiResponseBody'
+        '400':
+          $ref: '#/components/responses/ApiResponseBody'
+        '401':
+          $ref: '#/components/responses/ApiResponseBody'
+        '403':
+          $ref: '#/components/responses/ApiResponseBody'
+        '404':
+          $ref: '#/components/responses/ApiResponseBody'
+        '500':
+          $ref: '#/components/responses/ApiResponseBody'
+        '501':
+          $ref: '#/components/responses/ApiResponseBody'
+      security:
+        -
+          OAuth2:
+            - AdminTransformers
+      operationId: manageWalletTransaction
+      description: ' credit, debit, and transfer transactions from a wallet '
+      x-codegen-request-body-name: body
+  /wallets/find-transactions-by-id:
+    get:
+      tags:
+        - wallets
+      parameters:
+        -
+          $ref: '#/components/parameters/idQuery'
+        -
+          $ref: '#/components/parameters/limitResults'
+        -
+          $ref: '#/components/parameters/skipResults'
+      responses:
+        '200':
+          $ref: '#/components/responses/WalletTransactionResponseBody'
+        '400':
+          $ref: '#/components/responses/WalletTransactionResponseBody'
+        '401':
+          $ref: '#/components/responses/WalletTransactionResponseBody'
+        '403':
+          $ref: '#/components/responses/WalletTransactionResponseBody'
+        '404':
+          $ref: '#/components/responses/WalletTransactionResponseBody'
+        '500':
+          $ref: '#/components/responses/WalletTransactionResponseBody'
+        '501':
+          $ref: '#/components/responses/WalletTransactionResponseBody'
+      security:
+        -
+          OAuth2:
+            - AdminTransformers
+      operationId: retrieveWalletTransactionsById
+      description: wallet transactions list
+      x-codegen-request-body-name: body
 components:
   schemas:
     ProductReduced:
@@ -20955,60 +20988,6 @@ components:
         entityType:
           description: 'InstantWin, WalletType'
           type: string
-    Wallet:
-      allOf:
-        -
-          $ref: '#/components/schemas/ModelDefault'
-        -
-          $ref: '#/components/schemas/OptParamModels'
-        -
-          required:
-            - walletTypeId
-            - memberId
-            - balance
-          type: object
-          properties:
-            walletTypeId:
-              description: wallet type id
-              type: string
-              x-vue-disaply-order: 1001
-              x-vue-search-all: true
-              x-vue-search-field: true
-              x-vue-as-string: true
-            memberId:
-              description: player id
-              type: string
-              x-vue-disaply-order: 1002
-              x-vue-search-all: true
-              x-vue-search-field: true
-              x-vue-as-string: true
-            balance:
-              description: balance
-              type: number
-      example:
-        id: ziqniModelId
-        spaceName: ziqniSpaceName
-        created: '2018-02-10T09:30Z'
-        constraints: []
-        description: Test Description
-        key: test_ziqni_key
-        name: Test name
-        unitOfMeasure: ziqniModelId
-        customFields: {}
-        tags:
-          - ziqniTag
-          - ziqniTag1
-        metadata: {}
-      x-vue-getter: wallets
-      x-vue-list: true
-      x-vue-show: true
-      x-vue-sort-by: name
-      x-vue-sort-order: Asc
-      x-vue-limit: 10
-      x-vue-ops:
-        - Create
-        - Update
-      x-vue-section: settings
     CreateWalletTypeRequest:
       allOf:
         -
@@ -21310,6 +21289,199 @@ components:
       x-vue-ops:
         - Create
         - Update
+    WalletTransactionResponse:
+      required:
+        - meta
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/MetaExtended'
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/WalletTransaction'
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
+      example:
+        meta: {}
+        results:
+          -
+            transactionId: 89
+            amount: 2
+            id: some text
+            accountId: some text
+            transactionType: some text
+            counterPartyId: some text
+            transactionDate: '2018-02-10T09:30Z'
+          -
+            transactionId: 4
+            amount: 74.46
+            id: some text
+            accountId: some text
+            transactionType: some text
+            counterPartyId: some text
+            transactionDate: '2018-02-10T09:30Z'
+        errors:
+          -
+            modelId: some text
+            errorCode: 76
+            message: some text
+            errorAt: 17
+            detail:
+              -
+                modelId: some text
+                errorCode: 54
+                message: some text
+                errorAt: 96
+              -
+                modelId: some text
+                errorCode: 62
+                message: some text
+                errorAt: 63
+          -
+            modelId: some text
+            errorCode: 53
+            message: some text
+            errorAt: 53
+            detail:
+              -
+                modelId: some text
+                errorCode: 74
+                message: some text
+                errorAt: 79
+              -
+                modelId: some text
+                errorCode: 9
+                message: some text
+                errorAt: 71
+    WalletTransaction:
+      description: ''
+      type: object
+      properties:
+        transactionId:
+          format: int64
+          description: The unique identifier of the transaction
+          type: integer
+        amount:
+          description: amount
+          type: number
+          x-vue-disaply-order: 1001
+        walletId:
+          description: source wallet
+          type: string
+          x-vue-disaply-order: 1002
+        spaceName:
+          description: account id
+          type: string
+          x-vue-disaply-order: 1003
+        transactionType:
+          description: 'credit,debit or transfer'
+          type: string
+          x-vue-disaply-order: 1004
+        counterPartyWalletId:
+          description: target wallet  id
+          type: string
+          x-vue-disaply-order: 1005
+        transactionDate:
+          format: date-time
+          description: The date of the transaction
+          type: string
+          x-vue-disaply-order: 1006
+    Wallet:
+      allOf:
+        -
+          $ref: '#/components/schemas/ModelDefault'
+        -
+          $ref: '#/components/schemas/OptParamModels'
+        -
+          required:
+            - walletTypeId
+            - memberId
+            - balance
+          type: object
+          properties:
+            walletType:
+              $ref: '#/components/schemas/WalletTypeReduced'
+              description: wallet type
+              x-vue-disaply-order: 1001
+              x-vue-search-all: true
+              x-vue-search-field: true
+              x-vue-as-string: true
+            memberId:
+              description: player id
+              type: string
+              x-vue-disaply-order: 1002
+              x-vue-search-all: true
+              x-vue-search-field: true
+              x-vue-as-string: true
+            balance:
+              description: balance
+              type: number
+      example:
+        id: ziqniModelId
+        spaceName: ziqniSpaceName
+        created: '2018-02-10T09:30Z'
+        constraints: []
+        description: Test Description
+        key: test_ziqni_key
+        name: Test name
+        unitOfMeasure: ziqniModelId
+        customFields: {}
+        tags:
+          - ziqniTag
+          - ziqniTag1
+        metadata: {}
+      x-vue-getter: wallets
+      x-vue-list: true
+      x-vue-show: true
+      x-vue-sort-by: name
+      x-vue-sort-order: Asc
+      x-vue-limit: 10
+      x-vue-ops:
+        - Create
+        - Update
+      x-vue-section: settings
+    UnitOfMeasureReduced:
+      required:
+        - isoCode
+        - symbol
+        - subUnit
+        - subUnitSymbol
+      type: object
+      properties:
+        isoCode:
+          description: An alphabetical or numerical code to identify a unit of measure
+          type: string
+          example: USD
+        symbol:
+          description: The symbol of a unit of measure
+          type: string
+          example: $
+        subUnit:
+          description: The subunit of a unit of measure
+          type: string
+          example: Cents
+        subUnitSymbol:
+          description: The sub unit symbol of a unit of measure
+          type: string
+          example: C
+        subUnitConversion:
+          description: The sub unit conversion
+          type: integer
+          example: 100
+    WalletTypeReduced:
+      required:
+        - id
+        - unitOfMeasure
+      type: object
+      properties:
+        unitOfMeasure:
+          $ref: '#/components/schemas/UnitOfMeasureReduced'
+        id:
+          description: ''
+          type: string
   responses:
     ApiResponseBody:
       content:
@@ -22766,6 +22938,84 @@ components:
                         message: some text
                         errorAt: 92
       description: A list of Instant wins and/or errors
+    WalletTransactionResponseBody:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/WalletTransactionResponse'
+          examples:
+            Example Response:
+              value:
+                meta:
+                  objectType: some text
+                  totalRecords: 26
+                  resultCount: 2
+                  errorCount: 0
+                  limit: 2
+                  skip: 0
+                results:
+                  -
+                    id: ziqniModelId
+                    spaceName: ziqniSpaceName
+                    created: '2018-02-10T09:30Z'
+                    constraints: []
+                    description: ''
+                    key: ''
+                    name: ''
+                    unitOfMeasure: ''
+                    customFields: {}
+                    tags:
+                      - ziqniTag
+                      - ziqniTag1
+                    metadata: {}
+                  -
+                    id: ziqniModelId
+                    spaceName: ziqniSpaceName
+                    created: '2018-02-10T09:30Z'
+                    constraints: []
+                    description: ''
+                    key: ''
+                    name: ''
+                    unitOfMeasure: ''
+                    customFields: {}
+                    tags:
+                      - ziqniTag
+                      - ziqniTag1
+                    metadata: {}
+                errors:
+                  -
+                    modelId: some text
+                    errorCode: 97
+                    message: some text
+                    errorAt: 79
+                    detail:
+                      -
+                        modelId: some text
+                        errorCode: 68
+                        message: some text
+                        errorAt: 46
+                      -
+                        modelId: some text
+                        errorCode: 32
+                        message: some text
+                        errorAt: 87
+                  -
+                    modelId: some text
+                    errorCode: 76
+                    message: some text
+                    errorAt: 21
+                    detail:
+                      -
+                        modelId: some text
+                        errorCode: 91
+                        message: some text
+                        errorAt: 86
+                      -
+                        modelId: some text
+                        errorCode: 93
+                        message: some text
+                        errorAt: 48
+      description: A list of action types and/or errors
   parameters:
     spaceName:
       name: spaceName
