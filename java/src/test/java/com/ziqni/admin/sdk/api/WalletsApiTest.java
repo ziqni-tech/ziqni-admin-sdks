@@ -94,8 +94,8 @@ public class WalletsApiTest implements tests.utils.CompleteableFutureTestWrapper
             Thread.sleep(5000);
 
             loadTestData.deleteTestData(idsToDelete);
-            loadWalletTypeData.deleteTestData(idsToDelete);
-            loadWalletTypeData.deleteTestData(idsToDelete);
+            loadWalletTypeData.deleteTestData(walletTypesToDelete);
+            loadMembersData.deleteTestData(memberIdsToDelete);
             loadUnitsOfMeasureData.deleteTestData(unitOfMeasureIdsToDelete);
 
         } catch (ApiException | InterruptedException e) {
@@ -296,9 +296,10 @@ public class WalletsApiTest implements tests.utils.CompleteableFutureTestWrapper
         assertNotNull(walletResponse);
         assertTrue(walletResponse.getErrors().isEmpty());
 
-        BigDecimal walletBalance = walletResponse.getResults().get(0).getAmount();
+        WalletTransaction walletTransaction = walletResponse.getResults().get(0);
+        BigDecimal walletBalance = walletTransaction.getAmount();
         assertEquals(amount, walletBalance, "Wallet balance should match transaction amount");
-        assertEquals(amount, walletBalance, "Wallet balance should match transaction amount");
+        assertEquals(transactionType, walletTransaction.getTransactionType(), "Wallet type should match transaction type input");
         idsToDelete.add(walletId);
     }
 
