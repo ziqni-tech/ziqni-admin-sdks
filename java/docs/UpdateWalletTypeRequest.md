@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 **metadata** | **Map&lt;String, String&gt;** |  |  [optional]
 **name** | **String** | name of wallet type |  [optional]
 **description** | **String** | description of wallet type |  [optional]
-**termsAndCondition** | **String** | termsAndCondition |  [optional]
+**termsAndConditions** | **String** | termsAndCondition |  [optional]
 **unitOfMeasure** | **String** | unitOfMeasure id |  [optional]
 
 
