@@ -28,7 +28,7 @@
   var instance;
 
   beforeEach(function() {
-    instance = new @ZiqniTechAdminApiClient.WalletAllOf();
+    instance = new @ZiqniTechAdminApiClient.WalletTypeReduced();
   });
 
   var getProperty = function(object, getter, property) {
@@ -47,28 +47,22 @@
       object[property] = value;
   }
 
-  describe('WalletAllOf', function() {
-    it('should create an instance of WalletAllOf', function() {
-      // uncomment below and update the code to test WalletAllOf
-      //var instance = new @ZiqniTechAdminApiClient.WalletAllOf();
-      //expect(instance).to.be.a(@ZiqniTechAdminApiClient.WalletAllOf);
+  describe('WalletTypeReduced', function() {
+    it('should create an instance of WalletTypeReduced', function() {
+      // uncomment below and update the code to test WalletTypeReduced
+      //var instance = new @ZiqniTechAdminApiClient.WalletTypeReduced();
+      //expect(instance).to.be.a(@ZiqniTechAdminApiClient.WalletTypeReduced);
     });
 
-    it('should have the property walletType (base name: "walletType")', function() {
-      // uncomment below and update the code to test the property walletType
-      //var instance = new @ZiqniTechAdminApiClient.WalletAllOf();
+    it('should have the property unitOfMeasure (base name: "unitOfMeasure")', function() {
+      // uncomment below and update the code to test the property unitOfMeasure
+      //var instance = new @ZiqniTechAdminApiClient.WalletTypeReduced();
       //expect(instance).to.be();
     });
 
-    it('should have the property memberId (base name: "memberId")', function() {
-      // uncomment below and update the code to test the property memberId
-      //var instance = new @ZiqniTechAdminApiClient.WalletAllOf();
-      //expect(instance).to.be();
-    });
-
-    it('should have the property balance (base name: "balance")', function() {
-      // uncomment below and update the code to test the property balance
-      //var instance = new @ZiqniTechAdminApiClient.WalletAllOf();
+    it('should have the property id (base name: "id")', function() {
+      // uncomment below and update the code to test the property id
+      //var instance = new @ZiqniTechAdminApiClient.WalletTypeReduced();
       //expect(instance).to.be();
     });
 

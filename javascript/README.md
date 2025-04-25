@@ -334,7 +334,8 @@ Class | Method | HTTP request | Description
 *@ZiqniTechAdminApiClient.WalletsApi* | [**createWallets**](docs/WalletsApi.md#createWallets) | **POST** /wallets | Create wallets
 *@ZiqniTechAdminApiClient.WalletsApi* | [**deleteWallets**](docs/WalletsApi.md#deleteWallets) | **DELETE** /wallets | Delete wallets
 *@ZiqniTechAdminApiClient.WalletsApi* | [**getWallets**](docs/WalletsApi.md#getWallets) | **GET** /wallets | Get wallets
-*@ZiqniTechAdminApiClient.WalletsApi* | [**manageWalletTransaction**](docs/WalletsApi.md#manageWalletTransaction) | **POST** /wallets/transaction | 
+*@ZiqniTechAdminApiClient.WalletsApi* | [**manageWalletTransaction**](docs/WalletsApi.md#manageWalletTransaction) | **POST** /wallets/manage-transaction | 
+*@ZiqniTechAdminApiClient.WalletsApi* | [**retrieveWalletTransactionsById**](docs/WalletsApi.md#retrieveWalletTransactionsById) | **GET** /wallets/find-transactions-by-id | 
 *@ZiqniTechAdminApiClient.WalletsApi* | [**updateWallets**](docs/WalletsApi.md#updateWallets) | **PUT** /wallets | Update wallets
 *@ZiqniTechAdminApiClient.WebhooksApi* | [**createWebhooks**](docs/WebhooksApi.md#createWebhooks) | **POST** /webhooks | 
 *@ZiqniTechAdminApiClient.WebhooksApi* | [**deleteWebhooks**](docs/WebhooksApi.md#deleteWebhooks) | **DELETE** /webhooks | 
@@ -671,6 +672,7 @@ Class | Method | HTTP request | Description
  - [@ZiqniTechAdminApiClient.Triggers](docs/Triggers.md)
  - [@ZiqniTechAdminApiClient.UnitOfMeasure](docs/UnitOfMeasure.md)
  - [@ZiqniTechAdminApiClient.UnitOfMeasureAllOf](docs/UnitOfMeasureAllOf.md)
+ - [@ZiqniTechAdminApiClient.UnitOfMeasureReduced](docs/UnitOfMeasureReduced.md)
  - [@ZiqniTechAdminApiClient.UnitOfMeasureResponse](docs/UnitOfMeasureResponse.md)
  - [@ZiqniTechAdminApiClient.UnitOfMeasureType](docs/UnitOfMeasureType.md)
  - [@ZiqniTechAdminApiClient.UpdateAchievementRequest](docs/UpdateAchievementRequest.md)
@@ -754,9 +756,12 @@ Class | Method | HTTP request | Description
  - [@ZiqniTechAdminApiClient.Wallet](docs/Wallet.md)
  - [@ZiqniTechAdminApiClient.WalletAllOf](docs/WalletAllOf.md)
  - [@ZiqniTechAdminApiClient.WalletResponse](docs/WalletResponse.md)
+ - [@ZiqniTechAdminApiClient.WalletTransaction](docs/WalletTransaction.md)
  - [@ZiqniTechAdminApiClient.WalletTransactionRequest](docs/WalletTransactionRequest.md)
+ - [@ZiqniTechAdminApiClient.WalletTransactionResponse](docs/WalletTransactionResponse.md)
  - [@ZiqniTechAdminApiClient.WalletType](docs/WalletType.md)
  - [@ZiqniTechAdminApiClient.WalletTypeAllOf](docs/WalletTypeAllOf.md)
+ - [@ZiqniTechAdminApiClient.WalletTypeReduced](docs/WalletTypeReduced.md)
  - [@ZiqniTechAdminApiClient.WalletTypeResponse](docs/WalletTypeResponse.md)
  - [@ZiqniTechAdminApiClient.Webhook](docs/Webhook.md)
  - [@ZiqniTechAdminApiClient.WebhookAllOf](docs/WebhookAllOf.md)

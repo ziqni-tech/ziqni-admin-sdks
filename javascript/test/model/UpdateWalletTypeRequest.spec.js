@@ -90,8 +90,8 @@
       //expect(instance).to.be();
     });
 
-    it('should have the property termsAndCondition (base name: "termsAndCondition")', function() {
-      // uncomment below and update the code to test the property termsAndCondition
+    it('should have the property termsAndConditions (base name: "termsAndConditions")', function() {
+      // uncomment below and update the code to test the property termsAndConditions
       //var instance = new @ZiqniTechAdminApiClient.UpdateWalletTypeRequest();
       //expect(instance).to.be();
     });

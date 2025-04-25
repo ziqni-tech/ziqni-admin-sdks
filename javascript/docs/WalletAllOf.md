@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**walletTypeId** | **String** | wallet type id | 
+**walletType** | [**WalletTypeReduced**](WalletTypeReduced.md) |  | [optional] 
 **memberId** | **String** | player id | 
 **balance** | **Number** | balance | 
 

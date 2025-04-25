@@ -88,6 +88,16 @@
         done();
       });
     });
+    describe('retrieveWalletTransactionsById', function() {
+      it('should call retrieveWalletTransactionsById successfully', function(done) {
+        //uncomment below and update the code to test retrieveWalletTransactionsById
+        //instance.retrieveWalletTransactionsById(function(error) {
+        //  if (error) throw error;
+        //expect().to.be();
+        //});
+        done();
+      });
+    });
     describe('updateWallets', function() {
       it('should call updateWallets successfully', function(done) {
         //uncomment below and update the code to test updateWallets

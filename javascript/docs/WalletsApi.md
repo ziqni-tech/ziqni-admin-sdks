@@ -7,7 +7,8 @@ Method | HTTP request | Description
 [**createWallets**](WalletsApi.md#createWallets) | **POST** /wallets | Create wallets
 [**deleteWallets**](WalletsApi.md#deleteWallets) | **DELETE** /wallets | Delete wallets
 [**getWallets**](WalletsApi.md#getWallets) | **GET** /wallets | Get wallets
-[**manageWalletTransaction**](WalletsApi.md#manageWalletTransaction) | **POST** /wallets/transaction | 
+[**manageWalletTransaction**](WalletsApi.md#manageWalletTransaction) | **POST** /wallets/manage-transaction | 
+[**retrieveWalletTransactionsById**](WalletsApi.md#retrieveWalletTransactionsById) | **GET** /wallets/find-transactions-by-id | 
 [**updateWallets**](WalletsApi.md#updateWallets) | **PUT** /wallets | Update wallets
 
 
@@ -215,6 +216,61 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json
+- **Accept**: application/json
+
+
+## retrieveWalletTransactionsById
+
+> WalletTransactionResponse retrieveWalletTransactionsById(opts)
+
+
+
+wallet transactions list
+
+### Example
+
+```javascript
+import @ZiqniTechAdminApiClient from '@ziqni-tech/admin-api-client';
+let defaultClient = @ZiqniTechAdminApiClient.ApiClient.instance;
+// Configure OAuth2 access token for authorization: OAuth2
+let OAuth2 = defaultClient.authentications['OAuth2'];
+OAuth2.accessToken = 'YOUR ACCESS TOKEN';
+
+let apiInstance = new @ZiqniTechAdminApiClient.WalletsApi();
+let opts = {
+  'id': ["null"], // [String] | The unique identifiers of the resources
+  'limit': 56, // Number | Limit the returned total records found
+  'skip': 56 // Number | Skip the returned records found and return the next batch of records
+};
+apiInstance.retrieveWalletTransactionsById(opts, (error, data, response) => {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+});
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | [**[String]**](String.md)| The unique identifiers of the resources | [optional] 
+ **limit** | **Number**| Limit the returned total records found | [optional] 
+ **skip** | **Number**| Skip the returned records found and return the next batch of records | [optional] 
+
+### Return type
+
+[**WalletTransactionResponse**](WalletTransactionResponse.md)
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
 - **Accept**: application/json
 
 
