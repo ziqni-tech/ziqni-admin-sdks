@@ -90,8 +90,8 @@
       //expect(instance).to.be();
     });
 
-    it('should have the property walletTypeId (base name: "walletTypeId")', function() {
-      // uncomment below and update the code to test the property walletTypeId
+    it('should have the property walletType (base name: "walletType")', function() {
+      // uncomment below and update the code to test the property walletType
       //var instance = new @ZiqniTechAdminApiClient.Wallet();
       //expect(instance).to.be();
     });

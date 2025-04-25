@@ -28,7 +28,7 @@
   var instance;
 
   beforeEach(function() {
-    instance = new @ZiqniTechAdminApiClient.UpdateWalletTypeRequestAllOf();
+    instance = new @ZiqniTechAdminApiClient.UnitOfMeasureReduced();
   });
 
   var getProperty = function(object, getter, property) {
@@ -47,40 +47,40 @@
       object[property] = value;
   }
 
-  describe('UpdateWalletTypeRequestAllOf', function() {
-    it('should create an instance of UpdateWalletTypeRequestAllOf', function() {
-      // uncomment below and update the code to test UpdateWalletTypeRequestAllOf
-      //var instance = new @ZiqniTechAdminApiClient.UpdateWalletTypeRequestAllOf();
-      //expect(instance).to.be.a(@ZiqniTechAdminApiClient.UpdateWalletTypeRequestAllOf);
+  describe('UnitOfMeasureReduced', function() {
+    it('should create an instance of UnitOfMeasureReduced', function() {
+      // uncomment below and update the code to test UnitOfMeasureReduced
+      //var instance = new @ZiqniTechAdminApiClient.UnitOfMeasureReduced();
+      //expect(instance).to.be.a(@ZiqniTechAdminApiClient.UnitOfMeasureReduced);
     });
 
-    it('should have the property id (base name: "id")', function() {
-      // uncomment below and update the code to test the property id
-      //var instance = new @ZiqniTechAdminApiClient.UpdateWalletTypeRequestAllOf();
+    it('should have the property isoCode (base name: "isoCode")', function() {
+      // uncomment below and update the code to test the property isoCode
+      //var instance = new @ZiqniTechAdminApiClient.UnitOfMeasureReduced();
       //expect(instance).to.be();
     });
 
-    it('should have the property name (base name: "name")', function() {
-      // uncomment below and update the code to test the property name
-      //var instance = new @ZiqniTechAdminApiClient.UpdateWalletTypeRequestAllOf();
+    it('should have the property symbol (base name: "symbol")', function() {
+      // uncomment below and update the code to test the property symbol
+      //var instance = new @ZiqniTechAdminApiClient.UnitOfMeasureReduced();
       //expect(instance).to.be();
     });
 
-    it('should have the property description (base name: "description")', function() {
-      // uncomment below and update the code to test the property description
-      //var instance = new @ZiqniTechAdminApiClient.UpdateWalletTypeRequestAllOf();
+    it('should have the property subUnit (base name: "subUnit")', function() {
+      // uncomment below and update the code to test the property subUnit
+      //var instance = new @ZiqniTechAdminApiClient.UnitOfMeasureReduced();
       //expect(instance).to.be();
     });
 
-    it('should have the property termsAndConditions (base name: "termsAndConditions")', function() {
-      // uncomment below and update the code to test the property termsAndConditions
-      //var instance = new @ZiqniTechAdminApiClient.UpdateWalletTypeRequestAllOf();
+    it('should have the property subUnitSymbol (base name: "subUnitSymbol")', function() {
+      // uncomment below and update the code to test the property subUnitSymbol
+      //var instance = new @ZiqniTechAdminApiClient.UnitOfMeasureReduced();
       //expect(instance).to.be();
     });
 
-    it('should have the property unitOfMeasure (base name: "unitOfMeasure")', function() {
-      // uncomment below and update the code to test the property unitOfMeasure
-      //var instance = new @ZiqniTechAdminApiClient.UpdateWalletTypeRequestAllOf();
+    it('should have the property subUnitConversion (base name: "subUnitConversion")', function() {
+      // uncomment below and update the code to test the property subUnitConversion
+      //var instance = new @ZiqniTechAdminApiClient.UnitOfMeasureReduced();
       //expect(instance).to.be();
     });
 

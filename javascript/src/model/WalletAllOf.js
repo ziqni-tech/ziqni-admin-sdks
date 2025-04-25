@@ -12,6 +12,7 @@
  */
 
 import ApiClient from '../ApiClient';
+import WalletTypeReduced from './WalletTypeReduced';
 
 /**
  * The WalletAllOf model module.
@@ -22,13 +23,12 @@ class WalletAllOf {
     /**
      * Constructs a new <code>WalletAllOf</code>.
      * @alias module:model/WalletAllOf
-     * @param walletTypeId {String} wallet type id
      * @param memberId {String} player id
      * @param balance {Number} balance
      */
-    constructor(walletTypeId, memberId, balance) { 
+    constructor(memberId, balance) { 
         
-        WalletAllOf.initialize(this, walletTypeId, memberId, balance);
+        WalletAllOf.initialize(this, memberId, balance);
     }
 
     /**
@@ -36,8 +36,7 @@ class WalletAllOf {
      * This method is used by the constructors of any subclasses, in order to implement multiple inheritance (mix-ins).
      * Only for internal use.
      */
-    static initialize(obj, walletTypeId, memberId, balance) { 
-        obj['walletTypeId'] = walletTypeId;
+    static initialize(obj, memberId, balance) { 
         obj['memberId'] = memberId;
         obj['balance'] = balance;
     }
@@ -53,8 +52,8 @@ class WalletAllOf {
         if (data) {
             obj = obj || new WalletAllOf();
 
-            if (data.hasOwnProperty('walletTypeId')) {
-                obj['walletTypeId'] = ApiClient.convertToType(data['walletTypeId'], 'String');
+            if (data.hasOwnProperty('walletType')) {
+                obj['walletType'] = WalletTypeReduced.constructFromObject(data['walletType']);
             }
             if (data.hasOwnProperty('memberId')) {
                 obj['memberId'] = ApiClient.convertToType(data['memberId'], 'String');
@@ -70,10 +69,9 @@ class WalletAllOf {
 }
 
 /**
- * wallet type id
- * @member {String} walletTypeId
+ * @member {module:model/WalletTypeReduced} walletType
  */
-WalletAllOf.prototype['walletTypeId'] = undefined;
+WalletAllOf.prototype['walletType'] = undefined;
 
 /**
  * player id

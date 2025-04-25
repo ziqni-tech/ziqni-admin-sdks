@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **customFields** | **{String: Object}** |  | [optional] 
 **tags** | **[String]** | A list of id&#39;s used to tag models | [optional] 
 **metadata** | **{String: String}** |  | [optional] 
-**walletTypeId** | **String** | wallet type id | 
+**walletType** | [**WalletTypeReduced**](WalletTypeReduced.md) |  | [optional] 
 **memberId** | **String** | player id | 
 **balance** | **Number** | balance | 
 
