@@ -12,8 +12,8 @@ Method | HTTP request | Description
 [**getWalletsWithHttpInfo**](WalletsApi.md#getWalletsWithHttpInfo) | **GET** /wallets | Get wallets
 [**manageWalletTransaction**](WalletsApi.md#manageWalletTransaction) | **POST** /wallets/manage-transaction | 
 [**manageWalletTransactionWithHttpInfo**](WalletsApi.md#manageWalletTransactionWithHttpInfo) | **POST** /wallets/manage-transaction | 
-[**retrieveWalletTransactionsById**](WalletsApi.md#retrieveWalletTransactionsById) | **GET** /wallets/find-transactions-by-id | 
-[**retrieveWalletTransactionsByIdWithHttpInfo**](WalletsApi.md#retrieveWalletTransactionsByIdWithHttpInfo) | **GET** /wallets/find-transactions-by-id | 
+[**retrieveWalletTransactionsByWalletId**](WalletsApi.md#retrieveWalletTransactionsByWalletId) | **GET** /wallets/find-transactions-by-id | 
+[**retrieveWalletTransactionsByWalletIdWithHttpInfo**](WalletsApi.md#retrieveWalletTransactionsByWalletIdWithHttpInfo) | **GET** /wallets/find-transactions-by-id | 
 [**updateWallets**](WalletsApi.md#updateWallets) | **PUT** /wallets | Update wallets
 [**updateWalletsWithHttpInfo**](WalletsApi.md#updateWalletsWithHttpInfo) | **PUT** /wallets | Update wallets
 
@@ -528,7 +528,7 @@ CompletableFuture<ApiResponse<[**WalletResponse**](WalletResponse.md)>>
 
 
 
- credit, debit, and transfer transactions from a wallet 
+ Credit, Debit, and Transfer transactions from a wallet 
 
 ### Example
 
@@ -605,7 +605,7 @@ CompletableFuture<[**ModelApiResponse**](ModelApiResponse.md)>
 
 
 
- credit, debit, and transfer transactions from a wallet 
+ Credit, Debit, and Transfer transactions from a wallet 
 
 ### Example
 
@@ -687,9 +687,9 @@ CompletableFuture<ApiResponse<[**ModelApiResponse**](ModelApiResponse.md)>>
 | **501** | A list of outcomes and/or errors |  -  |
 
 
-## retrieveWalletTransactionsById
+## retrieveWalletTransactionsByWalletId
 
-> CompletableFuture<WalletTransactionResponse> retrieveWalletTransactionsById(id, limit, skip)
+> CompletableFuture<WalletTransactionResponse> retrieveWalletTransactionsByWalletId(id, limit, skip)
 
 
 
@@ -721,10 +721,10 @@ public class Example {
         Integer limit = 56; // Integer | Limit the returned total records found
         Integer skip = 56; // Integer | Skip the returned records found and return the next batch of records
         try {
-            CompletableFuture<WalletTransactionResponse> result = apiInstance.retrieveWalletTransactionsById(id, limit, skip);
+            CompletableFuture<WalletTransactionResponse> result = apiInstance.retrieveWalletTransactionsByWalletId(id, limit, skip);
             System.out.println(result.get());
         } catch (ApiException e) {
-            System.err.println("Exception when calling WalletsApi#retrieveWalletTransactionsById");
+            System.err.println("Exception when calling WalletsApi#retrieveWalletTransactionsByWalletId");
             System.err.println("Status code: " + e.getCode());
             System.err.println("Reason: " + e.getResponseBody());
             System.err.println("Response headers: " + e.getResponseHeaders());
@@ -768,9 +768,9 @@ CompletableFuture<[**WalletTransactionResponse**](WalletTransactionResponse.md)>
 | **500** | A list of action types and/or errors |  -  |
 | **501** | A list of action types and/or errors |  -  |
 
-## retrieveWalletTransactionsByIdWithHttpInfo
+## retrieveWalletTransactionsByWalletIdWithHttpInfo
 
-> CompletableFuture<ApiResponse<WalletTransactionResponse>> retrieveWalletTransactionsById retrieveWalletTransactionsByIdWithHttpInfo(id, limit, skip)
+> CompletableFuture<ApiResponse<WalletTransactionResponse>> retrieveWalletTransactionsByWalletId retrieveWalletTransactionsByWalletIdWithHttpInfo(id, limit, skip)
 
 
 
@@ -803,19 +803,19 @@ public class Example {
         Integer limit = 56; // Integer | Limit the returned total records found
         Integer skip = 56; // Integer | Skip the returned records found and return the next batch of records
         try {
-            CompletableFuture<ApiResponse<WalletTransactionResponse>> response = apiInstance.retrieveWalletTransactionsByIdWithHttpInfo(id, limit, skip);
+            CompletableFuture<ApiResponse<WalletTransactionResponse>> response = apiInstance.retrieveWalletTransactionsByWalletIdWithHttpInfo(id, limit, skip);
             System.out.println("Status code: " + response.get().getStatusCode());
             System.out.println("Response headers: " + response.get().getHeaders());
             System.out.println("Response body: " + response.get().getData());
         } catch (InterruptedException | ExecutionException e) {
             ApiException apiException = (ApiException)e.getCause();
-            System.err.println("Exception when calling WalletsApi#retrieveWalletTransactionsById");
+            System.err.println("Exception when calling WalletsApi#retrieveWalletTransactionsByWalletId");
             System.err.println("Status code: " + apiException.getCode());
             System.err.println("Response headers: " + apiException.getResponseHeaders());
             System.err.println("Reason: " + apiException.getResponseBody());
             e.printStackTrace();
         } catch (ApiException e) {
-            System.err.println("Exception when calling WalletsApi#retrieveWalletTransactionsById");
+            System.err.println("Exception when calling WalletsApi#retrieveWalletTransactionsByWalletId");
             System.err.println("Status code: " + e.getCode());
             System.err.println("Response headers: " + e.getResponseHeaders());
             System.err.println("Reason: " + e.getResponseBody());

@@ -12,6 +12,8 @@ Method | HTTP request | Description
 [**getWalletTypesWithHttpInfo**](WalletTypesApi.md#getWalletTypesWithHttpInfo) | **GET** /wallet-types | Get wallet types
 [**getWalletTypesByQuery**](WalletTypesApi.md#getWalletTypesByQuery) | **POST** /wallet-types/query | Get wallet types by query
 [**getWalletTypesByQueryWithHttpInfo**](WalletTypesApi.md#getWalletTypesByQueryWithHttpInfo) | **POST** /wallet-types/query | Get wallet types by query
+[**retrieveWalletTransactionsByWalletTypeId**](WalletTypesApi.md#retrieveWalletTransactionsByWalletTypeId) | **GET** /wallet-types/find-transactions-by-id | 
+[**retrieveWalletTransactionsByWalletTypeIdWithHttpInfo**](WalletTypesApi.md#retrieveWalletTransactionsByWalletTypeIdWithHttpInfo) | **GET** /wallet-types/find-transactions-by-id | 
 [**updateWalletTypes**](WalletTypesApi.md#updateWalletTypes) | **PUT** /wallet-types | Update wallet types
 [**updateWalletTypesWithHttpInfo**](WalletTypesApi.md#updateWalletTypesWithHttpInfo) | **PUT** /wallet-types | Update wallet types
 
@@ -671,6 +673,179 @@ CompletableFuture<ApiResponse<[**WalletTypeResponse**](WalletTypeResponse.md)>>
 ### HTTP request headers
 
 - **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | A list of action types and/or errors |  -  |
+| **400** | A list of action types and/or errors |  -  |
+| **401** | A list of action types and/or errors |  -  |
+| **403** | A list of action types and/or errors |  -  |
+| **404** | A list of action types and/or errors |  -  |
+| **500** | A list of action types and/or errors |  -  |
+| **501** | A list of action types and/or errors |  -  |
+
+
+## retrieveWalletTransactionsByWalletTypeId
+
+> CompletableFuture<WalletTransactionResponse> retrieveWalletTransactionsByWalletTypeId(id, limit, skip)
+
+
+
+wallet transactions list by wallet type id
+
+### Example
+
+```java
+// Import classes:
+import com.ziqni.admin.sdk.ApiClient;
+import com.ziqni.admin.sdk.ApiException;
+import com.ziqni.admin.sdk.Configuration;
+import com.ziqni.admin.sdk.auth.*;
+import com.ziqni.admin.sdk.models.*;
+import com.ziqni.admin.sdk.api.WalletTypesApi;
+import java.util.concurrent.CompletableFuture;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://api.ziqni.com");
+        
+        // Configure OAuth2 access token for authorization: OAuth2
+        OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
+        OAuth2.setAccessToken("YOUR ACCESS TOKEN");
+
+        WalletTypesApi apiInstance = new WalletTypesApi(defaultClient);
+        List<String> id = Arrays.asList(); // List<String> | The unique identifiers of the resources
+        Integer limit = 56; // Integer | Limit the returned total records found
+        Integer skip = 56; // Integer | Skip the returned records found and return the next batch of records
+        try {
+            CompletableFuture<WalletTransactionResponse> result = apiInstance.retrieveWalletTransactionsByWalletTypeId(id, limit, skip);
+            System.out.println(result.get());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WalletTypesApi#retrieveWalletTransactionsByWalletTypeId");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | [**List&lt;String&gt;**](String.md)| The unique identifiers of the resources | [optional]
+ **limit** | **Integer**| Limit the returned total records found | [optional]
+ **skip** | **Integer**| Skip the returned records found and return the next batch of records | [optional]
+
+### Return type
+
+CompletableFuture<[**WalletTransactionResponse**](WalletTransactionResponse.md)>
+
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | A list of action types and/or errors |  -  |
+| **400** | A list of action types and/or errors |  -  |
+| **401** | A list of action types and/or errors |  -  |
+| **403** | A list of action types and/or errors |  -  |
+| **404** | A list of action types and/or errors |  -  |
+| **500** | A list of action types and/or errors |  -  |
+| **501** | A list of action types and/or errors |  -  |
+
+## retrieveWalletTransactionsByWalletTypeIdWithHttpInfo
+
+> CompletableFuture<ApiResponse<WalletTransactionResponse>> retrieveWalletTransactionsByWalletTypeId retrieveWalletTransactionsByWalletTypeIdWithHttpInfo(id, limit, skip)
+
+
+
+wallet transactions list by wallet type id
+
+### Example
+
+```java
+// Import classes:
+import com.ziqni.admin.sdk.ApiClient;
+import com.ziqni.admin.sdk.ApiException;
+import com.ziqni.admin.sdk.ApiResponse;
+import com.ziqni.admin.sdk.Configuration;
+import com.ziqni.admin.sdk.auth.*;
+import com.ziqni.admin.sdk.models.*;
+import com.ziqni.admin.sdk.api.WalletTypesApi;
+import java.util.concurrent.CompletableFuture;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://api.ziqni.com");
+        
+        // Configure OAuth2 access token for authorization: OAuth2
+        OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
+        OAuth2.setAccessToken("YOUR ACCESS TOKEN");
+
+        WalletTypesApi apiInstance = new WalletTypesApi(defaultClient);
+        List<String> id = Arrays.asList(); // List<String> | The unique identifiers of the resources
+        Integer limit = 56; // Integer | Limit the returned total records found
+        Integer skip = 56; // Integer | Skip the returned records found and return the next batch of records
+        try {
+            CompletableFuture<ApiResponse<WalletTransactionResponse>> response = apiInstance.retrieveWalletTransactionsByWalletTypeIdWithHttpInfo(id, limit, skip);
+            System.out.println("Status code: " + response.get().getStatusCode());
+            System.out.println("Response headers: " + response.get().getHeaders());
+            System.out.println("Response body: " + response.get().getData());
+        } catch (InterruptedException | ExecutionException e) {
+            ApiException apiException = (ApiException)e.getCause();
+            System.err.println("Exception when calling WalletTypesApi#retrieveWalletTransactionsByWalletTypeId");
+            System.err.println("Status code: " + apiException.getCode());
+            System.err.println("Response headers: " + apiException.getResponseHeaders());
+            System.err.println("Reason: " + apiException.getResponseBody());
+            e.printStackTrace();
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WalletTypesApi#retrieveWalletTransactionsByWalletTypeId");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | [**List&lt;String&gt;**](String.md)| The unique identifiers of the resources | [optional]
+ **limit** | **Integer**| Limit the returned total records found | [optional]
+ **skip** | **Integer**| Skip the returned records found and return the next batch of records | [optional]
+
+### Return type
+
+CompletableFuture<ApiResponse<[**WalletTransactionResponse**](WalletTransactionResponse.md)>>
+
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
 - **Accept**: application/json
 
 ### HTTP response details

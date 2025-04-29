@@ -22,6 +22,7 @@ import org.junit.jupiter.api.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.math.BigDecimal;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -37,33 +38,42 @@ public class WalletTypesApiTest implements tests.utils.CompleteableFutureTestWra
     private static final Logger logger = LoggerFactory.getLogger(WalletTypesApiTest.class);
 
     private final WalletTypesApiWs api;
+    private final WalletsApiWs walletsApi;
 
     private final LoadWalletTypeData loadTestData;
     private final LoadUnitsOfMeasureData loadUnitsOfMeasureData;
+    private final LoadWalletData loadWalletData;
 
-
+    private final LoadMembersData loadMembersData;
     private String unitOfMeasureId;
-    private String customFieldKey;
+    private String memberId;
 
     private List<String> idsToDelete = new ArrayList<>();
     private List<String> unitOfMeasureIdsToDelete = new ArrayList<>();
+    private List<String> memberIdsToDelete = new ArrayList<>();
 
 
     public WalletTypesApiTest() throws Exception {
         ApiClientFactoryUtil.initApiClientFactory(AdminApiClientConfigBuilder.build());
         this.api = ApiClientFactoryUtil.factory.getWalletTypesApi();
+        this.walletsApi = ApiClientFactoryUtil.factory.getWalletsApi();
         this.loadTestData = new LoadWalletTypeData();
         this.loadUnitsOfMeasureData = new LoadUnitsOfMeasureData();
+        this.loadWalletData = new LoadWalletData();
+        this.loadMembersData = new LoadMembersData();
     }
 
 
     @BeforeAll
-    public void setUp() throws ApiException {
+    public void setUp() throws ApiException ,InterruptedException{
          unitOfMeasureId = loadUnitsOfMeasureData.createTestData(loadUnitsOfMeasureData.
                 getCreateRequestAsList(1)).getResults().get(0).getId();
-
-
         unitOfMeasureIdsToDelete.add(unitOfMeasureId);
+        Thread.sleep(5000);
+        memberId=loadMembersData.createTestData(List.of(loadMembersData.getCreateRequest()))
+                .getResults().get(0).getId();
+        memberIdsToDelete.add(memberId);
+
     }
 
     @AfterAll
@@ -137,6 +147,38 @@ public class WalletTypesApiTest implements tests.utils.CompleteableFutureTestWra
 
 
     }
+    @Test
+    @Order(3)
+    public void retrieveWalletTransactionsReturnOkTest() throws ApiException, InterruptedException {
+        final var createRequest = loadTestData.getCreateRequest(unitOfMeasureId);
+        var id = loadTestData.createTestData(List.of(createRequest)).getResults().get(0).getId();
+        final var createWalletRequest = loadWalletData.getCreateRequest(memberId, id);
+        var walletId = loadWalletData.createTestData(List.of(createWalletRequest)).getResults().get(0).getId();
 
+        BigDecimal amount = BigDecimal.valueOf(100);
+        WalletTransactionType transactionType = WalletTransactionType.CREDIT;
+        WalletTransactionRequest request = new WalletTransactionRequest()
+                .amount(amount)
+                .transactionType(transactionType)
+                .sourceWalletId(walletId);
+
+        Thread.sleep(5000);
+        var response = $(walletsApi.manageWalletTransaction(request));
+
+        assertNotNull(response);
+        assertTrue(response.getErrors().isEmpty());
+
+
+
+        var walletResponse = $(api.retrieveWalletTransactionsByWalletTypeId(List.of(id), 1, 0));
+        assertNotNull(walletResponse);
+        assertTrue(walletResponse.getErrors().isEmpty());
+
+        WalletTransaction walletTransaction = walletResponse.getResults().get(0);
+        BigDecimal walletBalance = walletTransaction.getAmount();
+        assertEquals(amount, walletBalance, "Wallet balance should match transaction amount");
+        assertEquals(transactionType.getValue(), walletTransaction.getTransactionType(), "Wallet type should match transaction type input");
+        idsToDelete.add(walletId);
+    }
 
 }

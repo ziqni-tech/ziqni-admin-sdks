@@ -8897,7 +8897,7 @@ paths:
           OAuth2:
             - AdminTransformers
       operationId: manageWalletTransaction
-      description: ' credit, debit, and transfer transactions from a wallet '
+      description: ' Credit, Debit, and Transfer transactions from a wallet '
       x-codegen-request-body-name: body
   /wallets/find-transactions-by-id:
     get:
@@ -8929,8 +8929,41 @@ paths:
         -
           OAuth2:
             - AdminTransformers
-      operationId: retrieveWalletTransactionsById
+      operationId: retrieveWalletTransactionsByWalletId
       description: wallet transactions list
+      x-codegen-request-body-name: body
+  /wallet-types/find-transactions-by-id:
+    get:
+      tags:
+        - wallet-types
+      parameters:
+        -
+          $ref: '#/components/parameters/idQuery'
+        -
+          $ref: '#/components/parameters/limitResults'
+        -
+          $ref: '#/components/parameters/skipResults'
+      responses:
+        '200':
+          $ref: '#/components/responses/WalletTransactionResponseBody'
+        '400':
+          $ref: '#/components/responses/WalletTransactionResponseBody'
+        '401':
+          $ref: '#/components/responses/WalletTransactionResponseBody'
+        '403':
+          $ref: '#/components/responses/WalletTransactionResponseBody'
+        '404':
+          $ref: '#/components/responses/WalletTransactionResponseBody'
+        '500':
+          $ref: '#/components/responses/WalletTransactionResponseBody'
+        '501':
+          $ref: '#/components/responses/WalletTransactionResponseBody'
+      security:
+        -
+          OAuth2:
+            - AdminTransformers
+      operationId: retrieveWalletTransactionsByWalletTypeId
+      description: wallet transactions list by wallet type id
       x-codegen-request-body-name: body
 components:
   schemas:
@@ -20132,27 +20165,6 @@ components:
       example: {}
       x-vue-update: actionType
       x-vue-updater: actionTypes
-    WalletTransactionRequest:
-      description: ''
-      type: object
-      properties:
-        amount:
-          description: The amount to transfer
-          type: number
-        transactionType:
-          description: trnsaction type
-          type: string
-        sourceWalletId:
-          description: The unique wallet identifier
-          type: string
-        targetWalletId:
-          description: The unique wallet identifier
-          type: string
-      example:
-        amount: 42.41
-        transactionType: some text
-        sourceWalletId: some text
-        targetWalletId: some text
     InstantWinMemberResponse:
       description: This is the Response for Instant win
       required:
@@ -21103,11 +21115,11 @@ components:
             description:
               description: description of wallet type
               type: string
-            termsAndConditions:
-              description: termsAndCondition
-              type: string
             unitOfMeasure:
               description: unitOfMeasure id
+              type: string
+            termsAndConditions:
+              description: termsAndCondition
               type: string
       example: {}
       x-vue-update: walletType
@@ -21482,6 +21494,36 @@ components:
         id:
           description: ''
           type: string
+    WalletTransactionRequest:
+      description: ''
+      type: object
+      properties:
+        amount:
+          description: The amount to transfer
+          type: number
+        transactionType:
+          $ref: '#/components/schemas/WalletTransactionType'
+          description: trnsaction type
+          example: 'Credit,Debit,Transfer'
+        sourceWalletId:
+          description: The unique wallet identifier
+          type: string
+        targetWalletId:
+          description: The unique wallet identifier
+          type: string
+      example:
+        amount: 42.41
+        transactionType: 'Credit,Debit,Transafer'
+        sourceWalletId: some text
+        targetWalletId: some text
+    WalletTransactionType:
+      description: Available wallet transaction types
+      enum:
+        - Transfer
+        - Credit
+        - Debit
+      type: string
+      example: '"Debit"'
   responses:
     ApiResponseBody:
       content:
