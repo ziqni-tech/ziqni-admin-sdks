@@ -330,12 +330,13 @@ Class | Method | HTTP request | Description
 *@ZiqniTechAdminApiClient.WalletTypesApi* | [**deleteWalletTypes**](docs/WalletTypesApi.md#deleteWalletTypes) | **DELETE** /wallet-types | Delete wallet types
 *@ZiqniTechAdminApiClient.WalletTypesApi* | [**getWalletTypes**](docs/WalletTypesApi.md#getWalletTypes) | **GET** /wallet-types | Get wallet types
 *@ZiqniTechAdminApiClient.WalletTypesApi* | [**getWalletTypesByQuery**](docs/WalletTypesApi.md#getWalletTypesByQuery) | **POST** /wallet-types/query | Get wallet types by query
+*@ZiqniTechAdminApiClient.WalletTypesApi* | [**retrieveWalletTransactionsByWalletTypeId**](docs/WalletTypesApi.md#retrieveWalletTransactionsByWalletTypeId) | **GET** /wallet-types/find-transactions-by-id | 
 *@ZiqniTechAdminApiClient.WalletTypesApi* | [**updateWalletTypes**](docs/WalletTypesApi.md#updateWalletTypes) | **PUT** /wallet-types | Update wallet types
 *@ZiqniTechAdminApiClient.WalletsApi* | [**createWallets**](docs/WalletsApi.md#createWallets) | **POST** /wallets | Create wallets
 *@ZiqniTechAdminApiClient.WalletsApi* | [**deleteWallets**](docs/WalletsApi.md#deleteWallets) | **DELETE** /wallets | Delete wallets
 *@ZiqniTechAdminApiClient.WalletsApi* | [**getWallets**](docs/WalletsApi.md#getWallets) | **GET** /wallets | Get wallets
 *@ZiqniTechAdminApiClient.WalletsApi* | [**manageWalletTransaction**](docs/WalletsApi.md#manageWalletTransaction) | **POST** /wallets/manage-transaction | 
-*@ZiqniTechAdminApiClient.WalletsApi* | [**retrieveWalletTransactionsById**](docs/WalletsApi.md#retrieveWalletTransactionsById) | **GET** /wallets/find-transactions-by-id | 
+*@ZiqniTechAdminApiClient.WalletsApi* | [**retrieveWalletTransactionsByWalletId**](docs/WalletsApi.md#retrieveWalletTransactionsByWalletId) | **GET** /wallets/find-transactions-by-id | 
 *@ZiqniTechAdminApiClient.WalletsApi* | [**updateWallets**](docs/WalletsApi.md#updateWallets) | **PUT** /wallets | Update wallets
 *@ZiqniTechAdminApiClient.WebhooksApi* | [**createWebhooks**](docs/WebhooksApi.md#createWebhooks) | **POST** /webhooks | 
 *@ZiqniTechAdminApiClient.WebhooksApi* | [**deleteWebhooks**](docs/WebhooksApi.md#deleteWebhooks) | **DELETE** /webhooks | 
@@ -759,6 +760,7 @@ Class | Method | HTTP request | Description
  - [@ZiqniTechAdminApiClient.WalletTransaction](docs/WalletTransaction.md)
  - [@ZiqniTechAdminApiClient.WalletTransactionRequest](docs/WalletTransactionRequest.md)
  - [@ZiqniTechAdminApiClient.WalletTransactionResponse](docs/WalletTransactionResponse.md)
+ - [@ZiqniTechAdminApiClient.WalletTransactionType](docs/WalletTransactionType.md)
  - [@ZiqniTechAdminApiClient.WalletType](docs/WalletType.md)
  - [@ZiqniTechAdminApiClient.WalletTypeAllOf](docs/WalletTypeAllOf.md)
  - [@ZiqniTechAdminApiClient.WalletTypeReduced](docs/WalletTypeReduced.md)

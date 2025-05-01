@@ -424,6 +424,7 @@ import WalletResponse from './model/WalletResponse';
 import WalletTransaction from './model/WalletTransaction';
 import WalletTransactionRequest from './model/WalletTransactionRequest';
 import WalletTransactionResponse from './model/WalletTransactionResponse';
+import WalletTransactionType from './model/WalletTransactionType';
 import WalletType from './model/WalletType';
 import WalletTypeAllOf from './model/WalletTypeAllOf';
 import WalletTypeReduced from './model/WalletTypeReduced';
@@ -2977,6 +2978,12 @@ export {
      * @property {module:model/WalletTransactionResponse}
      */
     WalletTransactionResponse,
+
+    /**
+     * The WalletTransactionType model constructor.
+     * @property {module:model/WalletTransactionType}
+     */
+    WalletTransactionType,
 
     /**
      * The WalletType model constructor.

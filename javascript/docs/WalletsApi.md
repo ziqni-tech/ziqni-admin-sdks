@@ -8,7 +8,7 @@ Method | HTTP request | Description
 [**deleteWallets**](WalletsApi.md#deleteWallets) | **DELETE** /wallets | Delete wallets
 [**getWallets**](WalletsApi.md#getWallets) | **GET** /wallets | Get wallets
 [**manageWalletTransaction**](WalletsApi.md#manageWalletTransaction) | **POST** /wallets/manage-transaction | 
-[**retrieveWalletTransactionsById**](WalletsApi.md#retrieveWalletTransactionsById) | **GET** /wallets/find-transactions-by-id | 
+[**retrieveWalletTransactionsByWalletId**](WalletsApi.md#retrieveWalletTransactionsByWalletId) | **GET** /wallets/find-transactions-by-id | 
 [**updateWallets**](WalletsApi.md#updateWallets) | **PUT** /wallets | Update wallets
 
 
@@ -174,7 +174,7 @@ Name | Type | Description  | Notes
 
 
 
- credit, debit, and transfer transactions from a wallet 
+ Credit, Debit, and Transfer transactions from a wallet 
 
 ### Example
 
@@ -219,9 +219,9 @@ Name | Type | Description  | Notes
 - **Accept**: application/json
 
 
-## retrieveWalletTransactionsById
+## retrieveWalletTransactionsByWalletId
 
-> WalletTransactionResponse retrieveWalletTransactionsById(opts)
+> WalletTransactionResponse retrieveWalletTransactionsByWalletId(opts)
 
 
 
@@ -242,7 +242,7 @@ let opts = {
   'limit': 56, // Number | Limit the returned total records found
   'skip': 56 // Number | Skip the returned records found and return the next batch of records
 };
-apiInstance.retrieveWalletTransactionsById(opts, (error, data, response) => {
+apiInstance.retrieveWalletTransactionsByWalletId(opts, (error, data, response) => {
   if (error) {
     console.error(error);
   } else {

@@ -56,11 +56,11 @@ class UpdateWalletTypeRequestAllOf {
             if (data.hasOwnProperty('description')) {
                 obj['description'] = ApiClient.convertToType(data['description'], 'String');
             }
-            if (data.hasOwnProperty('termsAndConditions')) {
-                obj['termsAndConditions'] = ApiClient.convertToType(data['termsAndConditions'], 'String');
-            }
             if (data.hasOwnProperty('unitOfMeasure')) {
                 obj['unitOfMeasure'] = ApiClient.convertToType(data['unitOfMeasure'], 'String');
+            }
+            if (data.hasOwnProperty('termsAndConditions')) {
+                obj['termsAndConditions'] = ApiClient.convertToType(data['termsAndConditions'], 'String');
             }
         }
         return obj;
@@ -88,16 +88,16 @@ UpdateWalletTypeRequestAllOf.prototype['name'] = undefined;
 UpdateWalletTypeRequestAllOf.prototype['description'] = undefined;
 
 /**
- * termsAndCondition
- * @member {String} termsAndConditions
- */
-UpdateWalletTypeRequestAllOf.prototype['termsAndConditions'] = undefined;
-
-/**
  * unitOfMeasure id
  * @member {String} unitOfMeasure
  */
 UpdateWalletTypeRequestAllOf.prototype['unitOfMeasure'] = undefined;
+
+/**
+ * termsAndCondition
+ * @member {String} termsAndConditions
+ */
+UpdateWalletTypeRequestAllOf.prototype['termsAndConditions'] = undefined;
 
 
 
