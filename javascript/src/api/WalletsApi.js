@@ -176,7 +176,7 @@ export default class WalletsApi {
      */
 
     /**
-     *  credit, debit, and transfer transactions from a wallet 
+     *  Credit, Debit, and Transfer transactions from a wallet 
      * @param {Object} opts Optional parameters
      * @param {module:model/WalletTransactionRequest} opts.body Manage wallet tranctions  from Ziqni by unique Wallet ID's  using the POST method
      * @param {module:api/WalletsApi~manageWalletTransactionCallback} callback The callback function, accepting three arguments: error, data, response
@@ -207,8 +207,8 @@ export default class WalletsApi {
     }
 
     /**
-     * Callback function to receive the result of the retrieveWalletTransactionsById operation.
-     * @callback module:api/WalletsApi~retrieveWalletTransactionsByIdCallback
+     * Callback function to receive the result of the retrieveWalletTransactionsByWalletId operation.
+     * @callback module:api/WalletsApi~retrieveWalletTransactionsByWalletIdCallback
      * @param {String} error Error message, if any.
      * @param {module:model/WalletTransactionResponse} data The data returned by the service call.
      * @param {String} response The complete HTTP response.
@@ -220,10 +220,10 @@ export default class WalletsApi {
      * @param {Array.<String>} opts.id The unique identifiers of the resources
      * @param {Number} opts.limit Limit the returned total records found
      * @param {Number} opts.skip Skip the returned records found and return the next batch of records
-     * @param {module:api/WalletsApi~retrieveWalletTransactionsByIdCallback} callback The callback function, accepting three arguments: error, data, response
+     * @param {module:api/WalletsApi~retrieveWalletTransactionsByWalletIdCallback} callback The callback function, accepting three arguments: error, data, response
      * data is of type: {@link module:model/WalletTransactionResponse}
      */
-    retrieveWalletTransactionsById(opts, callback) {
+    retrieveWalletTransactionsByWalletId(opts, callback) {
       opts = opts || {};
       let postBody = null;
 

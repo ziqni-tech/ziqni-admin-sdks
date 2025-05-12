@@ -12,6 +12,7 @@
  */
 
 import ApiClient from '../ApiClient';
+import WalletTransactionType from './WalletTransactionType';
 
 /**
  * The WalletTransactionRequest model module.
@@ -52,7 +53,7 @@ class WalletTransactionRequest {
                 obj['amount'] = ApiClient.convertToType(data['amount'], 'Number');
             }
             if (data.hasOwnProperty('transactionType')) {
-                obj['transactionType'] = ApiClient.convertToType(data['transactionType'], 'String');
+                obj['transactionType'] = WalletTransactionType.constructFromObject(data['transactionType']);
             }
             if (data.hasOwnProperty('sourceWalletId')) {
                 obj['sourceWalletId'] = ApiClient.convertToType(data['sourceWalletId'], 'String');
@@ -74,8 +75,7 @@ class WalletTransactionRequest {
 WalletTransactionRequest.prototype['amount'] = undefined;
 
 /**
- * trnsaction type
- * @member {String} transactionType
+ * @member {module:model/WalletTransactionType} transactionType
  */
 WalletTransactionRequest.prototype['transactionType'] = undefined;
 

@@ -88,6 +88,16 @@
         done();
       });
     });
+    describe('retrieveWalletTransactionsByWalletTypeId', function() {
+      it('should call retrieveWalletTransactionsByWalletTypeId successfully', function(done) {
+        //uncomment below and update the code to test retrieveWalletTransactionsByWalletTypeId
+        //instance.retrieveWalletTransactionsByWalletTypeId(function(error) {
+        //  if (error) throw error;
+        //expect().to.be();
+        //});
+        done();
+      });
+    });
     describe('updateWalletTypes', function() {
       it('should call updateWalletTypes successfully', function(done) {
         //uncomment below and update the code to test updateWalletTypes

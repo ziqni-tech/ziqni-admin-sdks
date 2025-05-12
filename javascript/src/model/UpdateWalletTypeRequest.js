@@ -76,11 +76,11 @@ class UpdateWalletTypeRequest {
             if (data.hasOwnProperty('description')) {
                 obj['description'] = ApiClient.convertToType(data['description'], 'String');
             }
-            if (data.hasOwnProperty('termsAndConditions')) {
-                obj['termsAndConditions'] = ApiClient.convertToType(data['termsAndConditions'], 'String');
-            }
             if (data.hasOwnProperty('unitOfMeasure')) {
                 obj['unitOfMeasure'] = ApiClient.convertToType(data['unitOfMeasure'], 'String');
+            }
+            if (data.hasOwnProperty('termsAndConditions')) {
+                obj['termsAndConditions'] = ApiClient.convertToType(data['termsAndConditions'], 'String');
             }
         }
         return obj;
@@ -125,16 +125,16 @@ UpdateWalletTypeRequest.prototype['name'] = undefined;
 UpdateWalletTypeRequest.prototype['description'] = undefined;
 
 /**
- * termsAndCondition
- * @member {String} termsAndConditions
- */
-UpdateWalletTypeRequest.prototype['termsAndConditions'] = undefined;
-
-/**
  * unitOfMeasure id
  * @member {String} unitOfMeasure
  */
 UpdateWalletTypeRequest.prototype['unitOfMeasure'] = undefined;
+
+/**
+ * termsAndCondition
+ * @member {String} termsAndConditions
+ */
+UpdateWalletTypeRequest.prototype['termsAndConditions'] = undefined;
 
 
 // Implement UpdateModelDefault interface:
@@ -175,15 +175,15 @@ UpdateWalletTypeRequestAllOf.prototype['name'] = undefined;
  */
 UpdateWalletTypeRequestAllOf.prototype['description'] = undefined;
 /**
- * termsAndCondition
- * @member {String} termsAndConditions
- */
-UpdateWalletTypeRequestAllOf.prototype['termsAndConditions'] = undefined;
-/**
  * unitOfMeasure id
  * @member {String} unitOfMeasure
  */
 UpdateWalletTypeRequestAllOf.prototype['unitOfMeasure'] = undefined;
+/**
+ * termsAndCondition
+ * @member {String} termsAndConditions
+ */
+UpdateWalletTypeRequestAllOf.prototype['termsAndConditions'] = undefined;
 
 
 
