@@ -12,7 +12,6 @@ Name | Type | Description | Notes
 **awardId** | **String** | The award identifier associated with the log |  [optional]
 **spinId** | **Integer** | The spin identifier |  [optional]
 **spinsAdded** | **Integer** | The number of spins added in this log entry |  [optional]
-**timestamp** | **OffsetDateTime** | The timestamp when the log entry was created |  [optional]
 
 
 

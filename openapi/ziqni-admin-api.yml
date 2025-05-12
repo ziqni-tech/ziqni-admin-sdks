@@ -8748,48 +8748,6 @@ paths:
           type: string
         in: query
         required: true
-  /instant-wins/logs:
-    summary: Get instant win logs
-    description: This operation allows you to get instant wins in your project using a query.
-    get:
-      tags:
-        - instant-wins
-      parameters:
-        -
-          $ref: '#/components/parameters/limitResults'
-        -
-          $ref: '#/components/parameters/skipResults'
-      responses:
-        '200':
-          $ref: '#/components/responses/InstantWinLogResponseBody'
-        '400':
-          $ref: '#/components/responses/InstantWinLogResponseBody'
-        '401':
-          $ref: '#/components/responses/InstantWinLogResponseBody'
-        '403':
-          $ref: '#/components/responses/InstantWinLogResponseBody'
-        '404':
-          $ref: '#/components/responses/InstantWinLogResponseBody'
-        '500':
-          $ref: '#/components/responses/InstantWinLogResponseBody'
-        '501':
-          $ref: '#/components/responses/InstantWinLogResponseBody'
-      security:
-        -
-          OAuth2:
-            - ViewInstantWins
-      operationId: getInstantWinLogs
-      summary: Get instant win logs
-      description: Retrieve Instant wins logs from Ziqni database by unique Instant win ID
-      x-codegen-request-body-name: body
-    parameters:
-      -
-        name: instantWinId
-        description: ''
-        schema:
-          type: string
-        in: query
-        required: true
   /wallet-types/query:
     summary: Get wallet types by query
     description: This operation allows you to get wallet types by query
@@ -8964,6 +8922,42 @@ paths:
             - AdminTransformers
       operationId: retrieveWalletTransactionsByWalletTypeId
       description: wallet transactions list by wallet type id
+      x-codegen-request-body-name: body
+  /instant-wins/logs:
+    summary: Get instant win logs
+    description: This operation allows you to get instant wins in your project using a query.
+    get:
+      tags:
+        - instant-wins
+      parameters:
+        -
+          $ref: '#/components/parameters/idQuery'
+        -
+          $ref: '#/components/parameters/limitResults'
+        -
+          $ref: '#/components/parameters/skipResults'
+      responses:
+        '200':
+          $ref: '#/components/responses/InstantWinLogResponseBody'
+        '400':
+          $ref: '#/components/responses/InstantWinLogResponseBody'
+        '401':
+          $ref: '#/components/responses/InstantWinLogResponseBody'
+        '403':
+          $ref: '#/components/responses/InstantWinLogResponseBody'
+        '404':
+          $ref: '#/components/responses/InstantWinLogResponseBody'
+        '500':
+          $ref: '#/components/responses/InstantWinLogResponseBody'
+        '501':
+          $ref: '#/components/responses/InstantWinLogResponseBody'
+      security:
+        -
+          OAuth2:
+            - ViewInstantWins
+      operationId: getInstantWinLogs
+      summary: Get instant win logs
+      description: Retrieve Instant wins logs from Ziqni database by unique Instant win ID
       x-codegen-request-body-name: body
 components:
   schemas:
@@ -20749,10 +20743,6 @@ components:
             spinsAdded:
               description: The number of spins added in this log entry
               type: integer
-            timestamp:
-              format: date-time
-              description: The timestamp when the log entry was created
-              type: string
         -
           $ref: '#/components/schemas/OptParamModels'
         -
