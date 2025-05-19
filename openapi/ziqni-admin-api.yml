@@ -21489,18 +21489,29 @@ components:
       type: object
       properties:
         amount:
-          description: The amount to transfer
+          description: 'The amount to credit,debit or transfer'
           type: number
         transactionType:
           $ref: '#/components/schemas/WalletTransactionType'
-          description: trnsaction type
+          description: transaction type
           example: 'Credit,Debit,Transfer'
         sourceWalletId:
-          description: The unique wallet identifier
+          description: 'The unique source wallet identifier,required on credit,debit and transfer'
           type: string
         targetWalletId:
-          description: The unique wallet identifier
+          description: >-
+            The unique target wallet identifier,not required on debit or credit but required on
+            transfer
           type: string
+        conversionRate:
+          description: >-
+            The rate used to convert the transaction amount when transferring funds between
+            wallets of different types.
+            
+            
+            For example, if 5 units are transferred from Wallet A to Wallet B with a rate of 1.3,
+            then 6.5 units are credited to Wallet B.
+          type: number
       example:
         amount: 42.41
         transactionType: 'Credit,Debit,Transafer'
