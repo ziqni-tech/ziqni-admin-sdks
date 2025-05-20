@@ -62,9 +62,6 @@ class InstantWinLogAllOf {
             if (data.hasOwnProperty('spinsAdded')) {
                 obj['spinsAdded'] = ApiClient.convertToType(data['spinsAdded'], 'Number');
             }
-            if (data.hasOwnProperty('timestamp')) {
-                obj['timestamp'] = ApiClient.convertToType(data['timestamp'], 'Date');
-            }
         }
         return obj;
     }
@@ -101,12 +98,6 @@ InstantWinLogAllOf.prototype['spinId'] = undefined;
  * @member {Number} spinsAdded
  */
 InstantWinLogAllOf.prototype['spinsAdded'] = undefined;
-
-/**
- * The timestamp when the log entry was created
- * @member {Date} timestamp
- */
-InstantWinLogAllOf.prototype['timestamp'] = undefined;
 
 
 
