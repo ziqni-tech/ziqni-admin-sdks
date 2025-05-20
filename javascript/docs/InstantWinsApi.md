@@ -224,7 +224,7 @@ Name | Type | Description  | Notes
 
 ## getInstantWinLogs
 
-> InstantWinLogResponse getInstantWinLogs(instantWinId, opts)
+> InstantWinLogResponse getInstantWinLogs(opts)
 
 Get instant win logs
 
@@ -240,12 +240,12 @@ let OAuth2 = defaultClient.authentications['OAuth2'];
 OAuth2.accessToken = 'YOUR ACCESS TOKEN';
 
 let apiInstance = new @ZiqniTechAdminApiClient.InstantWinsApi();
-let instantWinId = "instantWinId_example"; // String | 
 let opts = {
+  'id': ["null"], // [String] | The unique identifiers of the resources
   'limit': 56, // Number | Limit the returned total records found
   'skip': 56 // Number | Skip the returned records found and return the next batch of records
 };
-apiInstance.getInstantWinLogs(instantWinId, opts, (error, data, response) => {
+apiInstance.getInstantWinLogs(opts, (error, data, response) => {
   if (error) {
     console.error(error);
   } else {
@@ -259,7 +259,7 @@ apiInstance.getInstantWinLogs(instantWinId, opts, (error, data, response) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **instantWinId** | **String**|  | 
+ **id** | [**[String]**](String.md)| The unique identifiers of the resources | [optional] 
  **limit** | **Number**| Limit the returned total records found | [optional] 
  **skip** | **Number**| Skip the returned records found and return the next batch of records | [optional] 
 

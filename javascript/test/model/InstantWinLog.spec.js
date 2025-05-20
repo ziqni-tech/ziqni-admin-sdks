@@ -84,12 +84,6 @@
       //expect(instance).to.be();
     });
 
-    it('should have the property timestamp (base name: "timestamp")', function() {
-      // uncomment below and update the code to test the property timestamp
-      //var instance = new @ZiqniTechAdminApiClient.InstantWinLog();
-      //expect(instance).to.be();
-    });
-
     it('should have the property customFields (base name: "customFields")', function() {
       // uncomment below and update the code to test the property customFields
       //var instance = new @ZiqniTechAdminApiClient.InstantWinLog();

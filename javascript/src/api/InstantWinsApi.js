@@ -220,25 +220,21 @@ export default class InstantWinsApi {
     /**
      * Get instant win logs
      * Retrieve Instant wins logs from Ziqni database by unique Instant win ID
-     * @param {String} instantWinId 
      * @param {Object} opts Optional parameters
+     * @param {Array.<String>} opts.id The unique identifiers of the resources
      * @param {Number} opts.limit Limit the returned total records found
      * @param {Number} opts.skip Skip the returned records found and return the next batch of records
      * @param {module:api/InstantWinsApi~getInstantWinLogsCallback} callback The callback function, accepting three arguments: error, data, response
      * data is of type: {@link module:model/InstantWinLogResponse}
      */
-    getInstantWinLogs(instantWinId, opts, callback) {
+    getInstantWinLogs(opts, callback) {
       opts = opts || {};
       let postBody = null;
-      // verify the required parameter 'instantWinId' is set
-      if (instantWinId === undefined || instantWinId === null) {
-        throw new Error("Missing the required parameter 'instantWinId' when calling getInstantWinLogs");
-      }
 
       let pathParams = {
       };
       let queryParams = {
-        'instantWinId': instantWinId,
+        'id': this.apiClient.buildCollectionParam(opts['id'], 'multi'),
         '_limit': opts['limit'],
         '_skip': opts['skip']
       };

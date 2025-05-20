@@ -9,6 +9,5 @@ Name | Type | Description | Notes
 **awardId** | **String** | The award identifier associated with the log | [optional] 
 **spinId** | **Number** | The spin identifier | [optional] 
 **spinsAdded** | **Number** | The number of spins added in this log entry | [optional] 
-**timestamp** | **Date** | The timestamp when the log entry was created | [optional] 
 
 
