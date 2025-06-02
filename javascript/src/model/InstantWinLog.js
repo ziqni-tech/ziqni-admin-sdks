@@ -78,9 +78,6 @@ class InstantWinLog {
             if (data.hasOwnProperty('spinsAdded')) {
                 obj['spinsAdded'] = ApiClient.convertToType(data['spinsAdded'], 'Number');
             }
-            if (data.hasOwnProperty('timestamp')) {
-                obj['timestamp'] = ApiClient.convertToType(data['timestamp'], 'Date');
-            }
             if (data.hasOwnProperty('customFields')) {
                 obj['customFields'] = ApiClient.convertToType(data['customFields'], {'String': Object});
             }
@@ -135,12 +132,6 @@ InstantWinLog.prototype['spinId'] = undefined;
  * @member {Number} spinsAdded
  */
 InstantWinLog.prototype['spinsAdded'] = undefined;
-
-/**
- * The timestamp when the log entry was created
- * @member {Date} timestamp
- */
-InstantWinLog.prototype['timestamp'] = undefined;
 
 /**
  * @member {Object.<String, Object>} customFields
@@ -203,11 +194,6 @@ InstantWinLogAllOf.prototype['spinId'] = undefined;
  * @member {Number} spinsAdded
  */
 InstantWinLogAllOf.prototype['spinsAdded'] = undefined;
-/**
- * The timestamp when the log entry was created
- * @member {Date} timestamp
- */
-InstantWinLogAllOf.prototype['timestamp'] = undefined;
 // Implement OptParamModels interface:
 /**
  * @member {Object.<String, Object>} customFields
