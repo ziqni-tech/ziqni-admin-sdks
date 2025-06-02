@@ -1872,47 +1872,6 @@ paths:
         Retrieve a Webhook or a list of Webhooks from Ziqni by unique Webhook ID's or any other POST
         body parameters using the POST method
       x-codegen-request-body-name: body
-  /webhooks/delete:
-    post:
-      requestBody:
-        description: >-
-          Delete a Webhook or a list of Webhooks from Ziqni by unique Webhook ID's or any other POST
-          body parameters using the POST method
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/QueryRequest'
-      tags:
-        - webhooks
-      responses:
-        '200':
-          $ref: '#/components/responses/ApiResponseBody'
-        '400':
-          $ref: '#/components/responses/ApiResponseBody'
-        '401':
-          $ref: '#/components/responses/ApiResponseBody'
-        '403':
-          $ref: '#/components/responses/ApiResponseBody'
-        '404':
-          $ref: '#/components/responses/ApiResponseBody'
-        '413':
-          $ref: '#/components/responses/ApiResponseBody'
-        '500':
-          $ref: '#/components/responses/ApiResponseBody'
-        '501':
-          $ref: '#/components/responses/ApiResponseBody'
-        '503':
-          $ref: '#/components/responses/ApiResponseBody'
-      security:
-        -
-          OAuth2:
-            - AdminWebhooks
-      operationId: deleteWebhooksByQuery
-      summary: Delete webhooks by query
-      description: >-
-        Delete a Webhook or a list of Webhooks from Ziqni by unique Webhook ID's or any other POST
-        body parameters using the POST method
-      x-codegen-request-body-name: body
   /events/query:
     post:
       requestBody:
@@ -8997,6 +8956,88 @@ paths:
       description: >-
         Retrieve Wallet  from Ziqni database by unique Wallet  ID's or any other POST body parameters
         using the POST method
+      x-codegen-request-body-name: body
+  /webhooks/delete:
+    post:
+      requestBody:
+        description: >-
+          Delete a Webhook or a list of Webhooks from Ziqni by unique Webhook ID's or any other POST
+          body parameters using the POST method
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/QueryRequest'
+      tags:
+        - webhooks
+      responses:
+        '200':
+          $ref: '#/components/responses/ApiResponseBody'
+        '400':
+          $ref: '#/components/responses/ApiResponseBody'
+        '401':
+          $ref: '#/components/responses/ApiResponseBody'
+        '403':
+          $ref: '#/components/responses/ApiResponseBody'
+        '404':
+          $ref: '#/components/responses/ApiResponseBody'
+        '413':
+          $ref: '#/components/responses/ApiResponseBody'
+        '500':
+          $ref: '#/components/responses/ApiResponseBody'
+        '501':
+          $ref: '#/components/responses/ApiResponseBody'
+        '503':
+          $ref: '#/components/responses/ApiResponseBody'
+      security:
+        -
+          OAuth2:
+            - AdminWebhooks
+      operationId: deleteWebhooksByQuery
+      summary: Delete webhooks by query
+      description: >-
+        Delete a Webhook or a list of Webhooks from Ziqni by unique Webhook ID's or any other POST
+        body parameters using the POST method
+      x-codegen-request-body-name: body
+  /wallets/delete:
+    post:
+      requestBody:
+        description: >-
+          Delete a Wallet or a list of Wallet from Ziqni by unique Wallet ID's or any other POST
+          body parameters using the POST method
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/QueryRequest'
+      tags:
+        - wallets
+      responses:
+        '200':
+          $ref: '#/components/responses/ApiResponseBody'
+        '400':
+          $ref: '#/components/responses/ApiResponseBody'
+        '401':
+          $ref: '#/components/responses/ApiResponseBody'
+        '403':
+          $ref: '#/components/responses/ApiResponseBody'
+        '404':
+          $ref: '#/components/responses/ApiResponseBody'
+        '413':
+          $ref: '#/components/responses/ApiResponseBody'
+        '500':
+          $ref: '#/components/responses/ApiResponseBody'
+        '501':
+          $ref: '#/components/responses/ApiResponseBody'
+        '503':
+          $ref: '#/components/responses/ApiResponseBody'
+      security:
+        -
+          OAuth2:
+            - AdminWebhooks
+      operationId: deleteWalletsByQuery
+      summary: Delete wallets by query
+      description: >-
+        Delete a Wallet or a list of Wallets from Ziqni by unique Wallet ID's or any other POST body
+        parameters using the POST method
       x-codegen-request-body-name: body
 components:
   schemas:
