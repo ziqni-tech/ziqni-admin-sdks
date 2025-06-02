@@ -8959,6 +8959,45 @@ paths:
       summary: Get instant win logs
       description: Retrieve Instant wins logs from Ziqni database by unique Instant win ID
       x-codegen-request-body-name: body
+  /wallets/query:
+    summary: Get wallet  by query
+    description: This operation allows you to get wallet  by query
+    post:
+      requestBody:
+        description: >-
+          Retrieve Wallet  from Ziqni database by unique Wallet  ID's or any other POST body
+          parameters using the POST method
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/QueryRequest'
+      tags:
+        - wallets
+      responses:
+        '200':
+          $ref: '#/components/responses/WalletResponseBody'
+        '400':
+          $ref: '#/components/responses/WalletResponseBody'
+        '401':
+          $ref: '#/components/responses/WalletResponseBody'
+        '403':
+          $ref: '#/components/responses/WalletResponseBody'
+        '404':
+          $ref: '#/components/responses/WalletResponseBody'
+        '500':
+          $ref: '#/components/responses/WalletResponseBody'
+        '501':
+          $ref: '#/components/responses/WalletResponseBody'
+      security:
+        -
+          OAuth2:
+            - ViewTags
+      operationId: getWalletsByQuery
+      summary: Get wallet  by query
+      description: >-
+        Retrieve Wallet  from Ziqni database by unique Wallet  ID's or any other POST body parameters
+        using the POST method
+      x-codegen-request-body-name: body
 components:
   schemas:
     ProductReduced:
