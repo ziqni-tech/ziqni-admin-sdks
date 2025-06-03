@@ -15,6 +15,7 @@
 import ApiClient from "../ApiClient";
 import ApiResponse from '../model/ApiResponse';
 import CreateWalletRequest from '../model/CreateWalletRequest';
+import QueryRequest from '../model/QueryRequest';
 import UpdateWalletRequest from '../model/UpdateWalletRequest';
 import WalletResponse from '../model/WalletResponse';
 import WalletTransactionRequest from '../model/WalletTransactionRequest';
@@ -123,6 +124,46 @@ export default class WalletsApi {
     }
 
     /**
+     * Callback function to receive the result of the deleteWalletsByQuery operation.
+     * @callback module:api/WalletsApi~deleteWalletsByQueryCallback
+     * @param {String} error Error message, if any.
+     * @param {module:model/ApiResponse} data The data returned by the service call.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * Delete wallets by query
+     * Delete a Wallet or a list of Wallets from Ziqni by unique Wallet ID's or any other POST body parameters using the POST method
+     * @param {Object} opts Optional parameters
+     * @param {module:model/QueryRequest} opts.body Delete a Wallet or a list of Wallet from Ziqni by unique Wallet ID's or any other POST body parameters using the POST method
+     * @param {module:api/WalletsApi~deleteWalletsByQueryCallback} callback The callback function, accepting three arguments: error, data, response
+     * data is of type: {@link module:model/ApiResponse}
+     */
+    deleteWalletsByQuery(opts, callback) {
+      opts = opts || {};
+      let postBody = opts['body'];
+
+      let pathParams = {
+      };
+      let queryParams = {
+      };
+      let headerParams = {
+      };
+      let formParams = {
+      };
+
+      let authNames = ['OAuth2'];
+      let contentTypes = ['application/json'];
+      let accepts = ['application/json'];
+      let returnType = ApiResponse;
+      return this.apiClient.callApi(
+        '/wallets/delete', 'POST',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, null, callback
+      );
+    }
+
+    /**
      * Callback function to receive the result of the getWallets operation.
      * @callback module:api/WalletsApi~getWalletsCallback
      * @param {String} error Error message, if any.
@@ -162,6 +203,46 @@ export default class WalletsApi {
       let returnType = WalletResponse;
       return this.apiClient.callApi(
         '/wallets', 'GET',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, null, callback
+      );
+    }
+
+    /**
+     * Callback function to receive the result of the getWalletsByQuery operation.
+     * @callback module:api/WalletsApi~getWalletsByQueryCallback
+     * @param {String} error Error message, if any.
+     * @param {module:model/WalletResponse} data The data returned by the service call.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * Get wallet  by query
+     * Retrieve Wallet  from Ziqni database by unique Wallet  ID's or any other POST body parameters using the POST method
+     * @param {Object} opts Optional parameters
+     * @param {module:model/QueryRequest} opts.body Retrieve Wallet  from Ziqni database by unique Wallet  ID's or any other POST body parameters using the POST method
+     * @param {module:api/WalletsApi~getWalletsByQueryCallback} callback The callback function, accepting three arguments: error, data, response
+     * data is of type: {@link module:model/WalletResponse}
+     */
+    getWalletsByQuery(opts, callback) {
+      opts = opts || {};
+      let postBody = opts['body'];
+
+      let pathParams = {
+      };
+      let queryParams = {
+      };
+      let headerParams = {
+      };
+      let formParams = {
+      };
+
+      let authNames = ['OAuth2'];
+      let contentTypes = ['application/json'];
+      let accepts = ['application/json'];
+      let returnType = WalletResponse;
+      return this.apiClient.callApi(
+        '/wallets/query', 'POST',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, null, callback
       );

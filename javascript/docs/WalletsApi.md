@@ -6,7 +6,9 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**createWallets**](WalletsApi.md#createWallets) | **POST** /wallets | Create wallets
 [**deleteWallets**](WalletsApi.md#deleteWallets) | **DELETE** /wallets | Delete wallets
+[**deleteWalletsByQuery**](WalletsApi.md#deleteWalletsByQuery) | **POST** /wallets/delete | Delete wallets by query
 [**getWallets**](WalletsApi.md#getWallets) | **GET** /wallets | Get wallets
+[**getWalletsByQuery**](WalletsApi.md#getWalletsByQuery) | **POST** /wallets/query | Get wallet  by query
 [**manageWalletTransaction**](WalletsApi.md#manageWalletTransaction) | **POST** /wallets/manage-transaction | 
 [**retrieveWalletTransactionsByWalletId**](WalletsApi.md#retrieveWalletTransactionsByWalletId) | **GET** /wallets/find-transactions-by-id | 
 [**updateWallets**](WalletsApi.md#updateWallets) | **PUT** /wallets | Update wallets
@@ -113,6 +115,57 @@ Name | Type | Description  | Notes
 - **Accept**: application/json
 
 
+## deleteWalletsByQuery
+
+> ApiResponse deleteWalletsByQuery(opts)
+
+Delete wallets by query
+
+Delete a Wallet or a list of Wallets from Ziqni by unique Wallet ID&#39;s or any other POST body parameters using the POST method
+
+### Example
+
+```javascript
+import @ZiqniTechAdminApiClient from '@ziqni-tech/admin-api-client';
+let defaultClient = @ZiqniTechAdminApiClient.ApiClient.instance;
+// Configure OAuth2 access token for authorization: OAuth2
+let OAuth2 = defaultClient.authentications['OAuth2'];
+OAuth2.accessToken = 'YOUR ACCESS TOKEN';
+
+let apiInstance = new @ZiqniTechAdminApiClient.WalletsApi();
+let opts = {
+  'body': new @ZiqniTechAdminApiClient.QueryRequest() // QueryRequest | Delete a Wallet or a list of Wallet from Ziqni by unique Wallet ID's or any other POST body parameters using the POST method
+};
+apiInstance.deleteWalletsByQuery(opts, (error, data, response) => {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+});
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | [**QueryRequest**](QueryRequest.md)| Delete a Wallet or a list of Wallet from Ziqni by unique Wallet ID&#39;s or any other POST body parameters using the POST method | [optional] 
+
+### Return type
+
+[**ApiResponse**](ApiResponse.md)
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+
 ## getWallets
 
 > WalletResponse getWallets(opts)
@@ -165,6 +218,57 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+## getWalletsByQuery
+
+> WalletResponse getWalletsByQuery(opts)
+
+Get wallet  by query
+
+Retrieve Wallet  from Ziqni database by unique Wallet  ID&#39;s or any other POST body parameters using the POST method
+
+### Example
+
+```javascript
+import @ZiqniTechAdminApiClient from '@ziqni-tech/admin-api-client';
+let defaultClient = @ZiqniTechAdminApiClient.ApiClient.instance;
+// Configure OAuth2 access token for authorization: OAuth2
+let OAuth2 = defaultClient.authentications['OAuth2'];
+OAuth2.accessToken = 'YOUR ACCESS TOKEN';
+
+let apiInstance = new @ZiqniTechAdminApiClient.WalletsApi();
+let opts = {
+  'body': new @ZiqniTechAdminApiClient.QueryRequest() // QueryRequest | Retrieve Wallet  from Ziqni database by unique Wallet  ID's or any other POST body parameters using the POST method
+};
+apiInstance.getWalletsByQuery(opts, (error, data, response) => {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+});
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | [**QueryRequest**](QueryRequest.md)| Retrieve Wallet  from Ziqni database by unique Wallet  ID&#39;s or any other POST body parameters using the POST method | [optional] 
+
+### Return type
+
+[**WalletResponse**](WalletResponse.md)
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
 - **Accept**: application/json
 
 

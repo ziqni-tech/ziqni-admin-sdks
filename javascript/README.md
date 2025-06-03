@@ -334,7 +334,9 @@ Class | Method | HTTP request | Description
 *@ZiqniTechAdminApiClient.WalletTypesApi* | [**updateWalletTypes**](docs/WalletTypesApi.md#updateWalletTypes) | **PUT** /wallet-types | Update wallet types
 *@ZiqniTechAdminApiClient.WalletsApi* | [**createWallets**](docs/WalletsApi.md#createWallets) | **POST** /wallets | Create wallets
 *@ZiqniTechAdminApiClient.WalletsApi* | [**deleteWallets**](docs/WalletsApi.md#deleteWallets) | **DELETE** /wallets | Delete wallets
+*@ZiqniTechAdminApiClient.WalletsApi* | [**deleteWalletsByQuery**](docs/WalletsApi.md#deleteWalletsByQuery) | **POST** /wallets/delete | Delete wallets by query
 *@ZiqniTechAdminApiClient.WalletsApi* | [**getWallets**](docs/WalletsApi.md#getWallets) | **GET** /wallets | Get wallets
+*@ZiqniTechAdminApiClient.WalletsApi* | [**getWalletsByQuery**](docs/WalletsApi.md#getWalletsByQuery) | **POST** /wallets/query | Get wallet  by query
 *@ZiqniTechAdminApiClient.WalletsApi* | [**manageWalletTransaction**](docs/WalletsApi.md#manageWalletTransaction) | **POST** /wallets/manage-transaction | 
 *@ZiqniTechAdminApiClient.WalletsApi* | [**retrieveWalletTransactionsByWalletId**](docs/WalletsApi.md#retrieveWalletTransactionsByWalletId) | **GET** /wallets/find-transactions-by-id | 
 *@ZiqniTechAdminApiClient.WalletsApi* | [**updateWallets**](docs/WalletsApi.md#updateWallets) | **PUT** /wallets | Update wallets
