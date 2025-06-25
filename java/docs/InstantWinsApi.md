@@ -695,7 +695,7 @@ CompletableFuture<ApiResponse<[**InstantWinMemberResponse**](InstantWinMemberRes
 
 ## getInstantWinLogs
 
-> CompletableFuture<InstantWinLogResponse> getInstantWinLogs(instantWinId, limit, skip)
+> CompletableFuture<InstantWinLogResponse> getInstantWinLogs(id, limit, skip)
 
 Get instant win logs
 
@@ -723,11 +723,11 @@ public class Example {
         OAuth2.setAccessToken("YOUR ACCESS TOKEN");
 
         InstantWinsApi apiInstance = new InstantWinsApi(defaultClient);
-        String instantWinId = "instantWinId_example"; // String | 
+        List<String> id = Arrays.asList(); // List<String> | The unique identifiers of the resources
         Integer limit = 56; // Integer | Limit the returned total records found
         Integer skip = 56; // Integer | Skip the returned records found and return the next batch of records
         try {
-            CompletableFuture<InstantWinLogResponse> result = apiInstance.getInstantWinLogs(instantWinId, limit, skip);
+            CompletableFuture<InstantWinLogResponse> result = apiInstance.getInstantWinLogs(id, limit, skip);
             System.out.println(result.get());
         } catch (ApiException e) {
             System.err.println("Exception when calling InstantWinsApi#getInstantWinLogs");
@@ -745,7 +745,7 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **instantWinId** | **String**|  |
+ **id** | [**List&lt;String&gt;**](String.md)| The unique identifiers of the resources | [optional]
  **limit** | **Integer**| Limit the returned total records found | [optional]
  **skip** | **Integer**| Skip the returned records found and return the next batch of records | [optional]
 
@@ -776,7 +776,7 @@ CompletableFuture<[**InstantWinLogResponse**](InstantWinLogResponse.md)>
 
 ## getInstantWinLogsWithHttpInfo
 
-> CompletableFuture<ApiResponse<InstantWinLogResponse>> getInstantWinLogs getInstantWinLogsWithHttpInfo(instantWinId, limit, skip)
+> CompletableFuture<ApiResponse<InstantWinLogResponse>> getInstantWinLogs getInstantWinLogsWithHttpInfo(id, limit, skip)
 
 Get instant win logs
 
@@ -805,11 +805,11 @@ public class Example {
         OAuth2.setAccessToken("YOUR ACCESS TOKEN");
 
         InstantWinsApi apiInstance = new InstantWinsApi(defaultClient);
-        String instantWinId = "instantWinId_example"; // String | 
+        List<String> id = Arrays.asList(); // List<String> | The unique identifiers of the resources
         Integer limit = 56; // Integer | Limit the returned total records found
         Integer skip = 56; // Integer | Skip the returned records found and return the next batch of records
         try {
-            CompletableFuture<ApiResponse<InstantWinLogResponse>> response = apiInstance.getInstantWinLogsWithHttpInfo(instantWinId, limit, skip);
+            CompletableFuture<ApiResponse<InstantWinLogResponse>> response = apiInstance.getInstantWinLogsWithHttpInfo(id, limit, skip);
             System.out.println("Status code: " + response.get().getStatusCode());
             System.out.println("Response headers: " + response.get().getHeaders());
             System.out.println("Response body: " + response.get().getData());
@@ -836,7 +836,7 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **instantWinId** | **String**|  |
+ **id** | [**List&lt;String&gt;**](String.md)| The unique identifiers of the resources | [optional]
  **limit** | **Integer**| Limit the returned total records found | [optional]
  **skip** | **Integer**| Skip the returned records found and return the next batch of records | [optional]
 

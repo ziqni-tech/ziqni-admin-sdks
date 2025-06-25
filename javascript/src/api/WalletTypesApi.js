@@ -15,7 +15,9 @@
 import ApiClient from "../ApiClient";
 import ApiResponse from '../model/ApiResponse';
 import CreateWalletTypeRequest from '../model/CreateWalletTypeRequest';
+import QueryRequest from '../model/QueryRequest';
 import UpdateWalletTypeRequest from '../model/UpdateWalletTypeRequest';
+import WalletTransactionResponse from '../model/WalletTransactionResponse';
 import WalletTypeResponse from '../model/WalletTypeResponse';
 
 /**
@@ -160,6 +162,90 @@ export default class WalletTypesApi {
       let returnType = WalletTypeResponse;
       return this.apiClient.callApi(
         '/wallet-types', 'GET',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, null, callback
+      );
+    }
+
+    /**
+     * Callback function to receive the result of the getWalletTypesByQuery operation.
+     * @callback module:api/WalletTypesApi~getWalletTypesByQueryCallback
+     * @param {String} error Error message, if any.
+     * @param {module:model/WalletTypeResponse} data The data returned by the service call.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * Get wallet types by query
+     * Retrieve Wallet types from Ziqni database by unique Wallet Types ID's or any other POST body parameters using the POST method
+     * @param {Object} opts Optional parameters
+     * @param {module:model/QueryRequest} opts.body Retrieve Wallet types from Ziqni database by unique Wallet Types ID's or any other POST body parameters using the POST method
+     * @param {module:api/WalletTypesApi~getWalletTypesByQueryCallback} callback The callback function, accepting three arguments: error, data, response
+     * data is of type: {@link module:model/WalletTypeResponse}
+     */
+    getWalletTypesByQuery(opts, callback) {
+      opts = opts || {};
+      let postBody = opts['body'];
+
+      let pathParams = {
+      };
+      let queryParams = {
+      };
+      let headerParams = {
+      };
+      let formParams = {
+      };
+
+      let authNames = ['OAuth2'];
+      let contentTypes = ['application/json'];
+      let accepts = ['application/json'];
+      let returnType = WalletTypeResponse;
+      return this.apiClient.callApi(
+        '/wallet-types/query', 'POST',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, null, callback
+      );
+    }
+
+    /**
+     * Callback function to receive the result of the retrieveWalletTransactionsByWalletTypeId operation.
+     * @callback module:api/WalletTypesApi~retrieveWalletTransactionsByWalletTypeIdCallback
+     * @param {String} error Error message, if any.
+     * @param {module:model/WalletTransactionResponse} data The data returned by the service call.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * wallet transactions list by wallet type id
+     * @param {Object} opts Optional parameters
+     * @param {Array.<String>} opts.id The unique identifiers of the resources
+     * @param {Number} opts.limit Limit the returned total records found
+     * @param {Number} opts.skip Skip the returned records found and return the next batch of records
+     * @param {module:api/WalletTypesApi~retrieveWalletTransactionsByWalletTypeIdCallback} callback The callback function, accepting three arguments: error, data, response
+     * data is of type: {@link module:model/WalletTransactionResponse}
+     */
+    retrieveWalletTransactionsByWalletTypeId(opts, callback) {
+      opts = opts || {};
+      let postBody = null;
+
+      let pathParams = {
+      };
+      let queryParams = {
+        'id': this.apiClient.buildCollectionParam(opts['id'], 'multi'),
+        '_limit': opts['limit'],
+        '_skip': opts['skip']
+      };
+      let headerParams = {
+      };
+      let formParams = {
+      };
+
+      let authNames = ['OAuth2'];
+      let contentTypes = [];
+      let accepts = ['application/json'];
+      let returnType = WalletTransactionResponse;
+      return this.apiClient.callApi(
+        '/wallet-types/find-transactions-by-id', 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, null, callback
       );

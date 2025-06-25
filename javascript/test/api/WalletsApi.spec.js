@@ -68,6 +68,16 @@
         done();
       });
     });
+    describe('deleteWalletsByQuery', function() {
+      it('should call deleteWalletsByQuery successfully', function(done) {
+        //uncomment below and update the code to test deleteWalletsByQuery
+        //instance.deleteWalletsByQuery(function(error) {
+        //  if (error) throw error;
+        //expect().to.be();
+        //});
+        done();
+      });
+    });
     describe('getWallets', function() {
       it('should call getWallets successfully', function(done) {
         //uncomment below and update the code to test getWallets
@@ -78,10 +88,30 @@
         done();
       });
     });
+    describe('getWalletsByQuery', function() {
+      it('should call getWalletsByQuery successfully', function(done) {
+        //uncomment below and update the code to test getWalletsByQuery
+        //instance.getWalletsByQuery(function(error) {
+        //  if (error) throw error;
+        //expect().to.be();
+        //});
+        done();
+      });
+    });
     describe('manageWalletTransaction', function() {
       it('should call manageWalletTransaction successfully', function(done) {
         //uncomment below and update the code to test manageWalletTransaction
         //instance.manageWalletTransaction(function(error) {
+        //  if (error) throw error;
+        //expect().to.be();
+        //});
+        done();
+      });
+    });
+    describe('retrieveWalletTransactionsByWalletId', function() {
+      it('should call retrieveWalletTransactionsByWalletId successfully', function(done) {
+        //uncomment below and update the code to test retrieveWalletTransactionsByWalletId
+        //instance.retrieveWalletTransactionsByWalletId(function(error) {
         //  if (error) throw error;
         //expect().to.be();
         //});

@@ -25,7 +25,7 @@ public class AdminApiSampleApp {
     private final static AdminApiClientConfiguration config;
 
     static {
-        config = AdminApiClientConfigBuilder.build("test-application.properties");
+        config = AdminApiClientConfigBuilder.build("application.properties");
         logger.info("+++++++++++++++++++++++++++++++++");
         logger.info("Configuration: {}", config);
         logger.info("+++++++++++++++++++++++++++++++++");
@@ -86,11 +86,13 @@ public class AdminApiSampleApp {
                 Thread.sleep(5_000);
 
                 // Get members
-                final var member = factory.getMembersApi().getMembersByQuery(new QueryRequest().addMustItem(new QueryMultiple().queryField(Member.JSON_PROPERTY_MEMBER_REF_ID).addQueryValuesItem("Player-1")))
+                final var member = factory.getSpacesApi().getSpacesByName("21casino-staging",1,0)
                         .thenCompose(memberResponse -> {
                             logger.info("Member: {}", memberResponse);
 
-                            return factory.getMembersApi().getMembers(List.of(memberResponse.getResults().get(0).getId()),0,10);
+                            return factory.getGoalsApi().getGoalMetrics(new GoalMetricsRequest()
+                                    .addMemberIdsItem("tMjT0JEBqKAQUAl86l76")
+                                    .addEntityIdsItem("ydKoPZUB_ZWnoZc9JTxp"));
                         }).handle( (memberResponse, throwable ) -> {
                             if(throwable != null) {
                                 logger.error("Failed to get members", throwable);

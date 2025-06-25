@@ -78,14 +78,26 @@
       //expect(instance).to.be();
     });
 
-    it('should have the property currencySymbol (base name: "currencySymbol")', function() {
-      // uncomment below and update the code to test the property currencySymbol
+    it('should have the property name (base name: "name")', function() {
+      // uncomment below and update the code to test the property name
       //var instance = new @ZiqniTechAdminApiClient.UpdateWalletTypeRequest();
       //expect(instance).to.be();
     });
 
-    it('should have the property currencyCode (base name: "currencyCode")', function() {
-      // uncomment below and update the code to test the property currencyCode
+    it('should have the property description (base name: "description")', function() {
+      // uncomment below and update the code to test the property description
+      //var instance = new @ZiqniTechAdminApiClient.UpdateWalletTypeRequest();
+      //expect(instance).to.be();
+    });
+
+    it('should have the property unitOfMeasure (base name: "unitOfMeasure")', function() {
+      // uncomment below and update the code to test the property unitOfMeasure
+      //var instance = new @ZiqniTechAdminApiClient.UpdateWalletTypeRequest();
+      //expect(instance).to.be();
+    });
+
+    it('should have the property termsAndConditions (base name: "termsAndConditions")', function() {
+      // uncomment below and update the code to test the property termsAndConditions
       //var instance = new @ZiqniTechAdminApiClient.UpdateWalletTypeRequest();
       //expect(instance).to.be();
     });

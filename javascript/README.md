@@ -304,7 +304,7 @@ Class | Method | HTTP request | Description
 *@ZiqniTechAdminApiClient.TagsApi* | [**deleteTags**](docs/TagsApi.md#deleteTags) | **DELETE** /tags | Delete tags
 *@ZiqniTechAdminApiClient.TagsApi* | [**deleteTagsByQuery**](docs/TagsApi.md#deleteTagsByQuery) | **POST** /tags/delete | Delete tags by query
 *@ZiqniTechAdminApiClient.TagsApi* | [**getTags**](docs/TagsApi.md#getTags) | **GET** /tags | Get tags
-*@ZiqniTechAdminApiClient.TagsApi* | [**getTagsByQuery**](docs/TagsApi.md#getTagsByQuery) | **POST** /tags/query | Get tags by query
+*@ZiqniTechAdminApiClient.TagsApi* | [**getTagsByQuery**](docs/TagsApi.md#getTagsByQuery) | **POST** /tags/query | Get wallet types by query
 *@ZiqniTechAdminApiClient.TagsApi* | [**updateTags**](docs/TagsApi.md#updateTags) | **PUT** /tags | Update tags
 *@ZiqniTechAdminApiClient.TransformersApi* | [**createTransformers**](docs/TransformersApi.md#createTransformers) | **POST** /transformers | 
 *@ZiqniTechAdminApiClient.TransformersApi* | [**deleteTransformers**](docs/TransformersApi.md#deleteTransformers) | **DELETE** /transformers | 
@@ -329,11 +329,16 @@ Class | Method | HTTP request | Description
 *@ZiqniTechAdminApiClient.WalletTypesApi* | [**createWalletTypes**](docs/WalletTypesApi.md#createWalletTypes) | **POST** /wallet-types | Create wallet types
 *@ZiqniTechAdminApiClient.WalletTypesApi* | [**deleteWalletTypes**](docs/WalletTypesApi.md#deleteWalletTypes) | **DELETE** /wallet-types | Delete wallet types
 *@ZiqniTechAdminApiClient.WalletTypesApi* | [**getWalletTypes**](docs/WalletTypesApi.md#getWalletTypes) | **GET** /wallet-types | Get wallet types
+*@ZiqniTechAdminApiClient.WalletTypesApi* | [**getWalletTypesByQuery**](docs/WalletTypesApi.md#getWalletTypesByQuery) | **POST** /wallet-types/query | Get wallet types by query
+*@ZiqniTechAdminApiClient.WalletTypesApi* | [**retrieveWalletTransactionsByWalletTypeId**](docs/WalletTypesApi.md#retrieveWalletTransactionsByWalletTypeId) | **GET** /wallet-types/find-transactions-by-id | 
 *@ZiqniTechAdminApiClient.WalletTypesApi* | [**updateWalletTypes**](docs/WalletTypesApi.md#updateWalletTypes) | **PUT** /wallet-types | Update wallet types
 *@ZiqniTechAdminApiClient.WalletsApi* | [**createWallets**](docs/WalletsApi.md#createWallets) | **POST** /wallets | Create wallets
 *@ZiqniTechAdminApiClient.WalletsApi* | [**deleteWallets**](docs/WalletsApi.md#deleteWallets) | **DELETE** /wallets | Delete wallets
+*@ZiqniTechAdminApiClient.WalletsApi* | [**deleteWalletsByQuery**](docs/WalletsApi.md#deleteWalletsByQuery) | **POST** /wallets/delete | Delete wallets by query
 *@ZiqniTechAdminApiClient.WalletsApi* | [**getWallets**](docs/WalletsApi.md#getWallets) | **GET** /wallets | Get wallets
-*@ZiqniTechAdminApiClient.WalletsApi* | [**manageWalletTransaction**](docs/WalletsApi.md#manageWalletTransaction) | **POST** /wallets/transaction | 
+*@ZiqniTechAdminApiClient.WalletsApi* | [**getWalletsByQuery**](docs/WalletsApi.md#getWalletsByQuery) | **POST** /wallets/query | Get wallet  by query
+*@ZiqniTechAdminApiClient.WalletsApi* | [**manageWalletTransaction**](docs/WalletsApi.md#manageWalletTransaction) | **POST** /wallets/manage-transaction | 
+*@ZiqniTechAdminApiClient.WalletsApi* | [**retrieveWalletTransactionsByWalletId**](docs/WalletsApi.md#retrieveWalletTransactionsByWalletId) | **GET** /wallets/find-transactions-by-id | 
 *@ZiqniTechAdminApiClient.WalletsApi* | [**updateWallets**](docs/WalletsApi.md#updateWallets) | **PUT** /wallets | Update wallets
 *@ZiqniTechAdminApiClient.WebhooksApi* | [**createWebhooks**](docs/WebhooksApi.md#createWebhooks) | **POST** /webhooks | 
 *@ZiqniTechAdminApiClient.WebhooksApi* | [**deleteWebhooks**](docs/WebhooksApi.md#deleteWebhooks) | **DELETE** /webhooks | 
@@ -670,6 +675,7 @@ Class | Method | HTTP request | Description
  - [@ZiqniTechAdminApiClient.Triggers](docs/Triggers.md)
  - [@ZiqniTechAdminApiClient.UnitOfMeasure](docs/UnitOfMeasure.md)
  - [@ZiqniTechAdminApiClient.UnitOfMeasureAllOf](docs/UnitOfMeasureAllOf.md)
+ - [@ZiqniTechAdminApiClient.UnitOfMeasureReduced](docs/UnitOfMeasureReduced.md)
  - [@ZiqniTechAdminApiClient.UnitOfMeasureResponse](docs/UnitOfMeasureResponse.md)
  - [@ZiqniTechAdminApiClient.UnitOfMeasureType](docs/UnitOfMeasureType.md)
  - [@ZiqniTechAdminApiClient.UpdateAchievementRequest](docs/UpdateAchievementRequest.md)
@@ -753,9 +759,13 @@ Class | Method | HTTP request | Description
  - [@ZiqniTechAdminApiClient.Wallet](docs/Wallet.md)
  - [@ZiqniTechAdminApiClient.WalletAllOf](docs/WalletAllOf.md)
  - [@ZiqniTechAdminApiClient.WalletResponse](docs/WalletResponse.md)
+ - [@ZiqniTechAdminApiClient.WalletTransaction](docs/WalletTransaction.md)
  - [@ZiqniTechAdminApiClient.WalletTransactionRequest](docs/WalletTransactionRequest.md)
+ - [@ZiqniTechAdminApiClient.WalletTransactionResponse](docs/WalletTransactionResponse.md)
+ - [@ZiqniTechAdminApiClient.WalletTransactionType](docs/WalletTransactionType.md)
  - [@ZiqniTechAdminApiClient.WalletType](docs/WalletType.md)
  - [@ZiqniTechAdminApiClient.WalletTypeAllOf](docs/WalletTypeAllOf.md)
+ - [@ZiqniTechAdminApiClient.WalletTypeReduced](docs/WalletTypeReduced.md)
  - [@ZiqniTechAdminApiClient.WalletTypeResponse](docs/WalletTypeResponse.md)
  - [@ZiqniTechAdminApiClient.Webhook](docs/Webhook.md)
  - [@ZiqniTechAdminApiClient.WebhookAllOf](docs/WebhookAllOf.md)

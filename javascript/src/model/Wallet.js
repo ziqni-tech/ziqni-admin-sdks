@@ -15,6 +15,7 @@ import ApiClient from '../ApiClient';
 import ModelDefault from './ModelDefault';
 import OptParamModels from './OptParamModels';
 import WalletAllOf from './WalletAllOf';
+import WalletTypeReduced from './WalletTypeReduced';
 
 /**
  * The Wallet model module.
@@ -31,13 +32,12 @@ class Wallet {
      * @param id {String} A unique system generated identifier
      * @param spaceName {String} This is the space name which is linked to the account
      * @param created {Date} ISO8601 timestamp for when a Model was created. All records are stored in UTC time zone
-     * @param walletTypeId {String} wallet type id
      * @param memberId {String} player id
      * @param balance {Number} balance
      */
-    constructor(id, spaceName, created, walletTypeId, memberId, balance) { 
-        ModelDefault.initialize(this, id, spaceName, created);OptParamModels.initialize(this);WalletAllOf.initialize(this, walletTypeId, memberId, balance);
-        Wallet.initialize(this, id, spaceName, created, walletTypeId, memberId, balance);
+    constructor(id, spaceName, created, memberId, balance) { 
+        ModelDefault.initialize(this, id, spaceName, created);OptParamModels.initialize(this);WalletAllOf.initialize(this, memberId, balance);
+        Wallet.initialize(this, id, spaceName, created, memberId, balance);
     }
 
     /**
@@ -45,11 +45,10 @@ class Wallet {
      * This method is used by the constructors of any subclasses, in order to implement multiple inheritance (mix-ins).
      * Only for internal use.
      */
-    static initialize(obj, id, spaceName, created, walletTypeId, memberId, balance) { 
+    static initialize(obj, id, spaceName, created, memberId, balance) { 
         obj['id'] = id;
         obj['spaceName'] = spaceName;
         obj['created'] = created;
-        obj['walletTypeId'] = walletTypeId;
         obj['memberId'] = memberId;
         obj['balance'] = balance;
     }
@@ -86,8 +85,8 @@ class Wallet {
             if (data.hasOwnProperty('metadata')) {
                 obj['metadata'] = ApiClient.convertToType(data['metadata'], {'String': 'String'});
             }
-            if (data.hasOwnProperty('walletTypeId')) {
-                obj['walletTypeId'] = ApiClient.convertToType(data['walletTypeId'], 'String');
+            if (data.hasOwnProperty('walletType')) {
+                obj['walletType'] = WalletTypeReduced.constructFromObject(data['walletType']);
             }
             if (data.hasOwnProperty('memberId')) {
                 obj['memberId'] = ApiClient.convertToType(data['memberId'], 'String');
@@ -137,10 +136,9 @@ Wallet.prototype['tags'] = undefined;
 Wallet.prototype['metadata'] = undefined;
 
 /**
- * wallet type id
- * @member {String} walletTypeId
+ * @member {module:model/WalletTypeReduced} walletType
  */
-Wallet.prototype['walletTypeId'] = undefined;
+Wallet.prototype['walletType'] = undefined;
 
 /**
  * player id
@@ -187,10 +185,9 @@ OptParamModels.prototype['tags'] = undefined;
 OptParamModels.prototype['metadata'] = undefined;
 // Implement WalletAllOf interface:
 /**
- * wallet type id
- * @member {String} walletTypeId
+ * @member {module:model/WalletTypeReduced} walletType
  */
-WalletAllOf.prototype['walletTypeId'] = undefined;
+WalletAllOf.prototype['walletType'] = undefined;
 /**
  * player id
  * @member {String} memberId

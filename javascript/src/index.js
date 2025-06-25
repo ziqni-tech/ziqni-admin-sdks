@@ -337,6 +337,7 @@ import TranslationValue from './model/TranslationValue';
 import Triggers from './model/Triggers';
 import UnitOfMeasure from './model/UnitOfMeasure';
 import UnitOfMeasureAllOf from './model/UnitOfMeasureAllOf';
+import UnitOfMeasureReduced from './model/UnitOfMeasureReduced';
 import UnitOfMeasureResponse from './model/UnitOfMeasureResponse';
 import UnitOfMeasureType from './model/UnitOfMeasureType';
 import UpdateAchievementRequest from './model/UpdateAchievementRequest';
@@ -420,9 +421,13 @@ import ValueLookupResult from './model/ValueLookupResult';
 import Wallet from './model/Wallet';
 import WalletAllOf from './model/WalletAllOf';
 import WalletResponse from './model/WalletResponse';
+import WalletTransaction from './model/WalletTransaction';
 import WalletTransactionRequest from './model/WalletTransactionRequest';
+import WalletTransactionResponse from './model/WalletTransactionResponse';
+import WalletTransactionType from './model/WalletTransactionType';
 import WalletType from './model/WalletType';
 import WalletTypeAllOf from './model/WalletTypeAllOf';
+import WalletTypeReduced from './model/WalletTypeReduced';
 import WalletTypeResponse from './model/WalletTypeResponse';
 import Webhook from './model/Webhook';
 import WebhookAllOf from './model/WebhookAllOf';
@@ -2453,6 +2458,12 @@ export {
     UnitOfMeasureAllOf,
 
     /**
+     * The UnitOfMeasureReduced model constructor.
+     * @property {module:model/UnitOfMeasureReduced}
+     */
+    UnitOfMeasureReduced,
+
+    /**
      * The UnitOfMeasureResponse model constructor.
      * @property {module:model/UnitOfMeasureResponse}
      */
@@ -2951,10 +2962,28 @@ export {
     WalletResponse,
 
     /**
+     * The WalletTransaction model constructor.
+     * @property {module:model/WalletTransaction}
+     */
+    WalletTransaction,
+
+    /**
      * The WalletTransactionRequest model constructor.
      * @property {module:model/WalletTransactionRequest}
      */
     WalletTransactionRequest,
+
+    /**
+     * The WalletTransactionResponse model constructor.
+     * @property {module:model/WalletTransactionResponse}
+     */
+    WalletTransactionResponse,
+
+    /**
+     * The WalletTransactionType model constructor.
+     * @property {module:model/WalletTransactionType}
+     */
+    WalletTransactionType,
 
     /**
      * The WalletType model constructor.
@@ -2967,6 +2996,12 @@ export {
      * @property {module:model/WalletTypeAllOf}
      */
     WalletTypeAllOf,
+
+    /**
+     * The WalletTypeReduced model constructor.
+     * @property {module:model/WalletTypeReduced}
+     */
+    WalletTypeReduced,
 
     /**
      * The WalletTypeResponse model constructor.

@@ -84,12 +84,6 @@
       //expect(instance).to.be();
     });
 
-    it('should have the property timestamp (base name: "timestamp")', function() {
-      // uncomment below and update the code to test the property timestamp
-      //var instance = new @ZiqniTechAdminApiClient.InstantWinLogAllOf();
-      //expect(instance).to.be();
-    });
-
   });
 
 }));

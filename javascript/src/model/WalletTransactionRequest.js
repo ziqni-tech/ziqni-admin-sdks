@@ -12,6 +12,7 @@
  */
 
 import ApiClient from '../ApiClient';
+import WalletTransactionType from './WalletTransactionType';
 
 /**
  * The WalletTransactionRequest model module.
@@ -52,13 +53,16 @@ class WalletTransactionRequest {
                 obj['amount'] = ApiClient.convertToType(data['amount'], 'Number');
             }
             if (data.hasOwnProperty('transactionType')) {
-                obj['transactionType'] = ApiClient.convertToType(data['transactionType'], 'String');
+                obj['transactionType'] = WalletTransactionType.constructFromObject(data['transactionType']);
             }
             if (data.hasOwnProperty('sourceWalletId')) {
                 obj['sourceWalletId'] = ApiClient.convertToType(data['sourceWalletId'], 'String');
             }
             if (data.hasOwnProperty('targetWalletId')) {
                 obj['targetWalletId'] = ApiClient.convertToType(data['targetWalletId'], 'String');
+            }
+            if (data.hasOwnProperty('conversionRate')) {
+                obj['conversionRate'] = ApiClient.convertToType(data['conversionRate'], 'Number');
             }
         }
         return obj;
@@ -68,28 +72,33 @@ class WalletTransactionRequest {
 }
 
 /**
- * The amount to transfer
+ * The amount to credit,debit or transfer
  * @member {Number} amount
  */
 WalletTransactionRequest.prototype['amount'] = undefined;
 
 /**
- * trnsaction type
- * @member {String} transactionType
+ * @member {module:model/WalletTransactionType} transactionType
  */
 WalletTransactionRequest.prototype['transactionType'] = undefined;
 
 /**
- * The unique wallet identifier
+ * The unique source wallet identifier,required on credit,debit and transfer
  * @member {String} sourceWalletId
  */
 WalletTransactionRequest.prototype['sourceWalletId'] = undefined;
 
 /**
- * The unique wallet identifier
+ * The unique target wallet identifier,not required on debit or credit but required on transfer
  * @member {String} targetWalletId
  */
 WalletTransactionRequest.prototype['targetWalletId'] = undefined;
+
+/**
+ * The rate used to convert the transaction amount when transferring funds between wallets of different types.  For example, if 5 units are transferred from Wallet A to Wallet B with a rate of 1.3, then 6.5 units are credited to Wallet B.
+ * @member {Number} conversionRate
+ */
+WalletTransactionRequest.prototype['conversionRate'] = undefined;
 
 
 

@@ -70,11 +70,17 @@ class UpdateWalletTypeRequest {
             if (data.hasOwnProperty('metadata')) {
                 obj['metadata'] = ApiClient.convertToType(data['metadata'], {'String': 'String'});
             }
-            if (data.hasOwnProperty('currencySymbol')) {
-                obj['currencySymbol'] = ApiClient.convertToType(data['currencySymbol'], 'String');
+            if (data.hasOwnProperty('name')) {
+                obj['name'] = ApiClient.convertToType(data['name'], 'String');
             }
-            if (data.hasOwnProperty('currencyCode')) {
-                obj['currencyCode'] = ApiClient.convertToType(data['currencyCode'], 'String');
+            if (data.hasOwnProperty('description')) {
+                obj['description'] = ApiClient.convertToType(data['description'], 'String');
+            }
+            if (data.hasOwnProperty('unitOfMeasure')) {
+                obj['unitOfMeasure'] = ApiClient.convertToType(data['unitOfMeasure'], 'String');
+            }
+            if (data.hasOwnProperty('termsAndConditions')) {
+                obj['termsAndConditions'] = ApiClient.convertToType(data['termsAndConditions'], 'String');
             }
         }
         return obj;
@@ -107,16 +113,28 @@ UpdateWalletTypeRequest.prototype['tags'] = undefined;
 UpdateWalletTypeRequest.prototype['metadata'] = undefined;
 
 /**
- * currency symbol example $
- * @member {String} currencySymbol
+ * name of wallet type
+ * @member {String} name
  */
-UpdateWalletTypeRequest.prototype['currencySymbol'] = undefined;
+UpdateWalletTypeRequest.prototype['name'] = undefined;
 
 /**
- * currency code example USD
- * @member {String} currencyCode
+ * description of wallet type
+ * @member {String} description
  */
-UpdateWalletTypeRequest.prototype['currencyCode'] = undefined;
+UpdateWalletTypeRequest.prototype['description'] = undefined;
+
+/**
+ * unitOfMeasure id
+ * @member {String} unitOfMeasure
+ */
+UpdateWalletTypeRequest.prototype['unitOfMeasure'] = undefined;
+
+/**
+ * termsAndCondition
+ * @member {String} termsAndConditions
+ */
+UpdateWalletTypeRequest.prototype['termsAndConditions'] = undefined;
 
 
 // Implement UpdateModelDefault interface:
@@ -147,15 +165,25 @@ UpdateOptParamModels.prototype['metadata'] = undefined;
  */
 UpdateWalletTypeRequestAllOf.prototype['id'] = undefined;
 /**
- * currency symbol example $
- * @member {String} currencySymbol
+ * name of wallet type
+ * @member {String} name
  */
-UpdateWalletTypeRequestAllOf.prototype['currencySymbol'] = undefined;
+UpdateWalletTypeRequestAllOf.prototype['name'] = undefined;
 /**
- * currency code example USD
- * @member {String} currencyCode
+ * description of wallet type
+ * @member {String} description
  */
-UpdateWalletTypeRequestAllOf.prototype['currencyCode'] = undefined;
+UpdateWalletTypeRequestAllOf.prototype['description'] = undefined;
+/**
+ * unitOfMeasure id
+ * @member {String} unitOfMeasure
+ */
+UpdateWalletTypeRequestAllOf.prototype['unitOfMeasure'] = undefined;
+/**
+ * termsAndCondition
+ * @member {String} termsAndConditions
+ */
+UpdateWalletTypeRequestAllOf.prototype['termsAndConditions'] = undefined;
 
 
 

@@ -12,8 +12,8 @@ Method | HTTP request | Description
 [**deleteTagsByQueryWithHttpInfo**](TagsApi.md#deleteTagsByQueryWithHttpInfo) | **POST** /tags/delete | Delete tags by query
 [**getTags**](TagsApi.md#getTags) | **GET** /tags | Get tags
 [**getTagsWithHttpInfo**](TagsApi.md#getTagsWithHttpInfo) | **GET** /tags | Get tags
-[**getTagsByQuery**](TagsApi.md#getTagsByQuery) | **POST** /tags/query | Get tags by query
-[**getTagsByQueryWithHttpInfo**](TagsApi.md#getTagsByQueryWithHttpInfo) | **POST** /tags/query | Get tags by query
+[**getTagsByQuery**](TagsApi.md#getTagsByQuery) | **POST** /tags/query | Get wallet types by query
+[**getTagsByQueryWithHttpInfo**](TagsApi.md#getTagsByQueryWithHttpInfo) | **POST** /tags/query | Get wallet types by query
 [**updateTags**](TagsApi.md#updateTags) | **PUT** /tags | Update tags
 [**updateTagsWithHttpInfo**](TagsApi.md#updateTagsWithHttpInfo) | **PUT** /tags | Update tags
 
@@ -691,9 +691,9 @@ CompletableFuture<ApiResponse<[**TagResponse**](TagResponse.md)>>
 
 > CompletableFuture<TagResponse> getTagsByQuery(body)
 
-Get tags by query
+Get wallet types by query
 
-Retrieve Tags from Ziqni database by unique Tags ID&#39;s or any other POST body parameters using the POST method
+Retrieve WalletType from Ziqni database by unique WalletType ID&#39;s or any other POST body parameters using the POST method
 
 ### Example
 
@@ -717,7 +717,7 @@ public class Example {
         OAuth2.setAccessToken("YOUR ACCESS TOKEN");
 
         TagsApi apiInstance = new TagsApi(defaultClient);
-        QueryRequest body = new QueryRequest(); // QueryRequest | Retrieve Tags from Ziqni database by unique Tags ID's or any other POST body parameters using the POST method
+        QueryRequest body = new QueryRequest(); // QueryRequest | Retrieve Tags from Ziqni database by uniqueTags ID's or any other POST body parameters using the POST method
         try {
             CompletableFuture<TagResponse> result = apiInstance.getTagsByQuery(body);
             System.out.println(result.get());
@@ -737,7 +737,7 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**QueryRequest**](QueryRequest.md)| Retrieve Tags from Ziqni database by unique Tags ID&#39;s or any other POST body parameters using the POST method | [optional]
+ **body** | [**QueryRequest**](QueryRequest.md)| Retrieve Tags from Ziqni database by uniqueTags ID&#39;s or any other POST body parameters using the POST method | [optional]
 
 ### Return type
 
@@ -768,9 +768,9 @@ CompletableFuture<[**TagResponse**](TagResponse.md)>
 
 > CompletableFuture<ApiResponse<TagResponse>> getTagsByQuery getTagsByQueryWithHttpInfo(body)
 
-Get tags by query
+Get wallet types by query
 
-Retrieve Tags from Ziqni database by unique Tags ID&#39;s or any other POST body parameters using the POST method
+Retrieve WalletType from Ziqni database by unique WalletType ID&#39;s or any other POST body parameters using the POST method
 
 ### Example
 
@@ -795,7 +795,7 @@ public class Example {
         OAuth2.setAccessToken("YOUR ACCESS TOKEN");
 
         TagsApi apiInstance = new TagsApi(defaultClient);
-        QueryRequest body = new QueryRequest(); // QueryRequest | Retrieve Tags from Ziqni database by unique Tags ID's or any other POST body parameters using the POST method
+        QueryRequest body = new QueryRequest(); // QueryRequest | Retrieve Tags from Ziqni database by uniqueTags ID's or any other POST body parameters using the POST method
         try {
             CompletableFuture<ApiResponse<TagResponse>> response = apiInstance.getTagsByQueryWithHttpInfo(body);
             System.out.println("Status code: " + response.get().getStatusCode());
@@ -824,7 +824,7 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**QueryRequest**](QueryRequest.md)| Retrieve Tags from Ziqni database by unique Tags ID&#39;s or any other POST body parameters using the POST method | [optional]
+ **body** | [**QueryRequest**](QueryRequest.md)| Retrieve Tags from Ziqni database by uniqueTags ID&#39;s or any other POST body parameters using the POST method | [optional]
 
 ### Return type
 

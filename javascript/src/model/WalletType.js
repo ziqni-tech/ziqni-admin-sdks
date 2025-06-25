@@ -33,10 +33,11 @@ class WalletType {
      * @param created {Date} ISO8601 timestamp for when a Model was created. All records are stored in UTC time zone
      * @param name {String} name of wallet type
      * @param unitOfMeasure {String} unitOfMeasure id
+     * @param constraints {Array.<String>} Additional constraints
      */
-    constructor(id, spaceName, created, name, unitOfMeasure) { 
-        ModelDefault.initialize(this, id, spaceName, created);OptParamModels.initialize(this);WalletTypeAllOf.initialize(this, name, unitOfMeasure);
-        WalletType.initialize(this, id, spaceName, created, name, unitOfMeasure);
+    constructor(id, spaceName, created, name, unitOfMeasure, constraints) { 
+        ModelDefault.initialize(this, id, spaceName, created);OptParamModels.initialize(this);WalletTypeAllOf.initialize(this, name, unitOfMeasure, constraints);
+        WalletType.initialize(this, id, spaceName, created, name, unitOfMeasure, constraints);
     }
 
     /**
@@ -44,12 +45,13 @@ class WalletType {
      * This method is used by the constructors of any subclasses, in order to implement multiple inheritance (mix-ins).
      * Only for internal use.
      */
-    static initialize(obj, id, spaceName, created, name, unitOfMeasure) { 
+    static initialize(obj, id, spaceName, created, name, unitOfMeasure, constraints) { 
         obj['id'] = id;
         obj['spaceName'] = spaceName;
         obj['created'] = created;
         obj['name'] = name;
         obj['unitOfMeasure'] = unitOfMeasure;
+        obj['constraints'] = constraints;
     }
 
     /**
@@ -92,6 +94,12 @@ class WalletType {
             }
             if (data.hasOwnProperty('unitOfMeasure')) {
                 obj['unitOfMeasure'] = ApiClient.convertToType(data['unitOfMeasure'], 'String');
+            }
+            if (data.hasOwnProperty('termsAndConditions')) {
+                obj['termsAndConditions'] = ApiClient.convertToType(data['termsAndConditions'], 'String');
+            }
+            if (data.hasOwnProperty('constraints')) {
+                obj['constraints'] = ApiClient.convertToType(data['constraints'], ['String']);
             }
         }
         return obj;
@@ -152,6 +160,18 @@ WalletType.prototype['description'] = undefined;
  */
 WalletType.prototype['unitOfMeasure'] = undefined;
 
+/**
+ * Terms and conditions of a competition. Can be translated
+ * @member {String} termsAndConditions
+ */
+WalletType.prototype['termsAndConditions'] = undefined;
+
+/**
+ * Additional constraints
+ * @member {Array.<String>} constraints
+ */
+WalletType.prototype['constraints'] = undefined;
+
 
 // Implement ModelDefault interface:
 /**
@@ -199,6 +219,16 @@ WalletTypeAllOf.prototype['description'] = undefined;
  * @member {String} unitOfMeasure
  */
 WalletTypeAllOf.prototype['unitOfMeasure'] = undefined;
+/**
+ * Terms and conditions of a competition. Can be translated
+ * @member {String} termsAndConditions
+ */
+WalletTypeAllOf.prototype['termsAndConditions'] = undefined;
+/**
+ * Additional constraints
+ * @member {Array.<String>} constraints
+ */
+WalletTypeAllOf.prototype['constraints'] = undefined;
 
 
 

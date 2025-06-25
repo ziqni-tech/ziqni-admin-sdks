@@ -5,7 +5,9 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **String** | The unique tenant identifier | [optional] 
-**currencySymbol** | **String** | currency symbol example $ | [optional] 
-**currencyCode** | **String** | currency code example USD | [optional] 
+**name** | **String** | name of wallet type | [optional] 
+**description** | **String** | description of wallet type | [optional] 
+**unitOfMeasure** | **String** | unitOfMeasure id | [optional] 
+**termsAndConditions** | **String** | termsAndCondition | [optional] 
 
 

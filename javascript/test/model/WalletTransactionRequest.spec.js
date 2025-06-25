@@ -78,6 +78,12 @@
       //expect(instance).to.be();
     });
 
+    it('should have the property conversionRate (base name: "conversionRate")', function() {
+      // uncomment below and update the code to test the property conversionRate
+      //var instance = new @ZiqniTechAdminApiClient.WalletTransactionRequest();
+      //expect(instance).to.be();
+    });
+
   });
 
 }));
