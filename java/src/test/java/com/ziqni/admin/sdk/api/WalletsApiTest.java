@@ -22,6 +22,7 @@ import com.ziqni.admin.sdk.data.LoadWalletTypeData;
 import com.ziqni.admin.sdk.model.ModelApiResponse;
 import com.ziqni.admin.sdk.model.WalletTransaction;
 import com.ziqni.admin.sdk.model.WalletTransactionRequest;
+import com.ziqni.admin.sdk.model.WalletTransactionType;
 import com.ziqni.admin.sdk.util.ApiClientFactoryUtil;
 import org.junit.jupiter.api.*;
 import org.slf4j.Logger;
@@ -169,7 +170,7 @@ public class WalletsApiTest implements tests.utils.CompleteableFutureTestWrapper
         BigDecimal amount = BigDecimal.valueOf(100);
         WalletTransactionRequest request = new WalletTransactionRequest()
                 .amount(amount)
-                .transactionType("Credit")
+                .transactionType(WalletTransactionType.CREDIT)
                 .sourceWalletId(walletId);
 
         Thread.sleep(5000);
@@ -201,14 +202,14 @@ public class WalletsApiTest implements tests.utils.CompleteableFutureTestWrapper
         // Pre-credit wallet
         api.manageWalletTransaction(new WalletTransactionRequest()
                 .amount(initialAmount)
-                .transactionType("Credit")
+                .transactionType(WalletTransactionType.CREDIT)
                 .sourceWalletId(walletId));
 
 
 
         WalletTransactionRequest request = new WalletTransactionRequest()
                 .amount(debitAmount)
-                .transactionType("Debit")
+                .transactionType(WalletTransactionType.DEBIT)
                 .sourceWalletId(walletId);
 
         var response = $(api.manageWalletTransaction(request));
@@ -243,14 +244,14 @@ public class WalletsApiTest implements tests.utils.CompleteableFutureTestWrapper
         // Pre-credit source wallet
         api.manageWalletTransaction(new WalletTransactionRequest()
                 .amount(creditAmount)
-                .transactionType("credit")
+                .transactionType(WalletTransactionType.CREDIT)
                 .sourceWalletId(sourceWalletId));
 
         Thread.sleep(1000);
 
         WalletTransactionRequest transferRequest = new WalletTransactionRequest()
                 .amount(transferAmount)
-                .transactionType("Transfer")
+                .transactionType(WalletTransactionType.TRANSFER)
                 .sourceWalletId(sourceWalletId)
                 .targetWalletId(targetWalletId);
 
@@ -278,7 +279,7 @@ public class WalletsApiTest implements tests.utils.CompleteableFutureTestWrapper
         var walletId = loadTestData.createTestData(List.of(createRequest)).getResults().get(0).getId();
 
         BigDecimal amount = BigDecimal.valueOf(100);
-        String transactionType = "Credit";
+        WalletTransactionType transactionType = WalletTransactionType.CREDIT;
         WalletTransactionRequest request = new WalletTransactionRequest()
                 .amount(amount)
                 .transactionType(transactionType)
@@ -292,7 +293,7 @@ public class WalletsApiTest implements tests.utils.CompleteableFutureTestWrapper
 
 
 
-        var walletResponse = $(api.retrieveWalletTransactionsById(List.of(walletId), 1, 0));
+        var walletResponse = $(api.retrieveWalletTransactionsByWalletId(List.of(walletId), 1, 0));
         assertNotNull(walletResponse);
         assertTrue(walletResponse.getErrors().isEmpty());
 

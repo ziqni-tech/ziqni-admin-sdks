@@ -9039,6 +9039,495 @@ paths:
         Delete a Wallet or a list of Wallets from Ziqni by unique Wallet ID's or any other POST body
         parameters using the POST method
       x-codegen-request-body-name: body
+  /jackpot-configs:
+    summary: Manage jackpot configs
+    description: These operations allow you to manage jackpot configs in your project.
+    get:
+      tags:
+        - jackpot-configs
+      parameters:
+        -
+          $ref: '#/components/parameters/idQuery'
+        -
+          $ref: '#/components/parameters/limitResults'
+        -
+          $ref: '#/components/parameters/skipResults'
+      responses:
+        '200':
+          $ref: '#/components/responses/JackpotConfigResponseBody'
+        '400':
+          $ref: '#/components/responses/JackpotConfigResponseBody'
+        '401':
+          $ref: '#/components/responses/JackpotConfigResponseBody'
+        '403':
+          $ref: '#/components/responses/JackpotConfigResponseBody'
+        '404':
+          $ref: '#/components/responses/JackpotConfigResponseBody'
+        '500':
+          $ref: '#/components/responses/JackpotConfigResponseBody'
+        '501':
+          $ref: '#/components/responses/JackpotConfigResponseBody'
+      security:
+        -
+          OAuth2:
+            - ViewJackpotConfigs
+      operationId: getJackpotConfigs
+      summary: Get jackpot configs
+      description: >-
+        Returns a list of jackpot configs. This assumes that jackpot configs have first been uploaded
+        via a POST request or web console
+      x-codegen-request-body-name: body
+      x-vue-item: JackpotConfigs
+      x-vue-list: JackpotConfigs
+    put:
+      requestBody:
+        description: 'Update a Jackpot configs or multiple jackpot configs in the Ziqni database. '
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/UpdateJackpotConfigRequest'
+          file/csv:
+            schema:
+              format: binary
+              type: string
+        required: true
+      tags:
+        - jackpot-configs
+      responses:
+        '200':
+          $ref: '#/components/responses/ApiResponseBody'
+        '400':
+          $ref: '#/components/responses/ApiResponseBody'
+        '401':
+          $ref: '#/components/responses/ApiResponseBody'
+        '403':
+          $ref: '#/components/responses/ApiResponseBody'
+        '404':
+          $ref: '#/components/responses/ApiResponseBody'
+        '500':
+          $ref: '#/components/responses/ApiResponseBody'
+        '501':
+          $ref: '#/components/responses/ApiResponseBody'
+      security:
+        -
+          OAuth2:
+            - ManageJackpotConfigs
+      operationId: updateJackpotConfigs
+      summary: Update jackpot configs
+      description: Update existing jackpot configs in the Ziqni database
+      x-codegen-request-body-name: body
+    post:
+      requestBody:
+        description: >-
+          Create jackpot configs in the Ziqni database. An array can contain a maximum of 10,000
+          jackpot configs in one request
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/CreateJackpotConfigRequest'
+          file/csv:
+            schema:
+              format: binary
+              type: string
+        required: true
+      tags:
+        - jackpot-configs
+      responses:
+        '200':
+          $ref: '#/components/responses/ApiResponseBody'
+        '400':
+          $ref: '#/components/responses/ApiResponseBody'
+        '401':
+          $ref: '#/components/responses/ApiResponseBody'
+        '403':
+          $ref: '#/components/responses/ApiResponseBody'
+        '404':
+          $ref: '#/components/responses/ApiResponseBody'
+        '500':
+          $ref: '#/components/responses/ApiResponseBody'
+        '501':
+          $ref: '#/components/responses/ApiResponseBody'
+      security:
+        -
+          OAuth2:
+            - AdminJackpotConfigs
+      operationId: createJackpotConfigs
+      summary: Create jackpot configs
+      description: Create new Jackpot configs in the Ziqni database
+      x-codegen-request-body-name: body
+    delete:
+      tags:
+        - jackpot-configs
+      parameters:
+        -
+          $ref: '#/components/parameters/idQuery'
+      responses:
+        '200':
+          $ref: '#/components/responses/ApiResponseBody'
+        '400':
+          $ref: '#/components/responses/ApiResponseBody'
+        '401':
+          $ref: '#/components/responses/ApiResponseBody'
+        '403':
+          $ref: '#/components/responses/ApiResponseBody'
+        '404':
+          $ref: '#/components/responses/ApiResponseBody'
+        '500':
+          $ref: '#/components/responses/ApiResponseBody'
+        '501':
+          $ref: '#/components/responses/ApiResponseBody'
+      security:
+        -
+          OAuth2:
+            - AdminJackpotConfigs
+      operationId: deleteJackpotConfigs
+      summary: Delete jackpot configs
+      description: Delete Jackpot configs for a given identifier specified
+      x-codegen-request-body-name: body
+  /jackpot-contributions:
+    summary: Manage jackpot contributions
+    description: These operations allow you to manage jackpot contributions in your project.
+    get:
+      tags:
+        - jackpot-contributions
+      parameters:
+        -
+          $ref: '#/components/parameters/idQuery'
+        -
+          $ref: '#/components/parameters/limitResults'
+        -
+          $ref: '#/components/parameters/skipResults'
+      responses:
+        '200':
+          $ref: '#/components/responses/JackpotContributionResponseBody'
+        '400':
+          $ref: '#/components/responses/JackpotContributionResponseBody'
+        '401':
+          $ref: '#/components/responses/JackpotContributionResponseBody'
+        '403':
+          $ref: '#/components/responses/JackpotContributionResponseBody'
+        '404':
+          $ref: '#/components/responses/JackpotContributionResponseBody'
+        '500':
+          $ref: '#/components/responses/JackpotContributionResponseBody'
+        '501':
+          $ref: '#/components/responses/JackpotContributionResponseBody'
+      security:
+        -
+          OAuth2:
+            - ViewJackpotContributions
+      operationId: getJackpotContributions
+      summary: Get jackpot contributions by member
+      description: >-
+        Returns a list of jackpot contributions by member. This assumes that jackpot contributions
+        have first been uploaded via a POST request or web console
+      x-codegen-request-body-name: body
+      x-vue-item: JackpotContributions
+      x-vue-list: JackpotContributions
+  /jackpot-configs/query:
+    summary: Get members by query
+    description: This operation allows you to get members in your project using a query.
+    post:
+      requestBody:
+        description: >-
+          Retrieve Products from Ziqni database by unique Product ID's or any other POST body
+          parameters using the POST method
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/QueryRequest'
+            examples:
+              Example:
+                value:
+                  must:
+                    -
+                      queryField: some text
+                      queryValues:
+                        - some text
+                        - some text
+                    -
+                      queryField: some text
+                      queryValues:
+                        - some text
+                        - some text
+                  mustNot:
+                    -
+                      queryField: some text
+                      queryValues:
+                        - some text
+                        - some text
+                    -
+                      queryField: some text
+                      queryValues:
+                        - some text
+                        - some text
+                  should:
+                    -
+                      queryField: some text
+                      queryValues:
+                        - some text
+                        - some text
+                    -
+                      queryField: some text
+                      queryValues:
+                        - some text
+                        - some text
+                  gte:
+                    -
+                      queryField: some text
+                      queryValue: some text
+                    -
+                      queryField: some text
+                      queryValue: some text
+                  gt:
+                    -
+                      queryField: some text
+                      queryValue: some text
+                    -
+                      queryField: some text
+                      queryValue: some text
+                  lte:
+                    -
+                      queryField: some text
+                      queryValue: some text
+                    -
+                      queryField: some text
+                      queryValue: some text
+                  lt:
+                    -
+                      queryField: some text
+                      queryValue: some text
+                    -
+                      queryField: some text
+                      queryValue: some text
+                  range:
+                    -
+                      queryField: some text
+                      gt: some text
+                      lt: some text
+                      constraints:
+                        - some text
+                        - some text
+                    -
+                      queryField: some text
+                      gt: some text
+                      lt: some text
+                      constraints:
+                        - some text
+                        - some text
+                  sortBy:
+                    -
+                      queryField: some text
+                      order: Desc
+                    -
+                      queryField: some text
+                      order: Asc
+                  multiFields:
+                    -
+                      queryFields:
+                        - some text
+                        - some text
+                      queryValue: some text
+                    -
+                      queryFields:
+                        - some text
+                        - some text
+                      queryValue: some text
+                  includeFields:
+                    - some text
+                    - some text
+                  hasValue:
+                    - some text
+                    - some text
+                  hasNoValue:
+                    - some text
+                    - some text
+                  shouldMatch: 46
+                  skip: 12
+                  limit: 13
+                  constraints:
+                    - some text
+                    - some text
+      tags:
+        - jackpot-configs
+      responses:
+        '200':
+          $ref: '#/components/responses/JackpotConfigResponseBody'
+        '400':
+          $ref: '#/components/responses/JackpotConfigResponseBody'
+        '401':
+          $ref: '#/components/responses/JackpotConfigResponseBody'
+        '403':
+          $ref: '#/components/responses/JackpotConfigResponseBody'
+        '404':
+          $ref: '#/components/responses/JackpotConfigResponseBody'
+        '500':
+          $ref: '#/components/responses/JackpotConfigResponseBody'
+        '501':
+          $ref: '#/components/responses/JackpotConfigResponseBody'
+      security:
+        -
+          OAuth2:
+            - ViewMembers
+      operationId: getJackpotConfigsByQuery
+      summary: Get jackpot configs by query
+      description: "Retrieve Jackpot Configs\L from Ziqni database by unique Jackpot Configs ID's or any other POST body parameters using the POST method"
+      x-codegen-request-body-name: body
+  /jackpot-configs/delete:
+    summary: Delete jackpot configs by query
+    description: This operation allows you to delete jackpot configs in your project using a query.
+    post:
+      requestBody:
+        description: >-
+          Delete jackpot configs from Ziqni database by unique jackpot configs ID's or any other
+          POST body parameters using the POST method
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/QueryRequest'
+            examples:
+              Example:
+                value:
+                  must:
+                    -
+                      queryField: some text
+                      queryValues:
+                        - some text
+                        - some text
+                    -
+                      queryField: some text
+                      queryValues:
+                        - some text
+                        - some text
+                  mustNot:
+                    -
+                      queryField: some text
+                      queryValues:
+                        - some text
+                        - some text
+                    -
+                      queryField: some text
+                      queryValues:
+                        - some text
+                        - some text
+                  should:
+                    -
+                      queryField: some text
+                      queryValues:
+                        - some text
+                        - some text
+                    -
+                      queryField: some text
+                      queryValues:
+                        - some text
+                        - some text
+                  gte:
+                    -
+                      queryField: some text
+                      queryValue: some text
+                    -
+                      queryField: some text
+                      queryValue: some text
+                  gt:
+                    -
+                      queryField: some text
+                      queryValue: some text
+                    -
+                      queryField: some text
+                      queryValue: some text
+                  lte:
+                    -
+                      queryField: some text
+                      queryValue: some text
+                    -
+                      queryField: some text
+                      queryValue: some text
+                  lt:
+                    -
+                      queryField: some text
+                      queryValue: some text
+                    -
+                      queryField: some text
+                      queryValue: some text
+                  range:
+                    -
+                      queryField: some text
+                      gt: some text
+                      lt: some text
+                      constraints:
+                        - some text
+                        - some text
+                    -
+                      queryField: some text
+                      gt: some text
+                      lt: some text
+                      constraints:
+                        - some text
+                        - some text
+                  sortBy:
+                    -
+                      queryField: some text
+                      order: Desc
+                    -
+                      queryField: some text
+                      order: Desc
+                  multiFields:
+                    -
+                      queryFields:
+                        - some text
+                        - some text
+                      queryValue: some text
+                    -
+                      queryFields:
+                        - some text
+                        - some text
+                      queryValue: some text
+                  includeFields:
+                    - some text
+                    - some text
+                  hasValue:
+                    - some text
+                    - some text
+                  hasNoValue:
+                    - some text
+                    - some text
+                  shouldMatch: 91
+                  skip: 34
+                  limit: 62
+                  constraints:
+                    - some text
+                    - some text
+      tags:
+        - jackpot-configs
+      responses:
+        '200':
+          $ref: '#/components/responses/ApiResponseBody'
+        '400':
+          $ref: '#/components/responses/ApiResponseBody'
+        '401':
+          $ref: '#/components/responses/ApiResponseBody'
+        '403':
+          $ref: '#/components/responses/ApiResponseBody'
+        '404':
+          $ref: '#/components/responses/ApiResponseBody'
+        '500':
+          $ref: '#/components/responses/ApiResponseBody'
+        '501':
+          $ref: '#/components/responses/ApiResponseBody'
+      security:
+        -
+          OAuth2:
+            - AdminMembers
+      operationId: deleteJackpotConfigsByQuery
+      summary: Delete jackpot configs by query
+      description: >-
+        Delete jackpot configs from Ziqni database by unique jackpot configs ID's or any other POST
+        body parameters using the POST method
+      x-codegen-request-body-name: body
 components:
   schemas:
     ProductReduced:
@@ -18198,14 +18687,6 @@ components:
         - id
       type: object
       properties:
-        created:
-          format: date-time
-          description: >-
-            ISO8601 timestamp for when a Model was created. All records are stored in UTC time
-            zone
-          type: string
-          readOnly: false
-          example: '2019-09-25T15:47:00.000+0000'
         memberId:
           type: string
         memberRefId:
@@ -18233,6 +18714,14 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Reward'
+        timeStamp:
+          format: date-time
+          description: >-
+            ISO8601 timestamp for when a Model was created. All records are stored in UTC time
+            zone
+          type: string
+          readOnly: false
+          example: '2019-09-25T15:47:00.000+0000'
     CreateEventRequest:
       required:
         - action
@@ -20396,80 +20885,6 @@ components:
             spinsLeft:
               description: spins left to play
               type: integer
-    InstantWin:
-      description: ''
-      type: object
-      allOf:
-        -
-          required:
-            - instantWinType
-            - tiles
-          type: object
-          properties:
-            name:
-              type: string
-            description:
-              type: string
-            termsAndConditions:
-              type: string
-            constraints:
-              type: array
-              items:
-                type: string
-              example: hasRewards
-            statusCode:
-              format: int32
-              description: integer
-              type: integer
-            instantWinType:
-              description: integer
-              type: integer
-            playedCount:
-              description: integer
-              type: integer
-            active:
-              description: if instant win is active
-              type: boolean
-            icon:
-              description: Attachement id for the corresponding icon image.
-              type: string
-            banner:
-              description: Link to the banner
-              type: string
-              example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
-            bannerLowResolution:
-              description: Link to the bannerLowResolution
-              type: string
-              example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
-            bannerHighResolution:
-              description: Link to the bannerHighResolution
-              type: string
-              example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
-            tiles:
-              description: ''
-              type: array
-              items:
-                $ref: '#/components/schemas/InstantWinTile'
-            startDate:
-              format: date-time
-              description: The start date and time of a schedule. ISO8601 timestamp
-              type: string
-              example: '2019-09-25T15:47:00.000+0000'
-            endDate:
-              format: date-time
-              description: The end date and time of a schedule. ISO8601 timestamp
-              type: string
-              example: '2019-09-25T15:47:00.000+0000'
-            version:
-              format: int64
-              type: integer
-            style:
-              description: A link link to the cms entry for this objects style sheet
-              type: string
-        -
-          $ref: '#/components/schemas/OptParamModels'
-        -
-          $ref: '#/components/schemas/ModelDefault'
     InstantWinStatisticsResponse:
       description: This is the Response for Instant win
       required:
@@ -21605,6 +22020,562 @@ components:
         - Debit
       type: string
       example: '"Debit"'
+    JackpotContribution:
+      description: >
+        A record of a contribution made to a jackpot pool. This can be from a player or a system
+        recontribution (e.g. after a jackpot win). The contribution is split between the player’s
+        share and the operator’s share based on the configured percentages in `jackpot_config`.
+      type: object
+      properties:
+        id:
+          description: Unique ID of this jackpot contribution record
+          type: string
+          example: jc-1001
+        spaceName:
+          description: >
+            The account (or space) associated with the contribution. Used to group contributions
+            under a specific  environment.
+          type: string
+          example: first-space
+        memberId:
+          description: >
+            The ID of the player who made the contribution or received the recontributed drop. If
+            this was a system recontribution after a win, this is the winning player's ID.
+          type: string
+          example: player-5678
+        contributionAmount:
+          description: >
+            The full amount that was contributed to the jackpot pool. This amount will be split
+            into `operatorAmount` and `playerAmount` based on configuration.
+          type: number
+          example: 100
+        operatornAmount:
+          format: int64
+          description: >
+            The portion of the contribution that goes to the operator’s share of the pool.
+            Calculated as: contributionAmount * operatorSplitPercentage / 100
+          type: integer
+          example: 20
+        playerAmount:
+          format: int64
+          description: >
+            The portion of the contribution that goes to the player’s share of the pool.
+            Calculated as: contributionAmount * playerSplitPercentage / 100
+          type: integer
+          example: 80
+        contributionDate:
+          format: date-time
+          description: >
+            The date and time when the contribution was made. This also applies to recontributed
+            jackpot drop amounts.
+          type: string
+          example: '2025-07-15T14:35:00Z'
+    JackpotConfigResponse:
+      description: This is the Response for Instant win
+      required:
+        - meta
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/MetaExtended'
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/JackpotConfig'
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
+      example:
+        meta: {}
+        results:
+          -
+            id: some text
+            startDate: '2018-02-10T09:30Z'
+            endDate: '2018-02-10T09:30Z'
+            created: '2018-02-10T09:30Z'
+            operatorSplitPercentage: 83.47
+            memberSplitPercentage: 77.77
+            currentPoolAmount: 98.76
+            mustDropAfterHours: 46
+            jackpotThreshold: 33
+            payouts: 40
+            dropAmount: 24.8
+            seedAmount: 29.35
+            dropProbability: 95.34
+            logScalingFactor: 84.92
+            spaceName: some text
+            accountId: some text
+          -
+            id: some text
+            startDate: '2018-02-10T09:30Z'
+            endDate: '2018-02-10T09:30Z'
+            created: '2018-02-10T09:30Z'
+            operatorSplitPercentage: 10.33
+            memberSplitPercentage: 77.89
+            currentPoolAmount: 58.32
+            mustDropAfterHours: 35
+            jackpotThreshold: 89
+            payouts: 50
+            dropAmount: 1.83
+            seedAmount: 68.71
+            dropProbability: 88.07
+            logScalingFactor: 30.39
+            spaceName: some text
+            accountId: some text
+        errors:
+          -
+            modelId: some text
+            errorCode: 30
+            message: some text
+            errorAt: 28
+            detail:
+              -
+                modelId: some text
+                errorCode: 22
+                message: some text
+                errorAt: 37
+              -
+                modelId: some text
+                errorCode: 29
+                message: some text
+                errorAt: 64
+          -
+            modelId: some text
+            errorCode: 71
+            message: some text
+            errorAt: 93
+            detail:
+              -
+                modelId: some text
+                errorCode: 20
+                message: some text
+                errorAt: 44
+              -
+                modelId: some text
+                errorCode: 11
+                message: some text
+                errorAt: 50
+    JackpotContributionResponse:
+      description: This is the Response for Instant win
+      required:
+        - meta
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/MetaExtended'
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/JackpotContribution'
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
+      example:
+        meta: {}
+        results:
+          -
+            id: some text
+            spaceName: some text
+            memberId: some text
+            contributionAmount: 20.04
+            operatornAmount: 54
+            playerAmount: 21
+            contributionDate: '2018-02-10T09:30Z'
+          -
+            id: some text
+            spaceName: some text
+            memberId: some text
+            contributionAmount: 0.95
+            operatornAmount: 13
+            playerAmount: 66
+            contributionDate: '2018-02-10T09:30Z'
+        errors:
+          -
+            modelId: some text
+            errorCode: 79
+            message: some text
+            errorAt: 54
+            detail:
+              -
+                modelId: some text
+                errorCode: 36
+                message: some text
+                errorAt: 79
+              -
+                modelId: some text
+                errorCode: 76
+                message: some text
+                errorAt: 18
+          -
+            modelId: some text
+            errorCode: 57
+            message: some text
+            errorAt: 66
+            detail:
+              -
+                modelId: some text
+                errorCode: 41
+                message: some text
+                errorAt: 3
+              -
+                modelId: some text
+                errorCode: 40
+                message: some text
+                errorAt: 7
+    CreateJackpotConfigRequest:
+      description: 'Jackpot configuration that controls how contributions, pool amounts, and payouts work'
+      type: object
+      allOf:
+        -
+          $ref: '#/components/schemas/CreateOptParamModels'
+      properties:
+        startDate:
+          format: date-time
+          description: The date and time when this jackpot starts running
+          type: string
+          example: '2025-01-01T00:00:00Z'
+        endDate:
+          format: date-time
+          description: The date and time when this jackpot stops running (if any)
+          type: string
+          example: '2025-12-31T23:59:59Z'
+        operatorSplitPercentage:
+          format: double
+          description: >
+            The percentage of each player's contribution that goes to the operator's share of the
+            jackpot. For example, if this is 20, and a player contributes 100, then 20 goes to the
+            operator pool.
+          type: number
+          example: 20
+        memberSplitPercentage:
+          format: double
+          description: >
+            The percentage of each player's contribution that goes to the player's share of the
+            jackpot. For example, if this is 80, and a player contributes 100, then 80 goes to the
+            player pool.
+          type: number
+          example: 80
+        mustDropAfterHours:
+          format: int64
+          description: >
+            If this number of hours passes without a winner, the jackpot is forced to drop to
+            someone.
+          type: integer
+          example: 48
+        jackpotThreshold:
+          format: int64
+          description: |
+            When the pool reaches this amount, the chance of dropping starts increasing faster.
+          type: integer
+          example: 50
+        payouts:
+          format: int64
+          description: |
+            How many times this jackpot can pay out before it ends.
+          type: integer
+          example: 10
+        dropAmount:
+          description: |
+            The amount that will be paid out to a winner when the jackpot drops.
+          type: number
+          example: 1000
+        eventActionsFilter:
+          $ref: '#/components/schemas/DependantOn'
+        seedAmount:
+          description: |
+            The starting amount of the jackpot when this config is created.
+          type: number
+          example: 500
+        dropProbability:
+          format: double
+          description: >
+            The base chance of the jackpot dropping with each contribution. For example, 0.002
+            means a 0.2% chance per entry.
+          type: number
+          example: 0.002
+        logScalingFactor:
+          format: double
+          description: >
+            A number that controls how fast the drop chance increases after reaching the
+            threshold. A higher number means slower growth; lower means faster.
+          type: number
+          example: 1000
+    UpdateJackpotConfigRequest:
+      description: 'Jackpot configuration that controls how contributions, pool amounts, and payouts work'
+      type: object
+      allOf:
+        -
+          $ref: '#/components/schemas/UpdateModelDefault'
+        -
+          $ref: '#/components/schemas/UpdateOptParamModels'
+      properties:
+        id:
+          description: Unique ID of this jackpot config
+          type: string
+          example: '123456'
+        startDate:
+          format: date-time
+          description: The date and time when this jackpot starts running
+          type: string
+          example: '2025-01-01T00:00:00Z'
+        endDate:
+          format: date-time
+          description: The date and time when this jackpot stops running (if any)
+          type: string
+          example: '2025-12-31T23:59:59Z'
+        operatorSplitPercentage:
+          format: double
+          description: >
+            The percentage of each player's contribution that goes to the operator's share of the
+            jackpot. For example, if this is 20, and a player contributes 100, then 20 goes to the
+            operator pool.
+          type: number
+          example: 20
+        memberSplitPercentage:
+          format: double
+          description: >
+            The percentage of each player's contribution that goes to the player's share of the
+            jackpot. For example, if this is 80, and a player contributes 100, then 80 goes to the
+            player pool.
+          type: number
+          example: 80
+        mustDropAfterHours:
+          format: int64
+          description: >
+            If this number of hours passes without a winner, the jackpot is forced to drop to
+            someone.
+          type: integer
+          example: 48
+        jackpotThreshold:
+          format: int64
+          description: |
+            When the pool reaches this amount, the chance of dropping starts increasing faster.
+          type: integer
+          example: 50
+        payouts:
+          format: int64
+          description: |
+            How many times this jackpot can pay out before it ends.
+          type: integer
+          example: 10
+        dropAmount:
+          description: |
+            The amount that will be paid out to a winner when the jackpot drops.
+          type: number
+          example: 1000
+        seedAmount:
+          description: |
+            The starting amount of the jackpot when this config is created.
+          type: number
+          example: 500
+        eventActionsFilter:
+          $ref: '#/components/schemas/DependantOn'
+        dropProbability:
+          format: double
+          description: >
+            The base chance of the jackpot dropping with each contribution. For example, 0.002
+            means a 0.2% chance per entry.
+          type: number
+          example: 0.002
+        logScalingFactor:
+          format: double
+          description: >
+            A number that controls how fast the drop chance increases after reaching the
+            threshold. A higher number means slower growth; lower means faster.
+          type: number
+          example: 1000
+    JackpotConfig:
+      description: 'Jackpot configuration that controls how contributions, pool amounts, and payouts work'
+      type: object
+      allOf:
+        -
+          $ref: '#/components/schemas/ModelDefault'
+        -
+          $ref: '#/components/schemas/OptParamModels'
+      properties:
+        id:
+          description: Unique ID of this jackpot config
+          type: string
+          example: '123456'
+        startDate:
+          format: date-time
+          description: The date and time when this jackpot starts running
+          type: string
+          example: '2025-01-01T00:00:00Z'
+        endDate:
+          format: date-time
+          description: The date and time when this jackpot stops running (if any)
+          type: string
+          example: '2025-12-31T23:59:59Z'
+        created:
+          format: date-time
+          description: When this config was created
+          type: string
+          example: '2025-01-01T10:00:00Z'
+        operatorSplitPercentage:
+          format: double
+          description: >
+            The percentage of each player's contribution that goes to the operator's share of the
+            jackpot. For example, if this is 20, and a player contributes 100, then 20 goes to the
+            operator pool.
+          type: number
+          example: 20
+        memberSplitPercentage:
+          format: double
+          description: >
+            The percentage of each player's contribution that goes to the player's share of the
+            jackpot. For example, if this is 80, and a player contributes 100, then 80 goes to the
+            player pool.
+          type: number
+          example: 80
+        currentPoolAmount:
+          description: >
+            The total amount of money currently in the jackpot pool (both player and operator
+            contributions).
+          type: number
+          example: 12500.5
+        mustDropAfterHours:
+          format: int64
+          description: >
+            If this number of hours passes without a winner, the jackpot is forced to drop to
+            someone.
+          type: integer
+          example: 48
+        jackpotThreshold:
+          format: int64
+          description: |
+            When the pool reaches this amount, the chance of dropping starts increasing faster.
+          type: integer
+          example: 50
+        payouts:
+          format: int64
+          description: |
+            How many times this jackpot can pay out before it ends.
+          type: integer
+          example: 10
+        dropAmount:
+          description: |
+            The amount that will be paid out to a winner when the jackpot drops.
+          type: number
+          example: 1000
+        seedAmount:
+          description: |
+            The starting amount of the jackpot when this config is created.
+          type: number
+          example: 500
+        dropProbability:
+          format: double
+          description: >
+            The base chance of the jackpot dropping with each contribution. For example, 0.002
+            means a 0.2% chance per entry.
+          type: number
+          example: 0.002
+        eventActionsFilter:
+          $ref: '#/components/schemas/DependantOn'
+        logScalingFactor:
+          format: double
+          description: >
+            A number that controls how fast the drop chance increases after reaching the
+            threshold. A higher number means slower growth; lower means faster.
+          type: number
+          example: 1000
+        spaceName:
+          description: The name  of the account this jackpot belongs to
+          type: string
+          example: first-space
+        accountId:
+          description: The id  of the account this jackpot belongs to
+          type: string
+    InstantWin:
+      description: ''
+      type: object
+      allOf:
+        -
+          required:
+            - instantWinType
+            - tiles
+          type: object
+          properties:
+            name:
+              type: string
+              x-vue-search-field: true
+              x-vue-disaply-order: 1001
+            description:
+              type: string
+              x-vue-search-field: true
+              x-vue-disaply-order: 1002
+            termsAndConditions:
+              type: string
+              x-vue-search-field: true
+              x-vue-disaply-order: 1003
+            constraints:
+              type: array
+              items:
+                type: string
+              example: hasRewards
+            statusCode:
+              format: int32
+              description: integer
+              type: integer
+              x-vue-search-field: true
+              x-vue-disaply-order: 1004
+            instantWinType:
+              description: integer
+              type: integer
+              x-vue-search-field: true
+              x-vue-disaply-order: 1005
+            playedCount:
+              description: integer
+              type: integer
+              x-vue-search-field: true
+              x-vue-disaply-order: 1006
+            active:
+              description: if instant win is active
+              type: boolean
+              x-vue-search-field: true
+              x-vue-disaply-order: 1007
+            icon:
+              description: Attachement id for the corresponding icon image.
+              type: string
+            banner:
+              description: Link to the banner
+              type: string
+              example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
+            bannerLowResolution:
+              description: Link to the bannerLowResolution
+              type: string
+              example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
+            bannerHighResolution:
+              description: Link to the bannerHighResolution
+              type: string
+              example: 'https://<space-name>.cdn.ziqni.com/_id/<the-id>'
+            tiles:
+              description: ''
+              type: array
+              items:
+                $ref: '#/components/schemas/InstantWinTile'
+            startDate:
+              format: date-time
+              description: The start date and time of a schedule. ISO8601 timestamp
+              type: string
+              example: '2019-09-25T15:47:00.000+0000'
+            endDate:
+              format: date-time
+              description: The end date and time of a schedule. ISO8601 timestamp
+              type: string
+              example: '2019-09-25T15:47:00.000+0000'
+            version:
+              format: int64
+              type: integer
+            style:
+              description: A link link to the cms entry for this objects style sheet
+              type: string
+        -
+          $ref: '#/components/schemas/OptParamModels'
+        -
+          $ref: '#/components/schemas/ModelDefault'
   responses:
     ApiResponseBody:
       content:
@@ -23139,6 +24110,98 @@ components:
                         message: some text
                         errorAt: 48
       description: A list of action types and/or errors
+    JackpotContributionResponseBody:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/InstantWinResponse'
+          examples:
+            Example:
+              value:
+                meta: {}
+                results:
+                  - {}
+                  - {}
+                errors:
+                  -
+                    modelId: some text
+                    errorCode: 96
+                    message: some text
+                    errorAt: 98
+                    detail:
+                      -
+                        modelId: some text
+                        errorCode: 96
+                        message: some text
+                        errorAt: 89
+                      -
+                        modelId: some text
+                        errorCode: 34
+                        message: some text
+                        errorAt: 87
+                  -
+                    modelId: some text
+                    errorCode: 75
+                    message: some text
+                    errorAt: 39
+                    detail:
+                      -
+                        modelId: some text
+                        errorCode: 10
+                        message: some text
+                        errorAt: 98
+                      -
+                        modelId: some text
+                        errorCode: 56
+                        message: some text
+                        errorAt: 92
+      description: A list of Instant wins and/or errors
+    JackpotConfigResponseBody:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/JackpotConfigResponse'
+          examples:
+            Example:
+              value:
+                meta: {}
+                results:
+                  - {}
+                  - {}
+                errors:
+                  -
+                    modelId: some text
+                    errorCode: 96
+                    message: some text
+                    errorAt: 98
+                    detail:
+                      -
+                        modelId: some text
+                        errorCode: 96
+                        message: some text
+                        errorAt: 89
+                      -
+                        modelId: some text
+                        errorCode: 34
+                        message: some text
+                        errorAt: 87
+                  -
+                    modelId: some text
+                    errorCode: 75
+                    message: some text
+                    errorAt: 39
+                    detail:
+                      -
+                        modelId: some text
+                        errorCode: 10
+                        message: some text
+                        errorAt: 98
+                      -
+                        modelId: some text
+                        errorCode: 56
+                        message: some text
+                        errorAt: 92
+      description: A list of Instant wins and/or errors
   parameters:
     spaceName:
       name: spaceName
