@@ -11,11 +11,11 @@ Method | HTTP request | Description
 
 ## getJackpotContributions
 
-> CompletableFuture<InstantWinResponse> getJackpotContributions(id, limit, skip)
+> CompletableFuture<JackpotContributionResponse> getJackpotContributions(memberId, id, limit, skip)
 
 Get jackpot contributions by member
 
-Returns a list of jackpot contributions by member. This assumes that jackpot contributions have first been uploaded via a POST request or web console
+Returns a list of jackpot contributions by member. This assumes that jackpot contributions have first been uploaded via a POST request or web console 
 
 ### Example
 
@@ -39,11 +39,12 @@ public class Example {
         OAuth2.setAccessToken("YOUR ACCESS TOKEN");
 
         JackpotContributionsApi apiInstance = new JackpotContributionsApi(defaultClient);
+        String memberId = "memberId_example"; // String | The ID of the member to filter contributions by
         List<String> id = Arrays.asList(); // List<String> | The unique identifiers of the resources
         Integer limit = 56; // Integer | Limit the returned total records found
         Integer skip = 56; // Integer | Skip the returned records found and return the next batch of records
         try {
-            CompletableFuture<InstantWinResponse> result = apiInstance.getJackpotContributions(id, limit, skip);
+            CompletableFuture<JackpotContributionResponse> result = apiInstance.getJackpotContributions(memberId, id, limit, skip);
             System.out.println(result.get());
         } catch (ApiException e) {
             System.err.println("Exception when calling JackpotContributionsApi#getJackpotContributions");
@@ -61,13 +62,14 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **memberId** | **String**| The ID of the member to filter contributions by |
  **id** | [**List&lt;String&gt;**](String.md)| The unique identifiers of the resources | [optional]
  **limit** | **Integer**| Limit the returned total records found | [optional]
  **skip** | **Integer**| Skip the returned records found and return the next batch of records | [optional]
 
 ### Return type
 
-CompletableFuture<[**InstantWinResponse**](InstantWinResponse.md)>
+CompletableFuture<[**JackpotContributionResponse**](JackpotContributionResponse.md)>
 
 
 ### Authorization
@@ -92,11 +94,11 @@ CompletableFuture<[**InstantWinResponse**](InstantWinResponse.md)>
 
 ## getJackpotContributionsWithHttpInfo
 
-> CompletableFuture<ApiResponse<InstantWinResponse>> getJackpotContributions getJackpotContributionsWithHttpInfo(id, limit, skip)
+> CompletableFuture<ApiResponse<JackpotContributionResponse>> getJackpotContributions getJackpotContributionsWithHttpInfo(memberId, id, limit, skip)
 
 Get jackpot contributions by member
 
-Returns a list of jackpot contributions by member. This assumes that jackpot contributions have first been uploaded via a POST request or web console
+Returns a list of jackpot contributions by member. This assumes that jackpot contributions have first been uploaded via a POST request or web console 
 
 ### Example
 
@@ -121,11 +123,12 @@ public class Example {
         OAuth2.setAccessToken("YOUR ACCESS TOKEN");
 
         JackpotContributionsApi apiInstance = new JackpotContributionsApi(defaultClient);
+        String memberId = "memberId_example"; // String | The ID of the member to filter contributions by
         List<String> id = Arrays.asList(); // List<String> | The unique identifiers of the resources
         Integer limit = 56; // Integer | Limit the returned total records found
         Integer skip = 56; // Integer | Skip the returned records found and return the next batch of records
         try {
-            CompletableFuture<ApiResponse<InstantWinResponse>> response = apiInstance.getJackpotContributionsWithHttpInfo(id, limit, skip);
+            CompletableFuture<ApiResponse<JackpotContributionResponse>> response = apiInstance.getJackpotContributionsWithHttpInfo(memberId, id, limit, skip);
             System.out.println("Status code: " + response.get().getStatusCode());
             System.out.println("Response headers: " + response.get().getHeaders());
             System.out.println("Response body: " + response.get().getData());
@@ -152,13 +155,14 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **memberId** | **String**| The ID of the member to filter contributions by |
  **id** | [**List&lt;String&gt;**](String.md)| The unique identifiers of the resources | [optional]
  **limit** | **Integer**| Limit the returned total records found | [optional]
  **skip** | **Integer**| Skip the returned records found and return the next batch of records | [optional]
 
 ### Return type
 
-CompletableFuture<ApiResponse<[**InstantWinResponse**](InstantWinResponse.md)>>
+CompletableFuture<ApiResponse<[**JackpotContributionResponse**](JackpotContributionResponse.md)>>
 
 
 ### Authorization

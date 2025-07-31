@@ -9188,46 +9188,6 @@ paths:
       summary: Delete jackpot configs
       description: Delete Jackpot configs for a given identifier specified
       x-codegen-request-body-name: body
-  /jackpot-contributions:
-    summary: Manage jackpot contributions
-    description: These operations allow you to manage jackpot contributions in your project.
-    get:
-      tags:
-        - jackpot-contributions
-      parameters:
-        -
-          $ref: '#/components/parameters/idQuery'
-        -
-          $ref: '#/components/parameters/limitResults'
-        -
-          $ref: '#/components/parameters/skipResults'
-      responses:
-        '200':
-          $ref: '#/components/responses/JackpotContributionResponseBody'
-        '400':
-          $ref: '#/components/responses/JackpotContributionResponseBody'
-        '401':
-          $ref: '#/components/responses/JackpotContributionResponseBody'
-        '403':
-          $ref: '#/components/responses/JackpotContributionResponseBody'
-        '404':
-          $ref: '#/components/responses/JackpotContributionResponseBody'
-        '500':
-          $ref: '#/components/responses/JackpotContributionResponseBody'
-        '501':
-          $ref: '#/components/responses/JackpotContributionResponseBody'
-      security:
-        -
-          OAuth2:
-            - ViewJackpotContributions
-      operationId: getJackpotContributions
-      summary: Get jackpot contributions by member
-      description: >-
-        Returns a list of jackpot contributions by member. This assumes that jackpot contributions
-        have first been uploaded via a POST request or web console
-      x-codegen-request-body-name: body
-      x-vue-item: JackpotContributions
-      x-vue-list: JackpotContributions
   /jackpot-configs/query:
     summary: Get members by query
     description: This operation allows you to get members in your project using a query.
@@ -9528,6 +9488,51 @@ paths:
         Delete jackpot configs from Ziqni database by unique jackpot configs ID's or any other POST
         body parameters using the POST method
       x-codegen-request-body-name: body
+  /jackpot-contributions:
+    get:
+      tags:
+        - jackpot-contributions
+      parameters:
+        -
+          name: memberId
+          description: The ID of the member to filter contributions by
+          schema:
+            type: string
+          in: query
+          required: true
+        -
+          $ref: '#/components/parameters/idQuery'
+        -
+          $ref: '#/components/parameters/limitResults'
+        -
+          $ref: '#/components/parameters/skipResults'
+      responses:
+        '200':
+          $ref: '#/components/responses/JackpotContributionResponseBody'
+        '400':
+          $ref: '#/components/responses/JackpotContributionResponseBody'
+        '401':
+          $ref: '#/components/responses/JackpotContributionResponseBody'
+        '403':
+          $ref: '#/components/responses/JackpotContributionResponseBody'
+        '404':
+          $ref: '#/components/responses/JackpotContributionResponseBody'
+        '500':
+          $ref: '#/components/responses/JackpotContributionResponseBody'
+        '501':
+          $ref: '#/components/responses/JackpotContributionResponseBody'
+      security:
+        -
+          OAuth2:
+            - ViewJackpotContributions
+      operationId: getJackpotContributions
+      summary: Get jackpot contributions by member
+      description: >
+        Returns a list of jackpot contributions by member. This assumes that jackpot contributions
+        have first been uploaded via a POST request or web console
+      x-codegen-request-body-name: body
+      x-vue-item: JackpotContributions
+      x-vue-list: JackpotContributions
 components:
   schemas:
     ProductReduced:
@@ -22020,56 +22025,6 @@ components:
         - Debit
       type: string
       example: '"Debit"'
-    JackpotContribution:
-      description: >
-        A record of a contribution made to a jackpot pool. This can be from a player or a system
-        recontribution (e.g. after a jackpot win). The contribution is split between the player’s
-        share and the operator’s share based on the configured percentages in `jackpot_config`.
-      type: object
-      properties:
-        id:
-          description: Unique ID of this jackpot contribution record
-          type: string
-          example: jc-1001
-        spaceName:
-          description: >
-            The account (or space) associated with the contribution. Used to group contributions
-            under a specific  environment.
-          type: string
-          example: first-space
-        memberId:
-          description: >
-            The ID of the player who made the contribution or received the recontributed drop. If
-            this was a system recontribution after a win, this is the winning player's ID.
-          type: string
-          example: player-5678
-        contributionAmount:
-          description: >
-            The full amount that was contributed to the jackpot pool. This amount will be split
-            into `operatorAmount` and `playerAmount` based on configuration.
-          type: number
-          example: 100
-        operatornAmount:
-          format: int64
-          description: >
-            The portion of the contribution that goes to the operator’s share of the pool.
-            Calculated as: contributionAmount * operatorSplitPercentage / 100
-          type: integer
-          example: 20
-        playerAmount:
-          format: int64
-          description: >
-            The portion of the contribution that goes to the player’s share of the pool.
-            Calculated as: contributionAmount * playerSplitPercentage / 100
-          type: integer
-          example: 80
-        contributionDate:
-          format: date-time
-          description: >
-            The date and time when the contribution was made. This also applies to recontributed
-            jackpot drop amounts.
-          type: string
-          example: '2025-07-15T14:35:00Z'
     JackpotConfigResponse:
       description: This is the Response for Instant win
       required:
@@ -22576,6 +22531,54 @@ components:
           $ref: '#/components/schemas/OptParamModels'
         -
           $ref: '#/components/schemas/ModelDefault'
+    JackpotContribution:
+      description: >
+        A record of a contribution made to a jackpot pool. This can be from a player or a system
+        recontribution (e.g. after a jackpot win). The contribution is split between the player’s
+        share and the operator’s share based on the configured percentages in `jackpot_config`.
+      type: object
+      properties:
+        id:
+          description: Unique ID of this jackpot contribution record
+          type: string
+          example: jc-1001
+        spaceName:
+          description: >
+            The account (or space) associated with the contribution. Used to group contributions
+            under a specific  environment.
+          type: string
+          example: first-space
+        memberId:
+          description: >
+            The ID of the player who made the contribution or received the recontributed drop. If
+            this was a system recontribution after a win, this is the winning player's ID.
+          type: string
+          example: player-5678
+        contributionAmount:
+          description: >
+            The full amount that was contributed to the jackpot pool. This amount will be split
+            into `operatorAmount` and `playerAmount` based on configuration.
+          type: number
+          example: 100
+        operatorAmount:
+          description: >
+            The portion of the contribution that goes to the operator’s share of the pool.
+            Calculated as: contributionAmount * operatorSplitPercentage / 100
+          type: number
+          example: 20
+        playerAmount:
+          description: >
+            The portion of the contribution that goes to the player’s share of the pool.
+            Calculated as: contributionAmount * playerSplitPercentage / 100
+          type: number
+          example: 80
+        contributionDate:
+          format: date-time
+          description: >
+            The date and time when the contribution was made. This also applies to recontributed
+            jackpot drop amounts.
+          type: string
+          example: '2025-07-15T14:35:00Z'
   responses:
     ApiResponseBody:
       content:
@@ -24114,7 +24117,7 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/InstantWinResponse'
+            $ref: '#/components/schemas/JackpotContributionResponse'
           examples:
             Example:
               value:
