@@ -42,7 +42,10 @@ public class LoadJackpotConfigsData implements CompleteableFutureTestWrapper {
                 .seedAmount(new BigDecimal("5"))
                 .dropProbability(0.002)
                 .logScalingFactor(1000.0)
-                .eventActionsFilter(new DependantOn().addMustItem("action")) // assuming DependantOn has this builder-style method
+                .name("Name")
+                .description("Desc")
+                .type(JackpotConfigType.SINGLE)
+                .eventActions(new DependantOn().addMustItem("action")) // assuming DependantOn has this builder-style method
                 .customFields(Map.of("gameType", "slots", "region", "EU"))
                 .tags(List.of("VIP", "HolidayPromo"))
                 .metadata(Map.of("createdBy", "admin", "environment", "production"));

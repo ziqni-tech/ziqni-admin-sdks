@@ -9337,157 +9337,6 @@ paths:
       summary: Get jackpot configs by query
       description: "Retrieve Jackpot Configs\L from Ziqni database by unique Jackpot Configs ID's or any other POST body parameters using the POST method"
       x-codegen-request-body-name: body
-  /jackpot-configs/delete:
-    summary: Delete jackpot configs by query
-    description: This operation allows you to delete jackpot configs in your project using a query.
-    post:
-      requestBody:
-        description: >-
-          Delete jackpot configs from Ziqni database by unique jackpot configs ID's or any other
-          POST body parameters using the POST method
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/QueryRequest'
-            examples:
-              Example:
-                value:
-                  must:
-                    -
-                      queryField: some text
-                      queryValues:
-                        - some text
-                        - some text
-                    -
-                      queryField: some text
-                      queryValues:
-                        - some text
-                        - some text
-                  mustNot:
-                    -
-                      queryField: some text
-                      queryValues:
-                        - some text
-                        - some text
-                    -
-                      queryField: some text
-                      queryValues:
-                        - some text
-                        - some text
-                  should:
-                    -
-                      queryField: some text
-                      queryValues:
-                        - some text
-                        - some text
-                    -
-                      queryField: some text
-                      queryValues:
-                        - some text
-                        - some text
-                  gte:
-                    -
-                      queryField: some text
-                      queryValue: some text
-                    -
-                      queryField: some text
-                      queryValue: some text
-                  gt:
-                    -
-                      queryField: some text
-                      queryValue: some text
-                    -
-                      queryField: some text
-                      queryValue: some text
-                  lte:
-                    -
-                      queryField: some text
-                      queryValue: some text
-                    -
-                      queryField: some text
-                      queryValue: some text
-                  lt:
-                    -
-                      queryField: some text
-                      queryValue: some text
-                    -
-                      queryField: some text
-                      queryValue: some text
-                  range:
-                    -
-                      queryField: some text
-                      gt: some text
-                      lt: some text
-                      constraints:
-                        - some text
-                        - some text
-                    -
-                      queryField: some text
-                      gt: some text
-                      lt: some text
-                      constraints:
-                        - some text
-                        - some text
-                  sortBy:
-                    -
-                      queryField: some text
-                      order: Desc
-                    -
-                      queryField: some text
-                      order: Desc
-                  multiFields:
-                    -
-                      queryFields:
-                        - some text
-                        - some text
-                      queryValue: some text
-                    -
-                      queryFields:
-                        - some text
-                        - some text
-                      queryValue: some text
-                  includeFields:
-                    - some text
-                    - some text
-                  hasValue:
-                    - some text
-                    - some text
-                  hasNoValue:
-                    - some text
-                    - some text
-                  shouldMatch: 91
-                  skip: 34
-                  limit: 62
-                  constraints:
-                    - some text
-                    - some text
-      tags:
-        - jackpot-configs
-      responses:
-        '200':
-          $ref: '#/components/responses/ApiResponseBody'
-        '400':
-          $ref: '#/components/responses/ApiResponseBody'
-        '401':
-          $ref: '#/components/responses/ApiResponseBody'
-        '403':
-          $ref: '#/components/responses/ApiResponseBody'
-        '404':
-          $ref: '#/components/responses/ApiResponseBody'
-        '500':
-          $ref: '#/components/responses/ApiResponseBody'
-        '501':
-          $ref: '#/components/responses/ApiResponseBody'
-      security:
-        -
-          OAuth2:
-            - AdminMembers
-      operationId: deleteJackpotConfigsByQuery
-      summary: Delete jackpot configs by query
-      description: >-
-        Delete jackpot configs from Ziqni database by unique jackpot configs ID's or any other POST
-        body parameters using the POST method
-      x-codegen-request-body-name: body
   /jackpot-contributions:
     get:
       tags:
@@ -22179,270 +22028,6 @@ components:
                 errorCode: 40
                 message: some text
                 errorAt: 7
-    CreateJackpotConfigRequest:
-      description: 'Jackpot configuration that controls how contributions, pool amounts, and payouts work'
-      type: object
-      allOf:
-        -
-          $ref: '#/components/schemas/CreateOptParamModels'
-      properties:
-        startDate:
-          format: date-time
-          description: The date and time when this jackpot starts running
-          type: string
-          example: '2025-01-01T00:00:00Z'
-        endDate:
-          format: date-time
-          description: The date and time when this jackpot stops running (if any)
-          type: string
-          example: '2025-12-31T23:59:59Z'
-        operatorSplitPercentage:
-          format: double
-          description: >
-            The percentage of each player's contribution that goes to the operator's share of the
-            jackpot. For example, if this is 20, and a player contributes 100, then 20 goes to the
-            operator pool.
-          type: number
-          example: 20
-        memberSplitPercentage:
-          format: double
-          description: >
-            The percentage of each player's contribution that goes to the player's share of the
-            jackpot. For example, if this is 80, and a player contributes 100, then 80 goes to the
-            player pool.
-          type: number
-          example: 80
-        mustDropAfterHours:
-          format: int64
-          description: >
-            If this number of hours passes without a winner, the jackpot is forced to drop to
-            someone.
-          type: integer
-          example: 48
-        jackpotThreshold:
-          format: int64
-          description: |
-            When the pool reaches this amount, the chance of dropping starts increasing faster.
-          type: integer
-          example: 50
-        payouts:
-          format: int64
-          description: |
-            How many times this jackpot can pay out before it ends.
-          type: integer
-          example: 10
-        dropAmount:
-          description: |
-            The amount that will be paid out to a winner when the jackpot drops.
-          type: number
-          example: 1000
-        eventActionsFilter:
-          $ref: '#/components/schemas/DependantOn'
-        seedAmount:
-          description: |
-            The starting amount of the jackpot when this config is created.
-          type: number
-          example: 500
-        dropProbability:
-          format: double
-          description: >
-            The base chance of the jackpot dropping with each contribution. For example, 0.002
-            means a 0.2% chance per entry.
-          type: number
-          example: 0.002
-        logScalingFactor:
-          format: double
-          description: >
-            A number that controls how fast the drop chance increases after reaching the
-            threshold. A higher number means slower growth; lower means faster.
-          type: number
-          example: 1000
-    UpdateJackpotConfigRequest:
-      description: 'Jackpot configuration that controls how contributions, pool amounts, and payouts work'
-      type: object
-      allOf:
-        -
-          $ref: '#/components/schemas/UpdateModelDefault'
-        -
-          $ref: '#/components/schemas/UpdateOptParamModels'
-      properties:
-        id:
-          description: Unique ID of this jackpot config
-          type: string
-          example: '123456'
-        startDate:
-          format: date-time
-          description: The date and time when this jackpot starts running
-          type: string
-          example: '2025-01-01T00:00:00Z'
-        endDate:
-          format: date-time
-          description: The date and time when this jackpot stops running (if any)
-          type: string
-          example: '2025-12-31T23:59:59Z'
-        operatorSplitPercentage:
-          format: double
-          description: >
-            The percentage of each player's contribution that goes to the operator's share of the
-            jackpot. For example, if this is 20, and a player contributes 100, then 20 goes to the
-            operator pool.
-          type: number
-          example: 20
-        memberSplitPercentage:
-          format: double
-          description: >
-            The percentage of each player's contribution that goes to the player's share of the
-            jackpot. For example, if this is 80, and a player contributes 100, then 80 goes to the
-            player pool.
-          type: number
-          example: 80
-        mustDropAfterHours:
-          format: int64
-          description: >
-            If this number of hours passes without a winner, the jackpot is forced to drop to
-            someone.
-          type: integer
-          example: 48
-        jackpotThreshold:
-          format: int64
-          description: |
-            When the pool reaches this amount, the chance of dropping starts increasing faster.
-          type: integer
-          example: 50
-        payouts:
-          format: int64
-          description: |
-            How many times this jackpot can pay out before it ends.
-          type: integer
-          example: 10
-        dropAmount:
-          description: |
-            The amount that will be paid out to a winner when the jackpot drops.
-          type: number
-          example: 1000
-        seedAmount:
-          description: |
-            The starting amount of the jackpot when this config is created.
-          type: number
-          example: 500
-        eventActionsFilter:
-          $ref: '#/components/schemas/DependantOn'
-        dropProbability:
-          format: double
-          description: >
-            The base chance of the jackpot dropping with each contribution. For example, 0.002
-            means a 0.2% chance per entry.
-          type: number
-          example: 0.002
-        logScalingFactor:
-          format: double
-          description: >
-            A number that controls how fast the drop chance increases after reaching the
-            threshold. A higher number means slower growth; lower means faster.
-          type: number
-          example: 1000
-    JackpotConfig:
-      description: 'Jackpot configuration that controls how contributions, pool amounts, and payouts work'
-      type: object
-      allOf:
-        -
-          $ref: '#/components/schemas/ModelDefault'
-        -
-          $ref: '#/components/schemas/OptParamModels'
-      properties:
-        id:
-          description: Unique ID of this jackpot config
-          type: string
-          example: '123456'
-        startDate:
-          format: date-time
-          description: The date and time when this jackpot starts running
-          type: string
-          example: '2025-01-01T00:00:00Z'
-        endDate:
-          format: date-time
-          description: The date and time when this jackpot stops running (if any)
-          type: string
-          example: '2025-12-31T23:59:59Z'
-        created:
-          format: date-time
-          description: When this config was created
-          type: string
-          example: '2025-01-01T10:00:00Z'
-        operatorSplitPercentage:
-          format: double
-          description: >
-            The percentage of each player's contribution that goes to the operator's share of the
-            jackpot. For example, if this is 20, and a player contributes 100, then 20 goes to the
-            operator pool.
-          type: number
-          example: 20
-        memberSplitPercentage:
-          format: double
-          description: >
-            The percentage of each player's contribution that goes to the player's share of the
-            jackpot. For example, if this is 80, and a player contributes 100, then 80 goes to the
-            player pool.
-          type: number
-          example: 80
-        currentPoolAmount:
-          description: >
-            The total amount of money currently in the jackpot pool (both player and operator
-            contributions).
-          type: number
-          example: 12500.5
-        mustDropAfterHours:
-          format: int64
-          description: >
-            If this number of hours passes without a winner, the jackpot is forced to drop to
-            someone.
-          type: integer
-          example: 48
-        jackpotThreshold:
-          format: int64
-          description: |
-            When the pool reaches this amount, the chance of dropping starts increasing faster.
-          type: integer
-          example: 50
-        payouts:
-          format: int64
-          description: |
-            How many times this jackpot can pay out before it ends.
-          type: integer
-          example: 10
-        dropAmount:
-          description: |
-            The amount that will be paid out to a winner when the jackpot drops.
-          type: number
-          example: 1000
-        seedAmount:
-          description: |
-            The starting amount of the jackpot when this config is created.
-          type: number
-          example: 500
-        dropProbability:
-          format: double
-          description: >
-            The base chance of the jackpot dropping with each contribution. For example, 0.002
-            means a 0.2% chance per entry.
-          type: number
-          example: 0.002
-        eventActionsFilter:
-          $ref: '#/components/schemas/DependantOn'
-        logScalingFactor:
-          format: double
-          description: >
-            A number that controls how fast the drop chance increases after reaching the
-            threshold. A higher number means slower growth; lower means faster.
-          type: number
-          example: 1000
-        spaceName:
-          description: The name  of the account this jackpot belongs to
-          type: string
-          example: first-space
-        accountId:
-          description: The id  of the account this jackpot belongs to
-          type: string
     InstantWin:
       description: ''
       type: object
@@ -22579,6 +22164,368 @@ components:
             jackpot drop amounts.
           type: string
           example: '2025-07-15T14:35:00Z'
+    JackpotConfigType:
+      description: The type of jackpot config
+      enum:
+        - SINGLE
+        - TIMEDRIVEN
+        - MULTILEVEL
+      type: string
+      readOnly: true
+    UpdateJackpotConfigRequest:
+      description: 'Jackpot configuration that controls how contributions, pool amounts, and payouts work'
+      type: object
+      allOf:
+        -
+          $ref: '#/components/schemas/UpdateModelDefault'
+        -
+          $ref: '#/components/schemas/UpdateOptParamModels'
+      properties:
+        id:
+          description: Unique ID of this jackpot config
+          type: string
+          example: '123456'
+        name:
+          description: Human-friendly jackpot name
+          type: string
+          example: Daily Drop
+        description:
+          description: Longer text description of the jackpot
+          type: string
+          example: Drops every day at midnight UTC.
+        type:
+          $ref: '#/components/schemas/JackpotConfigType'
+          description: Jackpot type
+          example: SINGLE
+        startDate:
+          format: date-time
+          description: The date and time when this jackpot starts running
+          type: string
+          example: '2025-01-01T00:00:00Z'
+        endDate:
+          format: date-time
+          description: The date and time when this jackpot stops running (if any)
+          type: string
+          example: '2025-12-31T23:59:59Z'
+        operatorSplitPercentage:
+          format: double
+          description: >
+            The percentage of each player's contribution that goes to the operator's share of the
+            jackpot. For example, if this is 20, and a player contributes 100, then 20 goes to the
+            operator pool.
+          maximum: 100
+          minimum: 0
+          type: number
+          example: 20
+        memberSplitPercentage:
+          format: double
+          description: >
+            The percentage of each player's contribution that goes to the player's share of the
+            jackpot. For example, if this is 80, and a player contributes 100, then 80 goes to the
+            player pool.
+          maximum: 100
+          minimum: 0
+          type: number
+          example: 80
+        mustDropAfterHours:
+          format: int64
+          description: >
+            If this number of hours passes without a winner, the jackpot is forced to drop to
+            someone.
+          type: integer
+          example: 48
+        jackpotThreshold:
+          format: int64
+          description: |
+            When the pool reaches this amount, the chance of dropping starts increasing faster.
+          type: integer
+          example: 50
+        payouts:
+          format: int64
+          description: |
+            How many times this jackpot can pay out before it ends.
+          type: integer
+          example: 10
+        dropAmount:
+          description: |
+            The amount that will be paid out to a winner when the jackpot drops.
+          type: number
+          example: 1000
+        seedAmount:
+          description: |
+            The starting amount of the jackpot when this config is created.
+          type: number
+          example: 500
+        eventActions:
+          $ref: '#/components/schemas/DependantOn'
+        productTags:
+          $ref: '#/components/schemas/DependantOn'
+        productIds:
+          description: Product IDs for the config
+          type: array
+          items:
+            type: string
+        dropProbability:
+          format: double
+          description: >
+            The base chance of the jackpot dropping with each contribution. For example, 0.002
+            means a 0.2% chance per entry.
+          maximum: 1
+          minimum: 0
+          type: number
+          example: 0.002
+        logScalingFactor:
+          format: double
+          description: >
+            A number that controls how fast the drop chance increases after reaching the
+            threshold. A higher number means slower growth; lower means faster.
+          type: number
+          example: 1000
+    JackpotConfig:
+      description: 'Jackpot configuration that controls how contributions, pool amounts, and payouts work'
+      type: object
+      allOf:
+        -
+          $ref: '#/components/schemas/ModelDefault'
+        -
+          $ref: '#/components/schemas/OptParamModels'
+      properties:
+        id:
+          description: Unique ID of this jackpot config
+          type: string
+          example: '123456'
+        name:
+          description: Human-friendly jackpot name
+          type: string
+          example: Daily Drop
+        description:
+          description: Longer text description of the jackpot
+          type: string
+          example: Drops every day at midnight UTC.
+        type:
+          $ref: '#/components/schemas/JackpotConfigType'
+          description: Jackpot type
+          example: SINGLE
+        status:
+          $ref: '#/components/schemas/JackpotConfigStatus'
+          description: Jackpot status
+          example: ACTIVE
+        startDate:
+          format: date-time
+          description: The date and time when this jackpot starts running
+          type: string
+          example: '2025-01-01T00:00:00Z'
+        endDate:
+          format: date-time
+          description: The date and time when this jackpot stops running (if any)
+          type: string
+          example: '2025-12-31T23:59:59Z'
+        created:
+          format: date-time
+          description: When this config was created
+          type: string
+          example: '2025-01-01T10:00:00Z'
+        operatorSplitPercentage:
+          format: double
+          description: >
+            The percentage of each player's contribution that goes to the operator's share of the
+            jackpot. For example, if this is 20, and a player contributes 100, then 20 goes to the
+            operator pool.
+          type: number
+          example: 20
+        memberSplitPercentage:
+          format: double
+          description: >
+            The percentage of each player's contribution that goes to the player's share of the
+            jackpot. For example, if this is 80, and a player contributes 100, then 80 goes to the
+            player pool.
+          type: number
+          example: 80
+        currentPoolAmount:
+          description: >
+            The total amount of money currently in the jackpot pool (both player and operator
+            contributions).
+          type: number
+          example: 12500.5
+        mustDropAfterHours:
+          format: int64
+          description: >
+            If this number of hours passes without a winner, the jackpot is forced to drop to
+            someone.
+          type: integer
+          example: 48
+        jackpotThreshold:
+          format: int64
+          description: |
+            When the pool reaches this amount, the chance of dropping starts increasing faster.
+          type: integer
+          example: 50
+        payouts:
+          format: int64
+          description: |
+            How many times this jackpot can pay out before it ends.
+          type: integer
+          example: 10
+        dropAmount:
+          description: |
+            The amount that will be paid out to a winner when the jackpot drops.
+          type: number
+          example: 1000
+        seedAmount:
+          description: |
+            The starting amount of the jackpot when this config is created.
+          type: number
+          example: 500
+        dropProbability:
+          format: double
+          description: >
+            The base chance of the jackpot dropping with each contribution. For example, 0.002
+            means a 0.2% chance per entry.
+          type: number
+          example: 0.002
+        eventActions:
+          $ref: '#/components/schemas/DependantOn'
+        productTags:
+          $ref: '#/components/schemas/DependantOn'
+        productIds:
+          description: Product IDs for the config
+          type: array
+          items:
+            type: string
+        logScalingFactor:
+          format: double
+          description: >
+            A number that controls how fast the drop chance increases after reaching the
+            threshold. A higher number means slower growth; lower means faster.
+          type: number
+          example: 1000
+        spaceName:
+          description: The name of the account this jackpot belongs to
+          type: string
+          example: first-space
+        accountId:
+          description: The id of the account this jackpot belongs to
+          type: string
+    CreateJackpotConfigRequest:
+      description: 'Jackpot configuration that controls how contributions, pool amounts, and payouts work'
+      type: object
+      allOf:
+        -
+          $ref: '#/components/schemas/CreateOptParamModels'
+        -
+          required:
+            - name
+            - type
+            - startDate
+            - payouts
+            - dropAmount
+            - seedAmount
+            - dropProbability
+      properties:
+        name:
+          description: Human-friendly jackpot name
+          type: string
+          example: Daily Drop
+        description:
+          description: Longer text description of the jackpot
+          type: string
+          example: Drops every day at midnight UTC.
+        type:
+          $ref: '#/components/schemas/JackpotConfigType'
+          description: Jackpot type
+          example: SINGLE
+        startDate:
+          format: date-time
+          description: The date and time when this jackpot starts running
+          type: string
+          example: '2025-01-01T00:00:00Z'
+        endDate:
+          format: date-time
+          description: The date and time when this jackpot stops running (if any)
+          type: string
+          example: '2025-12-31T23:59:59Z'
+        operatorSplitPercentage:
+          format: double
+          description: >
+            The percentage of each player's contribution that goes to the operator's share of the
+            jackpot.
+          maximum: 100
+          minimum: 0
+          type: number
+          example: 20
+        memberSplitPercentage:
+          format: double
+          description: >
+            The percentage of each player's contribution that goes to the player's share of the
+            jackpot.
+          maximum: 100
+          minimum: 0
+          type: number
+          example: 80
+        mustDropAfterHours:
+          format: int64
+          description: >
+            If this number of hours passes without a winner, the jackpot is forced to drop to
+            someone.
+          type: integer
+          example: 48
+        jackpotThreshold:
+          format: int64
+          description: |
+            When the pool reaches this amount, the chance of dropping starts increasing faster.
+          type: integer
+          example: 50
+        payouts:
+          format: int64
+          description: |
+            How many times this jackpot can pay out before it ends.
+          type: integer
+          example: 10
+        dropAmount:
+          description: |
+            The amount that will be paid out to a winner when the jackpot drops.
+          type: number
+          example: 1000
+        eventActions:
+          $ref: '#/components/schemas/DependantOn'
+        productTags:
+          $ref: '#/components/schemas/DependantOn'
+        productIds:
+          description: Product IDs for the config
+          type: array
+          items:
+            type: string
+        seedAmount:
+          description: |
+            The starting amount of the jackpot when this config is created.
+          type: number
+          example: 500
+        dropProbability:
+          format: double
+          description: >
+            The base chance of the jackpot dropping with each contribution. For example, 0.002
+            means a 0.2% chance per entry.
+          maximum: 1
+          minimum: 0
+          type: number
+          example: 0.002
+        logScalingFactor:
+          format: double
+          description: >
+            A number that controls how fast the drop chance increases after reaching the
+            threshold.
+          type: number
+          example: 1000
+    JackpotConfigStatus:
+      description: The status of jackpot config
+      enum:
+        - ACTIVE
+        - READY
+        - FINISHED
+        - CANCELLED
+        - DELETED
+      type: string
+      readOnly: true
   responses:
     ApiResponseBody:
       content:
