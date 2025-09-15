@@ -101,7 +101,7 @@ public class JackpotConfigsApiTest implements tests.utils.CompleteableFutureTest
         final var createRequest = loadTestData.getCreateRequestAsList(request);
         final var createResponse = loadTestData.createTestData(createRequest);
         final var id = createResponse.getResults().get(0).getId();
-           Thread.sleep(7000);
+           Thread.sleep(3000);
         final var ids = List.of(id);
         final var limit = 1;
         final var skip = 0;
@@ -122,5 +122,26 @@ public class JackpotConfigsApiTest implements tests.utils.CompleteableFutureTest
 
     }
 
+    @Test
+    @Order(3)
+    public void deleteJackpotConfigSingleIdReturnOkTest() throws ApiException, InterruptedException {
+        final var request = loadTestData.getCreateRequest();
+        final var createRequest = loadTestData.getCreateRequestAsList(request);
+        final var createResponse = loadTestData.createTestData(createRequest);
+        final var id = createResponse.getResults().get(0).getId();
+        Thread.sleep(3000);
+        final var ids = List.of(id);
+        final var limit = 1;
+        final var skip = 0;
+        final var response = $(api.deleteJackpotConfigs(ids));
 
+        assertNotNull(response);
+        assertNotNull(response.getResults());
+        assertNotNull(response.getErrors());
+        assertTrue(response.getErrors().isEmpty(), "Should have no errors");
+        assertEquals(limit, response.getMeta().getResultCount(), "Should has single result");
+
+
+
+    }
 }

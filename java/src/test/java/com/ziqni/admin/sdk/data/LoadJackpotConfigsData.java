@@ -9,6 +9,7 @@ import com.ziqni.admin.sdk.util.ApiClientFactoryUtil;
 import tests.utils.CompleteableFutureTestWrapper;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Map;
@@ -38,7 +39,7 @@ public class LoadJackpotConfigsData implements CompleteableFutureTestWrapper {
                 .mustDropAfterHours(48L)
                 .jackpotThreshold(10000L)
                 .payouts(10L)
-                .dropAmount(new BigDecimal("25"))
+                .dropAmount(new BigDecimal("25").setScale(2, RoundingMode.HALF_UP))
                 .seedAmount(new BigDecimal("5"))
                 .dropProbability(0.002)
                 .logScalingFactor(1000.0)
