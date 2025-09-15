@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **type** | **JackpotConfigType** |  |  [optional]
 **startDate** | **OffsetDateTime** | The date and time when this jackpot starts running |  [optional]
 **endDate** | **OffsetDateTime** | The date and time when this jackpot stops running (if any) |  [optional]
+**contributionPercentage** | **Double** | Fraction (0–1) of each qualifying amount that is actually contributed to the pool *before* applying operator/member splits. For example, 0.10 means 10% of a qualifying amount goes into the pool.  |  [optional]
 **operatorSplitPercentage** | **Double** | The percentage of each player&#39;s contribution that goes to the operator&#39;s share of the jackpot. For example, if this is 20, and a player contributes 100, then 20 goes to the operator pool.  |  [optional]
 **memberSplitPercentage** | **Double** | The percentage of each player&#39;s contribution that goes to the player&#39;s share of the jackpot. For example, if this is 80, and a player contributes 100, then 80 goes to the player pool.  |  [optional]
 **mustDropAfterHours** | **Long** | If this number of hours passes without a winner, the jackpot is forced to drop to someone.  |  [optional]

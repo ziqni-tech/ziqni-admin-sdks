@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **description** | **String** | Longer text description of the jackpot |  [optional]
 **type** | **JackpotConfigType** |  |  [optional]
 **status** | **JackpotConfigStatus** |  |  [optional]
+**contributionPercentage** | **Double** | Fraction (0–1) of each qualifying amount that is actually contributed to the pool *before* applying operator/member splits. For example, 0.10 means 10% of a qualifying amount goes into the pool.  |  [optional]
 **startDate** | **OffsetDateTime** | The date and time when this jackpot starts running |  [optional]
 **endDate** | **OffsetDateTime** | The date and time when this jackpot stops running (if any) |  [optional]
 **created** | **OffsetDateTime** | When this config was created |  [optional]

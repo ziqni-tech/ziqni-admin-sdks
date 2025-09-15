@@ -95,6 +95,57 @@ public class JackpotConfigsApiTest implements tests.utils.CompleteableFutureTest
 
     }
     @Test
+    @Order(1)
+    public void updateJackpotConfigTest() throws ApiException, InterruptedException {
+        final var createRequest = loadTestData.getCreateRequestAsList(1);
+        final var createResponse = loadTestData.createTestData(createRequest);
+        final var id = createResponse.getResults().get(0).getId();
+
+        Thread.sleep(5000);
+
+        //GIVEN
+
+        String updatedName = "Updated name";
+        final var given = new UpdateJackpotConfigRequest()
+                .id(id)
+                .description("Updated Desc")
+                .name(updatedName);
+
+
+
+//        WHEN
+        final var response = $(api.updateJackpotConfigs(List.of(given)));
+
+//        THAN
+        assertNotNull(response);
+        assertNotNull(response.getResults());
+        assertNotNull(response.getErrors());
+        assertEquals(1, response.getResults().size(), "Should contain updated entity");
+        assertNotNull(response.getResults().get(0).getId(), "Created entity should has id");
+
+        final var updatedId = response.getResults().get(0).getId();
+        Thread.sleep(3000);
+        final var ids = List.of(updatedId);
+        final var limit = 1;
+        final var skip = 0;
+        final var updatedResponse = $(api.getJackpotConfigs(ids, limit, skip));
+
+        assertNotNull(updatedResponse);
+        assertNotNull(updatedResponse.getResults());
+        assertEquals(1, updatedResponse.getResults().size(), "Should contain entity");
+
+        final var item = updatedResponse.getResults().get(0);
+
+        assertEquals(id, item.getId(), "Found id should be equal to requested");
+
+        assertNotNull(item.getName());
+        assertEquals(updatedName,item.getName());
+
+
+        idsToDelete.add(id);
+
+    }
+    @Test
     @Order(2)
     public void getJackpotConfigSingleIdReturnOkTest() throws ApiException, InterruptedException {
         final var request = loadTestData.getCreateRequest();
@@ -140,8 +191,5 @@ public class JackpotConfigsApiTest implements tests.utils.CompleteableFutureTest
         assertNotNull(response.getErrors());
         assertTrue(response.getErrors().isEmpty(), "Should have no errors");
         assertEquals(limit, response.getMeta().getResultCount(), "Should has single result");
-
-
-
     }
 }
