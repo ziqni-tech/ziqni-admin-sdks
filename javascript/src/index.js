@@ -112,6 +112,7 @@ import CreateFileObjectRequestAllOf from './model/CreateFileObjectRequestAllOf';
 import CreateInstantWinRequest from './model/CreateInstantWinRequest';
 import CreateInstantWinRequestAllOf from './model/CreateInstantWinRequestAllOf';
 import CreateInstantWinTile from './model/CreateInstantWinTile';
+import CreateJackpotConfigRequest from './model/CreateJackpotConfigRequest';
 import CreateLanguageRequest from './model/CreateLanguageRequest';
 import CreateLanguageRequestAllOf from './model/CreateLanguageRequestAllOf';
 import CreateMemberMessageRequest from './model/CreateMemberMessageRequest';
@@ -218,6 +219,12 @@ import InstantWinStatus from './model/InstantWinStatus';
 import InstantWinStatusRequest from './model/InstantWinStatusRequest';
 import InstantWinStatusRequestAllOf from './model/InstantWinStatusRequestAllOf';
 import InstantWinTile from './model/InstantWinTile';
+import JackpotConfig from './model/JackpotConfig';
+import JackpotConfigResponse from './model/JackpotConfigResponse';
+import JackpotConfigStatus from './model/JackpotConfigStatus';
+import JackpotConfigType from './model/JackpotConfigType';
+import JackpotContribution from './model/JackpotContribution';
+import JackpotContributionResponse from './model/JackpotContributionResponse';
 import Language from './model/Language';
 import LanguageResponse from './model/LanguageResponse';
 import Languages from './model/Languages';
@@ -377,6 +384,7 @@ import UpdateFileObjectRequestAllOf from './model/UpdateFileObjectRequestAllOf';
 import UpdateInstantWinRequest from './model/UpdateInstantWinRequest';
 import UpdateInstantWinRequestAllOf from './model/UpdateInstantWinRequestAllOf';
 import UpdateInstantWinTile from './model/UpdateInstantWinTile';
+import UpdateJackpotConfigRequest from './model/UpdateJackpotConfigRequest';
 import UpdateLanguageRequest from './model/UpdateLanguageRequest';
 import UpdateMemberRequest from './model/UpdateMemberRequest';
 import UpdateMemberRequestAllOf from './model/UpdateMemberRequestAllOf';
@@ -453,6 +461,8 @@ import FileRepositoriesApi from './api/FileRepositoriesApi';
 import GoalsApi from './api/GoalsApi';
 import GraphsApi from './api/GraphsApi';
 import InstantWinsApi from './api/InstantWinsApi';
+import JackpotConfigsApi from './api/JackpotConfigsApi';
+import JackpotContributionsApi from './api/JackpotContributionsApi';
 import LanguagesApi from './api/LanguagesApi';
 import LeaderboardApi from './api/LeaderboardApi';
 import LogEventsApi from './api/LogEventsApi';
@@ -1108,6 +1118,12 @@ export {
     CreateInstantWinTile,
 
     /**
+     * The CreateJackpotConfigRequest model constructor.
+     * @property {module:model/CreateJackpotConfigRequest}
+     */
+    CreateJackpotConfigRequest,
+
+    /**
      * The CreateLanguageRequest model constructor.
      * @property {module:model/CreateLanguageRequest}
      */
@@ -1742,6 +1758,42 @@ export {
      * @property {module:model/InstantWinTile}
      */
     InstantWinTile,
+
+    /**
+     * The JackpotConfig model constructor.
+     * @property {module:model/JackpotConfig}
+     */
+    JackpotConfig,
+
+    /**
+     * The JackpotConfigResponse model constructor.
+     * @property {module:model/JackpotConfigResponse}
+     */
+    JackpotConfigResponse,
+
+    /**
+     * The JackpotConfigStatus model constructor.
+     * @property {module:model/JackpotConfigStatus}
+     */
+    JackpotConfigStatus,
+
+    /**
+     * The JackpotConfigType model constructor.
+     * @property {module:model/JackpotConfigType}
+     */
+    JackpotConfigType,
+
+    /**
+     * The JackpotContribution model constructor.
+     * @property {module:model/JackpotContribution}
+     */
+    JackpotContribution,
+
+    /**
+     * The JackpotContributionResponse model constructor.
+     * @property {module:model/JackpotContributionResponse}
+     */
+    JackpotContributionResponse,
 
     /**
      * The Language model constructor.
@@ -2698,6 +2750,12 @@ export {
     UpdateInstantWinTile,
 
     /**
+     * The UpdateJackpotConfigRequest model constructor.
+     * @property {module:model/UpdateJackpotConfigRequest}
+     */
+    UpdateJackpotConfigRequest,
+
+    /**
      * The UpdateLanguageRequest model constructor.
      * @property {module:model/UpdateLanguageRequest}
      */
@@ -3152,6 +3210,18 @@ export {
     * @property {module:api/InstantWinsApi}
     */
     InstantWinsApi,
+
+    /**
+    * The JackpotConfigsApi service constructor.
+    * @property {module:api/JackpotConfigsApi}
+    */
+    JackpotConfigsApi,
+
+    /**
+    * The JackpotContributionsApi service constructor.
+    * @property {module:api/JackpotContributionsApi}
+    */
+    JackpotContributionsApi,
 
     /**
     * The LanguagesApi service constructor.

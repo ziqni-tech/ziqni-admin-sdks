@@ -49,9 +49,6 @@ class EntrantExport {
         if (data) {
             obj = obj || new EntrantExport();
 
-            if (data.hasOwnProperty('created')) {
-                obj['created'] = ApiClient.convertToType(data['created'], 'Date');
-            }
             if (data.hasOwnProperty('memberId')) {
                 obj['memberId'] = ApiClient.convertToType(data['memberId'], 'String');
             }
@@ -76,18 +73,15 @@ class EntrantExport {
             if (data.hasOwnProperty('rewards')) {
                 obj['rewards'] = ApiClient.convertToType(data['rewards'], [Reward]);
             }
+            if (data.hasOwnProperty('timeStamp')) {
+                obj['timeStamp'] = ApiClient.convertToType(data['timeStamp'], 'Date');
+            }
         }
         return obj;
     }
 
 
 }
-
-/**
- * ISO8601 timestamp for when a Model was created. All records are stored in UTC time zone
- * @member {Date} created
- */
-EntrantExport.prototype['created'] = undefined;
 
 /**
  * @member {String} memberId
@@ -132,6 +126,12 @@ EntrantExport.prototype['awards'] = undefined;
  * @member {Array.<module:model/Reward>} rewards
  */
 EntrantExport.prototype['rewards'] = undefined;
+
+/**
+ * ISO8601 timestamp for when a Model was created. All records are stored in UTC time zone
+ * @member {Date} timeStamp
+ */
+EntrantExport.prototype['timeStamp'] = undefined;
 
 
 

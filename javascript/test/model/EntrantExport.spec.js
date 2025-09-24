@@ -54,12 +54,6 @@
       //expect(instance).to.be.a(@ZiqniTechAdminApiClient.EntrantExport);
     });
 
-    it('should have the property created (base name: "created")', function() {
-      // uncomment below and update the code to test the property created
-      //var instance = new @ZiqniTechAdminApiClient.EntrantExport();
-      //expect(instance).to.be();
-    });
-
     it('should have the property memberId (base name: "memberId")', function() {
       // uncomment below and update the code to test the property memberId
       //var instance = new @ZiqniTechAdminApiClient.EntrantExport();
@@ -104,6 +98,12 @@
 
     it('should have the property rewards (base name: "rewards")', function() {
       // uncomment below and update the code to test the property rewards
+      //var instance = new @ZiqniTechAdminApiClient.EntrantExport();
+      //expect(instance).to.be();
+    });
+
+    it('should have the property timeStamp (base name: "timeStamp")', function() {
+      // uncomment below and update the code to test the property timeStamp
       //var instance = new @ZiqniTechAdminApiClient.EntrantExport();
       //expect(instance).to.be();
     });
