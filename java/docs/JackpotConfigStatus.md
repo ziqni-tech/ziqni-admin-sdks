@@ -1,5 +1,3 @@
-
-
 # JackpotConfigStatus
 
 ## Enum
