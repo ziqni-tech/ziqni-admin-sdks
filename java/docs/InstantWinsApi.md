@@ -22,6 +22,8 @@ Method | HTTP request | Description
 [**getInstantWinsByQueryWithHttpInfo**](InstantWinsApi.md#getInstantWinsByQueryWithHttpInfo) | **POST** /instant-wins/query | Get instant wins by query
 [**updateInstantWins**](InstantWinsApi.md#updateInstantWins) | **PUT** /instant-wins | Update instant wins
 [**updateInstantWinsWithHttpInfo**](InstantWinsApi.md#updateInstantWinsWithHttpInfo) | **PUT** /instant-wins | Update instant wins
+[**updateInstantWinsStatus**](InstantWinsApi.md#updateInstantWinsStatus) | **PUT** /instant-wins/state | 
+[**updateInstantWinsStatusWithHttpInfo**](InstantWinsApi.md#updateInstantWinsStatusWithHttpInfo) | **PUT** /instant-wins/state | 
 
 
 
@@ -1532,4 +1534,175 @@ CompletableFuture<ApiResponse<[**ModelApiResponse**](ModelApiResponse.md)>>
 | **404** | A list of outcomes and/or errors |  -  |
 | **500** | A list of outcomes and/or errors |  -  |
 | **501** | A list of outcomes and/or errors |  -  |
+
+
+## updateInstantWinsStatus
+
+> CompletableFuture<ModelApiResponse> updateInstantWinsStatus(body)
+
+
+
+Manage the state of achievement - Draft, Live, Archived
+
+### Example
+
+```java
+// Import classes:
+import com.ziqni.admin.sdk.ApiClient;
+import com.ziqni.admin.sdk.ApiException;
+import com.ziqni.admin.sdk.Configuration;
+import com.ziqni.admin.sdk.auth.*;
+import com.ziqni.admin.sdk.models.*;
+import com.ziqni.admin.sdk.api.InstantWinsApi;
+import java.util.concurrent.CompletableFuture;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://api.ziqni.com");
+        
+        // Configure OAuth2 access token for authorization: OAuth2
+        OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
+        OAuth2.setAccessToken("YOUR ACCESS TOKEN");
+
+        InstantWinsApi apiInstance = new InstantWinsApi(defaultClient);
+        List<InstantWinStatusRequest> body = Arrays.asList(); // List<InstantWinStatusRequest> | Updates the state of the Achievement
+        try {
+            CompletableFuture<ModelApiResponse> result = apiInstance.updateInstantWinsStatus(body);
+            System.out.println(result.get());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling InstantWinsApi#updateInstantWinsStatus");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | [**List&lt;InstantWinStatusRequest&gt;**](InstantWinStatusRequest.md)| Updates the state of the Achievement | [optional]
+
+### Return type
+
+CompletableFuture<[**ModelApiResponse**](ModelApiResponse.md)>
+
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | A list of outcomes and/or errors |  -  |
+| **202** | Accepted |  -  |
+| **400** | A list of outcomes and/or errors |  -  |
+| **401** | A list of outcomes and/or errors |  -  |
+| **403** | A list of outcomes and/or errors |  -  |
+| **404** | A list of outcomes and/or errors |  -  |
+| **413** | A list of outcomes and/or errors |  -  |
+| **500** | A list of outcomes and/or errors |  -  |
+| **501** | A list of outcomes and/or errors |  -  |
+| **503** | A list of outcomes and/or errors |  -  |
+
+## updateInstantWinsStatusWithHttpInfo
+
+> CompletableFuture<ApiResponse<ModelApiResponse>> updateInstantWinsStatus updateInstantWinsStatusWithHttpInfo(body)
+
+
+
+Manage the state of achievement - Draft, Live, Archived
+
+### Example
+
+```java
+// Import classes:
+import com.ziqni.admin.sdk.ApiClient;
+import com.ziqni.admin.sdk.ApiException;
+import com.ziqni.admin.sdk.ApiResponse;
+import com.ziqni.admin.sdk.Configuration;
+import com.ziqni.admin.sdk.auth.*;
+import com.ziqni.admin.sdk.models.*;
+import com.ziqni.admin.sdk.api.InstantWinsApi;
+import java.util.concurrent.CompletableFuture;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://api.ziqni.com");
+        
+        // Configure OAuth2 access token for authorization: OAuth2
+        OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
+        OAuth2.setAccessToken("YOUR ACCESS TOKEN");
+
+        InstantWinsApi apiInstance = new InstantWinsApi(defaultClient);
+        List<InstantWinStatusRequest> body = Arrays.asList(); // List<InstantWinStatusRequest> | Updates the state of the Achievement
+        try {
+            CompletableFuture<ApiResponse<ModelApiResponse>> response = apiInstance.updateInstantWinsStatusWithHttpInfo(body);
+            System.out.println("Status code: " + response.get().getStatusCode());
+            System.out.println("Response headers: " + response.get().getHeaders());
+            System.out.println("Response body: " + response.get().getData());
+        } catch (InterruptedException | ExecutionException e) {
+            ApiException apiException = (ApiException)e.getCause();
+            System.err.println("Exception when calling InstantWinsApi#updateInstantWinsStatus");
+            System.err.println("Status code: " + apiException.getCode());
+            System.err.println("Response headers: " + apiException.getResponseHeaders());
+            System.err.println("Reason: " + apiException.getResponseBody());
+            e.printStackTrace();
+        } catch (ApiException e) {
+            System.err.println("Exception when calling InstantWinsApi#updateInstantWinsStatus");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | [**List&lt;InstantWinStatusRequest&gt;**](InstantWinStatusRequest.md)| Updates the state of the Achievement | [optional]
+
+### Return type
+
+CompletableFuture<ApiResponse<[**ModelApiResponse**](ModelApiResponse.md)>>
+
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | A list of outcomes and/or errors |  -  |
+| **202** | Accepted |  -  |
+| **400** | A list of outcomes and/or errors |  -  |
+| **401** | A list of outcomes and/or errors |  -  |
+| **403** | A list of outcomes and/or errors |  -  |
+| **404** | A list of outcomes and/or errors |  -  |
+| **413** | A list of outcomes and/or errors |  -  |
+| **500** | A list of outcomes and/or errors |  -  |
+| **501** | A list of outcomes and/or errors |  -  |
+| **503** | A list of outcomes and/or errors |  -  |
 

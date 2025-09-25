@@ -14,6 +14,8 @@ Method | HTTP request | Description
 [**getJackpotConfigsByQueryWithHttpInfo**](JackpotConfigsApi.md#getJackpotConfigsByQueryWithHttpInfo) | **POST** /jackpot-configs/query | Get jackpot configs by query
 [**updateJackpotConfigs**](JackpotConfigsApi.md#updateJackpotConfigs) | **PUT** /jackpot-configs | Update jackpot configs
 [**updateJackpotConfigsWithHttpInfo**](JackpotConfigsApi.md#updateJackpotConfigsWithHttpInfo) | **PUT** /jackpot-configs | Update jackpot configs
+[**updateJackpotConfigsStatus**](JackpotConfigsApi.md#updateJackpotConfigsStatus) | **PUT** /jackpot-configs/state | 
+[**updateJackpotConfigsStatusWithHttpInfo**](JackpotConfigsApi.md#updateJackpotConfigsStatusWithHttpInfo) | **PUT** /jackpot-configs/state | 
 
 
 
@@ -848,4 +850,175 @@ CompletableFuture<ApiResponse<[**ModelApiResponse**](ModelApiResponse.md)>>
 | **404** | A list of outcomes and/or errors |  -  |
 | **500** | A list of outcomes and/or errors |  -  |
 | **501** | A list of outcomes and/or errors |  -  |
+
+
+## updateJackpotConfigsStatus
+
+> CompletableFuture<ModelApiResponse> updateJackpotConfigsStatus(body)
+
+
+
+Manage the state of jackpot config - LIVE,DELETE
+
+### Example
+
+```java
+// Import classes:
+import com.ziqni.admin.sdk.ApiClient;
+import com.ziqni.admin.sdk.ApiException;
+import com.ziqni.admin.sdk.Configuration;
+import com.ziqni.admin.sdk.auth.*;
+import com.ziqni.admin.sdk.models.*;
+import com.ziqni.admin.sdk.api.JackpotConfigsApi;
+import java.util.concurrent.CompletableFuture;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://api.ziqni.com");
+        
+        // Configure OAuth2 access token for authorization: OAuth2
+        OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
+        OAuth2.setAccessToken("YOUR ACCESS TOKEN");
+
+        JackpotConfigsApi apiInstance = new JackpotConfigsApi(defaultClient);
+        List<JackpotConfigStatusRequest> body = Arrays.asList(); // List<JackpotConfigStatusRequest> | Updates the state of the Achievement
+        try {
+            CompletableFuture<ModelApiResponse> result = apiInstance.updateJackpotConfigsStatus(body);
+            System.out.println(result.get());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling JackpotConfigsApi#updateJackpotConfigsStatus");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | [**List&lt;JackpotConfigStatusRequest&gt;**](JackpotConfigStatusRequest.md)| Updates the state of the Achievement | [optional]
+
+### Return type
+
+CompletableFuture<[**ModelApiResponse**](ModelApiResponse.md)>
+
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | A list of outcomes and/or errors |  -  |
+| **202** | Accepted |  -  |
+| **400** | A list of outcomes and/or errors |  -  |
+| **401** | A list of outcomes and/or errors |  -  |
+| **403** | A list of outcomes and/or errors |  -  |
+| **404** | A list of outcomes and/or errors |  -  |
+| **413** | A list of outcomes and/or errors |  -  |
+| **500** | A list of outcomes and/or errors |  -  |
+| **501** | A list of outcomes and/or errors |  -  |
+| **503** | A list of outcomes and/or errors |  -  |
+
+## updateJackpotConfigsStatusWithHttpInfo
+
+> CompletableFuture<ApiResponse<ModelApiResponse>> updateJackpotConfigsStatus updateJackpotConfigsStatusWithHttpInfo(body)
+
+
+
+Manage the state of jackpot config - LIVE,DELETE
+
+### Example
+
+```java
+// Import classes:
+import com.ziqni.admin.sdk.ApiClient;
+import com.ziqni.admin.sdk.ApiException;
+import com.ziqni.admin.sdk.ApiResponse;
+import com.ziqni.admin.sdk.Configuration;
+import com.ziqni.admin.sdk.auth.*;
+import com.ziqni.admin.sdk.models.*;
+import com.ziqni.admin.sdk.api.JackpotConfigsApi;
+import java.util.concurrent.CompletableFuture;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://api.ziqni.com");
+        
+        // Configure OAuth2 access token for authorization: OAuth2
+        OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
+        OAuth2.setAccessToken("YOUR ACCESS TOKEN");
+
+        JackpotConfigsApi apiInstance = new JackpotConfigsApi(defaultClient);
+        List<JackpotConfigStatusRequest> body = Arrays.asList(); // List<JackpotConfigStatusRequest> | Updates the state of the Achievement
+        try {
+            CompletableFuture<ApiResponse<ModelApiResponse>> response = apiInstance.updateJackpotConfigsStatusWithHttpInfo(body);
+            System.out.println("Status code: " + response.get().getStatusCode());
+            System.out.println("Response headers: " + response.get().getHeaders());
+            System.out.println("Response body: " + response.get().getData());
+        } catch (InterruptedException | ExecutionException e) {
+            ApiException apiException = (ApiException)e.getCause();
+            System.err.println("Exception when calling JackpotConfigsApi#updateJackpotConfigsStatus");
+            System.err.println("Status code: " + apiException.getCode());
+            System.err.println("Response headers: " + apiException.getResponseHeaders());
+            System.err.println("Reason: " + apiException.getResponseBody());
+            e.printStackTrace();
+        } catch (ApiException e) {
+            System.err.println("Exception when calling JackpotConfigsApi#updateJackpotConfigsStatus");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | [**List&lt;JackpotConfigStatusRequest&gt;**](JackpotConfigStatusRequest.md)| Updates the state of the Achievement | [optional]
+
+### Return type
+
+CompletableFuture<ApiResponse<[**ModelApiResponse**](ModelApiResponse.md)>>
+
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | A list of outcomes and/or errors |  -  |
+| **202** | Accepted |  -  |
+| **400** | A list of outcomes and/or errors |  -  |
+| **401** | A list of outcomes and/or errors |  -  |
+| **403** | A list of outcomes and/or errors |  -  |
+| **404** | A list of outcomes and/or errors |  -  |
+| **413** | A list of outcomes and/or errors |  -  |
+| **500** | A list of outcomes and/or errors |  -  |
+| **501** | A list of outcomes and/or errors |  -  |
+| **503** | A list of outcomes and/or errors |  -  |
 

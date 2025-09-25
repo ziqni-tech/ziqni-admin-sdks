@@ -8287,7 +8287,7 @@ paths:
               items:
                 $ref: '#/components/schemas/InstantWinStatusRequest'
       tags:
-        - achievements
+        - instant-wins
       responses:
         '201':
           $ref: '#/components/responses/ApiResponseBody'
@@ -8746,44 +8746,6 @@ paths:
         Retrieve Wallet types from Ziqni database by unique Wallet Types ID's or any other POST body
         parameters using the POST method
       x-codegen-request-body-name: body
-  /file-objects/upload:
-    post:
-      requestBody:
-        description: Create or update file objects and binaries in your Ziqni space
-        content:
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/UpdateFileObjectFormRequest'
-        required: true
-      tags:
-        - file-objects
-      responses:
-        '200':
-          $ref: '#/components/responses/ApiResponseBody'
-        '400':
-          $ref: '#/components/responses/ApiResponseBody'
-        '401':
-          $ref: '#/components/responses/ApiResponseBody'
-        '403':
-          $ref: '#/components/responses/ApiResponseBody'
-        '404':
-          $ref: '#/components/responses/ApiResponseBody'
-        '413':
-          $ref: '#/components/responses/ApiResponseBody'
-        '500':
-          $ref: '#/components/responses/ApiResponseBody'
-        '501':
-          $ref: '#/components/responses/ApiResponseBody'
-        '503':
-          $ref: '#/components/responses/ApiResponseBody'
-      security:
-        -
-          OAuth2:
-            - ManageObjects
-      operationId: uploadFileObjects
-      description: Create or update file objects and binaries in your Ziqni space
-      x-codegen-request-body-name: body
-      x-ws-ignore: true
   /wallets/manage-transaction:
     post:
       requestBody:
@@ -9382,6 +9344,84 @@ paths:
       x-codegen-request-body-name: body
       x-vue-item: JackpotContributions
       x-vue-list: JackpotContributions
+  /file-objects/upload:
+    post:
+      requestBody:
+        description: Create or update file objects and binaries in your Ziqni space
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/UpdateFileObjectFormRequest'
+        required: true
+      tags:
+        - file-objects
+      responses:
+        '200':
+          $ref: '#/components/responses/ApiResponseBody'
+        '400':
+          $ref: '#/components/responses/ApiResponseBody'
+        '401':
+          $ref: '#/components/responses/ApiResponseBody'
+        '403':
+          $ref: '#/components/responses/ApiResponseBody'
+        '404':
+          $ref: '#/components/responses/ApiResponseBody'
+        '413':
+          $ref: '#/components/responses/ApiResponseBody'
+        '500':
+          $ref: '#/components/responses/ApiResponseBody'
+        '501':
+          $ref: '#/components/responses/ApiResponseBody'
+        '503':
+          $ref: '#/components/responses/ApiResponseBody'
+      security:
+        -
+          OAuth2:
+            - ManageObjects
+      operationId: uploadFileObjects
+      description: Create or update file objects and binaries in your Ziqni space
+      x-codegen-request-body-name: body
+      x-ws-ignore: true
+  /jackpot-configs/state:
+    put:
+      requestBody:
+        description: Updates the state of the Achievement
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/JackpotConfigStatusRequest'
+      tags:
+        - jackpot-configs
+      responses:
+        '201':
+          $ref: '#/components/responses/ApiResponseBody'
+        '202':
+          description: Accepted
+        '400':
+          $ref: '#/components/responses/ApiResponseBody'
+        '401':
+          $ref: '#/components/responses/ApiResponseBody'
+        '403':
+          $ref: '#/components/responses/ApiResponseBody'
+        '404':
+          $ref: '#/components/responses/ApiResponseBody'
+        '413':
+          $ref: '#/components/responses/ApiResponseBody'
+        '500':
+          $ref: '#/components/responses/ApiResponseBody'
+        '501':
+          $ref: '#/components/responses/ApiResponseBody'
+        '503':
+          $ref: '#/components/responses/ApiResponseBody'
+      security:
+        -
+          OAuth2:
+            - ManageAchievements
+      operationId: updateJackpotConfigsStatus
+      description: 'Manage the state of jackpot config - LIVE,DELETE'
+      x-codegen-request-body-name: body
 components:
   schemas:
     ProductReduced:
@@ -22180,6 +22220,8 @@ components:
         - FINISHED
         - CANCELLED
         - DELETED
+        - STOPPED
+        - PAUSED
       type: string
       readOnly: true
     JackpotConfig:
@@ -22556,6 +22598,23 @@ components:
             threshold.
           type: number
           example: 1000
+    JackpotConfigStatusRequest:
+      allOf:
+        -
+          $ref: '#/components/schemas/UpdateModelDefault'
+        -
+          required:
+            - status
+            - items
+          type: object
+          properties:
+            status:
+              $ref: '#/components/schemas/JackpotConfigStatus'
+            items:
+              description: ''
+              type: array
+              items:
+                type: string
   responses:
     ApiResponseBody:
       content:
