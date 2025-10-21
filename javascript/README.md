@@ -242,6 +242,12 @@ Class | Method | HTTP request | Description
 *@ZiqniTechAdminApiClient.InstantWinsApi* | [**getInstantWins**](docs/InstantWinsApi.md#getInstantWins) | **GET** /instant-wins | Get instant wins
 *@ZiqniTechAdminApiClient.InstantWinsApi* | [**getInstantWinsByQuery**](docs/InstantWinsApi.md#getInstantWinsByQuery) | **POST** /instant-wins/query | Get instant wins by query
 *@ZiqniTechAdminApiClient.InstantWinsApi* | [**updateInstantWins**](docs/InstantWinsApi.md#updateInstantWins) | **PUT** /instant-wins | Update instant wins
+*@ZiqniTechAdminApiClient.JackpotConfigsApi* | [**createJackpotConfigs**](docs/JackpotConfigsApi.md#createJackpotConfigs) | **POST** /jackpot-configs | Create jackpot configs
+*@ZiqniTechAdminApiClient.JackpotConfigsApi* | [**deleteJackpotConfigs**](docs/JackpotConfigsApi.md#deleteJackpotConfigs) | **DELETE** /jackpot-configs | Delete jackpot configs
+*@ZiqniTechAdminApiClient.JackpotConfigsApi* | [**getJackpotConfigs**](docs/JackpotConfigsApi.md#getJackpotConfigs) | **GET** /jackpot-configs | Get jackpot configs
+*@ZiqniTechAdminApiClient.JackpotConfigsApi* | [**getJackpotConfigsByQuery**](docs/JackpotConfigsApi.md#getJackpotConfigsByQuery) | **POST** /jackpot-configs/query | Get jackpot configs by query
+*@ZiqniTechAdminApiClient.JackpotConfigsApi* | [**updateJackpotConfigs**](docs/JackpotConfigsApi.md#updateJackpotConfigs) | **PUT** /jackpot-configs | Update jackpot configs
+*@ZiqniTechAdminApiClient.JackpotContributionsApi* | [**getJackpotContributions**](docs/JackpotContributionsApi.md#getJackpotContributions) | **GET** /jackpot-contributions | Get jackpot contributions by member
 *@ZiqniTechAdminApiClient.LanguagesApi* | [**createLanguages**](docs/LanguagesApi.md#createLanguages) | **POST** /languages | 
 *@ZiqniTechAdminApiClient.LanguagesApi* | [**deleteLanguages**](docs/LanguagesApi.md#deleteLanguages) | **DELETE** /languages | 
 *@ZiqniTechAdminApiClient.LanguagesApi* | [**deleteLanguagesByQuery**](docs/LanguagesApi.md#deleteLanguagesByQuery) | **POST** /languages/delete | 
@@ -450,6 +456,7 @@ Class | Method | HTTP request | Description
  - [@ZiqniTechAdminApiClient.CreateInstantWinRequest](docs/CreateInstantWinRequest.md)
  - [@ZiqniTechAdminApiClient.CreateInstantWinRequestAllOf](docs/CreateInstantWinRequestAllOf.md)
  - [@ZiqniTechAdminApiClient.CreateInstantWinTile](docs/CreateInstantWinTile.md)
+ - [@ZiqniTechAdminApiClient.CreateJackpotConfigRequest](docs/CreateJackpotConfigRequest.md)
  - [@ZiqniTechAdminApiClient.CreateLanguageRequest](docs/CreateLanguageRequest.md)
  - [@ZiqniTechAdminApiClient.CreateLanguageRequestAllOf](docs/CreateLanguageRequestAllOf.md)
  - [@ZiqniTechAdminApiClient.CreateMemberMessageRequest](docs/CreateMemberMessageRequest.md)
@@ -556,6 +563,12 @@ Class | Method | HTTP request | Description
  - [@ZiqniTechAdminApiClient.InstantWinStatusRequest](docs/InstantWinStatusRequest.md)
  - [@ZiqniTechAdminApiClient.InstantWinStatusRequestAllOf](docs/InstantWinStatusRequestAllOf.md)
  - [@ZiqniTechAdminApiClient.InstantWinTile](docs/InstantWinTile.md)
+ - [@ZiqniTechAdminApiClient.JackpotConfig](docs/JackpotConfig.md)
+ - [@ZiqniTechAdminApiClient.JackpotConfigResponse](docs/JackpotConfigResponse.md)
+ - [@ZiqniTechAdminApiClient.JackpotConfigStatus](docs/JackpotConfigStatus.md)
+ - [@ZiqniTechAdminApiClient.JackpotConfigType](docs/JackpotConfigType.md)
+ - [@ZiqniTechAdminApiClient.JackpotContribution](docs/JackpotContribution.md)
+ - [@ZiqniTechAdminApiClient.JackpotContributionResponse](docs/JackpotContributionResponse.md)
  - [@ZiqniTechAdminApiClient.Language](docs/Language.md)
  - [@ZiqniTechAdminApiClient.LanguageResponse](docs/LanguageResponse.md)
  - [@ZiqniTechAdminApiClient.Languages](docs/Languages.md)
@@ -715,6 +728,7 @@ Class | Method | HTTP request | Description
  - [@ZiqniTechAdminApiClient.UpdateInstantWinRequest](docs/UpdateInstantWinRequest.md)
  - [@ZiqniTechAdminApiClient.UpdateInstantWinRequestAllOf](docs/UpdateInstantWinRequestAllOf.md)
  - [@ZiqniTechAdminApiClient.UpdateInstantWinTile](docs/UpdateInstantWinTile.md)
+ - [@ZiqniTechAdminApiClient.UpdateJackpotConfigRequest](docs/UpdateJackpotConfigRequest.md)
  - [@ZiqniTechAdminApiClient.UpdateLanguageRequest](docs/UpdateLanguageRequest.md)
  - [@ZiqniTechAdminApiClient.UpdateMemberRequest](docs/UpdateMemberRequest.md)
  - [@ZiqniTechAdminApiClient.UpdateMemberRequestAllOf](docs/UpdateMemberRequestAllOf.md)
