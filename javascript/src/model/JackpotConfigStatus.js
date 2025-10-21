@@ -54,6 +54,20 @@ export default class JackpotConfigStatus {
         "DELETED" = "DELETED";
 
     
+        /**
+         * value: "STOPPED"
+         * @const
+         */
+        "STOPPED" = "STOPPED";
+
+    
+        /**
+         * value: "PAUSED"
+         * @const
+         */
+        "PAUSED" = "PAUSED";
+
+    
 
     /**
     * Returns a <code>JackpotConfigStatus</code> enum value from a Javascript object name.

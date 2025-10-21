@@ -138,6 +138,16 @@
         done();
       });
     });
+    describe('updateInstantWinsStatus', function() {
+      it('should call updateInstantWinsStatus successfully', function(done) {
+        //uncomment below and update the code to test updateInstantWinsStatus
+        //instance.updateInstantWinsStatus(function(error) {
+        //  if (error) throw error;
+        //expect().to.be();
+        //});
+        done();
+      });
+    });
   });
 
 }));

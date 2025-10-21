@@ -19,6 +19,7 @@ import InstantWinLogResponse from '../model/InstantWinLogResponse';
 import InstantWinMemberResponse from '../model/InstantWinMemberResponse';
 import InstantWinResponse from '../model/InstantWinResponse';
 import InstantWinStatisticsResponse from '../model/InstantWinStatisticsResponse';
+import InstantWinStatusRequest from '../model/InstantWinStatusRequest';
 import QueryRequest from '../model/QueryRequest';
 import UpdateInstantWinRequest from '../model/UpdateInstantWinRequest';
 
@@ -419,6 +420,45 @@ export default class InstantWinsApi {
       let returnType = ApiResponse;
       return this.apiClient.callApi(
         '/instant-wins', 'PUT',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, null, callback
+      );
+    }
+
+    /**
+     * Callback function to receive the result of the updateInstantWinsStatus operation.
+     * @callback module:api/InstantWinsApi~updateInstantWinsStatusCallback
+     * @param {String} error Error message, if any.
+     * @param {module:model/ApiResponse} data The data returned by the service call.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * Manage the state of achievement - Draft, Live, Archived
+     * @param {Object} opts Optional parameters
+     * @param {Array.<module:model/InstantWinStatusRequest>} opts.body Updates the state of the Achievement
+     * @param {module:api/InstantWinsApi~updateInstantWinsStatusCallback} callback The callback function, accepting three arguments: error, data, response
+     * data is of type: {@link module:model/ApiResponse}
+     */
+    updateInstantWinsStatus(opts, callback) {
+      opts = opts || {};
+      let postBody = opts['body'];
+
+      let pathParams = {
+      };
+      let queryParams = {
+      };
+      let headerParams = {
+      };
+      let formParams = {
+      };
+
+      let authNames = ['OAuth2'];
+      let contentTypes = ['application/json'];
+      let accepts = ['application/json'];
+      let returnType = ApiResponse;
+      return this.apiClient.callApi(
+        '/instant-wins/state', 'PUT',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, null, callback
       );
