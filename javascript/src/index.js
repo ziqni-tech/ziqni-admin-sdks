@@ -222,6 +222,8 @@ import InstantWinTile from './model/InstantWinTile';
 import JackpotConfig from './model/JackpotConfig';
 import JackpotConfigResponse from './model/JackpotConfigResponse';
 import JackpotConfigStatus from './model/JackpotConfigStatus';
+import JackpotConfigStatusRequest from './model/JackpotConfigStatusRequest';
+import JackpotConfigStatusRequestAllOf from './model/JackpotConfigStatusRequestAllOf';
 import JackpotConfigType from './model/JackpotConfigType';
 import JackpotContribution from './model/JackpotContribution';
 import JackpotContributionResponse from './model/JackpotContributionResponse';
@@ -1776,6 +1778,18 @@ export {
      * @property {module:model/JackpotConfigStatus}
      */
     JackpotConfigStatus,
+
+    /**
+     * The JackpotConfigStatusRequest model constructor.
+     * @property {module:model/JackpotConfigStatusRequest}
+     */
+    JackpotConfigStatusRequest,
+
+    /**
+     * The JackpotConfigStatusRequestAllOf model constructor.
+     * @property {module:model/JackpotConfigStatusRequestAllOf}
+     */
+    JackpotConfigStatusRequestAllOf,
 
     /**
      * The JackpotConfigType model constructor.

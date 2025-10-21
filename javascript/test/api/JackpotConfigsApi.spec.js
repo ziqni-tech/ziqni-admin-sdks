@@ -98,6 +98,16 @@
         done();
       });
     });
+    describe('updateJackpotConfigsStatus', function() {
+      it('should call updateJackpotConfigsStatus successfully', function(done) {
+        //uncomment below and update the code to test updateJackpotConfigsStatus
+        //instance.updateJackpotConfigsStatus(function(error) {
+        //  if (error) throw error;
+        //expect().to.be();
+        //});
+        done();
+      });
+    });
   });
 
 }));

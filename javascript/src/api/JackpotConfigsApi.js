@@ -16,6 +16,7 @@ import ApiClient from "../ApiClient";
 import ApiResponse from '../model/ApiResponse';
 import CreateJackpotConfigRequest from '../model/CreateJackpotConfigRequest';
 import JackpotConfigResponse from '../model/JackpotConfigResponse';
+import JackpotConfigStatusRequest from '../model/JackpotConfigStatusRequest';
 import QueryRequest from '../model/QueryRequest';
 import UpdateJackpotConfigRequest from '../model/UpdateJackpotConfigRequest';
 
@@ -243,6 +244,45 @@ export default class JackpotConfigsApi {
       let returnType = ApiResponse;
       return this.apiClient.callApi(
         '/jackpot-configs', 'PUT',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, null, callback
+      );
+    }
+
+    /**
+     * Callback function to receive the result of the updateJackpotConfigsStatus operation.
+     * @callback module:api/JackpotConfigsApi~updateJackpotConfigsStatusCallback
+     * @param {String} error Error message, if any.
+     * @param {module:model/ApiResponse} data The data returned by the service call.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * Manage the state of jackpot config - LIVE,DELETE
+     * @param {Object} opts Optional parameters
+     * @param {Array.<module:model/JackpotConfigStatusRequest>} opts.body Updates the state of the Achievement
+     * @param {module:api/JackpotConfigsApi~updateJackpotConfigsStatusCallback} callback The callback function, accepting three arguments: error, data, response
+     * data is of type: {@link module:model/ApiResponse}
+     */
+    updateJackpotConfigsStatus(opts, callback) {
+      opts = opts || {};
+      let postBody = opts['body'];
+
+      let pathParams = {
+      };
+      let queryParams = {
+      };
+      let headerParams = {
+      };
+      let formParams = {
+      };
+
+      let authNames = ['OAuth2'];
+      let contentTypes = ['application/json'];
+      let accepts = ['application/json'];
+      let returnType = ApiResponse;
+      return this.apiClient.callApi(
+        '/jackpot-configs/state', 'PUT',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, null, callback
       );

@@ -146,7 +146,6 @@ Class | Method | HTTP request | Description
 *@ZiqniTechAdminApiClient.AchievementsApi* | [**getMembersAchievementsDetails**](docs/AchievementsApi.md#getMembersAchievementsDetails) | **GET** /achievements/{id}/members | 
 *@ZiqniTechAdminApiClient.AchievementsApi* | [**updateAchievements**](docs/AchievementsApi.md#updateAchievements) | **PUT** /achievements | Update Achievements
 *@ZiqniTechAdminApiClient.AchievementsApi* | [**updateAchievementsState**](docs/AchievementsApi.md#updateAchievementsState) | **PUT** /achievements/state | 
-*@ZiqniTechAdminApiClient.AchievementsApi* | [**updateInstantWinsStatus**](docs/AchievementsApi.md#updateInstantWinsStatus) | **PUT** /instant-wins/state | 
 *@ZiqniTechAdminApiClient.ActionTypesApi* | [**createActionTypes**](docs/ActionTypesApi.md#createActionTypes) | **POST** /action-types | Create action types
 *@ZiqniTechAdminApiClient.ActionTypesApi* | [**deleteActionTypes**](docs/ActionTypesApi.md#deleteActionTypes) | **DELETE** /action-types | Delete action types
 *@ZiqniTechAdminApiClient.ActionTypesApi* | [**deleteActionTypesByQuery**](docs/ActionTypesApi.md#deleteActionTypesByQuery) | **POST** /action-types/delete | Delete action types by query
@@ -242,11 +241,13 @@ Class | Method | HTTP request | Description
 *@ZiqniTechAdminApiClient.InstantWinsApi* | [**getInstantWins**](docs/InstantWinsApi.md#getInstantWins) | **GET** /instant-wins | Get instant wins
 *@ZiqniTechAdminApiClient.InstantWinsApi* | [**getInstantWinsByQuery**](docs/InstantWinsApi.md#getInstantWinsByQuery) | **POST** /instant-wins/query | Get instant wins by query
 *@ZiqniTechAdminApiClient.InstantWinsApi* | [**updateInstantWins**](docs/InstantWinsApi.md#updateInstantWins) | **PUT** /instant-wins | Update instant wins
+*@ZiqniTechAdminApiClient.InstantWinsApi* | [**updateInstantWinsStatus**](docs/InstantWinsApi.md#updateInstantWinsStatus) | **PUT** /instant-wins/state | 
 *@ZiqniTechAdminApiClient.JackpotConfigsApi* | [**createJackpotConfigs**](docs/JackpotConfigsApi.md#createJackpotConfigs) | **POST** /jackpot-configs | Create jackpot configs
 *@ZiqniTechAdminApiClient.JackpotConfigsApi* | [**deleteJackpotConfigs**](docs/JackpotConfigsApi.md#deleteJackpotConfigs) | **DELETE** /jackpot-configs | Delete jackpot configs
 *@ZiqniTechAdminApiClient.JackpotConfigsApi* | [**getJackpotConfigs**](docs/JackpotConfigsApi.md#getJackpotConfigs) | **GET** /jackpot-configs | Get jackpot configs
 *@ZiqniTechAdminApiClient.JackpotConfigsApi* | [**getJackpotConfigsByQuery**](docs/JackpotConfigsApi.md#getJackpotConfigsByQuery) | **POST** /jackpot-configs/query | Get jackpot configs by query
 *@ZiqniTechAdminApiClient.JackpotConfigsApi* | [**updateJackpotConfigs**](docs/JackpotConfigsApi.md#updateJackpotConfigs) | **PUT** /jackpot-configs | Update jackpot configs
+*@ZiqniTechAdminApiClient.JackpotConfigsApi* | [**updateJackpotConfigsStatus**](docs/JackpotConfigsApi.md#updateJackpotConfigsStatus) | **PUT** /jackpot-configs/state | 
 *@ZiqniTechAdminApiClient.JackpotContributionsApi* | [**getJackpotContributions**](docs/JackpotContributionsApi.md#getJackpotContributions) | **GET** /jackpot-contributions | Get jackpot contributions by member
 *@ZiqniTechAdminApiClient.LanguagesApi* | [**createLanguages**](docs/LanguagesApi.md#createLanguages) | **POST** /languages | 
 *@ZiqniTechAdminApiClient.LanguagesApi* | [**deleteLanguages**](docs/LanguagesApi.md#deleteLanguages) | **DELETE** /languages | 
@@ -566,6 +567,8 @@ Class | Method | HTTP request | Description
  - [@ZiqniTechAdminApiClient.JackpotConfig](docs/JackpotConfig.md)
  - [@ZiqniTechAdminApiClient.JackpotConfigResponse](docs/JackpotConfigResponse.md)
  - [@ZiqniTechAdminApiClient.JackpotConfigStatus](docs/JackpotConfigStatus.md)
+ - [@ZiqniTechAdminApiClient.JackpotConfigStatusRequest](docs/JackpotConfigStatusRequest.md)
+ - [@ZiqniTechAdminApiClient.JackpotConfigStatusRequestAllOf](docs/JackpotConfigStatusRequestAllOf.md)
  - [@ZiqniTechAdminApiClient.JackpotConfigType](docs/JackpotConfigType.md)
  - [@ZiqniTechAdminApiClient.JackpotContribution](docs/JackpotContribution.md)
  - [@ZiqniTechAdminApiClient.JackpotContributionResponse](docs/JackpotContributionResponse.md)

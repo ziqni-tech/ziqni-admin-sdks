@@ -13,4 +13,8 @@
 
 * `DELETED` (value: `"DELETED"`)
 
+* `STOPPED` (value: `"STOPPED"`)
+
+* `PAUSED` (value: `"PAUSED"`)
+
 

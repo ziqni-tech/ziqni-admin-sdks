@@ -13,6 +13,7 @@ Method | HTTP request | Description
 [**getInstantWins**](InstantWinsApi.md#getInstantWins) | **GET** /instant-wins | Get instant wins
 [**getInstantWinsByQuery**](InstantWinsApi.md#getInstantWinsByQuery) | **POST** /instant-wins/query | Get instant wins by query
 [**updateInstantWins**](InstantWinsApi.md#updateInstantWins) | **PUT** /instant-wins | Update instant wins
+[**updateInstantWinsStatus**](InstantWinsApi.md#updateInstantWinsStatus) | **PUT** /instant-wins/state | 
 
 
 
@@ -478,5 +479,56 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json, file/csv
+- **Accept**: application/json
+
+
+## updateInstantWinsStatus
+
+> ApiResponse updateInstantWinsStatus(opts)
+
+
+
+Manage the state of achievement - Draft, Live, Archived
+
+### Example
+
+```javascript
+import @ZiqniTechAdminApiClient from '@ziqni-tech/admin-api-client';
+let defaultClient = @ZiqniTechAdminApiClient.ApiClient.instance;
+// Configure OAuth2 access token for authorization: OAuth2
+let OAuth2 = defaultClient.authentications['OAuth2'];
+OAuth2.accessToken = 'YOUR ACCESS TOKEN';
+
+let apiInstance = new @ZiqniTechAdminApiClient.InstantWinsApi();
+let opts = {
+  'body': [new @ZiqniTechAdminApiClient.InstantWinStatusRequest()] // [InstantWinStatusRequest] | Updates the state of the Achievement
+};
+apiInstance.updateInstantWinsStatus(opts, (error, data, response) => {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+});
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | [**[InstantWinStatusRequest]**](InstantWinStatusRequest.md)| Updates the state of the Achievement | [optional] 
+
+### Return type
+
+[**ApiResponse**](ApiResponse.md)
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
 - **Accept**: application/json
 
